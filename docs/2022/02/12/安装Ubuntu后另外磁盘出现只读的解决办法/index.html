@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -13,24 +13,24 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="CY">
   <meta name="keywords" content="">
   
     <meta name="description" content="mountblkidsudo ntfsfix &#x2F;dev&#x2F;sdb1mount -a 其他卸载硬盘：chen@ilaptop:&#x2F;$ sudo umount &#x2F;dev&#x2F;sdb1 读写挂载硬盘chen@ilaptop:&#x2F;$ sudo mount -o rw &#x2F;dev&#x2F;sdb1 参考：https:&#x2F;&#x2F;jakting.com&#x2F;ar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安装Ubuntu后另外磁盘出现只读的解决办法">
-<meta property="og:url" content="http://example.com/2022/02/12/%E5%AE%89%E8%A3%85Ubuntu%E5%90%8E%E5%8F%A6%E5%A4%96%E7%A3%81%E7%9B%98%E5%87%BA%E7%8E%B0%E5%8F%AA%E8%AF%BB%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="https://www.chengyao.xyz/2022/02/12/%E5%AE%89%E8%A3%85Ubuntu%E5%90%8E%E5%8F%A6%E5%A4%96%E7%A3%81%E7%9B%98%E5%87%BA%E7%8E%B0%E5%8F%AA%E8%AF%BB%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html">
+<meta property="og:site_name" content="笔记">
 <meta property="og:description" content="mountblkidsudo ntfsfix &#x2F;dev&#x2F;sdb1mount -a 其他卸载硬盘：chen@ilaptop:&#x2F;$ sudo umount &#x2F;dev&#x2F;sdb1 读写挂载硬盘chen@ilaptop:&#x2F;$ sudo mount -o rw &#x2F;dev&#x2F;sdb1 参考：https:&#x2F;&#x2F;jakting.com&#x2F;ar">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-12T01:55:38.000Z">
 <meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="CY">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>安装Ubuntu后另外磁盘出现只读的解决办法 - Hexo</title>
+  <title>安装Ubuntu后另外磁盘出现只读的解决办法 - 笔记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -68,7 +68,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -114,7 +114,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -126,7 +126,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -138,7 +138,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                分类
               </a>
             </li>
           
@@ -150,7 +150,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -162,7 +162,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -207,7 +207,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2022-02-12 09:55" pubdate>
-          February 12, 2022 am
+          2022年2月12日 上午
         </time>
       </span>
     
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          221 words
+          221 字
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          2 mins
+          2 分钟
         
       </span>
     
@@ -294,30 +294,30 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>安装Ubuntu后另外磁盘出现只读的解决办法</div>
-      <div>http://example.com/2022/02/12/安装Ubuntu后另外磁盘出现只读的解决办法/</div>
+      <div>https://www.chengyao.xyz/2022/02/12/安装Ubuntu后另外磁盘出现只读的解决办法/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
-          <div>John Doe</div>
+          <div>作者</div>
+          <div>CY</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>February 12, 2022</div>
+          <div>发布于</div>
+          <div>2022年2月12日</div>
         </div>
       
       
       <div class="license-meta-item">
-        <div>Licensed under</div>
+        <div>许可协议</div>
         <div>
           
             
             
               <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
               </span>
               </a>
@@ -339,7 +339,7 @@
                       <a href="/2022/03/06/Supervisor%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" title="Supervisor使用详解">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Supervisor使用详解</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -348,7 +348,7 @@
                     
                       <a href="/2022/01/28/%E5%96%9D%E7%9B%90%E6%B0%B4%E8%83%BD%E5%8E%BB%E7%81%AB%E4%B9%88/" title="喝盐水能去火么">
                         <span class="hidden-mobile">喝盐水能去火么</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -367,7 +367,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -422,7 +422,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -430,7 +430,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -582,7 +582,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
 </body>
 </html>

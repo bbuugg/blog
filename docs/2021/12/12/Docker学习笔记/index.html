@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" data-default-color-scheme=auto>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
@@ -13,44 +13,44 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="CY">
   <meta name="keywords" content="">
   
     <meta name="description" content="Docker 官方文档地址:https:&#x2F;&#x2F;www.docker.com&#x2F;get-started  中文参考手册:https:&#x2F;&#x2F;docker_practice.gitee.io&#x2F;zh-cn&#x2F;    1.什么是 Docker1.1 官方定义 最新官网首页    1234# 1.官方介绍- We have a complete container solution for you - no matt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker学习笔记">
-<meta property="og:url" content="http://example.com/2021/12/12/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="https://www.chengyao.xyz/2021/12/12/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="笔记">
 <meta property="og:description" content="Docker 官方文档地址:https:&#x2F;&#x2F;www.docker.com&#x2F;get-started  中文参考手册:https:&#x2F;&#x2F;docker_practice.gitee.io&#x2F;zh-cn&#x2F;    1.什么是 Docker1.1 官方定义 最新官网首页    1234# 1.官方介绍- We have a complete container solution for you - no matt">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20201220213306128.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20201220214210994.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20201220222456675.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20200404111908085-0291323.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20200404120356784.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20200404142950068.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/1567585172(1).jpg">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20200602184321790.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20200602183429286.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20200602183718623.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20200404111908085.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20200603181253804.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20200605172151266.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20200605172340380.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20200605173141636.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20201125105847896.png">
-<meta property="og:image" content="http://example.com/upload/images/20211212/image-20201223231707738.png">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20201220213306128.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20201220214210994.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20201220222456675.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20200404111908085-0291323.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20200404120356784.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20200404142950068.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/1567585172(1).jpg">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20200602184321790.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20200602183429286.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20200602183718623.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20200404111908085.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20200603181253804.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20200605172151266.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20200605172340380.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20200605173141636.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20201125105847896.png">
+<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20201223231707738.png">
 <meta property="og:image" content="https://s1.51cto.com/images/blog/201908/19/4c632d8989142643d5f03acf3adbd0dd.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
 <meta property="og:image" content="https://s1.51cto.com/images/blog/201908/19/418920b378e2821d56001207834c6c5e.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=">
 <meta property="article:published_time" content="2021-12-12T04:38:00.000Z">
 <meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="CY">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/upload/images/20211212/image-20201220213306128.png">
+<meta name="twitter:image" content="https://www.chengyao.xyz/upload/images/20211212/image-20201220213306128.png">
   
   
   
-  <title>Docker学习笔记 - Hexo</title>
+  <title>Docker学习笔记 - 笔记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -88,7 +88,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -134,7 +134,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                Home
+                首页
               </a>
             </li>
           
@@ -146,7 +146,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                Archives
+                归档
               </a>
             </li>
           
@@ -158,7 +158,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                Categories
+                分类
               </a>
             </li>
           
@@ -170,7 +170,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                Tags
+                标签
               </a>
             </li>
           
@@ -182,7 +182,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                About
+                关于
               </a>
             </li>
           
@@ -227,7 +227,7 @@
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2021-12-12 12:38" pubdate>
-          December 12, 2021 pm
+          2021年12月12日 下午
         </time>
       </span>
     
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          31k words
+          31k 字
         
       </span>
     
@@ -249,7 +249,7 @@
         
         
         
-          261 mins
+          261 分钟
         
       </span>
     
@@ -1157,30 +1157,30 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>Docker学习笔记</div>
-      <div>http://example.com/2021/12/12/Docker学习笔记/</div>
+      <div>https://www.chengyao.xyz/2021/12/12/Docker学习笔记/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
-          <div>John Doe</div>
+          <div>作者</div>
+          <div>CY</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>December 12, 2021</div>
+          <div>发布于</div>
+          <div>2021年12月12日</div>
         </div>
       
       
       <div class="license-meta-item">
-        <div>Licensed under</div>
+        <div>许可协议</div>
         <div>
           
             
             
               <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
                 <i class="iconfont icon-by"></i>
               </span>
               </a>
@@ -1202,7 +1202,7 @@
                       <a href="/2021/12/14/%E5%A6%82%E6%9E%9C%E9%9D%A2%E8%AF%95%E7%9A%84%E6%97%B6%E5%80%99%E9%83%BD%E8%AF%B4%E7%9C%9F%E8%AF%9D/" title="如果面试的时候都说真话">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">如果面试的时候都说真话</span>
-                        <span class="visible-mobile">Previous</span>
+                        <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
@@ -1211,7 +1211,7 @@
                     
                       <a href="/2021/12/07/Linux%E4%B8%80%E4%BA%9B%E6%96%87%E4%BB%B6%E5%8F%8A%E7%94%A8%E9%80%94/" title="Linux一些文件及用途">
                         <span class="hidden-mobile">Linux一些文件及用途</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -1230,7 +1230,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -1285,7 +1285,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1293,7 +1293,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -1445,7 +1445,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
 </body>
 </html>
