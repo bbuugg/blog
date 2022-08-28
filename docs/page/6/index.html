@@ -1,0 +1,676 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/12/%E5%AE%89%E8%A3%85Ubuntu%E5%90%8E%E5%8F%A6%E5%A4%96%E7%A3%81%E7%9B%98%E5%87%BA%E7%8E%B0%E5%8F%AA%E8%AF%BB%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" target="_self">
+          安装Ubuntu后另外磁盘出现只读的解决办法
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/12/%E5%AE%89%E8%A3%85Ubuntu%E5%90%8E%E5%8F%A6%E5%A4%96%E7%A3%81%E7%9B%98%E5%87%BA%E7%8E%B0%E5%8F%AA%E8%AF%BB%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" target="_self">
+        <div>
+          mountblkidsudo ntfsfix &#x2F;dev&#x2F;sdb1mount -a 其他卸载硬盘：chen@ilaptop:&#x2F;$ sudo umount &#x2F;dev&#x2F;sdb1 读写挂载硬盘chen@ilaptop:&#x2F;$ sudo mount -o rw &#x2F;dev&#x2F;sdb1 参考：https:&#x2F;&#x2F;jakting.com&#x2F;ar
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-12 09:55" pubdate>
+              2022-02-12
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/28/%E5%96%9D%E7%9B%90%E6%B0%B4%E8%83%BD%E5%8E%BB%E7%81%AB%E4%B9%88/" target="_self">
+          喝盐水能去火么
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/28/%E5%96%9D%E7%9B%90%E6%B0%B4%E8%83%BD%E5%8E%BB%E7%81%AB%E4%B9%88/" target="_self">
+        <div>
+          实际上如今日常生活的方法是各式各样的，但是還是要依据自身的具体情况来开展选择方式，就连食盐水全是能够做到降火的实际效果，实际上食盐水在日常生活中针对我们的人体有很多的功效，仅仅大伙儿忽视了食盐水这种作用的，沒有立即的去发觉，今日我们就一起来了解一下究竟喝盐水是不是可以做到降火的实际效果的呢。 space 中医学觉得，盐有清热解毒、散血、祛毒的功效。据《本草纲目拾遗》记述，盐能“调合五脏六腑、消宿物
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-28 00:06" pubdate>
+              2022-01-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/23/RabbitMQ%E5%AE%89%E8%A3%85/" target="_self">
+          RabbitMQ安装
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/23/RabbitMQ%E5%AE%89%E8%A3%85/" target="_self">
+        <div>
+          Docker安装RabbitMQ下载镜像1docker pull rabbitmq:management  #management标签的含义是下载的镜像包含manage模块。包含web管理页面。  安装1docker run -dit --name myrabbitmq -e RABBITMQ_DEFAULT_USER&#x3D;admin -e RABBITMQ_DEFAULT_PASS&#x3D;admin -p
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-23 15:56" pubdate>
+              2022-01-23
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/17/Mysql%20root%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E4%B8%8D%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E/" target="_self">
+          Mysql root用户登录不了怎么办
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/17/Mysql%20root%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E4%B8%8D%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E/" target="_self">
+        <div>
+          normal杀掉原来进行着的mysql：1rcmysqld stop 或者： 1service mysqld stop 或者： 1kill -TERM mysqld 以命令行参数启动mysql：123&#x2F;usr&#x2F;bin&#x2F;mysqld --skip-grant-tables&#x2F;&#x2F;不需要密码mysql  修改管理员密码：12345use mysql;# update user set password&#x3D;p
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-17 12:34" pubdate>
+              2022-01-17
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/05/RBAC%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E3%80%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" target="_self">
+          RBAC权限系统分析、设计与实现
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/05/RBAC%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E3%80%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" target="_self">
+        <div>
+          转载请备注来源： 《RBAC权限系统分析、设计与实现》 | shuwoom.com 最近，因为项目上需要设计实现一个权限管理模块，所以专门整理总结了RBAC的一些知识。 目前，使用最普遍的权限管理模型正是RBAC（Role-Based Access Control）模型，这篇文章也主要是介绍基于RBAC的权限管理系统，我会从RBAC是什么、如何设计RBAC两部分来介绍。 一、RBAC是什么1、RB
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-05 21:32" pubdate>
+              2022-01-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/02/%E5%AE%9A%E4%B8%AA%E7%9B%AE%E6%A0%87/" target="_self">
+          定个目标
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/02/%E5%AE%9A%E4%B8%AA%E7%9B%AE%E6%A0%87/" target="_self">
+        <div>
+          TCP&#x2F;UDP协议， socket 通信，熟练使用workman，swoole，swoft等rpc框架 精通PHP，熟悉golang语言， 熟悉html，css，javascript，会nodejs，vue,reactor,flutter。 mysql， 以及SQL优化，熟悉索引应用和优化，独立设计数据库、数据表， nosql，mongodb， redis，memcache缓存。熟悉后
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-02 16:14" pubdate>
+              2022-01-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/26/PHP%20yield%20%EF%BC%8C%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%8C%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E8%81%9A%E5%90%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E5%8D%8F%E7%A8%8B/" target="_self">
+          PHP yield ，生成器，迭代器，聚合迭代器，协程
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/26/PHP%20yield%20%EF%BC%8C%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%8C%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E8%81%9A%E5%90%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E5%8D%8F%E7%A8%8B/" target="_self">
+        <div>
+          yield语法1$data &#x3D; (yield $express);  yield 的左边是一个赋值语句，右边可以是值（也可是表达式） 。而yield 会先执行右边的表达式，并把值$value送到生成器外面。当生成器收到值后，会执行yield左边的语句，赋值给$data.  使用12345678910111213141516&lt;?php$generator &#x3D; (function () &amp;#12
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-26 18:41" pubdate>
+              2021-12-26
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/18/MaxPHP%E4%B8%AD%E9%97%B4%E4%BB%B6%E8%BF%AD%E4%BB%A3%E5%8E%86%E5%8F%B2/" target="_self">
+          MaxPHP中间件迭代历史
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/18/MaxPHP%E4%B8%AD%E9%97%B4%E4%BB%B6%E8%BF%AD%E4%BB%A3%E5%8E%86%E5%8F%B2/" target="_self">
+        <div>
+          以下内容为胡诌  对于HTTP中间件，我们只关注执行的顺序，而不关心输出内容的顺序。对于内核响应的内容，总是在所有中间件执行完成后才算完整的响应，而这个响应的输出是在所有中间件结束之后执行的，所以如果在中间件中echo的内容总是在response –&gt; send 之前输出到浏览器的，之前就是理解上出了问题，为了让response –&gt; send的内容也出现在中间件前后置输出内容之间而犯
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-18 22:37" pubdate>
+              2021-12-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/15/%E5%8F%A4%E4%BB%A3%E5%B9%B4%E9%BE%84%E7%9A%84%E4%BB%A3%E7%A7%B0/" target="_self">
+          古代年龄的代称
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/15/%E5%8F%A4%E4%BB%A3%E5%B9%B4%E9%BE%84%E7%9A%84%E4%BB%A3%E7%A7%B0/" target="_self">
+        <div>
+          不满周岁——襁褓；23岁——孩提；女孩7岁——髫年；男孩8岁——龆年；幼年泛称——总角；10岁以下——黄口,即乃稚气未脱的少儿代称也；1315岁——舞勺之年；1520岁——舞象之年；12岁（女）——金钗之年；13岁（女）——豆蔻年华，15岁（女）——及笄之年；15岁（男）——志学之年16岁（女）——破瓜年华、碧玉年华,二八年华；20岁（女）——桃李年华；24岁（女）花信年华；至出嫁—— 梅之年,标
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-15 21:57" pubdate>
+              2021-12-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/14/%E5%A6%82%E6%9E%9C%E9%9D%A2%E8%AF%95%E7%9A%84%E6%97%B6%E5%80%99%E9%83%BD%E8%AF%B4%E7%9C%9F%E8%AF%9D/" target="_self">
+          如果面试的时候都说真话
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/14/%E5%A6%82%E6%9E%9C%E9%9D%A2%E8%AF%95%E7%9A%84%E6%97%B6%E5%80%99%E9%83%BD%E8%AF%B4%E7%9C%9F%E8%AF%9D/" target="_self">
+        <div>
+          
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-14 23:18" pubdate>
+              2021-12-14
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/5/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/#board">21</a><a class="extend next" rel="next" href="/page/7/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

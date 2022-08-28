@@ -1,0 +1,678 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="A simple Laravel 5&#x2F;6 service provider for including the Captcha for Laravel. for Laravel 4 Captcha for Laravel Laravel 4 Preview  Captcha for Laravel 5&#x2F;6&#x2F;7 Preview Installation Us">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一款优秀的验证码包，基于laravel">
+<meta property="og:url" content="http://example.com/2021/08/08/%E4%B8%80%E6%AC%BE%E4%BC%98%E7%A7%80%E7%9A%84%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8C%85%EF%BC%8C%E5%9F%BA%E4%BA%8Elaravel/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="A simple Laravel 5&#x2F;6 service provider for including the Captcha for Laravel. for Laravel 4 Captcha for Laravel Laravel 4 Preview  Captcha for Laravel 5&#x2F;6&#x2F;7 Preview Installation Us">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://camo.githubusercontent.com/395cf595b422485eaaaf4af93448e94db6ab39c159bbe040f96f19affc41c19e/68747470733a2f2f7472617669732d63692e6f72672f6d6577656273747564696f2f636170746368612e7376673f6272616e63683d6d6173746572">
+<meta property="og:image" content="https://camo.githubusercontent.com/35a43570fdb405e443b752285f41fdc6301de269bcd6160e5a79fab8a624182c/68747470733a2f2f7363727574696e697a65722d63692e636f6d2f672f6d6577656273747564696f2f636170746368612f6261646765732f7175616c6974792d73636f72652e706e673f623d6d6173746572">
+<meta property="og:image" content="https://camo.githubusercontent.com/05a5411699cfafef1c83e3920fda31e5ff835b86a00c5ff0cb1180d02fee691f/68747470733a2f2f706f7365722e707567782e6f72672f6d6577732f636170746368612f762f737461626c652e737667">
+<meta property="og:image" content="https://camo.githubusercontent.com/8e6a81d170dce05c6a99d0eac9902bdec469568c592adbeb5fc405068c57c7e6/68747470733a2f2f706f7365722e707567782e6f72672f6d6577732f636170746368612f762f756e737461626c652e737667">
+<meta property="og:image" content="https://camo.githubusercontent.com/ebe2dc7c9f30e3495d0e13731c5f24c6942076749e4e52911638ad816bdae5ae/68747470733a2f2f706f7365722e707567782e6f72672f6d6577732f636170746368612f6c6963656e73652e737667">
+<meta property="og:image" content="https://camo.githubusercontent.com/45b6291a5f81f60a8d2f4e6344903c5ae67f128ce76810f4ce14bf5ce46d07ab/68747470733a2f2f706f7365722e707567782e6f72672f6d6577732f636170746368612f646f776e6c6f6164732e737667">
+<meta property="og:image" content="https://camo.githubusercontent.com/d323d054f44c6f7368792d153fce739b1651f61dcfcecb4e43e1f965ccbac276/68747470733a2f2f696d6167652e6962622e636f2f6b5a784d4c6d2f696d6167652e706e67">
+<meta property="article:published_time" content="2021-08-08T12:20:27.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/395cf595b422485eaaaf4af93448e94db6ab39c159bbe040f96f19affc41c19e/68747470733a2f2f7472617669732d63692e6f72672f6d6577656273747564696f2f636170746368612e7376673f6272616e63683d6d6173746572">
+  
+  
+  
+  <title>一款优秀的验证码包，基于laravel - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="一款优秀的验证码包，基于laravel"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-08-08 20:20" pubdate>
+          August 8, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">一款优秀的验证码包，基于laravel</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a target="_blank" rel="noopener" href="https://travis-ci.org/mewebstudio/captcha"><img src="https://camo.githubusercontent.com/395cf595b422485eaaaf4af93448e94db6ab39c159bbe040f96f19affc41c19e/68747470733a2f2f7472617669732d63692e6f72672f6d6577656273747564696f2f636170746368612e7376673f6272616e63683d6d6173746572" srcset="/img/loading.gif" lazyload alt="Build Status"></a> <a target="_blank" rel="noopener" href="https://scrutinizer-ci.com/g/mewebstudio/captcha/?branch=master"><img src="https://camo.githubusercontent.com/35a43570fdb405e443b752285f41fdc6301de269bcd6160e5a79fab8a624182c/68747470733a2f2f7363727574696e697a65722d63692e636f6d2f672f6d6577656273747564696f2f636170746368612f6261646765732f7175616c6974792d73636f72652e706e673f623d6d6173746572" srcset="/img/loading.gif" lazyload alt="Scrutinizer Code Quality"></a> <a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha"><img src="https://camo.githubusercontent.com/05a5411699cfafef1c83e3920fda31e5ff835b86a00c5ff0cb1180d02fee691f/68747470733a2f2f706f7365722e707567782e6f72672f6d6577732f636170746368612f762f737461626c652e737667" srcset="/img/loading.gif" lazyload alt="Latest Stable Version"></a> <a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha"><img src="https://camo.githubusercontent.com/8e6a81d170dce05c6a99d0eac9902bdec469568c592adbeb5fc405068c57c7e6/68747470733a2f2f706f7365722e707567782e6f72672f6d6577732f636170746368612f762f756e737461626c652e737667" srcset="/img/loading.gif" lazyload alt="Latest Unstable Version"></a> <a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha"><img src="https://camo.githubusercontent.com/ebe2dc7c9f30e3495d0e13731c5f24c6942076749e4e52911638ad816bdae5ae/68747470733a2f2f706f7365722e707567782e6f72672f6d6577732f636170746368612f6c6963656e73652e737667" srcset="/img/loading.gif" lazyload alt="License"></a> <a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha"><img src="https://camo.githubusercontent.com/45b6291a5f81f60a8d2f4e6344903c5ae67f128ce76810f4ce14bf5ce46d07ab/68747470733a2f2f706f7365722e707567782e6f72672f6d6577732f636170746368612f646f776e6c6f6164732e737667" srcset="/img/loading.gif" lazyload alt="Total Downloads"></a></p>
+<p>A simple <a target="_blank" rel="noopener" href="http://www.laravel.com/">Laravel 5&#x2F;6</a> service provider for including the <a target="_blank" rel="noopener" href="https://github.com/mewebstudio/captcha">Captcha for Laravel</a>.</p>
+<p>for Laravel 4 <a target="_blank" rel="noopener" href="https://github.com/mewebstudio/captcha/tree/master-l4">Captcha for Laravel Laravel 4</a></p>
+<h2 id="Preview"><a href="#Preview" class="headerlink" title="Preview"></a>Preview</h2><p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/d323d054f44c6f7368792d153fce739b1651f61dcfcecb4e43e1f965ccbac276/68747470733a2f2f696d6167652e6962622e636f2f6b5a784d4c6d2f696d6167652e706e67"><img src="https://camo.githubusercontent.com/d323d054f44c6f7368792d153fce739b1651f61dcfcecb4e43e1f965ccbac276/68747470733a2f2f696d6167652e6962622e636f2f6b5a784d4c6d2f696d6167652e706e67" srcset="/img/loading.gif" lazyload alt="Preview"></a></p>
+<ul>
+<li>Captcha for Laravel 5&#x2F;6&#x2F;7<ul>
+<li><a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha#user-content-preview">Preview</a></li>
+<li><a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha#user-content-installation">Installation</a></li>
+<li><a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha#user-content-usage">Usage</a></li>
+<li><a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha#user-content-configuration">Configuration</a></li>
+<li>Example Usage<ul>
+<li><a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha#user-content-session-mode-">Session Mode:</a></li>
+<li><a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha#user-content-stateless-mode-">Stateless Mode:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha#user-content-return-image">Return Image</a></li>
+<li><a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha#user-content-return-url">Return URL</a></li>
+<li><a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha#user-content-return-html">Return HTML</a></li>
+<li>To use different configurations<ul>
+<li><a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha#user-content-links">Links</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>The Captcha Service Provider can be installed via <a target="_blank" rel="noopener" href="http://getcomposer.org/">Composer</a> by requiring the <code>mews/captcha</code> package and setting the <code>minimum-stability</code> to <code>dev</code> (required for Laravel 5) in your project’s <code>composer.json</code>.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml">&#123;<br>    <span class="hljs-symbol">&amp;quot;</span>require<span class="hljs-symbol">&amp;quot;</span>: &#123;<br>        <span class="hljs-symbol">&amp;quot;</span>laravel/framework<span class="hljs-symbol">&amp;quot;</span>: <span class="hljs-symbol">&amp;quot;</span>5.0.*<span class="hljs-symbol">&amp;quot;</span>,<br>        <span class="hljs-symbol">&amp;quot;</span>mews/captcha<span class="hljs-symbol">&amp;quot;</span>: <span class="hljs-symbol">&amp;quot;</span>~2.0<span class="hljs-symbol">&amp;quot;</span><br>    &#125;,<br>    <span class="hljs-symbol">&amp;quot;</span>minimum-stability<span class="hljs-symbol">&amp;quot;</span>: <span class="hljs-symbol">&amp;quot;</span>dev<span class="hljs-symbol">&amp;quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>or</p>
+<p>Require this package with composer:</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">composer</span> <span class="hljs-meta">require</span> mews/captcha<br></code></pre></td></tr></table></figure>
+
+<p>Update your packages with <code>composer update</code> or install with <code>composer install</code>.</p>
+<p>In Windows, you’ll need to include the GD2 DLL <code>php_gd2.dll</code> in php.ini. And you also need include <code>php_fileinfo.dll</code> and <code>php_mbstring.dll</code> to fit the requirements of <code>mews/captcha</code>‘s dependencies.</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>To use the Captcha Service Provider, you must register the provider when bootstrapping your Laravel application. There are essentially two ways to do this.</p>
+<p>Find the <code>providers</code> key in <code>config/app.php</code> and register the Captcha Service Provider.</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs 1c">&#x27;providers&#x27; =<span class="hljs-meta">&amp;gt; [</span><br>    <span class="hljs-comment">// ...</span><br>    &#x27;Mews\Captcha\CaptchaServiceProvider&#x27;,<br>]<br></code></pre></td></tr></table></figure>
+
+<p>for Laravel 5.1+</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-string">&#x27;providers&#x27;</span> =&amp;gt; [<br>    <span class="hljs-regexp">//</span> ...<br>    Mews\Captcha\CaptchaServiceProvider::<span class="hljs-keyword">class</span>,<br>]<br></code></pre></td></tr></table></figure>
+
+<p>Find the <code>aliases</code> key in <code>config/app.php</code>.</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-string">&#x27;aliases&#x27;</span> =&amp;<span class="hljs-keyword">gt</span>; [<br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-string">&#x27;Captcha&#x27;</span> =&amp;<span class="hljs-keyword">gt</span>; <span class="hljs-string">&#x27;Mews\Captcha\Facades\Captcha&#x27;</span>,<br>]<br></code></pre></td></tr></table></figure>
+
+<p>for Laravel 5.1+</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs 1c">&#x27;aliases&#x27; =<span class="hljs-meta">&amp;gt; [</span><br>    <span class="hljs-comment">// ...</span><br>    &#x27;Captcha&#x27; =<span class="hljs-meta">&amp;gt; Mews\Captcha\Facades\Captcha::class,</span><br>]<br></code></pre></td></tr></table></figure>
+
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>To use your own settings, publish config.</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span> php artisan vendor:publish<br>config/captcha.php<br>return [<br>    <span class="hljs-string">&#x27;default&#x27;</span>   =&amp;<span class="hljs-keyword">gt</span>; [<br>        <span class="hljs-string">&#x27;length&#x27;</span>    =&amp;<span class="hljs-keyword">gt</span>; <span class="hljs-number">5</span>,<br>        <span class="hljs-string">&#x27;width&#x27;</span>     =&amp;<span class="hljs-keyword">gt</span>; <span class="hljs-number">120</span>,<br>        <span class="hljs-string">&#x27;height&#x27;</span>    =&amp;<span class="hljs-keyword">gt</span>; <span class="hljs-number">36</span>,<br>        <span class="hljs-string">&#x27;quality&#x27;</span>   =&amp;<span class="hljs-keyword">gt</span>; <span class="hljs-number">90</span>,<br>        <span class="hljs-string">&#x27;math&#x27;</span>      =&amp;<span class="hljs-keyword">gt</span>; true,  <span class="hljs-comment">//Enable Math Captcha</span><br>        <span class="hljs-string">&#x27;expire&#x27;</span>    =&amp;<span class="hljs-keyword">gt</span>; <span class="hljs-number">60</span>,    <span class="hljs-comment">//Stateless/API captcha expiration</span><br>    ],<br>    <span class="hljs-comment">// ...</span><br>];<br></code></pre></td></tr></table></figure>
+
+<h2 id="Example-Usage"><a href="#Example-Usage" class="headerlink" title="Example Usage"></a>Example Usage</h2><h3 id="Session-Mode"><a href="#Session-Mode" class="headerlink" title="Session Mode:"></a>Session Mode:</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml">// [your site path]/Http/routes.php<br>Route::any(&#x27;captcha-test&#x27;, function() &#123;<br>    if (request()-<span class="hljs-symbol">&amp;gt;</span>getMethod() == &#x27;POST&#x27;) &#123;<br>        $rules = [&#x27;captcha&#x27; =<span class="hljs-symbol">&amp;gt;</span> &#x27;required|captcha&#x27;];<br>        $validator = validator()-<span class="hljs-symbol">&amp;gt;</span>make(request()-<span class="hljs-symbol">&amp;gt;</span>all(), $rules);<br>        if ($validator-<span class="hljs-symbol">&amp;gt;</span>fails()) &#123;<br>            echo &#x27;<span class="hljs-symbol">&amp;lt;</span>p style=<span class="hljs-symbol">&amp;quot;</span>color: #ff0000;<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>Incorrect!<span class="hljs-symbol">&amp;lt;</span>/p<span class="hljs-symbol">&amp;gt;</span>&#x27;;<br>        &#125; else &#123;<br>            echo &#x27;<span class="hljs-symbol">&amp;lt;</span>p style=<span class="hljs-symbol">&amp;quot;</span>color: #00ff30;<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>Matched :)<span class="hljs-symbol">&amp;lt;</span>/p<span class="hljs-symbol">&amp;gt;</span>&#x27;;<br>        &#125;<br>    &#125;<br><br>    $form = &#x27;<span class="hljs-symbol">&amp;lt;</span>form method=<span class="hljs-symbol">&amp;quot;</span>post<span class="hljs-symbol">&amp;quot;</span> action=<span class="hljs-symbol">&amp;quot;</span>captcha-test<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>&#x27;;<br>    $form .= &#x27;<span class="hljs-symbol">&amp;lt;</span>input type=<span class="hljs-symbol">&amp;quot;</span>hidden<span class="hljs-symbol">&amp;quot;</span> name=<span class="hljs-symbol">&amp;quot;</span>_token<span class="hljs-symbol">&amp;quot;</span> value=<span class="hljs-symbol">&amp;quot;</span>&#x27; . csrf_token() . &#x27;<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>&#x27;;<br>    $form .= &#x27;<span class="hljs-symbol">&amp;lt;</span>p<span class="hljs-symbol">&amp;gt;</span>&#x27; . captcha_img() . &#x27;<span class="hljs-symbol">&amp;lt;</span>/p<span class="hljs-symbol">&amp;gt;</span>&#x27;;<br>    $form .= &#x27;<span class="hljs-symbol">&amp;lt;</span>p<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;lt;</span>input type=<span class="hljs-symbol">&amp;quot;</span>text<span class="hljs-symbol">&amp;quot;</span> name=<span class="hljs-symbol">&amp;quot;</span>captcha<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;lt;</span>/p<span class="hljs-symbol">&amp;gt;</span>&#x27;;<br>    $form .= &#x27;<span class="hljs-symbol">&amp;lt;</span>p<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;lt;</span>button type=<span class="hljs-symbol">&amp;quot;</span>submit<span class="hljs-symbol">&amp;quot;</span> name=<span class="hljs-symbol">&amp;quot;</span>check<span class="hljs-symbol">&amp;quot;</span><span class="hljs-symbol">&amp;gt;</span>Check<span class="hljs-symbol">&amp;lt;</span>/button<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;lt;</span>/p<span class="hljs-symbol">&amp;gt;</span>&#x27;;<br>    $form .= &#x27;<span class="hljs-symbol">&amp;lt;</span>/form<span class="hljs-symbol">&amp;gt;</span>&#x27;;<br>    return $form;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h3 id="Stateless-Mode"><a href="#Stateless-Mode" class="headerlink" title="Stateless Mode:"></a>Stateless Mode:</h3><p>You get key and img from this url <code>http://localhost/captcha/api/math</code> and verify the captcha using this method:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>key is the one that you got from json response<br><span class="hljs-regexp">//</span> fix validator<br><span class="hljs-regexp">//</span> <span class="hljs-variable">$rules</span> = [<span class="hljs-string">&#x27;captcha&#x27;</span> =&amp;gt; <span class="hljs-string">&#x27;required|captcha_api:&#x27;</span>. request(<span class="hljs-string">&#x27;key&#x27;</span>)];<br><span class="hljs-variable">$rules</span> = [<span class="hljs-string">&#x27;captcha&#x27;</span> =&amp;gt; <span class="hljs-string">&#x27;required|captcha_api:&#x27;</span>. request(<span class="hljs-string">&#x27;key&#x27;</span>) . <span class="hljs-string">&#x27;,math&#x27;</span>];<br><span class="hljs-variable">$validator</span> = validator()-&amp;gt;make(request()-&amp;gt;all(), <span class="hljs-variable">$rules</span>);<br><span class="hljs-keyword">if</span> (<span class="hljs-variable">$validator</span>-&amp;gt;fails()) &#123;<br>    return response()-&amp;gt;json([<br>        <span class="hljs-string">&#x27;message&#x27;</span> =&amp;gt; <span class="hljs-string">&#x27;invalid captcha&#x27;</span>,<br>    ]);<br><br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-regexp">//</span><span class="hljs-keyword">do</span> the job<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Return-Image"><a href="#Return-Image" class="headerlink" title="Return Image"></a>Return Image</h1><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">captcha</span>();<br></code></pre></td></tr></table></figure>
+
+<p>or</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">Captcha::<span class="hljs-built_in">create</span>();<br></code></pre></td></tr></table></figure>
+
+<h1 id="Return-URL"><a href="#Return-URL" class="headerlink" title="Return URL"></a>Return URL</h1><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">captcha_src</span>();<br></code></pre></td></tr></table></figure>
+
+<p>or</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">Captcha::<span class="hljs-built_in">src</span>(<span class="hljs-string">&#x27;default&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<h1 id="Return-HTML"><a href="#Return-HTML" class="headerlink" title="Return HTML"></a>Return HTML</h1><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">captcha_img</span>();<br></code></pre></td></tr></table></figure>
+
+<p>or</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">Captcha::<span class="hljs-built_in">img</span>();<br></code></pre></td></tr></table></figure>
+
+<h1 id="To-use-different-configurations"><a href="#To-use-different-configurations" class="headerlink" title="To use different configurations"></a>To use different configurations</h1><figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><span class="hljs-function"><span class="hljs-title">captcha_img</span>(<span class="hljs-string">&#x27;flat&#x27;</span>);</span><br><span class="hljs-function"></span><br><span class="hljs-function"><span class="hljs-variable">Captcha</span>::<span class="hljs-title">img</span>(<span class="hljs-string">&#x27;inverse&#x27;</span>);</span><br></code></pre></td></tr></table></figure>
+
+<p>etc.</p>
+<p>Based on <a target="_blank" rel="noopener" href="https://github.com/Intervention/image">Intervention Image</a></p>
+<p>^_^</p>
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Intervention/image">Intervention Image</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mewebstudio/captcha">L5 Captcha on Github</a></li>
+<li><a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha">L5 Captcha on Packagist</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mewebstudio/captcha/tree/master-l4">For L4 on Github</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.opensource.org/licenses/mit-license.php">License</a></li>
+<li><a target="_blank" rel="noopener" href="http://laravel.com/">Laravel website</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.laravel.gen.tr/">Laravel Turkiye website</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.mewebstudio.com/">MeWebStudio website</a></li>
+</ul>
+<p>&gt; <a target="_blank" rel="noopener" href="https://packagist.org/packages/mews/captcha">https://packagist.org/packages/mews/captcha</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>一款优秀的验证码包，基于laravel</div>
+      <div>http://example.com/2021/08/08/一款优秀的验证码包，基于laravel/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 8, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/29/%E8%A7%A3%E5%86%B3%20go%20build%E6%97%B6%E5%80%99timeout%E9%97%AE%E9%A2%98/" title="解决 go build时候timeout问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">解决 go build时候timeout问题</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/26/%E6%85%A2%E9%80%9F%E8%BF%9E%E6%8E%A5%E6%94%BB%E5%87%BB%E5%92%8C%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F/" title="慢速连接攻击和处理方式">
+                        <span class="hidden-mobile">慢速连接攻击和处理方式</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

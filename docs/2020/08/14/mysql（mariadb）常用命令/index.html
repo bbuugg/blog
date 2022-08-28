@@ -1,0 +1,681 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="首先了解一下SQL的注释  单行语句进行注释 1SELECT * FROM USERS; --查询所有用户信息 多行注释 123456&#x2F;*切换到USER数据库查询所有表信息*&#x2F;USE USER;SHOW TABLES; 注释快捷键  选中需要注释的语句先Ctrl+k，再Ctrl+c注释成功取消注释先Crtrl+k，在Ctrl+u  查看支持的表引擎12SHOW ENGINES;SHOW VARI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql（mariadb）常用命令">
+<meta property="og:url" content="http://example.com/2020/08/14/mysql%EF%BC%88mariadb%EF%BC%89%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="首先了解一下SQL的注释  单行语句进行注释 1SELECT * FROM USERS; --查询所有用户信息 多行注释 123456&#x2F;*切换到USER数据库查询所有表信息*&#x2F;USE USER;SHOW TABLES; 注释快捷键  选中需要注释的语句先Ctrl+k，再Ctrl+c注释成功取消注释先Crtrl+k，在Ctrl+u  查看支持的表引擎12SHOW ENGINES;SHOW VARI">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-14T03:09:26.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>mysql（mariadb）常用命令 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="mysql（mariadb）常用命令"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-08-14 11:09" pubdate>
+          August 14, 2020 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">mysql（mariadb）常用命令</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>首先了解一下<code>SQL</code>的注释</p>
+</blockquote>
+<p>单行语句进行注释</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> USERS; <span class="hljs-comment">--查询所有用户信息</span><br></code></pre></td></tr></table></figure>
+<p>多行注释</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">/*</span><br><span class="hljs-comment">切换到USER数据库</span><br><span class="hljs-comment">查询所有表信息</span><br><span class="hljs-comment">*/</span><br>USE <span class="hljs-keyword">USER</span>;<br><span class="hljs-keyword">SHOW</span> TABLES;<br></code></pre></td></tr></table></figure>
+<p>注释快捷键</p>
+<blockquote>
+<p>选中需要注释的语句<br>先Ctrl+k，再Ctrl+c<br>注释成功<br>取消注释<br>先Crtrl+k，在Ctrl+u</p>
+</blockquote>
+<h2 id="查看支持的表引擎"><a href="#查看支持的表引擎" class="headerlink" title="查看支持的表引擎"></a>查看支持的表引擎</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SHOW</span> ENGINES;<br><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span> &quot;%STORAGE_ENGINE%&quot;;<br></code></pre></td></tr></table></figure>
+
+<h2 id="查看创建表语句"><a href="#查看创建表语句" class="headerlink" title="查看创建表语句"></a>查看创建表语句</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `TBALE`<br></code></pre></td></tr></table></figure>
+
+<h2 id="查看表status"><a href="#查看表status" class="headerlink" title="查看表status"></a>查看表status</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">TABLE</span> STATUS <span class="hljs-keyword">FROM</span> `DATABASE` <span class="hljs-keyword">WHERE</span> NAME<span class="hljs-operator">=</span>`<span class="hljs-keyword">TABLE</span>` \G<br></code></pre></td></tr></table></figure>
+<h2 id="修改表引擎"><a href="#修改表引擎" class="headerlink" title="修改表引擎"></a>修改表引擎</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> `TBALE` ENGINE<span class="hljs-operator">=</span>MEMORY<br></code></pre></td></tr></table></figure>
+
+<h2 id="查看mysql的数据文件存放位置"><a href="#查看mysql的数据文件存放位置" class="headerlink" title="查看mysql的数据文件存放位置"></a>查看mysql的数据文件存放位置</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SHOW</span> VARIABLES <span class="hljs-keyword">LIKE</span> &quot;%DIR%&quot;;<br></code></pre></td></tr></table></figure>
+<p>数据库文件默认在：<code>cd /usr/share/mysql</code><br>配置文件默认在：<code>/etc/my.cnf</code></p>
+<p>———————————–</p>
+<p>数据库目录：<code>/var/lib/mysql/</code><br>配置文件：<code>/usr/share/mysql</code>(mysql.server命令及配置文件)<br>相关命令：&#x2F;usr&#x2F;bin(mysqladmin、mysqldump等命令)(*mysql的一种安全启动方式：&#x2F;usr&#x2F;bin&#x2F;mysqld_safe –user&#x3D;root &amp;)<br>启动脚本：&#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;</p>
+<p>首先你可以使用以下的命令来寻找MySQL</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">[root@stuhome <span class="hljs-regexp">/]# find /</span> -name “mysql” -<span class="hljs-built_in">print</span><br></code></pre></td></tr></table></figure>
+<p>一般来说mysql是放在&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;下的。<br>然后在其bin目录下有个mysql_config文件，vi之，你会看见这么一句：<br>ldata&#x3D;’&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;var’<br>rpm安装默认目录：<br>数据文件：&#x2F;var&#x2F;lib&#x2F;mysql&#x2F;<br>配置文件模板：&#x2F;usr&#x2F;share&#x2F;mysql<br>mysql客户端工具目录：&#x2F;usr&#x2F;bin<br>日志目录：&#x2F;var&#x2F;log&#x2F;<br>pid，sock文件目录：&#x2F;tmp&#x2F;</p>
+<h2 id="设置组合主键索引"><a href="#设置组合主键索引" class="headerlink" title="设置组合主键索引"></a>设置组合主键索引</h2><p>使用baiprimary key(字段1, 字段2, …)的语句进行设置。<br>一个表中最du多只能有一个主键，zhi也可以没有。一个主键既可dao以是单一的字段构成，也可以是多个字段联合构成，如果是单一字段，只需在该字段后面标记primary key即可，如果是多个字段联合构成，则需要采用最开始介绍的那种方式设置。<br>在部分数据库的图形化工具中（如Access、SQL Server等），在表设计的界面上，可以按住Ctrl键，然后选择要设置为联合主键的字段，都选好之后再按右键选择“设置为主键”。<br>alter table Table_1 add constraint pk_name primary key (id,name)设置Table_1表的id,name为主键</p>
+<h2 id="更改表名"><a href="#更改表名" class="headerlink" title="更改表名"></a>更改表名</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-built_in">table_name</span> <span class="hljs-keyword">RENAME</span> [<span class="hljs-keyword">TO</span>] new_name;<br></code></pre></td></tr></table></figure>
+
+<p>##创建索引</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">create index `id_name` on categories (`id`, `name`)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="更改字段信息"><a href="#更改字段信息" class="headerlink" title="更改字段信息"></a>更改字段信息</h2><figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sas"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> categories <span class="hljs-keyword">modify</span> column id mediumint auto_increment <span class="hljs-keyword">primary</span> <span class="hljs-keyword">key</span> ;<br></code></pre></td></tr></table></figure>
+
+<h2 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h2><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">index</span> id_name <span class="hljs-keyword">on</span> categories;<br></code></pre></td></tr></table></figure>
+
+<p>#其他</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SHOW</span> DATABASES                                <span class="hljs-operator">/</span><span class="hljs-operator">/</span>列出 MySQL Server 数据库。<br><br><span class="hljs-keyword">SHOW</span> TABLES [<span class="hljs-keyword">FROM</span> db_name]                    <span class="hljs-operator">/</span><span class="hljs-operator">/</span>列出数据库数据表。<br><br><span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">TABLE</span> STATUS [<span class="hljs-keyword">FROM</span> db_name]              <span class="hljs-operator">/</span><span class="hljs-operator">/</span>列出数据表及表状态信息。<br><br><span class="hljs-keyword">SHOW</span> COLUMNS <span class="hljs-keyword">FROM</span> tbl_name [<span class="hljs-keyword">FROM</span> db_name]     <span class="hljs-operator">/</span><span class="hljs-operator">/</span>列出资料表字段<br><br><span class="hljs-keyword">SHOW</span> FIELDS <span class="hljs-keyword">FROM</span> tbl_name [<span class="hljs-keyword">FROM</span> db_name]，<span class="hljs-keyword">DESCRIBE</span> tbl_name [col_name]。<br><br><span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">FULL</span> COLUMNS <span class="hljs-keyword">FROM</span> tbl_name [<span class="hljs-keyword">FROM</span> db_name]<span class="hljs-operator">/</span><span class="hljs-operator">/</span>列出字段及详情<br><br><span class="hljs-keyword">SHOW</span> <span class="hljs-keyword">FULL</span> FIELDS <span class="hljs-keyword">FROM</span> tbl_name [<span class="hljs-keyword">FROM</span> db_name] <span class="hljs-operator">/</span><span class="hljs-operator">/</span>列出字段完整属性<br><br><span class="hljs-keyword">SHOW</span> INDEX <span class="hljs-keyword">FROM</span> tbl_name [<span class="hljs-keyword">FROM</span> db_name]       <span class="hljs-operator">/</span><span class="hljs-operator">/</span>列出表索引。<br><br><span class="hljs-keyword">SHOW</span> STATUS                                  <span class="hljs-operator">/</span><span class="hljs-operator">/</span>列出 DB Server 状态。<br><br><span class="hljs-keyword">SHOW</span> VARIABLES                               <span class="hljs-operator">/</span><span class="hljs-operator">/</span>列出 MySQL 系统环境变量。<br><br><span class="hljs-keyword">SHOW</span> PROCESSLIST                             <span class="hljs-operator">/</span><span class="hljs-operator">/</span>列出执行命令。<br><br><span class="hljs-keyword">SHOW</span> GRANTS <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">user</span>                         <span class="hljs-operator">/</span><span class="hljs-operator">/</span>列出某用户权限<br></code></pre></td></tr></table></figure>
+
+<p>#建表语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> files(<br> username <span class="hljs-type">varchar</span>(<span class="hljs-number">50</span>),<br> file <span class="hljs-type">varchar</span>(<span class="hljs-number">200</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span>,<br> create_time <span class="hljs-type">timestamp</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">default</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span>,<br> filename <span class="hljs-type">varchar</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">default</span> <span class="hljs-keyword">null</span>,<br> md5 <span class="hljs-type">char</span>(<span class="hljs-number">32</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">default</span> <span class="hljs-string">&#x27;&#x27;</span>,<br> id <span class="hljs-type">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> auto_increment <span class="hljs-keyword">primary</span> key) engine<span class="hljs-operator">=</span>myisam <span class="hljs-keyword">default</span> charset<span class="hljs-operator">=</span>utf8mb4 <span class="hljs-keyword">collate</span><span class="hljs-operator">=</span>utf8mb4_unicode_ci;<br></code></pre></td></tr></table></figure>
+
+<p>#MySQL(Unix时间戳、日期)转换函数</p>
+<blockquote>
+<p>unix_timestamp()</p>
+</blockquote>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ada">mysql&gt; <span class="hljs-keyword">select</span> unix_timestamp();<br>+``<span class="hljs-comment">------------------+</span><br>| unix_timestamp()   |<br>+``<span class="hljs-comment">------------------+</span><br>|    <span class="hljs-number">1464590043</span>      |<br>+``<span class="hljs-comment">------------------+</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>unix_timestamp(date)</p>
+</blockquote>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-section">mysql&gt; select unix_timestamp(&#x27;2016-05-30&#x27;);</span><br><span class="hljs-section">+------------------------------+</span><br><span class="hljs-section">| unix_timestamp(&#x27;2016-05-30&#x27;) |</span><br><span class="hljs-section">+------------------------------+</span><br><span class="hljs-section">|                   1464537600 |</span><br><span class="hljs-section">+------------------------------+</span><br><span class="hljs-code"> </span><br><span class="hljs-section">mysql&gt; select unix_timestamp(&#x27;2016-05-30 14:35:21&#x27;);</span><br><span class="hljs-section">+---------------------------------------+</span><br><span class="hljs-section">| unix_timestamp(&#x27;2016-05-30 14:35:21&#x27;) |</span><br><span class="hljs-section">+---------------------------------------+</span><br><span class="hljs-section">|                            1464590121 |</span><br><span class="hljs-section">+---------------------------------------+</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>from_unixtime(unix_timestamp)</p>
+</blockquote>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-section">mysql&gt; select from_unixtime(1464590043);</span><br><span class="hljs-section">+---------------------------+</span><br><span class="hljs-section">| from_unixtime(1464590043) |</span><br><span class="hljs-section">+---------------------------+</span><br><span class="hljs-section">| 2016-05-30 14:34:03       |</span><br><span class="hljs-section">+---------------------------+</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>from_unixtime(unix_timestamp,format)</p>
+</blockquote>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-section">mysql&gt; select from_unixtime(1464590043, &#x27;%Y %D %M %h:%i:%s %x&#x27;);</span><br><span class="hljs-section">+---------------------------------------------------+</span><br><span class="hljs-section">| from_unixtime(1464590043, &#x27;%Y %D %M %h:%i:%s %x&#x27;) |</span><br><span class="hljs-section">+---------------------------------------------------+</span><br><span class="hljs-section">| 2016 30th May 02:34:03 2016                       |</span><br><span class="hljs-section">+---------------------------------------------------+</span><br></code></pre></td></tr></table></figure>
+
+<p>修改密码ALTER USER ‘root‘@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘123456’;</p>
+<h1 id="如何删除mysql-主键索引"><a href="#如何删除mysql-主键索引" class="headerlink" title="如何删除mysql 主键索引"></a>如何删除mysql 主键索引</h1><p>如果一个主键是自增长的，不能直接删除该列的主键索引，<br>应当先取消自增长，再删除主键特性</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> 表名 <span class="hljs-keyword">drop</span> <span class="hljs-keyword">primary key</span>; <span class="hljs-comment">--【如果这个主键是自增的，先取消自增长.】</span><br></code></pre></td></tr></table></figure>
+
+<p>具体方法如下:</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> articles modify id <span class="hljs-type">int</span> ; <span class="hljs-comment">--【重新定义列类型】</span><br><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> articles <span class="hljs-keyword">drop</span> <span class="hljs-keyword">primary key</span>;<br></code></pre></td></tr></table></figure>
+
+<h1 id="添加主键索引"><a href="#添加主键索引" class="headerlink" title="添加主键索引"></a>添加主键索引</h1><p>innodb逐渐使聚簇索引，myisam不是[待考究]</p>
+<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sas"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> users <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">PRIMARY</span> <span class="hljs-keyword">KEY</span> (id);<br></code></pre></td></tr></table></figure>
+
+<p>删除</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> users <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">primary key</span>; <span class="hljs-comment">--删除前要将auto_increment去掉</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="添加其他索引"><a href="#添加其他索引" class="headerlink" title="添加其他索引"></a>添加其他索引</h1><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> index_name <span class="hljs-keyword">ON</span> users(username);<br></code></pre></td></tr></table></figure>
+
+<h1 id="MySQL-查看执行计划"><a href="#MySQL-查看执行计划" class="headerlink" title="MySQL 查看执行计划"></a>MySQL 查看执行计划</h1><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">EXPLAIN</span> <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> id &gt; <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>Mysql8.0新增<code>EXPLAIN ANALYZE</code></p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">EXPLAIN</span> <span class="hljs-keyword">ANALYZE</span> <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> id &gt; <span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure>
+
+<h1 id="执行计划中extra的描述"><a href="#执行计划中extra的描述" class="headerlink" title="执行计划中extra的描述"></a>执行计划中<code>extra</code>的描述</h1><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs oxygene"><span class="hljs-keyword">Using</span> <span class="hljs-keyword">where</span>：表示优化器需要通过索引回表查询数据；<br><span class="hljs-keyword">Using</span> <span class="hljs-keyword">index</span>：表示直接访问索引就足够获取到所需要的数据，不需要通过索引回表；<br><span class="hljs-keyword">Using</span> <span class="hljs-keyword">index</span> condition：在<span class="hljs-number">5.6</span>版本后加入的新特性（<span class="hljs-keyword">Index</span> Condition Pushdown）<span class="hljs-punctuation">;</span><br><span class="hljs-keyword">Using</span> <span class="hljs-keyword">index</span> condition 会先条件过滤索引，过滤完索引后找到所有符合索引条件的数据行，随后用 <span class="hljs-keyword">WHERE</span> 子句中的其他条件去过滤这些数据行；<br><span class="hljs-keyword">Using</span> <span class="hljs-keyword">where</span> &amp;&amp; <span class="hljs-keyword">Using</span> <span class="hljs-keyword">index</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="更改表的引擎"><a href="#更改表的引擎" class="headerlink" title="更改表的引擎"></a>更改表的引擎</h1><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">ALTER TABLE users ENGINE <span class="hljs-operator">=</span> myisam<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="Innodb的count效率在mysql8测试已经不再低于myisam了"><a href="#Innodb的count效率在mysql8测试已经不再低于myisam了" class="headerlink" title="Innodb的count效率在mysql8测试已经不再低于myisam了"></a>Innodb的count效率在mysql8测试已经不再低于myisam了</h1><h1 id="蠕虫复制"><a href="#蠕虫复制" class="headerlink" title="蠕虫复制"></a>蠕虫复制</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> users <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users_1;<br></code></pre></td></tr></table></figure>
+<p>下面的SQL可以指定列，用于解决唯一约束的问题</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> users(username,password) <span class="hljs-keyword">SELECT</span> username,password <span class="hljs-keyword">FROM</span> users_d;<br></code></pre></td></tr></table></figure>
+
+<h1 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> status<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">table</span> status<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>可以通过<code>Comment</code>字段查看表是不是视图</p>
+</blockquote>
+<h1 id="查看触发器"><a href="#查看触发器" class="headerlink" title="查看触发器"></a>查看触发器</h1><p><code>show triggers</code></p>
+<h1 id="权限相关"><a href="#权限相关" class="headerlink" title="权限相关"></a>权限相关</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> grants <span class="hljs-keyword">for</span> `username`<br><span class="hljs-keyword">grant</span> <span class="hljs-keyword">all</span> <span class="hljs-keyword">on</span> <span class="hljs-operator">*</span>.<span class="hljs-operator">*</span> <span class="hljs-keyword">to</span> `username`@`<span class="hljs-operator">%</span>`<br><span class="hljs-keyword">revoke</span> <span class="hljs-keyword">all</span> <span class="hljs-keyword">on</span> <span class="hljs-operator">*</span>.<span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> `username`@`<span class="hljs-operator">%</span>`<br>flush privileges<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>mysql（mariadb）常用命令</div>
+      <div>http://example.com/2020/08/14/mysql（mariadb）常用命令/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 14, 2020</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/14/%E5%85%B3%E4%BA%8Eapt-get%20remove%20%E4%B8%8E%20apt-get%20purge/" title="关于apt-get remove 与 apt-get purge">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">关于apt-get remove 与 apt-get purge</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/13/php%E7%9A%84%E4%B8%89%E7%A7%8DCLI%E5%B8%B8%E9%87%8F%EF%BC%9ASTDIN,STDOUT,STDERR/" title="php的三种CLI常量：STDIN,STDOUT,STDERR">
+                        <span class="hidden-mobile">php的三种CLI常量：STDIN,STDOUT,STDERR</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

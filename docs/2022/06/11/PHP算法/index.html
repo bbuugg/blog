@@ -1,0 +1,604 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="排序快速排序1234567891011121314151617181920function quickSort($arr)&amp;#123;  if (count($arr) &lt;&#x3D; 1) &amp;#123;    return $arr;  &amp;#125; else &amp;#123;    $key &#x3D; $arr[0];    $left &#x3D; [];    $right &#x3D; [];    for ($i &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP算法">
+<meta property="og:url" content="http://example.com/2022/06/11/PHP%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="排序快速排序1234567891011121314151617181920function quickSort($arr)&amp;#123;  if (count($arr) &lt;&#x3D; 1) &amp;#123;    return $arr;  &amp;#125; else &amp;#123;    $key &#x3D; $arr[0];    $left &#x3D; [];    $right &#x3D; [];    for ($i &#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-11T10:50:26.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.683Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>PHP算法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PHP算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-11 18:50" pubdate>
+          June 11, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PHP算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xquery"><span class="hljs-keyword">function</span> quickSort(<span class="hljs-variable">$arr</span>)<br>&#123;<br>  <span class="hljs-keyword">if</span> <span class="hljs-built_in">(count</span>(<span class="hljs-variable">$arr</span>) &lt;= <span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable">$arr</span>;<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-variable">$key</span> = <span class="hljs-variable">$arr</span>[<span class="hljs-number">0</span>];<br>    <span class="hljs-variable">$left</span> = [];<br>    <span class="hljs-variable">$right</span> = [];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> &lt;<span class="hljs-built_in"> count</span>(<span class="hljs-variable">$arr</span>); <span class="hljs-variable">$i</span>++) &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-variable">$arr</span>[<span class="hljs-variable">$i</span>] &lt; <span class="hljs-variable">$key</span>) &#123;<br>        <span class="hljs-variable">$left</span>[] = <span class="hljs-variable">$arr</span>[<span class="hljs-variable">$i</span>];<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-variable">$right</span>[] = <span class="hljs-variable">$arr</span>[<span class="hljs-variable">$i</span>];<br>      &#125;<br>    &#125;<br>    <span class="hljs-variable">$left</span> = quickSort(<span class="hljs-variable">$left</span>);<br>    <span class="hljs-variable">$right</span> = quickSort(<span class="hljs-variable">$right</span>);<br>    <span class="hljs-keyword">return</span> array_merge(<span class="hljs-variable">$left</span>, [<span class="hljs-variable">$key</span>], <span class="hljs-variable">$right</span>);<br>  &#125;    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="无限级分类"><a href="#无限级分类" class="headerlink" title="无限级分类"></a>无限级分类</h1><p>例如数据格式如下：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs dart">$categories = [<br>  [<br>    <span class="hljs-string">&#x27;id&#x27;</span> =&gt; <span class="hljs-number">1</span>,<br>    <span class="hljs-string">&#x27;parent_id&#x27;</span> =&gt; <span class="hljs-number">0</span>,<br>  ],<br>  [<br>    <span class="hljs-string">&#x27;id&#x27;</span> =&gt; <span class="hljs-number">2</span>,<br>    <span class="hljs-string">&#x27;parent_id&#x27;</span> =&gt; <span class="hljs-number">1</span>,<br>  ],<br>  [<br>    <span class="hljs-string">&#x27;id&#x27;</span> =&gt; <span class="hljs-number">3</span>,<br>    <span class="hljs-string">&#x27;parent_id&#x27;</span> =&gt; <span class="hljs-number">2</span>,<br>  ]<br>];<br></code></pre></td></tr></table></figure>
+
+<p>示例方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get_tree</span>(<span class="hljs-params"><span class="hljs-variable">$data</span></span>) </span>&#123;<br>    <span class="hljs-variable">$items</span> = [];<br>    <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$data</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$v</span>)&#123;<br>        <span class="hljs-variable">$items</span>[<span class="hljs-variable">$v</span>[<span class="hljs-string">&#x27;id&#x27;</span>]] = <span class="hljs-variable">$v</span>;<br>    &#125;<br>    <span class="hljs-variable">$tree</span> = <span class="hljs-keyword">array</span>();<span class="hljs-comment">//格式化好的树</span><br>    <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$items</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$item</span>)<br>       <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$items</span>[<span class="hljs-variable">$item</span>[<span class="hljs-string">&#x27;parent_id&#x27;</span>]]))<br>             <span class="hljs-variable">$items</span>[<span class="hljs-variable">$item</span>[<span class="hljs-string">&#x27;parent_id&#x27;</span>]][<span class="hljs-string">&#x27;children&#x27;</span>][] = &amp;<span class="hljs-variable">$items</span>[<span class="hljs-variable">$item</span>[<span class="hljs-string">&#x27;id&#x27;</span>]];<br>       <span class="hljs-keyword">else</span>   <span class="hljs-variable">$tree</span>[] = &amp;<span class="hljs-variable">$items</span>[<span class="hljs-variable">$item</span>[<span class="hljs-string">&#x27;id&#x27;</span>]];<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable">$tree</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get_tree</span>(<span class="hljs-params"><span class="hljs-variable">$categories</span>, <span class="hljs-variable">$parent_id</span> = <span class="hljs-number">0</span></span>)</span><br><span class="hljs-function"></span>&#123;<br>  <span class="hljs-variable">$arr</span> = [];<br>  <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$categories</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$v</span>) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$v</span>[<span class="hljs-string">&#x27;parent_id&#x27;</span>] == <span class="hljs-variable">$parent_id</span>) &#123;<br>      <span class="hljs-variable">$v</span>[<span class="hljs-string">&#x27;children&#x27;</span>] = <span class="hljs-title function_ invoke__">get_tree</span>(<span class="hljs-variable">$categories</span>, <span class="hljs-variable">$v</span>[<span class="hljs-string">&#x27;id&#x27;</span>]);<br>      <span class="hljs-variable">$arr</span>[] = <span class="hljs-variable">$v</span>;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-variable">$arr</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最终数据</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">array</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span></span> &#123;<br>  <span class="hljs-selector-attr">[0]</span>=&gt;<br>  <span class="hljs-built_in">array</span>(<span class="hljs-number">3</span>) &#123;<br>    <span class="hljs-selector-attr">[<span class="hljs-string">&quot;id&quot;</span>]</span>=&gt;<br>    <span class="hljs-built_in">int</span>(<span class="hljs-number">1</span>)<br>    <span class="hljs-selector-attr">[<span class="hljs-string">&quot;parent_id&quot;</span>]</span>=&gt;<br>    <span class="hljs-built_in">int</span>(<span class="hljs-number">0</span>)<br>    <span class="hljs-selector-attr">[<span class="hljs-string">&quot;children&quot;</span>]</span>=&gt;<br>    <span class="hljs-built_in">array</span>(<span class="hljs-number">1</span>) &#123;<br>      <span class="hljs-selector-attr">[0]</span>=&gt;<br>      <span class="hljs-built_in">array</span>(<span class="hljs-number">3</span>) &#123;<br>        <span class="hljs-selector-attr">[<span class="hljs-string">&quot;id&quot;</span>]</span>=&gt;<br>        <span class="hljs-built_in">int</span>(<span class="hljs-number">2</span>)<br>        <span class="hljs-selector-attr">[<span class="hljs-string">&quot;parent_id&quot;</span>]</span>=&gt;<br>        <span class="hljs-built_in">int</span>(<span class="hljs-number">1</span>)<br>        <span class="hljs-selector-attr">[<span class="hljs-string">&quot;children&quot;</span>]</span>=&gt;<br>        <span class="hljs-built_in">array</span>(<span class="hljs-number">1</span>) &#123;<br>          <span class="hljs-selector-attr">[0]</span>=&gt;<br>          <span class="hljs-built_in">array</span>(<span class="hljs-number">3</span>) &#123;<br>            <span class="hljs-selector-attr">[<span class="hljs-string">&quot;id&quot;</span>]</span>=&gt;<br>            <span class="hljs-built_in">int</span>(<span class="hljs-number">3</span>)<br>            <span class="hljs-selector-attr">[<span class="hljs-string">&quot;parent_id&quot;</span>]</span>=&gt;<br>            <span class="hljs-built_in">int</span>(<span class="hljs-number">2</span>)<br>            <span class="hljs-selector-attr">[<span class="hljs-string">&quot;children&quot;</span>]</span>=&gt;<br>            <span class="hljs-built_in">array</span>(<span class="hljs-number">0</span>) &#123;<br>            &#125;<br>          &#125;<br>        &#125;<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="拼手气分红包分配"><a href="#拼手气分红包分配" class="headerlink" title="拼手气分红包分配"></a>拼手气分红包分配</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 拼手气红包分配算法</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> $money  金额</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> $count 数量</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">redAlgorithm</span>(<span class="hljs-params"><span class="hljs-variable">$money</span>, <span class="hljs-variable">$count</span></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">// 参数校验</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$count</span> * <span class="hljs-number">0.01</span> &gt; <span class="hljs-variable">$money</span>) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">\Exception</span>(<span class="hljs-string">&quot;单个红包不能低于0.01元&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">// 存放随机红包</span><br>    <span class="hljs-variable">$redpack</span> = [];<br>    <span class="hljs-comment">// 未分配的金额</span><br>    <span class="hljs-variable">$surplus</span> = <span class="hljs-variable">$money</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> &lt;= <span class="hljs-variable">$count</span>; <span class="hljs-variable">$i</span>++) &#123;<br>        <span class="hljs-comment">// 安全金额</span><br>        <span class="hljs-variable">$safeMoney</span> = <span class="hljs-variable">$surplus</span> - (<span class="hljs-variable">$count</span> - <span class="hljs-variable">$i</span>) * <span class="hljs-number">0.01</span>;<br>        <span class="hljs-comment">// 平均金额</span><br>        <span class="hljs-variable">$avg</span> = <span class="hljs-variable">$i</span> == <span class="hljs-variable">$count</span> ? <span class="hljs-variable">$safeMoney</span> : <span class="hljs-title function_ invoke__">bcdiv</span>(<span class="hljs-variable">$safeMoney</span>, (<span class="hljs-variable">$count</span> - <span class="hljs-variable">$i</span>), <span class="hljs-number">2</span>);<br>        <span class="hljs-comment">// 随机红包</span><br>        <span class="hljs-variable">$rand</span> = <span class="hljs-variable">$avg</span> &gt; <span class="hljs-number">0.01</span> ? <span class="hljs-title function_ invoke__">mt_rand</span>(<span class="hljs-number">1</span>, <span class="hljs-variable">$avg</span> * <span class="hljs-number">100</span>) / <span class="hljs-number">100</span> : <span class="hljs-number">0.01</span>;<br>        <span class="hljs-comment">// 剩余红包</span><br>        <span class="hljs-variable">$surplus</span> = <span class="hljs-title function_ invoke__">bcsub</span>(<span class="hljs-variable">$surplus</span>, <span class="hljs-variable">$rand</span>, <span class="hljs-number">2</span>);<br>        <span class="hljs-variable">$redpack</span>[] = <span class="hljs-variable">$rand</span>;<br>    &#125;<br>    <span class="hljs-comment">// 平分剩余红包</span><br>    <span class="hljs-variable">$avg</span> = <span class="hljs-title function_ invoke__">bcdiv</span>(<span class="hljs-variable">$surplus</span>, <span class="hljs-variable">$count</span>, <span class="hljs-number">2</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-variable">$n</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$n</span> &lt; <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$redpack</span>); <span class="hljs-variable">$n</span>++) &#123;<br>        <span class="hljs-variable">$redpack</span>[<span class="hljs-variable">$n</span>] = <span class="hljs-title function_ invoke__">bcadd</span>(<span class="hljs-variable">$redpack</span>[<span class="hljs-variable">$n</span>], <span class="hljs-variable">$avg</span>, <span class="hljs-number">2</span>);<br>        <span class="hljs-variable">$surplus</span> = <span class="hljs-title function_ invoke__">bcsub</span>(<span class="hljs-variable">$surplus</span>, <span class="hljs-variable">$avg</span>, <span class="hljs-number">2</span>);<br>    &#125;<br>    <span class="hljs-comment">// 如果还有红包没有分配完时继续分配</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$surplus</span> &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-comment">// 随机抽取分配好的红包，将剩余金额分配进去</span><br>        <span class="hljs-variable">$keys</span> = <span class="hljs-title function_ invoke__">array_rand</span>(<span class="hljs-variable">$redpack</span>, <span class="hljs-variable">$surplus</span> * <span class="hljs-number">100</span>);<br>        <span class="hljs-comment">// array_rand 第二个参数为 1 时返回的是下标而不是数组</span><br>        <span class="hljs-variable">$keys</span> = <span class="hljs-title function_ invoke__">is_array</span>(<span class="hljs-variable">$keys</span>) ? <span class="hljs-variable">$keys</span> : [<span class="hljs-variable">$keys</span>];<br>        <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$keys</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$key</span>) &#123;<br>            <span class="hljs-variable">$redpack</span>[<span class="hljs-variable">$key</span>] = <span class="hljs-title function_ invoke__">bcadd</span>(<span class="hljs-variable">$redpack</span>[<span class="hljs-variable">$key</span>], <span class="hljs-number">0.01</span>, <span class="hljs-number">2</span>);<br>            <span class="hljs-variable">$surplus</span> = <span class="hljs-title function_ invoke__">bcsub</span>(<span class="hljs-variable">$surplus</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">2</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// 红包分配结果</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-variable">$redpack</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>原文地址:<a target="_blank" rel="noopener" href="https://www.itqaq.com/index/art/352.html">https://www.itqaq.com/index/art/352.html</a></p>
+<h1 id="ID"><a href="#ID" class="headerlink" title="ID"></a>ID</h1><h2 id="雪花算法"><a href="#雪花算法" class="headerlink" title="雪花算法"></a>雪花算法</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Idcreate</span> </span>&#123;<br>    <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">EPOCH</span> = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//开始时间,固定一个小于当前时间的毫秒数</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">max12bit</span> = <span class="hljs-number">1024</span>;<br>    <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">max41bit</span> = <span class="hljs-number">1099511627888</span>;<br>    <span class="hljs-built_in">static</span> <span class="hljs-variable">$machineId</span> = <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">machineId</span>(<span class="hljs-params"><span class="hljs-variable">$mId</span> = <span class="hljs-number">0</span></span>) </span>&#123;<br>        <span class="hljs-built_in">self</span>::<span class="hljs-variable">$machineId</span> = <span class="hljs-variable">$mId</span>;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createOnlyId</span>(<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-comment">// 时间戳 42字节</span><br>        <span class="hljs-variable">$time</span> = <span class="hljs-title function_ invoke__">floor</span>(<span class="hljs-title function_ invoke__">microtime</span>(<span class="hljs-literal">true</span>) * <span class="hljs-number">1000</span>);<br>        <span class="hljs-comment">// 当前时间 与 开始时间 差值</span><br>        <span class="hljs-variable">$time</span> -= <span class="hljs-built_in">self</span>::<span class="hljs-variable constant_">EPOCH</span>;<br>        <span class="hljs-comment">// 二进制的 毫秒级时间戳</span><br>        <span class="hljs-variable">$base</span> = <span class="hljs-title function_ invoke__">decbin</span>(<span class="hljs-built_in">self</span>::<span class="hljs-variable constant_">max41bit</span> + <span class="hljs-variable">$time</span>);<br>        <span class="hljs-comment">// 机器id  10 字节</span><br>        <span class="hljs-keyword">if</span>(!<span class="hljs-built_in">self</span> ::<span class="hljs-variable">$machineId</span>) &#123;<br>            <span class="hljs-variable">$machineid</span> = <span class="hljs-built_in">self</span> ::<span class="hljs-variable">$machineId</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-variable">$machineid</span> = <span class="hljs-title function_ invoke__">str_pad</span>(<span class="hljs-title function_ invoke__">decbin</span>(<span class="hljs-built_in">self</span> ::<span class="hljs-variable">$machineId</span>),<span class="hljs-number">10</span>,<span class="hljs-string">&quot;0&quot;</span>,STR_PAD_LEFT);<br>        &#125;<br>        <span class="hljs-variable">$random</span> = <span class="hljs-title function_ invoke__">str_pad</span>(<span class="hljs-title function_ invoke__">decbin</span>(<span class="hljs-title function_ invoke__">mt_rand</span>(<span class="hljs-number">0</span>,<span class="hljs-built_in">self</span>::<span class="hljs-variable constant_">max12bit</span>)),<span class="hljs-number">12</span>,<span class="hljs-string">&quot;0&quot;</span>,STR_PAD_LEFT);<br>        <span class="hljs-comment">// 拼接</span><br>        <span class="hljs-variable">$base</span> = <span class="hljs-variable">$base</span> . <span class="hljs-variable">$machineid</span> . <span class="hljs-variable">$random</span>;<br>        <span class="hljs-comment">// 转化为 十进制 返回</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">bindec</span>(<span class="hljs-variable">$base</span>);<br>    &#125;<br>&#125;<br><span class="hljs-variable">$obj</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Idcreate</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span>=<span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt;<span class="hljs-number">100</span> ; <span class="hljs-variable">$i</span>++) &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$obj</span>-&gt;<span class="hljs-title function_ invoke__">createOnlyId</span>().<span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="PHP-Redis生成唯一序列"><a href="#PHP-Redis生成唯一序列" class="headerlink" title="PHP+Redis生成唯一序列"></a>PHP+Redis生成唯一序列</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-variable">$prefix</span> = ‘DS’; <span class="hljs-regexp">//</span>标题前缀<br><br><span class="hljs-variable">$currentCycle</span> = date(‘ymd‘); <span class="hljs-regexp">//</span> 日期拼接成中间<br><span class="hljs-variable">$key</span> = <span class="hljs-string">&quot;codegen:&#123;$currentCycle&#125;:&#123;$prefix&#125;&quot;</span>; <span class="hljs-regexp">//</span> 生成redis健  健名前缀按照天来更新<br><span class="hljs-variable">$Redis</span> = <span class="hljs-variable">$this</span>-&gt;Redis-&gt;getRedis(); <span class="hljs-regexp">//</span> 连接redis<br><span class="hljs-variable">$codeNum</span> = <span class="hljs-variable">$Redis</span>-&gt;incr(<span class="hljs-variable">$key</span>);  <span class="hljs-regexp">//</span> 这里用incr 方法来获取当前自增数量 incr是原子性的 能处理并发<br><span class="hljs-regexp">//</span> 为<span class="hljs-number">1</span>说明是当天的第一条，设置有效期，删除过期key<br><span class="hljs-keyword">if</span> (<span class="hljs-variable">$codeNum</span> == <span class="hljs-number">1</span>) &#123;<br><br>　　<span class="hljs-regexp">//</span> 设置有效期<span class="hljs-number">1</span>天<br>　　　　<span class="hljs-variable">$expireAt</span> = strtotime(date(<span class="hljs-string">&#x27;Y-m-d 00:00:00&#x27;</span>, strtotime(<span class="hljs-string">&quot;+1 day&quot;</span>)));<br>　　　　<span class="hljs-variable">$Redis</span>-&gt;expireAt(<span class="hljs-variable">$key</span>, <span class="hljs-variable">$expireAt</span>);<br>　　<span class="hljs-regexp">//</span> 删除过期key，加锁，一周期只删一次 setnx锁设置键不存在则设置并返回<span class="hljs-number">1</span>，否则返回<span class="hljs-number">0</span><br>　　<span class="hljs-keyword">if</span> (<span class="hljs-variable">$Redis</span>-&gt;setnx(<span class="hljs-string">&quot;codegen:&#123;$currentCycle&#125;:rmLock&quot;</span>, <span class="hljs-number">1</span>)) &#123;<br>　　　　<span class="hljs-variable">$lastCycle</span> = date(<span class="hljs-variable">$dateFormat</span>, strtotime(<span class="hljs-string">&quot;-1 day&quot;</span>));<br>　　　　<span class="hljs-variable">$keys</span> = <span class="hljs-variable">$Redis</span>-&gt;keys(<span class="hljs-string">&quot;codegen:&#123;$lastCycle&#125;:*&quot;</span>);<br>　　　　foreach (<span class="hljs-variable">$keys</span> as <span class="hljs-variable">$k</span>) &#123;<br>　　　　<span class="hljs-variable">$Redis</span>-&gt;del(<span class="hljs-variable">$k</span>);<br>　　&#125;<br><br>&#125;<br><br><span class="hljs-variable">$codeNum</span> = str_pad(<span class="hljs-variable">$codeNum</span>, <span class="hljs-number">4</span>, <span class="hljs-string">&#x27;0&#x27;</span>, STR_PAD_LEFT);  <span class="hljs-regexp">//</span> 拼成固定长度  比如  <span class="hljs-number">1</span>  <span class="hljs-number">100</span>  返回 <span class="hljs-number">0001</span>  <span class="hljs-number">0100</span><br><br>return <span class="hljs-variable">$prefix</span> . <span class="hljs-variable">$codeNum</span>;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PHP算法</div>
+      <div>http://example.com/2022/06/11/PHP算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 11, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/11/Go%E7%AE%97%E6%B3%95/" title="Go算法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Go算法</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/06/11/Golang%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E5%90%A6%E6%98%AF%E7%BA%AF%E6%95%B0%E5%AD%97/" title="Golang判断字符串是否是纯数字">
+                        <span class="hidden-mobile">Golang判断字符串是否是纯数字</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

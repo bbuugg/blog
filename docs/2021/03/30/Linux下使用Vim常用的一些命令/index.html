@@ -1,0 +1,653 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="方法一 ：块选择模式批量注释： Ctrl + v 进入块选择模式，然后移动光标选中你要注释的行，再按大写的I进入行首插入模式输入注释符号如 &#x2F;&#x2F; 或 #，输入完毕之后，按两下ESC，Vim会自动将你选中的所有行首都加上注释，保存退出完成注释。 取消注释： Ctrl + v 进入块选择模式，选中你要删除的行首的注释符号，注意&#x2F;&#x2F; 要选中两个，选好之后按d即可删">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下使用Vim常用的一些命令">
+<meta property="og:url" content="http://example.com/2021/03/30/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Vim%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="方法一 ：块选择模式批量注释： Ctrl + v 进入块选择模式，然后移动光标选中你要注释的行，再按大写的I进入行首插入模式输入注释符号如 &#x2F;&#x2F; 或 #，输入完毕之后，按两下ESC，Vim会自动将你选中的所有行首都加上注释，保存退出完成注释。 取消注释： Ctrl + v 进入块选择模式，选中你要删除的行首的注释符号，注意&#x2F;&#x2F; 要选中两个，选好之后按d即可删">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-30T02:21:47.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:25:56.168Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Linux下使用Vim常用的一些命令 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux下使用Vim常用的一些命令"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-03-30 10:21" pubdate>
+          March 30, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux下使用Vim常用的一些命令</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="方法一-：块选择模式"><a href="#方法一-：块选择模式" class="headerlink" title="方法一 ：块选择模式"></a>方法一 ：块选择模式</h2><p>批量注释：</p>
+<p>Ctrl + v 进入块选择模式，然后移动光标选中你要注释的行，再按大写的I进入行首插入模式输入注释符号如 &#x2F;&#x2F; 或 #，输入完毕之后，按两下ESC，Vim会自动将你选中的所有行首都加上注释，保存退出完成注释。</p>
+<p>取消注释：</p>
+<p>Ctrl + v 进入块选择模式，选中你要删除的行首的注释符号，注意&#x2F;&#x2F; 要选中两个，选好之后按d即可删除注释，ESC保存退出。</p>
+<h2 id="方法二-替换命令"><a href="#方法二-替换命令" class="headerlink" title="方法二 替换命令"></a>方法二 替换命令</h2><p>批量注释：</p>
+<p>使用下面命令在指定的行首添加注释：</p>
+<p>:起始行号,结束行号s&#x2F;^&#x2F;注释符&#x2F;g</p>
+<p>取消注释：</p>
+<p>:起始行号,结束行号s&#x2F;^注释符&#x2F;&#x2F;g</p>
+<p>例子：</p>
+<p>在10 - 20行添加 &#x2F;&#x2F; 注释</p>
+<p>:10,20s#^#&#x2F;&#x2F;#g</p>
+<p>在10 - 20行删除 &#x2F;&#x2F; 注释</p>
+<p>:10,20s#^&#x2F;&#x2F;##g</p>
+<p>在10 - 20行添加 # 注释</p>
+<p>:10,20s&#x2F;^&#x2F;#&#x2F;g</p>
+<p>在10 - 20行删除 # 注释</p>
+<p>:10,20s&#x2F;^&#x2F;#&#x2F;g</p>
+<blockquote>
+<p>注意：替换方法的例子中正则的分割符使用的是相反的符号，如果匹配&#x2F;&#x2F; 那么使用 #作分隔符这样不需要对&#x2F;作转义处理，节省输入次数。</p>
+</blockquote>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-symbol">:s/return/ret/g</span><br><span class="hljs-symbol">:%s/return/ret/g</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="快速清空文件"><a href="#快速清空文件" class="headerlink" title="快速清空文件"></a>快速清空文件</h1><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">gg</span> <span class="hljs-comment"># 跳到行首</span><br>dG <span class="hljs-comment"># 删除直到末尾</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h1><p>行首</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">ctrl</span> + v<br></code></pre></td></tr></table></figure>
+<p>按向下箭头选中行，按 &gt; 或者 &lt; 调整缩进</p>
+<h1 id="括号寻找"><a href="#括号寻找" class="headerlink" title="括号寻找"></a>括号寻找</h1><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">index</span><span class="hljs-params">()</span> &#123;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>光标移动到第一个括号位置，按下%将跳到相应的闭合括号位置</p>
+<h1 id="批量删除"><a href="#批量删除" class="headerlink" title="批量删除"></a>批量删除</h1><h2 id="删除后原位置留空"><a href="#删除后原位置留空" class="headerlink" title="删除后原位置留空"></a>删除后原位置留空</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">ctrl + v <br>上下左右箭头选中<br>按下D<br></code></pre></td></tr></table></figure>
+<h2 id="删除后内容上移"><a href="#删除后内容上移" class="headerlink" title="删除后内容上移"></a>删除后内容上移</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">ctrl + v <br>上下左右箭头选中<br>按下:d 或者:%d<br></code></pre></td></tr></table></figure>
+
+<h1 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">gg<br>ctrl + v <br>G <br>=<br></code></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">gg=G<br></code></pre></td></tr></table></figure>
+
+<p>缩进</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">:10,100&lt; //将10到100行向左缩进<br></code></pre></td></tr></table></figure>
+<p>可以使用<code>:set shiftwidth = 2</code>设置缩进，也可以放在<code>.vimrc</code>中</p>
+<h1 id="删除一个单词"><a href="#删除一个单词" class="headerlink" title="删除一个单词"></a>删除一个单词</h1><p>通常要先将光标移动到单词头部，在末行模式按下<code>b</code>即可，再按下<code>dw</code>即可删除。或者直接输入<code>daw</code>删除单词。另外还有一个删除字符<code>x</code>可以在末行模式使用</p>
+<h1 id="删除光标后的内容"><a href="#删除光标后的内容" class="headerlink" title="删除光标后的内容"></a>删除光标后的内容</h1><p>直接<code>D</code></p>
+<h1 id="剪切内容，下面的内容上移"><a href="#剪切内容，下面的内容上移" class="headerlink" title="剪切内容，下面的内容上移"></a>剪切内容，下面的内容上移</h1><p><code>v</code> &#x2F; <code>ctrl + v</code> 选中<br><code>:d</code> 回车<br><code>p</code> 粘贴</p>
+<h1 id="单词间移动"><a href="#单词间移动" class="headerlink" title="单词间移动"></a>单词间移动</h1><p><code>w</code>&#x2F;<code>e</code> 后， <code>b</code>前</p>
+<h1 id="vim-折行"><a href="#vim-折行" class="headerlink" title="vim 折行"></a>vim 折行</h1><h2 id="折叠方式"><a href="#折叠方式" class="headerlink" title="折叠方式"></a>折叠方式</h2><p>可用选项 ‘foldmethod’ 来设定折叠方式：set fdm&#x3D;*****。<br>有 6 种方法来选定折叠：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vim">manual       手工定义折叠<br><span class="hljs-built_in">indent</span>       更多的缩进表示更高级别的折叠<br>expr         用表达式来定义折叠<br><span class="hljs-keyword">syntax</span>       用语法高亮来定义折叠<br>diff         对没有更改的文本进行折叠<br>marker       对文中的标志折叠<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意，每一种折叠方式不兼容，如不能即用expr又用marker方式，我主要轮流使用indent和marker方式进行折叠。</p>
+</blockquote>
+<p>使用时，用：set fdm&#x3D;marker 命令来设置成marker折叠方式（fdm是foldmethod的缩写）。<br>要使每次打开vim时折叠都生效，则在.vimrc文件中添加设置，如添加：set fdm&#x3D;syntax，就像添加其它的初始化设置一样。</p>
+<h2 id="折叠命令"><a href="#折叠命令" class="headerlink" title="折叠命令"></a>折叠命令</h2><p>选取了折叠方式后，我们就可以对某些代码实施我们需要的折叠了，由于我使用indent和marker稍微多一些，故以它们的使用为例：<br>如果使用了indent方式，vim会自动的对大括号的中间部分进行折叠，我们可以直接使用这些现成的折叠成果。<br>在可折叠处（大括号中间）：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">zc    折叠<br>zC    对所在范围内所有嵌套的折叠点进行折叠<br>zo    展开折叠<br>zO    对所在范围内所有嵌套的折叠点展开<br><span class="hljs-string">[z    到当前打开的折叠的开始处。</span><br><span class="hljs-string">]</span>z    到当前打开的折叠的末尾处。<br>zj    向下移动。到达下一个折叠的开始处。关闭的折叠也被计入。<br>zk    向上移动到前一折叠的结束处。关闭的折叠也被计入。<br></code></pre></td></tr></table></figure>
+
+<p>当使用marker方式时，需要用标计来标识代码的折叠，系统默认是<code>&#123;&#123;&#123;`和`&#125;&#125;&#125;</code>，最好不要改动之：）<br>我们可以使用下面的命令来创建和删除折叠：</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gcode">zf     创建折叠，比如在marker方式下： zf<span class="hljs-number">56</span>G，创建从当前行起到<span class="hljs-number">56</span>行的代码折叠； <span class="hljs-number">10</span>zf或<span class="hljs-number">10</span>zf+或zf<span class="hljs-number">10</span>↓，创建从当前行起到后<span class="hljs-number">10</span>行的代码折叠。 <span class="hljs-number">10</span>zf-或zf<span class="hljs-number">10</span>↑，创建从当前行起到之前<span class="hljs-number">10</span>行的代码折叠。 在括号处zf<span class="hljs-meta">%</span>，创建从当前行起到对应的匹配的括号上去（（），&#123;&#125;，[]，&lt;&gt;等）。<br>zd     删除 <span class="hljs-comment">(delete)</span> 在光标下的折叠。仅当 <span class="hljs-string">&#x27;foldmethod&#x27;</span> 设为 <span class="hljs-string">&quot;manual&quot;</span> 或 <span class="hljs-string">&quot;marker&quot;</span> 时有效。<br>zD     循环删除 <span class="hljs-comment">(Delete)</span> 光标下的折叠，即嵌套删除折叠。 仅当 <span class="hljs-string">&#x27;foldmethod&#x27;</span> 设为 <span class="hljs-string">&quot;manual&quot;</span> 或 <span class="hljs-string">&quot;marker&quot;</span> 时有效。<br>zE     除去 <span class="hljs-comment">(Eliminate)</span> 窗口里“所有”的折叠。 仅当 <span class="hljs-string">&#x27;foldmethod&#x27;</span> 设为 <span class="hljs-string">&quot;manual&quot;</span> 或 <span class="hljs-string">&quot;marker&quot;</span> 时有效。<br></code></pre></td></tr></table></figure>
+
+<h1 id="查看-x2F-修改十六进制或者二进制文件等"><a href="#查看-x2F-修改十六进制或者二进制文件等" class="headerlink" title="查看&#x2F;修改十六进制或者二进制文件等"></a>查看&#x2F;修改十六进制或者二进制文件等</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">hexdump <span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.txt</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">xxd <span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.txt</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">vim -<span class="hljs-selector-tag">b</span> <span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.txt</span><br></code></pre></td></tr></table></figure>
+
+<p>xxd是linux的一个命令，vim可以通过”!”来调用外部命令，其功能就是进行十六进制的dump或者反之。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-symbol">:%</span>!od <br><span class="hljs-symbol">:%</span>!xxd<br><span class="hljs-symbol">:%</span>!xxd -r <span class="hljs-number">16</span>进制转为<span class="hljs-number">2</span>进制<br></code></pre></td></tr></table></figure>
+<p>参考：<a target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-29767867-id-4413135.html">http://blog.chinaunix.net/uid-29767867-id-4413135.html</a><br>推荐：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xxxxxx91116/article/details/8042312">https://blog.csdn.net/xxxxxx91116/article/details/8042312</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux下使用Vim常用的一些命令</div>
+      <div>http://example.com/2021/03/30/Linux下使用Vim常用的一些命令/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 30, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/02/mysql%E6%9F%A5%E8%AF%A2%E4%BB%8A%E5%A4%A9%E3%80%81%E6%98%A8%E5%A4%A9%E3%80%81%E6%9C%AC%E5%91%A8%E3%80%81%E6%9C%AC%E6%9C%88%E3%80%81%E4%B8%8A%E4%B8%80%E6%9C%88%20%E3%80%81%E4%BB%8A%E5%B9%B4%E6%95%B0%E6%8D%AE/" title="mysql查询今天、昨天、本周、本月、上一月 、今年数据">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">mysql查询今天、昨天、本周、本月、上一月 、今年数据</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/30/jquery%E5%88%A4%E6%96%AD%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E6%98%AF%E5%90%A6%E5%9C%A8%E7%9B%AE%E6%A0%87%E5%8C%BA%E5%9F%9F/" title="jquery判断点击事件是否在目标区域">
+                        <span class="hidden-mobile">jquery判断点击事件是否在目标区域</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,662 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="tar1tar -zxvf filename   z 一般处理.gz文件 x 解压 c压缩 v 显示执行过程 f 指定备份文件  压缩tar.gz 1tar -zcvf dest.tar.gz .&#x2F;ori&#x2F;*  # 压缩一个目录  压缩包含隐藏文件 1tar -zcvf  back.tar.gz .[!.]* *   tar czvf test.tar.gz * 压缩当前文件夹下非[隐藏文件]的文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux下tar, tar.gz, xz，unzip，bzip2文件解压方法">
+<meta property="og:url" content="http://example.com/2022/04/24/Linux%E4%B8%8Btar,%20tar.gz,%20xz%EF%BC%8Cunzip%EF%BC%8Cbzip2%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8E%8B%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="tar1tar -zxvf filename   z 一般处理.gz文件 x 解压 c压缩 v 显示执行过程 f 指定备份文件  压缩tar.gz 1tar -zcvf dest.tar.gz .&#x2F;ori&#x2F;*  # 压缩一个目录  压缩包含隐藏文件 1tar -zcvf  back.tar.gz .[!.]* *   tar czvf test.tar.gz * 压缩当前文件夹下非[隐藏文件]的文">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-24T11:11:45.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Linux下tar, tar.gz, xz，unzip，bzip2文件解压方法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux下tar, tar.gz, xz，unzip，bzip2文件解压方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-24 19:11" pubdate>
+          April 24, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux下tar, tar.gz, xz，unzip，bzip2文件解压方法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">tar -zxvf filename</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>z 一般处理.gz文件</li>
+<li>x 解压 c压缩</li>
+<li>v 显示执行过程</li>
+<li>f 指定备份文件</li>
+</ul>
+<p>压缩tar.gz</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">tar -zcvf dest.tar.gz ./ori/*  # 压缩一个目录<br></code></pre></td></tr></table></figure>
+
+<p>压缩包含隐藏文件</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">tar -zcvf  <span class="hljs-keyword">back</span>.tar.gz .[!.]* *<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tar czvf test.tar.gz * 压缩当前文件夹下非[隐藏文件]的文件; tar czvf test.tar.gz .[!.]* 压缩当前文件夹下[隐藏文件]排除两个[隐藏文件]夹”.”和“..”</p>
+</blockquote>
+<p>先创建tar包最后删除</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">tar -cvzf  <span class="hljs-selector-tag">a</span><span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.gz</span> <span class="hljs-selector-tag">a</span> <span class="hljs-attr">--remove-files</span><br></code></pre></td></tr></table></figure>
+
+<p>解压tar.gz</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">tar -zxvf origin.tar.gz<br>tar -zxvf origin.tar.gz -C /home 设置解压目录<br></code></pre></td></tr></table></figure>
+
+<h2 id="xz"><a href="#xz" class="headerlink" title="xz"></a>xz</h2><p>解压.xz文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">xz -dk node-v14.15.1-linux-x64.tar.xz #将.xz解压为.tar<br>tar -xvf node-v14.15.1-linux-x64.tar # 将.tar解压为普通文件<br>tar -xvf node-v14.15.1-linux-x64.tar.xz<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>d 解压.xz文件</li>
+<li>k 保留原文件（如果不想保留，可以去掉k）</li>
+</ul>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs diff">xz -help<br><br>用法:xz[选项]…[文件]…<br>压缩或解压.xz格式的文件。<br><span class="hljs-deletion">-z，——compress 压缩</span><br><span class="hljs-deletion">-d，——decompress, --uncompress 解压</span><br><span class="hljs-deletion">-t，——test 测试压缩文件的完整性</span><br><span class="hljs-deletion">-l，——list 列出关于.xz文件的列表信息</span><br><span class="hljs-deletion">-k，——keep 保留(不要删除)输入文件</span><br><span class="hljs-deletion">-f，——force 强制重写输出文件和(de)压缩链接</span><br><span class="hljs-deletion">-c，——stdout，——to-stdout 写入标准输出，不要删除输入文件</span><br><span class="hljs-deletion">-0 …-9 压缩预设;默认是6;在使用7-9之前，请考虑压缩机和减压器的内存使用情况!</span><br><span class="hljs-deletion">-e，——extreme 极端尝试提高压缩比使用更多的CPU时间; 不影响解压内存要求</span><br><span class="hljs-deletion">-T，——threads=NUM使用最多的NUM线程;默认值为1;设置为0 使用任意多的处理器内核</span><br><span class="hljs-deletion">-q，——quiet 安静压制警告;指定两次也可以抑制错误</span><br><span class="hljs-deletion">-v，——verbose 啰嗦;如果要更详细，请指定两次</span><br><span class="hljs-deletion">-h，——help 帮助显示此简短的帮助和退出</span><br><span class="hljs-deletion">-H，——long-help 显示long help(同时列出高级选项)</span><br><span class="hljs-deletion">-V，——version 版本显示版本号并退出</span><br></code></pre></td></tr></table></figure>
+
+<p>没有文件时，或文件为-时，读取标准输入。</p>
+<h2 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h2><p>1、把文件解压到当前目录下</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">unzip <span class="hljs-keyword">test</span>.<span class="hljs-keyword">zip</span><br></code></pre></td></tr></table></figure>
+
+<p>2、如果要把文件解压到指定的目录下，需要用到-d参数。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">unzip -<span class="hljs-keyword">d</span> /temp <span class="hljs-keyword">test</span>.<span class="hljs-keyword">zip</span><br></code></pre></td></tr></table></figure>
+
+<p>3、解压的时候，有时候不想覆盖已经存在的文件，那么可以加上-n参数</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stata">unzip -<span class="hljs-keyword">n</span> <span class="hljs-keyword">test</span>.<span class="hljs-keyword">zip</span><br>unzip -<span class="hljs-keyword">n</span> -<span class="hljs-keyword">d</span> /temp <span class="hljs-keyword">test</span>.<span class="hljs-keyword">zip</span><br></code></pre></td></tr></table></figure>
+
+<p>4、只看一下zip压缩包中包含哪些文件，不进行解压缩</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">unzip -<span class="hljs-keyword">l</span> <span class="hljs-keyword">test</span>.<span class="hljs-keyword">zip</span><br></code></pre></td></tr></table></figure>
+
+<p>5、查看显示的文件列表还包含压缩比率</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">unzip -v <span class="hljs-keyword">test</span>.<span class="hljs-keyword">zip</span><br></code></pre></td></tr></table></figure>
+
+<p>6、检查zip文件是否损坏</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">unzip -t <span class="hljs-keyword">test</span>.<span class="hljs-keyword">zip</span><br></code></pre></td></tr></table></figure>
+
+<p>7、将压缩文件test.zip在指定目录tmp下解压缩，如果已有相同的文件存在，要求unzip命令覆盖原先的文件</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">unzip -o test.zip -d <span class="hljs-regexp">/tmp/</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="bzip2"><a href="#bzip2" class="headerlink" title="bzip2"></a>bzip2</h2><p>安装</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">sudo apt <span class="hljs-keyword">install</span> bzip2<br></code></pre></td></tr></table></figure>
+
+<p>压缩</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">bzip2 </span>filename<br><span class="hljs-keyword">bzip2 </span>-z filename<br><span class="hljs-keyword">bzip2 </span>-z <span class="hljs-keyword">backup.tar</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>重要：bzip2 默认会在压缩及解压缩文件时删除输入文件（原文件），要保留输入文件，使用-k或者–keep选项。此外，-f或者–force标志会强制让 bzip2 覆盖已有的输出文件</p>
+</blockquote>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">bzip2 </span>-zk filename<br><span class="hljs-keyword">bzip2 </span>-zk <span class="hljs-keyword">backup.tar</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>你也可以设置块的大小，从 100k 到 900k，分别使用-1或者–fast到-9或者–best：</p>
+</blockquote>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">bzip2 </span>-<span class="hljs-built_in">k1</span>  Etcher-linux-x64.AppImage<br>ls -<span class="hljs-keyword">lh </span> Etcher-linux-x64.AppImage.<span class="hljs-keyword">bz2 </span><br><span class="hljs-keyword">bzip2 </span>-k9  Etcher-linux-x64.AppImage <br><span class="hljs-keyword">bzip2 </span>-kf9  Etcher-linux-x64.AppImage <br>ls -<span class="hljs-keyword">lh </span>Etcher-linux-x64.AppImage.<span class="hljs-keyword">bz2 </span><br></code></pre></td></tr></table></figure>
+
+<p>解压</p>
+<blockquote>
+<p>要解压缩.bz2文件，确保使用-d或者–decompress选项：</p>
+</blockquote>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">bzip2 </span>-d filename.<span class="hljs-keyword">bz2</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：这个文件必须是.bz2的扩展名，上面的命令才能使用。</p>
+</blockquote>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">bzip2 -vd Etcher-linux-x64<span class="hljs-selector-class">.AppImage</span><span class="hljs-selector-class">.bz2</span> <br>bzip2 -vfd Etcher-linux-x64<span class="hljs-selector-class">.AppImage</span><span class="hljs-selector-class">.bz2</span> <br>ls -l Etcher-linux-x64<span class="hljs-selector-class">.AppImage</span> <br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux下tar, tar.gz, xz，unzip，bzip2文件解压方法</div>
+      <div>http://example.com/2022/04/24/Linux下tar, tar.gz, xz，unzip，bzip2文件解压方法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 24, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/24/LInux%20shell%E4%B9%8B(for%20in%20%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93)/" title="LInux shell之(for in 用法总结)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LInux shell之(for in 用法总结)</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/24/Golang%20Mutex%E4%BA%92%E6%96%A5%E9%94%81/" title="Golang Mutex互斥锁">
+                        <span class="hidden-mobile">Golang Mutex互斥锁</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,819 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="常用Linux命令ps1ps -ef | grep redis  根据进程id查找文件，找到pid，例如123 1ls -lp &#x2F;proc&#x2F;123&#x2F;cwd  lsattr, chattr查看和修改文件属性 jobs1jobs -rp &#x2F;&#x2F; 暂时不知到什么用   查看挂起的进程，kill %1 可以停止jobs中标号为1的进程 也可以使用fg %1 来切到前台，部分可能不需要% statawkzca">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux命令">
+<meta property="og:url" content="http://example.com/2021/11/07/Linux%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="常用Linux命令ps1ps -ef | grep redis  根据进程id查找文件，找到pid，例如123 1ls -lp &#x2F;proc&#x2F;123&#x2F;cwd  lsattr, chattr查看和修改文件属性 jobs1jobs -rp &#x2F;&#x2F; 暂时不知到什么用   查看挂起的进程，kill %1 可以停止jobs中标号为1的进程 也可以使用fg %1 来切到前台，部分可能不需要% statawkzca">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-11-07T09:26:40.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Linux命令 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux命令"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-07 17:26" pubdate>
+          November 7, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          63 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux命令</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="常用Linux命令"><a href="#常用Linux命令" class="headerlink" title="常用Linux命令"></a>常用Linux命令</h1><h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">ps</span> -ef | <span class="hljs-keyword">grep</span> redis<br></code></pre></td></tr></table></figure>
+
+<p>根据进程id查找文件，找到pid，例如123</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> -lp /proc/123/cwd<br></code></pre></td></tr></table></figure>
+
+<h2 id="lsattr-chattr"><a href="#lsattr-chattr" class="headerlink" title="lsattr, chattr"></a>lsattr, chattr</h2><p>查看和修改文件属性</p>
+<h2 id="jobs"><a href="#jobs" class="headerlink" title="jobs"></a>jobs</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">jobs -rp <span class="hljs-regexp">//</span> 暂时不知到什么用<br></code></pre></td></tr></table></figure>
+
+<p> 查看挂起的进程，<code>kill %1</code> 可以停止<code>jobs</code>中标号为<code>1</code>的进程</p>
+<p>也可以使用fg %1 来切到前台，部分可能不需要%</p>
+<h2 id="stat"><a href="#stat" class="headerlink" title="stat"></a>stat</h2><h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><h2 id="zcat"><a href="#zcat" class="headerlink" title="zcat"></a>zcat</h2><h2 id="zgrep"><a href="#zgrep" class="headerlink" title="zgrep"></a>zgrep</h2><h2 id="tee"><a href="#tee" class="headerlink" title="tee"></a>tee</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">将sql输入到文件back.sql</span><br>tee back.sql &lt;&lt;-&#x27;EOT&#x27;<br>insert into<br>users<br>(id)<br>values<br>1;<br>EOT<br></code></pre></td></tr></table></figure>
+
+<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">sed -e <span class="hljs-string">&quot;1ititle:test&quot;</span> <span class="hljs-built_in">back</span>.txt  <span class="hljs-comment">// 给back.txt文件第一行前添加title:text</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="jq"><a href="#jq" class="headerlink" title="jq"></a>jq</h2><blockquote>
+<p>解析json</p>
+</blockquote>
+<figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scilab">echo <span class="hljs-string">&#x27;&#123;&quot;</span>name<span class="hljs-string">&quot;: &quot;</span><span class="hljs-built_in">max</span><span class="hljs-string">&quot;&#125;&#x27;</span> | jq<br></code></pre></td></tr></table></figure>
+
+<h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">ls</span> -SX 按照文件类型排序，文件夹在前<br><span class="hljs-keyword">ll</span> -ht 按照时间排序<br><span class="hljs-keyword">ll</span> -hS 按照大小排序<br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ginvip/p/6351696.html">https://www.cnblogs.com/ginvip/p/6351696.html</a></p>
+<h2 id="nohup"><a href="#nohup" class="headerlink" title="nohup"></a>nohup</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/baby123/p/6477429.html">https://www.cnblogs.com/baby123/p/6477429.html</a></p>
+<h2 id="pidof"><a href="#pidof" class="headerlink" title="pidof"></a>pidof</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fengzhilaoling/p/12269923.html">https://www.cnblogs.com/fengzhilaoling/p/12269923.html</a></p>
+<h2 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010486679/article/details/78415666">https://blog.csdn.net/u010486679/article/details/78415666</a></p>
+<h2 id="hostname"><a href="#hostname" class="headerlink" title="hostname"></a>hostname</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qhairen/article/details/45913465">https://blog.csdn.net/qhairen/article/details/45913465</a></p>
+<h2 id="expr"><a href="#expr" class="headerlink" title="expr"></a>expr</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">expr</span> <span class="hljs-number">1</span> + <span class="hljs-number">2</span><br><span class="hljs-attribute">expr</span> lentdh <span class="hljs-string">&quot;test&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-expr.html">Linux expr命令 | 菜鸟教程 (runoob.com)</a></p>
+<h2 id="lscpu"><a href="#lscpu" class="headerlink" title="lscpu"></a>lscpu</h2><p>查看CPU信息</p>
+<h2 id="lsmem"><a href="#lsmem" class="headerlink" title="lsmem"></a>lsmem</h2><p>查看内存信息</p>
+<h2 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h2><p>cut命令用于显示每行从开头算起 num1 到 num2 的文字</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cut.html">Linux cut命令 | 菜鸟教程 (runoob.com)</a></p>
+<h2 id="netcat"><a href="#netcat" class="headerlink" title="netcat"></a>netcat</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangqingchuan92/article/details/79666885">(38条消息) Linux系统终端命令：netcat的基本使用_麒麒川的博客-CSDN博客_linux netcat</a></p>
+<h2 id="systemctl"><a href="#systemctl" class="headerlink" title="systemctl"></a>systemctl</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">systemctl status -l</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">ssh -n -x</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a>ssh-keygen</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">ssh-keygen -t rsa<br>ssh-keygen -<span class="hljs-selector-tag">A</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="htop"><a href="#htop" class="headerlink" title="htop"></a>htop</h2><h2 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">updatedb</span> 更新locatedb<br></code></pre></td></tr></table></figure>
+
+<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h2 id="free"><a href="#free" class="headerlink" title="free"></a>free</h2><h2 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h2><h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h2><h1 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h1><h2 id="objdump"><a href="#objdump" class="headerlink" title="objdump"></a>objdump</h2><h2 id="gdb"><a href="#gdb" class="headerlink" title="gdb"></a>gdb</h2><h1 id="PHP相关"><a href="#PHP相关" class="headerlink" title="PHP相关"></a>PHP相关</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">php --ri grpc  <span class="hljs-regexp">//</span> 查看swoole扩展<br>php -l index.php <span class="hljs-regexp">//</span> 检查语法错误<br></code></pre></td></tr></table></figure>
+
+<h1 id="安装build-essential"><a href="#安装build-essential" class="headerlink" title="安装build-essential"></a>安装build-essential</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">apt-get install build-essential<br></code></pre></td></tr></table></figure>
+
+<h1 id="lrzsz，可以在ssh终端中上传和下载文件"><a href="#lrzsz，可以在ssh终端中上传和下载文件" class="headerlink" title="lrzsz，可以在ssh终端中上传和下载文件"></a>lrzsz，可以在ssh终端中上传和下载文件</h1><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>ubuntu下</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">sudo apt <span class="hljs-keyword">install</span> lrzsz<br></code></pre></td></tr></table></figure>
+<p>或者编译安装</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vim">tar zxvf lrzsz-<span class="hljs-number">0.12</span>.<span class="hljs-number">20</span>.tar.gz<br><span class="hljs-keyword">cd</span> lrzsz-<span class="hljs-number">0.12</span>.<span class="hljs-number">20</span><br>./configure<br><span class="hljs-keyword">make</span><br><span class="hljs-keyword">make</span> install<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面安装过程默认把lsz和lrz安装到了&#x2F;usr&#x2F;local&#x2F;bin&#x2F;目录下,可以建立一个软连接</p>
+</blockquote>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">cd <span class="hljs-regexp">/usr/</span>bin<br>ln -s <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>lrz rz<br>ln -s <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>lsz sz<br></code></pre></td></tr></table></figure>
+
+<p>上传</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">rz</span><br></code></pre></td></tr></table></figure>
+
+<p>下载</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">sz <span class="hljs-tag">&lt;<span class="hljs-name">filename</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="killall"><a href="#killall" class="headerlink" title="killall"></a>killall</h1><p>命令找不到，可以用下面的命令安装</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">apt-<span class="hljs-built_in">get</span> install psmisc<br></code></pre></td></tr></table></figure>
+
+<h1 id="put上传ftp文件"><a href="#put上传ftp文件" class="headerlink" title="put上传ftp文件"></a>put上传ftp文件</h1><p><strong>put</strong></p>
+<p>   使用lftp登录ftp服务器之后，可以使用put指令将文件上传到服务器。</p>
+<p>##语法</p>
+<p>   <strong>put [-E] [-a] [-c] [-O base] lfile [-o rfile]</strong></p>
+<p>##选项列表</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>-o</strong></td>
+<td>指定输出文件的名字，不指定则使用原来的名字</td>
+</tr>
+<tr>
+<td><strong>-c</strong></td>
+<td>如果失败，持续获取</td>
+</tr>
+<tr>
+<td><strong>-E</strong></td>
+<td>获取之后，删除源文件</td>
+</tr>
+<tr>
+<td><strong>-a</strong></td>
+<td>使用ascii模式</td>
+</tr>
+<tr>
+<td><strong>-O</strong></td>
+<td>指定输出文件存放的目录</td>
+</tr>
+</tbody></table>
+<p>##实例</p>
+<p>上传文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@localhost weijie]# lftp 192.168.1.8          //登录服务器<br><br>lftp 192.168.1.8:~&gt; cd pub/                           //切换目录<br><br>lftp 192.168.1.8:/pub&gt; put 3.c                       //上传文件<br><br>65 bytes transferred<br><br>lftp 192.168.1.8:/pub&gt; ls                             //查看内容，已经上传成功<br><br>-rwxrwxrwx    1 0        0        2375494044 Aug 14 06:38 1.zip<br><br>-rw-r--r--    1 0       0               0 Oct 02 01:19 11c<br><br>-rw-r--r--    1 0       0               0 Oct 02 01:19 22c<br><br>-rw-------    1 14      50             65 Oct 02 01:48 3.c<br><br>drwxr-xr-x    2 0       0            4096 Oct 02 01:12 testftp<br><br>lftp 192.168.1.8:/pub&gt; <br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="测试端口"><a href="#测试端口" class="headerlink" title="测试端口"></a>测试端口</h1><blockquote>
+<p>linux测试某个端口的bai连通性可以du使用zhi如下命令测试daoTCP协议</p>
+</blockquote>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">telnet</span>  <span class="hljs-built_in">ip</span>  port<br></code></pre></td></tr></table></figure>
+
+<p>TCP&#x2F;UDP协议测试zhuan端口</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pf">nc -vuz ip  <span class="hljs-keyword">port</span> <span class="hljs-comment">#测试udp协议</span><br>nc -vtz ip <span class="hljs-keyword">port</span>  <span class="hljs-comment">#测试tcp协议</span><br></code></pre></td></tr></table></figure>
+
+<p>端口扫描 nc -z -v -n 192.168.21.135 1-100 z参数告诉nc使用0 输入&#x2F;输出模式，一般在扫描通信端口的时候使用</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Nc</span> -z -v -n <span class="hljs-number">192.168.21.135</span> <span class="hljs-number">1</span>-<span class="hljs-number">100</span> # 检测<span class="hljs-number">1</span>-<span class="hljs-number">100</span>端口<br><span class="hljs-attribute">Nc</span> -z -v -n <span class="hljs-number">192.168.21.135</span> <span class="hljs-number">8989</span>  #检测<span class="hljs-number">8989</span>端口<br></code></pre></td></tr></table></figure>
+
+<h2 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h2><blockquote>
+<p>你可以使用 lsof 命令来查看某一端口是否开放。查看端口可以这样来使用，我就以80端口为例：</p>
+</blockquote>
+<p>lsof -i:80<br>或者<br>lsof -i:22<br>如果有显示说明已经开放了，如果没有显示说明没有开放<br>##netstat -aptn<br>是否监听在0.0.0.0:3306</p>
+<h2 id="其他方式"><a href="#其他方式" class="headerlink" title="其他方式"></a>其他方式</h2><p>netstat -nupl (UDP类型的端口)<br>netstat -ntpl (TCP类型的端口)</p>
+<h2 id="telnet-ip端口号-方式"><a href="#telnet-ip端口号-方式" class="headerlink" title="telnet ip端口号 方式"></a>telnet ip端口号 方式</h2><blockquote>
+<p>测试远程主机端口是否打开</p>
+</blockquote>
+<p>telnet 127.0.0.1 3306</p>
+<p>#其他命令</p>
+<h2 id="删除输入的错误"><a href="#删除输入的错误" class="headerlink" title="删除输入的错误"></a>删除输入的错误</h2><p>有时候在linux终端中执行某个命令时，往往会输错命令，想删除掉重敲可以按backspace键，但这样较慢，一种简便技巧是，按住esc键同时按backspace键会较快删除【esc+backspace】组合键。或者【ctrl+u】组合键</p>
+<p>当然，直接回车更直接，但可能会产生一堆的错误提示。<br>##vim<br>v &#x2F; ctrl + v 可视模式，&lt; &gt; 缩进，d,D,y dw d$</p>
+<p>vim :行号，行号&lt; 回车  可以缩进</p>
+<p>vim中统计文字出现次数 :%s&#x2F;name&#x2F;&#x2F;gn</p>
+<p>##其他<br>lha<br>linux 的 ls -1 和 -l<br>shell 的[ -s file] 文件大小不为0为真 elif<br>lcd  put lftp<br>psql -c -f<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ftl1012/p/ssh.html">https://www.cnblogs.com/ftl1012/p/ssh.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hmwh/p/11015439.html">https://www.cnblogs.com/hmwh/p/11015439.html</a></p>
+<p>telnet</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">telnet</span> <span class="hljs-number">127.0.0.1</span> <span class="hljs-number">9501</span><br></code></pre></td></tr></table></figure>
+<p>退出 <code>ctrl</code> + <code>]</code> 再按<code>ctrl</code> + <code>d</code> 或者输入 <code>quit</code></p>
+<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h1 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h1><p>vim ctrl + g 显示当前编辑的文件名</p>
+<ol>
+<li><p><code>sudo nautilus</code>   	<code>ubuntu</code>以管理员方式打开文件可视化文件管理器 </p>
+</li>
+<li><p><code>apt install build-essential</code> ubuntu安装需要的文件</p>
+</li>
+<li><p><code>du -sh</code>  <code>df -h</code> 查看硬盘占用情况</p>
+</li>
+<li><p><code>wc -l -w -c / -lwc</code> 统计行数，字数字节数</p>
+</li>
+<li><p>排除<code>grep -v</code> 包含  <code>egrep/grep -e &#39;a|b|c&#39; 路径</code> 可以使用正则</p>
+</li>
+<li><p><code>cat /tac</code> <code>tail</code> <code>head</code> </p>
+</li>
+<li><p><code>ps -ef/af/x/aux</code> 不与终端有关的进程也显示出来 </p>
+</li>
+<li><p><code>pstree -Aup</code> kill -9 强制结束 kill -2 相当于ctrl+c</p>
+</li>
+<li><p>数字+G<code> 跳行，</code>数字+D<code>删除</code>数字+Y<code>复制，</code>:setnu<code>显示行号，</code>G&#x2F;gg<code> ，</code>dd&#96;剪切</p>
+</li>
+<li><p><code>su + username</code> 切换用户 <code>ctrl + d</code> 注销 <code>sudo -l</code> 查看自己的权限  <code>visudo</code> 修改用户权限 <code>admin[</code>用户] <code>ALL</code>[允许登录的主机]&#x3D;<code>(ALL</code>[以root运行]<code>) ALL</code>[所有命令]</p>
+</li>
+<li><p><code>[%]s/搜索内容/替换内容/[g]</code> %表示替换所有，没有g表示一行，有g表示所有</p>
+</li>
+<li><p><code>netstat -tunpl | grep 80</code> 查看80口占用 <code>-ano</code> <code>-lntp</code>列出系统里监听网络链接的端口号和相应进程pid </p>
+</li>
+<li><p><code>lsof [-i :80]</code> 列出当前系统打开的文件(listen opened files)</p>
+</li>
+<li><p>ubuntu-drivers devices 查看可以安装的闭源显卡驱动</p>
+</li>
+<li><p>apt editor-sources 修改源 </p>
+</li>
+<li><p>select-editor 更换默认编辑器</p>
+</li>
+<li><p>chown&#x2F;chgrp -R 用户名&#x2F;组名 文档  chown -R username:group &#x2F;etc&#x2F;文件…同时修改</p>
+</li>
+<li><p>rsync</p>
+</li>
+<li><p>{d}{rwx}{rwx}{rwx} -&gt; d表示文件夹，rwx-1 表示拥有者，rwx-2表示用户所在组，rwx-3表示其他人，使用chmod修改权限 chmod ug+w,o-w file1.txt file2.txt 给file1.txt 和file2.txt 加上对用户和用户组的写权限，去掉其他人的写权限</p>
+</li>
+<li><p>清空文件 gg跳到行首dG清空</p>
+</li>
+<li><p>ctrl-c 发送 SIGINT 信号给前台进程bai组中的所有进du程。常用于终止正在运zhi行的程序。<br>ctrl-z 发送 SIGTSTP 信号给前台进程dao组中的所有进程，常用于挂起一个进程。用户可以使用fg&#x2F;bg操作继续前台或后台的任务，fg命令重新启动前台被中断的任务,bg命令把被中断的任务放在后台执行.<br>ctrl-d 不是发送信号，而是表示一个特殊的二进制值，表示 EOF。<br>ctrl-\ 发送 SIGQUIT 信号给前台进程组中的所有进程，终止前台进程并生成 core 文件。</p>
+</li>
+<li><p>linux添加计划任务                                                        </p>
+<p>crond 是linux用来定期执行程序的命令。当安装完成操作系统之后，默认便会启动此任务调度命令。crond命令每分锺会定期检查是否有要执行的工作，如果有要执行的工作便会自动执行该工作。可以用以下的方法启动、关闭这个服务:</p>
+<p>&#x2F;sbin&#x2F;service crond start &#x2F;&#x2F;启动服务</p>
+<p>&#x2F;sbin&#x2F;service crond stop &#x2F;&#x2F;关闭服务</p>
+<p>&#x2F;sbin&#x2F;service crond restart &#x2F;&#x2F;重启服务</p>
+<p>&#x2F;sbin&#x2F;service crond reload &#x2F;&#x2F;重新载入配置</p>
+<p>1.linux任务调度的工作主要分为以下两类：</p>
+<p>*系统执行的工作：系统周期性所要执行的工作，如备份系统数据、清理缓存</p>
+<p>*个人执行的工作：某个用户定期要做的工作，例如每隔10分钟检查邮件服务器是否有新信，这些工作可由每个用户自行设置。</p>
+<p>2.crontab命令选项:</p>
+<p>cron服务提供crontab命令来设定cron服务的，以下是这个命令的一些参数与说明:</p>
+<p>crontab -u &#x2F;&#x2F;设定某个用户的cron服务，一般root用户在执行这个命令的时候需要此参数</p>
+<p>crontab -l &#x2F;&#x2F;列出某个用户cron服务的详细内容</p>
+<p>crontab -r &#x2F;&#x2F;删除没个用户的cron服务</p>
+<p>crontab -e &#x2F;&#x2F;编辑某个用户的cron服务</p>
+<p>比如说root查看自己的cron设置:crontab -u root -l</p>
+<p>再例如，root想删除fred的cron设置:crontab -u fred -r</p>
+<p>在编辑cron服务时，编辑的内容有一些格式和约定，输入:crontab -u root -e</p>
+<p>进入vi编辑模式，编辑的内容一定要符合下面的格式:*&#x2F;1 * * * * ls &gt;&gt; &#x2F;tmp&#x2F;ls.txt</p>
+<p>3.cron文件语法</p>
+<p>  分   小时   日    月    星期   命令</p>
+<p> 0-59  0-23  1-31  1-12   0-6   command   (取值范围,0表示周日一般一行对应一个任务)</p>
+<p>4.记住几个特殊符号的含义:</p>
+<p>“*”代表取值范围内的数字,</p>
+<p>“&#x2F;“代表”每”,</p>
+<p>“-“代表从某个数字到某个数字,</p>
+<p>“,”分开几个离散的数字</p>
+<p>5.举几个例子</p>
+<p>5    *    *    *   *   ls       &#x2F;&#x2F;指定每小时的第5分钟执行一次ls命令</p>
+<p>30   5    *    *   *   ls       &#x2F;&#x2F;指定每天的 5:30 执行ls命令</p>
+<p>30   7    8    *   *   ls       &#x2F;&#x2F;指定每月8号的7：30分执行ls命令</p>
+<p>30   5    8    6   *   ls       &#x2F;&#x2F;指定每年的6月8日5：30执行ls命令</p>
+<p>30   6    *    *   0   ls       &#x2F;&#x2F;指定每星期日的6:30执行ls命令[注：0表示星期天，1表示星期1，以此类推，也可以用英文来表示，sun表示星期天，mon表示星期一等。]</p>
+<p>30   3  10,20   *   *   ls       &#x2F;&#x2F;每月10号及20号的3：30执行ls命令[注：”,”用来连接多个不连续的时段]</p>
+<p>25   8-11 *    *   *   ls       &#x2F;&#x2F;每天8-11点的第25分钟执行ls命令[注：”-”用来连接连续的时段]</p>
+<p>*&#x2F;15  *   *    *   *   ls      &#x2F;&#x2F;每15分钟执行一次ls命令 [即每个小时的第0 15 30 45 60分钟执行ls命令 ]</p>
+<p>30   6  *&#x2F;10   *   *   ls      &#x2F;&#x2F;每个月中，每隔10天6:30执行一次ls命令[即每月的1、11、21、31日是的6：30执行一次ls命令。 ]</p>
+<p>50   7    *     *   *   root run-parts &#x2F;etc&#x2F;cron.daily   &#x2F;&#x2F;每天7：50以root 身份执行&#x2F;etc&#x2F;cron.daily目录中的所有可执行文件[  注：run-parts参数表示，执行后面目录中的所有可执行文件。 ]</p>
+<p>6.新增调度任务可用两种方法：</p>
+<p>a.在命令行输入: crontab -e 然后添加相应的任务，wq存盘退出。</p>
+<p>b.直接编辑&#x2F;etc&#x2F;crontab 文件，即vi &#x2F;etc&#x2F;crontab，添加相应的任务。</p>
+</li>
+<li><p><code>lsb_release -a</code> ubuntu 查看版本信息 </p>
+<p>uname [参数]</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs csharp">$ uname -a　　<span class="hljs-comment">//显示所有信息</span><br>Linux BigManing <span class="hljs-number">4.4</span><span class="hljs-number">.0</span><span class="hljs-number">-83</span>-generic <span class="hljs-meta">#106-Ubuntu SMP Mon Jun 26 17:54:43 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</span><br><br>$ uname -s　　<span class="hljs-comment">//显示内核名称</span><br>Linux<br><br>$ uname -n　　<span class="hljs-comment">//显示网络节点上的主机名</span><br>BigManing<br><br>$ uname -r　　<span class="hljs-comment">//显示内核发行号</span><br><span class="hljs-number">4.4</span><span class="hljs-number">.0</span><span class="hljs-number">-83</span>-generic<br><br>$ uname -v　　　<span class="hljs-comment">//显示内核版本号</span><br><span class="hljs-meta">#106-Ubuntu SMP Mon Jun 26 17:54:43 UTC 2017</span><br>    $ uname -m　　　<span class="hljs-comment">//显示机器硬件名称　显示i686说明你安装了32位操作系统　　　显示 x86_64说明你安装了64位操作系统</span><br>x86_64<br><br>$ uname -p　　　<span class="hljs-comment">//显示处理器类型</span><br>x86_64<br><br>$ uname -i　　　<span class="hljs-comment">//显示硬件平台</span><br>x86_64<br><br>$ uname -o　　　<span class="hljs-comment">//操作系统</span><br>GNU/Linux<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>wget在下载的时候就重命名:</p>
+<p><code>wget -c &quot;www.baidu.com&quot; -O baidu.index.html</code><br>保存输出日至，可以使用:</p>
+<p><code>wget -c &quot;www.baidu.com&quot; -O baidu.index.html -o wget.log</code></p>
+<p>递归下载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">wget -r -p -np -k http://archives.fedoraproject.org/pub/archive/epel/5Server/x86_64/</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">wget -r -p -np -k http://archives.fedoraproject.org/pub/epel/6Server/x86_64/</span><br>-c,  --continue                 resume getting a partially-downloaded file. 断点续传<br>-nd, --no-directories           don&#x27;t create directories. 不创建层级目录，所有文件下载到当前目录<br>-r,  --recursive                specify recursive download. 递归下载<br>-p,  --page-requisites          get all images, etc. needed to display HTML page. 下载页面所有文件，使页面能在本地打开<br>-k,  --convert-links            make links in downloaded HTML or CSS point to local files. 转换链接指向本地文件<br>-np, --no-parent                don&#x27;t ascend to the parent directory. 不下载父级目录的文件<br>-o,  --output-file=FILE         log messages to FILE. 指定日志输出文件<br>-O,  --output-document=FILE     write documents to FILE. 指定文件下载位置<br>-L,  --relative                 follow relative links only. 只下载相对链接，如果页面嵌入其他站点不会被下载<br>wget -m&lt;镜像/整站抓取&gt; -e rebots=off&lt;忽略robots协议&gt; -k&lt;将绝对url转换为本地相对url&gt; -E&lt;将所有text/html以html扩展名保存&gt; &#x27;http://baidu,com&#x27;<br><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>fdisk -l<br>lsblk -f</p>
+<p>创建两个文件<br>touch app.{js,css}</p>
+<h3 id="linux下如何输入EOF"><a href="#linux下如何输入EOF" class="headerlink" title="linux下如何输入EOF"></a>linux下如何输入EOF</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">ctrl</span> + d <br></code></pre></td></tr></table></figure>
+<p>不同系统有不同组合键</p>
+<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs nim"><span class="hljs-type">int</span> main(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])<br>&#123;<br>	<span class="hljs-type">int</span> c;<br>	<span class="hljs-keyword">while</span> ((c = getc(<span class="hljs-built_in">stdin</span>)) != <span class="hljs-type">EOF</span>)<br>	&#123;<br>		putc(c, <span class="hljs-built_in">stdout</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="umask"><a href="#umask" class="headerlink" title="umask"></a>umask</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">umask</span> <span class="hljs-number">022</span><br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux命令</div>
+      <div>http://example.com/2021/11/07/Linux命令/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 7, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/07/OpenAPI%E6%A0%87%E5%87%86%E8%A7%84%E8%8C%83/" title="OpenAPI标准规范">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">OpenAPI标准规范</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/05/WSL2%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" title="WSL2 使用笔记">
+                        <span class="hidden-mobile">WSL2 使用笔记</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

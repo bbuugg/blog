@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="今天我们来讲一下 call stack 是什么。相信有了上一篇文章对 virtual memory 的介绍之后，同学们理解起 call stack 来会相对容易一些。 回顾：Virtual Memory（虚拟内存）是什么？ Call Stack 是什么？Call stack（通常译作&amp;ldquo;调用栈&amp;rdquo;）也是计算机系统中的一个重要概念。在介绍 call stack 之">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Call Stack（调用栈）是什么？">
+<meta property="og:url" content="http://example.com/2020/07/05/Call%20Stack%EF%BC%88%E8%B0%83%E7%94%A8%E6%A0%88%EF%BC%89%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="今天我们来讲一下 call stack 是什么。相信有了上一篇文章对 virtual memory 的介绍之后，同学们理解起 call stack 来会相对容易一些。 回顾：Virtual Memory（虚拟内存）是什么？ Call Stack 是什么？Call stack（通常译作&amp;ldquo;调用栈&amp;rdquo;）也是计算机系统中的一个重要概念。在介绍 call stack 之">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-05T03:34:07.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Call Stack（调用栈）是什么？ - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Call Stack（调用栈）是什么？"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-07-05 11:34" pubdate>
+          July 5, 2020 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Call Stack（调用栈）是什么？</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>今天我们来讲一下 call stack 是什么。相信有了上一篇文章对 virtual memory 的介绍之后，同学们理解起 call stack 来会相对容易一些。</p>
+<p>回顾：Virtual Memory（虚拟内存）是什么？</p>
+<p>Call Stack 是什么？<br>Call stack（通常译作&amp;ldquo;调用栈&amp;rdquo;）也是计算机系统中的一个重要概念。在介绍 call stack 之前，我们首先来回顾一下 procedure 是什么。</p>
+<p>在计算机程序当中，一个 procedure（通常译作&amp;ldquo;过程&amp;rdquo;）吃进来一些参数，干一些事情，再吐出去一个返回值（或者什么也不吐）。我们熟悉的 function、method、handler 等等其实都是 procedure。当一个 procedure A 调用另一个 procedure B 的时候，计算机其实需要干好几件事。</p>
+<p>一. 是转移控制&amp;mdash;&amp;mdash;计算机要暂停 A 并开始执行 B，并让 B 在执行完之后还能回到 A 继续执行。</p>
+<p>二. 是转移数据&amp;mdash;&amp;mdash;A 要能够传递参数给 B，并且 B 也能返回值给 A。</p>
+<p>三. 分配和释放内存&amp;mdash;&amp;mdash;在 B 开始执行时为它的局部变量分配内存，并在 B 返回时释放这部分内存。</p>
+<p>同学们想一下，假设 A 调用 B，B 再调用 C，C 执行完返回给 B，B 再执行完返回给 A，哪种数据结构最适合管理它们所使用的内存？没错，是 stack，因为过程调用具有 last-in first-out 的特点。当 A 调用 B 的时候，A 只要将它需要传递给 B 的参数 push 进这个 stack，再把将来 B 返回之后 A 应当继续执行的指令的地址（学名叫 return address）也 push 进这个 stack，就万事大吉了。之后 B 可以继续在这个 stack 上面保存一些寄存器的值，分配局部变量，进而继续构造调用 C 时需要传递的参数等等。</p>
+<p>这个 stack 其实就是我们所说的 call stack。（这里的描述有些简化，实际当中计算机会做一些优化，如果参数和局部变量不太多的话就懒得放在 call stack 里，而是直接使用寄存器了。）</p>
+<p>Call stack 在 virtual memory 里其实就是一段连续的地址空间，靠一个叫做 SP 的寄存器（32-bit 叫 ESP，64-bit 叫 RSP）来指向栈顶。既然是连续的，于是它在使用上比我们理论课上讲的抽象的 stack 要更灵活一些，更接近 array 而不是 linked list，可以访问任意元素，而不仅仅是栈顶元素。（当然进栈出栈还是只能在栈顶进行。）这也就是为什么尽管它叫做 call stack，我们依然可以同时有不止一个参数和不止一个局部变量的原因。</p>
+<p>Example<br>举个例子吧。假设我们有这样一段求阶乘的代码：</p>
+<pre><code class="hljs">00  int fact(int n) &#123;
+01    int result;
+02    if (n &amp;amp;lt;= 1)
+03      result = 1;
+04    else
+05      result = n * fact(n - 1);
+06    return result;
+07  &#125;
+</code></pre>
+<p>当 main() 调用了 fact(n)，fact(n) 又调用了 fact(n-1)，fact(n-1) 即将调用 fact(n-2) 的时候，它的 call stack 差不多是这样：（具体情况大同小异，和编译器优化有关。）</p>
+<p>其中每个 procedure 分配的内存区域叫做它的 stack frame（通常译作&amp;ldquo;栈帧&amp;rdquo;，类似于电影《盗梦空间》中的&amp;ldquo;梦境&amp;rdquo;）。这也就解释了为什么当我们分析递归函数调用的空间复杂度时，既需要考虑 recursion tree 的深度，也需要考虑每层所分配的局部变量的大小。</p>
+<p>对于上述 fact() 函数，它的 recursion tree 的深度是 n，这就意味着总共有 n 个 stack frame。每个 stack frame 里面除了保存 return address 和一些寄存器的值之外，还需要保存参数 n 和局部变量 result，它们都是 O(1) 的。所以 fact() 总的空间复杂度是 O(n) 的。</p>
+<p>希望同学们能够通过了解 call stack 进一步理解空间复杂度的计算，在面试的时候一通百通。</p>
+<p>我们下篇文章再见。</p>
+<p>（本文在写作过程中参考了 Randal E. Bryant 和 David R. O&amp;#039;&amp;#039;Hallaron 所著的 Computer Systems: A Programmer&amp;#039;&amp;#039;s Perspective 第二版和第三版。）</p>
+<p>文章来源：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/71168084">https://zhuanlan.zhihu.com/p/71168084</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Call Stack（调用栈）是什么？</div>
+      <div>http://example.com/2020/07/05/Call Stack（调用栈）是什么？/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 5, 2020</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/05/CAD%20AutoLisp%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E6%A0%87%E6%B3%A8%E5%BA%8F%E5%8F%B7/" title="CAD AutoLisp实现自动标注序号">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CAD AutoLisp实现自动标注序号</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/05/Html%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Html学习笔记">
+                        <span class="hidden-mobile">Html学习笔记</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

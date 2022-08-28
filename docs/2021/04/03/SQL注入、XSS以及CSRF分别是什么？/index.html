@@ -1,0 +1,623 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="#SQL注入 SQL注入是属于注入式攻击，这种攻击是因为在项目中没有将代码与数据（比如用户敏感数据）隔离，在读取数据的时候，错误的将数据作为代码的一部分执行而导致的。 典型的例子就是当对SQL语句进行字符串拼接的时候，直接使用未转义的用户输入内容作为变量。这时，只要在sql语句的中间做修改，比如加上drop、delete等关键字，执行之后后果不堪设想。 说到这里，那么该怎么处理这种情况呢？三个方面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL注入、XSS以及CSRF分别是什么？">
+<meta property="og:url" content="http://example.com/2021/04/03/SQL%E6%B3%A8%E5%85%A5%E3%80%81XSS%E4%BB%A5%E5%8F%8ACSRF%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="#SQL注入 SQL注入是属于注入式攻击，这种攻击是因为在项目中没有将代码与数据（比如用户敏感数据）隔离，在读取数据的时候，错误的将数据作为代码的一部分执行而导致的。 典型的例子就是当对SQL语句进行字符串拼接的时候，直接使用未转义的用户输入内容作为变量。这时，只要在sql语句的中间做修改，比如加上drop、delete等关键字，执行之后后果不堪设想。 说到这里，那么该怎么处理这种情况呢？三个方面">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-03T13:25:35.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>SQL注入、XSS以及CSRF分别是什么？ - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SQL注入、XSS以及CSRF分别是什么？"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-03 21:25" pubdate>
+          April 3, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          76 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SQL注入、XSS以及CSRF分别是什么？</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>#SQL注入</p>
+<p>SQL注入是属于注入式攻击，这种攻击是因为在项目中没有将代码与数据（比如用户敏感数据）隔离，在读取数据的时候，错误的将数据作为代码的一部分执行而导致的。</p>
+<p>典型的例子就是当对SQL语句进行字符串拼接的时候，直接使用未转义的用户输入内容作为变量。这时，只要在sql语句的中间做修改，比如加上drop、delete等关键字，执行之后后果不堪设想。</p>
+<p>说到这里，那么该怎么处理这种情况呢？三个方面：</p>
+<p>1、过滤用户输入参数中的特殊字符，降低风险。</p>
+<p>2、禁止通过字符串拼接sql语句，要严格使用参数绑定来传入参数。</p>
+<p>3、合理使用数据库框架提供的机制。就比如Mybatis提供的传入参数的方式 #{}，禁止使用${}，后者相当于是字符串拼接sql，要使用参数化的语句。</p>
+<p>总结下，就是要正确使用参数化绑定sql变量。</p>
+<p>#XSS</p>
+<p>XSS：跨站脚本攻击，Cross-Site Scripting，为了和前端的css避免重名，简称为XSS，是指通过技术手段，向正常用户请求的HTML页面中插入恶意脚本，执行。</p>
+<p>这种攻击主要是用于信息窃取和破坏等目的。比如2011年的微博XSS攻击事件，攻击者利用了微博发布功能中未对action-data漏洞做有效的过滤，在发布微博信息的时候带上了包含攻击脚本的URL，用户访问就会加载恶意脚本，导致大量用户被攻击。</p>
+<p>关于防范XSS上，主要就是通过对用户输入的数据做过滤或者是转义，可以使用框架提供的工具类HtmlUtil。另外前端在浏览器展示数据的时候，要使用安全的API展示数据。比如使用innerText而不是innerHTML。</p>
+<p>#CSRF</p>
+<p>跨站请求伪造，在用户并不知情的情况下，冒充用户发送请求，在当前已经登录的web网站上执行恶意操作，比如恶意发帖，修改密码等。</p>
+<p>大致来看，与XSS有重合的地方，前者是黑客盗用用户浏览器中的登录信息，冒充用户去执行操作。后者是在正常用户请求的HTML中放入恶意代码，XSS问题出在用户数据没有转义，过滤；CSRF问题出现在HTTP接口没有防范不守信用的调用。</p>
+<p>#防范CSRF的漏洞方式</p>
+<p>1、CSRF Token验证，利用浏览器的同源限制，在HTTP接口执行前验证Cookie中的Token，验证通过才会继续执行请求。</p>
+<p>2、人机交互，例如短信验证码、界面的滑块。</p>
+<p>以上就是什么是SQL注入、XSS和CSRF？的详细内容，更多请关注php中文网其它相关文章！</p>
+<p>#PHP如何防止XSS攻击</p>
+<p>PHP防止XSS跨站脚本攻击的方法:<strong>是针对非法的HTML代码包括单双引号等，使用htmlspecialchars()函数</strong> 。</p>
+<p>在使用htmlspecialchars()函数的时候注意第二个参数, 直接用htmlspecialchars($string) 的话,第二个参数默认是ENT_COMPAT,函数默认只是转化双引号(“), 不对单引号(‘)做转义.</p>
+<p>所以,htmlspecialchars函数更多的时候要加上第二个参数, 应该这样用: htmlspecialchars($string,ENT_QUOTES).当然,如果需要不转化任何引号,用htmlspecialchars($string,ENT_NOQUOTES).</p>
+<p>另外, 尽量少用htmlentities, 在全部英文的时候htmlentities和htmlspecialchars没有区别,都可以达到目的.但是,中文情况下, htmlentities却会转化所有的html代码，连同里面的它无法识别的中文字符也给转化了。</p>
+<p>htmlentities和htmlspecialchars这两个函数对 ‘之类的字符串支持不好,都不能转化, 所以用htmlentities和htmlspecialchars转化的字符串只能防止XSS攻击,不能防止SQL注入攻击.</p>
+<p>所有有打印的语句如echo，print等 在打印前都要使用htmlentities() 进行过滤，这样可以防止Xss，注意中文要写出htmlentities($name,ENT_NOQUOTES,GB2312) 。</p>
+<p> (1).网页不停地刷新 <code>&amp;lt;meta http-equiv=&amp;quot;refresh&amp;quot; content=&amp;quot;0&amp;quot;&amp;gt;</code></p>
+<p> (2).嵌入其它网站的链接 &lt;iframe src&#x3D;<a target="_blank" rel="noopener" href="http://xxxx/">http://xxxx</a> width&#x3D;250 height&#x3D;250&gt;&lt;&#x2F;iframe&gt;  除了通过正常途径输入XSS攻击字符外，还可以绕过JavaScript校验，通过修改请求达到XSS攻击的目的.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs php">&amp;lt;?php<br><span class="hljs-comment">//php防注入和XSS攻击通用过滤</span><br><span class="hljs-variable">$_GET</span>     &amp;amp;&amp;amp; <span class="hljs-title function_ invoke__">SafeFilter</span>(<span class="hljs-variable">$_GET</span>);<br><span class="hljs-variable">$_POST</span>    &amp;amp;&amp;amp; <span class="hljs-title function_ invoke__">SafeFilter</span>(<span class="hljs-variable">$_POST</span>);<br><span class="hljs-variable">$_COOKIE</span>  &amp;amp;&amp;amp; <span class="hljs-title function_ invoke__">SafeFilter</span>(<span class="hljs-variable">$_COOKIE</span>);<br>  <br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SafeFilter</span> (<span class="hljs-params">&amp;amp;<span class="hljs-variable">$arr</span></span>) </span><br><span class="hljs-function"></span>&#123;<br>   <span class="hljs-variable">$ra</span>=<span class="hljs-title function_ invoke__">Array</span>(<span class="hljs-string">&#x27;/([\x00-\x08,\x0b-\x0c,\x0e-\x19])/&#x27;</span>,<span class="hljs-string">&#x27;/script/&#x27;</span>,<span class="hljs-string">&#x27;/javascript/&#x27;</span>,<span class="hljs-string">&#x27;/vbscript/&#x27;</span>,<span class="hljs-string">&#x27;/expression/&#x27;</span>,<span class="hljs-string">&#x27;/applet/&#x27;</span><br>   ,<span class="hljs-string">&#x27;/meta/&#x27;</span>,<span class="hljs-string">&#x27;/xml/&#x27;</span>,<span class="hljs-string">&#x27;/blink/&#x27;</span>,<span class="hljs-string">&#x27;/link/&#x27;</span>,<span class="hljs-string">&#x27;/style/&#x27;</span>,<span class="hljs-string">&#x27;/embed/&#x27;</span>,<span class="hljs-string">&#x27;/object/&#x27;</span>,<span class="hljs-string">&#x27;/frame/&#x27;</span>,<span class="hljs-string">&#x27;/layer/&#x27;</span>,<span class="hljs-string">&#x27;/title/&#x27;</span>,<span class="hljs-string">&#x27;/bgsound/&#x27;</span><br>   ,<span class="hljs-string">&#x27;/base/&#x27;</span>,<span class="hljs-string">&#x27;/onload/&#x27;</span>,<span class="hljs-string">&#x27;/onunload/&#x27;</span>,<span class="hljs-string">&#x27;/onchange/&#x27;</span>,<span class="hljs-string">&#x27;/onsubmit/&#x27;</span>,<span class="hljs-string">&#x27;/onreset/&#x27;</span>,<span class="hljs-string">&#x27;/onselect/&#x27;</span>,<span class="hljs-string">&#x27;/onblur/&#x27;</span>,<span class="hljs-string">&#x27;/onfocus/&#x27;</span>,<br>   <span class="hljs-string">&#x27;/onabort/&#x27;</span>,<span class="hljs-string">&#x27;/onkeydown/&#x27;</span>,<span class="hljs-string">&#x27;/onkeypress/&#x27;</span>,<span class="hljs-string">&#x27;/onkeyup/&#x27;</span>,<span class="hljs-string">&#x27;/onclick/&#x27;</span>,<span class="hljs-string">&#x27;/ondblclick/&#x27;</span>,<span class="hljs-string">&#x27;/onmousedown/&#x27;</span>,<span class="hljs-string">&#x27;/onmousemove/&#x27;</span><br>   ,<span class="hljs-string">&#x27;/onmouseout/&#x27;</span>,<span class="hljs-string">&#x27;/onmouseover/&#x27;</span>,<span class="hljs-string">&#x27;/onmouseup/&#x27;</span>,<span class="hljs-string">&#x27;/onunload/&#x27;</span>);<br>     <br>   <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">is_array</span>(<span class="hljs-variable">$arr</span>))<br>   &#123;<br>     <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$arr</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$key</span> =&amp;gt; <span class="hljs-variable">$value</span>) <br>     &#123;<br>        <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">is_array</span>(<span class="hljs-variable">$value</span>))<br>        &#123;<br>          <span class="hljs-keyword">if</span> (!<span class="hljs-title function_ invoke__">get_magic_quotes_gpc</span>())  <span class="hljs-comment">//不对magic_quotes_gpc转义过的字符使用addslashes(),避免双重转义。</span><br>          &#123;<br>             <span class="hljs-variable">$value</span>  = <span class="hljs-title function_ invoke__">addslashes</span>(<span class="hljs-variable">$value</span>); <span class="hljs-comment">//给单引号（&#x27;）、双引号（&amp;quot;）、反斜线（\）与 NUL（NULL 字符）</span><br>             <span class="hljs-comment">#加上反斜线转义</span><br>          &#125;<br>          <span class="hljs-variable">$value</span>       = <span class="hljs-title function_ invoke__">preg_replace</span>(<span class="hljs-variable">$ra</span>,<span class="hljs-string">&#x27;&#x27;</span>,<span class="hljs-variable">$value</span>);     <span class="hljs-comment">//删除非打印字符，粗暴式过滤xss可疑字符串</span><br>          <span class="hljs-variable">$arr</span>[<span class="hljs-variable">$key</span>]     = <span class="hljs-title function_ invoke__">htmlentities</span>(<span class="hljs-title function_ invoke__">strip_tags</span>(<span class="hljs-variable">$value</span>)); <span class="hljs-comment">//去除 HTML 和 PHP 标记并转换为 HTML 实体</span><br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>          <span class="hljs-title function_ invoke__">SafeFilter</span>(<span class="hljs-variable">$arr</span>[<span class="hljs-variable">$key</span>]);<br>        &#125;<br>     &#125;<br>   &#125;<br>&#125;<br>?&amp;gt;<br><span class="hljs-variable">$str</span> = <span class="hljs-string">&#x27;www.90boke.com&amp;lt;meta http-equiv=&amp;quot;refresh&amp;quot; content=&amp;quot;0;&amp;quot;&amp;gt;&#x27;</span>;<br><span class="hljs-title function_ invoke__">SafeFilter</span> (<span class="hljs-variable">$str</span>); <span class="hljs-comment">//如果你把这个注释掉，提交之后就会无休止刷新</span><br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$str</span>;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs xquery">//------------------------------php防注入和XSS攻击通用过滤-----Start--------------------------------------------//<br><span class="hljs-keyword">function</span> string_remove_xss(<span class="hljs-variable">$html</span>) &#123;<br>    preg_match_all(&amp;quot;/\&amp;<span class="hljs-literal">lt</span>;([^\&amp;<span class="hljs-literal">lt</span>;]+)\&amp;<span class="hljs-literal">gt</span>;/<span class="hljs-literal">is</span>&amp;quot;, <span class="hljs-variable">$html</span>, <span class="hljs-variable">$ms</span>);<br> <br>    <span class="hljs-variable">$searchs</span>[] = <span class="hljs-string">&#x27;&amp;lt;&#x27;</span>;<br>    <span class="hljs-variable">$replaces</span>[] = <span class="hljs-string">&#x27;&amp;amp;lt;&#x27;</span>;<br>    <span class="hljs-variable">$searchs</span>[] = <span class="hljs-string">&#x27;&amp;gt;&#x27;</span>;<br>    <span class="hljs-variable">$replaces</span>[] = <span class="hljs-string">&#x27;&amp;amp;gt;&#x27;</span>;<br> <br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$ms</span>[<span class="hljs-number">1</span>]) &#123;<br>        <span class="hljs-variable">$allowtags</span> = <span class="hljs-string">&#x27;img|a|font|div|table|tbody|caption|tr|td|th|br|p|b|strong|i|u|em|span|ol|ul|li|blockquote&#x27;</span>;<br>        <span class="hljs-variable">$ms</span>[<span class="hljs-number">1</span>] = array_unique(<span class="hljs-variable">$ms</span>[<span class="hljs-number">1</span>]);<br>        foreach (<span class="hljs-variable">$ms</span>[<span class="hljs-number">1</span>] <span class="hljs-keyword">as</span> <span class="hljs-variable">$value</span>) &#123;<br>            <span class="hljs-variable">$searchs</span>[] = &amp;quot;&amp;amp;<span class="hljs-literal">lt</span>;&amp;quot;.<span class="hljs-variable">$value</span>.&amp;quot;&amp;amp;<span class="hljs-literal">gt</span>;&amp;quot;;<br> <br>            <span class="hljs-variable">$value</span> = str_replace(<span class="hljs-string">&#x27;&amp;amp;amp;&#x27;</span>, <span class="hljs-string">&#x27;_uch_tmp_str_&#x27;</span>, <span class="hljs-variable">$value</span>);<br>            <span class="hljs-variable">$value</span> = string_htmlspecialchars(<span class="hljs-variable">$value</span>);<br>            <span class="hljs-variable">$value</span> = str_replace(<span class="hljs-string">&#x27;_uch_tmp_str_&#x27;</span>, <span class="hljs-string">&#x27;&amp;amp;amp;&#x27;</span>, <span class="hljs-variable">$value</span>);<br> <br>            <span class="hljs-variable">$value</span> = str_replace(<span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;\\&#x27;</span>, <span class="hljs-string">&#x27;/*&#x27;</span>), <span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;.&#x27;</span>, <span class="hljs-string">&#x27;/.&#x27;</span>), <span class="hljs-variable">$value</span>);<br>            <span class="hljs-variable">$skipkeys</span> = <span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;onabort&#x27;</span>,<span class="hljs-string">&#x27;onactivate&#x27;</span>,<span class="hljs-string">&#x27;onafterprint&#x27;</span>,<span class="hljs-string">&#x27;onafterupdate&#x27;</span>,<span class="hljs-string">&#x27;onbeforeactivate&#x27;</span>,<span class="hljs-string">&#x27;onbeforecopy&#x27;</span>,<span class="hljs-string">&#x27;onbeforecut&#x27;</span>,<span class="hljs-string">&#x27;onbeforedeactivate&#x27;</span>,<br>                    <span class="hljs-string">&#x27;onbeforeeditfocus&#x27;</span>,<span class="hljs-string">&#x27;onbeforepaste&#x27;</span>,<span class="hljs-string">&#x27;onbeforeprint&#x27;</span>,<span class="hljs-string">&#x27;onbeforeunload&#x27;</span>,<span class="hljs-string">&#x27;onbeforeupdate&#x27;</span>,<span class="hljs-string">&#x27;onblur&#x27;</span>,<span class="hljs-string">&#x27;onbounce&#x27;</span>,<span class="hljs-string">&#x27;oncellchange&#x27;</span>,<span class="hljs-string">&#x27;onchange&#x27;</span>,<br>                    <span class="hljs-string">&#x27;onclick&#x27;</span>,<span class="hljs-string">&#x27;oncontextmenu&#x27;</span>,<span class="hljs-string">&#x27;oncontrolselect&#x27;</span>,<span class="hljs-string">&#x27;oncopy&#x27;</span>,<span class="hljs-string">&#x27;oncut&#x27;</span>,<span class="hljs-string">&#x27;ondataavailable&#x27;</span>,<span class="hljs-string">&#x27;ondatasetchanged&#x27;</span>,<span class="hljs-string">&#x27;ondatasetcomplete&#x27;</span>,<span class="hljs-string">&#x27;ondblclick&#x27;</span>,<br>                    <span class="hljs-string">&#x27;ondeactivate&#x27;</span>,<span class="hljs-string">&#x27;ondrag&#x27;</span>,<span class="hljs-string">&#x27;ondragend&#x27;</span>,<span class="hljs-string">&#x27;ondragenter&#x27;</span>,<span class="hljs-string">&#x27;ondragleave&#x27;</span>,<span class="hljs-string">&#x27;ondragover&#x27;</span>,<span class="hljs-string">&#x27;ondragstart&#x27;</span>,<span class="hljs-string">&#x27;ondrop&#x27;</span>,<span class="hljs-string">&#x27;onerror&#x27;</span>,<span class="hljs-string">&#x27;onerrorupdate&#x27;</span>,<br>                    <span class="hljs-string">&#x27;onfilterchange&#x27;</span>,<span class="hljs-string">&#x27;onfinish&#x27;</span>,<span class="hljs-string">&#x27;onfocus&#x27;</span>,<span class="hljs-string">&#x27;onfocusin&#x27;</span>,<span class="hljs-string">&#x27;onfocusout&#x27;</span>,<span class="hljs-string">&#x27;onhelp&#x27;</span>,<span class="hljs-string">&#x27;onkeydown&#x27;</span>,<span class="hljs-string">&#x27;onkeypress&#x27;</span>,<span class="hljs-string">&#x27;onkeyup&#x27;</span>,<span class="hljs-string">&#x27;onlayoutcomplete&#x27;</span>,<br>                    <span class="hljs-string">&#x27;onload&#x27;</span>,<span class="hljs-string">&#x27;onlosecapture&#x27;</span>,<span class="hljs-string">&#x27;onmousedown&#x27;</span>,<span class="hljs-string">&#x27;onmouseenter&#x27;</span>,<span class="hljs-string">&#x27;onmouseleave&#x27;</span>,<span class="hljs-string">&#x27;onmousemove&#x27;</span>,<span class="hljs-string">&#x27;onmouseout&#x27;</span>,<span class="hljs-string">&#x27;onmouseover&#x27;</span>,<span class="hljs-string">&#x27;onmouseup&#x27;</span>,<span class="hljs-string">&#x27;onmousewheel&#x27;</span>,<br>                    <span class="hljs-string">&#x27;onmove&#x27;</span>,<span class="hljs-string">&#x27;onmoveend&#x27;</span>,<span class="hljs-string">&#x27;onmovestart&#x27;</span>,<span class="hljs-string">&#x27;onpaste&#x27;</span>,<span class="hljs-string">&#x27;onpropertychange&#x27;</span>,<span class="hljs-string">&#x27;onreadystatechange&#x27;</span>,<span class="hljs-string">&#x27;onreset&#x27;</span>,<span class="hljs-string">&#x27;onresize&#x27;</span>,<span class="hljs-string">&#x27;onresizeend&#x27;</span>,<span class="hljs-string">&#x27;onresizestart&#x27;</span>,<br>                    <span class="hljs-string">&#x27;onrowenter&#x27;</span>,<span class="hljs-string">&#x27;onrowexit&#x27;</span>,<span class="hljs-string">&#x27;onrowsdelete&#x27;</span>,<span class="hljs-string">&#x27;onrowsinserted&#x27;</span>,<span class="hljs-string">&#x27;onscroll&#x27;</span>,<span class="hljs-string">&#x27;onselect&#x27;</span>,<span class="hljs-string">&#x27;onselectionchange&#x27;</span>,<span class="hljs-string">&#x27;onselectstart&#x27;</span>,<span class="hljs-string">&#x27;onstart&#x27;</span>,<span class="hljs-string">&#x27;onstop&#x27;</span>,<br>                    <span class="hljs-string">&#x27;onsubmit&#x27;</span>,<span class="hljs-string">&#x27;onunload&#x27;</span>,<span class="hljs-string">&#x27;javascript&#x27;</span>,<span class="hljs-string">&#x27;script&#x27;</span>,<span class="hljs-string">&#x27;eval&#x27;</span>,<span class="hljs-string">&#x27;behaviour&#x27;</span>,<span class="hljs-string">&#x27;expression&#x27;</span>,<span class="hljs-string">&#x27;style&#x27;</span>,<span class="hljs-string">&#x27;class&#x27;</span>);<br>            <span class="hljs-variable">$skipstr</span> = implode(<span class="hljs-string">&#x27;|&#x27;</span>, <span class="hljs-variable">$skipkeys</span>);<br>            <span class="hljs-variable">$value</span> = preg_replace(<span class="hljs-keyword">array</span>(&amp;quot;/(<span class="hljs-variable">$skipstr</span>)/i&amp;quot;), <span class="hljs-string">&#x27;.&#x27;</span>, <span class="hljs-variable">$value</span>);<br>            <span class="hljs-keyword">if</span> (!preg_match(&amp;quot;/^[\/|\s]?(<span class="hljs-variable">$allowtags</span>)(\s+|$)/<span class="hljs-literal">is</span>&amp;quot;, <span class="hljs-variable">$value</span>)) &#123;<br>                <span class="hljs-variable">$value</span> = <span class="hljs-string">&#x27;&#x27;</span>;<br>            &#125;<br>            <span class="hljs-variable">$replaces</span>[] =<span class="hljs-built_in"> empty</span>(<span class="hljs-variable">$value</span>) ? <span class="hljs-string">&#x27;&#x27;</span> : &amp;quot;&amp;<span class="hljs-literal">lt</span>;&amp;quot; . str_replace(<span class="hljs-string">&#x27;&amp;amp;quot;&#x27;</span>, <span class="hljs-string">&#x27;&amp;quot;&#x27;</span>, <span class="hljs-variable">$value</span>) . &amp;quot;&amp;<span class="hljs-literal">gt</span>;&amp;quot;;<br>        &#125;<br>    &#125;<br>    <span class="hljs-variable">$html</span> = str_replace(<span class="hljs-variable">$searchs</span>, <span class="hljs-variable">$replaces</span>, <span class="hljs-variable">$html</span>);<br> <br>    <span class="hljs-keyword">return</span> <span class="hljs-variable">$html</span>;<br>&#125;<br>//php防注入和XSS攻击通用过滤 <br><span class="hljs-keyword">function</span> string_htmlspecialchars(<span class="hljs-variable">$string</span>, <span class="hljs-variable">$flags</span> = null) &#123;<br>    <span class="hljs-keyword">if</span> (is_array(<span class="hljs-variable">$string</span>)) &#123;<br>        foreach (<span class="hljs-variable">$string</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$key</span> =&amp;<span class="hljs-literal">gt</span>; <span class="hljs-variable">$val</span>) &#123;<br>            <span class="hljs-variable">$string</span>[<span class="hljs-variable">$key</span>] = string_htmlspecialchars(<span class="hljs-variable">$val</span>, <span class="hljs-variable">$flags</span>);<br>        &#125;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$flags</span> === null) &#123;<br>            <span class="hljs-variable">$string</span> = str_replace(<span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;&amp;amp;&#x27;</span>, <span class="hljs-string">&#x27;&amp;quot;&#x27;</span>, <span class="hljs-string">&#x27;&amp;lt;&#x27;</span>, <span class="hljs-string">&#x27;&amp;gt;&#x27;</span>), <span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;&amp;amp;amp;&#x27;</span>, <span class="hljs-string">&#x27;&amp;amp;quot;&#x27;</span>, <span class="hljs-string">&#x27;&amp;amp;lt;&#x27;</span>, <span class="hljs-string">&#x27;&amp;amp;gt;&#x27;</span>), <span class="hljs-variable">$string</span>);<br>            <span class="hljs-keyword">if</span> (strpos(<span class="hljs-variable">$string</span>, <span class="hljs-string">&#x27;&amp;amp;amp;#&#x27;</span>) !==<span class="hljs-built_in"> false</span>) &#123;<br>                <span class="hljs-variable">$string</span> = preg_replace(<span class="hljs-string">&#x27;/&amp;amp;amp;((#(\d&#123;3,5&#125;|x[a-fA-F0-9]&#123;4&#125;));)/&#x27;</span>, <span class="hljs-string">&#x27;&amp;amp;\\1&#x27;</span>, <span class="hljs-variable">$string</span>);<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">if</span> (PHP_VERSION &amp;<span class="hljs-literal">lt</span>; <span class="hljs-string">&#x27;5.4.0&#x27;</span>) &#123;<br>                <span class="hljs-variable">$string</span> = htmlspecialchars(<span class="hljs-variable">$string</span>, <span class="hljs-variable">$flags</span>);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">if</span> (!defined(<span class="hljs-string">&#x27;CHARSET&#x27;</span>) || (strtolower(CHARSET) == <span class="hljs-string">&#x27;utf-8&#x27;</span>)) &#123;<br>                    <span class="hljs-variable">$charset</span> = <span class="hljs-string">&#x27;UTF-8&#x27;</span>;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-variable">$charset</span> = <span class="hljs-string">&#x27;ISO-8859-1&#x27;</span>;<br>                &#125;<br>                <span class="hljs-variable">$string</span> = htmlspecialchars(<span class="hljs-variable">$string</span>, <span class="hljs-variable">$flags</span>, <span class="hljs-variable">$charset</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br> <br>    <span class="hljs-keyword">return</span> <span class="hljs-variable">$string</span>;<br>&#125;<br><br>//------------------php防注入和XSS攻击通用过滤-----End--------------------------------------------//<br></code></pre></td></tr></table></figure>
+
+<h1 id="PHP中的设置"><a href="#PHP中的设置" class="headerlink" title="PHP中的设置"></a>PHP中的设置</h1><p>PHP5.2以上版本已支持HttpOnly参数的设置，同样也支持全局的HttpOnly的设置，在php.ini中</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">----------------------------------------------------- </span><br> <span class="hljs-keyword">session</span>.cookie_httponly = <br><span class="hljs-comment">-----------------------------------------------------</span><br></code></pre></td></tr></table></figure>
+
+<p>设置其值为1或者TRUE，来开启全局的Cookie的HttpOnly属性，当然也支持在代码中来开启： </p>
+<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sas"><span class="hljs-variable">&amp;lt</span>;?php ini_set(<span class="hljs-variable">&amp;quot</span>;session.cookie_httponly<span class="hljs-variable">&amp;quot</span>;, 1);   <br>// <span class="hljs-keyword">or</span> session_set_cookie_params(0, <span class="hljs-keyword">NULL</span>, <span class="hljs-keyword">NULL</span>, <span class="hljs-keyword">NULL</span>, TRUE);   <br>?<span class="hljs-variable">&amp;gt</span>;<br></code></pre></td></tr></table></figure>
+
+<p>Cookie操作函数setcookie函数和setrawcookie函数也专门添加了第7个参数来做为HttpOnly的选项，开启方法为： </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php">&amp;lt;?php  <br><span class="hljs-title function_ invoke__">setcookie</span>(&amp;quot;abc&amp;quot;, &amp;quot;test&amp;quot;, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">TRUE</span>);   <br><span class="hljs-title function_ invoke__">setrawcookie</span>(&amp;quot;abc&amp;quot;, &amp;quot;test&amp;quot;, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">TRUE</span>);  <br>?&amp;gt;<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SQL注入、XSS以及CSRF分别是什么？</div>
+      <div>http://example.com/2021/04/03/SQL注入、XSS以及CSRF分别是什么？/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 3, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/03/URI%E5%92%8CURL%E7%9A%84%E5%8C%BA%E5%88%AB%E6%AF%94%E8%BE%83%E4%B8%8E%E7%90%86%E8%A7%A3/" title="URI和URL的区别比较与理解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">URI和URL的区别比较与理解</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/03/jQuery%20%E7%9B%91%E5%90%AC%E5%85%83%E7%B4%A0%E5%86%85%E5%AE%B9%E5%8F%98%E5%8C%96%E7%9A%84%E6%96%B9%E6%B3%95/" title="jQuery 监听元素内容变化的方法">
+                        <span class="hidden-mobile">jQuery 监听元素内容变化的方法</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

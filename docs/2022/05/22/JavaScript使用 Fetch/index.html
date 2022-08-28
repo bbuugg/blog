@@ -1,0 +1,696 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Fetch API 提供了一个 JavaScript接口，用于访问和操纵HTTP管道的部分，例如请求和响应。它还提供了一个全局 fetch()方法，该方法提供了一种简单，合理的方式来跨网络异步获取资源。 这种功能以前是使用  XMLHttpRequest实现的。Fetch提供了一个更好的替代方法，可以很容易地被其他技术使用，例如 Service Workers。Fetch还提供了单个逻辑位置来定义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript使用 Fetch">
+<meta property="og:url" content="http://example.com/2022/05/22/JavaScript%E4%BD%BF%E7%94%A8%20Fetch/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Fetch API 提供了一个 JavaScript接口，用于访问和操纵HTTP管道的部分，例如请求和响应。它还提供了一个全局 fetch()方法，该方法提供了一种简单，合理的方式来跨网络异步获取资源。 这种功能以前是使用  XMLHttpRequest实现的。Fetch提供了一个更好的替代方法，可以很容易地被其他技术使用，例如 Service Workers。Fetch还提供了单个逻辑位置来定义">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-22T11:24:21.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.683Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>JavaScript使用 Fetch - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JavaScript使用 Fetch"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-22 19:24" pubdate>
+          May 22, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          81 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JavaScript使用 Fetch</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch API</a> 提供了一个 JavaScript接口，用于访问和操纵HTTP管道的部分，例如请求和响应。它还提供了一个全局 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch"><code>fetch()</code></a>方法，该方法提供了一种简单，合理的方式来跨网络异步获取资源。</p>
+<p>这种功能以前是使用  <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest"><code>XMLHttpRequest</code></a>实现的。Fetch提供了一个更好的替代方法，可以很容易地被其他技术使用，例如 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/ServiceWorker_API"><code>Service Workers</code></a>。Fetch还提供了单个逻辑位置来定义其他HTTP相关概念，例如CORS和HTTP的扩展。</p>
+<p>请注意，<code>fetch</code>规范与<code>jQuery.ajax()</code>主要有两种方式的不同，牢记：</p>
+<ul>
+<li>当接收到一个代表错误的 HTTP 状态码时，从 <code>fetch()</code>返回的 Promise <strong>不会被标记为 reject，</strong> 即使该 HTTP 响应的状态码是 404 或 500。相反，它会将 Promise 状态标记为 resolve （但是会将 resolve 的返回值的 <code>ok</code> 属性设置为 false ），仅当网络故障时或请求被阻止时，才会标记为 reject。</li>
+<li>默认情况下，<code>fetch</code> <strong>不会从服务端发送或接收任何 cookies</strong>, 如果站点依赖于用户 session，则会导致未经认证的请求（要发送 cookies，必须设置 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch%23%E5%8F%82%E6%95%B0">credentials</a> 选项）。自从2017年8月25日后，默认的credentials政策变更为<code>same-origin</code>Firefox也在61.0b13中改变默认值</li>
+</ul>
+<h2 id="进行-fetch-请求-参考"><a href="#进行-fetch-请求-参考" class="headerlink" title="进行 fetch 请求 参考"></a>进行 fetch 请求 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23%E8%BF%9B%E8%A1%8C_fetch_%E8%AF%B7%E6%B1%82">参考</a></h2><p>一个基本的 fetch请求设置起来很简单。看看下面的代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;http://example.com/movies.json&#x27;</span>)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) &#123;<br>    <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>();<br>  &#125;)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">myJson</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myJson);<br>  &#125;);<br></code></pre></td></tr></table></figure>
+
+<p>这里我们通过网络获取一个JSON文件并将其打印到控制台。最简单的用法是只提供一个参数用来指明想<code>fetch()</code>到的资源路径，然后返回一个包含响应结果的promise(一个 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response"><code>Response</code></a> 对象)。</p>
+<p>当然它只是一个 HTTP 响应，而不是真的JSON。为了获取JSON的内容，我们需要使用  <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Body/json"><code>json()</code></a>方法（在<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Body"><code>Body</code></a>mixin 中定义，被 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Request"><code>Request</code></a> 和 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response"><code>Response</code></a> 对象实现）。</p>
+<p><strong>注意</strong>：Body mixin 还有其他相似的方法，用于获取其他类型的内容。参考 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23Body">Body</a>。</p>
+<p>最好使用符合<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/Security/CSP/CSP_policy_directives">内容安全策略 (CSP)</a>的链接而不是使用直接指向资源地址的方式来进行Fetch的请求。</p>
+<h3 id="支持的请求参数参考"><a href="#支持的请求参数参考" class="headerlink" title="支持的请求参数参考"></a>支持的请求参数<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23%E6%94%AF%E6%8C%81%E7%9A%84%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0">参考</a></h3><p><code>fetch()</code> 接受第二个可选参数，一个可以控制不同配置的 <code>init</code> 对象：</p>
+<p>参考 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch"><code>fetch()</code></a>，查看所有可选的配置和更多描述。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// Example POST method implementation:</span><br><br><span class="hljs-title function_">postData</span>(<span class="hljs-string">&#x27;http://example.com/answer&#x27;</span>, &#123;<span class="hljs-attr">answer</span>: <span class="hljs-number">42</span>&#125;)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data)) <span class="hljs-comment">// JSON from `response.json()` call</span><br>  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error))<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">postData</span>(<span class="hljs-params">url, data</span>) &#123;<br>  <span class="hljs-comment">// Default options are marked with *</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">fetch</span>(url, &#123;<br>    <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(data), <span class="hljs-comment">// must match &#x27;Content-Type&#x27; header</span><br>    <span class="hljs-attr">cache</span>: <span class="hljs-string">&#x27;no-cache&#x27;</span>, <span class="hljs-comment">// *default, no-cache, reload, force-cache, only-if-cached</span><br>    <span class="hljs-attr">credentials</span>: <span class="hljs-string">&#x27;same-origin&#x27;</span>, <span class="hljs-comment">// include, same-origin, *omit</span><br>    <span class="hljs-attr">headers</span>: &#123;<br>      <span class="hljs-string">&#x27;user-agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/4.0 MDN Example&#x27;</span>,<br>      <span class="hljs-string">&#x27;content-type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span><br>    &#125;,<br>    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>, <span class="hljs-comment">// *GET, POST, PUT, DELETE, etc.</span><br>    <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;cors&#x27;</span>, <span class="hljs-comment">// no-cors, cors, *same-origin</span><br>    <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;follow&#x27;</span>, <span class="hljs-comment">// manual, *follow, error</span><br>    <span class="hljs-attr">referrer</span>: <span class="hljs-string">&#x27;no-referrer&#x27;</span>, <span class="hljs-comment">// *client, no-referrer</span><br>  &#125;)<br>  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">json</span>()) <span class="hljs-comment">// parses response to JSON</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="发送带凭据的请求参考"><a href="#发送带凭据的请求参考" class="headerlink" title="发送带凭据的请求参考"></a>发送带凭据的请求<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23%E5%8F%91%E9%80%81%E5%B8%A6%E5%87%AD%E6%8D%AE%E7%9A%84%E8%AF%B7%E6%B1%82">参考</a></h3><p>为了让浏览器发送包含凭据的请求（即使是跨域源），要将<code>credentials: &#39;include&#39;</code>添加到传递给 <code>fetch()</code>方法的<code>init</code>对象。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-title function_ invoke__">fetch</span>(<span class="hljs-symbol">&#x27;https</span>:<span class="hljs-comment">//example.com&#x27;, &#123;</span><br>  credentials: <span class="hljs-symbol">&#x27;include</span>&#x27;  <br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>如果你只想在请求URL与调用脚本位于同一起源处时发送凭据，请添加<code>credentials: &#39;same-origin&#39;</code>。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// The calling script is on the origin &#x27;https://example.com&#x27;</span><br><br><span class="hljs-title function_ invoke__">fetch</span>(<span class="hljs-string">&#x27;https://example.com&#x27;</span>, &#123;<br>  <span class="hljs-attr">credentials</span>: <span class="hljs-string">&#x27;same-origin&#x27;</span>  <br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>要改为确保浏览器不在请求中包含凭据，请使用<code>credentials: &#39;omit&#39;</code>。</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs rust"><span class="hljs-title function_ invoke__">fetch</span>(<span class="hljs-symbol">&#x27;https</span>:<span class="hljs-comment">//example.com&#x27;, &#123;</span><br>  credentials: <span class="hljs-symbol">&#x27;omit</span>&#x27;  <br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="上传-JSON-数据参考"><a href="#上传-JSON-数据参考" class="headerlink" title="上传 JSON 数据参考"></a>上传 JSON 数据<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23%E4%B8%8A%E4%BC%A0_JSON_%E6%95%B0%E6%8D%AE">参考</a></h3><p>使用 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch"><code>fetch()</code></a>  POST JSON数据</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">var</span> url = <span class="hljs-string">&#x27;https://example.com/profile&#x27;</span>;<br><span class="hljs-keyword">var</span> data = &#123;<span class="hljs-attr">username</span>: <span class="hljs-string">&#x27;example&#x27;</span>&#125;;<br><br><span class="hljs-title function_">fetch</span>(url, &#123;<br>  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>, <span class="hljs-comment">// or &#x27;PUT&#x27;</span><br>  <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(data), <span class="hljs-comment">// data can be `string` or &#123;object&#125;!</span><br>  <span class="hljs-attr">headers</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Headers</span>(&#123;<br>    <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span><br>  &#125;)<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.<span class="hljs-title function_">json</span>())<br>.<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error:&#x27;</span>, error))<br>.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Success:&#x27;</span>, response));<br></code></pre></td></tr></table></figure>
+
+<h3 id="上传文件参考"><a href="#上传文件参考" class="headerlink" title="上传文件参考"></a>上传文件<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6">参考</a></h3><p>可以通过HTML<code>&lt;input type=&quot;file&quot; /&gt;</code>元素，<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/FormData"><code>FormData()</code></a> 和<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch"><code>fetch()</code></a>上传文件。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">var</span> formData = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FormData</span>();<br><span class="hljs-keyword">var</span> fileField = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;input[type=&#x27;file&#x27;]&quot;</span>);<br><br>formData.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;username&#x27;</span>, <span class="hljs-string">&#x27;abc123&#x27;</span>);<br>formData.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;avatar&#x27;</span>, fileField.<span class="hljs-property">files</span>[<span class="hljs-number">0</span>]);<br><br><span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;https://example.com/profile/avatar&#x27;</span>, &#123;<br>  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;PUT&#x27;</span>,<br>  <span class="hljs-attr">body</span>: formData<br>&#125;)<br>.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">json</span>())<br>.<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error:&#x27;</span>, error))<br>.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Success:&#x27;</span>, response));<br></code></pre></td></tr></table></figure>
+
+<h3 id="上传多个文件参考"><a href="#上传多个文件参考" class="headerlink" title="上传多个文件参考"></a>上传多个文件<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23%E4%B8%8A%E4%BC%A0%E5%A4%9A%E4%B8%AA%E6%96%87%E4%BB%B6">参考</a></h3><p>可以通过HTML<code>&lt;input type=&quot;file&quot; mutiple/&gt;</code>元素，<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/FormData"><code>FormData()</code></a> 和<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch"><code>fetch()</code></a>上传文件。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">var</span> formData = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FormData</span>();<br><span class="hljs-keyword">var</span> photos = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;input[type=&#x27;file&#x27;][multiple]&quot;</span>);<br><br>formData.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;title&#x27;</span>, <span class="hljs-string">&#x27;My Vegas Vacation&#x27;</span>);<br>formData.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;photos&#x27;</span>, photos.<span class="hljs-property">files</span>);<br><br><span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;https://example.com/posts&#x27;</span>, &#123;<br>  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  <span class="hljs-attr">body</span>: formData<br>&#125;)<br>.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">json</span>())<br>.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Success:&#x27;</span>, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(response)))<br>.<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error:&#x27;</span>, error));<br></code></pre></td></tr></table></figure>
+
+<h3 id="检测请求是否成功参考"><a href="#检测请求是否成功参考" class="headerlink" title="检测请求是否成功参考"></a>检测请求是否成功<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23%E6%A3%80%E6%B5%8B%E8%AF%B7%E6%B1%82%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F">参考</a></h3><p>如果遇到网络故障，<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch"><code>fetch()</code></a> promise 将会 reject，带上一个 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a> 对象。虽然这个情况经常是遇到了权限问题或类似问题——比如 404 不是一个网络故障。想要精确的判断 <code>fetch()</code> 是否成功，需要包含 promise resolved 的情况，此时再判断 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response/ok"><code>Response.ok</code></a> 是不是为 true。类似以下代码：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;flowers.jpg&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) &#123;<br>  <span class="hljs-keyword">if</span>(response.<span class="hljs-property">ok</span>) &#123;<br>    <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">blob</span>();<br>  &#125;<br>  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Network response was not ok.&#x27;</span>);<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">myBlob</span>) &#123; <br>  <span class="hljs-keyword">var</span> objectURL = <span class="hljs-variable constant_">URL</span>.<span class="hljs-title function_">createObjectURL</span>(myBlob); <br>  myImage.<span class="hljs-property">src</span> = objectURL; <br>&#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;There has been a problem with your fetch operation: &#x27;</span>, error.<span class="hljs-property">message</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h3 id="自定义请求对象参考"><a href="#自定义请求对象参考" class="headerlink" title="自定义请求对象参考"></a>自定义请求对象<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1">参考</a></h3><p>除了传给 <code>fetch()</code> 一个资源的地址，你还可以通过使用 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Request/Request"><code>Request()</code></a> 构造函数来创建一个 request 对象，然后再作为参数传给 <code>fetch()</code>：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">var</span> myHeaders = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Headers</span>();<br><br><span class="hljs-keyword">var</span> myInit = &#123; <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,<br>               <span class="hljs-attr">headers</span>: myHeaders,<br>               <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;cors&#x27;</span>,<br>               <span class="hljs-attr">cache</span>: <span class="hljs-string">&#x27;default&#x27;</span> &#125;;<br><br><span class="hljs-keyword">var</span> myRequest = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Request</span>(<span class="hljs-string">&#x27;flowers.jpg&#x27;</span>, myInit);<br><br><span class="hljs-title function_">fetch</span>(myRequest).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) &#123;<br>  <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">blob</span>();<br>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">myBlob</span>) &#123;<br>  <span class="hljs-keyword">var</span> objectURL = <span class="hljs-variable constant_">URL</span>.<span class="hljs-title function_">createObjectURL</span>(myBlob);<br>  myImage.<span class="hljs-property">src</span> = objectURL;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><code>Request()</code> 和 <code>fetch()</code> 接受同样的参数。你甚至可以传入一个已存在的 request 对象来创造一个拷贝：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">var</span> anotherRequest = <span class="hljs-keyword">new</span> Request(myRequest,myInit);<br></code></pre></td></tr></table></figure>
+
+<p>这个很有用，因为 request 和 response bodies 只能被使用一次（译者注：这里的意思是因为设计成了 stream 的方式，所以它们只能被读取一次）。创建一个拷贝就可以再次使用 request&#x2F;response 了，当然也可以使用不同的 <code>init</code> 参数。</p>
+<p><strong>注意</strong>：<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Request/clone"><code>clone()</code></a> 方法也可以用于创建一个拷贝。它在语义上有一点不同于其他拷贝的方法。其他方法（比如拷贝一个 response）中，如果 request 的 body 已经被读取过，那么将执行失败，然而 <code>clone()</code> 则不会失败。</p>
+<h2 id="Headers参考"><a href="#Headers参考" class="headerlink" title="Headers参考"></a>Headers<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23Headers">参考</a></h2><p>使用 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Headers"><code>Headers</code></a> 的接口，你可以通过 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Headers/Headers"><code>Headers()</code></a> 构造函数来创建一个你自己的 headers 对象。一个 headers 对象是一个简单的多名值对：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> content = <span class="hljs-string">&quot;Hello World&quot;</span>;<br><span class="hljs-keyword">var</span> myHeaders = <span class="hljs-built_in">new</span> Headers();<br>myHeaders.<span class="hljs-built_in">append</span>(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;text/plain&quot;</span>);<br>myHeaders.<span class="hljs-built_in">append</span>(<span class="hljs-string">&quot;Content-Length&quot;</span>, content.length.toString());<br>myHeaders.<span class="hljs-built_in">append</span>(<span class="hljs-string">&quot;X-Custom-Header&quot;</span>, <span class="hljs-string">&quot;ProcessThisImmediately&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>也可以传一个多维数组或者对象字面量：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">myHeaders = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Headers</span>(&#123;<br>  <span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;text/plain&quot;</span>,<br>  <span class="hljs-string">&quot;Content-Length&quot;</span>: content.length.<span class="hljs-built_in">toString</span>(),<br>  <span class="hljs-string">&quot;X-Custom-Header&quot;</span>: <span class="hljs-string">&quot;ProcessThisImmediately&quot;</span>,<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>它的内容可以被获取：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp">console.<span class="hljs-built_in">log</span>(myHeaders.<span class="hljs-built_in">has</span>(<span class="hljs-string">&quot;Content-Type&quot;</span>)); <span class="hljs-comment">// true</span><br>console.<span class="hljs-built_in">log</span>(myHeaders.<span class="hljs-built_in">has</span>(<span class="hljs-string">&quot;Set-Cookie&quot;</span>)); <span class="hljs-comment">// false</span><br>myHeaders.<span class="hljs-built_in">set</span>(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;text/html&quot;</span>);<br>myHeaders.<span class="hljs-built_in">append</span>(<span class="hljs-string">&quot;X-Custom-Header&quot;</span>, <span class="hljs-string">&quot;AnotherValue&quot;</span>);<br><br>console.<span class="hljs-built_in">log</span>(myHeaders.<span class="hljs-built_in">get</span>(<span class="hljs-string">&quot;Content-Length&quot;</span>)); <span class="hljs-comment">// 11</span><br>console.<span class="hljs-built_in">log</span>(myHeaders.<span class="hljs-built_in">getAll</span>(<span class="hljs-string">&quot;X-Custom-Header&quot;</span>)); <span class="hljs-comment">// [&quot;ProcessThisImmediately&quot;, &quot;AnotherValue&quot;]</span><br><br>myHeaders.<span class="hljs-built_in">delete</span>(<span class="hljs-string">&quot;X-Custom-Header&quot;</span>);<br>console.<span class="hljs-built_in">log</span>(myHeaders.<span class="hljs-built_in">getAll</span>(<span class="hljs-string">&quot;X-Custom-Header&quot;</span>)); <span class="hljs-comment">// [ ]</span><br></code></pre></td></tr></table></figure>
+
+<p>虽然一些操作只能在 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/ServiceWorker_API"><code>ServiceWorkers</code></a> 中使用，但是它提供了更方便的操作 Headers 的 API。</p>
+<p>如果使用了一个不合法的HTTP Header属性名，那么Headers的方法通常都抛出 TypeError 异常。如果不小心写入了一个不可写的属性，也会抛出一个 TypeError 异常。除此以外的情况，失败了并不抛出异常。例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp">var myResponse = Response.<span class="hljs-built_in">error</span>();<br><span class="hljs-keyword">try</span> &#123;<br>  myResponse.headers.<span class="hljs-built_in">set</span>(<span class="hljs-string">&quot;Origin&quot;</span>, <span class="hljs-string">&quot;http://mybank.com&quot;</span>);<br>&#125; <span class="hljs-built_in">catch</span>(e) &#123;<br>  console.<span class="hljs-built_in">log</span>(<span class="hljs-string">&quot;Cannot pretend to be a bank!&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最佳实践是在使用之前检查 content type 是否正确，比如：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title function_">fetch</span>(myRequest).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) &#123;<br>  <span class="hljs-keyword">if</span>(response.<span class="hljs-property">headers</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;content-type&quot;</span>) === <span class="hljs-string">&quot;application/json&quot;</span>) &#123;<br>    <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">json</span>) &#123;<br>      <span class="hljs-comment">// process your JSON further</span><br>    &#125;);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Oops, we haven&#x27;t got JSON!&quot;</span>);<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h3 id="Guard参考"><a href="#Guard参考" class="headerlink" title="Guard参考"></a>Guard<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23Guard">参考</a></h3><p>由于 Headers 可以在 request 请求中被发送或者在 response 请求中被接收，并且规定了哪些参数是可写的，Headers 对象有一个特殊的 guard 属性。这个属性没有暴露给 Web，但是它影响到哪些内容可以在 Headers 对象中被操作。</p>
+<p>可能的值如下：</p>
+<ul>
+<li><code>none</code>：默认的</li>
+<li><code>request</code>：从 request 中获得的 headers（<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Request/headers"><code>Request.headers</code></a>）只读</li>
+<li><code>request-no-cors</code>：从不同域（<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Request/mode"><code>Request.mode</code></a> <code>no-cors</code>）的 request 中获得的 headers 只读</li>
+<li><code>response</code>：从 response 中获得的 headers（<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response/headers"><code>Response.headers</code></a>）只读</li>
+<li><code>immutable</code>：在 ServiceWorkers 中最常用的，所有的 headers 都只读。</li>
+</ul>
+<p><strong>注意</strong>：你不可以添加或者修改一个 guard 属性是 <code>request</code> 的 Request Headers 的 <code>Content-Length</code> 属性。同样地，插入 <code>Set-Cookie</code> 属性到一个 response headers 是不允许的，因此 ServiceWorkers 是不能给合成的 Response 的 headers 添加一些 cookies。</p>
+<h2 id="Response-对象参考"><a href="#Response-对象参考" class="headerlink" title="Response 对象参考"></a>Response 对象<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23Response_%E5%AF%B9%E8%B1%A1">参考</a></h2><p>如上述, <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response"><code>Response</code></a> 实例是在 <code>fetch()</code> 处理完promises之后返回的。</p>
+<p>你会用到的最常见的response属性有:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response/status"><code>Response.status</code></a> — 整数(默认值为200) 为response的状态码.</li>
+<li><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response/statusText"><code>Response.statusText</code></a> — 字符串(默认值为”OK”),该值与HTTP状态码消息对应.</li>
+<li><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response/ok"><code>Response.ok</code></a> — 如上所示, 该属性是来检查response的状态是否在200-299(包括200,299)这个范围内.该属性返回一个<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Boolean"><code>Boolean</code></a>值.</li>
+</ul>
+<p>它的实例也可用通过 JavaScript 来创建, 但只有在<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/ServiceWorker_API"><code>ServiceWorkers</code></a>中才真正有用,当使用<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/FetchEvent/respondWith"><code>respondWith()</code></a>方法并提供了一个自定义的response来接受request时:</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">var</span> myBody = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>();<br><br><span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;fetch&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) &#123;<br>  event.<span class="hljs-title function_">respondWith</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(myBody, &#123;<br>    <span class="hljs-attr">headers</span>: &#123; <span class="hljs-string">&quot;Content-Type&quot;</span> : <span class="hljs-string">&quot;text/plain&quot;</span> &#125;<br>  &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response/Response"><code>Response()</code></a> 构造方法接受两个可选参数—response的数据体和一个初始化对象(与<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Request/Request"><code>Request()</code></a>所接受的init参数类似.)</p>
+<p><strong>注意</strong>: 静态方法<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response/error"><code>error()</code></a>只是返回了一个错误的response. 与此类似地, <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response/redirect"><code>redirect()</code></a> 只是返回了一个可以重定向至某URL的response. 这些也只与Service Workers才有关。</p>
+<h2 id="Body参考"><a href="#Body参考" class="headerlink" title="Body参考"></a>Body<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23Body">参考</a></h2><p>不管是请求还是响应都能够包含body对象. body也可以是以下任意类型的实例.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/ArrayBuffer"><code>ArrayBuffer</code></a></li>
+<li><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/ArrayBufferView"><code>ArrayBufferView</code></a> (Uint8Array等)</li>
+<li><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Blob"><code>Blob</code></a>&#x2F;File</li>
+<li>string</li>
+<li><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams"><code>URLSearchParams</code></a></li>
+<li><a href="%5Bhttps://developer.mozilla.org/zh-CN/docs/Web/API/FormData%5D(https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/FormData"><code>FormData</code></a> “FormData 接口提供了一种表示表单数据的键值对的构造方式，经过它的数据可以使用 XMLHttpRequest.send() 方法送出，本接口和此方法都相当简单直接。如果送出时的编码类型被设为 “multipart&#x2F;form-data”，它会使用和表单一样的格式。”)</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Body"><code>Body</code></a> 类定义了以下方法 (这些方法都被 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Request"><code>Request</code></a> 和<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response"><code>Response</code></a>所实现)以获取body内容. 这些方法都会返回一个被解析后的<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Promise"><code>Promise</code></a>对象和数据.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Body/arrayBuffer"><code>arrayBuffer()</code></a></li>
+<li><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Body/blob"><code>blob()</code></a></li>
+<li><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Body/json"><code>json()</code></a></li>
+<li><a href="%5Bhttps://developer.mozilla.org/zh-CN/docs/Web/API/Body/text%5D(https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Body/text"><code>text()</code></a> “Body混入的 text() 方法提供了一个可供读取的”返回流”, ——它返回一个包含USVString对象 (text)的Promise对象，返回结果的编码为UTF-8。”)</li>
+<li><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Body/formData"><code>formData()</code></a></li>
+</ul>
+<p>比起XHR来，这些方法让非文本化的数据使用起来更加简单。</p>
+<p>请求体可以由传入body参数来进行设置:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">var</span> form = <span class="hljs-keyword">new</span> FormData(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;login-form&#x27;</span>));<br>fetch(<span class="hljs-string">&quot;/login&quot;</span>, &#123;<br>  method: <span class="hljs-string">&quot;POST&quot;</span>,<br>  body: form<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>request和response（包括<code>fetch()</code> 方法）都会试着自动设置<code>Content-Type</code>。如果没有设置<code>Content-Type</code>值，发送的请求也会自动设值。</p>
+<h2 id="特性检测参考"><a href="#特性检测参考" class="headerlink" title="特性检测参考"></a>特性检测<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch%23%E7%89%B9%E6%80%A7%E6%A3%80%E6%B5%8B">参考</a></h2><p>Fetch API 的支持情况，可以通过检测<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Headers"><code>Headers</code></a>, <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Request"><code>Request</code></a>, <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Response"><code>Response</code></a> 或 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch"><code>fetch()</code></a>是否在<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Window"><code>Window</code></a> 或 <a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://developer.mozilla.org/zh-CN/docs/Web/API/Worker"><code>Worker</code></a> 域中。例如：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-keyword">if</span>(<span class="hljs-variable language_">self</span>.fetch) &#123;<br>    <span class="hljs-regexp">//</span> run my fetch request here<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-regexp">//</span> <span class="hljs-keyword">do</span> something with XMLHttpRequest?<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e18ced22cfaa">https://www.jianshu.com/p/e18ced22cfaa</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JavaScript使用 Fetch</div>
+      <div>http://example.com/2022/05/22/JavaScript使用 Fetch/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 22, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/22/%E5%A6%82%E4%BD%95%E8%AE%A9MixPHP%E6%94%AF%E6%8C%81Aop%E5%92%8C%E6%B3%A8%E8%A7%A3%E8%B7%AF%E7%94%B1/" title="如何让MixPHP支持Aop和注解路由">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">如何让MixPHP支持Aop和注解路由</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/22/Axios%E4%B8%AD%E6%96%87%E8%AF%B4%E6%98%8E/" title="Axios中文说明">
+                        <span class="hidden-mobile">Axios中文说明</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

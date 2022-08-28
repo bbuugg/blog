@@ -1,0 +1,676 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/12/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/29/golang%E4%B8%AD%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%8F%98%E9%87%8F%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%9F/" target="_self">
+          golang中如何获取变量的类型？
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/29/golang%E4%B8%AD%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E5%8F%98%E9%87%8F%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%9F/" target="_self">
+        <div>
+          在golang中并没有提供内置函数来获取变量的类型，但是通过一定的方式也可以获取，下面提供两种思路 通过格式化使用格式化字符%T(注意为大写的T)便可以获取到对应的类型 12345678910111213package mainimport (	&amp;quot;fmt&amp;quot;)func main()&amp;#123;	var v int &#x3D; 64	fmt.Printf(&amp;quot
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-29 15:39" pubdate>
+              2021-05-29
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/18/apache%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8/" target="_self">
+          apache模块使用
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/18/apache%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8/" target="_self">
+        <div>
+          加载SSL模块sudo a2enmod ssl sudo a2enmod http_proxysudo a2enmod proxy
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-18 10:48" pubdate>
+              2021-05-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/16/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8B%E9%98%B2%E6%AD%A2%E5%BA%93%E5%AD%98%E8%B6%85%E5%8D%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_self">
+          高并发下防止库存超卖的解决方案
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/16/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8B%E9%98%B2%E6%AD%A2%E5%BA%93%E5%AD%98%E8%B6%85%E5%8D%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_self">
+        <div>
+          最近在看秒杀相关的项目，针对防止库存超卖的问题，查阅了很多资料，其解决方案可以分为悲观锁、乐观锁、分布式锁、Redis原子操作、队列串行化等等，这里进行浅显的记录总结。 首先我们来看下库存超卖问题是怎样产生的： 123456&#x2F;&#x2F;1.查询出商品库存信息select stock from t_goods where id&#x3D;1;&#x2F;&#x2F;2.根据商品信息生成订单insert into t_orders (id
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-16 23:07" pubdate>
+              2021-05-16
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/16/%E5%87%A0%E5%A5%97%E5%A5%BD%E7%9C%8B%E7%9A%84%E7%BE%8E%E5%8C%96%E6%A1%86CSS/" target="_self">
+          几套好看的美化框CSS
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/16/%E5%87%A0%E5%A5%97%E5%A5%BD%E7%9C%8B%E7%9A%84%E7%BE%8E%E5%8C%96%E6%A1%86CSS/" target="_self">
+        <div>
+          &gt; 新技能GET感谢zmki小伙伴 CSS代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-16 22:30" pubdate>
+              2021-05-16
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/16/ll%20%E5%91%BD%E4%BB%A4%E6%8E%92%E5%BA%8F%E8%AF%A6%E8%A7%A3/" target="_self">
+          ll 命令排序详解
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/16/ll%20%E5%91%BD%E4%BB%A4%E6%8E%92%E5%BA%8F%E8%AF%A6%E8%A7%A3/" target="_self">
+        <div>
+          1234ll  默认按照文件名字母顺序排序，A在最前ll -SX  按照文件类型排序，扩展名首字母排序，文件夹最前ll -St  按照创建时间排序，最近的最前ll -SS  按照大小排序，最大的最前  选项 123456789101112131415-S按文件大小排序      --sort &#x3D; WORD按WORD而不是名称排序：无（-U），大小（-S），	  		时间（-t），版本（-v），扩展
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-16 21:54" pubdate>
+              2021-05-16
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/10/shell%E8%84%9A%E6%9C%AC%E8%BE%93%E5%87%BA%E5%B8%A6%E9%A2%9C%E8%89%B2%E5%AD%97%E4%BD%93/" target="_self">
+          shell脚本输出带颜色字体
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/10/shell%E8%84%9A%E6%9C%AC%E8%BE%93%E5%87%BA%E5%B8%A6%E9%A2%9C%E8%89%B2%E5%AD%97%E4%BD%93/" target="_self">
+        <div>
+          输出特效格式控制：*\033[0m*  关闭所有属性 *\033[1m*  设置高亮度 *\03[4m*  下划线 *\033[5m*  闪烁 *\033[7m*  反显 *\033[8m*  消隐 *\033[30m  –  \033[37m*  设置前景色 *\033[40m  –  \033[47m*  设置背景色 光标位置等的格式控制：\033[nA  光标上移n行\03[nB  光标下移
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-10 18:24" pubdate>
+              2021-05-10
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/04/SSH%E8%AE%BE%E7%BD%AE%E5%85%AC%E9%92%A5%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/" target="_self">
+          SSH设置公钥实现免密登录
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/04/SSH%E8%AE%BE%E7%BD%AE%E5%85%AC%E9%92%A5%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/" target="_self">
+        <div>
+          &gt; 前提准备： 机器A需要使用免密登录连接机器B。测试机器为笔记本一台【wsl2 ubuntu】， centos7.6一台 准备步骤一、首先在机器A上执行下面的命令1ssh-keygen -t rsa 执行结果如下： 123456789101112131415161718192021222324root@DESKTOP-1SDORV4:~&#x2F;.ssh# ssh-keygen -t rsaGen
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-04 16:51" pubdate>
+              2021-05-04
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/03/ssh%20%E4%B8%8E%E8%BF%9C%E7%A8%8B%E6%9C%BA%E5%99%A8%E4%BF%9D%E6%8C%81%E5%BF%83%E8%B7%B3%EF%BC%88linux%EF%BC%89/" target="_self">
+          ssh 与远程机器保持心跳（linux）
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/03/ssh%20%E4%B8%8E%E8%BF%9C%E7%A8%8B%E6%9C%BA%E5%99%A8%E4%BF%9D%E6%8C%81%E5%BF%83%E8%B7%B3%EF%BC%88linux%EF%BC%89/" target="_self">
+        <div>
+          在连接远程SSH服务的时候，经常会发生长时间后的断线，或者无响应（无法再键盘输入）。总体来说有两个方法：一、客户端定时发送心跳1.putty、SecureCRT、XShell都有这个功能，设置请自行搜索 2.此外在Linux下： #修改本机&#x2F;etc&#x2F;ssh&#x2F;ssh_configvim &#x2F;etc&#x2F;ssh&#x2F;ssh_config 添加12Ser
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-03 14:42" pubdate>
+              2021-05-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/01/Systemctl%E5%92%8Cservice%E3%80%81chkconfig%E5%91%BD%E4%BB%A4%E7%9A%84%E5%85%B3%E7%B3%BB/" target="_self">
+          Systemctl和service、chkconfig命令的关系
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/01/Systemctl%E5%92%8Cservice%E3%80%81chkconfig%E5%91%BD%E4%BB%A4%E7%9A%84%E5%85%B3%E7%B3%BB/" target="_self">
+        <div>
+          systemctl&gt; systemctl命令：是一个systemd工具，主要负责控制systemd系统和服务管理器。 1234567systemctl list-unitssystemctl start firewalld systemctl restart firewalldsystemctl stop fitrwalldsystemctl disable firewalldsystemc
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-01 21:31" pubdate>
+              2021-05-01
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/01/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4grep%20egrep%20fgrep%20zgrep%E7%94%A8%E6%B3%95%E4%BB%A5%E5%8F%8A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_self">
+          linux基本命令grep egrep fgrep zgrep用法以及正则表达式
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/01/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4grep%20egrep%20fgrep%20zgrep%E7%94%A8%E6%B3%95%E4%BB%A5%E5%8F%8A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_self">
+        <div>
+          一、grep、egrep、fgrep命令 本文中主要介绍了linux系统下grep egrep fgrep命令和正则表达式的基本参数和使用格式、方法。 1.1、基本定义： grep（global search regular RE ) and print out the line,全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它只能使用基本的正则表达式来搜索文本，并把匹配的行打印出来
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-01 21:23" pubdate>
+              2021-05-01
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/11/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#board">10</a><a class="page-number" href="/page/11/#board">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/#board">13</a><a class="page-number" href="/page/14/#board">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/#board">21</a><a class="extend next" rel="next" href="/page/13/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,651 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="javascriptXMLHttpRequest 对象　　XMLHttpRequest对象是ajax的基础,XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。目前所有浏览器都支持XMLHttpRequest    方  法 描  述    abort() 停止当前请求   getAllResponseHeaders() 把H">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ajax请求">
+<meta property="og:url" content="http://example.com/2021/04/02/ajax%E8%AF%B7%E6%B1%82/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="javascriptXMLHttpRequest 对象　　XMLHttpRequest对象是ajax的基础,XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。目前所有浏览器都支持XMLHttpRequest    方  法 描  述    abort() 停止当前请求   getAllResponseHeaders() 把H">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-02T10:49:14.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>ajax请求 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ajax请求"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-02 18:49" pubdate>
+          April 2, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          30 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ajax请求</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h1><h2 id="XMLHttpRequest-对象"><a href="#XMLHttpRequest-对象" class="headerlink" title="XMLHttpRequest 对象"></a><strong>XMLHttpRequest 对象</strong></h2><p>　　XMLHttpRequest对象是ajax的基础,XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。目前所有浏览器都支持XMLHttpRequest</p>
+<table>
+<thead>
+<tr>
+<th>方  法</th>
+<th>描  述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>abort()</td>
+<td>停止当前请求</td>
+</tr>
+<tr>
+<td>getAllResponseHeaders()</td>
+<td>把HTTP请求的所有响应首部作为键&#x2F;值对返回</td>
+</tr>
+<tr>
+<td>getResponseHeader(“header”)</td>
+<td>返回指定首部的串值</td>
+</tr>
+<tr>
+<td>open(“method”,”URL”,[asyncFlag],[“userName”],[“password”])</td>
+<td>建立对服务器的调用。method参数可以是GET、POST或PUT。url参数可以是相对URL或绝对URL。这个方法还包括3个可选的参数，是否异步，用户名，密码</td>
+</tr>
+<tr>
+<td>send(content)</td>
+<td>向服务器发送请求</td>
+</tr>
+<tr>
+<td>setRequestHeader(“header”, “value”)</td>
+<td>把指定首部设置为所提供的值。在设置任何首部之前必须先调用open()。设置header并和请求一起发送 (‘post’方法一定要 )</td>
+</tr>
+</tbody></table>
+<p>post 需要在open后设置header ，需要发送数据直接传递给xhr.send的第一个参数</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">xhr.set<span class="hljs-constructor">RequestHeader(&#x27;Content-Type&#x27;,&#x27;<span class="hljs-params">application</span><span class="hljs-operator">/</span><span class="hljs-params">x</span>-<span class="hljs-params">www</span>-<span class="hljs-params">form</span>-<span class="hljs-params">urlencoded</span>&#x27;)</span>;<br></code></pre></td></tr></table></figure>
+
+<p>关键字：<code>responseText,</code> <code>readyState</code>, <code>onreadystatechange</code></p>
+<h2 id="Jq的ajax方法"><a href="#Jq的ajax方法" class="headerlink" title="Jq的ajax方法"></a>Jq的ajax方法</h2><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs arcade">$.get(<span class="hljs-string">&#x27;http://www.aaa.com&#x27;</span>,data,<span class="hljs-keyword">function</span>(<span class="hljs-params">data,status</span>)&#123;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-string">&#x27;success&#x27;</span> === status)&#123;<br>			<span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(data);	<br>		&#125;<br>&#125;,<span class="hljs-string">&#x27;json&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><code>dataType</code> 可以是<code>text</code>,<code>html</code>,<code>xml</code>,<code>script</code>,<code>json</code>,<code>jsonp</code> 将添加一个 “?callback&#x3D;?” 到 URL 来规定回调,POST方式类似使用$.post</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs js">$.<span class="hljs-title function_">ajax</span>(&#123;<br>	<span class="hljs-attr">url</span>:<span class="hljs-string">&#x27;http://www.aaa.com&#x27;</span>,<br>	<span class="hljs-attr">type</span>:<span class="hljs-string">&#x27;GET&#x27;</span>,<br>	<span class="hljs-attr">dataType</span>:<span class="hljs-string">&#x27;json&#x27;</span>,<br>    <span class="hljs-attr">data</span>:&#123;<span class="hljs-string">&#x27;name&#x27;</span>:<span class="hljs-string">&#x27;bbb&#x27;</span>&#125;,<br>    <span class="hljs-attr">traditional</span>:<span class="hljs-literal">true</span>, <span class="hljs-comment">//如果你想要用传统的方式来序列化数据，那么就设置为 true。请参考工具分类下面的 jQuery.param 方法。</span><br>    <span class="hljs-attr">timeout</span>:<span class="hljs-string">&#x27;int&#x27;</span>, <span class="hljs-comment">//设置请求超时时间（毫秒）。此设置将覆盖全局设置。</span><br>    <span class="hljs-attr">scriptCharset</span>:<span class="hljs-string">&#x27;string&#x27;</span>,<span class="hljs-comment">//只有当请求时 dataType 为 &quot;jsonp&quot; 或 &quot;script&quot;，并且 type 是 &quot;GET&quot; 才会用于强制修改 charset。通常只在本地和远程的内容编码不同时使用。</span><br>	<span class="hljs-attr">async</span>:<span class="hljs-literal">true</span>, <span class="hljs-comment">//true为异步</span><br>    <span class="hljs-attr">processData</span>:<span class="hljs-literal">true</span>, <span class="hljs-comment">//默认值: true。默认情况下，通过data选项传递进来的数据，如果是一个对象(技术上讲只要不是字符串)，都会处理转化成一个查询字符串，以配合默认内容类型 &quot;application/x-www-form-urlencoded&quot;。如果要发送 DOM 树信息或其它不希望转换的信息，请设置为 false。</span><br>    <span class="hljs-attr">ifModified</span>:<span class="hljs-literal">false</span>,<span class="hljs-comment">//仅在服务器数据改变时获取新数据。默认值: false。使用 HTTP 包 Last-Modified 头信息判断。在 jQuery 1.4 中，它也会检查服务器指定的 &#x27;etag&#x27; 来确定数据没有被修改过。</span><br>    <span class="hljs-attr">global</span>:<span class="hljs-literal">true</span>, <span class="hljs-comment">//是否触发全局 AJAX 事件。默认值: true。设置为 false 将不会触发全局 AJAX 事件，如 ajaxStart 或 ajaxStop 可用于控制不同的 Ajax 事件。</span><br>    <span class="hljs-attr">cache</span>:<span class="hljs-literal">true</span>, <span class="hljs-comment">//默认值: true，dataType 为 script 和 jsonp 时默认为 false。设置为 false 将不缓存此页面。</span><br>    <span class="hljs-attr">contentType</span>:<span class="hljs-string">&#x27;applicate/x-www-form-urlencoded&#x27;</span>, <span class="hljs-comment">//默认值</span><br>    <span class="hljs-attr">context</span>:<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>, <span class="hljs-comment">//这个对象用于设置 Ajax 相关回调函数的上下文。也就是说，让回调函数内 this 指向这个对象（如果不设定这个参数，那么 this 就指向调用本次 AJAX 请求时传递的 options 参数）。比如指定一个 DOM 元素作为 context 参数，这样就设置了 success 回调函数的上下文为这个 DOM 元素。</span><br>    <span class="hljs-attr">xhr</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>        <span class="hljs-comment">//需要返回一个 XMLHttpRequest 对象。默认在 IE 下是 ActiveXObject 而其他情况下是 XMLHttpRequest 。用于重写或者提供一个增强的 XMLHttpRequest 对象。这个参数在 jQuery 1.3 以前不可用。</span><br>    &#125;<br>    <span class="hljs-attr">dataFilter</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">data,Type</span>)&#123;<br>        <br>    &#125;,<br>    <span class="hljs-attr">beforeSend</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">XHR</span>)&#123;<br>        <br>    &#125;,<br>	<span class="hljs-attr">success</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)&#123;<br>	<br>	&#125;,<br>    <span class="hljs-attr">error</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)&#123;<br>        <br>    &#125;,<br>    <span class="hljs-attr">complete</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">XHR, TS</span>)&#123;<br>        <span class="hljs-comment">//请求完成后回调函数 (请求成功或失败之后均调用)。</span><br>    &#125;,<br>    <span class="hljs-attr">jsonpCallback</span>:<span class="hljs-string">&#x27;string&#x27;</span>, <span class="hljs-comment">//为 jsonp 请求指定一个回调函数名。这个值将用来取代 jQuery 自动生成的随机函数名。这主要用来让 jQuery 生成度独特的函数名，这样管理请求更容易，也能方便地提供回调函数和错误处理。你也可以在想让浏览器缓存 GET 请求的时候，指定这个回调函数名。</span><br>    <span class="hljs-attr">password</span>:<span class="hljs-string">&#x27;string&#x27;</span>, <span class="hljs-comment">//用于响应 HTTP 访问认证请求的密码</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="getScript"><a href="#getScript" class="headerlink" title="getScript"></a>getScript</h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-constructor">$(<span class="hljs-params">selector</span>)</span>.get<span class="hljs-constructor">Script(<span class="hljs-params">url</span>,<span class="hljs-params">success</span>(<span class="hljs-params">response</span>,<span class="hljs-params">status</span>)</span>)<br></code></pre></td></tr></table></figure>
+
+<p>getScript() 方法使用 AJAX 的 HTTP GET 请求获取和执行 JavaScript。 </p>
+<ul>
+<li><em>status</em> - 包含请求的状态（”success”、”notmodified”、”error”、”timeout”、”parsererror”）</li>
+</ul>
+<p>fetch</p>
+<p>es6新语法fetch().then()</p>
+<h2 id="一些发送请求后可以执行的方法"><a href="#一些发送请求后可以执行的方法" class="headerlink" title="一些发送请求后可以执行的方法:"></a>一些发送请求后可以执行的方法:</h2><ul>
+<li>always():一定会执行</li>
+<li>catch():执行出错时执行(本体 object)</li>
+<li>done():执行成功时执行</li>
+<li>failed():执行出错时执行(服务器拒绝)</li>
+<li>pipe():过滤方法</li>
+<li>progress():当对象生成进度通知时，调用添加处理程序。</li>
+<li>Promise():返回Object(延迟)的Promise（承诺）对象。</li>
+<li>state():确定一个Object（延迟）对象的当前状态。</li>
+<li>then():当（延迟）对象解决，拒绝或仍在进行中时，调用添加处理程序。</li>
+</ul>
+<blockquote>
+<p>es6 新增fetch().then()</p>
+</blockquote>
+<h2 id="formData"><a href="#formData" class="headerlink" title="formData"></a>formData</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-string">&#x27;#file_upload&#x27;</span>).<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;change&#x27;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>      <span class="hljs-keyword">var</span> that = <span class="hljs-variable language_">this</span>;<br>      <span class="hljs-keyword">var</span> files = <span class="hljs-variable language_">this</span>.<span class="hljs-property">files</span>[<span class="hljs-number">0</span>];<br>&#125;<br><br><span class="hljs-keyword">var</span> form = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FormData</span>();<br>form.<span class="hljs-title function_">append</span>(<span class="hljs-string">&#x27;file&#x27;</span>,files);<br></code></pre></td></tr></table></figure>
+
+<p>onclick&#x3D;”return function(){}” 当function返回true执行默认行为为false不执行</p>
+<h1 id="fetch"><a href="#fetch" class="headerlink" title="fetch"></a>fetch</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-built_in">fetch</span>(<span class="hljs-string">&#x27;https://...&#x27;</span>, &#123;<br>    method: <span class="hljs-string">&#x27;post&#x27;</span>,<br>    <span class="hljs-selector-tag">body</span>: JSON<span class="hljs-selector-class">.stringify</span>(base),<br>    headers: &#123;<br>      <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span><br>    &#125;<br>  &#125;)<span class="hljs-selector-class">.then</span>(<span class="hljs-built_in">function</span>(data) &#123;<br>&#125;)<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ajax请求</div>
+      <div>http://example.com/2021/04/02/ajax请求/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 2, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/03/jQuery%20%E7%9B%91%E5%90%AC%E5%85%83%E7%B4%A0%E5%86%85%E5%AE%B9%E5%8F%98%E5%8C%96%E7%9A%84%E6%96%B9%E6%B3%95/" title="jQuery 监听元素内容变化的方法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">jQuery 监听元素内容变化的方法</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/02/PostgreSQL%20Copy%20%E5%91%BD%E4%BB%A4/" title="PostgreSQL Copy 命令">
+                        <span class="hidden-mobile">PostgreSQL Copy 命令</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

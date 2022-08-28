@@ -1,0 +1,682 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="查看配置可以通过命令查看 1php -i | grep configure  12php --iniphp -m   安装PHP 源码下载源码包解压 1234567891011121314151617181920apt -y install makeapt -y install build-essentialapt -y install libxml2-devapt -y install libs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu下安装PHP的一系列笔记">
+<meta property="og:url" content="http://example.com/2021/10/15/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85PHP%E7%9A%84%E4%B8%80%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="查看配置可以通过命令查看 1php -i | grep configure  12php --iniphp -m   安装PHP 源码下载源码包解压 1234567891011121314151617181920apt -y install makeapt -y install build-essentialapt -y install libxml2-devapt -y install libs">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-15T13:27:36.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Ubuntu下安装PHP的一系列笔记 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Ubuntu下安装PHP的一系列笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-15 21:27" pubdate>
+          October 15, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          20k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          169 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Ubuntu下安装PHP的一系列笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="查看配置"><a href="#查看配置" class="headerlink" title="查看配置"></a>查看配置</h2><p>可以通过命令查看</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">php -i <span class="hljs-string">| grep configure</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada">php <span class="hljs-comment">--ini</span><br>php -m<br></code></pre></td></tr></table></figure>
+
+
+<p>安装PHP</p>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p>下载源码包解压</p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs q"><br>apt -y install make<br>apt -y install build-essential<br>apt -y install libxml2-<span class="hljs-built_in">dev</span><br>apt -y install libssl-<span class="hljs-built_in">dev</span><br>apt -y install libpng-<span class="hljs-built_in">dev</span><br>apt -y install libsqlite3-<span class="hljs-built_in">dev</span><br>apt -y install zlib1g-<span class="hljs-built_in">dev</span>  <span class="hljs-comment">// apt-get install libbz2-dev </span><br>apt -y install libcurl4-openssl-<span class="hljs-built_in">dev</span><br>apt -y install libtidy-<span class="hljs-built_in">dev</span><br>apt -y install autoconf<br>apt -y install libtool<br>apt -y install pkg-config<br>git clone https:<span class="hljs-comment">//github.com/kkos/oniguruma.git oniguruma</span><br>cd oniguruma<br>./autogen.sh<br>./configure<br>make<br>make install<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">sudo apt <span class="hljs-keyword">install </span>gcc -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>make -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>openssl -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>curl -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libbz2-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libxml2-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libjpeg-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libpng-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libfreetype6-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libzip-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libssl-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libsqlite3-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libcurl4-openssl-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libgmp3-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libonig-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libreadline-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libxslt1-dev -y &amp;&amp;<br>sudo apt <span class="hljs-keyword">install </span>libffi-dev -y<br><br></code></pre></td></tr></table></figure>
+<p>模块对应的依赖（可选择性的安装）</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs routeros">xml<br>sudo apt-<span class="hljs-built_in">get</span> install -y libxml2-dev<br>pcre<br>sudo apt-<span class="hljs-built_in">get</span> install -y libpcre3-dev<br>jpeg<br>sudo apt-<span class="hljs-built_in">get</span> install -y libjpeg62-dev<br>freetype<br>sudo apt-<span class="hljs-built_in">get</span> install -y libfreetype6-dev<br>png<br>sudo apt-<span class="hljs-built_in">get</span> install -y libpng12-dev libpng3 libpnglite-dev<br>iconv<br>sudo apt-<span class="hljs-built_in">get</span> install -y libiconv-hook-dev libiconv-hook1<br>mycrypt<br>sudo apt-<span class="hljs-built_in">get</span> install -y libmcrypt-dev libmcrypt4<br>mhash<br>sudo apt-<span class="hljs-built_in">get</span> install -y libmhash-dev libmhash2<br>openssl<br>sudo apt-<span class="hljs-built_in">get</span> install -y libltdl-dev libssl-dev<br>curl<br>sudo apt-<span class="hljs-built_in">get</span> install -y libcurl4-openssl-dev<br>mysql<br>sudo apt-<span class="hljs-built_in">get</span> install -y libmysqlclient-dev<br>imagick<br>sudo apt-<span class="hljs-built_in">get</span> install -y libmagickcore-dev libmagickwand-dev<br>readline<br>sudo apt-<span class="hljs-built_in">get</span> install -y libedit-dev<br>ubuntu 无法找到 iconv<br>sudo ln -s /usr/lib/libiconv_hook.so.1.0.0 /usr/lib/libiconv.so<br>sudo ln -s /usr/lib/libiconv_hook.so.1.0.0 /usr/lib/libiconv.so.1<br>安装PHP扩展<br>sudo apt-<span class="hljs-built_in">get</span> install -y autoconf automake m4<br><br></code></pre></td></tr></table></figure>
+
+<p>去掉单引号后如下</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-string">./configure</span> <span class="hljs-params">--prefix=/usr/local/php/81</span> <span class="hljs-params">--with-config-file-path=/usr/local/php/81/etc</span> <span class="hljs-params">--enable-pcntl</span> <span class="hljs-params">--enable-fpm</span> <span class="hljs-params">--enable-inline-optimization</span> <span class="hljs-params">--disable-debug</span> <span class="hljs-params">--disable-rpath</span> <span class="hljs-params">--enable-shared</span>  <span class="hljs-params">--with-xmlrpc</span> <span class="hljs-params">--with-mhash</span> <span class="hljs-params">--with-sqlite3</span> <span class="hljs-params">--with-zlib</span> <span class="hljs-params">--enable-bcmath</span> <span class="hljs-params">--with-iconv</span> <span class="hljs-params">--with-bz2</span> <span class="hljs-params">--with-openssl</span> <span class="hljs-params">--enable-calendar</span> <span class="hljs-params">--with-curl</span> <span class="hljs-params">--with-cdb</span> <span class="hljs-params">--enable-dom</span> <span class="hljs-params">--enable-exif</span> <span class="hljs-params">--enable-fileinfo</span> <span class="hljs-params">--enable-filter</span> <span class="hljs-params">--with-openssl-dir</span> <span class="hljs-params">--with-zlib-dir</span> <span class="hljs-params">--enable-gd-jis-conv</span> <span class="hljs-params">--with-gettext</span> <span class="hljs-params">--with-gmp</span> <span class="hljs-params">--with-mhash</span> <span class="hljs-params">--enable-json</span> <span class="hljs-params">--enable-mbstring</span> <span class="hljs-params">--enable-mbregex</span> <span class="hljs-params">--enable-pdo</span> <span class="hljs-params">--with-mysqli=mysqlnd</span> <span class="hljs-params">--with-pdo-mysql=mysqlnd</span> <span class="hljs-params">--with-pdo-sqlite</span> <span class="hljs-params">--with-readline</span> <span class="hljs-params">--enable-session</span> <span class="hljs-params">--enable-shmop</span> <span class="hljs-params">--enable-simplexml</span> <span class="hljs-params">--enable-sockets</span>  <span class="hljs-params">--enable-sysvmsg</span> <span class="hljs-params">--enable-sysvsem</span> <span class="hljs-params">--enable-sysvshm</span> <span class="hljs-params">--with-xsl</span> <span class="hljs-params">--enable-mysqlnd-compression-support</span> <span class="hljs-params">--with-pear</span> <span class="hljs-params">--enable-opcache</span> <span class="hljs-params">--with-zip</span> <span class="hljs-params">--enable-gd</span> <span class="hljs-params">--with-ffi</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-built_in">make</span> -j &amp;&amp; <span class="hljs-built_in">make</span> install<br></code></pre></td></tr></table></figure>
+
+<p>配置文件</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gradle">cp php.ini-development <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/php/</span><span class="hljs-number">8.1</span><span class="hljs-regexp">/etc/</span>php.ini <br>cd <span class="hljs-regexp">/opt/</span>php<span class="hljs-regexp">/74/</span>etc &amp;&amp; cp php-fpm.conf.<span class="hljs-keyword">default</span> php-fpm.conf<br>cd <span class="hljs-regexp">/opt/</span>php<span class="hljs-regexp">/74/</span>etc/php-fpm.d &amp;&amp; cp www.conf.<span class="hljs-keyword">default</span> www.conf<br></code></pre></td></tr></table></figure>
+<p>vim &#x2F;opt&#x2F;php&#x2F;74&#x2F;etc&#x2F;php-fpm.conf，pid &#x3D; run&#x2F;php-fpm.pid  #去掉；</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-attribute">pid</span> <span class="hljs-operator">=</span> run/php-fpm.pid<br></code></pre></td></tr></table></figure>
+<p>vim &#x2F;opt&#x2F;php&#x2F;74&#x2F;etc&#x2F;php-fpm.d&#x2F;<a target="_blank" rel="noopener" href="http://www.conf/">www.conf</a></p>
+<p>增加</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-keyword">user</span> <span class="hljs-title">= www</span><br><span class="hljs-keyword">group</span> <span class="hljs-title">= www</span><br></code></pre></td></tr></table></figure>
+<p>增加php环境变量(我使用的zsh 如果是bash 请编辑 .bashrc 文件 )</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.zshrc<br></code></pre></td></tr></table></figure>
+<p>加入</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">export</span> <span class="hljs-attribute">PHP_HOME</span>=/opt/php/74<br><span class="hljs-built_in">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$PHP_HOME</span>/bin:$PATH<br></code></pre></td></tr></table></figure>
+
+<p>增加www用户用户组</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">sudo groupadd www</span><br><span class="hljs-attribute">sudo useradd -g www www</span><br></code></pre></td></tr></table></figure>
+
+<p>php-fpm服务化（Systemd）</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo touch <span class="hljs-regexp">/lib/</span>systemd<span class="hljs-regexp">/system/</span>php-fpm.service<br>sudo vim <span class="hljs-regexp">/lib/</span>systemd<span class="hljs-regexp">/system/</span>php-fpm.service<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[Unit]</span><br><span class="hljs-attr">Description</span>=The PHP FastCGI Process Manager<br><span class="hljs-attr">After</span>=syslog.target network.target<br><br><span class="hljs-section">[Service]</span><br><span class="hljs-attr">Type</span>=forking<br><span class="hljs-attr">PIDFile</span>=/opt/php/<span class="hljs-number">74</span>/var/run/php-fpm.pid<br><span class="hljs-attr">ExecStart</span>=/opt/php/<span class="hljs-number">74</span>/sbin/php-fpm<br><span class="hljs-attr">ExecReload</span>=/bin/kill -USR2 <span class="hljs-variable">$MAINPID</span><br><span class="hljs-attr">PrivateTmp</span>=<span class="hljs-literal">true</span><br><br><span class="hljs-section">[Install]</span><br><span class="hljs-attr">WantedBy</span>=multi-user.target<br></code></pre></td></tr></table></figure>
+
+<p>服务开机启动</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sudo systemctl <span class="hljs-built_in">enable</span> php-fpm.service<br></code></pre></td></tr></table></figure>
+<p>启动、停止、重启、状态</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nsis">sudo <span class="hljs-params">system</span>ctl start php-fpm.service<br>sudo <span class="hljs-params">system</span>ctl stop php-fpm.service<br>sudo <span class="hljs-params">system</span>ctl restart php-fpm.service<br>sudo <span class="hljs-params">system</span>ctl status php-fpm.service<br></code></pre></td></tr></table></figure>
+
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/hiqiming/article/details/105245227">https://blog.csdn.net/hiqiming/article/details/105245227</a></p>
+<h3 id="apt安装"><a href="#apt安装" class="headerlink" title="apt安装"></a>apt安装</h3><p>首先，请确保您的系统中具有<strong>add-apt-repository</strong>命令实用程序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markup">sudo apt-get install software-properties-common<br></code></pre></td></tr></table></figure>
+
+<p>现在，您可以添加存储库并更新系统中的程序包缓存。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markup">sudo add-apt-repository ppa:ondrej/php<br>sudo apt-get update<br></code></pre></td></tr></table></figure>
+
+<p>最后，要在Linux系统中安装PHP 8，请使用安装命令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markup">sudo apt install php8.1<br></code></pre></td></tr></table></figure>
+
+<h2 id="安装pecl"><a href="#安装pecl" class="headerlink" title="安装pecl"></a>安装pecl</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">wget http:<span class="hljs-regexp">//</span>pear.php.net/go-pear.phar<br>php go-pear.phar<br></code></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">apt <span class="hljs-keyword">install</span> php-pear<br></code></pre></td></tr></table></figure>
+
+<h2 id="安装扩展"><a href="#安装扩展" class="headerlink" title="安装扩展"></a>安装扩展</h2><h3 id="amqp"><a href="#amqp" class="headerlink" title="amqp"></a>amqp</h3><h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>怼最新版<br><a target="_blank" rel="noopener" href="https://github.com/alanxz/rabbitmq-c/releases">https://github.com/alanxz/rabbitmq-c/releases</a></p>
+<p>下载后解压</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>没有安装cmake的需要先安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">apt install cmake<br></code></pre></td></tr></table></figure>
+
+<p>解压后进入解压目录执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir build &amp;&amp; cd build<br>cmake -DCMAKE_INSTALL_PREFIX=/usr/local/rabbitmq-c ..<br>make &amp;&amp; make install <br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>pecl</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">pecl install amqp<br></code></pre></td></tr></table></figure>
+<p>指定下librabbmitmq的位置，回车再按照添加配置</p>
+<blockquote>
+<p>源码</p>
+</blockquote>
+<p>pecl下载源码包，</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php">phpize<br>./configure --with-php-config=/path-to/php-config --with-amqp --with-librabbitmq-dir=/usr/local/rabbitmq-c<br></code></pre></td></tr></table></figure>
+
+<p>源码安装如果报错</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/rabbitmq-c-0.11.0/</span>lib -lrabbitmq<br>...<br><span class="hljs-regexp">/usr/</span>bin/ld: cannot <span class="hljs-keyword">find</span> -lrabbitmq<br></code></pre></td></tr></table></figure>
+
+<p>那就找到rabbitmq-c的链接库做下软连接</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">ln -s <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/rabbitmq-c-0.11.0/</span>lib<span class="hljs-regexp">/x86_64-linux-gnu/</span>librabbitmq.so <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/rabbitmq-c-0.11.0/</span>lib/<br>ln -s <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/rabbitmq-c-0.11.0/</span>lib<span class="hljs-regexp">/x86_64-linux-gnu/</span>librabbitmq.so.<span class="hljs-number">4</span> <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/rabbitmq-c-0.11.0/</span>lib/<br></code></pre></td></tr></table></figure>
+
+<h2 id="pecl卸载扩展"><a href="#pecl卸载扩展" class="headerlink" title="pecl卸载扩展"></a>pecl卸载扩展</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">pecl uninstall swoole</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="fpm配置"><a href="#fpm配置" class="headerlink" title="fpm配置"></a>fpm配置</h3><p>添加到服务项</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">cp php-fpm.service <span class="hljs-regexp">/etc/</span>systemd<span class="hljs-regexp">/system/</span><br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs protobuf"><span class="hljs-keyword">service </span><span class="hljs-title class_">php</span>-fpm start<br><span class="hljs-keyword">service </span><span class="hljs-title class_">php</span>-fpm stop<br><span class="hljs-keyword">service </span><span class="hljs-title class_">php</span>-fpm restart<br><span class="hljs-keyword">service </span><span class="hljs-title class_">php</span>-fpm reload<br></code></pre></td></tr></table></figure>
+
+<h2 id="报错解决方案"><a href="#报错解决方案" class="headerlink" title="报错解决方案"></a>报错解决方案</h2><ul>
+<li>php拓展安装报错：Warning: PHP Startup: Invalid library (maybe not a PHP library) ‘*.so’ in Unknown on lin</li>
+</ul>
+<p>解决方法：make clean    然后重新phpize,configure –with-php-config&#x3D;,make,make install走安装流</p>
+<h2 id="编译参数"><a href="#编译参数" class="headerlink" title="编译参数"></a>编译参数</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br></pre></td><td class="code"><pre><code class="hljs sql">`configure<span class="hljs-string">&#x27; configures PHP 7.4.0-dev to adapt to many kinds of systems.</span><br><span class="hljs-string"> </span><br><span class="hljs-string">Usage: ./configure [OPTION]... [VAR=VALUE]...</span><br><span class="hljs-string"> </span><br><span class="hljs-string">To assign environment variables (e.g., CC, CFLAGS...), specify them as</span><br><span class="hljs-string">VAR=VALUE.  See below for descriptions of some of the useful variables.</span><br><span class="hljs-string"> </span><br><span class="hljs-string">Defaults for the options are specified in brackets.</span><br><span class="hljs-string"> </span><br><span class="hljs-string">Configuration:</span><br><span class="hljs-string">  -h, --help              display this help and exit</span><br><span class="hljs-string">      --help=short        display options specific to this package</span><br><span class="hljs-string">      --help=recursive    display the short help of all the included packages</span><br><span class="hljs-string">  -V, --version           display version information and exit</span><br><span class="hljs-string">  -q, --quiet, --silent   do not print `checking ...&#x27;</span> messages<br>      <span class="hljs-comment">--cache-file=FILE   cache test results in FILE [disabled]</span><br>  <span class="hljs-operator">-</span>C, <span class="hljs-comment">--config-cache      alias for `--cache-file=config.cache&#x27;</span><br>  <span class="hljs-operator">-</span>n, <span class="hljs-comment">--no-create         do not create output files</span><br>      <span class="hljs-comment">--srcdir=DIR        find the sources in DIR [configure dir or `..&#x27;]</span><br> <br>Installation directories:<br>  <span class="hljs-comment">--prefix=PREFIX         install architecture-independent files in PREFIX</span><br>                          [<span class="hljs-operator">/</span>usr<span class="hljs-operator">/</span><span class="hljs-keyword">local</span>]<br>  <span class="hljs-comment">--exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX</span><br>                          [PREFIX]<br> <br><span class="hljs-keyword">By</span> <span class="hljs-keyword">default</span>, `make install<span class="hljs-string">&#x27; will install all the files in</span><br><span class="hljs-string">`/usr/local/bin&#x27;</span>, `<span class="hljs-operator">/</span>usr<span class="hljs-operator">/</span><span class="hljs-keyword">local</span><span class="hljs-operator">/</span>lib<span class="hljs-string">&#x27; etc.  You can specify</span><br><span class="hljs-string">an installation prefix other than `/usr/local&#x27;</span> <span class="hljs-keyword">using</span> `<span class="hljs-comment">--prefix&#x27;,</span><br><span class="hljs-keyword">for</span> instance `<span class="hljs-comment">--prefix=$HOME&#x27;.</span><br> <br><span class="hljs-keyword">For</span> better control, use the options below.<br> <br>Fine tuning <span class="hljs-keyword">of</span> the installation directories:<br>  <span class="hljs-comment">--bindir=DIR            user executables [EPREFIX/bin]</span><br>  <span class="hljs-comment">--sbindir=DIR           system admin executables [EPREFIX/sbin]</span><br>  <span class="hljs-comment">--libexecdir=DIR        program executables [EPREFIX/libexec]</span><br>  <span class="hljs-comment">--sysconfdir=DIR        read-only single-machine data [PREFIX/etc]</span><br>  <span class="hljs-comment">--sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]</span><br>  <span class="hljs-comment">--localstatedir=DIR     modifiable single-machine data [PREFIX/var]</span><br>  <span class="hljs-comment">--libdir=DIR            object code libraries [EPREFIX/lib]</span><br>  <span class="hljs-comment">--includedir=DIR        C header files [PREFIX/include]</span><br>  <span class="hljs-comment">--oldincludedir=DIR     C header files for non-gcc [/usr/include]</span><br>  <span class="hljs-comment">--datarootdir=DIR       read-only arch.-independent data root [PREFIX/share]</span><br>  <span class="hljs-comment">--datadir=DIR           read-only architecture-independent data [DATAROOTDIR]</span><br>  <span class="hljs-comment">--infodir=DIR           info documentation [DATAROOTDIR/info]</span><br>  <span class="hljs-comment">--localedir=DIR         locale-dependent data [DATAROOTDIR/locale]</span><br>  <span class="hljs-comment">--mandir=DIR            man documentation [DATAROOTDIR/man]</span><br>  <span class="hljs-comment">--docdir=DIR            documentation root [DATAROOTDIR/doc/php]</span><br>  <span class="hljs-comment">--htmldir=DIR           html documentation [DOCDIR]</span><br>  <span class="hljs-comment">--dvidir=DIR            dvi documentation [DOCDIR]</span><br>  <span class="hljs-comment">--pdfdir=DIR            pdf documentation [DOCDIR]</span><br>  <span class="hljs-comment">--psdir=DIR             ps documentation [DOCDIR]</span><br> <br>Program names:<br>  <span class="hljs-comment">--program-prefix=PREFIX            prepend PREFIX to installed program names</span><br>  <span class="hljs-comment">--program-suffix=SUFFIX            append SUFFIX to installed program names</span><br>  <span class="hljs-comment">--program-transform-name=PROGRAM   run sed PROGRAM on installed program names</span><br> <br><span class="hljs-keyword">System</span> types:<br>  <span class="hljs-comment">--build=BUILD     configure for building on BUILD [guessed]</span><br>  <span class="hljs-comment">--host=HOST       cross-compile to build programs to run on HOST [BUILD]</span><br>  <span class="hljs-comment">--target=TARGET   configure for building compilers for TARGET [HOST]</span><br> <br>Optional Features <span class="hljs-keyword">and</span> Packages:<br>  <span class="hljs-comment">--disable-option-checking  ignore unrecognized --enable/--with options</span><br>  <span class="hljs-comment">--disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)</span><br>  <span class="hljs-comment">--enable-FEATURE[=ARG]  include FEATURE [ARG=yes]</span><br>  <span class="hljs-comment">--with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]</span><br>  <span class="hljs-comment">--without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)</span><br>  <span class="hljs-comment">--with-libdir=NAME      Look for libraries in .../NAME rather than .../lib</span><br>  <span class="hljs-comment">--disable-rpath         Disable passing additional runtime library search</span><br>                          paths<br>  <span class="hljs-comment">--enable-re2c-cgoto     Enable -g flag to re2c to use computed goto gcc</span><br>                          extension<br>  <span class="hljs-comment">--disable-gcc-global-regs</span><br>                          whether <span class="hljs-keyword">to</span> enable GCC <span class="hljs-keyword">global</span> register variables<br> <br>SAPI modules:<br> <br>  <span class="hljs-comment">--with-apxs2[=FILE]     Build shared Apache 2.0 Handler module. FILE is the</span><br>                          optional pathname <span class="hljs-keyword">to</span> the Apache apxs tool [apxs]<br>  <span class="hljs-comment">--disable-cli           Disable building CLI version of PHP (this forces</span><br>                          <span class="hljs-comment">--without-pear)</span><br>  <span class="hljs-comment">--enable-embed[=TYPE]   EXPERIMENTAL: Enable building of embedded SAPI</span><br>                          library TYPE <span class="hljs-keyword">is</span> either <span class="hljs-string">&#x27;shared&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;static&#x27;</span>.<br>                          [TYPE<span class="hljs-operator">=</span>shared]<br>  <span class="hljs-comment">--enable-fpm            Enable building of the fpm SAPI executable</span><br>  <span class="hljs-comment">--with-fpm-user[=USER]  Set the user for php-fpm to run as. (default:</span><br>                          nobody)<br>  <span class="hljs-comment">--with-fpm-group[=GRP]  Set the group for php-fpm to run as. For a system</span><br>                          <span class="hljs-keyword">user</span>, this should usually be <span class="hljs-keyword">set</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">match</span> the fpm<br>                          username (<span class="hljs-keyword">default</span>: nobody)<br>  <span class="hljs-comment">--with-fpm-systemd      Activate systemd integration</span><br>  <span class="hljs-comment">--with-fpm-acl          Use POSIX Access Control Lists</span><br>  <span class="hljs-comment">--with-litespeed        Build PHP as litespeed module</span><br>  <span class="hljs-comment">--enable-phpdbg         Build phpdbg</span><br>  <span class="hljs-comment">--enable-phpdbg-webhelper</span><br>                          Build phpdbg web SAPI support<br>  <span class="hljs-comment">--enable-phpdbg-debug   Build phpdbg in debug mode</span><br>  <span class="hljs-comment">--enable-phpdbg-readline</span><br>                          Enable readline support <span class="hljs-keyword">in</span> phpdbg (depends <span class="hljs-keyword">on</span> <span class="hljs-keyword">static</span><br>                          ext<span class="hljs-operator">/</span>readline)<br>  <span class="hljs-comment">--disable-cgi           Disable building CGI version of PHP</span><br>  <span class="hljs-comment">--with-valgrind=DIR     Enable valgrind support</span><br> <br>General settings:<br> <br>  <span class="hljs-comment">--enable-gcov           Enable GCOV code coverage (requires LTP) - FOR</span><br>                          DEVELOPERS <span class="hljs-keyword">ONLY</span><span class="hljs-operator">!</span><span class="hljs-operator">!</span><br>  <span class="hljs-comment">--enable-debug          Compile with debugging symbols</span><br>  <span class="hljs-comment">--enable-rtld-now       Use dlopen with RTLD_NOW instead of RTLD_LAZY</span><br>  <span class="hljs-comment">--with-layout=TYPE      Set how installed files will be laid out. Type can</span><br>                          be either PHP <span class="hljs-keyword">or</span> GNU [PHP]<br>  <span class="hljs-comment">--with-config-file-path=PATH</span><br>                          <span class="hljs-keyword">Set</span> the path <span class="hljs-keyword">in</span> which <span class="hljs-keyword">to</span> look <span class="hljs-keyword">for</span> php.ini<br>                          [PREFIX<span class="hljs-operator">/</span>lib]<br>  <span class="hljs-comment">--with-config-file-scan-dir=PATH</span><br>                          <span class="hljs-keyword">Set</span> the path <span class="hljs-keyword">where</span> <span class="hljs-keyword">to</span> scan <span class="hljs-keyword">for</span> configuration files<br>  <span class="hljs-comment">--enable-sigchild       Enable PHP&#x27;s own SIGCHLD handler</span><br>  <span class="hljs-comment">--enable-libgcc         Enable explicitly linking against libgcc</span><br>  <span class="hljs-comment">--disable-short-tags    Disable the short-form &lt;? start tag by default</span><br>  <span class="hljs-comment">--enable-dmalloc        Enable dmalloc</span><br>  <span class="hljs-comment">--disable-ipv6          Disable IPv6 support</span><br>  <span class="hljs-comment">--enable-dtrace         Enable DTrace support</span><br>  <span class="hljs-comment">--enable-fd-setsize     Set size of descriptor sets</span><br> <br>Extensions:<br> <br>  <span class="hljs-comment">--with-EXTENSION=shared[,PATH]</span><br> <br>    NOTE: <span class="hljs-keyword">Not</span> <span class="hljs-keyword">all</span> extensions can be build <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;shared&#x27;</span>.<br> <br>    Example: <span class="hljs-comment">--with-foobar=shared,/usr/local/foobar/</span><br> <br>      o Builds the foobar extension <span class="hljs-keyword">as</span> shared extension.<br>      o foobar package install prefix <span class="hljs-keyword">is</span> <span class="hljs-operator">/</span>usr<span class="hljs-operator">/</span><span class="hljs-keyword">local</span><span class="hljs-operator">/</span>foobar<span class="hljs-operator">/</span><br> <br> <br>  <span class="hljs-comment">--disable-all           Disable all extensions which are enabled by default</span><br>  <span class="hljs-comment">--disable-libxml        Disable LIBXML support</span><br>  <span class="hljs-comment">--with-libxml-dir[=DIR] LIBXML: libxml2 install prefix</span><br>  <span class="hljs-comment">--with-openssl          Include OpenSSL support (requires OpenSSL &gt;= 1.0.1)</span><br>  <span class="hljs-comment">--with-kerberos[=DIR]   OPENSSL: Include Kerberos support</span><br>  <span class="hljs-comment">--with-system-ciphers   OPENSSL: Use system default cipher list instead of</span><br>                          hardcoded <span class="hljs-keyword">value</span><br>  <span class="hljs-comment">--with-external-pcre    Use external library for PCRE support</span><br>  <span class="hljs-comment">--with-pcre-jit         Enable PCRE JIT functionality</span><br>  <span class="hljs-comment">--with-pcre-valgrind=DIR</span><br>                          Enable PCRE valgrind support. Developers <span class="hljs-keyword">only</span><span class="hljs-operator">!</span><br>  <span class="hljs-comment">--without-sqlite3[=DIR] Do not include SQLite3 support. DIR is the prefix to</span><br>                          SQLite3 installation directory.<br>  <span class="hljs-comment">--with-zlib             Include ZLIB support (requires zlib &gt;= 1.2.0.4)</span><br>  <span class="hljs-comment">--enable-bcmath         Enable bc style precision math functions</span><br>  <span class="hljs-comment">--with-bz2[=DIR]        Include BZip2 support</span><br>  <span class="hljs-comment">--enable-calendar       Enable support for calendar conversion</span><br>  <span class="hljs-comment">--disable-ctype         Disable ctype functions</span><br>  <span class="hljs-comment">--with-curl             Include cURL support</span><br>  <span class="hljs-comment">--enable-dba            Build DBA with bundled modules. To build shared DBA</span><br>                          extension use <span class="hljs-comment">--enable-dba=shared</span><br>  <span class="hljs-comment">--with-qdbm[=DIR]       DBA: QDBM support</span><br>  <span class="hljs-comment">--with-gdbm[=DIR]       DBA: GDBM support</span><br>  <span class="hljs-comment">--with-ndbm[=DIR]       DBA: NDBM support</span><br>  <span class="hljs-comment">--with-db4[=DIR]        DBA: Oracle Berkeley DB 4.x or 5.x support</span><br>  <span class="hljs-comment">--with-db3[=DIR]        DBA: Oracle Berkeley DB 3.x support</span><br>  <span class="hljs-comment">--with-db2[=DIR]        DBA: Oracle Berkeley DB 2.x support</span><br>  <span class="hljs-comment">--with-db1[=DIR]        DBA: Oracle Berkeley DB 1.x support/emulation</span><br>  <span class="hljs-comment">--with-dbm[=DIR]        DBA: DBM support</span><br>  <span class="hljs-comment">--with-tcadb[=DIR]      DBA: Tokyo Cabinet abstract DB support</span><br>  <span class="hljs-comment">--with-lmdb[=DIR]       DBA: Lightning memory-mapped database support</span><br>  <span class="hljs-comment">--without-cdb[=DIR]     DBA: CDB support (bundled)</span><br>  <span class="hljs-comment">--disable-inifile       DBA: INI support (bundled)</span><br>  <span class="hljs-comment">--disable-flatfile      DBA: FlatFile support (bundled)</span><br>  <span class="hljs-comment">--disable-dom           Disable DOM support</span><br>  <span class="hljs-comment">--with-libxml-dir[=DIR] DOM: libxml2 install prefix</span><br>  <span class="hljs-comment">--with-enchant[=DIR]    Include enchant support. GNU Aspell version 1.1.3 or</span><br>                          higher required.<br>  <span class="hljs-comment">--enable-exif           Enable EXIF (metadata from images) support</span><br>  <span class="hljs-comment">--with-ffi              Include FFI support</span><br>  <span class="hljs-comment">--disable-fileinfo      Disable fileinfo support</span><br>  <span class="hljs-comment">--disable-filter        Disable input filter support</span><br>  <span class="hljs-comment">--enable-ftp            Enable FTP support</span><br>  <span class="hljs-comment">--with-openssl-dir[=DIR]</span><br>                          FTP: openssl install prefix<br>  <span class="hljs-comment">--enable-gd             Include GD support</span><br>  <span class="hljs-comment">--with-external-gd      Use external libgd</span><br>  <span class="hljs-comment">--with-webp             GD: Enable WEBP support</span><br>  <span class="hljs-comment">--with-jpeg             GD: Enable JPEG support</span><br>  <span class="hljs-comment">--with-xpm              GD: Enable XPM support</span><br>  <span class="hljs-comment">--with-freetype         GD: Enable FreeType 2 support</span><br>  <span class="hljs-comment">--enable-gd-jis-conv    GD: Enable JIS-mapped Japanese font support</span><br>  <span class="hljs-comment">--with-gettext[=DIR]    Include GNU gettext support</span><br>  <span class="hljs-comment">--with-gmp[=DIR]        Include GNU MP support</span><br>  <span class="hljs-comment">--with-mhash[=DIR]      Include mhash support</span><br>  <span class="hljs-comment">--without-iconv[=DIR]   Exclude iconv support</span><br>  <span class="hljs-comment">--with-imap[=DIR]       Include IMAP support. DIR is the c-client install</span><br>                          prefix<br>  <span class="hljs-comment">--with-kerberos[=DIR]   IMAP: Include Kerberos support. DIR is the Kerberos</span><br>                          install prefix<br>  <span class="hljs-comment">--with-imap-ssl[=DIR]   IMAP: Include SSL support. DIR is the OpenSSL</span><br>                          install prefix<br>  <span class="hljs-comment">--with-interbase[=DIR]  Include Firebird support. DIR is the Firebird base</span><br>                          install directory [<span class="hljs-operator">/</span>opt<span class="hljs-operator">/</span>firebird]<br>  <span class="hljs-comment">--enable-intl           Enable internationalization support</span><br>  <span class="hljs-comment">--disable-json          Disable JavaScript Object Serialization support</span><br>  <span class="hljs-comment">--with-ldap[=DIR]       Include LDAP support</span><br>  <span class="hljs-comment">--with-ldap-sasl[=DIR]  LDAP: Include Cyrus SASL support</span><br>  <span class="hljs-comment">--enable-mbstring       Enable multibyte string support</span><br>  <span class="hljs-comment">--disable-mbregex       MBSTRING: Disable multibyte regex support</span><br>  <span class="hljs-comment">--with-mysqli[=FILE]    Include MySQLi support. FILE is the path to</span><br>                          mysql_config. If <span class="hljs-keyword">no</span> <span class="hljs-keyword">value</span> <span class="hljs-keyword">or</span> mysqlnd <span class="hljs-keyword">is</span> passed <span class="hljs-keyword">as</span><br>                          FILE, the MySQL native driver will be used<br>  <span class="hljs-comment">--with-mysql-sock[=SOCKPATH]</span><br>                          MySQLi<span class="hljs-operator">/</span>PDO_MYSQL: Location <span class="hljs-keyword">of</span> the MySQL unix socket<br>                          pointer. If unspecified, the <span class="hljs-keyword">default</span> locations <span class="hljs-keyword">are</span><br>                          searched<br>  <span class="hljs-comment">--with-oci8[=DIR]       Include Oracle Database OCI8 support. DIR defaults</span><br>                          <span class="hljs-keyword">to</span> $ORACLE_HOME. Use<br>                          <span class="hljs-comment">--with-oci8=instantclient,/path/to/instant/client/lib</span><br>                          <span class="hljs-keyword">to</span> use an Oracle Instant Client installation<br>  <span class="hljs-comment">--with-odbcver[=HEX]    Force support for the passed ODBC version. A hex</span><br>                          number <span class="hljs-keyword">is</span> expected, <span class="hljs-keyword">default</span> <span class="hljs-number">0x0350</span>. Use the special<br>                          <span class="hljs-keyword">value</span> <span class="hljs-keyword">of</span> <span class="hljs-number">0</span> <span class="hljs-keyword">to</span> prevent an explicit ODBCVER <span class="hljs-keyword">to</span> be<br>                          defined.<br>  <span class="hljs-comment">--with-adabas[=DIR]     Include Adabas D support [/usr/local]</span><br>  <span class="hljs-comment">--with-sapdb[=DIR]      Include SAP DB support [/usr/local]</span><br>  <span class="hljs-comment">--with-solid[=DIR]      Include Solid support [/usr/local/solid]</span><br>  <span class="hljs-comment">--with-ibm-db2[=DIR]    Include IBM DB2 support [/home/db2inst1/sqllib]</span><br>  <span class="hljs-comment">--with-empress[=DIR]    Include Empress support $EMPRESSPATH (Empress</span><br>                          Version <span class="hljs-operator">&gt;=</span> <span class="hljs-number">8.60</span> required)<br>  <span class="hljs-comment">--with-empress-bcs[=DIR]</span><br>                          Include Empress <span class="hljs-keyword">Local</span> Access support $EMPRESSPATH<br>                          (Empress Version <span class="hljs-operator">&gt;=</span> <span class="hljs-number">8.60</span> required)<br>  <span class="hljs-comment">--with-custom-odbc[=DIR]</span><br>                          Include <span class="hljs-keyword">user</span> defined ODBC support. DIR <span class="hljs-keyword">is</span> ODBC<br>                          install base directory [<span class="hljs-operator">/</span>usr<span class="hljs-operator">/</span><span class="hljs-keyword">local</span>]. Make sure <span class="hljs-keyword">to</span><br>                          <span class="hljs-keyword">define</span> CUSTOM_ODBC_LIBS <span class="hljs-keyword">and</span> have <span class="hljs-keyword">some</span> odbc.h <span class="hljs-keyword">in</span> your<br>                          include dirs. f.e. you should <span class="hljs-keyword">define</span> following <span class="hljs-keyword">for</span><br>                          Sybase <span class="hljs-keyword">SQL</span> Anywhere <span class="hljs-number">5.5</span><span class="hljs-number">.00</span> <span class="hljs-keyword">on</span> QNX, prior <span class="hljs-keyword">to</span> <span class="hljs-keyword">running</span><br>                          this configure script: CPPFLAGS<span class="hljs-operator">=</span>&quot;-DODBC_QNX<br>                          -DSQLANY_BUG&quot; LDFLAGS<span class="hljs-operator">=</span><span class="hljs-operator">-</span>lunix<br>                          CUSTOM_ODBC_LIBS<span class="hljs-operator">=</span>&quot;-ldblib -lodbc&quot;<br>  <span class="hljs-comment">--with-iodbc[=DIR]      Include iODBC support [/usr/local]</span><br>  <span class="hljs-comment">--with-esoob[=DIR]      Include Easysoft OOB support</span><br>                          [<span class="hljs-operator">/</span>usr<span class="hljs-operator">/</span><span class="hljs-keyword">local</span><span class="hljs-operator">/</span>easysoft<span class="hljs-operator">/</span>oob<span class="hljs-operator">/</span>client]<br>  <span class="hljs-comment">--with-unixODBC[=DIR]   Include unixODBC support [/usr/local]</span><br>  <span class="hljs-comment">--with-dbmaker[=DIR]    Include DBMaker support</span><br>  <span class="hljs-comment">--disable-opcache       Disable Zend OPcache support</span><br>  <span class="hljs-comment">--disable-huge-code-pages</span><br>                          Disable copying PHP CODE pages <span class="hljs-keyword">into</span> HUGE PAGES<br>  <span class="hljs-comment">--enable-pcntl          Enable pcntl support (CLI/CGI only)</span><br>  <span class="hljs-comment">--disable-pdo           Disable PHP Data Objects support</span><br>  <span class="hljs-comment">--with-pdo-dblib[=DIR]  PDO: DBLIB-DB support. DIR is the FreeTDS home</span><br>                          directory<br>  <span class="hljs-comment">--with-pdo-firebird[=DIR]</span><br>                          PDO: Firebird support. DIR <span class="hljs-keyword">is</span> the Firebird base<br>                          install directory [<span class="hljs-operator">/</span>opt<span class="hljs-operator">/</span>firebird]<br>  <span class="hljs-comment">--with-pdo-mysql[=DIR]  PDO: MySQL support. DIR is the MySQL base directory.</span><br>                          If <span class="hljs-keyword">no</span> <span class="hljs-keyword">value</span> <span class="hljs-keyword">or</span> mysqlnd <span class="hljs-keyword">is</span> passed <span class="hljs-keyword">as</span> DIR, the MySQL<br>                          native driver will be used<br>  <span class="hljs-comment">--with-zlib-dir[=DIR]   PDO_MySQL: Set the path to libz install prefix</span><br>  <span class="hljs-comment">--with-pdo-oci[=DIR]    PDO: Oracle OCI support. DIR defaults to</span><br>                          $ORACLE_HOME. Use<br>                          <span class="hljs-comment">--with-pdo-oci=instantclient,/path/to/instant/client/lib</span><br>                          <span class="hljs-keyword">for</span> an Oracle Instant Client installation.<br>  <span class="hljs-comment">--with-pdo-odbc=flavour,dir</span><br>                          PDO: Support <span class="hljs-keyword">for</span> <span class="hljs-string">&#x27;flavour&#x27;</span> ODBC driver. The include<br>                          <span class="hljs-keyword">and</span> lib dirs <span class="hljs-keyword">are</span> looked <span class="hljs-keyword">for</span> under <span class="hljs-string">&#x27;dir&#x27;</span>. The<br>                          <span class="hljs-string">&#x27;flavour&#x27;</span> can be <span class="hljs-keyword">one</span> <span class="hljs-keyword">of</span>: ibm<span class="hljs-operator">-</span>db2, iODBC, unixODBC,<br>                          generic. If <span class="hljs-string">&#x27;,dir&#x27;</span> part <span class="hljs-keyword">is</span> omitted, <span class="hljs-keyword">default</span> <span class="hljs-keyword">for</span> the<br>                          flavour you have selected will be used. e.g.:<br>                          <span class="hljs-comment">--with-pdo-odbc=unixODBC will check for unixODBC</span><br>                          under <span class="hljs-operator">/</span>usr<span class="hljs-operator">/</span>local. You may attempt <span class="hljs-keyword">to</span> use an<br>                          otherwise unsupported driver <span class="hljs-keyword">using</span> the <span class="hljs-string">&#x27;generic&#x27;</span><br>                          flavour. The syntax <span class="hljs-keyword">for</span> generic ODBC support <span class="hljs-keyword">is</span>:<br>                          <span class="hljs-comment">--with-pdo-odbc=generic,dir,libname,ldflags,cflags.</span><br>                          <span class="hljs-keyword">When</span> built <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;shared&#x27;</span> the extension filename <span class="hljs-keyword">is</span><br>                          always pdo_odbc.so<br>  <span class="hljs-comment">--with-pdo-pgsql[=DIR]  PDO: PostgreSQL support. DIR is the PostgreSQL base</span><br>                          install directory <span class="hljs-keyword">or</span> the path <span class="hljs-keyword">to</span> pg_config<br>  <span class="hljs-comment">--without-pdo-sqlite[=DIR]</span><br>                          PDO: sqlite <span class="hljs-number">3</span> support. DIR <span class="hljs-keyword">is</span> the sqlite base<br>                          install directory [BUNDLED]<br>  <span class="hljs-comment">--with-pgsql[=DIR]      Include PostgreSQL support. DIR is the PostgreSQL</span><br>                          base install directory <span class="hljs-keyword">or</span> the path <span class="hljs-keyword">to</span> pg_config<br>  <span class="hljs-comment">--disable-phar          Disable phar support</span><br>  <span class="hljs-comment">--disable-posix         Disable POSIX-like functions</span><br>  <span class="hljs-comment">--with-pspell[=DIR]     Include PSPELL support. GNU Aspell version 0.50.0 or</span><br>                          higher required<br>  <span class="hljs-comment">--with-libedit          Include libedit readline replacement (CLI/CGI only)</span><br>  <span class="hljs-comment">--with-readline[=DIR]   Include readline support (CLI/CGI only)</span><br>  <span class="hljs-comment">--with-recode[=DIR]     Include recode support</span><br>  <span class="hljs-comment">--disable-session       Disable session support</span><br>  <span class="hljs-comment">--with-mm[=DIR]         SESSION: Include mm support for session storage</span><br>  <span class="hljs-comment">--enable-shmop          Enable shmop support</span><br>  <span class="hljs-comment">--disable-simplexml     Disable SimpleXML support</span><br>  <span class="hljs-comment">--with-libxml-dir=DIR   SimpleXML: libxml2 install prefix</span><br>  <span class="hljs-comment">--with-snmp[=DIR]       Include SNMP support</span><br>  <span class="hljs-comment">--with-openssl-dir[=DIR]</span><br>                          SNMP: openssl install prefix<br>  <span class="hljs-comment">--enable-soap           Enable SOAP support</span><br>  <span class="hljs-comment">--with-libxml-dir=DIR   SOAP: libxml2 install prefix</span><br>  <span class="hljs-comment">--enable-sockets        Enable sockets support</span><br>  <span class="hljs-comment">--with-sodium[=DIR]     Include sodium support</span><br>  <span class="hljs-comment">--with-password-argon2[=DIR]</span><br>                          Include Argon2 support <span class="hljs-keyword">in</span> password_<span class="hljs-operator">*</span>. DIR <span class="hljs-keyword">is</span> the<br>                          Argon2 shared library path<br>  <span class="hljs-comment">--enable-sysvmsg        Enable sysvmsg support</span><br>  <span class="hljs-comment">--enable-sysvsem        Enable System V semaphore support</span><br>  <span class="hljs-comment">--enable-sysvshm        Enable the System V shared memory support</span><br>  <span class="hljs-comment">--with-tidy[=DIR]       Include TIDY support</span><br>  <span class="hljs-comment">--disable-tokenizer     Disable tokenizer support</span><br>  <span class="hljs-comment">--disable-xml           Disable XML support</span><br>  <span class="hljs-comment">--with-libxml-dir=DIR   XML: libxml2 install prefix</span><br>  <span class="hljs-comment">--with-libexpat-dir=DIR XML: libexpat install prefix (deprecated)</span><br>  <span class="hljs-comment">--disable-xmlreader     Disable XMLReader support</span><br>  <span class="hljs-comment">--with-libxml-dir=DIR   XMLReader: libxml2 install prefix</span><br>  <span class="hljs-comment">--with-xmlrpc[=DIR]     Include XMLRPC-EPI support</span><br>  <span class="hljs-comment">--with-libxml-dir=DIR   XMLRPC-EPI: libxml2 install prefix</span><br>  <span class="hljs-comment">--with-libexpat-dir=DIR XMLRPC-EPI: libexpat dir for XMLRPC-EPI (deprecated)</span><br>  <span class="hljs-comment">--with-iconv-dir=DIR    XMLRPC-EPI: iconv dir for XMLRPC-EPI</span><br>  <span class="hljs-comment">--disable-xmlwriter     Disable XMLWriter support</span><br>  <span class="hljs-comment">--with-libxml-dir=DIR   XMLWriter: libxml2 install prefix</span><br>  <span class="hljs-comment">--with-xsl[=DIR]        Include XSL support. DIR is the libxslt base install</span><br>                          directory (libxslt <span class="hljs-operator">&gt;=</span> <span class="hljs-number">1.1</span><span class="hljs-number">.0</span> required)<br>  <span class="hljs-comment">--enable-zend-test      Enable zend-test extension</span><br>  <span class="hljs-comment">--enable-zip            Include Zip read/write support</span><br>  <span class="hljs-comment">--with-libzip[=DIR]     ZIP: use libzip</span><br>  <span class="hljs-comment">--enable-mysqlnd        Enable mysqlnd explicitly, will be done implicitly</span><br>                          <span class="hljs-keyword">when</span> required <span class="hljs-keyword">by</span> other extensions<br>  <span class="hljs-comment">--disable-mysqlnd-compression-support</span><br>                          Disable support <span class="hljs-keyword">for</span> the MySQL compressed protocol <span class="hljs-keyword">in</span><br>                          mysqlnd<br>  <span class="hljs-comment">--with-zlib-dir[=DIR]   mysqlnd: Set the path to libz install prefix</span><br> <br>PEAR:<br> <br>  <span class="hljs-comment">--with-pear[=DIR]       Install PEAR in DIR [PREFIX/lib/php]</span><br> <br>Zend:<br> <br>  <span class="hljs-comment">--enable-maintainer-zts Enable thread safety - for code maintainers only!!(安全线程)</span><br>  <span class="hljs-comment">--disable-inline-optimization</span><br>                          If building zend_execute.lo fails, try this switch<br>  <span class="hljs-comment">--disable-zend-signals  whether to enable zend signal handling</span><br> <br>TSRM:<br> <br>  <span class="hljs-comment">--with-tsrm-pth[=pth-config]</span><br>                          Use GNU Pth<br>  <span class="hljs-comment">--with-tsrm-st          Use SGI&#x27;s State Threads</span><br>  <span class="hljs-comment">--with-tsrm-pthreads    Use POSIX threads (default)</span><br> <br>Libtool:<br> <br>  <span class="hljs-comment">--enable-shared=PKGS    Build shared libraries default=yes</span><br>  <span class="hljs-comment">--enable-static=PKGS    Build static libraries default=yes</span><br>  <span class="hljs-comment">--enable-fast-install=PKGS</span><br>                          Optimize <span class="hljs-keyword">for</span> fast installation <span class="hljs-keyword">default</span><span class="hljs-operator">=</span>yes<br>  <span class="hljs-comment">--with-gnu-ld           Assume the C compiler uses GNU ld default=no</span><br>  <span class="hljs-comment">--disable-libtool-lock  Avoid locking (might break parallel builds)</span><br>  <span class="hljs-comment">--with-pic              Try to use only PIC/non-PIC objects default=use both</span><br>  <span class="hljs-comment">--with-tags=TAGS        Include additional configurations automatic</span><br><br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="http://https//blog.csdn.net/yuxiaomin886/article/details/103821731" title="Ubuntu 18.04 安装 php7.4 --enable-maintainer-zts">Ubuntu 18.04 安装 php7.4 –enable-maintainer-zts</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0a79847c8151" title="PHP 编译安装 PHP各参数配置详解">PHP 编译安装 PHP各参数配置详解</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Ubuntu下安装PHP的一系列笔记</div>
+      <div>http://example.com/2021/10/15/Ubuntu下安装PHP的一系列笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 15, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/20/%E5%8E%BB%E6%8E%89sudo%E7%9A%84%E5%AF%86%E7%A0%81/" title="去掉sudo的密码">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">去掉sudo的密码</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/13/GMT%E6%97%B6%E9%97%B4%E5%92%8CCookie/" title="GMT时间和Cookie">
+                        <span class="hidden-mobile">GMT时间和Cookie</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

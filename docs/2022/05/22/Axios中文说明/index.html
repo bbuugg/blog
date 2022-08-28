@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Axios Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。 Features 从浏览器中创建 XMLHttpRequests 从 node.js 创建 http 请求 支持 Promise API 拦截请求和响应 转换请求数据和响应数据 取消请求 自动转换 JSON 数据 客户端支持防御 XSRF  浏览器支持            Latest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Axios中文说明">
+<meta property="og:url" content="http://example.com/2022/05/22/Axios%E4%B8%AD%E6%96%87%E8%AF%B4%E6%98%8E/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Axios Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。 Features 从浏览器中创建 XMLHttpRequests 从 node.js 创建 http 请求 支持 Promise API 拦截请求和响应 转换请求数据和响应数据 取消请求 自动转换 JSON 数据 客户端支持防御 XSRF  浏览器支持            Latest">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img.shields.io/npm/v/axios.svg?style=flat-square">
+<meta property="og:image" content="https://img.shields.io/travis/mzabriskie/axios.svg?style=flat-square">
+<meta property="og:image" content="https://img.shields.io/coveralls/mzabriskie/axios.svg?style=flat-square">
+<meta property="og:image" content="https://img.shields.io/npm/dm/axios.svg?style=flat-square">
+<meta property="og:image" content="https://img.shields.io/gitter/room/mzabriskie/axios.svg?style=flat-square">
+<meta property="og:image" content="https://saucelabs.com/open_sauce/build_matrix/axios.svg">
+<meta property="article:published_time" content="2022-05-22T11:21:11.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img.shields.io/npm/v/axios.svg?style=flat-square">
+  
+  
+  
+  <title>Axios中文说明 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Axios中文说明"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-22 19:21" pubdate>
+          May 22, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          83 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Axios中文说明</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h2><p><a target="_blank" rel="noopener" href="https://www.npmjs.org/package/axios"><img src="https://img.shields.io/npm/v/axios.svg?style=flat-square" srcset="/img/loading.gif" lazyload alt="npm version"></a><br><a target="_blank" rel="noopener" href="https://travis-ci.org/mzabriskie/axios"><img src="https://img.shields.io/travis/mzabriskie/axios.svg?style=flat-square" srcset="/img/loading.gif" lazyload alt="build status"></a><br><a target="_blank" rel="noopener" href="https://coveralls.io/r/mzabriskie/axios"><img src="https://img.shields.io/coveralls/mzabriskie/axios.svg?style=flat-square" srcset="/img/loading.gif" lazyload alt="code coverage"></a><br><a target="_blank" rel="noopener" href="http://npm-stat.com/charts.html?package=axios"><img src="https://img.shields.io/npm/dm/axios.svg?style=flat-square" srcset="/img/loading.gif" lazyload alt="npm downloads"></a><br><a target="_blank" rel="noopener" href="https://gitter.im/mzabriskie/axios"><img src="https://img.shields.io/gitter/room/mzabriskie/axios.svg?style=flat-square" srcset="/img/loading.gif" lazyload alt="gitter chat"></a></p>
+<p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。</p>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><ul>
+<li>从浏览器中创建 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequests</a></li>
+<li>从 node.js 创建 <a target="_blank" rel="noopener" href="http://nodejs.org/api/http.html">http</a> 请求</li>
+<li>支持 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> API</li>
+<li>拦截请求和响应</li>
+<li>转换请求数据和响应数据</li>
+<li>取消请求</li>
+<li>自动转换 JSON 数据</li>
+<li>客户端支持防御 <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">XSRF</a></li>
+</ul>
+<h2 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h2><table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Latest ✔</td>
+<td align="left">Latest ✔</td>
+<td align="left">Latest ✔</td>
+<td align="left">Latest ✔</td>
+<td align="left">Latest ✔</td>
+<td align="left">8+ ✔</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://saucelabs.com/u/axios"><img src="https://saucelabs.com/open_sauce/build_matrix/axios.svg" srcset="/img/loading.gif" lazyload alt="Browser Matrix"></a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>使用 npm:</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">$ npm <span class="hljs-keyword">install</span> axios<br></code></pre></td></tr></table></figure>
+
+<p>使用 bower:</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">$ <span class="hljs-keyword">bower </span><span class="hljs-keyword">install </span>axios<br></code></pre></td></tr></table></figure>
+
+<p>使用 cdn:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/axios/dist/axios.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>执行 <code>GET</code> 请求</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">// 为给定 ID 的 user 创建请求</span><br>axios.get(<span class="hljs-string">&#x27;/user?ID=12345&#x27;</span>)<br>  .then(<span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(response);<br>  &#125;)<br>  .catch(<span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(error);<br>  &#125;);<br><br><span class="hljs-comment">// 可选地，上面的请求可以这样做</span><br>axios.get(<span class="hljs-string">&#x27;/user&#x27;</span>, &#123;<br>    <span class="hljs-attr">params</span>: &#123;<br>      <span class="hljs-attr">ID</span>: <span class="hljs-number">12345</span><br>    &#125;<br>  &#125;)<br>  .then(<span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(response);<br>  &#125;)<br>  .catch(<span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(error);<br>  &#125;);<br></code></pre></td></tr></table></figure>
+
+<p>执行 <code>POST</code> 请求</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs arcade">axios.post(<span class="hljs-string">&#x27;/user&#x27;</span>, &#123;<br>    <span class="hljs-attr">firstName</span>: <span class="hljs-string">&#x27;Fred&#x27;</span>,<br>    <span class="hljs-attr">lastName</span>: <span class="hljs-string">&#x27;Flintstone&#x27;</span><br>  &#125;)<br>  .then(<span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(response);<br>  &#125;)<br>  .catch(<span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(error);<br>  &#125;);<br></code></pre></td></tr></table></figure>
+
+<p>执行多个并发请求</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">function</span> <span class="hljs-title">getUserAccount</span>() &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-type">axios.get(&#x27;/user/12345&#x27;)</span>;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title">getUserPermissions</span>() &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-type">axios.get(&#x27;/user/12345/permissions&#x27;)</span>;<br>&#125;<br><br>axios.<span class="hljs-keyword">all</span>([getUserAccount(), getUserPermissions()])<br>  .<span class="hljs-keyword">then</span>(axios.spread(<span class="hljs-keyword">function</span> <span class="hljs-title"></span>(acct, perms) &#123;<br>    // 两个请求现在都执行完成<br>  &#125;));<br></code></pre></td></tr></table></figure>
+
+<h2 id="axios-API"><a href="#axios-API" class="headerlink" title="axios API"></a>axios API</h2><p>可以通过向 <code>axios</code> 传递相关配置来创建请求</p>
+<h5 id="axios-config"><a href="#axios-config" class="headerlink" title="axios(config)"></a>axios(config)</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// 发送 POST 请求</span><br><span class="hljs-title function_ invoke__">axios</span>(&#123;<br>  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;post&#x27;</span>,<br>  <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/user/12345&#x27;</span>,<br>  <span class="hljs-attr">data</span>: &#123;<br>    <span class="hljs-attr">firstName</span>: <span class="hljs-string">&#x27;Fred&#x27;</span>,<br>    <span class="hljs-attr">lastName</span>: <span class="hljs-string">&#x27;Flintstone&#x27;</span><br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h5 id="axios-url-config"><a href="#axios-url-config" class="headerlink" title="axios(url[, config])"></a>axios(url[, config])</h5><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-comment">// 发送 GET 请求（默认的方法）</span><br>axios(&#x27;/user/<span class="hljs-number">1234</span>5&#x27;);<br></code></pre></td></tr></table></figure>
+
+<h3 id="请求方法的别名"><a href="#请求方法的别名" class="headerlink" title="请求方法的别名"></a>请求方法的别名</h3><p>为方便起见，为所有支持的请求方法提供了别名</p>
+<h5 id="axios-request-config"><a href="#axios-request-config" class="headerlink" title="axios.request(config)"></a>axios.request(config)</h5><h5 id="axios-get-url-config"><a href="#axios-get-url-config" class="headerlink" title="axios.get(url[, config])"></a>axios.get(url[, config])</h5><h5 id="axios-delete-url-config"><a href="#axios-delete-url-config" class="headerlink" title="axios.delete(url[, config])"></a>axios.delete(url[, config])</h5><h5 id="axios-head-url-config"><a href="#axios-head-url-config" class="headerlink" title="axios.head(url[, config])"></a>axios.head(url[, config])</h5><h5 id="axios-post-url-data-config"><a href="#axios-post-url-data-config" class="headerlink" title="axios.post(url[, data[, config]])"></a>axios.post(url[, data[, config]])</h5><h5 id="axios-put-url-data-config"><a href="#axios-put-url-data-config" class="headerlink" title="axios.put(url[, data[, config]])"></a>axios.put(url[, data[, config]])</h5><h5 id="axios-patch-url-data-config"><a href="#axios-patch-url-data-config" class="headerlink" title="axios.patch(url[, data[, config]])"></a>axios.patch(url[, data[, config]])</h5><h6 id="NOTE"><a href="#NOTE" class="headerlink" title="NOTE"></a>NOTE</h6><p>在使用别名方法时， <code>url</code>、<code>method</code>、<code>data</code> 这些属性都不必在配置中指定。</p>
+<h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><p>处理并发请求的助手函数</p>
+<h5 id="axios-all-iterable"><a href="#axios-all-iterable" class="headerlink" title="axios.all(iterable)"></a>axios.all(iterable)</h5><h5 id="axios-spread-callback"><a href="#axios-spread-callback" class="headerlink" title="axios.spread(callback)"></a>axios.spread(callback)</h5><h3 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h3><p>可以使用自定义配置新建一个 axios 实例</p>
+<h5 id="axios-create-config"><a href="#axios-create-config" class="headerlink" title="axios.create([config])"></a>axios.create([config])</h5><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs smali">var<span class="hljs-built_in"> instance </span>= axios.create(&#123;<br>  baseURL: &#x27;https://some-domain.com/api/&#x27;,<br>  timeout: 1000,<br>  headers: &#123;&#x27;X-Custom-Header&#x27;: &#x27;foobar&#x27;&#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h3 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h3><p>以下是可用的实例方法。指定的配置将与实例的配置合并</p>
+<h5 id="axios-request-config-1"><a href="#axios-request-config-1" class="headerlink" title="axios#request(config)"></a>axios#request(config)</h5><h5 id="axios-get-url-config-1"><a href="#axios-get-url-config-1" class="headerlink" title="axios#get(url[, config])"></a>axios#get(url[, config])</h5><h5 id="axios-delete-url-config-1"><a href="#axios-delete-url-config-1" class="headerlink" title="axios#delete(url[, config])"></a>axios#delete(url[, config])</h5><h5 id="axios-head-url-config-1"><a href="#axios-head-url-config-1" class="headerlink" title="axios#head(url[, config])"></a>axios#head(url[, config])</h5><h5 id="axios-post-url-data-config-1"><a href="#axios-post-url-data-config-1" class="headerlink" title="axios#post(url[, data[, config]])"></a>axios#post(url[, data[, config]])</h5><h5 id="axios-put-url-data-config-1"><a href="#axios-put-url-data-config-1" class="headerlink" title="axios#put(url[, data[, config]])"></a>axios#put(url[, data[, config]])</h5><h5 id="axios-patch-url-data-config-1"><a href="#axios-patch-url-data-config-1" class="headerlink" title="axios#patch(url[, data[, config]])"></a>axios#patch(url[, data[, config]])</h5><h2 id="请求配置"><a href="#请求配置" class="headerlink" title="请求配置"></a>请求配置</h2><p>这些是创建请求时可以用的配置选项。只有 <code>url</code> 是必需的。如果没有指定 <code>method</code>，请求将默认使用 <code>get</code> 方法。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><code class="hljs awk">&#123;<br>  <span class="hljs-regexp">//</span> `url` 是用于请求的服务器 URL<br>  url: <span class="hljs-string">&#x27;/user&#x27;</span>,<br><br>  <span class="hljs-regexp">//</span> `method` 是创建请求时使用的方法<br>  method: <span class="hljs-string">&#x27;get&#x27;</span>, <span class="hljs-regexp">//</span> 默认是 get<br><br>  <span class="hljs-regexp">//</span> `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL。<br>  <span class="hljs-regexp">//</span> 它可以通过设置一个 `baseURL` 便于为 axios 实例的方法传递相对 URL<br>  baseURL: <span class="hljs-string">&#x27;https://some-domain.com/api/&#x27;</span>,<br><br>  <span class="hljs-regexp">//</span> `transformRequest` 允许在向服务器发送前，修改请求数据<br>  <span class="hljs-regexp">//</span> 只能用在 <span class="hljs-string">&#x27;PUT&#x27;</span>, <span class="hljs-string">&#x27;POST&#x27;</span> 和 <span class="hljs-string">&#x27;PATCH&#x27;</span> 这几个请求方法<br>  <span class="hljs-regexp">//</span> 后面数组中的函数必须返回一个字符串，或 ArrayBuffer，或 Stream<br>  transformRequest: [<span class="hljs-keyword">function</span> (data) &#123;<br>    <span class="hljs-regexp">//</span> 对 data 进行任意转换处理<br><br>    return data;<br>  &#125;],<br><br>  <span class="hljs-regexp">//</span> `transformResponse` 在传递给 then/catch 前，允许修改响应数据<br>  transformResponse: [<span class="hljs-keyword">function</span> (data) &#123;<br>    <span class="hljs-regexp">//</span> 对 data 进行任意转换处理<br><br>    return data;<br>  &#125;],<br><br>  <span class="hljs-regexp">//</span> `headers` 是即将被发送的自定义请求头<br>  headers: &#123;<span class="hljs-string">&#x27;X-Requested-With&#x27;</span>: <span class="hljs-string">&#x27;XMLHttpRequest&#x27;</span>&#125;,<br><br>  <span class="hljs-regexp">//</span> `params` 是即将与请求一起发送的 URL 参数<br>  <span class="hljs-regexp">//</span> 必须是一个无格式对象(plain object)或 URLSearchParams 对象<br>  params: &#123;<br>    ID: <span class="hljs-number">12345</span><br>  &#125;,<br><br>  <span class="hljs-regexp">//</span> `paramsSerializer` 是一个负责 `params` 序列化的函数<br>  <span class="hljs-regexp">//</span> (e.g. https:<span class="hljs-regexp">//</span>www.npmjs.com<span class="hljs-regexp">/package/</span>qs, http:<span class="hljs-regexp">//</span>api.jquery.com<span class="hljs-regexp">/jquery.param/</span>)<br>  paramsSerializer: <span class="hljs-keyword">function</span>(params) &#123;<br>    return Qs.stringify(params, &#123;arrayFormat: <span class="hljs-string">&#x27;brackets&#x27;</span>&#125;)<br>  &#125;,<br><br>  <span class="hljs-regexp">//</span> `data` 是作为请求主体被发送的数据<br>  <span class="hljs-regexp">//</span> 只适用于这些请求方法 <span class="hljs-string">&#x27;PUT&#x27;</span>, <span class="hljs-string">&#x27;POST&#x27;</span>, 和 <span class="hljs-string">&#x27;PATCH&#x27;</span><br>  <span class="hljs-regexp">//</span> 在没有设置 `transformRequest` 时，必须是以下类型之一：<br>  <span class="hljs-regexp">//</span> - string, plain object, ArrayBuffer, ArrayBufferView, URLSearchParams<br>  <span class="hljs-regexp">//</span> - 浏览器专属：FormData, File, Blob<br>  <span class="hljs-regexp">//</span> - Node 专属： Stream<br>  data: &#123;<br>    firstName: <span class="hljs-string">&#x27;Fred&#x27;</span><br>  &#125;,<br><br>  <span class="hljs-regexp">//</span> `timeout` 指定请求超时的毫秒数(<span class="hljs-number">0</span> 表示无超时时间)<br>  <span class="hljs-regexp">//</span> 如果请求话费了超过 `timeout` 的时间，请求将被中断<br>  timeout: <span class="hljs-number">1000</span>,<br><br>  <span class="hljs-regexp">//</span> `withCredentials` 表示跨域请求时是否需要使用凭证<br>  withCredentials: false, <span class="hljs-regexp">//</span> 默认的<br><br>  <span class="hljs-regexp">//</span> `adapter` 允许自定义处理请求，以使测试更轻松<br>  <span class="hljs-regexp">//</span> 返回一个 promise 并应用一个有效的响应 (查阅 [response docs](<span class="hljs-comment">#response-api)).</span><br>  adapter: <span class="hljs-keyword">function</span> (config) &#123;<br>    <span class="hljs-regexp">/* ... */</span><br>  &#125;,<br><br>  <span class="hljs-regexp">//</span> `auth` 表示应该使用 HTTP 基础验证，并提供凭据<br>  <span class="hljs-regexp">//</span> 这将设置一个 `Authorization` 头，覆写掉现有的任意使用 `headers` 设置的自定义 `Authorization`头<br>  auth: &#123;<br>    username: <span class="hljs-string">&#x27;janedoe&#x27;</span>,<br>    password: <span class="hljs-string">&#x27;s00pers3cret&#x27;</span><br>  &#125;,<br><br>  <span class="hljs-regexp">//</span> `responseType` 表示服务器响应的数据类型，可以是 <span class="hljs-string">&#x27;arraybuffer&#x27;</span>, <span class="hljs-string">&#x27;blob&#x27;</span>, <span class="hljs-string">&#x27;document&#x27;</span>, <span class="hljs-string">&#x27;json&#x27;</span>, <span class="hljs-string">&#x27;text&#x27;</span>, <span class="hljs-string">&#x27;stream&#x27;</span><br>  responseType: <span class="hljs-string">&#x27;json&#x27;</span>, <span class="hljs-regexp">//</span> 默认的<br><br>  <span class="hljs-regexp">//</span> `xsrfCookieName` 是用作 xsrf token 的值的cookie的名称<br>  xsrfCookieName: <span class="hljs-string">&#x27;XSRF-TOKEN&#x27;</span>, <span class="hljs-regexp">//</span> default<br><br>  <span class="hljs-regexp">//</span> `xsrfHeaderName` 是承载 xsrf token 的值的 HTTP 头的名称<br>  xsrfHeaderName: <span class="hljs-string">&#x27;X-XSRF-TOKEN&#x27;</span>, <span class="hljs-regexp">//</span> 默认的<br><br>  <span class="hljs-regexp">//</span> `onUploadProgress` 允许为上传处理进度事件<br>  onUploadProgress: <span class="hljs-keyword">function</span> (progressEvent) &#123;<br>    <span class="hljs-regexp">//</span> 对原生进度事件的处理<br>  &#125;,<br><br>  <span class="hljs-regexp">//</span> `onDownloadProgress` 允许为下载处理进度事件<br>  onDownloadProgress: <span class="hljs-keyword">function</span> (progressEvent) &#123;<br>    <span class="hljs-regexp">//</span> 对原生进度事件的处理<br>  &#125;,<br><br>  <span class="hljs-regexp">//</span> `maxContentLength` 定义允许的响应内容的最大尺寸<br>  maxContentLength: <span class="hljs-number">2000</span>,<br><br>  <span class="hljs-regexp">//</span> `validateStatus` 定义对于给定的HTTP 响应状态码是 resolve 或 reject  promise 。如果 `validateStatus` 返回 `true` (或者设置为 `null` 或 `undefined`)，promise 将被 resolve; 否则，promise 将被 rejecte<br>  validateStatus: <span class="hljs-keyword">function</span> (status) &#123;<br>    return status &gt;= <span class="hljs-number">200</span> &amp;&amp; status &lt; <span class="hljs-number">300</span>; <span class="hljs-regexp">//</span> 默认的<br>  &#125;,<br><br>  <span class="hljs-regexp">//</span> `maxRedirects` 定义在 node.js 中 follow 的最大重定向数目<br>  <span class="hljs-regexp">//</span> 如果设置为<span class="hljs-number">0</span>，将不会 follow 任何重定向<br>  maxRedirects: <span class="hljs-number">5</span>, <span class="hljs-regexp">//</span> 默认的<br><br>  <span class="hljs-regexp">//</span> `httpAgent` 和 `httpsAgent` 分别在 node.js 中用于定义在执行 http 和 https 时使用的自定义代理。允许像这样配置选项：<br>  <span class="hljs-regexp">//</span> `keepAlive` 默认没有启用<br>  httpAgent: new http.Agent(&#123; keepAlive: true &#125;),<br>  httpsAgent: new https.Agent(&#123; keepAlive: true &#125;),<br><br>  <span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;proxy&#x27;</span> 定义代理服务器的主机名称和端口<br>  <span class="hljs-regexp">//</span> `auth` 表示 HTTP 基础验证应当用于连接代理，并提供凭据<br>  <span class="hljs-regexp">//</span> 这将会设置一个 `Proxy-Authorization` 头，覆写掉已有的通过使用 `header` 设置的自定义 `Proxy-Authorization` 头。<br>  proxy: &#123;<br>    host: <span class="hljs-string">&#x27;127.0.0.1&#x27;</span>,<br>    port: <span class="hljs-number">9000</span>,<br>    auth: : &#123;<br>      username: <span class="hljs-string">&#x27;mikeymike&#x27;</span>,<br>      password: <span class="hljs-string">&#x27;rapunz3l&#x27;</span><br>    &#125;<br>  &#125;,<br><br>  <span class="hljs-regexp">//</span> `cancelToken` 指定用于取消请求的 cancel token<br>  <span class="hljs-regexp">//</span> （查看后面的 Cancellation 这节了解更多）<br>  cancelToken: new CancelToken(<span class="hljs-keyword">function</span> (cancel) &#123;<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="响应结构"><a href="#响应结构" class="headerlink" title="响应结构"></a>响应结构</h2><p>某个请求的响应包含以下信息</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs awk">&#123;<br>  <span class="hljs-regexp">//</span> `data` 由服务器提供的响应<br>  data: &#123;&#125;,<br><br>  <span class="hljs-regexp">//</span> `status` 来自服务器响应的 HTTP 状态码<br>  status: <span class="hljs-number">200</span>,<br><br>  <span class="hljs-regexp">//</span> `statusText` 来自服务器响应的 HTTP 状态信息<br>  statusText: <span class="hljs-string">&#x27;OK&#x27;</span>,<br><br>  <span class="hljs-regexp">//</span> `headers` 服务器响应的头<br>  headers: &#123;&#125;,<br><br>  <span class="hljs-regexp">//</span> `config` 是为请求提供的配置信息<br>  config: &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用 <code>then</code> 时，你将接收下面这样的响应：</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs arcade">axios.get(<span class="hljs-string">&#x27;/user/12345&#x27;</span>)<br>  .then(<span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(response.data);<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(response.status);<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(response.statusText);<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(response.headers);<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(response.config);<br>  &#125;);<br></code></pre></td></tr></table></figure>
+
+<p>在使用 <code>catch</code> 时，或传递 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then">rejection callback</a> 作为 <code>then</code> 的第二个参数时，响应可以通过 <code>error</code> 对象可被使用，正如在<a target="_blank" rel="noopener" href="https://www.kancloud.cn/yunye/axios/234845#handling-errors">错误处理</a>这一节所讲。</p>
+<h2 id="配置的默认值-x2F-defaults"><a href="#配置的默认值-x2F-defaults" class="headerlink" title="配置的默认值&#x2F;defaults"></a>配置的默认值&#x2F;defaults</h2><p>你可以指定将被用在各个请求的配置默认值</p>
+<h3 id="全局的-axios-默认值"><a href="#全局的-axios-默认值" class="headerlink" title="全局的 axios 默认值"></a>全局的 axios 默认值</h3><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs prolog">axios.defaults.baseURL = <span class="hljs-string">&#x27;https://api.example.com&#x27;</span>;<br>axios.defaults.headers.common[<span class="hljs-string">&#x27;Authorization&#x27;</span>] = <span class="hljs-symbol">AUTH_TOKEN</span>;<br>axios.defaults.headers.post[<span class="hljs-string">&#x27;Content-Type&#x27;</span>] = <span class="hljs-string">&#x27;application/x-www-form-urlencoded&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="自定义实例默认值"><a href="#自定义实例默认值" class="headerlink" title="自定义实例默认值"></a>自定义实例默认值</h3><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs smali">// 创建实例时设置配置的默认值<br>var<span class="hljs-built_in"> instance </span>= axios.create(&#123;<br>  baseURL: &#x27;https://api.example.com&#x27;<br>&#125;);<br><br>// 在实例已创建后修改默认值<br>instance.defaults.headers.common[&#x27;Authorization&#x27;] = AUTH_TOKEN;<br></code></pre></td></tr></table></figure>
+
+<h3 id="配置的优先顺序"><a href="#配置的优先顺序" class="headerlink" title="配置的优先顺序"></a>配置的优先顺序</h3><p>配置会以一个优先顺序进行合并。这个顺序是：在 <code>lib/defaults.js</code> 找到的库的默认值，然后是实例的 <code>defaults</code> 属性，最后是请求的 <code>config</code> 参数。后者将优先于前者。这里是一个例子：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 使用由库提供的配置的默认值来创建实例<br><span class="hljs-regexp">//</span> 此时超时配置的默认值是 `<span class="hljs-number">0</span>`<br>var instance = axios.create();<br><br><span class="hljs-regexp">//</span> 覆写库的超时默认值<br><span class="hljs-regexp">//</span> 现在，在超时前，所有请求都会等待 <span class="hljs-number">2.5</span> 秒<br>instance.defaults.timeout = <span class="hljs-number">2500</span>;<br><br><span class="hljs-regexp">//</span> 为已知需要花费很长时间的请求覆写超时设置<br>instance.get(<span class="hljs-string">&#x27;/longRequest&#x27;</span>, &#123;<br>  timeout: <span class="hljs-number">5000</span><br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><p>在请求或响应被 <code>then</code> 或 <code>catch</code> 处理前拦截它们。</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs ada">// 添加请求拦截器<br>axios.interceptors.request.<span class="hljs-keyword">use</span>(<span class="hljs-keyword">function</span> <span class="hljs-title"></span>(config) &#123;<br>    // 在发送请求之前做些什么<br>    <span class="hljs-keyword">return</span> <span class="hljs-type">config</span>;<br>  &#125;, <span class="hljs-keyword">function</span> <span class="hljs-title"></span>(error) &#123;<br>    // 对请求错误做些什么<br>    <span class="hljs-keyword">return</span> <span class="hljs-type">Promise.reject(error)</span>;<br>  &#125;);<br><br>// 添加响应拦截器<br>axios.interceptors.response.<span class="hljs-keyword">use</span>(<span class="hljs-keyword">function</span> <span class="hljs-title"></span>(response) &#123;<br>    // 对响应数据做点什么<br>    <span class="hljs-keyword">return</span> <span class="hljs-type">response</span>;<br>  &#125;, <span class="hljs-keyword">function</span> <span class="hljs-title"></span>(error) &#123;<br>    // 对响应错误做点什么<br>    <span class="hljs-keyword">return</span> <span class="hljs-type">Promise.reject(error)</span>;<br>  &#125;);<br></code></pre></td></tr></table></figure>
+
+<p>如果你想在稍后移除拦截器，可以这样：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-keyword">var</span> myInterceptor = axios.interceptors.request.<span class="hljs-keyword">use</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<span class="hljs-comment">/*...*/</span>&#125;);<br>axios.interceptors.request.<span class="hljs-title function_ invoke__">eject</span>(myInterceptor);<br></code></pre></td></tr></table></figure>
+
+<p>可以为自定义 axios 实例添加拦截器</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs smali">var<span class="hljs-built_in"> instance </span>= axios.create();<br>instance.interceptors.request.use(function () &#123;/*...*/&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs mel">axios.get(<span class="hljs-string">&#x27;/user/12345&#x27;</span>)<br>  .<span class="hljs-keyword">catch</span>(function (<span class="hljs-keyword">error</span>) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">error</span>.response) &#123;<br>      <span class="hljs-comment">// 请求已发出，但服务器响应的状态码不在 2xx 范围内</span><br>      console.<span class="hljs-keyword">log</span>(<span class="hljs-keyword">error</span>.response.data);<br>      console.<span class="hljs-keyword">log</span>(<span class="hljs-keyword">error</span>.response.status);<br>      console.<span class="hljs-keyword">log</span>(<span class="hljs-keyword">error</span>.response.headers);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-comment">// Something happened in setting up the request that triggered an Error</span><br>      console.<span class="hljs-keyword">log</span>(<span class="hljs-string">&#x27;Error&#x27;</span>, <span class="hljs-keyword">error</span>.message);<br>    &#125;<br>    console.<span class="hljs-keyword">log</span>(<span class="hljs-keyword">error</span>.config);<br>  &#125;);<br></code></pre></td></tr></table></figure>
+
+<p>可以使用 <code>validateStatus</code> 配置选项定义一个自定义 HTTP 状态码的错误范围。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">axios.get(<span class="hljs-string">&#x27;/user/12345&#x27;</span>, &#123;<br>  validateStatus: <span class="hljs-keyword">function</span> <span class="hljs-params">(status)</span> &#123;<br>    <span class="hljs-keyword">return</span> status &lt; <span class="hljs-number">500</span>; <span class="hljs-comment">// 状态码在大于或等于500时才会 reject</span><br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="取消"><a href="#取消" class="headerlink" title="取消"></a>取消</h2><p>使用 <em>cancel token</em> 取消请求</p>
+<blockquote>
+<p>Axios 的 cancel token API 基于<a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-cancelable-promises">cancelable promises proposal</a>，它还处于第一阶段。</p>
+</blockquote>
+<p>可以使用 <code>CancelToken.source</code> 工厂方法创建 cancel token，像这样：</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">var</span> CancelToken = axios.CancelToken;<br><span class="hljs-keyword">var</span> source = CancelToken.source();<br><br>axios.get(<span class="hljs-string">&#x27;/user/12345&#x27;</span>, &#123;<br>  <span class="hljs-attr">cancelToken</span>: source.token<br>&#125;).catch(<span class="hljs-keyword">function</span>(<span class="hljs-params">thrown</span>) &#123;<br>  <span class="hljs-keyword">if</span> (axios.isCancel(thrown)) &#123;<br>    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;Request canceled&#x27;</span>, thrown.message);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 处理错误</span><br>  &#125;<br>&#125;);<br><br><span class="hljs-comment">// 取消请求（message 参数是可选的）</span><br>source.cancel(<span class="hljs-string">&#x27;Operation canceled by the user.&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>还可以通过传递一个 executor 函数到 <code>CancelToken</code> 的构造函数来创建 cancel token：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">var</span> CancelToken = axios.CancelToken;<br><span class="hljs-keyword">var</span> cancel;<br><br>axios.get(<span class="hljs-string">&#x27;/user/12345&#x27;</span>, &#123;<br>  cancelToken: <span class="hljs-keyword">new</span> CancelToken(<span class="hljs-keyword">function</span> <span class="hljs-title function_">executor</span><span class="hljs-params">(c)</span> &#123;<br>    <span class="hljs-comment">// executor 函数接收一个 cancel 函数作为参数</span><br>    cancel = c;<br>  &#125;)<br>&#125;);<br><br><span class="hljs-comment">// 取消请求</span><br>cancel();<br></code></pre></td></tr></table></figure>
+
+<p>Note : 可以使用同一个 cancel token 取消多个请求</p>
+<h2 id="Semver"><a href="#Semver" class="headerlink" title="Semver"></a>Semver</h2><p>Until axios reaches a <code>1.0</code> release, breaking changes will be released with a new minor version. For example <code>0.5.1</code>, and <code>0.5.4</code> will have the same API, but <code>0.6.0</code> will have breaking changes.</p>
+<h2 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h2><p>axios 依赖原生的 ES6 Promise 实现而<a target="_blank" rel="noopener" href="http://caniuse.com/promises">被支持</a>.<br>如果你的环境不支持 ES6 Promise，你可以使用 <a target="_blank" rel="noopener" href="https://github.com/jakearchibald/es6-promise">polyfill</a>.</p>
+<h2 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h2><p>axios includes <a target="_blank" rel="noopener" href="http://typescriptlang.org/">TypeScript</a> definitions.</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span>;<br>axios.<span class="hljs-keyword">get</span>(<span class="hljs-string">&#x27;/user?ID=12345&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/mzabriskie/axios/blob/master/CHANGELOG.md">Changelog</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mzabriskie/axios/blob/master/UPGRADE_GUIDE.md">Upgrade Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mzabriskie/axios/blob/master/ECOSYSTEM.md">Ecosystem</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mzabriskie/axios/blob/master/CONTRIBUTING.md">Contributing Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mzabriskie/axios/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+</ul>
+<h2 id="Credits"><a href="#Credits" class="headerlink" title="Credits"></a>Credits</h2><p>axios is heavily inspired by the <a target="_blank" rel="noopener" href="https://docs.angularjs.org/api/ng/service/$http">$http service</a> provided in <a target="_blank" rel="noopener" href="https://angularjs.org/">Angular</a>. Ultimately axios is an effort to provide a standalone <code>$http</code>-like service for use outside of Angular.</p>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>MIT</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Axios中文说明</div>
+      <div>http://example.com/2022/05/22/Axios中文说明/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 22, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/22/JavaScript%E4%BD%BF%E7%94%A8%20Fetch/" title="JavaScript使用 Fetch">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaScript使用 Fetch</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/22/PHP%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0Aop/" title="PHP如何实现Aop">
+                        <span class="hidden-mobile">PHP如何实现Aop</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,600 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、Rewrite规则简介： Rewirte主要的功能就是实现URL的跳转，它的正则表达式是基于 Perl语言。可基于服务器级的(httpd.conf)和目录级的 (.htaccess)两种方式。如果要想用到rewrite模块，必须先安装或加载rewrite模块。方法有两种一种是编译apache的时候就直接 安装rewrite模块，别一种是编译apache时以DSO模式安装apache,然后再利用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache伪静态Rewrite详解">
+<meta property="og:url" content="http://example.com/2020/11/18/Apache%E4%BC%AA%E9%9D%99%E6%80%81Rewrite%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、Rewrite规则简介： Rewirte主要的功能就是实现URL的跳转，它的正则表达式是基于 Perl语言。可基于服务器级的(httpd.conf)和目录级的 (.htaccess)两种方式。如果要想用到rewrite模块，必须先安装或加载rewrite模块。方法有两种一种是编译apache的时候就直接 安装rewrite模块，别一种是编译apache时以DSO模式安装apache,然后再利用">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-18T14:16:19.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Apache伪静态Rewrite详解 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Apache伪静态Rewrite详解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-11-18 22:16" pubdate>
+          November 18, 2020 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Apache伪静态Rewrite详解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、Rewrite规则简介："><a href="#一、Rewrite规则简介：" class="headerlink" title="一、Rewrite规则简介："></a>一、Rewrite规则简介：</h1><blockquote>
+<p>Rewirte主要的功能就是实现URL的跳转，它的正则表达式是基于 Perl语言。可基于服务器级的(httpd.conf)和目录级的 (.htaccess)两种方式。如果要想用到rewrite模块，必须先安装或加载rewrite模块。方法有两种一种是编译apache的时候就直接 安装rewrite模块，别一种是编译apache时以DSO模式安装apache,然后再利用源码和apxs来安装rewrite模块。</p>
+</blockquote>
+<h1 id="二、在Apache配置中启用Rewrite"><a href="#二、在Apache配置中启用Rewrite" class="headerlink" title="二、在Apache配置中启用Rewrite"></a>二、在Apache配置中启用Rewrite</h1><p>打开配置文件httpd.conf：</p>
+<p>复制代码 代码如下:</p>
+<p>1.启用rewrite<br># LoadModule rewrite_module modules&#x2F;mod_rewrite.so 去除前面的 #<br>2.启用.htaccess<br>在虚拟机配置项中<br>AllowOverride None    修改为： AllowOverride All</p>
+<h1 id="三、Rewrite基本写法"><a href="#三、Rewrite基本写法" class="headerlink" title="三、Rewrite基本写法"></a>三、Rewrite基本写法</h1><p>服务器有配置文件不可能由我们来改，所以大多情况下要在网站的根目录下建一个.htaccess文件。</p>
+<p>复制代码 代码如下:</p>
+<p>RewriteEngine on    &#x2F;&#x2F;启动rewrite引擎<br>RewriteRule ^&#x2F;index([0-9]<em>).html$ &#x2F;index.php?id&#x3D;$1   &#x2F;&#x2F;“([0-9]</em>)” 代表范围 用(.<em>)代表所有，下同。<br>RewriteRule ^&#x2F;index([0-9]</em>)&#x2F;$ &#x2F;index.php?id&#x3D;$1 [R]   &#x2F;&#x2F;虚拟目录</p>
+<h1 id="四、Apache-mod-rewrite规则重写的标志一览"><a href="#四、Apache-mod-rewrite规则重写的标志一览" class="headerlink" title="四、Apache mod_rewrite规则重写的标志一览"></a>四、Apache mod_rewrite规则重写的标志一览</h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-number">1</span>) R<span class="hljs-literal">[=<span class="hljs-identifier">code</span>]</span>(force redirect) 强制外部重定向<br>强制在替代字符串加上http:<span class="hljs-comment">//thishost[:thisport]/前缀重定向到外部的URL.如果code不指定，将用缺省的302 HTTP状态码。</span><br><span class="hljs-number">2</span>) <span class="hljs-constructor">F(<span class="hljs-params">force</span> URL <span class="hljs-params">to</span> <span class="hljs-params">be</span> <span class="hljs-params">forbidden</span>)</span>禁用URL,返回<span class="hljs-number">403</span>HTTP状态码。<br><span class="hljs-number">3</span>) <span class="hljs-constructor">G(<span class="hljs-params">force</span> URL <span class="hljs-params">to</span> <span class="hljs-params">be</span> <span class="hljs-params">gone</span>)</span> 强制URL为GONE，返回<span class="hljs-number">410</span>HTTP状态码。<br><span class="hljs-number">4</span>) <span class="hljs-constructor">P(<span class="hljs-params">force</span> <span class="hljs-params">proxy</span>)</span> 强制使用代理转发。<br><span class="hljs-number">5</span>) <span class="hljs-constructor">L(<span class="hljs-params">last</span> <span class="hljs-params">rule</span>)</span> 表明当前规则是最后一条规则，停止分析以后规则的重写。<br><span class="hljs-number">6</span>) <span class="hljs-constructor">N(<span class="hljs-params">next</span> <span class="hljs-params">round</span>)</span> 重新从第一条规则开始运行重写过程。<br><span class="hljs-number">7</span>) <span class="hljs-constructor">C(<span class="hljs-params">chained</span> <span class="hljs-params">with</span> <span class="hljs-params">next</span> <span class="hljs-params">rule</span>)</span> 与下一条规则关联<br>如果规则匹配则正常处理，该标志无效，如果不匹配，那么下面所有关联的规则都跳过。<br><span class="hljs-number">8</span>) T=MIME-<span class="hljs-keyword">type</span>(force MIME <span class="hljs-keyword">type</span>) 强制MIME类型<br><span class="hljs-number">9</span>) NS (used only <span class="hljs-keyword">if</span> no internal sub-request) 只用于不是内部子请求<br><span class="hljs-number">10</span>) <span class="hljs-constructor">NC(<span class="hljs-params">no</span> <span class="hljs-params">case</span>)</span> 不区分大小写<br><span class="hljs-number">11</span>) <span class="hljs-constructor">QSA(<span class="hljs-params">query</span> <span class="hljs-params">string</span> <span class="hljs-params">append</span>)</span> 追加请求字符串<br><span class="hljs-number">12</span>) <span class="hljs-constructor">NE(<span class="hljs-params">no</span> URI <span class="hljs-params">escaping</span> <span class="hljs-params">of</span> <span class="hljs-params">output</span>)</span> 不在输出转义特殊字符<br>例如：RewriteRule /foo/(.*) /bar?arg=P1%<span class="hljs-number">3</span>d$<span class="hljs-number">1</span> <span class="hljs-literal">[R,NE]</span> 将能正确的将/foo/zoo转换成/bar?arg=P1=zoo<br><span class="hljs-number">13</span>) <span class="hljs-constructor">PT(<span class="hljs-params">pass</span> <span class="hljs-params">through</span> <span class="hljs-params">to</span> <span class="hljs-params">next</span> <span class="hljs-params">handler</span>)</span> 传递给下一个处理<br>	例如:<br>	RewriteRule ^/abc(.*) /def$<span class="hljs-number">1</span> <span class="hljs-literal">[PT]</span> # 将会交给/def规则处理<br>	Alias /def /ghi<br><br><span class="hljs-number">14</span>) S=num(skip next rule(s)) 跳过num条规则<br><span class="hljs-number">15</span>) E=VAR:<span class="hljs-constructor">VAL(<span class="hljs-params">set</span> <span class="hljs-params">environment</span> <span class="hljs-params">variable</span>)</span> 设置环境变量<br></code></pre></td></tr></table></figure>
+
+
+<h1 id="五、Apache-rewrite例子"><a href="#五、Apache-rewrite例子" class="headerlink" title="五、Apache rewrite例子"></a>五、Apache rewrite例子</h1><h2 id="例子一"><a href="#例子一" class="headerlink" title="例子一:"></a>例子一:</h2><p>同时达到下面两个要求：<br>1.用<a target="_blank" rel="noopener" href="http://www.jb51.net/xxx.php">http://www.jb51.net/xxx.php</a> 来访问 <a target="_blank" rel="noopener" href="http://www.jb51.net/xxx/">http://www.jb51.net/xxx/</a><br>2.用<a target="_blank" rel="noopener" href="http://yyy.jb51.net/">http://yyy.jb51.net</a> 来访问 <a target="_blank" rel="noopener" href="http://www.jb51.net/user.php?username=yyy">http://www.jb51.net/user.php?username=yyy</a> 的功能</p>
+<p>代码如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">RewriteEngine On<br>RewriteCond %&#123;HTTP_HOST&#125; ^www.jb51.net<br>RewriteCond %&#123;REQUEST_URI&#125; !^user.php$<br>RewriteCond %&#123;QUERY_STRING&#125; &quot;!^page&quot;<br>RewriteCond %&#123;REQUEST_URI&#125; .php$<br>RewriteRule (.*).php$ http://www.jb51.net/$1/ [R]<br>RewriteCond %&#123;HTTP_HOST&#125; !^www.jb51.net<br>RewriteRule ^(.+) %&#123;HTTP_HOST&#125; [C]<br>RewriteRule ^([^.]+).jb51.net http://www.jb51.net/user.php?username=$1<br>RewriteCond %&#123;REQUEST_FILENAME&#125; !-d<br>RewriteCond %&#123;REQUEST_FILENAME&#125; !-f<br></code></pre></td></tr></table></figure>
+<h2 id="例子二："><a href="#例子二：" class="headerlink" title="例子二："></a>例子二：</h2><p>代码如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">/type.php?typeid=* –&gt; /type*.html<br>/type.php?typeid=*&amp;page=* –&gt; /type*page*.html<br>RewriteRule ^/type([0-9]+).html$ /type.php?typeid=$1 [PT]<br>RewriteRule ^/type([0-9]+)page([0-9]+).html$ /type.php?typeid=$1&amp;page=$2 [PT]<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Apache伪静态Rewrite详解</div>
+      <div>http://example.com/2020/11/18/Apache伪静态Rewrite详解/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 18, 2020</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/19/Linux%20%E9%87%8C%E7%9A%84%202&amp;gt;&amp;amp;1%20%E7%A9%B6%E7%AB%9F%E6%98%AF%E4%BB%80%E4%B9%88/" title="Linux 里的 2&amp;gt;&amp;amp;1 究竟是什么">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux 里的 2&amp;gt;&amp;amp;1 究竟是什么</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/18/ob%E7%B3%BB%E5%88%97%E5%87%BD%E6%95%B0%E6%80%BB%E7%BB%93/" title="ob系列函数总结">
+                        <span class="hidden-mobile">ob系列函数总结</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

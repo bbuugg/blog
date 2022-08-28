@@ -1,0 +1,665 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="常用负载均衡HTTP 重定向对于HTTP 重定向，你一定不陌生，它可以将 HTTP 请求进行转移，在 Web 开发中我们经常会用它来完成自动跳转，比如用户登录成功后跳转到相应的管理页面。 这种重定向完全由HTTP 定义，并且由HTTP 代理和Web 服务器共同实现。很简单，当HTTP 代理（比如浏览器）向Web服务器请求某个URL后，Web 服务器可以通过HTTP 响应头信息中的Location">
+<meta property="og:type" content="article">
+<meta property="og:title" content="负载均衡笔记">
+<meta property="og:url" content="http://example.com/2021/11/20/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="常用负载均衡HTTP 重定向对于HTTP 重定向，你一定不陌生，它可以将 HTTP 请求进行转移，在 Web 开发中我们经常会用它来完成自动跳转，比如用户登录成功后跳转到相应的管理页面。 这种重定向完全由HTTP 定义，并且由HTTP 代理和Web 服务器共同实现。很简单，当HTTP 代理（比如浏览器）向Web服务器请求某个URL后，Web 服务器可以通过HTTP 响应头信息中的Location">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-11-20T03:39:21.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>负载均衡笔记 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="负载均衡笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-20 11:39" pubdate>
+          November 20, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">负载均衡笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="常用负载均衡"><a href="#常用负载均衡" class="headerlink" title="常用负载均衡"></a>常用负载均衡</h1><h2 id="HTTP-重定向"><a href="#HTTP-重定向" class="headerlink" title="HTTP 重定向"></a><strong>HTTP</strong> <strong>重定向</strong></h2><p>对于HTTP 重定向，你一定不陌生，它可以将 HTTP 请求进行转移，在 Web 开发中我们经常会用它来完成自动跳转，比如用户登录成功后跳转到相应的管理页面。 这种重定向完全由HTTP 定义，并且由HTTP 代理和Web 服务器共同实现。很简单，当HTTP 代理（比如浏览器）向Web服务器请求某个URL后，Web 服务器可以通过HTTP 响应头信息中的Location 标记来返回一个新的URL，这意味着HTTP代理需要继续请求这个新的URL ，这便完成了自动跳转。当然，如果你自己写了一个 HTTP 代理，也可以不支持重定向，也就是对于Web 服务器返回的Location 标记视而不见，虽然这可能不符合HTTP 标准，但这完全取决于你的应用需要。 也正是因为HTTP 重定向具备了请求转移和自动跳转的本领，所以除了满足应用程序需要的各种自动跳转之外，它还可以用于实现负载均衡，以达到Web 扩展的目的。</p>
+<h2 id="DNS-负载均衡"><a href="#DNS-负载均衡" class="headerlink" title="DNS 负载均衡"></a><strong>DNS</strong> <strong>负载均衡</strong></h2><p>我们知道，DNS负责提供域名解析服务，当我们访问某个站点时，实际上首先需要通过该站点域名的DNS服务器来获取域名指向的IP 地址，在这一过程中，DNS服务器完成了域名到IP 地址的映射，同样，这种映射也可以是一对多的，这时候，DNS 服务器便充当了负载均衡调度器（也称均衡器），它就像前面提到的重定向转移策略一样，将用户的请求分散到多台服务器上，但是它的实现机制完全不同。</p>
+<h2 id="反向代理负载均衡"><a href="#反向代理负载均衡" class="headerlink" title="反向代理负载均衡"></a><strong>反向代理负载均衡</strong></h2><p>反向代理服务器的核心工作便是转发 HTTP 请求，因此它工作在 HTTP 层面，也就是 TCP 七层结构中的应用层（第七层），所以基于反向代理的负载均衡也称为七层负载均衡，实现它并不困难，目前几乎所有主流的 Web 服务器都热衷于支持基于反向代理的负载均衡，随后我们将进行Nginx反向代理负载均衡的实验</p>
+<h2 id="IP-负载均衡"><a href="#IP-负载均衡" class="headerlink" title="IP 负载均衡"></a><strong>IP</strong> <strong>负载均衡</strong></h2><p>事实上，在数据链路层（第二层）、网络层（第三层）以及传输层（四层）都可以实现不同机制的负载均衡，但有所不同的是，这些负载均衡调度器的工作必须由Linux 内核来完成，因为我们希望网络数据包在从内核缓冲区进入进程用户地址空间之前，尽早地被转发到其他实际服务器上，没错，Linux 内核当然可以办得到，位于内核的Netfilter和IPVS可以解决问题，而用户空间的应用程序对此却束手无策。 另一方面，也正是因为可以将调度器工作在应用层以下，这些负载均衡系统可以支持更多的网络服务协议，比如FTP 、SMTP 、DNS ，以及流媒体和Vo I P 等应用。 </p>
+<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><p>&gt; 计算机集群简称集群是一种计算机系统， 它通过一组松散集成的计算机软件和&#x2F;或硬件连接起来高度紧密地协作完成计算工作。在某种意义上，他们可以被看作是一台计算机。集群系统中的单个计算机通常称为节点，通常通过局域网连接，但也有其它的可能连接方式。集群计算机通常用来改进单个计算机的计算速度和&#x2F;或可靠性。一般情况下集群计算机比单个计算机，比如工作站或超级计算机性能价格比要高得多。</p>
+<h2 id="集群分类"><a href="#集群分类" class="headerlink" title="集群分类"></a>集群分类</h2><p>集群分为同构与异构两种，它们的区别在于：组成集群系统的计算机之间的体系结构是否相同。集群计算机按功能和结构可以分成以下几类: </p>
+<h3 id="高可用性集群-High-availability-HA-clusters"><a href="#高可用性集群-High-availability-HA-clusters" class="headerlink" title="高可用性集群 (High-availability (HA) clusters)"></a><strong>高可用性集群</strong> (High-availability (HA) clusters)</h3><p>当集群中有某个节点失效的情况下，其上的任务会自动转移到其他正常的节点上。可以将集群中的某节点进行离线维护再上线，该过程并不影响整个集群的运行。</p>
+<h3 id="负载均衡集群-Load-balancing-clusters"><a href="#负载均衡集群-Load-balancing-clusters" class="headerlink" title="负载均衡集群 (Load balancing clusters)"></a><strong>负载均衡集群</strong> (Load balancing clusters)</h3><p>负载均衡集群运行时，一般通过一个或者多个前端负载均衡器，将工作负载分发到后端的一组服务器上，从而达到整个系统的高性能和高可用性。这样的计算机集群有时也被称为服务器群（Server Farm）。 一般高可用性集群和负载均衡集群会使用类似的技术，或同时具有高可用性与负载均衡的特点。</p>
+<p>Linux虚拟服务器（LVS）项目在Linux操作系统上提供了最常用的负载均衡软件。</p>
+<h3 id="高性能计算集群-High-performance-HPC-clusters"><a href="#高性能计算集群-High-performance-HPC-clusters" class="headerlink" title="高性能计算集群 ( High-performance (HPC) clusters)"></a><strong>高性能计算集群</strong> ( High-performance (HPC) clusters)</h3><p>高性能计算集群采用将计算任务分配到集群的不同计算节点而提高计算能力，因而主要应用在科学计算领域。比较流行的HPC采用Linux操作系统和其它一些免费软件来完成并行运算。这一集群配置通常被称为Beowulf集群。这类集群通常运行特定的程序以发挥HPC cluster的并行能力。这类程序一般应用特定的运行库, 比如专为科学计算设计的MPI库。</p>
+<p>HPC集群特别适合于在计算中各计算节点之间发生大量数据通讯的计算作业，比如一个节点的中间结果或影响到其它节点计算结果的情况。</p>
+<h3 id="网格计算-Grid-computing"><a href="#网格计算-Grid-computing" class="headerlink" title="网格计算 (Grid computing)"></a><strong>网格计算</strong> (Grid computing)</h3><p>网格计算或网格集群是一种与集群计算非常相关的技术。网格与传统集群的主要差别是网格是连接一组相关并不信任的计算机，它的运作更像一个计算公共设施而不是一个独立的计算机。还有，网格通常比集群支持更多不同类型的计算机集合。</p>
+<p>网格计算是针对有许多独立作业的工作任务作优化，在计算过程中作业间无需共享数据。网格主要服务于管理在独立执行工作的计算机间的作业分配。资源如存储可以被所有结点共享，但作业的中间结果不会影响在其他网格结点上作业的进展。</p>
+<h2 id="基于LVS的负载均衡集群"><a href="#基于LVS的负载均衡集群" class="headerlink" title="基于LVS的负载均衡集群"></a>基于LVS的负载均衡集群</h2><h3 id="三种网络-x2F-工作模式"><a href="#三种网络-x2F-工作模式" class="headerlink" title="三种网络&#x2F;工作模式"></a>三种网络&#x2F;工作模式</h3><p>NAT、DR、TUN</p>
+<h3 id="十个调度算法"><a href="#十个调度算法" class="headerlink" title="十个调度算法"></a>十个调度算法</h3><p>rr、wrr、lc、wlc、lblc、lblcr、dh、sh、sed、 nq</p>
+<h3 id="集群系统的角色、结构"><a href="#集群系统的角色、结构" class="headerlink" title="集群系统的角色、结构"></a>集群系统的角色、结构</h3><p>Client: CIP</p>
+<p>Router:GWIP</p>
+<p>VirtualServer(VS): VIP</p>
+<p>Director&#x2F;LoadBalancer(LB): DIP</p>
+<p>RealServer(RS): RIP</p>
+<h3 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h3><p>1.<strong>轮叫调度</strong>（Round Robin）(简称rr)</p>
+<p>调度器通过“轮叫”调度算法将外部请求按顺序轮流分配到集群中的真实服务器上，它均等地对待每一台服务器，而不管服务器上实际的连接数和系统负载。</p>
+<p>2.<strong>加权轮叫</strong>（Weighted Round Robin）（简称wrr)</p>
+<p>调度器通过“加权轮叫”调度算法根据真实服务器的不同处理能力来调度访问请求。这样可以保证处理能力强的服务器能处理更多的访问流量。调度器可以自动问询真实服务器的负载情况，并动态地调整其权值。</p>
+<p>3.<strong>最少链接</strong>（Least Connections）(LC)</p>
+<p>调度器通过“最少连接”调度算法动态地将网络请求调度到已建立的链接数最少的服务器上。如果集群系统的真实服务器具有相近的系统性能，采用“最小连接”调度算法可以较好地均衡负载。</p>
+<p>4.<strong>加权最少链接</strong>（Weighted Least Connections）(WLC)</p>
+<p>在集群系统中的服务器性能差异较大的情况下，调度器采用“加权最少链接”调度算法优化负载均衡性能，具有较高权值的服务器将承受较大比例的活动连接负载。调度器可以自动问询真实服务器的负载情况，并动态地调整其权值。</p>
+<p>5.<strong>基于局部性的最少链接</strong>（Locality-Based Least Connections）(LBLC)</p>
+<p>“基于局部性的最少链接”调度算法是针对目标IP地址的负载均衡，目前主要用于Cache集群系统。该算法根据请求的目标IP地址找出该目标IP地址最近使用的服务器，若该服务器是可用的且没有超载，将请求发送到该服务器；若服务器不存在，或者该服务器超载且有服务器处于一半的工作负载，则用“最少链接” 的原则选出一个可用的服务器，将请求发送到该服务器。</p>
+<p>6.<strong>带复制的基于局部性最少链接</strong>（Locality-Based Least Connections with Replication）(LBLCR)</p>
+<p>“带复制的基于局部性最少链接”调度算法也是针对目标IP地址的负载均衡，目前主要用于Cache集群系统。它与LBLC算法的不同之处是它要维护从一个目标 IP地址到一组服务器的映射，而LBLC算法维护从一个目标IP地址到一台服务器的映射。该算法根据请求的目标IP地址找出该目标IP地址对应的服务器组，按“最小连接”原则从服务器组中选出一台服务器，若服务器没有超载，将请求发送到该服务器；若服务器超载，则按“最小连接”原则从这个集群中选出一台服务器，将该服务器加入到服务器组中，将请求发送到该服务器。同时，当该服务器组有一段时间没有被修改，将最忙的服务器从服务器组中删除，以降低复制的程度。</p>
+<p>7.<strong>目标地址散列</strong>（Destination Hashing）(DH)</p>
+<p>“目标地址散列”调度算法根据请求的目标IP地址，作为散列键（Hash Key）从静态分配的散列表找出对应的服务器，若该服务器是可用的且未超载，将请求发送到该服务器，否则返回空。</p>
+<p>8.<strong>源地址散列</strong>（Source Hashing）(SH)</p>
+<p>“源地址散列”调度算法根据请求的源IP地址，作为散列键（Hash Key）从静态分配的散列表找出对应的服务器，若该服务器是可用的且未超载，将请求发送到该服务器，否则返回空。</p>
+<ol start="9">
+<li><strong>最短的期望的延迟</strong>（Shortest Expected Delay Scheduling SED）(SED)</li>
+</ol>
+<p>基于wlc算法。这个必须举例来说了</p>
+<p>ABC三台机器分别权重123 ，连接数也分别是123。那么如果使用WLC算法的话一个新请求进入时它可能会分给ABC中的任意一个。使用sed算法后会进行这样一个运算</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">A</span>(<span class="hljs-number">1</span>+<span class="hljs-number">1</span>)/<span class="hljs-number">1</span><br><br><span class="hljs-attribute">B</span>(<span class="hljs-number">1</span>+<span class="hljs-number">2</span>)/<span class="hljs-number">2</span><br><br><span class="hljs-attribute">C</span>(<span class="hljs-number">1</span>+<span class="hljs-number">3</span>)/<span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<p>根据运算结果，把连接交给C 。</p>
+<p>10.<strong>最少队列调度</strong>（Never Queue Scheduling NQ）(NQ)</p>
+<p>无需队列。如果有台 realserver的连接数＝0就直接分配过去，不需要在进行sed运算</p>
+<h3 id="LVS配置流程框架"><a href="#LVS配置流程框架" class="headerlink" title="LVS配置流程框架"></a>LVS配置流程框架</h3><p>拓扑信息收集</p>
+<p>Director端配置过程</p>
+<p>RealServer端配置过程</p>
+<p>测试过程</p>
+<h3 id="LVS集群拓扑信息表"><a href="#LVS集群拓扑信息表" class="headerlink" title="LVS集群拓扑信息表"></a>LVS集群拓扑信息表</h3><p>角色：Client, Router, VS, RS</p>
+<p>拓扑信息：CIP, GWIP, DIP, VIP, RIP,……</p>
+<h3 id="IP规划："><a href="#IP规划：" class="headerlink" title="IP规划："></a>IP规划：</h3><p>Hostname       ip</p>
+<p>VIP             192.168.1.250</p>
+<p>MASTER        192.168.1.202</p>
+<p>BACKUP        192.168.1.204</p>
+<p>REALSERVER1     192.168.1.201</p>
+<p>REALSERVER2     192.168.1.203</p>
+<h3 id="配置LVS集群的过程"><a href="#配置LVS集群的过程" class="headerlink" title="配置LVS集群的过程"></a>配置LVS集群的过程</h3><p>确认内核支持ipvs</p>
+<p>执行命令：modprobe -l | grep ipvs</p>
+<p>确定集群架构、类型、角色&#x2F;成员、拓扑，确定各成员的网络配置参数。</p>
+<p>网络环境的配置</p>
+<p>专用网络设备：路由器&#x2F;防火墙&#x2F;交换机</p>
+<p>集群各成员主机配置信息</p>
+<p>使用ifconfig或者ip命令配置网络接口</p>
+<p>在各个角色主机上跑tcpdump抓包，分析报文通径。这一方法通常用于分析LVS配置中的故障。</p>
+<p>前端(FrontEnd)调度器Director的配置</p>
+<p>NAT:</p>
+<p>外网VIP配置，将作为对外公开的可访问接口</p>
+<p>内网DIP配置，将作为后端RealServer的GWIP</p>
+<p>内核IP转发参数设置</p>
+<p>负载均衡服务、服务器及规则配置</p>
+<p>基于ipvsadm脚本的方法</p>
+<p>基于keepalived配置文件的方法</p>
+<p>DR:</p>
+<p>先在对外公开的可访问接口上配置DIP，然后在该接口上创建子接口配置VIP</p>
+<p>内核参数设置</p>
+<p>负载均衡服务、服务器及规则配置</p>
+<p>基于ipvsadm脚本的方法</p>
+<p>基于keepalived配置文件的方法</p>
+<p>TUN:同DR，但要注意配置重点在隧道设备。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>负载均衡笔记</div>
+      <div>http://example.com/2021/11/20/负载均衡笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 20, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/20/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D%E6%AC%A1%E6%95%B0/" title="正则表达式匹配次数">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">正则表达式匹配次数</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/19/Golang%E6%A0%87%E5%87%86%E5%BA%93%E4%B9%8Bstrings/" title="Golang标准库之strings">
+                        <span class="hidden-mobile">Golang标准库之strings</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

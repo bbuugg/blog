@@ -1,0 +1,621 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、session预定义常量个人感觉PHP 最大的特点就是功能的实现都靠提供的函数扩展，函数扩展都是根据功能分大类的，session只是其中的一个扩展。 该扩展中定义了一些常量，可在PHP 编译或运行时动态载入时可用： 1、SID(string)包含着会话名及会话ID 的常量，格式为&quot;name&#x3D;ID&quot;，如果会话ID 已经在恰当的会话cookie 中设定时则为空字符串。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP中的Session">
+<meta property="og:url" content="http://example.com/2021/04/03/PHP%E4%B8%AD%E7%9A%84Session/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、session预定义常量个人感觉PHP 最大的特点就是功能的实现都靠提供的函数扩展，函数扩展都是根据功能分大类的，session只是其中的一个扩展。 该扩展中定义了一些常量，可在PHP 编译或运行时动态载入时可用： 1、SID(string)包含着会话名及会话ID 的常量，格式为&quot;name&#x3D;ID&quot;，如果会话ID 已经在恰当的会话cookie 中设定时则为空字符串。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-03T13:58:51.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>PHP中的Session - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PHP中的Session"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-03 21:58" pubdate>
+          April 3, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PHP中的Session</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、session预定义常量"><a href="#一、session预定义常量" class="headerlink" title="一、session预定义常量"></a>一、session预定义常量</h1><p>个人感觉PHP 最大的特点就是功能的实现都靠提供的函数扩展，函数扩展都是根据功能分大类的，session只是其中的一个扩展。</p>
+<p>该扩展中定义了一些常量，可在PHP 编译或运行时动态载入时可用：</p>
+<h2 id="1、SID-string"><a href="#1、SID-string" class="headerlink" title="1、SID(string)"></a><strong>1、SID(string)</strong></h2><p>包含着会话名及会话ID 的常量，格式为&quot;name&#x3D;ID&quot;，如果会话ID 已经在恰当的会话cookie 中设定时则为空字符串。和session_id() 返回的是同一个ID。</p>
+<h2 id="2、PHP-SESSION-DISABLED-int"><a href="#2、PHP-SESSION-DISABLED-int" class="headerlink" title="2、PHP_SESSION_DISABLED(int)"></a><strong>2、PHP_SESSION_DISABLED(int)</strong></h2><p>自PHP 5.4.0起可用。如果会话已禁用，则返回session_status（）的值。</p>
+<h2 id="3、PHP-SESSION-NONE-int"><a href="#3、PHP-SESSION-NONE-int" class="headerlink" title="3、PHP_SESSION_NONE(int)"></a><strong>3、PHP_SESSION_NONE(int)</strong></h2><p>自PHP 5.4.0起可用。在会话已启用，但还没有会话时返回session_status（）的值。</p>
+<h2 id="4、PHP-SESSION-ACTIVE-int"><a href="#4、PHP-SESSION-ACTIVE-int" class="headerlink" title="4、PHP_SESSION_ACTIVE(int)"></a><strong>4、PHP_SESSION_ACTIVE(int)</strong></h2><p>自PHP 5.4.0起可用。在会话已启用，并存在会话时返回session_status（）的值。</p>
+<p>注：会话在PHP中默认为激活（启用）。</p>
+<p>session常量动态定义的，网友：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ruby">var_dump(<span class="hljs-keyword">defined</span>(<span class="hljs-string">&#x27;SID&#x27;</span>));  <span class="hljs-regexp">//</span> bool(<span class="hljs-literal">false</span>) - Not <span class="hljs-keyword">defined</span>...<br>session_start();<br>var_dump(<span class="hljs-keyword">defined</span>(<span class="hljs-string">&#x27;SID&#x27;</span>));  <span class="hljs-regexp">//</span> bool(<span class="hljs-literal">true</span>) - Defined now!<br></code></pre></td></tr></table></figure>
+
+<p><strong>自己测试了下，结果两个都是bool(true)，应该是自己的问题。之后随后重新建一个php文档，执行：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs php">&amp;lt;?php<br><span class="hljs-keyword">echo</span> SID;          <span class="hljs-comment">//提示使用了未定义常量</span><br><span class="hljs-title function_ invoke__">session_start</span>();<br><span class="hljs-keyword">echo</span> SID;          <span class="hljs-comment">//显示&amp;quot;name=UID&amp;quot;样式字符串。说明确实是动态定义，因为没有会话就没有会话的UID.</span><br>?&amp;gt;<br></code></pre></td></tr></table></figure>
+
+<h1 id="二、基本用法"><a href="#二、基本用法" class="headerlink" title="二、基本用法"></a><strong>二、基本用法</strong></h1><p>通过为每个独立用户分配唯一的会话 ID，可以实现针对不同用户分别存储数据的功能。 会话通常被用来在多个页面请求之间保存及共享信息。  一般来说，会话 ID 通过 cookie 的方式发送到浏览器，并且在服务器端也是通过会话 ID 来取回会话中的数据。 如果请求中不包含会话 ID 信息，那么 PHP 就会创建一个新的会话，并为新创建的会话分配新的 ID。</p>
+<p>会话的工作流程很简单。当开始一个会话时，PHP 会尝试从请求中查找会话 ID （通常通过会话 cookie）， 如果请求中不包含会话 ID 信息，PHP 就会创建一个新的会话。 会话开始之后，PHP 就会将会话中的数据设置到 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/reserved.variables.session.php">$_SESSION</a> 变量中。 当 PHP 停止的时候，它会自动读取 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/reserved.variables.session.php">$_SESSION</a> 中的内容，并将其进行序列化， 然后发送给会话保存管理器器来进行保存。</p>
+<p>默认情况下，PHP 使用内置的文件会话保存管理器（<code>files</code>）来完成会话的保存。 也可以通过配置项<a target="_blank" rel="noopener" href="http://php.net/manual/zh/session.configuration.php#ini.session.save-handler">session.save_handler</a> 来修改所要采用的会话保存管理器。 对于文件会话保存管理器，会将会话数据保存到配置项<a target="_blank" rel="noopener" href="http://php.net/manual/zh/session.configuration.php#ini.session.save-path">session.save_path</a> 所指定的位置。</p>
+<p>可以通过调用函数 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.session-start.php">session_start()</a> 来手动开始一个会话。 如果配置项 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/session.configuration.php#ini.session.auto-start">session.auto_start</a> 设置为<code>1</code>， 那么请求开始的时候，会话会自动开始。</p>
+<p>PHP 脚本执行完毕之后，会话会自动关闭。 同时，也可以通过调用函数 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.session-write-close.php">session_write_close()</a> 来手动关闭会话。</p>
+<p>Example #1 在 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/reserved.variables.session.php">$_SESSION</a> 中注册变量。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">&amp;lt;<span class="hljs-string">?p</span>hp session_start(); <span class="hljs-keyword">if</span> (!isset(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&#x27;count&#x27;</span>])) &#123;  <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&#x27;count&#x27;</span>] = <span class="hljs-number">0</span>; &#125; <span class="hljs-keyword">else</span> &#123;  <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&#x27;count&#x27;</span>]++; &#125;<span class="hljs-string">?&amp;</span>gt;<br></code></pre></td></tr></table></figure>
+
+<p>Example #2 从 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/reserved.variables.session.php">$_SESSION</a> 中反注册变量。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">&amp;lt;<span class="hljs-string">?p</span>hp session_start(); unset(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&#x27;count&#x27;</span>]);<span class="hljs-string">?&amp;</span>gt;<br></code></pre></td></tr></table></figure>
+
+<p><strong>Caution</strong></p>
+<p>千万不要使用 unset($_SESSION) 来复位超级变量 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/reserved.variables.session.php">$_SESSION</a>， 因为这样会导致无法继续在 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/reserved.variables.session.php">$_SESSION</a>中注册会话变量。</p>
+<p><strong>Warning</strong></p>
+<p>由于无法将一个引用恢复到另外一个变量， 所以不可以将引用保存到会话变量中。</p>
+<p><strong>Warning</strong></p>
+<p>如果会话中存在和全局变量同名的变量，那么 register_globals 会导致全局变量被会话变量覆盖。 更多信息请参考 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/security.globals.php">注册全局变量</a>。</p>
+<p>&gt; Note:<br>&gt;<br>&gt; 无论是通过调用函数 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.session-start.php">session_start()</a> 手动开启会话， 还是使用配置项 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/session.configuration.php#ini.session.auto-start">session.auto_start</a> 自动开启会话， 对于基于文件的会话数据保存（PHP 的默认行为）而言， 在会话开始的时候都会给会话数据文件加锁， 直到 PHP 脚本执行完毕或者显式调用 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.session-write-close.php">session_write_close()</a> 来保存会话数据。 在此期间，其他脚本不可以访问同一个会话数据文件。<br>&gt;<br>&gt; 对于大量使用 Ajax 或者并发请求的网站而言，这可能是一个严重的问题。 解决这个问题最简单的做法是如果修改了会话中的变量， 那么应该尽快调用 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.session-write-close.php">session_write_close()</a> 来保存会话数据并释放文件锁。 还有一种选择就是使用支持并发操作的会话保存管理器来替代文件会话保存管理器。</p>
+<p>理解：由于HTTP 的不可维持性（执行一段php脚本，实际上进行了一次http  通信），每段php脚本执行完时，会话会自动自动关闭。即同一时刻，只有一个php脚本访问到该session及其数据文件。为了保证每个php脚本访问到的session及其数据文件都是最新的，每次对该session的数据修改都应该及时保存进数据文件中，这在大量Ajax  应用中非常重要。</p>
+<p><strong>总结session：</strong></p>
+<p>1、session_destroy()：常用方法。</p>
+<p>2、unset($_SESSION)：终结必杀，使用后无法继续使用$_SESSION 注册会话变量，所以一般不能用，算不上真正的方法。</p>
+<p>网上的另一种方法，思路和删除cookie一样，没有具体实践，不知可行否：</p>
+<p> 3、setcookie(session_name(),session_id(),time() -8000000,..);</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PHP中的Session</div>
+      <div>http://example.com/2021/04/03/PHP中的Session/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 3, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/03/PHP%E7%9A%84%E9%97%AD%E5%8C%85/" title="PHP的闭包">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PHP的闭包</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/03/FastCGI/" title="FastCGI">
+                        <span class="hidden-mobile">FastCGI</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

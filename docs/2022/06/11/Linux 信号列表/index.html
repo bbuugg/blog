@@ -1,0 +1,1095 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="信号 取值 默认动作 含义（发出信号的原因）    SIGHUP 1 Term 终端的挂断或进程死亡   SIGINT 2 Term 来自键盘的中断信号   SIGQUIT 3 Core 来自键盘的离开信号   SIGILL 4 Core 非法指令   SIGABRT 6 Core 来自 abort 的异常信号   SIGFPE 8 Core 浮点例外   SIGKILL 9 Term 杀死">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 信号列表">
+<meta property="og:url" content="http://example.com/2022/06/11/Linux%20%E4%BF%A1%E5%8F%B7%E5%88%97%E8%A1%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="信号 取值 默认动作 含义（发出信号的原因）    SIGHUP 1 Term 终端的挂断或进程死亡   SIGINT 2 Term 来自键盘的中断信号   SIGQUIT 3 Core 来自键盘的离开信号   SIGILL 4 Core 非法指令   SIGABRT 6 Core 来自 abort 的异常信号   SIGFPE 8 Core 浮点例外   SIGKILL 9 Term 杀死">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-11T06:08:53.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.683Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Linux 信号列表 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux 信号列表"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-06-11 14:08" pubdate>
+          June 11, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux 信号列表</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <table>
+<thead>
+<tr>
+<th>信号</th>
+<th>取值</th>
+<th>默认动作</th>
+<th>含义（发出信号的原因）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SIGHUP</td>
+<td>1</td>
+<td>Term</td>
+<td>终端的挂断或进程死亡</td>
+</tr>
+<tr>
+<td>SIGINT</td>
+<td>2</td>
+<td>Term</td>
+<td>来自键盘的中断信号</td>
+</tr>
+<tr>
+<td>SIGQUIT</td>
+<td>3</td>
+<td>Core</td>
+<td>来自键盘的离开信号</td>
+</tr>
+<tr>
+<td>SIGILL</td>
+<td>4</td>
+<td>Core</td>
+<td>非法指令</td>
+</tr>
+<tr>
+<td>SIGABRT</td>
+<td>6</td>
+<td>Core</td>
+<td>来自 abort 的异常信号</td>
+</tr>
+<tr>
+<td>SIGFPE</td>
+<td>8</td>
+<td>Core</td>
+<td>浮点例外</td>
+</tr>
+<tr>
+<td>SIGKILL</td>
+<td>9</td>
+<td>Term</td>
+<td>杀死</td>
+</tr>
+<tr>
+<td>SIGSEGV</td>
+<td>11</td>
+<td>Core</td>
+<td>段非法错误 (内存引用无效)</td>
+</tr>
+<tr>
+<td>SIGPIPE</td>
+<td>13</td>
+<td>Term</td>
+<td>管道损坏：向一个没有读进程的管道写数据</td>
+</tr>
+<tr>
+<td>SIGALRM</td>
+<td>14</td>
+<td>Term</td>
+<td>来自 alarm 的计时器到时信号</td>
+</tr>
+<tr>
+<td>SIGTERM</td>
+<td>15</td>
+<td>Term</td>
+<td>终止</td>
+</tr>
+<tr>
+<td>SIGUSR1</td>
+<td>30,10,16</td>
+<td>Term</td>
+<td>用户自定义信号 1</td>
+</tr>
+<tr>
+<td>SIGUSR2</td>
+<td>31,12,17</td>
+<td>Term</td>
+<td>用户自定义信号 2</td>
+</tr>
+<tr>
+<td>SIGCHLD</td>
+<td>20,17,18</td>
+<td>Ign</td>
+<td>子进程停止或终止</td>
+</tr>
+<tr>
+<td>SIGCONT</td>
+<td>19,18,25</td>
+<td>Cont</td>
+<td>如果停止，继续执行</td>
+</tr>
+<tr>
+<td>SIGSTOP</td>
+<td>17,19,23</td>
+<td>Stop</td>
+<td>非来自终端的停止信号</td>
+</tr>
+<tr>
+<td>SIGTSTP</td>
+<td>18,20,24</td>
+<td>Stop</td>
+<td>来自终端的停止信号</td>
+</tr>
+<tr>
+<td>SIGTTIN</td>
+<td>21,21,26</td>
+<td>Stop</td>
+<td>后台进程读终端</td>
+</tr>
+<tr>
+<td>SIGTTOU</td>
+<td>22,22,27</td>
+<td>Stop</td>
+<td>后台进程写终端</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SIGBUS</td>
+<td>10,7,10</td>
+<td>Core</td>
+<td>总线错误（内存访问错误）</td>
+</tr>
+<tr>
+<td>SIGPOLL</td>
+<td></td>
+<td>Term</td>
+<td>Pollable 事件发生 (Sys V)，与 SIGIO 同义</td>
+</tr>
+<tr>
+<td>SIGPROF</td>
+<td>27,27,29</td>
+<td>Term</td>
+<td>统计分布图用计时器到时</td>
+</tr>
+<tr>
+<td>SIGSYS</td>
+<td>12,-,12</td>
+<td>Core</td>
+<td>非法系统调用 (SVr4)</td>
+</tr>
+<tr>
+<td>SIGTRAP</td>
+<td>5</td>
+<td>Core</td>
+<td>跟踪 &#x2F; 断点自陷</td>
+</tr>
+<tr>
+<td>SIGURG</td>
+<td>16,23,21</td>
+<td>Ign</td>
+<td>socket 紧急信号 (4.2BSD)</td>
+</tr>
+<tr>
+<td>SIGVTALRM</td>
+<td>26,26,28</td>
+<td>Term</td>
+<td>虚拟计时器到时 (4.2BSD)</td>
+</tr>
+<tr>
+<td>SIGXCPU</td>
+<td>24,24,30</td>
+<td>Core</td>
+<td>超过 CPU 时限 (4.2BSD)</td>
+</tr>
+<tr>
+<td>SIGXFSZ</td>
+<td>25,25,31</td>
+<td>Core</td>
+<td>超过文件长度限制 (4.2BSD)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SIGIOT</td>
+<td>6</td>
+<td>Core</td>
+<td>IOT 自陷，与 SIGABRT 同义</td>
+</tr>
+<tr>
+<td>SIGEMT</td>
+<td>7,-,7</td>
+<td></td>
+<td>Term</td>
+</tr>
+<tr>
+<td>SIGSTKFLT</td>
+<td>-,16,-</td>
+<td>Term</td>
+<td>协处理器堆栈错误 (不使用)</td>
+</tr>
+<tr>
+<td>SIGIO</td>
+<td>23,29,22</td>
+<td>Term</td>
+<td>描述符上可以进行 I&#x2F;O 操作</td>
+</tr>
+<tr>
+<td>SIGCLD</td>
+<td>-,-,18</td>
+<td>Ign</td>
+<td>与 SIGCHLD 同义</td>
+</tr>
+<tr>
+<td>SIGPWR</td>
+<td>29,30,19</td>
+<td>Term</td>
+<td>电力故障 (System V)</td>
+</tr>
+<tr>
+<td>SIGINFO</td>
+<td>29,-,-</td>
+<td></td>
+<td>与 SIGPWR 同义</td>
+</tr>
+<tr>
+<td>SIGLOST</td>
+<td>-,-,-</td>
+<td>Term</td>
+<td>文件锁丢失</td>
+</tr>
+<tr>
+<td>SIGWINCH</td>
+<td>28,28,20</td>
+<td>Ign</td>
+<td>窗口大小改变 (4.3BSD, Sun)</td>
+</tr>
+<tr>
+<td>SIGUNUSED</td>
+<td>-,31,-</td>
+<td>Term</td>
+<td>未使用信号 (will be SIGSYS)</td>
+</tr>
+</tbody></table>
+<h2 id="非可靠信号"><a href="#非可靠信号" class="headerlink" title="非可靠信号"></a>非可靠信号</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SIGHUP</td>
+<td>连接断开</td>
+</tr>
+<tr>
+<td>SIGINT</td>
+<td>终端中断符</td>
+</tr>
+<tr>
+<td>SIGQUIT</td>
+<td>终端退出符</td>
+</tr>
+<tr>
+<td>SIGILL</td>
+<td>非法硬件指令</td>
+</tr>
+<tr>
+<td>SIGTRAP</td>
+<td>硬件故障</td>
+</tr>
+<tr>
+<td>SIGABRT</td>
+<td>异常终止 (abort)</td>
+</tr>
+<tr>
+<td>SIGBUS</td>
+<td>硬件故障</td>
+</tr>
+<tr>
+<td>SIGFPE</td>
+<td>算术异常</td>
+</tr>
+<tr>
+<td>SIGKILL</td>
+<td>终止</td>
+</tr>
+<tr>
+<td>SIGUSR1</td>
+<td>用户定义信号</td>
+</tr>
+<tr>
+<td>SIGUSR2</td>
+<td>用户定义信号</td>
+</tr>
+<tr>
+<td>SIGSEGV</td>
+<td>无效内存引用</td>
+</tr>
+<tr>
+<td>SIGPIPE</td>
+<td>写至无读进程的管道</td>
+</tr>
+<tr>
+<td>SIGALRM</td>
+<td>定时器超时 (alarm)</td>
+</tr>
+<tr>
+<td>SIGTERM</td>
+<td>终止</td>
+</tr>
+<tr>
+<td>SIGCHLD</td>
+<td>子进程状态改变</td>
+</tr>
+<tr>
+<td>SIGCONT</td>
+<td>使暂停进程继续</td>
+</tr>
+<tr>
+<td>SIGSTOP</td>
+<td>停止</td>
+</tr>
+<tr>
+<td>SIGTSTP</td>
+<td>终端停止符</td>
+</tr>
+<tr>
+<td>SIGTTIN</td>
+<td>后台读控制 tty</td>
+</tr>
+<tr>
+<td>SIGTTOU</td>
+<td>后台写向控制 tty</td>
+</tr>
+<tr>
+<td>SIGURG</td>
+<td>紧急情况 (套接字)</td>
+</tr>
+<tr>
+<td>SIGXCPU</td>
+<td>超过 CPU 限制 (setrlimit)</td>
+</tr>
+<tr>
+<td>SIGXFSZ</td>
+<td>超过文件长度限制 (setrlimit)</td>
+</tr>
+<tr>
+<td>SIGVTALRM</td>
+<td>虚拟时间闹钟 (setitimer)</td>
+</tr>
+<tr>
+<td>SIGPROF</td>
+<td>梗概时间超时 (setitimer)</td>
+</tr>
+<tr>
+<td>SIGWINCH</td>
+<td>终端窗口大小改变</td>
+</tr>
+<tr>
+<td>SIGIO</td>
+<td>异步 I&#x2F;O</td>
+</tr>
+<tr>
+<td>SIGPWR</td>
+<td>电源失效 &#x2F; 重启动</td>
+</tr>
+<tr>
+<td>SIGSYS</td>
+<td>无效系统调用</td>
+</tr>
+</tbody></table>
+<h2 id="可靠信号"><a href="#可靠信号" class="headerlink" title="可靠信号"></a>可靠信号</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>用户自定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SIGRTMIN</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+1</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+2</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+3</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+4</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+5</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+6</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+7</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+8</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+9</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+10</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+11</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+12</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+13</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+14</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMIN+15</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-14</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-13</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-12</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-11</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-10</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-9</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-8</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-7</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-6</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-5</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-4</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-3</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-2</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX-1</td>
+<td></td>
+</tr>
+<tr>
+<td>SIGRTMAX</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>来源： <a target="_blank" rel="noopener" href="https://wiki.swoole.com/#/other/signal">https://wiki.swoole.com/#/other/signal</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux 信号列表</div>
+      <div>http://example.com/2022/06/11/Linux 信号列表/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 11, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/11/%E8%AF%A6%E8%A7%A3PV%E3%80%81UV%E3%80%81VV%E3%80%81IP%E5%8F%8A%E5%85%B6%E5%85%B3%E7%B3%BB%E4%B8%8E%E8%AE%A1%E7%AE%97/" title="详解PV、UV、VV、IP及其关系与计算">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">详解PV、UV、VV、IP及其关系与计算</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/22/%E5%A6%82%E4%BD%95%E8%AE%A9MixPHP%E6%94%AF%E6%8C%81Aop%E5%92%8C%E6%B3%A8%E8%A7%A3%E8%B7%AF%E7%94%B1/" title="如何让MixPHP支持Aop和注解路由">
+                        <span class="hidden-mobile">如何让MixPHP支持Aop和注解路由</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,666 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="A.首先了解下1和2在Linux中代表什么在Linux系统中0 1 2是一个文件描述符    名称 代码 操作符 Java中表示 Linux 下文件描述符（Debian 为例)    标准输入(stdin) 0 &lt; 或 &lt;&lt; System.in &#x2F;dev&#x2F;stdin -&gt; &#x2F;proc&#x2F;self&#x2F;fd&#x2F;0 -&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux shell中2&gt;&amp;1的含义解释 （全网最全，看完就懂）">
+<meta property="og:url" content="http://example.com/2021/03/01/Linux%20shell%E4%B8%AD2&gt;&amp;1%E7%9A%84%E5%90%AB%E4%B9%89%E8%A7%A3%E9%87%8A%20%EF%BC%88%E5%85%A8%E7%BD%91%E6%9C%80%E5%85%A8%EF%BC%8C%E7%9C%8B%E5%AE%8C%E5%B0%B1%E6%87%82%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="A.首先了解下1和2在Linux中代表什么在Linux系统中0 1 2是一个文件描述符    名称 代码 操作符 Java中表示 Linux 下文件描述符（Debian 为例)    标准输入(stdin) 0 &lt; 或 &lt;&lt; System.in &#x2F;dev&#x2F;stdin -&gt; &#x2F;proc&#x2F;self&#x2F;fd&#x2F;0 -&gt;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-01T14:11:21.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Linux shell中2&amp;gt;&amp;amp;1的含义解释 （全网最全，看完就懂） - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux shell中2&amp;gt;&amp;amp;1的含义解释 （全网最全，看完就懂）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-03-01 22:11" pubdate>
+          March 1, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux shell中2&amp;gt;&amp;amp;1的含义解释 （全网最全，看完就懂）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="A-首先了解下1和2在Linux中代表什么"><a href="#A-首先了解下1和2在Linux中代表什么" class="headerlink" title="A.首先了解下1和2在Linux中代表什么"></a>A.首先了解下1和2在Linux中代表什么</h1><p>在Linux系统中0 1 2是一个文件描述符</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>代码</th>
+<th>操作符</th>
+<th>Java中表示</th>
+<th>Linux 下文件描述符（Debian 为例)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标准输入(stdin)</td>
+<td>0</td>
+<td>&lt; 或 &lt;&lt;</td>
+<td>System.in</td>
+<td>&#x2F;dev&#x2F;stdin -&gt; &#x2F;proc&#x2F;self&#x2F;fd&#x2F;0 -&gt; &#x2F;dev&#x2F;pts&#x2F;0</td>
+</tr>
+<tr>
+<td>标准输出(stdout)</td>
+<td>1</td>
+<td>&gt;, &gt;&gt;, 1&gt; 或 1&gt;&gt;</td>
+<td>System.out</td>
+<td>&#x2F;dev&#x2F;stdout -&gt; &#x2F;proc&#x2F;self&#x2F;fd&#x2F;1 -&gt; &#x2F;dev&#x2F;pts&#x2F;0</td>
+</tr>
+<tr>
+<td>标准错误输出(stderr)</td>
+<td>2</td>
+<td>2&gt; 或 2&gt;&gt;</td>
+<td>System.err</td>
+<td>&#x2F;dev&#x2F;stderr -&gt; &#x2F;proc&#x2F;self&#x2F;fd&#x2F;2 -&gt; &#x2F;dev&#x2F;pts&#x2F;0</td>
+</tr>
+</tbody></table>
+<p>上面表格引用自<a target="_blank" rel="noopener" href="https://yanbin.blog/linux-input-output-redirection/">这里</a><br>从上表看的出来，我们平时使用的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo &amp;quot;hello&amp;quot; &amp;gt; t.log<br></code></pre></td></tr></table></figure>
+
+
+<p>其实也可以写成</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo &amp;quot;hello&amp;quot; 1&amp;gt; t.log<br></code></pre></td></tr></table></figure>
+
+<h1 id="B-关于2-gt-amp-1的含义"><a href="#B-关于2-gt-amp-1的含义" class="headerlink" title="B.关于2&gt;&amp;1的含义"></a>B.关于2&gt;&amp;1的含义</h1><p>（关于输入&#x2F;输出重定向本文就不细说了，不懂的可以参考这里，主要是要了解&gt; &lt; &lt;&lt; &gt;&gt; &lt;&amp; &gt;&amp; 这6个符号的使用）</p>
+<p>含义：将标准错误输出重定向到标准输出<br>符号&gt;&amp;是一个整体，不可分开，分开后就不是上述含义了。<br>比如有些人可能会这么想：2是标准错误输入，1是标准输出，&gt;是重定向符号，那么&quot;将标准错误输出重定向到标准输出&quot;是不是就应该写成&quot;2&gt;1&quot;就行了？是这样吗？<br>如果是尝试过，你就知道2&gt;1的写法其实是将标准错误输出重定向到名为&quot;1&quot;的文件里去了<br>写成2&amp;&gt;1也是不可以的<br>C.为什么2&gt;&amp;1要放在后面<br>考虑如下一条shell命令</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">nohup java -jar app.jar <span class="hljs-symbol">&amp;gt;</span>log 2<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;amp;</span>1 <span class="hljs-symbol">&amp;amp;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>(最后一个&amp;表示把条命令放到后台执行，不是本文重点，不懂的可以自行Google)<br>为什么2&gt;&amp;1一定要写到&gt;log后面，才表示标准错误输出和标准输出都定向到log中？<br>我们不妨把1和2都理解是一个指针,然后来看上面的语句就是这样的：</p>
+<ol>
+<li>本来1—–&gt;屏幕 （1指向屏幕）</li>
+<li>执行&gt;log后， 1—–&gt;log (1指向log)</li>
+<li>执行2&gt;&amp;1后， 2—–&gt;1 (2指向1，而1指向log,因此2也指向了log)</li>
+</ol>
+<p>再来分析下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nohup java -jar app.jar 2&amp;gt;&amp;amp;1 &amp;gt;log &amp;amp;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>本来1—–&gt;屏幕 （1指向屏幕）</li>
+<li>执行2&gt;&amp;1后， 2—–&gt;1 (2指向1，而1指向屏幕,因此2也指向了屏幕)</li>
+<li>执行&gt;log后， 1—–&gt;log (1指向log，2还是指向屏幕)</li>
+</ol>
+<p>所以这就不是我们想要的结果。<br><strong>简单做个试验测试下上面的想法</strong>：<br>java代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Htest</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        System.out.println(&amp;quot;out1&amp;quot;);<br>        System.err.println(&amp;quot;error1&amp;quot;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>javac编译后运行下面指令：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">java Htest 2<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;amp;</span>1 <span class="hljs-symbol">&amp;gt;</span> log<br></code></pre></td></tr></table></figure>
+
+
+
+<p>你会在终端上看到只输出了&quot;error1&quot;，log文件中则只有&quot;out1&quot;</p>
+<p>D.每次都写&quot;&gt;log 2&gt;&amp;1&quot;太麻烦，能简写吗？<br>有以下两种简写方式</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-symbol">&amp;amp;</span><span class="hljs-symbol">&amp;gt;</span>log<br><br><span class="hljs-symbol">&amp;amp;</span>log<br></code></pre></td></tr></table></figure>
+
+
+
+<p>比如上面小节中的写法就可以简写为：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">nohup <span class="hljs-keyword">java </span>-<span class="hljs-keyword">jar </span>app.<span class="hljs-keyword">jar </span>&amp;amp<span class="hljs-comment">;&amp;gt;log &amp;amp;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>上面两种方式都和<code>&amp;gt;log 2&amp;gt;&amp;amp;1</code>一个语义。<br>那么 上面两种方式中&amp;&gt;和&gt;&amp;有区别吗？<br><strong>语义上是没有任何区别的，但是第一中方式是最佳选择，一般使用第一种</strong></p>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/89386/what-is-symbol-and-in-unix-linux">https://unix.stackexchange.com/questions/89386/what-is-symbol-and-in-unix-linux</a><br><a target="_blank" rel="noopener" href="https://superuser.com/questions/335396/what-is-the-difference-between-and-in-bash">https://superuser.com/questions/335396/what-is-the-difference-between-and-in-bash</a><br>————————————————<br>版权声明：本文为CSDN博主「一个行走的民」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaominpro/article/details/82630528">https://blog.csdn.net/zhaominpro/article/details/82630528</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux shell中2&amp;gt;&amp;amp;1的含义解释 （全网最全，看完就懂）</div>
+      <div>http://example.com/2021/03/01/Linux shell中2&amp;gt;&amp;amp;1的含义解释 （全网最全，看完就懂）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 1, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/03/07/PHP%E5%88%A4%E6%96%AD%E6%96%87%E4%BB%B6%E6%98%AF%E4%B8%8D%E6%98%AF%E5%9B%BE%E7%89%87/" title="PHP判断文件是不是图片">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PHP判断文件是不是图片</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/19/vs%20code%20%E5%90%8C%E6%97%B6%E9%80%89%E4%B8%AD%E5%A4%9A%E4%B8%AA%E7%9B%B8%E5%90%8C%E5%AD%97%E7%AC%A6%20%E5%A4%9A%E8%A1%8C%20%E7%BC%96%E8%BE%91/" title="vs code 同时选中多个相同字符 多行 编辑">
+                        <span class="hidden-mobile">vs code 同时选中多个相同字符 多行 编辑</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

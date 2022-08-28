@@ -1,0 +1,653 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="git commit 使用说明1 概述git提交推荐使用命令行工具，请严格遵循提交格式。 2 提交格式在您git add后，推荐执行git commit进行提交，如无特殊描述信息要添加，也可以git commit -m &lt;mess&gt;进行提交。 要求提交格式如下： 12345&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;&lt;BLANK LIN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git commit 使用及规范">
+<meta property="og:url" content="http://example.com/2022/04/26/git%20commit%20%E4%BD%BF%E7%94%A8%E5%8F%8A%E8%A7%84%E8%8C%83/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="git commit 使用说明1 概述git提交推荐使用命令行工具，请严格遵循提交格式。 2 提交格式在您git add后，推荐执行git commit进行提交，如无特殊描述信息要添加，也可以git commit -m &lt;mess&gt;进行提交。 要求提交格式如下： 12345&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;&lt;BLANK LIN">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/16146226-56531e99792ad355.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/16146226-56531e99792ad355.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp">
+<meta property="article:published_time" content="2022-04-26T11:03:31.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/16146226-56531e99792ad355.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp">
+  
+  
+  
+  <title>git commit 使用及规范 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="git commit 使用及规范"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-26 19:03" pubdate>
+          April 26, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">git commit 使用及规范</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="git-commit-使用说明"><a href="#git-commit-使用说明" class="headerlink" title="git commit 使用说明"></a>git commit 使用说明</h2><h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h3><p>git提交推荐使用命令行工具，请严格遵循提交格式。</p>
+<h3 id="2-提交格式"><a href="#2-提交格式" class="headerlink" title="2 提交格式"></a>2 提交格式</h3><p>在您<code>git add</code>后，推荐执行<code>git commit</code>进行提交，如无特殊描述信息要添加，也可以<code>git commit -m &lt;mess&gt;</code>进行提交。</p>
+<p>要求提交格式如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>(<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>): <span class="hljs-tag">&lt;<span class="hljs-name">subject</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">BLANK</span> <span class="hljs-attr">LINE</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">BLANK</span> <span class="hljs-attr">LINE</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>type表示提交类别，scope表示修改范围，subject表示标题行， body表示主体描述内容。</p>
+<h4 id="2-1-type说明"><a href="#2-1-type说明" class="headerlink" title="2.1 type说明"></a>2.1 type说明</h4><p>type在commit的是否必须存在。</p>
+<ul>
+<li>feat: 添加新特性</li>
+<li>fix: 修复bug</li>
+<li>docs: 仅仅修改了文档</li>
+<li>style: 仅仅修改了空格、格式缩进、逗号等等，不改变代码逻辑</li>
+<li>refactor: 代码重构，没有加新功能或者修复bug</li>
+<li>perf: 优化相关，比如提升性能、体验</li>
+<li>test: 增加测试用例</li>
+<li>chore: 改变构建流程、或者增加依赖库、工具等</li>
+<li>revert: 回滚到上一个版本</li>
+</ul>
+<h4 id="2-2-scope说明"><a href="#2-2-scope说明" class="headerlink" title="2.2 scope说明"></a>2.2 scope说明</h4><p>非必填（建议填写），scope用于说明 commit 影响的范围，建议填写影响的功能模块。</p>
+<p>如果你的修改影响了不止一个<code>scope</code>，你可以使用<code>*</code>代替。</p>
+<h4 id="2-3-subject说明"><a href="#2-3-subject说明" class="headerlink" title="2.3 subject说明"></a>2.3 subject说明</h4><p>必填， commit 目的的简短描述，不超过50个字符。</p>
+<ul>
+<li>以动词开头，使用第一人称现在时，比如<code>change</code>，而不是<code>changed</code>或<code>changes</code></li>
+<li>第一个字母小写</li>
+<li>结尾不加句号</li>
+</ul>
+<h4 id="2-4-body说明"><a href="#2-4-body说明" class="headerlink" title="2.4 body说明"></a>2.4 body说明</h4><p>非必填（建议填写），可描述当前修改的行为详细信息或修改的目的。</p>
+<h4 id="2-5-footer说明"><a href="#2-5-footer说明" class="headerlink" title="2.5 footer说明"></a>2.5 footer说明</h4><p>非必填，一般用于描述BREAKING CHANGE，在项目开发中一般不需要填写，组件研发的工程需要填写。</p>
+<p>格式：以<code>BREAKING CHANGE</code>开头，后面是对变动的描述、以及变动理由和迁移方法。</p>
+<h3 id="3-提交方式"><a href="#3-提交方式" class="headerlink" title="3 提交方式"></a>3 提交方式</h3><p>如上2所示格式，本质上是改变文件 <u><em>.git&#x2F;COMMIT_EDITMSG</em></u> 中的文本，实际提交过程如下（推荐命令行提交）：</p>
+<h4 id="3-2-cmd（notepad）"><a href="#3-2-cmd（notepad）" class="headerlink" title="3.2 cmd（notepad）"></a>3.2 cmd（notepad）</h4><p>window系统下默认git编辑工具是vim，如无相关基础，建议使用window默认的文本编辑器（这里不赘述vim相关编辑方法）。</p>
+<p>修改git默认文本编辑器： <code>git config core.editor notepad</code></p>
+<p>修改后执行<code>git commit</code>,会弹出文本编辑器。</p>
+<p>我们要按照规定的格式在注释前加入要提交的commit信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs undefined">feat(人员新增): 增加人员批量导入<br><br>- 增加批量报盘功能<br>- 增加人员报盘后结果查询功能<br>- 修改人员新增布局<br></code></pre></td></tr></table></figure>
+
+<p>然后保存并关闭，会提示如下信息：</p>
+<blockquote>
+<p>[master 756c07e] feat(人员新增): 增加人员批量导入<br> 1 file changed, 2 insertions(+)</p>
+</blockquote>
+<p>在push完成后，gitlab的commit列表中会有如下信息：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/16146226-56531e99792ad355.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>commit.png</p>
+<h4 id="3-2-shell（GNU-nano）提交方式"><a href="#3-2-shell（GNU-nano）提交方式" class="headerlink" title="3.2 shell（GNU nano）提交方式"></a>3.2 shell（GNU nano）提交方式</h4><p>在您执行<code>git commit</code>后，命令行会有如下显示：</p>
+<blockquote>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">projectRoot<span class="hljs-regexp">/.git/</span>COMMIT_EDITMSG<br></code></pre></td></tr></table></figure>
+
+<p># 请为您的变更输入提交说明。以 ‘#’ 开始的行将被忽略，而一个空的提交<br> # 说明将会终止提交。<br> #<br> # 位于分支 master<br> # 您的分支与上游分支 ‘origin&#x2F;master’ 一致。<br> #<br> # 要提交的变更：<br> #       修改：     CHANGELOG.md<br> #<br> # 未跟踪的文件:<br> #       .idea&#x2F;<br> #</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">[</span> 已读取 <span class="hljs-number">13</span> 行 <span class="hljs-punctuation">]</span><br></code></pre></td></tr></table></figure>
+
+<p>^G 求助      ^O 写入      ^W 搜索      ^K 剪切文字  ^J 对齐      ^C 游标位置<br> ^X 离开      ^R 读档      ^\ 替换      ^U 还原剪切  ^T 拼写检查  ^_ 跳行</p>
+</blockquote>
+<p>如上所示，我们要按照规定的格式在注释前加入要提交的commit信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs undefined">feat(人员新增): 增加人员批量导入<br><br>- 增加批量报盘功能<br>- 增加人员报盘后结果查询功能<br>- 修改人员新增布局<br></code></pre></td></tr></table></figure>
+
+<p>输入完成后，根据快捷键提示，按<code>ctrl + O</code>，然后出现要修改的MSG文件名，按回车键。此时提示如下：</p>
+<blockquote>
+<p>[ 已写入 19 行 ]</p>
+</blockquote>
+<p>最后按<code>ctrl + X</code>提交完成，提示如下：</p>
+<blockquote>
+<p>[master 756c07e] feat(人员新增): 增加人员批量导入<br> 1 file changed, 2 insertions(+)</p>
+</blockquote>
+<p>在push完成后，gitlab的commit列表中会有如下信息：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/16146226-56531e99792ad355.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>原文地址 ： <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ff4f98695c2c">https://www.jianshu.com/p/ff4f98695c2c</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>git commit 使用及规范</div>
+      <div>http://example.com/2022/04/26/git commit 使用及规范/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 26, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/27/%E6%B5%85%E8%B0%88PHP%E6%95%B0%E5%AD%A6%E8%AE%A1%E7%AE%97BC%E5%BA%93/" title="浅谈PHP数学计算BC库">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">浅谈PHP数学计算BC库</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/24/LInux%20shell%E4%B9%8B(for%20in%20%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93)/" title="LInux shell之(for in 用法总结)">
+                        <span class="hidden-mobile">LInux shell之(for in 用法总结)</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

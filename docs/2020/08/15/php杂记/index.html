@@ -1,0 +1,636 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="查看端口12netstat -tunlp | grep 端口号&#96;&#96;lsof -i:端口号  重启nginx12nginx -s reload&#96;&#96;service nginx restart  查找文件1find &#x2F; -name filename  解压1tar zxvf filename  过滤查找1cmd |grep findname  重命名文件夹1mv old_filename new_fil">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php杂记">
+<meta property="og:url" content="http://example.com/2020/08/15/php%E6%9D%82%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="查看端口12netstat -tunlp | grep 端口号&#96;&#96;lsof -i:端口号  重启nginx12nginx -s reload&#96;&#96;service nginx restart  查找文件1find &#x2F; -name filename  解压1tar zxvf filename  过滤查找1cmd |grep findname  重命名文件夹1mv old_filename new_fil">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-14T23:19:58.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>php杂记 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="php杂记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-08-15 07:19" pubdate>
+          August 15, 2020 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">php杂记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="查看端口"><a href="#查看端口" class="headerlink" title="查看端口"></a>查看端口</h4><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">netstat -tunlp | grep 端口号`<br>`lsof -i:端口号<br></code></pre></td></tr></table></figure>
+
+<h4 id="重启nginx"><a href="#重启nginx" class="headerlink" title="重启nginx"></a>重启nginx</h4><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">nginx -s reload`<br>`service nginx restart<br></code></pre></td></tr></table></figure>
+
+<h4 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">find</span> / -name filename<br></code></pre></td></tr></table></figure>
+
+<h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">tar zxvf filename</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="过滤查找"><a href="#过滤查找" class="headerlink" title="过滤查找"></a>过滤查找</h4><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">cmd <span class="hljs-string">|grep findname</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="重命名文件夹"><a href="#重命名文件夹" class="headerlink" title="重命名文件夹"></a>重命名文件夹</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> old_filename new_filename<br></code></pre></td></tr></table></figure>
+
+<h4 id="查找程序"><a href="#查找程序" class="headerlink" title="查找程序"></a>查找程序</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">ps</span> -aux | <span class="hljs-keyword">grep</span> name<br></code></pre></td></tr></table></figure>
+
+<h4 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">service servicename restart</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="修改文件权限"><a href="#修改文件权限" class="headerlink" title="修改文件权限"></a>修改文件权限</h4><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">chmod</span> <span class="hljs-number">777</span> filename<br></code></pre></td></tr></table></figure>
+
+<h4 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h4><p><code>adduser username</code><br><code>-d path</code>绑定当前用户的访问目录<br><code>passwd username</code>给用户更新或添加密码</p>
+<h4 id="vsftpd新增用户"><a href="#vsftpd新增用户" class="headerlink" title="vsftpd新增用户"></a>vsftpd新增用户</h4><p>先同上新增一个访问受限用户，再去vsftpd安装目录下修改数个配置文件，有用户文件，有访问权限文件，以及一个用户配置文件，还需要在指定目录处建立一个同名目录。</p>
+<h4 id="git操作"><a href="#git操作" class="headerlink" title="git操作"></a>git操作</h4><p>初始化仓库：<br>先添加用户 <code>adduser git</code><br>创建证书登录 <code>/home/git/.ssh/authorized_keys</code><br>创建仓库 <code>git init --bare name.git</code></p>
+<h3 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h3><p>swoole提供网络服务时需要单独占用一个端口来提供服务</p>
+<h3 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h3><p><code>doker pull imagename</code>下载一个镜像<br><code>docker run imagename</code>运行容器<br><code>-p 主机端口：容器端口</code> 运行参数之绑定端口<br><code>-i</code>交互式运行 <code>-t</code>终端式运行 <code>-d</code>后台式运行<br><code>-name</code>给容器命名，方便后续使用<br><code>docker ps</code>查看运行中的容器<br><code>docker kill containername</code>停掉运行中的容器</p>
+<h3 id="php添加新扩展"><a href="#php添加新扩展" class="headerlink" title="php添加新扩展"></a>php添加新扩展</h3><p>先使用wget下载文件<br>使用phpize生成配置文件<br>使用.&#x2F;configure生成编译文件<br>make &amp;&amp; make install<br>之后在php.ini中添加扩展，再在conf.d中加入指向so文件的地址</p>
+<h3 id="一次thinkphp源码修改"><a href="#一次thinkphp源码修改" class="headerlink" title="一次thinkphp源码修改"></a>一次thinkphp源码修改</h3><p>原因 php7.3后 strpos 返回值做了修改<br>原：<br><code>if (strpos($url , $bind)===0)</code> Url.php下<br>修改后：<br><code>if ($bind &amp;&amp; strpos($url , $bind ) ===0 )</code></p>
+<h4 id="php7-4"><a href="#php7-4" class="headerlink" title="php7.4"></a>php7.4</h4><p>implode 参数修改为分隔符在前，数组在后</p>
+<h3 id="原生js的关联数据"><a href="#原生js的关联数据" class="headerlink" title="原生js的关联数据"></a>原生js的关联数据</h3><p>使用 hash 传递关联数据，使用<code>JSON.stringify( )</code>将 hash 对象转为 json 字符串</p>
+<p>后端 php 拿到数据后 使用 <code>json_decode()</code>进行 json 解码，但得到的仍为对象</p>
+<h4 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h4><p>ps 用于查看当前运行的进程。</p>
+<p>ps aux 和 ps -ef</p>
+<p>两者的输出结果差别不大，但展示风格不同。aux是BSD风格，-ef是System V风格。</p>
+<p>主要区别是，aux会截断command列，而-ef不会，当结合grep时这种区别会影响到结果</p>
+<h4 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h4><p>用于打印网络连接、路由表、连接的数据统计、伪装连接以及广播域成员</p>
+<p>常见用法 netstat -tulp</p>
+<h4 id="top"><a href="#top" class="headerlink" title="top"></a>top</h4><p>用于实时查看服务器进程等信息</p>
+<h4 id="char与varchar"><a href="#char与varchar" class="headerlink" title="char与varchar"></a>char与varchar</h4><p>char : 定长，效率高，一般用于固定商都的表单提交数据存储<br>varchar : 不定长，效率偏低<br>使用 Innodb 引擎的话，使用varchar代替char</p>
+<h4 id="sort-uniq命令排序-去重"><a href="#sort-uniq命令排序-去重" class="headerlink" title="sort uniq命令排序 去重"></a>sort uniq命令排序 去重</h4><p>uniq 命令可以显示文件中行重复的次数，或只显示出现一次的行，或仅仅显示重复出现的行；但uniq 的去重针对的只是连续的两行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sort</span> filename | <span class="hljs-built_in">uniq</span> -c<br></code></pre></td></tr></table></figure>
+
+<p>-c 用来在每一行最前面加上该行出现的次数</p>
+<p>-u 只显示出现一次的行</p>
+<p>-d 只显示重复出现的行</p>
+<h4 id="error-reporting"><a href="#error-reporting" class="headerlink" title="error_reporting"></a>error_reporting</h4><p>设置应该报告何种PHP错误</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit">error_reporting ( [ <span class="hljs-built_in">int</span> $level ] ) : <span class="hljs-built_in">int</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="类中调用同一类中的其他静态资源，可使用static-name来代替classname-name"><a href="#类中调用同一类中的其他静态资源，可使用static-name来代替classname-name" class="headerlink" title="类中调用同一类中的其他静态资源，可使用static::name来代替classname::name"></a>类中调用同一类中的其他静态资源，可使用<code>static::name</code>来代替<code>classname::name</code></h4><h4 id="self-static"><a href="#self-static" class="headerlink" title="self static"></a>self static</h4><p>self调用静态方法或属性，可能会升级为父类中的数据</p>
+<p>static调用只会涉及当前之类中数据，不会发生升级现象</p>
+<h4 id="self、this、parent"><a href="#self、this、parent" class="headerlink" title="self、this、parent"></a>self、this、parent</h4><p>this指向当前对象的指针</p>
+<p>self指向当前类的指针</p>
+<p>parent指向父类的指针</p>
+<h4 id="php的初始化方法只有构造方法，其他的都为包装过的构造方法"><a href="#php的初始化方法只有构造方法，其他的都为包装过的构造方法" class="headerlink" title="php的初始化方法只有构造方法，其他的都为包装过的构造方法"></a>php的初始化方法只有构造方法，其他的都为包装过的构造方法</h4><hr>
+<h4 id="数组相关"><a href="#数组相关" class="headerlink" title="数组相关"></a>数组相关</h4><p><code>array_merge</code> 合并数组，返回值为合并后数组<br><code>array_diff</code> 求数组差集，只比较键值，返回值为差集数组<br><code>array_intersect</code> 求数组并集，只比较键值，返回值为并集数组<br><a target="_blank" rel="noopener" href="http://blog.kaiot.xyz/read/56.html">http://blog.kaiot.xyz/read/56.html</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>php杂记</div>
+      <div>http://example.com/2020/08/15/php杂记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 15, 2020</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/15/redis%E5%9F%BA%E7%A1%80/" title="redis基础">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">redis基础</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/15/php%E7%AC%94%E8%AF%95%E3%80%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%94%B6%E5%BD%95%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" title="php笔试、面试题收录（持续更新）">
+                        <span class="hidden-mobile">php笔试、面试题收录（持续更新）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,584 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100&amp;lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP检索类">
+<meta property="og:url" content="http://example.com/2021/01/23/PHP%E6%A3%80%E7%B4%A2%E7%B1%BB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100&amp;lt;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-23T13:51:41.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>PHP检索类 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PHP检索类"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-01-23 21:51" pubdate>
+          January 23, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PHP检索类</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><code class="hljs php">&amp;lt;?php<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Spider</span></span><br><span class="hljs-class"></span>&#123;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">string</span> <span class="hljs-variable">$url</span> = <span class="hljs-string">&#x27;&#x27;</span>;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">array</span> <span class="hljs-variable">$keywords</span> = [];<br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">string</span> <span class="hljs-variable">$rule</span> = <span class="hljs-string">&#x27;&#x27;</span>;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">array</span> <span class="hljs-variable">$include</span> = [];<br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">array</span> <span class="hljs-variable">$except</span> = [];<br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">string</span> <span class="hljs-variable">$return</span>;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$ch</span>;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">int</span> <span class="hljs-variable">$timeout</span> = <span class="hljs-number">200000</span>;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">int</span> <span class="hljs-variable">$total</span> = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> <span class="hljs-variable">$url</span>, <span class="hljs-keyword">int</span> <span class="hljs-variable">$timeout</span> = <span class="hljs-number">200000</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable language_">$this</span>-&amp;gt;url = <span class="hljs-variable">$url</span>;<br>        <span class="hljs-variable language_">$this</span>-&amp;gt;timeout = <span class="hljs-variable">$timeout</span>;<br>        <span class="hljs-variable language_">$this</span>-&amp;gt;ch = <span class="hljs-title function_ invoke__">curl_init</span>();<br>        <span class="hljs-variable">$options</span> = [<br>            CURLOPT_SSL_VERIFYHOST =&amp;gt; <span class="hljs-literal">false</span>,<br>            CURLOPT_SSL_VERIFYPEER =&amp;gt; <span class="hljs-literal">false</span>,<br>            CURLOPT_RETURNTRANSFER =&amp;gt; <span class="hljs-literal">true</span>,<br>            CURLOPT_FOLLOWLOCATION =&amp;gt; <span class="hljs-literal">true</span>,<br>            CURLOPT_USERAGENT =&amp;gt; <span class="hljs-string">&#x27;Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50&#x27;</span><br>        ];<br>        <span class="hljs-title function_ invoke__">curl_setopt_array</span>(<span class="hljs-variable">$this</span>-&amp;gt;ch, <span class="hljs-variable">$options</span>);<br>    &#125;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_check</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> <span class="hljs-variable">$url</span>, <span class="hljs-keyword">string</span> <span class="hljs-variable">$keyword</span></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable">$key</span> = <span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&#x27;&#123;k&#125;&#x27;</span>, <span class="hljs-title function_ invoke__">trim</span>(<span class="hljs-variable">$keyword</span>), <span class="hljs-variable">$this</span>-&amp;gt;rule);<br>        <span class="hljs-variable">$pattern</span> = <span class="hljs-string">&#x27;#&#x27;</span> . <span class="hljs-variable">$key</span> . <span class="hljs-string">&#x27;#iU&#x27;</span>;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-variable">$pattern</span>, <span class="hljs-variable">$this</span>-&amp;gt;<span class="hljs-keyword">return</span>, <span class="hljs-variable">$matches</span>)) &#123;<br>            <span class="hljs-variable">$res</span> = &amp;quot;<span class="hljs-string">&#x27;&#123;$url&#125;&#x27;</span>,中包含关键字&#123;<span class="hljs-variable">$key</span>&#125;&amp;quot;;<br>            <span class="hljs-variable language_">$this</span>-&amp;gt;<span class="hljs-keyword">include</span>[] = <span class="hljs-variable">$url</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-variable">$res</span> = &amp;quot;\<span class="hljs-number">033</span>[<span class="hljs-number">31</span>m<span class="hljs-string">&#x27;&#123;$url&#125;&#x27;</span>,中不包含关键字&#123;<span class="hljs-variable">$key</span>&#125;\<span class="hljs-number">033</span>[<span class="hljs-number">0</span>m&amp;quot;;<br>            <span class="hljs-variable language_">$this</span>-&amp;gt;except[] = <span class="hljs-variable">$url</span>;<br>        &#125;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$res</span> . &amp;quot;\n&amp;quot;;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rule</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> <span class="hljs-variable">$rule</span></span>): <span class="hljs-title">Spider</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable language_">$this</span>-&amp;gt;rule = <span class="hljs-variable">$rule</span>;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params">\<span class="hljs-built_in">Closure</span> <span class="hljs-variable">$closure</span></span>): <span class="hljs-title">array</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">while</span> (!<span class="hljs-keyword">empty</span>(<span class="hljs-variable language_">$this</span>-&amp;gt;keywords)) &#123;<br>            <span class="hljs-variable">$keyword</span> = <span class="hljs-title function_ invoke__">array_shift</span>(<span class="hljs-variable">$this</span>-&amp;gt;keywords);<br>            <span class="hljs-title function_ invoke__">usleep</span>(<span class="hljs-variable">$this</span>-&amp;gt;timeout);<br>            <span class="hljs-variable">$url</span> = <span class="hljs-title function_ invoke__">str_replace</span>(<span class="hljs-string">&#x27;&#123;k&#125;&#x27;</span>, <span class="hljs-title function_ invoke__">trim</span>(<span class="hljs-variable">$keyword</span>), <span class="hljs-variable">$this</span>-&amp;gt;url);<br>            <span class="hljs-title function_ invoke__">curl_setopt</span>(<span class="hljs-variable">$this</span>-&amp;gt;ch, CURLOPT_URL, <span class="hljs-variable">$url</span>);<br>            <span class="hljs-variable language_">$this</span>-&amp;gt;<span class="hljs-keyword">return</span> = <span class="hljs-title function_ invoke__">mb_convert_encoding</span>(<span class="hljs-title function_ invoke__">curl_exec</span>(<span class="hljs-variable">$this</span>-&amp;gt;ch),<span class="hljs-string">&#x27;UTF-8&#x27;</span>,[<span class="hljs-string">&#x27;gbk&#x27;</span>,<span class="hljs-string">&#x27;UTF-8&#x27;</span>]);<br>            <span class="hljs-variable language_">$this</span>-&amp;gt;<span class="hljs-title function_ invoke__">_check</span>(<span class="hljs-variable">$url</span>, <span class="hljs-variable">$keyword</span>);<br>            <span class="hljs-variable">$closure</span>(<span class="hljs-variable language_">$this</span>-&amp;gt;<span class="hljs-keyword">return</span>, <span class="hljs-variable">$url</span>, <span class="hljs-variable">$keyword</span>);<br>            <span class="hljs-variable language_">$this</span>-&amp;gt;<span class="hljs-title function_ invoke__">_showProcess</span>();<br>        &#125;<br>        <span class="hljs-keyword">return</span> [<span class="hljs-string">&#x27;include&#x27;</span> =&amp;gt; <span class="hljs-variable language_">$this</span>-&amp;gt;<span class="hljs-keyword">include</span>, <span class="hljs-string">&#x27;except&#x27;</span> =&amp;gt; <span class="hljs-variable language_">$this</span>-&amp;gt;except];<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-title function_ invoke__">curl_close</span>(<span class="hljs-variable">$this</span>-&amp;gt;ch);<br>    &#125;<br>    <span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_showProcess</span>(<span class="hljs-params"></span>)</span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-variable">$process</span> = <span class="hljs-title function_ invoke__">array_fill</span>(<span class="hljs-number">0</span>, <span class="hljs-number">25</span>, <span class="hljs-string">&#x27;-&#x27;</span>);<br>        <span class="hljs-variable">$percentage</span> = <span class="hljs-title function_ invoke__">round</span>(((<span class="hljs-variable">$this</span>-&amp;gt;total - <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$this</span>-&amp;gt;keywords)) / <span class="hljs-variable language_">$this</span>-&amp;gt;total) * <span class="hljs-number">100</span>, <span class="hljs-number">2</span>);<br>        <span class="hljs-variable">$length</span> = <span class="hljs-title function_ invoke__">ceil</span>(<span class="hljs-variable">$percentage</span> / <span class="hljs-number">4</span>);<br>        <span class="hljs-title function_ invoke__">array_splice</span>(<span class="hljs-variable">$process</span>, <span class="hljs-number">0</span>, <span class="hljs-variable">$length</span>, <span class="hljs-title function_ invoke__">array_fill</span>(<span class="hljs-number">0</span>, <span class="hljs-variable">$length</span>, <span class="hljs-string">&#x27;&amp;gt;&#x27;</span>));<br>        <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">implode</span>(<span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-variable">$process</span>), <span class="hljs-string">&#x27; &#x27;</span>, <span class="hljs-variable">$percentage</span>, &amp;quot;%\r&amp;quot;;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keywords</span>(<span class="hljs-params"><span class="hljs-keyword">array</span> <span class="hljs-variable">$keywords</span></span>): <span class="hljs-title">Spider</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-title function_ invoke__">is_string</span>(<span class="hljs-variable">$keywords</span>) &amp;amp;&amp;amp; (<span class="hljs-variable">$keywords</span> = <span class="hljs-title function_ invoke__">explode</span>(<span class="hljs-string">&#x27;,&#x27;</span>, <span class="hljs-variable">$keywords</span>));<br>        <span class="hljs-variable language_">$this</span>-&amp;gt;keywords = <span class="hljs-variable">$keywords</span>;<br>        <span class="hljs-variable language_">$this</span>-&amp;gt;total = <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$keywords</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>;<br>    &#125;<br><br>&#125;<br><span class="hljs-variable">$url</span> = <span class="hljs-string">&#x27;http://bbs.chinaunix.net/search.php?mod=forum&amp;amp;searchid=745&amp;amp;orderby=lastpost&amp;amp;ascdesc=desc&amp;amp;searchsubmit=yes&amp;amp;kw=&#123;k&#125;&#x27;</span>;<br><span class="hljs-variable">$keys</span> = <span class="hljs-title function_ invoke__">file</span>(<span class="hljs-string">&#x27;keys.txt&#x27;</span>);<br><span class="hljs-comment">// 没有匹配到&#123;k&#125;</span><br><span class="hljs-variable">$rule</span> = &amp;quot;没有找到匹配结果&amp;quot;;<br><span class="hljs-variable">$s</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Spider</span>(<span class="hljs-variable">$url</span>, <span class="hljs-number">300</span>);<br><span class="hljs-variable">$res</span> = <span class="hljs-variable">$s</span>-&amp;gt;<span class="hljs-title function_ invoke__">rule</span>(<span class="hljs-variable">$rule</span>)<br>    -&amp;gt;<span class="hljs-title function_ invoke__">keywords</span>(<span class="hljs-variable">$keys</span>)<br>    -&amp;gt;<span class="hljs-title function_ invoke__">run</span>(function (<span class="hljs-variable">$return</span>, <span class="hljs-variable">$url</span>, <span class="hljs-variable">$keyword</span>) &#123;<br>        <span class="hljs-comment">// $data = &amp;quot;\n地址：&amp;quot; . $url . &amp;quot;\n关键字：&amp;quot; . $keyword . &amp;quot;返回值：&amp;quot; . $return;</span><br>        <span class="hljs-comment">// file_put_contents(&#x27;./res.txt&#x27;, $data, FILE_APPEND);</span><br>        <span class="hljs-comment">// echo $data;</span><br>    &#125;);<br><span class="hljs-keyword">echo</span> &amp;quot;\n\n\n\n---------------------------------------------------------------\n包含\n&amp;quot;;<br><span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$res</span>[<span class="hljs-string">&#x27;include&#x27;</span>] <span class="hljs-keyword">as</span> <span class="hljs-variable">$d</span>) &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$d</span>, &amp;quot;\n&amp;quot;;<br>&#125;<br><span class="hljs-keyword">echo</span> &amp;quot;---------------------------------------------------------------\n排除\n&amp;quot;;<br><span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$res</span>[<span class="hljs-string">&#x27;except&#x27;</span>] <span class="hljs-keyword">as</span> <span class="hljs-variable">$d</span>) &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$d</span>, &amp;quot;\n&amp;quot;;<br>&#125;<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PHP检索类</div>
+      <div>http://example.com/2021/01/23/PHP检索类/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>January 23, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/28/linux%20lsof%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" title="linux lsof命令详解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">linux lsof命令详解</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/19/order%20by%20%E8%AF%AD%E5%8F%A5%E5%AF%B9null%E5%AD%97%E6%AE%B5%E7%9A%84%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F/" title="order by 语句对null字段的默认排序">
+                        <span class="hidden-mobile">order by 语句对null字段的默认排序</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

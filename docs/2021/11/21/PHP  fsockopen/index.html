@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1234567fsockopen(    string $hostname,    int $port &#x3D; -1,    int &amp;amp;$errno &#x3D; ?,    string &amp;amp;$errstr &#x3D; ?,    float $timeout &#x3D; ini_get(&amp;quot;default_socket_timeout&amp;quot;)): resource">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP  fsockopen">
+<meta property="og:url" content="http://example.com/2021/11/21/PHP%20%20fsockopen/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1234567fsockopen(    string $hostname,    int $port &#x3D; -1,    int &amp;amp;$errno &#x3D; ?,    string &amp;amp;$errstr &#x3D; ?,    float $timeout &#x3D; ini_get(&amp;quot;default_socket_timeout&amp;quot;)): resource">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-11-21T07:39:06.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>PHP  fsockopen - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PHP  fsockopen"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-21 15:39" pubdate>
+          November 21, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PHP  fsockopen</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mel">fsockopen(<br>    <span class="hljs-keyword">string</span> $hostname,<br>    <span class="hljs-keyword">int</span> $port = <span class="hljs-number">-1</span>,<br>    <span class="hljs-keyword">int</span> &amp;amp;$errno = ?,<br>    <span class="hljs-keyword">string</span> &amp;amp;$errstr = ?,<br>    <span class="hljs-keyword">float</span> $timeout = ini_get(&amp;quot;default_socket_timeout&amp;quot;)<br>): resource<br></code></pre></td></tr></table></figure>
+
+<p>初始化一个套接字连接到指定主机（<code>hostname</code>）。</p>
+<p>PHP支持以下的套接字传输器类型列表 <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/transports.php">所支持的套接字传输器（Socket Transports）列表</a>。也可以通过<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.stream-get-transports.php">stream_get_transports()</a>来获取套接字传输器支持类型。</p>
+<p>默认情况下将以阻塞模式开启套接字连接。当然你可以通过<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.stream-set-blocking.php">stream_set_blocking()</a>将它转换到非阻塞模式。</p>
+<p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.stream-socket-client.php">stream_socket_client()</a>与之非常相似，而且提供了更加丰富的参数设置，包括非阻塞模式和提供上下文的的设置。</p>
+<h3 id="参数-¶"><a href="#参数-¶" class="headerlink" title="参数 ¶"></a>参数<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fsockopen.php#refsect1-function.fsockopen-parameters"> ¶</a></h3><ul>
+<li><p><code>hostname</code></p>
+<p>如果安装了<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/openssl.installation.php">OpenSSL</a>，那么你也许应该在你的主机名地址前面添加访问协议<code>ssl://</code>或者是<code>tls://</code>，从而可以使用基于TCP&#x2F;IP协议的SSL或者TLS的客户端连接到远程主机。</p>
+</li>
+<li><p><code>port</code></p>
+<p>端口号。如果对该参数传一个-1，则表示不使用端口，例如<code>unix://</code>。</p>
+</li>
+<li><p><code>errno</code></p>
+<p>如果传入了该参数，holds the system level error number that occurred in the system-level <code>connect()</code> call。如果<code>errno</code>的返回值为<code>0</code>，而且这个函数的返回值为**<code>false</code>**，那么这表明该错误发生在套接字连接（<code>connect()</code>）调用之前，导致连接失败的原因最大的可能是初始化套接字的时候发生了错误。</p>
+</li>
+<li><p><code>errstr</code></p>
+<p>错误信息将以字符串的信息返回。</p>
+</li>
+<li><p><code>timeout</code></p>
+<p>设置连接的时限，单位为秒。<strong>注意</strong>:注意：如果你要对建立在套接字基础上的读写操作设置操作时间设置连接时限，请使用<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.stream-set-timeout.php">stream_set_timeout()</a>，**fsockopen()**的连接时限（<code>timeout</code>）的参数仅仅在套接字连接的时候生效。</p>
+</li>
+</ul>
+<h3 id="返回值-¶"><a href="#返回值-¶" class="headerlink" title="返回值 ¶"></a>返回值<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fsockopen.php#refsect1-function.fsockopen-returnvalues"> ¶</a></h3><p>**fsockopen()<strong>将返回一个文件句柄，之后可以被其他文件类函数调用（例如：<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fgets.php">fgets()</a>，<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fgetss.php">fgetss()</a>，<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fwrite.php">fwrite()</a>，<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fclose.php">fclose()</a>还有<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.feof.php">feof()</a>）。如果调用失败，将返回</strong><code>false</code>**。</p>
+<h3 id="错误／异常-¶"><a href="#错误／异常-¶" class="headerlink" title="错误／异常 ¶"></a>错误／异常<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fsockopen.php#refsect1-function.fsockopen-errors"> ¶</a></h3><p>如果主机（<code>hostname</code>）不可访问，将会抛出一个警告级别（**<code>E_WARNING</code>**）的错误提示。</p>
+<p>**示例 #1 *<em>fsockopen()*<em>的例子</em></em></p>
+<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sas"><span class="hljs-variable">&amp;lt</span>;?php<br>$fp = fsock<span class="hljs-meta">open</span>(<span class="hljs-variable">&amp;quot</span>;www.example.com<span class="hljs-variable">&amp;quot</span>;, 80, $errno, $errstr, 30);<br><span class="hljs-keyword">if</span> (!$fp) &#123;<br>    echo <span class="hljs-variable">&amp;quot</span>;$errstr ($errno)<span class="hljs-variable">&amp;lt</span>;br /<span class="hljs-variable">&amp;gt</span>;\n<span class="hljs-variable">&amp;quot</span>;;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    $<span class="hljs-keyword">out</span> = <span class="hljs-variable">&amp;quot</span>;GET / HTTP/1.1\r\n<span class="hljs-variable">&amp;quot</span>;;<br>    $<span class="hljs-keyword">out</span> .= <span class="hljs-variable">&amp;quot</span>;Host: www.example.com\r\n<span class="hljs-variable">&amp;quot</span>;;<br>    $<span class="hljs-keyword">out</span> .= <span class="hljs-variable">&amp;quot</span>;Connection: Close\r\n\r\n<span class="hljs-variable">&amp;quot</span>;;<br>    <span class="hljs-meta">fwrite</span>($fp, $<span class="hljs-keyword">out</span>);<br>    <span class="hljs-keyword">while</span> (!feof($fp)) &#123;<br>        echo fgets($fp, 128);<br>    &#125;<br>    <span class="hljs-meta">fclose</span>($fp);<br>&#125;<br>?<span class="hljs-variable">&amp;gt</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 #2 使用UDP连接</strong></p>
+<p>下面这个例子展示了怎么样在自己的机器上通过UDP套接字连接（端口号13）来检索日期和时间。</p>
+<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sas"><span class="hljs-variable">&amp;lt</span>;?php<br>$fp = fsock<span class="hljs-meta">open</span>(<span class="hljs-variable">&amp;quot</span>;www.example.com<span class="hljs-variable">&amp;quot</span>;, 80, $errno, $errstr, 30);<br><span class="hljs-keyword">if</span> (!$fp) &#123;<br>    echo <span class="hljs-variable">&amp;quot</span>;$errstr ($errno)<span class="hljs-variable">&amp;lt</span>;br /<span class="hljs-variable">&amp;gt</span>;\n<span class="hljs-variable">&amp;quot</span>;;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    $<span class="hljs-keyword">out</span> = <span class="hljs-variable">&amp;quot</span>;GET / HTTP/1.1\r\n<span class="hljs-variable">&amp;quot</span>;;<br>    $<span class="hljs-keyword">out</span> .= <span class="hljs-variable">&amp;quot</span>;Host: www.example.com\r\n<span class="hljs-variable">&amp;quot</span>;;<br>    $<span class="hljs-keyword">out</span> .= <span class="hljs-variable">&amp;quot</span>;Connection: Close\r\n\r\n<span class="hljs-variable">&amp;quot</span>;;<br>    <span class="hljs-meta">fwrite</span>($fp, $<span class="hljs-keyword">out</span>);<br>    <span class="hljs-keyword">while</span> (!feof($fp)) &#123;<br>        echo fgets($fp, 128);<br>    &#125;<br>    <span class="hljs-meta">fclose</span>($fp);<br>&#125;<br>?<span class="hljs-variable">&amp;gt</span>;<br></code></pre></td></tr></table></figure>
+
+<p>原文地址： <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fsockopen.php">https://www.php.net/manual/zh/function.fsockopen.php</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PHP  fsockopen</div>
+      <div>http://example.com/2021/11/21/PHP  fsockopen/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 21, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" title="正则表达式高级用法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">正则表达式高级用法</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Telnet/" title="如何使用Telnet">
+                        <span class="hidden-mobile">如何使用Telnet</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

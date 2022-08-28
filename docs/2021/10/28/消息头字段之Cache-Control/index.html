@@ -1,0 +1,686 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Cache-ControlCache-Control 通用消息头字段，被用于在http请求和响应中，通过指定指令来实现缓存机制。缓存指令是单向的，这意味着在请求中设置的指令，不一定被包含在响应中。    Header type General header    Forbidden header name no   CORS-safelisted response-header yes   语法指">
+<meta property="og:type" content="article">
+<meta property="og:title" content="消息头字段之Cache-Control">
+<meta property="og:url" content="http://example.com/2021/10/28/%E6%B6%88%E6%81%AF%E5%A4%B4%E5%AD%97%E6%AE%B5%E4%B9%8BCache-Control/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Cache-ControlCache-Control 通用消息头字段，被用于在http请求和响应中，通过指定指令来实现缓存机制。缓存指令是单向的，这意味着在请求中设置的指令，不一定被包含在响应中。    Header type General header    Forbidden header name no   CORS-safelisted response-header yes   语法指">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-28T05:44:57.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>消息头字段之Cache-Control - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="消息头字段之Cache-Control"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-28 13:44" pubdate>
+          October 28, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">消息头字段之Cache-Control</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h1><p><code>Cache-Control</code> 通用消息头字段，被用于在http请求和响应中，通过指定指令来实现缓存机制。缓存指令是单向的，这意味着在请求中设置的指令，不一定被包含在响应中。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Header type</th>
+<th><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/General_header">General header</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Forbidden_header_name">Forbidden header name</a></td>
+<td>no</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Simple_response_header">CORS-safelisted response-header</a></td>
+<td>yes</td>
+</tr>
+</tbody></table>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E8%AF%AD%E6%B3%95">语法</a></h2><p>指令格式具有以下有效规则：</p>
+<ul>
+<li>不区分大小写，但建议使用小写。</li>
+<li>多个指令以逗号分隔。</li>
+<li>具有可选参数，可以用令牌或者带引号的字符串语法。</li>
+</ul>
+<h3 id="缓存请求指令"><a href="#缓存请求指令" class="headerlink" title="缓存请求指令"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E7%BC%93%E5%AD%98%E8%AF%B7%E6%B1%82%E6%8C%87%E4%BB%A4">缓存请求指令</a></h3><p>客户端可以在HTTP请求中使用的标准 Cache-Control 指令。</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs gams">Cache-Control: <span class="hljs-built_in">max</span>-age=&amp;<span class="hljs-keyword">lt</span>;seconds&amp;<span class="hljs-keyword">gt</span>;<br>Cache-Control: <span class="hljs-built_in">max</span>-stale[=&amp;<span class="hljs-keyword">lt</span>;seconds&amp;<span class="hljs-keyword">gt</span>;]<br>Cache-Control: <span class="hljs-built_in">min</span>-fresh=&amp;<span class="hljs-keyword">lt</span>;seconds&amp;<span class="hljs-keyword">gt</span>;<br>Cache-control: <span class="hljs-keyword">no</span>-cache<br>Cache-control: <span class="hljs-keyword">no</span>-store<br>Cache-control: <span class="hljs-keyword">no</span>-transform<br>Cache-control: only-<span class="hljs-keyword">if</span>-cached<br></code></pre></td></tr></table></figure>
+
+<h3 id="缓存响应指令"><a href="#缓存响应指令" class="headerlink" title="缓存响应指令"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E7%BC%93%E5%AD%98%E5%93%8D%E5%BA%94%E6%8C%87%E4%BB%A4">缓存响应指令</a></h3><p>服务器可以在响应中使用的标准 Cache-Control 指令。</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">Cache-control: </span>must-revalidate<br><span class="hljs-keyword">Cache-control: </span>no-<span class="hljs-keyword">cache</span><br><span class="hljs-keyword"></span><span class="hljs-keyword">Cache-control: </span>no-store<br><span class="hljs-keyword">Cache-control: </span>no-transform<br><span class="hljs-keyword">Cache-control: </span>public<br><span class="hljs-keyword">Cache-control: </span>private<br><span class="hljs-keyword">Cache-control: </span>proxy-revalidate<br><span class="hljs-keyword">Cache-Control: </span>max-age=&amp;lt<span class="hljs-comment">;seconds&amp;gt;</span><br><span class="hljs-keyword">Cache-control: </span>s-maxage=&amp;lt<span class="hljs-comment">;seconds&amp;gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="扩展Cache-Control指令"><a href="#扩展Cache-Control指令" class="headerlink" title=" 扩展Cache-Control指令"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E6%89%A9%E5%B1%95cache-control%E6%8C%87%E4%BB%A4"> 扩展<code>Cache-Control</code>指令</a></h3><p>拓展缓存指令不是核心HTTP缓存标准文档的一部分，使用前请注意检查<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7">兼容性</a>！</p>
+<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sas">Cache-control: immutable<br>Cache-control: stale-<span class="hljs-keyword">while</span>-revalidate=<span class="hljs-variable">&amp;lt</span>;seconds<span class="hljs-variable">&amp;gt</span>;<br>Cache-control: stale-<span class="hljs-keyword">if</span>-<span class="hljs-keyword">error</span>=<span class="hljs-variable">&amp;lt</span>;seconds<span class="hljs-variable">&amp;gt</span>;<br></code></pre></td></tr></table></figure>
+
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E6%8C%87%E4%BB%A4">指令</a></h2><h3 id="可缓存性"><a href="#可缓存性" class="headerlink" title="可缓存性"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E5%8F%AF%E7%BC%93%E5%AD%98%E6%80%A7">可缓存性</a></h3><ul>
+<li><p><code>public</code></p>
+<p>表明响应可以被任何对象（包括：发送请求的客户端，代理服务器，等等）缓存，即使是通常不可缓存的内容。（例如：1.该响应没有<code>max-age</code>指令或<code>Expires</code>消息头；2. 该响应对应的请求方法是 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/POST">POST</a> 。）</p>
+</li>
+<li><p><code>private</code></p>
+<p>表明响应只能被单个用户缓存，不能作为共享缓存（即代理服务器不能缓存它）。私有缓存可以缓存响应内容，比如：对应用户的本地浏览器。</p>
+</li>
+<li><p><code>no-cache</code></p>
+<p>在发布缓存副本之前，强制要求缓存把请求提交给原始服务器进行验证(协商缓存验证)。</p>
+</li>
+<li><p><code>no-store</code></p>
+<p>缓存不应存储有关客户端请求或服务器响应的任何内容，即不使用任何缓存。</p>
+</li>
+</ul>
+<h3 id="到期"><a href="#到期" class="headerlink" title="到期"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E5%88%B0%E6%9C%9F">到期</a></h3><ul>
+<li><p><code>max-age=&amp;lt;seconds&amp;gt;</code></p>
+<p>设置缓存存储的最大周期，超过这个时间缓存被认为过期(单位秒)。与<code>Expires</code>相反，时间是相对于请求的时间。</p>
+</li>
+<li><p><code>s-maxage=&amp;lt;seconds&amp;gt;</code></p>
+<p>覆盖<code>max-age</code>或者<code>Expires</code>头，但是仅适用于共享缓存(比如各个代理)，私有缓存会忽略它。</p>
+</li>
+<li><p><code>max-stale[=&amp;lt;seconds&amp;gt;]</code></p>
+<p>表明客户端愿意接收一个已经过期的资源。可以设置一个可选的秒数，表示响应不能已经过时超过该给定的时间。</p>
+</li>
+<li><p><code>min-fresh=&amp;lt;seconds&amp;gt;</code></p>
+<p>表示客户端希望获取一个能在指定的秒数内保持其最新状态的响应。</p>
+</li>
+<li><p><code>stale-while-revalidate=&amp;lt;seconds&amp;gt;</code> </p>
+<p>表明客户端愿意接受陈旧的响应，同时在后台异步检查新的响应。秒值指示客户愿意接受陈旧响应的时间长度。</p>
+</li>
+<li><p><code>stale-if-error=&amp;lt;seconds&amp;gt;</code> </p>
+<p>表示如果新的检查失败，则客户愿意接受陈旧的响应。秒数值表示客户在初始到期后愿意接受陈旧响应的时间。</p>
+</li>
+</ul>
+<h3 id="重新验证和重新加载"><a href="#重新验证和重新加载" class="headerlink" title="重新验证和重新加载"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E9%87%8D%E6%96%B0%E9%AA%8C%E8%AF%81%E5%92%8C%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BD">重新验证和重新加载</a></h3><ul>
+<li><p><code>must-revalidate</code></p>
+<p>一旦资源过期（比如已经超过<code>max-age</code>），在成功向原始服务器验证之前，缓存不能用该资源响应后续请求。</p>
+</li>
+<li><p><code>proxy-revalidate</code></p>
+<p>与must-revalidate作用相同，但它仅适用于共享缓存（例如代理），并被私有缓存忽略。</p>
+</li>
+<li><p><code>immutable</code> </p>
+<p>表示响应正文不会随时间而改变。资源（如果未过期）在服务器上不发生改变，因此客户端不应发送重新验证请求头（例如<code>If-None-Match</code>或I<code>f-Modified-Since</code>）来检查更新，即使用户显式地刷新页面。在Firefox中，immutable只能被用在 <code>https://</code> transactions. 有关更多信息，请参阅<a target="_blank" rel="noopener" href="http://bitsup.blogspot.de/2016/05/cache-control-immutable.html">这里</a>。</p>
+</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E5%85%B6%E4%BB%96">其他</a></h3><ul>
+<li><p><code>no-transform</code></p>
+<p>不得对资源进行转换或转变。<code>Content-Encoding</code>、<code>Content-Range</code>、<code>Content-Type</code>等HTTP头不能由代理修改。例如，非透明代理或者如<a target="_blank" rel="noopener" href="https://support.google.com/webmasters/answer/6211428?hl=en">Google&amp;#039;s Light Mode</a>可能对图像格式进行转换，以便节省缓存空间或者减少缓慢链路上的流量。<code>no-transform</code>指令不允许这样做。</p>
+</li>
+<li><p><code>only-if-cached</code></p>
+<p>表明客户端只接受已缓存的响应，并且不要向原始服务器检查是否有更新的拷贝。</p>
+</li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E7%A4%BA%E4%BE%8B">示例</a></h2><h3 id="禁止缓存"><a href="#禁止缓存" class="headerlink" title="禁止缓存"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E7%A6%81%E6%AD%A2%E7%BC%93%E5%AD%98">禁止缓存</a></h3><p>发送如下响应头可以关闭缓存。此外，可以参考<code>Expires</code>和<code>Pragma</code>消息头。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">Cache-Control:</span> <span class="hljs-literal">no</span><span class="hljs-string">-store</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="缓存静态资源"><a href="#缓存静态资源" class="headerlink" title="缓存静态资源"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E7%BC%93%E5%AD%98%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">缓存静态资源</a></h3><p>对于应用程序中不会改变的文件，你通常可以在发送响应头前添加积极缓存。这包括例如由应用程序提供的静态文件，例如图像，CSS文件和JavaScript文件。另请参阅Expires标题。</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lasso"><span class="hljs-keyword">Cache</span><span class="hljs-params">-Control</span>:<span class="hljs-keyword">public</span>, <span class="hljs-keyword">max</span><span class="hljs-params">-age</span>=<span class="hljs-number">31536000</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="需要重新验证"><a href="#需要重新验证" class="headerlink" title="需要重新验证"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E9%AA%8C%E8%AF%81">需要重新验证</a></h3><p>指定 <code>no-cache</code> 或 <code>max-age=0, must-revalidate</code> 表示客户端可以缓存资源，每次使用缓存资源前都必须重新验证其有效性。这意味着每次都会发起 HTTP 请求，但当缓存内容仍有效时可以跳过 HTTP 响应体的下载。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">Cache</span>-Control: no-<span class="hljs-keyword">cache</span><br></code></pre></td></tr></table></figure>
+
+<p>Copy to Clipboard</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lasso"><span class="hljs-keyword">Cache</span><span class="hljs-params">-Control</span>: <span class="hljs-keyword">max</span><span class="hljs-params">-age</span>=<span class="hljs-number">0</span>, must<span class="hljs-params">-revalidate</span><br></code></pre></td></tr></table></figure>
+
+<p>Copy to Clipboard</p>
+<p><strong>注意</strong>: 如果服务器关闭或失去连接，下面的指令可能会造成使用缓存。</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lasso"><span class="hljs-keyword">Cache</span><span class="hljs-params">-Control</span>: <span class="hljs-keyword">max</span><span class="hljs-params">-age</span>=<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<p>原文地址：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>消息头字段之Cache-Control</div>
+      <div>http://example.com/2021/10/28/消息头字段之Cache-Control/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 28, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/30/Supervisor%20%E4%BD%BF%E7%94%A8%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0%20%E3%80%90%E9%85%8D%E7%BD%AEsyncd%E3%80%91/" title="Supervisor 使用踩坑笔记 【配置syncd】">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Supervisor 使用踩坑笔记 【配置syncd】</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/20/%E5%8E%BB%E6%8E%89sudo%E7%9A%84%E5%AF%86%E7%A0%81/" title="去掉sudo的密码">
+                        <span class="hidden-mobile">去掉sudo的密码</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,621 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="昨天，就在昨天，前端一同事提了一个问题：我们的系统，用户重新开一个标签页，就要重新登录。我当时觉得这怎么可能？结果现场一测，还真是，好尴尬！ 今天抽了点时间网上查了查，才发现原来一直以为很简单的sessionStorage，还真埋了这么一颗雷。不过国外前辈也提出了一个解决方案，不仅如此，文章还把浏览器端保存数据的场景分析的很透彻，所以斗胆翻译了一下。 原文翻译我实现了一种机制可以利用浏览器提供的s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="译-在多个标签页之间共享sessionStorage">
+<meta property="og:url" content="http://example.com/2020/10/25/%E8%AF%91-%E5%9C%A8%E5%A4%9A%E4%B8%AA%E6%A0%87%E7%AD%BE%E9%A1%B5%E4%B9%8B%E9%97%B4%E5%85%B1%E4%BA%ABsessionStorage/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="昨天，就在昨天，前端一同事提了一个问题：我们的系统，用户重新开一个标签页，就要重新登录。我当时觉得这怎么可能？结果现场一测，还真是，好尴尬！ 今天抽了点时间网上查了查，才发现原来一直以为很简单的sessionStorage，还真埋了这么一颗雷。不过国外前辈也提出了一个解决方案，不仅如此，文章还把浏览器端保存数据的场景分析的很透彻，所以斗胆翻译了一下。 原文翻译我实现了一种机制可以利用浏览器提供的s">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-25T11:15:36.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>译-在多个标签页之间共享sessionStorage - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="译-在多个标签页之间共享sessionStorage"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-10-25 19:15" pubdate>
+          October 25, 2020 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">译-在多个标签页之间共享sessionStorage</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>昨天，就在昨天，前端一同事提了一个问题：<strong>我们的系统，用户重新开一个标签页，就要重新登录</strong>。我当时觉得这怎么可能？结果现场一测，还真是，好尴尬！</p>
+<p>今天抽了点时间网上查了查，才发现原来一直以为很简单的sessionStorage，还真埋了这么一颗雷。不过国外前辈也提出了一个解决方案，不仅如此，文章还把浏览器端保存数据的场景分析的很透彻，所以斗胆翻译了一下。</p>
+<h2 id="原文翻译"><a href="#原文翻译" class="headerlink" title="原文翻译"></a>原文翻译</h2><p>我实现了一种机制可以利用浏览器提供的sessionStorage或memoryStorageStorage的固有的安全性来实现用户身份认证，并且可以保证用户不需要每次新开一个标签页都重新登录。</p>
+<h4 id="现有的浏览器存储机制"><a href="#现有的浏览器存储机制" class="headerlink" title="现有的浏览器存储机制"></a>现有的浏览器存储机制</h4><ul>
+<li><strong>localStorage</strong>：~5MB，数据永久保存直到用户手动删除</li>
+<li><strong>sessionStorage</strong>：~5MB，数据只在当前标签页有效</li>
+<li><strong>cookie</strong>：~4KB，可以设置成永久有效</li>
+<li><strong>session cookie</strong>：~4KB，当用户关闭浏览器时删除（并非总能立即删除）</li>
+</ul>
+<h4 id="安全的认证token保存"><a href="#安全的认证token保存" class="headerlink" title="安全的认证token保存"></a>安全的认证token保存</h4><p>一些重要的系统会要求当用户关闭标签页时会话立刻到期。</p>
+<p>为了达到这个目的，不仅绝对不应该使用cookies来保存任何敏感信息（例如认证token）。甚至session-cookies也无法满足要求，它在标签页关闭（甚至浏览器完全关闭）后还会持续存活一定时间。</p>
+<p>（任何时刻我们都不应该只使用cookies，它还有其他很多问题需要讨论，例如CSRF）</p>
+<p>这些问题就使得我们在保存认证token时应使用内存或sessionStorage。sessionStorage的好处是它允许跨多个页面保存数据，并且也支持浏览器刷新操作。这样用户就可以在多个页面之间跳转或刷新页面而保持登录状态。</p>
+<p>Good。我们将token保存在sessionStorage，并在每次请求服务器时将token放在请求头中来完成用户的身份认证。当用户关闭标签页，token会立即过期。</p>
+<h4 id="但多标签页怎么办？"><a href="#但多标签页怎么办？" class="headerlink" title="但多标签页怎么办？"></a>但多标签页怎么办？</h4><p>即便是在单页面应用中也有一个很常见的情况，用户经常希望打开多个标签页。而此场景下将token保存在sessionStorage中将会带来很差的用户体验，每次开启一个标签页都会要求用户重新登录。没错，sessionStorage不支持跨标签页共享数据。</p>
+<h4 id="利用localStorage事件来跨标签页共享sessionStorage"><a href="#利用localStorage事件来跨标签页共享sessionStorage" class="headerlink" title="利用localStorage事件来跨标签页共享sessionStorage"></a>利用localStorage事件来跨标签页共享sessionStorage</h4><p>我利用localStorage事件提出了一种解决方案。</p>
+<p>当用户新开一个标签页时，我们先来询问其它已经打开的标签页是不是有需要给我们共享的sessionStorage数据。如果有，现有的标签页会通过localStorage事件来传递数据到新打开的标签页中，我们只需要复制一份到本地sessionStorage即可。</p>
+<p>传递过来的sessionStorage绝对不会保存在localStorage，从localStorage事件将数据中复制并保存到sessionStorage，这个流程是在同一个调用中完成，没有中间状态。而且数据是对应事件携带的，并不在localStorage中。（译者注：作者意图解释这个方案的安全性）</p>
+<p><a target="_blank" rel="noopener" href="https://blog.guya.net/security/browser_session/sessionStorage.html">在线例子</a></p>
+<p>点击“Set the sessionStorage”，然后打开多个标签页，你会发现sessionStorage共享了。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 为了简单明了删除了对IE的支持[好像支持ie11]</span><br>(<span class="hljs-keyword">function</span><span class="hljs-literal">()</span> &#123;<br><br><span class="hljs-comment">//这段代码只在当前页面加入，需要跳转到的页面不需要</span><br><span class="hljs-comment">//sessionStorage.setItem(&amp;#039;user&amp;#039;,&amp;#039;chengyao&amp;#039;)</span><br><br><br>	<span class="hljs-keyword">if</span> (!sessionStorage.length) &#123;<br>		<span class="hljs-comment">// 这个调用能触发目标事件，从而达到共享数据的目的</span><br>		localStorage.set<span class="hljs-constructor">Item(&amp;#039;<span class="hljs-params">getSessionStorage</span>&amp;#039;, Date.<span class="hljs-params">now</span>()</span>);<br>	&#125;;<br><br>	<span class="hljs-comment">// 该事件是核心</span><br>	window.add<span class="hljs-constructor">EventListener(&amp;#039;<span class="hljs-params">storage</span>&amp;#039;, <span class="hljs-params">function</span>(<span class="hljs-params">event</span>)</span> &#123;<br>		<span class="hljs-keyword">if</span> (event.key<span class="hljs-operator"> === </span>&amp;#<span class="hljs-number">039</span>;getSessionStorage&amp;#<span class="hljs-number">039</span>;) &#123;<br>			<span class="hljs-comment">// 已存在的标签页会收到这个事件</span><br>			localStorage.set<span class="hljs-constructor">Item(&amp;#039;<span class="hljs-params">sessionStorage</span>&amp;#039;, JSON.<span class="hljs-params">stringify</span>(<span class="hljs-params">sessionStorage</span>)</span>);<br>			localStorage.remove<span class="hljs-constructor">Item(&amp;#039;<span class="hljs-params">sessionStorage</span>&amp;#039;)</span>;<br><br>		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (event.key<span class="hljs-operator"> === </span>&amp;#<span class="hljs-number">039</span>;sessionStorage&amp;#<span class="hljs-number">039</span>; &amp;amp;&amp;amp; !sessionStorage.length) &#123;<br>			<span class="hljs-comment">// 新开启的标签页会收到这个事件</span><br>			var data = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JSON</span>.</span></span>parse(event.newValue)<br>			<span class="hljs-comment">//,value;</span><br><br>			<span class="hljs-keyword">for</span> (key <span class="hljs-keyword">in</span> data) &#123;<br>				sessionStorage.set<span class="hljs-constructor">Item(<span class="hljs-params">key</span>, <span class="hljs-params">data</span>[<span class="hljs-params">key</span>])</span>;<br>			&#125;<br>		&#125;<br>	&#125;);<br>&#125;)<span class="hljs-literal">()</span>;<br></code></pre></td></tr></table></figure>
+
+<p>（译者注：上面的代码是我从在线demo中截取的，原文中并无提到）</p>
+<h4 id="接近完美"><a href="#接近完美" class="headerlink" title="接近完美"></a>接近完美</h4><p>我们现在拥有了一个几乎非常安全的方案来保存会话token在浏览器里，并支持良好的多标签页用户体验。现在当用户关闭标签页后能确保会话立即过期。难道不是么？</p>
+<p>chrome和firefox都支持当用户进行“重新打开关闭的标签页”或“撤销关闭标签页”时恢复sessionStorage。F**k！（译者注：作者原文用的是“Damn it!”，注意到那个叹号了吗？）</p>
+<p>safari在这个问题上处理是正确的，它并不会恢复sessionStorag（只测试了上述这三个浏览器）。</p>
+<p>对用户而言，能够确定sessionStorag已经过期的方法是直接重新打开网站，而不是选择“重新打开关闭的标签页”。</p>
+<p>除非chrome和firefox能够解决这个bug。（但我预感开发组会称其为“特性”）</p>
+<p>即便存在这样的bug，使用sessionStorag依然要比session-cookies方案或其他方案要安全。如果我们希望得到一个更加完美的方案，我们就需要自己来实现一个内存的方案来代替sessionStorag。(onbeforeunload也能做到，但不是太可靠且每次刷新页面也会被清空。window.name也不错，但它太老了且也不支持跨域保护)</p>
+<h4 id="跨标签页共享memoryStorage"><a href="#跨标签页共享memoryStorage" class="headerlink" title="跨标签页共享memoryStorage"></a>跨标签页共享memoryStorage</h4><p>这应该是唯一一个真正安全的实现浏览器端保存认证token的方法了，并且要保证用户打开多个标签页不需要重新登录。</p>
+<p>关闭标签页，会话立即过期–这次是真真儿的。</p>
+<p>这个方案的缺点是，<strong>当只有一个标签页时</strong>，浏览器刷新会导致用户重新登录。安全总是要付出点代价的，很明显这个缺点可能是致命的。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.guya.net/security/browser_session/memoryStorage.html">在线例子</a></p>
+<p>设置一个memoryStorage，然后打开多个标签页，你会发现数据共享了。关闭所有标签页token会立即永久过期（memoryStorage其实就是一个javascript对象而已）。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">(<span class="hljs-keyword">function</span><span class="hljs-literal">()</span> &#123;<br><br>	window.memoryStorage = &#123;&#125;;<br><br>	<span class="hljs-keyword">function</span> is<span class="hljs-constructor">Empty(<span class="hljs-params">o</span>)</span> &#123;<br>		<span class="hljs-keyword">for</span> (var i <span class="hljs-keyword">in</span> o) &#123;<br>	  		return <span class="hljs-literal">false</span>;<br>	 	&#125;<br>	 	return <span class="hljs-literal">true</span>;<br>	&#125;;<br><br>	<span class="hljs-keyword">if</span> (is<span class="hljs-constructor">Empty(<span class="hljs-params">memoryStorage</span>)</span>) &#123;<br>		localStorage.set<span class="hljs-constructor">Item(&amp;#039;<span class="hljs-params">getSessionStorage</span>&amp;#039;, Date.<span class="hljs-params">now</span>()</span>);<br>	&#125;;<br><br>	window.add<span class="hljs-constructor">EventListener(&amp;#039;<span class="hljs-params">storage</span>&amp;#039;, <span class="hljs-params">function</span>(<span class="hljs-params">event</span>)</span> &#123;<br>		<span class="hljs-keyword">if</span> (event.key<span class="hljs-operator"> == </span>&amp;#<span class="hljs-number">039</span>;getSessionStorage&amp;#<span class="hljs-number">039</span>;) &#123;<br>			localStorage.set<span class="hljs-constructor">Item(&amp;#039;<span class="hljs-params">sessionStorage</span>&amp;#039;, JSON.<span class="hljs-params">stringify</span>(<span class="hljs-params">memoryStorage</span>)</span>);<br>			localStorage.remove<span class="hljs-constructor">Item(&amp;#039;<span class="hljs-params">sessionStorage</span>&amp;#039;)</span>;<br><br>		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (event.key<span class="hljs-operator"> == </span>&amp;#<span class="hljs-number">039</span>;sessionStorage&amp;#<span class="hljs-number">039</span>; &amp;amp;&amp;amp; is<span class="hljs-constructor">Empty(<span class="hljs-params">memoryStorage</span>)</span>) &#123;<br>			var data = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JSON</span>.</span></span>parse(event.newValue),<br>						value;<br><br>			<span class="hljs-keyword">for</span> (key <span class="hljs-keyword">in</span> data) &#123;<br>				memoryStorage<span class="hljs-literal">[<span class="hljs-identifier">key</span>]</span> = data<span class="hljs-literal">[<span class="hljs-identifier">key</span>]</span>;<br>			&#125;<br>		&#125;<br>	&#125;);<br>&#125;)<span class="hljs-literal">()</span>;<br></code></pre></td></tr></table></figure>
+
+<p>原文：<a target="_blank" rel="noopener" href="https://blog.guya.net/2015/06/12/sharing-sessionstorage-between-tabs-for-secure-multi-tab-authentication/">Sharing sessionStorage between tabs for secure multi-tab authentication</a></p>
+<h2 id="译者得er瑟"><a href="#译者得er瑟" class="headerlink" title="译者得er瑟"></a>译者得er瑟</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>译-在多个标签页之间共享sessionStorage</div>
+      <div>http://example.com/2020/10/25/译-在多个标签页之间共享sessionStorage/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 25, 2020</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/10/29/PHP%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD/" title="PHP限速下载">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PHP限速下载</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/13/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">
+                        <span class="hidden-mobile">正则表达式</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

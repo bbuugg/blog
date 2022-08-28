@@ -1,0 +1,681 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="sudo -i -u postgres 登录\l列出所有数据库\c 数据库名 选择数据库\d 列出数据表\d 表名 列出数据表的结构create database chengyao; 创建数据库drop database chengyao;删除数据库psql -h localhost -p 5432 -U cheng postgres登录select pg_roles.rolname from p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="postgresql">
+<meta property="og:url" content="http://example.com/2020/09/28/postgresql/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="sudo -i -u postgres 登录\l列出所有数据库\c 数据库名 选择数据库\d 列出数据表\d 表名 列出数据表的结构create database chengyao; 创建数据库drop database chengyao;删除数据库psql -h localhost -p 5432 -U cheng postgres登录select pg_roles.rolname from p">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-28T12:31:11.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>postgresql - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="postgresql"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-09-28 20:31" pubdate>
+          September 28, 2020 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          69 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">postgresql</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>sudo -i -u postgres 登录<br>\l列出所有数据库<br>\c 数据库名 选择数据库<br>\d 列出数据表<br>\d 表名 列出数据表的结构<br>create database chengyao; 创建数据库<br>drop database chengyao;删除数据库<br>psql -h localhost -p 5432 -U cheng postgres登录<br>select pg_roles.rolname from pg_roles; 查看角色<br>grant role_name to username; 赋予角色<br>修改一个字段为非null ： alter table users alter username set not null;</p>
+<p>\x切换到竖排显示<br>select * from ps_proc;查询存储过程</p>
+<h2 id="一、建立数据库连接"><a href="#一、建立数据库连接" class="headerlink" title="一、建立数据库连接"></a>一、建立数据库连接</h2><p>接入PostgreSQL数据库: psql -h IP地址 -p 端口 -U 数据库名</p>
+<p>之后会要求输入数据库密码</p>
+<p>二、访问数据库</p>
+<p>1、列举数据库：\l<br>2、选择数据库：\c 数据库名<br>3、查看该某个库中的所有表：\dt<br>4、切换数据库：\c interface<br>5、查看某个库中的某个表结构：\d 表名<br>6、查看某个库中某个表的记录：select * from apps limit 1;<br>7、显示字符集：\encoding<br>8、退出psgl：\q</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>列出当前数据库所有表<br>\dt</p>
+<p>列出表名<br>SELECT tablename FROM pg_tables;<br>WHERE tablename NOT LIKE ‘pg%’<br>AND tablename NOT LIKE ‘sql_%’<br>ORDER BY tablename;</p>
+<p>列出数据库名<br>\l<br>或<br>SELECT datname FROM pg_database;</p>
+<p>切换数据库<br>\c 数据库名</p>
+<p>1、通过命令行查询<br>\d 数据库 —— 得到所有表的名字<br>\d 表名 —— 得到表结构<br>2、通过SQL语句查询<br>&quot;select * from pg_tables&quot; —— 得到当前db中所有表的信息（这里pg_tables是系统视图）<br>&quot;select tablename from pg_tables where schemaname&#x3D;’public’&quot; —— 得到所有用户自定义表的名字（这里&quot;tablename&quot;字段是表的名字，&quot;schemaname&quot;是schema的名字。用户自定义的表，如果未经特殊处理，默认都是放在名为public的schema下）</p>
+<p> View Code</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>postgresql数据管理系统使用命令方式有两种:</p>
+<ol>
+<li>内部命令,以反斜线开始 \ ,如: \l 显示所有数据库</li>
+<li>标准SQL命令,以分号 ; 或 \g 结束,可以使用多行</li>
+</ol>
+<p>数据库的关键操作:</p>
+<ol>
+<li>启动服务  2. 登录  3. 建立数据库  4. 建立表  5. 插入记录到表中 </li>
+<li>更新&#x2F;删除&#x2F;查询&#x2F;修改操作           7. 退出    8. 停止服务</li>
+</ol>
+<p>在windows7中安装的postgresql默认使用GBK字符集,经常不能使用显示中文的数据表,解决办法:<br>注意:在windows 7下的postgresql中写操作时要使用GBK,读操作时要用UTF8;</p>
+<p>设置字符集为 utf-8 就可以了.<br>postgres&#x3D;# \encoding utf-8       &#x2F;&#x2F; 设置客户端的字元集<br>postgres&#x3D;# \encoding                  &#x2F;&#x2F; 显示客户端的字元集<br>postgres&#x3D;# show client_encoding;      &#x2F;&#x2F; 显示客户端的字元集<br>postgres&#x3D;# show server_encoding;      &#x2F;&#x2F; 显示服务器的字元集</p>
+<p>启动服务:<br>net start postgresql-9.5<br>停止服务:<br>net stop postgresql-9.5</p>
+<p>获取命令帮助:<br>c:&amp;gt; psql –help</p>
+<p>登录( 注意: postgres 是默认用户即管理员 ):<br>路径 psql -h 服务器 -U 用户名  -d 数据库 -p 端口地址  &#x2F;&#x2F; -U 是大写<br>C:&amp;gt; psql -h localhost -U postgres -p 5432            &#x2F;&#x2F; 默认打开postgres数据库<br>C:&amp;gt; psql -h 127.0.0.1 -U postgres -d fengdos -p 5432 &#x2F;&#x2F; 打开fengdos数据库<br>C:&amp;gt; psql -U postgres                                 &#x2F;&#x2F; 快速登录(全部使用默认设置)<br>&#x2F;&#x2F; 使用某些有密码的用户的情况下, 会提示输入密码.<br>用户 postgres 的口令: ILoveYou         &#x2F;&#x2F; 输入时不会显示任何字符<br>&#x2F;&#x2F; 成功后显示:<br>psql (9.5.3)<br>输入 &quot;help&quot; 来获取帮助信息.<br>&#x2F;&#x2F; 进入postgresql数据库系统提示符状态, ******&#x3D;# 中&#x3D;#前面为当前使用的数据库<br>postgres&#x3D;# help          &#x2F;&#x2F; 获取系统帮助,显示如下:</p>
+<hr>
+<p>您正在使用psql, 这是一种用于访问PostgreSQL的命令行界面<br>键入：\copyright 显示发行条款<br>      \h 显示 SQL 命令的说明<br>      ? 显示 pgsql 命令的说明 (pgsql内部命令)<br>      \g 或者以分号(;)结尾以执行查询<br>      \q 退出注: 数据库名称区分大小写的。</p>
+<hr>
+<p>postgres&#x3D;# \help         &#x2F;&#x2F; 获取SQL命令的帮助,同 \h<br>postgres&#x3D;# \quit         &#x2F;&#x2F; 退出,同 \q<br>postgres&#x3D;# \password dlf &#x2F;&#x2F; 重新设置用户dlf的密码,然后需要 \q退出后才生效<br>c:&amp;gt;psql exampledb &lt; user.sql  &#x2F;&#x2F; 将user.sql文件导入到exampled数据库中<br>postgres&#x3D;# \h select   &#x2F;&#x2F; 精细显示SQL命令中的select命令的使用方法<br>postgres&#x3D;# \l          &#x2F;&#x2F; 显示所有数据库<br>postgres&#x3D;# \dt         &#x2F;&#x2F; 显示当前数据库中的所有表<br>postgres&#x3D;# \d [table_name]  &#x2F;&#x2F; 显示当前数据库的指定表的表结构<br>postgres&#x3D;# \c [database_name]  &#x2F;&#x2F; 切换到指定数据库,相当于use<br>postgres&#x3D;# \du                 &#x2F;&#x2F; 显示所有用户<br>postgres&#x3D;# \conninfo           &#x2F;&#x2F; 显示当前数据库和连接信息<br>postgres&#x3D;# \e   &#x2F;&#x2F; 进入记事本sql脚本编辑状态(输入批命令后关闭将自动在命令行中执行)<br>postgres&#x3D;# \di  &#x2F;&#x2F; 查看索引(要建立关联)<br>postgres&#x3D;# \prompt [文本] 名称    &#x2F;&#x2F; 提示用户设定内部变数<br>postgres&#x3D;# \encoding [字元编码名称]  &#x2F;&#x2F; 显示或设定用户端字元编码<br>*可以将存储过程写在文本文件中aaa.sql,然后在psql状态下:<br>postgres&#x3D;# \i aaa.sql    &#x2F;&#x2F; 将aaa.sql导入(到当前数据库)<br>postgres&#x3D;# \df           &#x2F;&#x2F; 查看所有存储过程（函数）<br>postgres&#x3D;# \df+ name     &#x2F;&#x2F; 查看某一存储过程<br>postgres&#x3D;# select version();            &#x2F;&#x2F; 获取版本信息<br>postgres&#x3D;# select usename from pg_user; &#x2F;&#x2F; 获取系统用户信息<br>postgres&#x3D;# drop User 用户名             &#x2F;&#x2F; 删除用户</p>
+<p>其它SQL命令通用如(标准化SQL语句):<br>*创建数据库：<br>create database [数据库名];</p>
+<p>*删除数据库：<br>drop database [数据库名]; </p>
+<p>*创建表：<br>create table ([字段名1] [类型1] ;,[字段名2] [类型2],……&lt;,primary key (字段名m,字段名n,…)&gt;;);</p>
+<p>*在表中插入数据：<br>insert into 表名 ([字段名m],[字段名n],……) values ([列m的值],[列n的值],……);</p>
+<p>*显示表内容:<br>select * from student;</p>
+<p>*重命名一个表：<br>alter table [表名A] rename to [表名B];</p>
+<p>*删除一个表：<br>drop table [表名]; </p>
+<p>*在已有的表里添加字段：<br>alter table [表名] add column [字段名] [类型];</p>
+<p>*删除表中的字段：<br>alter table [表名] drop column [字段名];</p>
+<p>*重命名一个字段：<br>alter table [表名] rename column [字段名A] to [字段名B];</p>
+<p>*给一个字段设置缺省值：<br>alter table [表名] alter column [字段名] set default [新的默认值];</p>
+<p>*去除缺省值：<br>alter table [表名] alter column [字段名] drop default;</p>
+<p>*修改表中的某行某列的数据：<br>update [表名] set [目标字段名]&#x3D;[目标值] where [该行特征];</p>
+<p>*删除表中某行数据：<br>delete from [表名] where [该行特征];<br>delete from [表名];    &#x2F;&#x2F; 删空整个表</p>
+<p>*可以使用pg_dump和pg_dumpall来完成。比如备份sales数据库：<br>pg_dump drupal&gt;&#x2F;opt&#x2F;Postgresql&#x2F;backup&#x2F;1.bak</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>1.列出所有表名的查询语句<br>SELECT tablename FROM pg_tables<br>WHERE tablename NOT LIKE ‘pg%’<br>AND tablename NOT LIKE ‘sql_%’<br>ORDER BY tablename;</p>
+<p>2.列出表中所有的数据</p>
+<p>SELECT * FROM someTable;</p>
+<p>3.执行外部脚本<br>#&#x2F;opt&#x2F;PostgreSQL&#x2F;8. 3&#x2F;bin&#x2F;psql - Upostgres ;登陆到数据库的控制台界面<br>postgres&#x3D; # \i &#x2F;root&#x2F;db. sql<br>     \i 命令用于执行一个外部的sql脚本文件。</p>
+<p>4.导出数据库为外部的脚本<br>#&#x2F;opt&#x2F;PostgreSQL&#x2F;8. 3&#x2F;bin&#x2F; pg_dump - Upostgres - C - fdb. sql database</p>
+<p>-C create    -f 是导出后的文件名</p>
+<p>5.postgresql 插入16进制数<br>INSERT INTO tableAAA VALUES( x’0001f’ : : integer, ‘鉴权’ , ‘Authority’ )</p>
+<p>6.使用 TG_RELNAME 报错ERROR:  syntax error at or near &quot;$1&quot; at character</p>
+<p>[引]<a target="_blank" rel="noopener" href="http://www.dbmonster.com/Uwe/Forum.aspx/postgresql/2051/TG-RELNAME-problem">http://www.dbmonster.com/Uwe/Forum.aspx/postgresql/2051/TG-RELNAME-problem</a></p>
+<p>Perhaps you will get some idea if you read the document:<br>37. 6. 4. Executing Dynamic Commands</p>
+<p>改：执行动态语句</p>
+<p> EXECUTE ‘INSERT INTO TG_RELNAME VALUES (NEW.start_time , NEW.id , NEW.end_time)’;</p>
+<ol start="7">
+<li>psql 常用命令<br>a. \c tesdb1 - - 将当前连接的testdb数据库改变成 testdb1 。<br>b . \q - - 断开与Postgres服务器的连接<br>c . \l 列出所有数据库的名字<br> \l+ 列出所有数据库的名字以及字符集编码<br>d. \d [ 名字] 描述表, 索引, 序列, 或者视图<br>          列出表&#x2F;索引&#x2F;序列&#x2F;视图&#x2F;系统表<br>\d{t| i| s| v| S} [ 模式] ( 加 &quot;+&quot; 获取更多信息)<br>          - - 列出表&#x2F;索引&#x2F;序列&#x2F;视图&#x2F;系统表<br>\d tablename - - 查看表的结构<br>\dt - - 列出数据库中所有表</li>
+</ol>
+<p>8.在PostgreSQL中如何删除重复记录</p>
+<p>【转】http: &#x2F; &#x2F; hi. baidu. com&#x2F;cicon&#x2F;blog&#x2F;item&#x2F;e14f217f4eeee20429388a0c. html</p>
+<p>在PostgreSQL中删除重复记录其实很简单，不论有多少行重复，只要在要删除重复记录的表中table加一列rownum字段( id为table表中的主键) ，类型设置为serial类型即可，然后执行sql<br>delete from deltest where rownum not in(<br>select max(rownum) from deltest<br>);<br>最后删除列rownum即可</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>正文：</p>
+<p>连接数据库操作：</p>
+<p>psql是postgresql数据库提供的连接数据库shell命令，格式 psql 【option】 dbname</p>
+<p>在终端输入psql 会使用默认的方式连接本地数据库，使用的用户名是登陆linux系统使用的用户名，</p>
+<p>psql -U username -W pass 以及psql -U username -W pass databasenaem都可以实现连接数据库的功能，第一种方式是使用用户名username密码pass连接默认数据库（具体链接那个数据库还没搞清 楚），第二种方式使用用户名username密码pass连接username数据库。如果登录成功之后将显示类似信息</p>
+<p>Welcome to psql 8.0.6, the PostgreSQL interactive terminal.</p>
+<p>Type:  \copyright for distribution terms<br>       \h for help with SQL commands<br>       ? for help with psql commands<br>       \g or terminate with semicolon to execute query<br>       \q to quit</p>
+<p>连接成功之后所有的命令都是使用”\“+ 字符或者word完成相应的功能。现将常用的几个列车</p>
+<p>\l      列出所有数据库</p>
+<p>\dt   列出连接数据库中所有表</p>
+<p>\di   列出连接数据库中所有index</p>
+<p>\dv  列出连接数据库中所有view</p>
+<p>\h    sql命令帮助</p>
+<p>?    \ 所有命令帮助</p>
+<p>\q   退出连接</p>
+<p>\d tablename  列出指定tablename的表结构</p>
+<p>可以尝试执行下面两句sql</p>
+<p>SELECT current_date</p>
+<p>SELECT version()</p>
+<p>是不是nothing happened，这是因为postgresql数据库要求必须使用；结尾否则不予执行，加上；之后就能看到结果了。</p>
+<p>如果我们想创建数据库怎么办呢？</p>
+<p>我们知道createdb和dropdb可以创建和删除数据库，但是如果我们这个时候执行出现什么问题呢？可以试一试，提示是个错误。</p>
+<p>为什么呢？</p>
+<p>createdb和dropdb是shell脚本，所以现在又两种方式执行</p>
+<p>（1）.退出连接进入终端，输入createdb test —U user -W pass 稍等提示创建数据库成功</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">dropdb test —U <span class="hljs-keyword">user</span> <span class="hljs-title">-W</span> pass    提示drop成功<br></code></pre></td></tr></table></figure>
+
+
+<p>（2）.在未退出连接中使用 ! createdb test —U user -W pass 稍等提示创建数据库成功</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">\! dropdb test —U <span class="hljs-keyword">user</span> <span class="hljs-title">-W</span> pass  提示drop成功<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>postgresql</div>
+      <div>http://example.com/2020/09/28/postgresql/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 28, 2020</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/10/06/datatables%20%E4%BD%BF%E7%94%A8/" title="datatables 使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">datatables 使用</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/26/js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="js学习笔记">
+                        <span class="hidden-mobile">js学习笔记</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

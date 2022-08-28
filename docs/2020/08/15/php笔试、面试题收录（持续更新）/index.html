@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="php中isset,empty,is_null,?:,??is_nullbool is_null ( mixed $var )  当参数满足下面三种情况时，is_null()将返回TRUE，其它的情况就是FALSE1、它被赋值为NULL2、它还没有赋值3、它未定义，相当于unset()处理过的变量issetbool isset ( mixed $var [, mixed $… ] )，参数是一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php笔试、面试题收录（持续更新）">
+<meta property="og:url" content="http://example.com/2020/08/15/php%E7%AC%94%E8%AF%95%E3%80%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%94%B6%E5%BD%95%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="php中isset,empty,is_null,?:,??is_nullbool is_null ( mixed $var )  当参数满足下面三种情况时，is_null()将返回TRUE，其它的情况就是FALSE1、它被赋值为NULL2、它还没有赋值3、它未定义，相当于unset()处理过的变量issetbool isset ( mixed $var [, mixed $… ] )，参数是一个">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-14T23:19:23.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>php笔试、面试题收录（持续更新） - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="php笔试、面试题收录（持续更新）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-08-15 07:19" pubdate>
+          August 15, 2020 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">php笔试、面试题收录（持续更新）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol>
+<li>php中isset,empty,is_null,?:,??<br>is_null<br>bool is_null ( mixed $var )</li>
+</ol>
+<p>当参数满足下面三种情况时，is_null()将返回TRUE，其它的情况就是FALSE<br>1、它被赋值为NULL<br>2、它还没有赋值<br>3、它未定义，相当于unset()处理过的变量<br>isset<br>bool isset ( mixed $var [, mixed $… ] )，参数是一个变量</p>
+<p>检测参数已设定，并且不是NULL。如果没有设置变量，变量未赋值，或变量被设为NULL，isset()函数就返回NULL。<br>正好和is_null()函数相反，is_null()为TRUE的情况在isset()中就为FALSE。<br>如果传递多个参数，将取交集。即所有参数全部符合 isset() 时才返回 TRUE。<br>empty<br>bool empty ( mixed $var )</p>
+<p>判读变量是否为空。<br>empty()为TRUE的情况，若变量不存在，或者变量存在且其值为&quot;&quot;、0、&quot;0&quot;、NULL、FALSE、array()、var $var; 以及没有任何属性的对象，则返回 TURE。<br>?:<br>$b &#x3D; $a?:1等于 $b &#x3D; !empty($a)?$a:1 ,若$a为空，则赋值为1，否则取$a的值</p>
+<p>??<br>$b &#x3D; $a??$c等于$b &#x3D; isset($a)?$a:$c,若$a未设定，返回$c,否则返回$a</p>
+<ol start="2">
+<li>date类问题<br>strtotime()函数的作用是将日期时间描述解析为 Unix 时间戳</li>
+</ol>
+<p>int strtotime ( string time [, int now] )</p>
+<p>示例：</p>
+<p>echo &quot;今天:&quot;.date(&quot;Y-m-d&quot;);<br>echo &quot;昨天:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;-1 day&quot;));<br>echo &quot;明天:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;+1 day&quot;));<br>echo &quot;一周后:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;+1 week&quot;));<br>echo &quot;一周零两天四小时两秒后:&quot;.date(&quot;Y-m-d G:H:s&quot;,strtotime(&quot;+1 week 2 days 4 hours 2 seconds&quot;));<br>echo &quot;下个星期四:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;next Thursday&quot;));<br>echo &quot;上个周一:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;last Monday&quot;));<br>echo &quot;一个月前:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;last month&quot;));<br>echo &quot;一个月后:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;+1 month&quot;));<br>echo &quot;十年后:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;+10 year&quot;));<br>主要考虑date()函数和strtotime()函数</p>
+<ol start="3">
+<li><p>require 和 include<br> require是无条件包含也就是如果一个流程里加入require,无论条件成立与否都会先执行require<br> include有返回值，而require没有(可能因为如此require的速度比include快)<br> 包含文件不存在或者语法错误的时候require是致命的错误终止执行,include不是<br>原文地址：<a target="_blank" rel="noopener" href="https://learnku.com/articles/28758">https://learnku.com/articles/28758</a></p>
+</li>
+<li><p>数据库主从复制、读写分离<br>什么是主从复制<br>主从复制，是用来建立一个和主数据库完全一样的数据库环境，称为从数据库；<br>主从复制的原理：<br>1.数据库有个bin-log二进制文件，记录了所有的sql语句。<br>2.只需要把主数据库的bin-log文件中的sql语句复制。<br>3.让其从数据的relay-log重做日志文件中在执行一次这些sql语句即可。<br>主从复制的作用<br>1.做数据的热备份，作为后备数据库，主数据库服务器故障后，可切换到从数据库继续工作，避免数据丢失。<br>2.架构的扩展。业务量越来越大，I&#x2F;O访问频率过高，单机无法满足，此时做多库的存储，降低磁盘I&#x2F;O访问频率，提高单机的I&#x2F;O性能<br>3.主从复制是读写分离的基础，使数据库能制成更大 的并发。例如子报表中，由于部署报表的sql语句十分慢，导致锁表，影响前台的服务。如果前台服务使用master，报表使用slave，那么报表sql将不会造成前台所，保证了前台的访问速度。<br>主从复制的几种方式：<br>1.同步复制：所谓的同步复制，意思是master的变化，必须等待slave-1,slave-2,…,slave-n完成后才能返回。<br>2.异步复制：如同AJAX请求一样。master只需要完成自己的数据库操作即可。至于slaves是否收到二进制日志，是否完成操作，不用关心。MYSQL的默认设置。<br>3.半同步复制：master只保证slaves中的一个操作成功，就返回，其他slave不管。<br>这个功能，是由google为MYSQL引入的。<br>关于读写分离<br>在完成主从复制时，由于slave是需要同步master的。所以对于insert&#x2F;delete&#x2F;update这些更新数据库的操作，应该在master中完成。而select的查询操作，则落下到slave中。<br>原文地址：<a target="_blank" rel="noopener" href="https://learnku.com/articles/28758">https://learnku.com/articles/28758</a></p>
+</li>
+<li><p>数据库索引<br><strong>什么是索引</strong><br>索引是对数据库表中一列或多列的值进行排序的一种结构，使用索引可快速访问数据库表中的特定信息。（摘自百度百科）<br><strong>索引类型</strong><br>1.FULLTEXT 全文索引<br> 全文索引，仅MyISAM引擎支持。其可以在CREATE TABLE ，ALTER TABLE ，CREATE INDEX 使用，不过目前只有 CHAR、VARCHAR ，TEXT 列上可以创建全文索引。<br>2.HASH 哈希索引<br> HASH索引的唯一性及类似键值对的形式十分适合作为索引，HASH索引可以一次定位，不需要像树形索引那样逐层参照，因此具有极高的效率。但是这种高效是有条件的。即只在“&#x3D;”和“in”条件下高效，对于范围查询，排序及组合索引仍然效率不高。<br>3.BTREE 树形索引<br> BTREE所以是一种将索引按一定算法，存入一个树形的数据结构中（二叉树），每次查询都是从树的入口root开始，一次遍历node，获取leaf。这是MySQL中默认也是最常用的索引类型。<br>4.RTREE<br> RTREE在MySQL中很少使用，仅支持geometry数据类型，支持该存储引擎只有MyISAM、BDb、InnoDb、NDb、Archive几种。相对于BTREE，RTREE的优势在于范围查找。<br><strong>索引种类</strong><br>普通索引：仅加速查询<br>唯一索引：加速查询+列值唯一（可以有null）<br>主键索引：加速查询+列值唯一（不可以有null）+表中只有一个<br>组合索引：多列值组成一个索引，专门用于组合搜索，其效率大于索引合并<br>全文索引：对文本内容进行分词，进行搜索<br>外键索引：与主键索引形成联系，保证数据的完整性。<br><strong>索引使用的注意事项</strong><br>1.符合索引遵循前缀原则<br>2.like查询%不能再前，否则索引失效。如有需要，使用全文索引<br>3.column is null可以使用索引<br>4.如果MySQL估计使用索引比全表扫描慢，则放弃使用索引<br>5.如果or前的条件中列有索引，后面的没有，索引不会生效。<br>6.列类型是字符串，查询时，一定要给值加引号，否则索引失效。<br>7.确定order by 和 group by 中只有一个表的列，这样才能使用索引<br>原文地址：<a target="_blank" rel="noopener" href="https://learnku.com/articles/28758">https://learnku.com/articles/28758</a></p>
+</li>
+<li><p>高并发的解决方案<br>web服务器优化 ：负载均衡<br>流量优化：防盗链处理 将恶意请求屏蔽，<br>前端优化：减少http请求、添加异步请求、启用浏览器缓存和文件压缩、cdn加速、建立独立的图片服务器、<br>服务端优化：  页面静态化、并发处理、队列处理、<br>数据库优化： 数据库缓存、分库分表、分区操作 、读写分离、负载均衡<br>原文地址：<a target="_blank" rel="noopener" href="https://learnku.com/articles/28758">https://learnku.com/articles/28758</a></p>
+</li>
+<li><p>接口与抽象类的区别</p>
+</li>
+<li><p>接口<br>（1）对接口的使用是通过关键字implements<br>（2）接口不能定义成员变量（包括类静态变量），能定义常量<br>（3）子类必须实现接口定义的所有方法<br>（4）接口只能定义不能实现该方法<br>（5）接口没有构造函数<br>（6）接口中的方法和实现它的类默认都是public类型的</p>
+</li>
+<li><p>抽象类<br>（1）对抽象类的使用是通过关键字extends<br>（2）不能被实例化，可以定义子类必须实现的方法<br>（3）子类必须定义父类中的所有抽象方法，这些方法的访问控制必须和父类中一样（或者更为宽松）<br>（4）如一个类中有一个抽象方法，则该类必须定义为抽象类<br>（5）抽象类可以有构造函数<br>（6）抽象类中的方法可以使用private,protected,public来修饰。<br>（7）一个类可以同时实现多个接口，但一个类只能继承于一个抽象类。</p>
+</li>
+<li><p>Final类&#x2F;方法<br>（1）final类不能被继承<br>（2）final方法不能被重写</p>
+</li>
+<li><p>Static类&#x2F;方法<br>(1)可以不实例化类而直接访问<br>(2)静态属性不可以由对象通过-&gt;操作符来访问,用::方式调用<br>原文地址：<a target="_blank" rel="noopener" href="https://learnku.com/articles/28758">https://learnku.com/articles/28758</a></p>
+</li>
+<li><p>php获取上级文件目录<br>echo <strong>FILE</strong> ; &#x2F;&#x2F; 获取当前所在文件的绝对路径及地址，结果：D:\aaa\my.php<br>echo dirname(<strong>FILE</strong>); &#x2F;&#x2F; 取得当前文件所在的绝对目录，结果：D:\aaa\<br>echo dirname(dirname(<strong>FILE</strong>)); &#x2F;&#x2F;取得当前文件的上一层目录名，结果：D:\<br>原文：<a target="_blank" rel="noopener" href="https://blog.csdn.net/viqecel/article/details/80765275">https://blog.csdn.net/viqecel/article/details/80765275</a></p>
+</li>
+<li><p>HTTP状态码<br>1**<br>信息，服务器收到请求，需要请求者继续执行操作<br>2**<br>成功，操作被成功接收并处理<br>3**<br>重定向，需要进一步的操作以完成请求<br>4**<br>客户端错误，请求包含语法错误或无法完成请求<br>5**<br>服务器错误，服务器在处理请求的过程中发生了错误<br>详细参照：<a target="_blank" rel="noopener" href="https://www.runoob.com/http/http-status-codes.html">https://www.runoob.com/http/http-status-codes.html</a></p>
+</li>
+<li><p>设计模式<br>简单工厂模式：根据产品接口，创建多个产品类，由一个工厂类返回多种产品对象<br>工厂模式：根据产品接口，创建多个产品类，并创建多个工厂类，由一个工厂使用类调用多个工厂对象来制造多种产品对象<br>单例模式：保证一个类有且只有一个实例，且提供一个访问它的全局控制点<br>策略模式：一个策略接口，多个具体策略类，一个策略使用类</p>
+</li>
+<li><p>三大范式<br>第一范式：确保每列保持原子性<br>第二范式：确保表中每列都和主键相关<br>第三范式：确保每列都和主键列直接相关，而不是间接相关</p>
+</li>
+<li><p>面向对象<br>面向过程是具体化的，流程化的，解决一个问题，你需要一步一步的分析，一步一步的实现。<br>面向对象是模型化的，你只需抽象出一个类，这是一个封闭的盒子，在这里你拥有数据也拥有解决问题的方法。<br>需要什么功能直接使用就可以了，不必去一步一步的实现，至于这个功能是如何实现的，管我们什么事？我们会用就可以了。<br>面向对象的底层其实还是面向过程，把面向过程抽象成类，然后封装，方便我们使用的就是面向对象了。<br>面向对象的三大特征和五大基本原则<br>面向对象的三大特征：封装、继承、多态<br>五大基本原则：<br>单一职责原则：类的功能要单一<br>开放封闭原则：模块对于拓展是开放的，修改是封闭的<br>里式替换原则：子类可以代替父类出现在父类可以出现的任何地方<br>依赖倒置原则：高层次的模块不应该依赖于低层次模块，他们都应该依赖于抽象。抽象不应该依赖于具体实现，具体实现应该依赖于抽象。就如同在国外，‘我是中国人’，而不是‘我是**村的人’<br>接口分离原则：接口的功能也具有单一性，需要尽可能的拆分</p>
+</li>
+</ol>
+<p>转载 <a target="_blank" rel="noopener" href="http://blog.kaiot.xyz/read/55.html">http://blog.kaiot.xyz/read/55.html</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>php笔试、面试题收录（持续更新）</div>
+      <div>http://example.com/2020/08/15/php笔试、面试题收录（持续更新）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 15, 2020</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/15/php%E6%9D%82%E8%AE%B0/" title="php杂记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">php杂记</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/15/%E5%85%B3%E4%BA%8Ehttp%E5%93%8D%E5%BA%94%E5%92%8C%E8%BF%9E%E6%8E%A5/" title="关于http响应和连接">
+                        <span class="hidden-mobile">关于http响应和连接</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

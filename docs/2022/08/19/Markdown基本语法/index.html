@@ -1,0 +1,789 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。 相比WYSIWYG编辑器 优点：1、因为是纯文本，所以只要支持Markdown的地方都能获得一样的编辑效果，可以让作者摆脱排版的困扰，专心写作。2、操作简单。比如:WYSIWYG编辑时标记个标题，先选中内容，再点击导航栏的标题按钮，选择几级标题。要三个步骤。而Markdown只需要在标题内容前加#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Markdown基本语法">
+<meta property="og:url" content="http://example.com/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。 相比WYSIWYG编辑器 优点：1、因为是纯文本，所以只要支持Markdown的地方都能获得一样的编辑效果，可以让作者摆脱排版的困扰，专心写作。2、操作简单。比如:WYSIWYG编辑时标记个标题，先选中内容，再点击导航栏的标题按钮，选择几级标题。要三个步骤。而Markdown只需要在标题内容前加#">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-19T12:54:39.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.683Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Markdown基本语法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Markdown基本语法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-19 20:54" pubdate>
+          August 19, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Markdown基本语法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式。</p>
+<p>相比WYSIWYG编辑器</p>
+<p><strong>优点：</strong><br>1、因为是纯文本，所以只要支持Markdown的地方都能获得一样的编辑效果，可以让作者摆脱排版的困扰，专心写作。<br>2、操作简单。比如:WYSIWYG编辑时标记个标题，先选中内容，再点击导航栏的标题按钮，选择几级标题。要三个步骤。而Markdown只需要在标题内容前加#即可</p>
+<p><strong>缺点：</strong><br>1、需要记一些语法（当然，是很简单。五分钟学会）。<br>2、有些平台不支持Markdown编辑模式。</p>
+<p>还好，简书是支持Markdown编辑模式的。</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clean">开启方式：设置-&gt;默认编辑器-&gt;Markdown编辑器<br></code></pre></td></tr></table></figure>
+
+<h1 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h1><p>在想要设置为标题的文字前面加#来表示<br>一个#是一级标题，二个#是二级标题，以此类推。支持六级标题。</p>
+<p>注：标准语法一般在#后跟个空格再写文字，貌似简书不加空格也行。</p>
+<p>示例：</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs clean"># 这是一级标题<br>## 这是二级标题<br>### 这是三级标题<br>#### 这是四级标题<br>##### 这是五级标题<br>###### 这是六级标题<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><h3 id="这是三级标题"><a href="#这是三级标题" class="headerlink" title="这是三级标题"></a>这是三级标题</h3><h4 id="这是四级标题"><a href="#这是四级标题" class="headerlink" title="这是四级标题"></a>这是四级标题</h4><h5 id="这是五级标题"><a href="#这是五级标题" class="headerlink" title="这是五级标题"></a>这是五级标题</h5><h6 id="这是六级标题"><a href="#这是六级标题" class="headerlink" title="这是六级标题"></a>这是六级标题</h6><hr>
+<h1 id="二、字体"><a href="#二、字体" class="headerlink" title="二、字体"></a>二、字体</h1><ul>
+<li><h5 id="加粗"><a href="#加粗" class="headerlink" title="加粗"></a>加粗</h5></li>
+</ul>
+<p>要加粗的文字左右分别用两个*号包起来</p>
+<ul>
+<li><h5 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h5></li>
+</ul>
+<p>要倾斜的文字左右分别用一个*号包起来</p>
+<ul>
+<li><h5 id="斜体加粗"><a href="#斜体加粗" class="headerlink" title="斜体加粗"></a>斜体加粗</h5></li>
+</ul>
+<p>要倾斜和加粗的文字左右分别用三个*号包起来</p>
+<ul>
+<li><h5 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h5></li>
+</ul>
+<p>要加删除线的文字左右分别用两个~~号包起来</p>
+<p>示例：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-strong">**这是加粗的文字**</span><br><span class="hljs-emphasis">*这是倾斜的文字*</span>`<br><span class="hljs-strong">**<span class="hljs-emphasis">*这是斜体加粗的文字*</span>**</span><br>~~这是加删除线的文字~~<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><strong>这是加粗的文字</strong><br><em>这是倾斜的文字</em><br><em><strong>这是斜体加粗的文字</strong></em><br><del>这是加删除线的文字</del></p>
+<hr>
+<h1 id="三、引用"><a href="#三、引用" class="headerlink" title="三、引用"></a>三、引用</h1><p>在引用的文字前加&gt;即可。引用也可以嵌套，如加两个&gt;&gt;三个&gt;&gt;&gt;<br>n个…<br>貌似可以一直加下去，但没神马卵用</p>
+<p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">这是引用的内容</span><br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">&gt;这是引用的内容</span><br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;这是引用的内容</span><br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<blockquote>
+<p>这是引用的内容</p>
+<blockquote>
+<p>这是引用的内容</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>这是引用的内容</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="四、分割线"><a href="#四、分割线" class="headerlink" title="四、分割线"></a>四、分割线</h1><p>三个或者三个以上的 - 或者 * 都可以。</p>
+<p>示例：</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-section">---</span><br><span class="hljs-section">----</span><br><span class="hljs-bullet">***</span><br><span class="hljs-bullet"></span><span class="hljs-strong">*****</span><br></code></pre></td></tr></table></figure>
+
+<p>效果如下：<br>可以看到，显示效果是一样的。</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<h1 id="五、图片"><a href="#五、图片" class="headerlink" title="五、图片"></a>五、图片</h1><p>语法：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">![图片alt](图片地址 <span class="hljs-string">&#x27;&#x27;</span>图片titl<span class="hljs-string">e&#x27;&#x27;</span>)<br><br>图片alt就是显示在图片下面的文字，相当于对图片内容的解释。<br>图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加<br></code></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">![blockchain](https:<span class="hljs-regexp">//</span>ss0.bdstatic.com<span class="hljs-regexp">/70cFvHSh_Q1YnxGkpoWK1HF6hhy/i</span>t/<br>u=<span class="hljs-number">702257389</span>,<span class="hljs-number">1274025419</span>&amp;fm=<span class="hljs-number">27</span>&amp;gp=<span class="hljs-number">0</span>.jpg <span class="hljs-string">&quot;区块链&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p>blockchain</p>
+<p><strong>上传本地图片直接点击导航栏的图片标志，选择图片即可</strong></p>
+<p>markdown格式追求的是简单、多平台统一。那么图片的存储就是一个问题，需要用图床，提供统一的外链，这样就不用在不同的平台去处理图片的问题了。才能做到书写一次，各处使用。<br>关于图床的选择我写了一篇文章，对网上存在的各种方法做了总结，需要的朋友可以看看。<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ea1eb11db63f">markdown图床</a></p>
+<h1 id="六、超链接"><a href="#六、超链接" class="headerlink" title="六、超链接"></a>六、超链接</h1><p>语法：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dos">[超链接名](超链接地址 &quot;超链接<span class="hljs-built_in">title</span>&quot;)<br><span class="hljs-built_in">title</span>可加可不加<br></code></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-attr">[简书]</span>(<span class="hljs-attribute">http</span>:<span class="hljs-comment">//jianshu.com)</span><br>[百度](<span class="hljs-attribute">http</span>:<span class="hljs-comment">//baidu.com)</span><br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/u/1f5ac0cf6a8b">简书</a><br><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=http://baidu.com">百度</a></p>
+<p>注：Markdown本身语法不支持链接在新页面中打开，貌似简书做了处理，是可以的。别的平台可能就不行了，如果想要在新页面中打开的话可以用html语言的a标签代替。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;a <span class="hljs-attribute">href</span>=<span class="hljs-string">&quot;超链接地址&quot;</span> <span class="hljs-attribute">target</span>=<span class="hljs-string">&quot;_blank&quot;</span>&gt;超链接名&lt;/a&gt;<br><br>示例<br>&lt;a <span class="hljs-attribute">href</span>=<span class="hljs-string">&quot;https://www.jianshu.com/u/1f5ac0cf6a8b&quot;</span> <span class="hljs-attribute">target</span>=<span class="hljs-string">&quot;_blank&quot;</span>&gt;简书&lt;/a&gt;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="七、列表"><a href="#七、列表" class="headerlink" title="七、列表"></a>七、列表</h1><h5 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h5><p>语法：<br>无序列表用 - + * 任何一种都可以</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> 列表内容<br><span class="hljs-bullet">+</span> 列表内容<br><span class="hljs-bullet">*</span> 列表内容<br><br>注意：- + <span class="hljs-emphasis">* 跟内容之间都要有一个空格</span><br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<ul>
+<li>列表内容</li>
+<li>列表内容</li>
+<li>列表内容</li>
+</ul>
+<h5 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h5><p>语法：<br>数字加点</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 列表内容<br><span class="hljs-bullet">2.</span> 列表内容<br><span class="hljs-bullet">3.</span> 列表内容<br><br>注意：序号跟内容之间要有空格<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<ol>
+<li>列表内容</li>
+<li>列表内容</li>
+<li>列表内容</li>
+</ol>
+<h5 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h5><p><strong>上一级和下一级之间敲三个空格即可</strong></p>
+<ul>
+<li><p>一级无序列表内容</p>
+<ul>
+<li>二级无序列表内容</li>
+<li>二级无序列表内容</li>
+<li>二级无序列表内容</li>
+</ul>
+</li>
+<li><p>一级无序列表内容</p>
+<ol>
+<li>二级有序列表内容</li>
+<li>二级有序列表内容</li>
+<li>二级有序列表内容</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>一级有序列表内容</li>
+</ol>
+<ul>
+<li>二级无序列表内容</li>
+<li>二级无序列表内容</li>
+<li>二级无序列表内容</li>
+</ul>
+<ol start="2">
+<li><p>一级有序列表内容</p>
+</li>
+<li><p>二级有序列表内容</p>
+</li>
+<li><p>二级有序列表内容</p>
+</li>
+<li><p>二级有序列表内容</p>
+</li>
+</ol>
+<hr>
+<h1 id="八、表格"><a href="#八、表格" class="headerlink" title="八、表格"></a>八、表格</h1><p>语法：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">表头|<span class="hljs-string">表头</span>|<span class="hljs-string">表头</span><br><span class="hljs-string">---</span>|<span class="hljs-string">:--:</span>|<span class="hljs-string">---:</span><br><span class="hljs-string">内容</span>|<span class="hljs-string">内容</span>|<span class="hljs-string">内容</span><br><span class="hljs-string">内容</span>|<span class="hljs-string">内容</span>|<span class="hljs-string">内容</span><br><span class="hljs-string"></span><br><span class="hljs-string">第二行分割表头和内容。</span><br><span class="hljs-string">- 有一个就行，为了对齐，多加了几个</span><br><span class="hljs-string">文字默认居左</span><br><span class="hljs-string">-两边加：表示文字居中</span><br><span class="hljs-string">-右边加：表示文字居右</span><br><span class="hljs-string">注：原生的语法两边都要用 </span>|<span class="hljs-string"> 包起来。此处省略</span><br></code></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">姓名|<span class="hljs-string">技能</span>|<span class="hljs-string">排行</span><br><span class="hljs-string">--</span>|<span class="hljs-string">:--:</span>|<span class="hljs-string">--:</span><br><span class="hljs-string">刘备</span>|<span class="hljs-string">哭</span>|<span class="hljs-string">大哥</span><br><span class="hljs-string">关羽</span>|<span class="hljs-string">打</span>|<span class="hljs-string">二哥</span><br><span class="hljs-string">张飞</span>|<span class="hljs-string">骂</span>|<span class="hljs-string">三弟</span><br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>技能</th>
+<th>排行</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刘备</td>
+<td>哭</td>
+<td>大哥</td>
+</tr>
+<tr>
+<td>关羽</td>
+<td>打</td>
+<td>二哥</td>
+</tr>
+<tr>
+<td>张飞</td>
+<td>骂</td>
+<td>三弟</td>
+</tr>
+</tbody></table>
+<h1 id="九、代码"><a href="#九、代码" class="headerlink" title="九、代码"></a>九、代码</h1><p>语法：<br>单行代码：代码之间分别用一个反引号包起来</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-string">`代码内容`</span><br></code></pre></td></tr></table></figure>
+
+<p>代码块：代码之间分别用三个反引号包起来，且两边的反引号单独占一行</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">(```)  代码...  代码...  代码...(```)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：为了防止转译，前后三个反引号处加了小括号，实际是没有的。这里只是用来演示，实际中去掉两边小括号即可。</p>
+</blockquote>
+<p>示例：</p>
+<p>单行代码</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql">`<span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> hero;`<br></code></pre></td></tr></table></figure>
+
+<p>代码块</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">(```)<br>    function <span class="hljs-function"><span class="hljs-title">fun</span><span class="hljs-params">()</span></span>&#123;<br>         echo <span class="hljs-string">&quot;这是一句非常牛逼的代码&quot;</span>;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-title">fun</span><span class="hljs-params">()</span></span>;<br>(```)<br></code></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p>单行代码</p>
+<p><code>create database hero;</code></p>
+<p>代码块</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">function <span class="hljs-function"><span class="hljs-title">fun</span><span class="hljs-params">()</span></span>&#123;<br>  echo <span class="hljs-string">&quot;这是一句非常牛逼的代码&quot;</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-title">fun</span><span class="hljs-params">()</span></span>;<br></code></pre></td></tr></table></figure>
+
+<h1 id="十、流程图"><a href="#十、流程图" class="headerlink" title="十、流程图"></a>十、流程图</h1><figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sml">```flow<br>st=&gt;start: 开始<br><span class="hljs-keyword">op</span>=&gt;operation: <span class="hljs-type">My</span> <span class="hljs-type">Operation</span><br>cond=&gt;condition: <span class="hljs-type">Yes</span> or <span class="hljs-type">No</span>?<br>e=&gt;<span class="hljs-keyword">end</span><br>st-&gt;<span class="hljs-keyword">op</span>-&gt;cond<br>cond(yes)-&gt;e<br>cond(no)-&gt;<span class="hljs-keyword">op</span><br>&amp;```<br></code></pre></td></tr></table></figure>
+
+<p>链接: <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/191d1e21f7ed/">https://www.jianshu.com/p/191d1e21f7ed/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Markdown基本语法</div>
+      <div>http://example.com/2022/08/19/Markdown基本语法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 19, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" title="版本号命名规范">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">版本号命名规范</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/10/%E8%A7%A3%E5%86%B3%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B7%A8%E5%9F%9F%E9%99%90%E5%88%B6%E6%96%B9%E6%A1%88%E4%B9%8BJSONP/" title="解决浏览器跨域限制方案之JSONP">
+                        <span class="hidden-mobile">解决浏览器跨域限制方案之JSONP</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

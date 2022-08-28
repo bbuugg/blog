@@ -1,0 +1,614 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="互斥锁其中Mutex为互斥锁，Lock()加锁，Unlock()解锁，使用Lock()加锁后，便不能再次对其进行加锁，直到利用Unlock()解锁对其解锁后，才能再次加锁．适用于读写不确定场景，即读写次数没有明显的区别，并且只允许只有一个读或者写的场景，所以该锁叶叫做全局锁． 1234567891011121314151617181920212223242526272829303132333435">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang Mutex互斥锁">
+<meta property="og:url" content="http://example.com/2022/04/24/Golang%20Mutex%E4%BA%92%E6%96%A5%E9%94%81/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="互斥锁其中Mutex为互斥锁，Lock()加锁，Unlock()解锁，使用Lock()加锁后，便不能再次对其进行加锁，直到利用Unlock()解锁对其解锁后，才能再次加锁．适用于读写不确定场景，即读写次数没有明显的区别，并且只允许只有一个读或者写的场景，所以该锁叶叫做全局锁． 1234567891011121314151617181920212223242526272829303132333435">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-24T10:58:24.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Golang Mutex互斥锁 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Golang Mutex互斥锁"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-24 18:58" pubdate>
+          April 24, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Golang Mutex互斥锁</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h3><p>其中Mutex为互斥锁，Lock()加锁，Unlock()解锁，使用Lock()加锁后，便不能再次对其进行加锁，直到利用Unlock()解锁对其解锁后，才能再次加锁．适用于读写不确定场景，即读写次数没有明显的区别，并且只允许只有一个读或者写的场景，所以该锁叶叫做全局锁．</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>	<span class="hljs-string">&quot;sync&quot;</span><br>	<span class="hljs-string">&quot;errors&quot;</span><br>)<br><br><span class="hljs-keyword">type</span> MyMap <span class="hljs-keyword">struct</span> &#123;<br>	mp <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span><br>	mutex *sync.Mutex<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(this *MyMap)</span></span> Get(key <span class="hljs-type">string</span>) (<span class="hljs-type">int</span>, <span class="hljs-type">error</span>) &#123;<br>	this.mutex.Lock()<br>	i, ok := this.mp[key]<br>	this.mutex.Unlock()<br>	<span class="hljs-keyword">if</span> !ok &#123;<br>		<span class="hljs-keyword">return</span> i, errors.New(<span class="hljs-string">&quot;不存在&quot;</span>)<br>	&#125;<br>	<span class="hljs-keyword">return</span> i, <span class="hljs-literal">nil</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(this *MyMap)</span></span> Set(key <span class="hljs-type">string</span>, v <span class="hljs-type">int</span>) &#123;<br>	this.mutex.Lock()<br>	<span class="hljs-keyword">defer</span> this.mutex.Unlock()<br>	this.mp[key] = v<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(this *MyMap)</span></span> Display() &#123;<br>	this.mutex.Lock()<br>	<span class="hljs-keyword">defer</span> this.mutex.Unlock()<br>	<span class="hljs-keyword">for</span> k, v := <span class="hljs-keyword">range</span> this.mp &#123;<br>		fmt.Println(k, <span class="hljs-string">&quot;=&quot;</span>, v)<br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">SetValue</span><span class="hljs-params">(m *MyMap)</span></span> &#123;<br>	<span class="hljs-keyword">var</span> a <span class="hljs-type">rune</span><br>	a = <span class="hljs-string">&#x27;a&#x27;</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++ &#123;<br>		m.Set(<span class="hljs-type">string</span>(a+<span class="hljs-type">rune</span>(i)), i)<br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	m := &amp;MyMap&#123;mp: <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>), mutex: <span class="hljs-built_in">new</span>(sync.Mutex)&#125;<br>	<span class="hljs-keyword">go</span> SetValue(m) <span class="hljs-comment">/*启动一个线程向 map 写入值*/</span><br>	<span class="hljs-keyword">go</span> m.Display() <span class="hljs-comment">/*启动一个线程读取 map 的值*/</span><br>	<span class="hljs-keyword">var</span> str <span class="hljs-type">string</span> <span class="hljs-comment">/*这里主要是等待线程结束*/</span><br>	fmt.Scan(&amp;str)<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h3><p>读写锁即是针对于读写操作的互斥锁。它与普通的互斥锁最大的不同就是，它可以分别针对读操作和写操作进行锁定和解锁操作。读写锁遵循的访问控制规则与互斥锁有所不同。</p>
+<p>在读写锁管辖的范围内，它允许任意个读操作的同时进行。但是，在同一时刻，它只允许有一个写操作在进行。并且，在某一个写操作被进行的过程中，读操作的进行也是不被允许的。</p>
+<p>也就是说，读写锁控制下的多个写操作之间都是互斥的，并且写操作与读操作之间也都是互斥的。但是，多个读操作之间却不存在互斥关系。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>	<span class="hljs-string">&quot;sync&quot;</span><br>	<span class="hljs-string">&quot;errors&quot;</span><br>	<span class="hljs-string">&quot;time&quot;</span><br>)<br><br><span class="hljs-keyword">type</span> MyMap <span class="hljs-keyword">struct</span> &#123;<br>	mp    <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span><br>	mutex *sync.RWMutex<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(this *MyMap)</span></span> Get(key <span class="hljs-type">string</span>) (<span class="hljs-type">int</span>, <span class="hljs-type">error</span>) &#123;<br>	this.mutex.RLock()<br>	i, ok := this.mp[key]<br>	this.mutex.RUnlock()<br>	<span class="hljs-keyword">if</span> !ok &#123;<br><br>		<span class="hljs-keyword">return</span> i, errors.New(<span class="hljs-string">&quot;不存在&quot;</span>)<br><br>	&#125;<br>	<span class="hljs-keyword">return</span> i, <span class="hljs-literal">nil</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(this *MyMap)</span></span> Set(key <span class="hljs-type">string</span>, v <span class="hljs-type">int</span>) &#123;<br>	this.mutex.RLock()<br>	<span class="hljs-keyword">defer</span> this.mutex.RUnlock()<br>	this.mp[key] = v<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(this *MyMap)</span></span> Display() &#123;<br>	this.mutex.RLock()<br>	<span class="hljs-keyword">defer</span> this.mutex.RUnlock()<br>	<span class="hljs-keyword">for</span> k, v := <span class="hljs-keyword">range</span> this.mp &#123;<br>		fmt.Println(k, <span class="hljs-string">&quot;=&quot;</span>, v)<br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">SetValue</span><span class="hljs-params">(m *MyMap)</span></span> &#123;<br>	<span class="hljs-keyword">var</span> a <span class="hljs-type">rune</span><br>	a = <span class="hljs-string">&#x27;a&#x27;</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++ &#123;<br>		m.Set(<span class="hljs-type">string</span>(a+<span class="hljs-type">rune</span>(i)), i)<br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	m := &amp;MyMap&#123;mp: <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>), mutex: <span class="hljs-built_in">new</span>(sync.RWMutex)&#125;<br>	<span class="hljs-keyword">go</span> SetValue(m) <span class="hljs-comment">/*启动一个线程向 map 写入值*/</span><br>	<span class="hljs-keyword">go</span> m.Display() <span class="hljs-comment">/*启动一个线程读取 map 的值*/</span><br>	<span class="hljs-keyword">var</span> str <span class="hljs-type">string</span> <span class="hljs-comment">/*这里主要是等待线程结束*/</span><br>	fmt.Scan(&amp;str)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>读写锁小例子</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs stylus">package <span class="hljs-selector-tag">main</span><br><br>import (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>	<span class="hljs-string">&quot;sync&quot;</span><br>	<span class="hljs-string">&quot;time&quot;</span><br>)<br><br>func <span class="hljs-selector-tag">main</span>() &#123;<br>	<span class="hljs-selector-tag">var</span> lock sync<span class="hljs-selector-class">.RWMutex</span><br>	go <span class="hljs-built_in">read</span>(&amp;lock)<br>	go <span class="hljs-built_in">read</span>(&amp;lock)<br>	go <span class="hljs-built_in">write</span>(&amp;lock)<br>	<span class="hljs-selector-tag">time</span><span class="hljs-selector-class">.Sleep</span>(<span class="hljs-number">25000000</span>)<br>	fmt<span class="hljs-selector-class">.Println</span>(<span class="hljs-string">&quot;end&quot;</span>)<br>&#125;<br><br>func <span class="hljs-built_in">read</span>(lock *sync.RWMutex) &#123;<br>	lock<span class="hljs-selector-class">.RLock</span>()<br>	fmt<span class="hljs-selector-class">.Println</span>(<span class="hljs-string">&quot;reading&quot;</span>)<br>	<span class="hljs-selector-tag">time</span><span class="hljs-selector-class">.Sleep</span>(<span class="hljs-number">5000</span>)<br>	fmt<span class="hljs-selector-class">.Println</span>(<span class="hljs-string">&quot;read end&quot;</span>)<br>	lock<span class="hljs-selector-class">.RUnlock</span>()<br>&#125;<br><br>func <span class="hljs-built_in">write</span>(lock *sync.RWMutex) &#123;<br>	<span class="hljs-selector-tag">time</span><span class="hljs-selector-class">.Sleep</span>(<span class="hljs-number">1000</span>) <span class="hljs-comment">//保证先让读拿到锁, 如果没有就会随机，不过应该先过read一般会先read.</span><br>	lock<span class="hljs-selector-class">.Lock</span>()<br>	fmt<span class="hljs-selector-class">.Println</span>(<span class="hljs-string">&quot;writing&quot;</span>)<br>	<span class="hljs-selector-tag">time</span><span class="hljs-selector-class">.Sleep</span>(<span class="hljs-number">5000</span>)<br>	fmt<span class="hljs-selector-class">.Println</span>(<span class="hljs-string">&quot;write end&quot;</span>)<br>	lock<span class="hljs-selector-class">.Unlock</span>()<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F;结果</p>
+<p>reading</p>
+<p>reading</p>
+<p>read end</p>
+<p>read end</p>
+<p>writing</p>
+<p>write end</p>
+<p>end</p>
+<h1 id="map并发读写报错"><a href="#map并发读写报错" class="headerlink" title="map并发读写报错"></a>map并发读写报错</h1><p>相似的报错：fatal error: concurrent map writes</p>
+<p>原因1：加解锁异常<br>代码写的不严谨，加锁后未解锁，未形成单次闭环<br>解决：形成闭环，有加得必须有解</p>
+<p>原因2：加解锁代码看起来貌似正常<br>实际上是加锁内部的代码加了个寂寞，map操作不在锁的范围内，和外部的代码在使用的<br>(共同读写的)还是相同的map（同地址），锁未起实际作用</p>
+<p>解决：对map数据进行转移不使用旧map，在加锁与解锁之间生成新的map，<br>将数据转移至新map(或其它数据结构)再返回新map</p>
+<p>或</p>
+<p>调整代码位置即可</p>
+<p>原因3：锁未加完全</p>
+<p>只给写map的goroutine实施了加解锁，而读goroutine方面没有；<br>或<br>只给读map的goroutine实施了加解锁，而写goroutine方面没有；<br>或<br>未加锁</p>
+<p>原因4：对该map加的不是同一把锁</p>
+<p>举例：对于某map，读map有2个goroutine，写map有2个goroutine，这四个依次编号为1,2,3,4，前3个使用mu1，最后一个使用mu2，就会造成该报错。</p>
+<p>温馨提示：<br>同一把锁可以作用多个map，但同一个map不能有两把锁操作。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Golang Mutex互斥锁</div>
+      <div>http://example.com/2022/04/24/Golang Mutex互斥锁/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 24, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/24/Linux%E4%B8%8Btar,%20tar.gz,%20xz%EF%BC%8Cunzip%EF%BC%8Cbzip2%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8E%8B%E6%96%B9%E6%B3%95/" title="Linux下tar, tar.gz, xz，unzip，bzip2文件解压方法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux下tar, tar.gz, xz，unzip，bzip2文件解压方法</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/24/Guzzle%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/" title="Guzzle上传文件">
+                        <span class="hidden-mobile">Guzzle上传文件</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

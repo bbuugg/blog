@@ -1,0 +1,615 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="&gt; php判断文件是不是图片的方法：1、利用getimagesize函数获取图片信息，然后进行判断；2、读取图片的前2个字节，然后进行判断；3、利用exif_imagetype函数实现判断。 方法一利用 getimagesize 函数获取图片信息，然后进行判断： 12345678910111213141516171819202122232425262728&amp;lt;?php&#x2F;* Aut">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP判断文件是不是图片">
+<meta property="og:url" content="http://example.com/2021/03/07/PHP%E5%88%A4%E6%96%AD%E6%96%87%E4%BB%B6%E6%98%AF%E4%B8%8D%E6%98%AF%E5%9B%BE%E7%89%87/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="&gt; php判断文件是不是图片的方法：1、利用getimagesize函数获取图片信息，然后进行判断；2、读取图片的前2个字节，然后进行判断；3、利用exif_imagetype函数实现判断。 方法一利用 getimagesize 函数获取图片信息，然后进行判断： 12345678910111213141516171819202122232425262728&amp;lt;?php&#x2F;* Aut">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-07T14:52:13.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>PHP判断文件是不是图片 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PHP判断文件是不是图片"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-03-07 22:52" pubdate>
+          March 7, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PHP判断文件是不是图片</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>&gt; php判断文件是不是图片的方法：1、利用getimagesize函数获取图片信息，然后进行判断；2、读取图片的前2个字节，然后进行判断；3、利用exif_imagetype函数实现判断。</p>
+<h1 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h1><p>利用 <code>getimagesize</code> 函数获取图片信息，然后进行判断：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs php">&amp;lt;?php<br><br><span class="hljs-comment">/* Author @ Huoty</span><br><span class="hljs-comment">* Date @ 2015-11-24 16:59:26</span><br><span class="hljs-comment">* Brief @</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isImage</span>(<span class="hljs-params"><span class="hljs-variable">$filename</span></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-variable">$types</span> = <span class="hljs-string">&#x27;.gif|.jpeg|.png|.bmp&#x27;</span>; <span class="hljs-comment">//定义检查的图片类型</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">file_exists</span>(<span class="hljs-variable">$filename</span>)) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$info</span> = @<span class="hljs-title function_ invoke__">getimagesize</span>(<span class="hljs-variable">$filename</span>)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-variable">$ext</span> = <span class="hljs-title function_ invoke__">image_type_to_extension</span>(<span class="hljs-variable">$info</span>[<span class="hljs-string">&#x27;2&#x27;</span>]);<br>        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">stripos</span>(<span class="hljs-variable">$types</span>, <span class="hljs-variable">$ext</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">isImage</span>(<span class="hljs-string">&#x27;isimg.txt&#x27;</span>) !== <span class="hljs-literal">false</span>) &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">isImage</span>(<span class="hljs-string">&#x27;1.jpg&#x27;</span>);<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;是图片&#x27;</span>;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;不是图片&#x27;</span>;<br>&#125;<br>?&amp;gt;<br></code></pre></td></tr></table></figure>
+
+<h1 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h1><p>读取图片的前 2 个字节，然后判断是不是图片：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs php">&amp;lt;?php<br><br><span class="hljs-comment">/* Author @ Huoty</span><br><span class="hljs-comment">* Date @ 2015-11-25 16:42:38</span><br><span class="hljs-comment">* Brief @</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-comment">//判断上传的是不是图片</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isImg</span>(<span class="hljs-params"><span class="hljs-variable">$fileName</span></span>)</span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-variable">$file</span> = <span class="hljs-title function_ invoke__">fopen</span>(<span class="hljs-variable">$fileName</span>, &amp;quot;rb&amp;quot;);<br>    <span class="hljs-variable">$bin</span> = <span class="hljs-title function_ invoke__">fread</span>(<span class="hljs-variable">$file</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// 只读2字节</span><br>    <span class="hljs-title function_ invoke__">fclose</span>(<span class="hljs-variable">$file</span>);<br>    <span class="hljs-variable">$strInfo</span> = @<span class="hljs-title function_ invoke__">unpack</span>(&amp;quot;C2chars&amp;quot;, <span class="hljs-variable">$bin</span>);<br>    <span class="hljs-variable">$typeCode</span> = <span class="hljs-title function_ invoke__">intval</span>(<span class="hljs-variable">$strInfo</span>[<span class="hljs-string">&#x27;chars1&#x27;</span>] . <span class="hljs-variable">$strInfo</span>[<span class="hljs-string">&#x27;chars2&#x27;</span>]);<br>    <span class="hljs-variable">$fileType</span> = <span class="hljs-string">&#x27;&#x27;</span>;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$typeCode</span> == <span class="hljs-number">255216</span> <span class="hljs-comment">/*jpg*/</span> || <span class="hljs-variable">$typeCode</span> == <span class="hljs-number">7173</span> <span class="hljs-comment">/*gif*/</span> || <span class="hljs-variable">$typeCode</span> == <span class="hljs-number">13780</span> <span class="hljs-comment">/*png*/</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable">$typeCode</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-comment">// echo &#x27;&amp;quot;仅允许上传jpg/jpeg/gif/png格式的图片！&#x27;;</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">isImg</span>(&amp;quot;<span class="hljs-number">1</span>.jpg&amp;quot;)) &#123;<br>    <span class="hljs-keyword">echo</span> &amp;quot;是图片&amp;quot;;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">echo</span> &amp;quot;不是图片&amp;quot;;<br>&#125;<br><br>?&amp;gt;<br></code></pre></td></tr></table></figure>
+
+<h1 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h1><p>最后一种方法是利用 exif_imagetype 函数，该函数用于判断一个图像的类型，采用这种方法更加简单。读取一个图像的第一个字节并检查其签名。 如果发现了恰当的签名则返回一个对应的常量，否则返回 FALSE。返回值和 getimagesize() 返回的数组中的索引 2 的值是一样的，但该函数要快得多。</p>
+<p>该函数的返回值常量定义如下：</p>
+<ol>
+<li>IMAGETYPE_GIF</li>
+<li>IMAGETYPE_JPEG</li>
+<li>IMAGETYPE_PNG</li>
+<li>IMAGETYPE_SWF</li>
+<li>IMAGETYPE_PSD</li>
+<li>IMAGETYPE_BMP</li>
+<li>IMAGETYPE_TIFF_II（Intel 字节顺序）</li>
+<li>IMAGETYPE_TIFF_MM（Motorola 字节顺序）</li>
+<li>IMAGETYPE_JPC</li>
+<li>IMAGETYPE_JP2</li>
+<li>IMAGETYPE_JPX</li>
+<li>IMAGETYPE_JB2</li>
+<li>IMAGETYPE_SWC</li>
+<li>IMAGETYPE_IFF</li>
+<li>IMAGETYPE_WBMP</li>
+<li>IMAGETYPE_XBM</li>
+</ol>
+<p>示例：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php">&amp;lt;?php<br><br><span class="hljs-comment">/* Author @ Huoty</span><br><span class="hljs-comment">* Date @ 2015-11-25 16:53:04</span><br><span class="hljs-comment">* Brief @</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-variable">$mimetype</span> = <span class="hljs-title function_ invoke__">exif_imagetype</span>(&amp;quot;<span class="hljs-number">1</span>.jpg&amp;quot;);<br><span class="hljs-keyword">if</span> (<span class="hljs-variable">$mimetype</span> == IMAGETYPE_GIF || <span class="hljs-variable">$mimetype</span> == IMAGETYPE_JPEG || <span class="hljs-variable">$mimetype</span> == IMAGETYPE_PNG || <span class="hljs-variable">$mimetype</span> == IMAGETYPE_BMP) &#123;<br>    <span class="hljs-keyword">echo</span> &amp;quot;是图片&amp;quot;;<br>&#125;<br><br>?&amp;gt;<br></code></pre></td></tr></table></figure>
+
+<p>[原文地址](<a target="_blank" rel="noopener" href="https://www.php.cn/php-ask-460801.html">https://www.php.cn/php-ask-460801.html</a> &quot;原文地址&quot;)</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PHP判断文件是不是图片</div>
+      <div>http://example.com/2021/03/07/PHP判断文件是不是图片/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 7, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/03/10/php%E7%AC%94%E8%AE%B0/" title="PHP笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PHP笔记</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/01/Linux%20shell%E4%B8%AD2&amp;gt;&amp;amp;1%E7%9A%84%E5%90%AB%E4%B9%89%E8%A7%A3%E9%87%8A%20%EF%BC%88%E5%85%A8%E7%BD%91%E6%9C%80%E5%85%A8%EF%BC%8C%E7%9C%8B%E5%AE%8C%E5%B0%B1%E6%87%82%EF%BC%89/" title="Linux shell中2&amp;gt;&amp;amp;1的含义解释 （全网最全，看完就懂）">
+                        <span class="hidden-mobile">Linux shell中2&amp;gt;&amp;amp;1的含义解释 （全网最全，看完就懂）</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

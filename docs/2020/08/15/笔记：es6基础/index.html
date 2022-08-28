@@ -1,0 +1,639 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ECMAScript 与 javascript&gt;ECMAScript 可以说是 javascript 的国际标准。 letlet 用来声明变量，用法类似 var 但由 let 声明的变量，只能在 let 命令所在的代码块内有效。 var 声明的变量在全局范围内都有效 var 命令会发生“变量提升”现象，即变量会在声明前可使用，而 let 做了语法处理，限制了这种情况 暂时性死区若区块中存在l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记：es6基础">
+<meta property="og:url" content="http://example.com/2020/08/15/%E7%AC%94%E8%AE%B0%EF%BC%9Aes6%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ECMAScript 与 javascript&gt;ECMAScript 可以说是 javascript 的国际标准。 letlet 用来声明变量，用法类似 var 但由 let 声明的变量，只能在 let 命令所在的代码块内有效。 var 声明的变量在全局范围内都有效 var 命令会发生“变量提升”现象，即变量会在声明前可使用，而 let 做了语法处理，限制了这种情况 暂时性死区若区块中存在l">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-14T23:21:59.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>笔记：es6基础 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="笔记：es6基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-08-15 07:21" pubdate>
+          August 15, 2020 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">笔记：es6基础</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ECMAScript-与-javascript"><a href="#ECMAScript-与-javascript" class="headerlink" title="ECMAScript 与 javascript"></a>ECMAScript 与 javascript</h1><p>&gt;ECMAScript 可以说是 javascript 的国际标准。</p>
+<h2 id="let"><a href="#let" class="headerlink" title="let"></a>let</h2><p>let 用来声明变量，用法类似 var 但由 let 声明的变量，只能在 let 命令所在的代码块内有效。</p>
+<p>var 声明的变量在全局范围内都有效</p>
+<p>var 命令会发生“变量提升”现象，即变量会在声明前可使用，而 let 做了语法处理，限制了这种情况</p>
+<p>暂时性死区<br>若区块中存在let 和 const 命令，这个区块对这些命令声明的变量从一开始就有了封闭作用域。凡是声明前使用这些变量，就会报错。在语法上，称为“暂时性死区”。</p>
+<p>不允许重复声明<br>let 不允许在同作用域内，重复声明同一个变量。</p>
+<p>const命令<br>const 声明一个只读常亮，一旦声明，不可再修改，即为声明变量需要立即初始化</p>
+<p>作用域与 let 相同</p>
+<h1 id="ES6声明变量"><a href="#ES6声明变量" class="headerlink" title="ES6声明变量"></a>ES6声明变量</h1><p>共六种：var function let const import class</p>
+<p>变量的解构赋值<br>数组解构<br>类似 let [a,b,c,] &#x3D; [1,2,3];</p>
+<p>若解构失败，变量的值就等于 undefined</p>
+<p>解构赋值允许指定默认值</p>
+<p>对象解构赋值<br>元素按次序排列，变量的取值由位置决定，而对象的属性无次序，变量必须与属性同名，才能取得正确的值</p>
+<p>函数扩充<br>ES6中函数参数可带有默认值</p>
+<p>参数变量是默认声明的，所以不能用 let 或 const 再次声明</p>
+<p>使用参数默认值时，函数不能有同名参数</p>
+<p>定义了默认值的参数，应该是函数的尾参数</p>
+<p>rest参数<br>ES6引入 rest 参数（形式为 . . .变量名 ），用于获取函数的多余参数。</p>
+<p>rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。</p>
+<p>rest 参数后不能再有参数</p>
+<p>函数的 length 参数，不包括 rest 参数</p>
+<p>name属性<br>返回函数的函数名</p>
+<p>若将匿名函数赋值给一个变量，将返回变量名</p>
+<p>Function 构造函数返回的函数实例，name 属性的值为 anonymous</p>
+<p>bind返回的函数，name 属性值会加上 bound 前缀</p>
+<p>箭头函数<br>ES6允许使用“箭头” (&#x3D;&gt;)定义函数</p>
+<p>var f &#x3D; v &#x3D;&gt; v;<br>等同于<br>var f &#x3D; function (v) {<br>    return v;<br>}<br>如果箭头函数不需要参数或者需要多个参数，可以使用一个圆括号代表参数</p>
+<p>var f &#x3D; () &#x3D;&gt; 5;<br>等同于<br>var f &#x3D; function ( ) { return 5; }<br>var sum &#x3D; ( num1, num2) &#x3D;&gt; num1 + num2;<br>等同于<br>var sum &#x3D; function ( num1, num2) {<br>    return num1 + num2;<br>}<br>如果箭头函数代码块部分多余一条语句，就要使用大括号将他们括起来，并使用 return 语句返回。</p>
+<p>var sum &#x3D; ( num1, num2) &#x3D;&gt; { return num1 + num2; }<br>由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上大括号。</p>
+<p>let getTempItem &#x3D; id &#x3D;&gt; ( { id : id ,name : &quot; Temp&quot;} ) ;<br>箭头函数使得表达式更为简洁</p>
+<p>const isEven &#x3D; n &#x3D;&gt; n % 2 &#x3D;&#x3D; 0 ;<br>const square &#x3D; n &#x3D;&gt; n * n ;<br>箭头函数可以简化回调函数</p>
+<p>[ 1, 2, 3] .map( function (x) ){<br>    return x * x ;<br>}<br>箭头函数<br>[1, 2, 3].map( x &#x3D;&gt; x * x ) ;<br>箭头函数与 rest 参数结合</p>
+<p>const numbres &#x3D; ( …nums) &#x3D;&gt; nums ;<br>numbers (1, 2, 3, 4, 5)<br>&#x2F;&#x2F; [ 1, 2, 3, 4, 5]<br>const headAndTail &#x3D; ( head , …tail ) &#x3D;&gt; [head, tail] ;<br>handAndTail (1, 2, 3, 4, 5)<br>&#x2F;&#x2F; [1, [2, 3, 4, 5] ]<br>箭头函数使用注意<br>函数内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象</p>
+<p>不可以当作构造函数，也就是说，不可使用 new 命令</p>
+<p>不可使用 arguments 对象，该对象在函数体内不存在。若要用，可使用 rest 参数代替</p>
+<p>不可以使用 yield 命令</p>
+<p>嵌套的箭头函数<br>箭头函数的内部，还可以使用箭头函数</p>
+<p> const plus1 &#x3D; a &#x3D;&gt; a+1;<br> const mult2 &#x3D; a &#x3D;&gt; a * 2;<br> mult2 ( plus1(5) )<br>双冒号运算符<br>函数绑定运算符，取代 call，apply，bind；</p>
+<p>双冒号左边是一个对象，右边是一个函数。自动将左边的对象，作为上下文环境（即this对象）绑定到右边函数上。</p>
+<p>foo :: bar<br>等同于<br>bar.bind( foo ) ;<br>foo :: bar( ..arguments ) ;<br>等同于<br>bar.apply( foo, arguments ) ;<br>如果双冒号左边为空，右边是一个对象的方法，等于将该方法绑定在该对象上</p>
+<p>var method &#x3D; obj :: obj.foo ;<br>var method &#x3D; :: obj.foo ;<br>let log &#x3D; :: console.log ;<br>var log &#x3D; console.log.bind(console) ;<br>如果双冒号运算符的晕眩结果，还是一个对象，可以使用链式写法</p>
+<p>import { map , takeWhile, foreach } from &quot;iterlib&quot; ;<br>getPlayers()<br>:: map( x &#x3D;&gt; x.character ( ) )<br>:: takeWhile ( x &#x3D;&gt; x.strength &gt; 100)<br>:: foreach ( x &#x3D;&gt; console.log( x ) );<br>尾调用优化<br>尾调用（tail call）是函数式编程的一个概念，指某个函数的最后一步是调用另一个函数</p>
+<p>function f ( x ) {<br>    return g ( x ) ;<br>}<br>尾调用之所以与其他调用不同，就在于它的特殊的调用位置。我们知道，函数调用会在内存形成一个“调用记录”，又称“调用帧”（call frame），保存调用位置和内部变量等信息。如果在函数A的内部调用函数B，那么在A的调用帧上方，还会形成一个B的调用帧。等到B运行结束，将结果返回到A，B的调用帧才会消失。如果函数B内部还调用函数C，那就还有一个C的调用帧，以此类推。所有的调用帧，就形成一个“调用栈”（call stack）。</p>
+<p>尾调用由于是函数的最后一步操作，所以不需要保留外层函数的调用帧，因为调用位置、内部变量等信息都不会再用到了，只要直接用内层函数的调用帧，取代外层函数的调用帧就可以了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">f</span> ( ) &#123;<br>    <span class="hljs-keyword">let</span> m = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">let</span> n =<span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">g</span>( m + n ) ;<br>&#125;<br><span class="hljs-title function_">f</span>( );<br></code></pre></td></tr></table></figure>
+<p>等同于</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">f</span>(<span class="hljs-params"> </span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">g</span>( <span class="hljs-number">3</span> ); <br>&#125;<br><span class="hljs-title function_">f</span>( );<br></code></pre></td></tr></table></figure>
+<p>等同于</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">g</span>( <span class="hljs-number">3</span> );<br></code></pre></td></tr></table></figure>
+<p>尾调用优化就是只保留内层函数的调用帧。</p>
+<p>递归非常耗费内存，很容易发生“栈溢出”。对于尾递归来说，只存在一个调用帧，所以不会发生“栈溢出”</p>
+<p>递归函数的改写<br>函数式编程有个概念，叫柯里化，意思是将多参数转换成但参数形式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//采用es6</span><br><span class="hljs-keyword">function</span>  <span class="hljs-title function_">factorial</span>(<span class="hljs-params"> n, total = <span class="hljs-number">1</span> </span>) &#123;<br>    <span class="hljs-keyword">if</span>( n == <span class="hljs-number">1</span> ) <span class="hljs-keyword">return</span> total;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">factorial</span>( n-<span class="hljs-number">1</span>, n * total ) ;<br>&#125;<br><span class="hljs-title function_">factorial</span>( <span class="hljs-number">5</span> ); <span class="hljs-comment">//120</span><br></code></pre></td></tr></table></figure>
+
+<p>原文地址 : [es6基础](<a target="_blank" rel="noopener" href="http://yuque.com/oswind/es6">http://yuque.com/oswind/es6</a> &quot;跳转&quot;)</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>笔记：es6基础</div>
+      <div>http://example.com/2020/08/15/笔记：es6基础/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 15, 2020</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/12/PHP%207.4%E7%9A%84%E6%96%B0%E5%A2%9E%E7%89%B9%E6%80%A7%EF%BC%88%E5%8A%9F%E8%83%BD%EF%BC%8C%E5%BC%83%E7%94%A8%EF%BC%8C%E9%80%9F%E5%BA%A6%EF%BC%89/" title="PHP 7.4的新增特性（功能，弃用，速度）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PHP 7.4的新增特性（功能，弃用，速度）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/15/redis%E5%9F%BA%E7%A1%80/" title="redis基础">
+                        <span class="hidden-mobile">redis基础</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

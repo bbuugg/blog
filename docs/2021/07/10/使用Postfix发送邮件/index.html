@@ -1,0 +1,608 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="下面介绍在Ubuntu下使用Postfix发送邮件的方法 安装Postfix12sudo apt-get install postfix sudo apt-get install mailutils  我这边是按照默认配置安装的。 修改配置1vim &#x2F;etc&#x2F;postfix&#x2F;main.cf  将myhostname修改为localhost 启动Postfix服务1service postfix s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Postfix发送邮件">
+<meta property="og:url" content="http://example.com/2021/07/10/%E4%BD%BF%E7%94%A8Postfix%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="下面介绍在Ubuntu下使用Postfix发送邮件的方法 安装Postfix12sudo apt-get install postfix sudo apt-get install mailutils  我这边是按照默认配置安装的。 修改配置1vim &#x2F;etc&#x2F;postfix&#x2F;main.cf  将myhostname修改为localhost 启动Postfix服务1service postfix s">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-10T04:48:31.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>使用Postfix发送邮件 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="使用Postfix发送邮件"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-07-10 12:48" pubdate>
+          July 10, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">使用Postfix发送邮件</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>下面介绍在<code>Ubuntu</code>下使用<code>Postfix</code>发送邮件的方法</p>
+<h1 id="安装Postfix"><a href="#安装Postfix" class="headerlink" title="安装Postfix"></a>安装Postfix</h1><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sudo apt-<span class="hljs-built_in">get</span> install postfix <br>sudo apt-<span class="hljs-built_in">get</span> install mailutils<br></code></pre></td></tr></table></figure>
+
+<p>我这边是按照默认配置安装的。</p>
+<h1 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /etc/postfix/main.cf<br></code></pre></td></tr></table></figure>
+
+<p>将<code>myhostname</code>修改为<code>localhost</code></p>
+<h1 id="启动Postfix服务"><a href="#启动Postfix服务" class="headerlink" title="启动Postfix服务"></a>启动Postfix服务</h1><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">service postfix <span class="hljs-literal">start</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="发送"><a href="#发送" class="headerlink" title="发送"></a>发送</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mailx -r root@chengyao.xyz -s &amp;quot;Subject&amp;quot; 987861463@qq.com &amp;lt; ./log.txt<br></code></pre></td></tr></table></figure>
+
+<p>上面步骤没有测试，可行性未知</p>
+<p>如果有发送附件但发送失败，可以查看<code>/var/log/mail.log</code>文件，如果是<code>message file too big</code>,可以输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">postconf -e &amp;quot;message_size_limit=409600000&amp;quot;            //设置400MB<br></code></pre></td></tr></table></figure>
+<p>将允许的大小改大些。</p>
+<h1 id="mailx命令"><a href="#mailx命令" class="headerlink" title="mailx命令"></a>mailx命令</h1><p>mailx命令相关命令的有：mail,sendmail.</p>
+<p>语法</p>
+<p>mailx [选项] [名字]</p>
+<p>说明</p>
+<p>本命令用于发送和接收邮件，名字是收信人的用户名，本命令有许多选项，选项说明如下：</p>
+<figure class="highlight ldif"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs ldif"><span class="hljs-literal">-</span>A：执行帐户的命令的名称启动文件被读取之后。<br><span class="hljs-literal">-</span>a：给定的文件附加到邮件中。<br><span class="hljs-literal">-</span>B：使标准输入和标准输出线-缓冲。<br><span class="hljs-literal">-</span>b：发送密件副本列表。列表应该是一个逗号分隔的名称列表。<br><span class="hljs-literal">-</span>c：送炭复制到地址列表。<br><span class="hljs-literal">-</span>D：开始在断开模式; 看到断开的变量的描述选项。<br><span class="hljs-literal">-</span>d：启用调试消息和关闭消息的实际交付。 不像-v，此选项仅用于开发目的。<br><span class="hljs-literal">-</span>e：只是检查是否有邮件系统邮箱。 如果是，返回零，否则，一个非零值退出状态。<br><span class="hljs-literal">-</span>E：如果传出消息，不包含在它的第一个或唯一的消息部分的任何文字，不要把它丢弃，但它静静地，有效地设置在程序启动时的skipemptybody变量。这是一个从发送消息有用 的脚本由启动cron的。<br><span class="hljs-literal">-</span>f：阅读在用户的邮箱中的内容（或文件时 ，如果指定）进行处理; 当mailx的是退出，将其写入未删除的邮件恢复该文件。 该字符串作为文件处理描述为文件夹命令如下。<br><span class="hljs-literal">-</span>F：保存要发送的消息中的第一个收件人的地址的本地部分命名的文件。<br><span class="hljs-literal">-</span>H：打印头汇总所有消息并退出。<br><span class="hljs-literal">-</span>h：调用的sendmail与指定的跃点数。此选项没有在使用SMTP发送邮件的效果。<br><span class="hljs-literal">-</span>i：TTY忽略中断信号。使用mailx的对噪音的电话线时，这是非常有用的。<br><span class="hljs-literal">-</span>I：显示了“ 新闻组：&amp;<span class="hljs-comment">#039;或&amp;#039; 文章ID：&amp;#039;在标题汇总字段。只有在与-f结合使用时适用。</span><br><span class="hljs-literal">-</span>n：禁止阅读/etc/mail.rc启动时。这个选项应该适用于对多台计算机调用mailx的脚 本来启动，因为文件的内容，它们之间可能有所不同。<br><span class="hljs-literal">-</span>N：阅读邮件或编辑邮件文件夹时禁止消息头的初始显示。<br><span class="hljs-literal">-</span>q：启动与指定的文件的内容的消息。 可仅在发送模式给出。<br><span class="hljs-literal">-</span>r：设置发件人地址。忽略任何从指定的变量环境变量或启动文件。波浪号逃逸被禁用。该-r地址选项被传递到邮件传输代理，除非使用SMTP。此选项存在唯一的相容性;它建议，而不是直接设置从变量。<br><span class="hljs-literal">-</span>R：如果打开文件夹的只读打开它们。<br><span class="hljs-literal">-</span>s：指定主题的命令行（仅后-s标志作为主题的第一个参数，要注意引用包含空格的科目）。<br><span class="hljs-literal">-</span>S：设置内部选项变量变量的可选值的价值 。<br><span class="hljs-literal">-</span>T：写“ 邮件ID：”和“ 文章ID：&amp;<span class="hljs-comment">#039;读入文件名 ??的每个消息头字段。暗示我压缩文件的处理所描述的文件夹命令如下。</span><br><span class="hljs-literal">-</span>t：要发送的消息，预计将包含一个消息头“收件人：”，“抄送”或“密件抄送：”字段给收件人。 在命令行上指定的收件人将被忽略。<br><span class="hljs-literal">-</span>u：读取用户的用户的邮箱。<br><span class="hljs-literal">-</span>v：详细模式。 递送的详细信息显示在用户的终端上。<br><span class="hljs-literal">-</span>V：显示版本信息并退出。<br><span class="hljs-literal">-</span> ?：启用波浪逃逸 ，即使不是在交互模式。<br></code></pre></td></tr></table></figure>
+<p>命令内说明</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs excel">. 当前信件<br><span class="hljs-built_in">n</span> 第 <span class="hljs-built_in">n</span> 封信<br>^ 第一封未被处理的信<br>$ 最后一封信<br>* 所有的信<br><span class="hljs-built_in">n</span>-m 第<span class="hljs-built_in">n</span>封至第m封信<br>/ 字符串 标题中包含字符串的信<br>：c 满足指定类型c的信，类型可为<br>d 已删除的信<br><span class="hljs-built_in">n</span> 信传送的信<br>o 旧信件<br>r 已读过的信<br>u 未读过的信<br>p 一次显示多封信<br><span class="hljs-built_in">t</span> 显示某封信的前若干行<br>si 显示信件字符数<br>h 显示信件标题<br>d 删除信件<br>u 恢复信件<br>s [信件表] 文件名<br>将信件存入指定文件中<br>q 退出<br>r 回信<br>~e 编辑信件<br>~r 文件 从文件中读取信件<br></code></pre></td></tr></table></figure>
+<p>实例</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">mailx</span> -s &amp;quot;test&amp;quot; -a <span class="hljs-number">1</span>.txt &amp;#<span class="hljs-number">039</span>;mytest@ywnz.com&amp;#<span class="hljs-number">039</span>; &amp;lt; <span class="hljs-number">2</span>.txt　#test为标题,<span class="hljs-number">1</span>.txt附 件,<span class="hljs-number">2</span>.txt正文,发送给mytest@<span class="hljs-number">123</span>.com<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>使用Postfix发送邮件</div>
+      <div>http://example.com/2021/07/10/使用Postfix发送邮件/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 10, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/10/Mysql5.%EF%80%AA%20Mysql%208.0%EF%80%AA%20%E4%B8%80%E6%9D%A1SQL%E5%AE%9E%E7%8E%B0%E6%A0%91%E5%BD%A2%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2/" title="Mysql5.* Mysql 8.0* 一条SQL实现树形递归查询">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mysql5.* Mysql 8.0* 一条SQL实现树形递归查询</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/06/SQL%E4%BC%98%E5%8C%96%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" title="SQL优化相关总结">
+                        <span class="hidden-mobile">SQL优化相关总结</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

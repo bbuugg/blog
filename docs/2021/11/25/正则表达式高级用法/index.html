@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="引子上一章分享了正式表达式的入门知识，以及单字符、多字符常用的匹配方法，对于工作维护过程中已经够用，但是有时候只使用基础知识来实现就会比较麻烦，如果使用高级用法就会比较方便很多。 例如：匹配一个HTML文件中两个&lt;B&gt;标签中的文件。 文本内容： 1This offer is not available to customers living in &lt;B&gt;AK&lt;&#x2F;B&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式高级用法">
+<meta property="og:url" content="http://example.com/2021/11/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="引子上一章分享了正式表达式的入门知识，以及单字符、多字符常用的匹配方法，对于工作维护过程中已经够用，但是有时候只使用基础知识来实现就会比较麻烦，如果使用高级用法就会比较方便很多。 例如：匹配一个HTML文件中两个&lt;B&gt;标签中的文件。 文本内容： 1This offer is not available to customers living in &lt;B&gt;AK&lt;&#x2F;B&amp;g">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-11-25T14:46:25.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>正则表达式高级用法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="正则表达式高级用法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-25 22:46" pubdate>
+          November 25, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">正则表达式高级用法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>上一章分享了正式表达式的入门知识，以及单字符、多字符常用的匹配方法，对于工作维护过程中已经够用，但是有时候只使用基础知识来实现就会比较麻烦，如果使用高级用法就会比较方便很多。<br> 例如：匹配一个HTML文件中两个<code>&lt;B&gt;</code>标签中的文件。<br> 文本内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">This offer is not available to customers living in <span class="hljs-tag">&lt;<span class="hljs-name">B</span>&gt;</span>AK<span class="hljs-tag">&lt;/<span class="hljs-name">B</span>&gt;</span> and <span class="hljs-tag">&lt;<span class="hljs-name">B</span>&gt;</span>HI<span class="hljs-tag">&lt;/<span class="hljs-name">B</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>从上一章内容的知识可以想到的表达式可能如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">&lt;[Bb]&gt;.*&lt;/[Bb]&gt;<br></code></pre></td></tr></table></figure>
+
+<p>但是这个表达式配置的结果是<code>AK&lt;/B&gt; and &lt;B&gt;HI</code>，而不是我们想要的<code>AK</code>和<code>HI</code>。</p>
+<h1 id="懒惰型匹配"><a href="#懒惰型匹配" class="headerlink" title="懒惰型匹配"></a>懒惰型匹配</h1><blockquote>
+<p>引子中的例子中的匹配方式是属于贪婪行为，就是尽可能多的匹配内容，像例子中第一个<B>和最后一个</B>中间都被匹配到了，而不管匹配内容中是否存在</B>。<br> 上一章中讲到的*和+、{m,}都是所谓的“贪婪型”的。在这一节中讲一下与“贪婪型”相反的“懒惰型”，就是匹配尽可能少的内容。</p>
+</blockquote>
+<p>实现很简单，就是在原有“贪婪型”元字符后面加上一个<code>?</code> 号，如下表格</p>
+<table>
+<thead>
+<tr>
+<th>贪婪型元字符</th>
+<th>懒惰型元字符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>*？</td>
+</tr>
+<tr>
+<td>+</td>
+<td>+？</td>
+</tr>
+<tr>
+<td>{m,}</td>
+<td>{m,}?</td>
+</tr>
+</tbody></table>
+<h1 id="位置匹配"><a href="#位置匹配" class="headerlink" title="位置匹配"></a>位置匹配</h1><blockquote>
+<p>在现实的系统中一般表达位置的地方就是一个单词的开头以及结尾或者一个字符串的开头或者结尾。<br> 注意这个边界只是一个位置，例如单词边界匹配的是<code>\w</code>和<code>\W</code>之间的一个位置</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\b</td>
+<td>单词边界，单词的开头或者单词的结尾</td>
+<td>回退键的元字符是<code>[\b]</code></td>
+</tr>
+<tr>
+<td>\B</td>
+<td>表示非单词边界</td>
+<td></td>
+</tr>
+<tr>
+<td>^</td>
+<td>字符串的开头位置</td>
+<td>放在<code>[]</code>中表示取非操作</td>
+</tr>
+<tr>
+<td>$</td>
+<td>字符串结尾位置</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="扩展："><a href="#扩展：" class="headerlink" title="扩展："></a>扩展：</h2><ul>
+<li>像egrep中也支持使用<code>\&lt;</code>匹配单词开头位置，使用<code>\&gt;</code>匹配单词结尾位置，但是支持这种元字符的编辑器比较少。</li>
+<li>(?m)是一个分行匹配模式的记号，放在一个表达式的最前面，会改变字符串位置匹配的行为。<code>^</code>不仅匹配正常的字符串开头还匹配行分隔符（换行符）后面的开始位置；同样<code>$</code>不仅匹配正常的字符串结尾还匹配行分隔符（换行符）后面的结束位置；此用法只有部分正则表达式会支持</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+<th>支持平台</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(?d)</td>
+<td>Unix中的行</td>
+<td>java</td>
+</tr>
+<tr>
+<td>(?i)</td>
+<td>不区分大小写</td>
+<td>PCRE  Perl  java</td>
+</tr>
+<tr>
+<td>(?J)</td>
+<td>允许重复的名字</td>
+<td>PCRE*</td>
+</tr>
+<tr>
+<td>(?m)</td>
+<td>多行</td>
+<td>PCRE  Perl  java</td>
+</tr>
+<tr>
+<td>(?s)</td>
+<td>单行</td>
+<td>PCRE  Perl  java</td>
+</tr>
+<tr>
+<td>(?u)</td>
+<td>Unicode</td>
+<td>java</td>
+</tr>
+<tr>
+<td>(?U)</td>
+<td>默认最短匹配，与懒惰型匹配类似</td>
+<td>PCRE</td>
+</tr>
+<tr>
+<td>(?x)</td>
+<td>忽略空格和注释</td>
+<td>PCRE Perl Java</td>
+</tr>
+<tr>
+<td>(?-…)</td>
+<td>复原或关闭选项</td>
+<td>PCRE</td>
+</tr>
+</tbody></table>
+<h1 id="捕获分组与后向引用"><a href="#捕获分组与后向引用" class="headerlink" title="捕获分组与后向引用"></a>捕获分组与后向引用</h1><p>前面的元字符都是对紧挨着前面的一个字符有效，例如表达式<code>the&#123;3&#125;</code>匹配<code>theee</code>字符串，假如我们想匹配连续三个<code>the</code>字符串怎么办呢，这就涉及到子表达式的概念。</p>
+<h2 id="子表达式"><a href="#子表达式" class="headerlink" title="子表达式"></a>子表达式</h2><p>把一个表达式匹配的内容做为一个单独的元素嵌入到另外一个表达式中，那这个做为独立元素的表达式就是子表达式，需要使用<code>()</code>括起来。这个跟数学的表达式概念很类似。<br> 并且子表达与数学表达式还有一个类似的地方就是，正则表达式的子表达式也可以嵌套使用</p>
+<blockquote>
+<p>本节开头说的那个问题就可以使用子表达式来实现，<code>(the)&#123;3&#125;</code>就会匹配<code>thethethe</code>这个字符串。</p>
+</blockquote>
+<p>假如我们再加个条件：我们想匹配连续三个<code>the</code>或者连续三个<code>you</code>，怎么实现？这就是正则表达式的选择操作符，也叫或操作符了</p>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#96;</td>
+<td>&#96;</td>
+</tr>
+</tbody></table>
+<p>上面的问题就可以使用正则表达式<code>(the|you)&#123;3&#125;</code>来表示</p>
+<h2 id="捕获分组与后向引用-1"><a href="#捕获分组与后向引用-1" class="headerlink" title="捕获分组与后向引用"></a>捕获分组与后向引用</h2><p>当一个模式的全部或者部分内容由<strong>一对括号括起来</strong>时，就对表达式进行了分组（其实就是放在<code>()</code>中的子表达式），并且把分组匹配到内容捕获并且临时存放在内存中。这就是捕获分组，可以在后面表达式中使用就叫后向引用，或者叫回溯引用。<br> 默认情况下，分组是从左到右依次排序从1编号，第一个分组就是1，第二个分组就是2等等。</p>
+<blockquote>
+<p>最开始的时候支持的编号范围是1到9，现在应该已经没有这种限制了。</p>
+</blockquote>
+<p>后向引用很简单就是一个<code>\</code>或者<code>$</code>后面跟相应编号即可。例如<code>\1</code>或者<code>$1</code>就表示引用第一个捕获分组。</p>
+<h2 id="命名分组"><a href="#命名分组" class="headerlink" title="命名分组"></a>命名分组</h2><p>前面讲捕获分组都是通过位置编号来访问，在perl和python、.NET等语言中还支持对捕获分组命名。这样就比较容易理解</p>
+<table>
+<thead>
+<tr>
+<th>命名语法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>(?&lt;name&gt;分组)</code></td>
+<td>命名分组</td>
+</tr>
+<tr>
+<td><code>(?P&lt;name&gt;分组)</code></td>
+<td>python中的命名分组</td>
+</tr>
+<tr>
+<td><code>\k&lt;name&gt;</code></td>
+<td>Perl中引用命名分组</td>
+</tr>
+<tr>
+<td><code>\k&#39;name&#39;</code></td>
+<td>Perl中引用命名分组</td>
+</tr>
+<tr>
+<td><code>\g&#123;name&#125;</code></td>
+<td>Perl中引用命名分组</td>
+</tr>
+<tr>
+<td><code>\k&#123;name&#125;</code></td>
+<td>.NET中引用命名分组</td>
+</tr>
+<tr>
+<td><code>(?P=name)</code></td>
+<td>Python中引用命名分组</td>
+</tr>
+</tbody></table>
+<p>例：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">preg_match</span><span class="hljs-params">(<span class="hljs-string">&#x27;/(?P&lt;name&gt;\d+)/&#x27;</span>, <span class="hljs-variable">$string</span>, <span class="hljs-variable">$matched</span>)</span></span><br></code></pre></td></tr></table></figure>
+<p>如果匹配到，那么name的值就是\d+匹配到的值</p>
+<h2 id="非捕获分组"><a href="#非捕获分组" class="headerlink" title="非捕获分组"></a>非捕获分组</h2><p>顾名思义，与捕获分组相反，就是不会将分组匹配的内容放在内存中。主要是为了提高性能。<br> 使用方法：在分组的开头加上<code>?:</code>，例如<code>(?:the)</code></p>
+<blockquote>
+<p>当把非捕获分组语法中的<code>:</code>换成<code>&gt;</code>时，就变成了原子分组（另一种非捕获分组），可以进一步提升性能。因为原子分组会将分组内部的回溯操作关闭。</p>
+</blockquote>
+<h2 id="环视"><a href="#环视" class="headerlink" title="环视"></a>环视</h2><p>环视是一种非捕获分组，它根据某个模式之前或者之后的内容要求匹配其他模式。环视也称为零宽度断言。</p>
+<table>
+<thead>
+<tr>
+<th>环视分类</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(?&#x3D;分组)</td>
+<td>正前瞻，匹配且要求紧随其后内容为分组匹配的内容</td>
+<td><code>a(?=b)</code>,匹配<code>a</code>并且后面坚接着是<code>b</code>的字符串，可以匹配<code>abc</code>但是不匹配<code>acb</code></td>
+</tr>
+<tr>
+<td>(?!分组)</td>
+<td>反前瞻，即对正前瞻含义取反，匹配且要求紧随其后内容不为分组匹配的内容</td>
+<td><code>a(?!b)</code>,匹配<code>a</code>并且后面坚接着不是<code>b</code>的字符串，可以匹配<code>acb</code>但是不匹配<code>abc</code></td>
+</tr>
+<tr>
+<td>(?&lt;&#x3D;分组)</td>
+<td>正后顾，即对正前瞻方向取反，匹配且要求紧挨着之前的内容为分组匹配的内容</td>
+<td><code>(?&lt;=a)b)</code>,匹配<code>b</code>并且前面紧挨着是<code>a</code>的字符串，可以匹配<code>abc</code>但是不匹配<code>cbc</code></td>
+</tr>
+<tr>
+<td>(?&lt;!分组)</td>
+<td>反后顾，即对正后顾含义取反，匹配且要求紧挨着之前的内容不为分组匹配的内容</td>
+<td><code>(?&lt;!a)b)</code>,匹配<code>b</code>并且前面紧挨着不是<code>a</code>的字符串，可以匹配<code>cbc</code>但是不匹配<code>abc</code></td>
+</tr>
+</tbody></table>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>《学习正则表达式》<br> 《正则表达式必知必会》</p>
+<p>作者：itsenlin<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c39e761860bb">https://www.jianshu.com/p/c39e761860bb</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>正则表达式高级用法</div>
+      <div>http://example.com/2021/11/25/正则表达式高级用法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 25, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/25/%E5%A0%86%E6%A0%88%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BF%9B%E5%87%BA%E5%8E%9F%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88/" title="堆栈数据的进出原则是什么">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">堆栈数据的进出原则是什么</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/21/PHP%20%20fsockopen/" title="PHP  fsockopen">
+                        <span class="hidden-mobile">PHP  fsockopen</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

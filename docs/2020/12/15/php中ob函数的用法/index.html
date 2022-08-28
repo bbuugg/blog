@@ -1,0 +1,680 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="与输出缓冲区有关的配置　　在PHP.INI中,有两个跟缓冲区紧密相关的配置项　　1.output_buffering　　　　该配置直接影响的是php本身的缓冲区,有3种配置参数.on&#x2F;off&#x2F;xK(x为某个整型数值);　　　　on - 开启缓冲区　　　　off - 关闭缓冲区　　　　256k - 开启缓冲区,而且当缓冲区的内容超过256k的时候,自动刷新缓冲区(把数据发送到ap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php中ob函数的用法">
+<meta property="og:url" content="http://example.com/2020/12/15/php%E4%B8%ADob%E5%87%BD%E6%95%B0%E7%9A%84%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="与输出缓冲区有关的配置　　在PHP.INI中,有两个跟缓冲区紧密相关的配置项　　1.output_buffering　　　　该配置直接影响的是php本身的缓冲区,有3种配置参数.on&#x2F;off&#x2F;xK(x为某个整型数值);　　　　on - 开启缓冲区　　　　off - 关闭缓冲区　　　　256k - 开启缓冲区,而且当缓冲区的内容超过256k的时候,自动刷新缓冲区(把数据发送到ap">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-15T06:32:31.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>php中ob函数的用法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="php中ob函数的用法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-12-15 14:32" pubdate>
+          December 15, 2020 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.4k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          54 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">php中ob函数的用法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>与输出缓冲区有关的配置<br>　　在PHP.INI中,有两个跟缓冲区紧密相关的配置项<br>　　1.output_buffering<br>　　　　该配置直接影响的是php本身的缓冲区,有3种配置参数.on&#x2F;off&#x2F;xK(x为某个整型数值);<br>　　　　on - 开启缓冲区<br>　　　　off - 关闭缓冲区<br>　　　　256k - 开启缓冲区,而且当缓冲区的内容超过256k的时候,自动刷新缓冲区(把数据发送到apache);</p>
+<p>　　2.implicit_flush<br>　　　　该配置直接影响apache的缓冲区,有2种配置参数. on&#x2F;off<br>　　　　on - 自动刷新apache缓冲区,也就是,当php发送数据到apache的缓冲区的时候,不需要等待其他指令,直接就把输出返回到浏览器<br>　　　　off - 不自动刷新apache缓冲区,接受到数据后,等待刷新指令</p>
+<p>而默认直接是开启缓冲区的，所以我们可以直接不用ob_start()，所以我先把缓冲区关闭</p>
+<p>下面几个函数的用法</p>
+<ul>
+<li>ob_start() - 打开缓冲区</li>
+<li>ob_get_contents() - 返回输出缓冲区的内容</li>
+<li>ob_flush() - 冲刷出（送出）输出缓冲区中的内容</li>
+<li>ob_clean() - 清空（擦掉）输出缓冲区</li>
+<li>ob_end_flush() - 冲刷出（送出）输出缓冲区内容并关闭缓冲</li>
+<li>ob_end_clean() - 清空（擦除）缓冲区并关闭输出缓冲</li>
+<li>flush() - 刷新输出缓冲</li>
+</ul>
+<p>　</p>
+<p>&gt; ob_start()在服务器打开一个缓冲区来保存所有的输出。所以在任何时候使用echo ，输出都将被加入缓冲区中，直到程序运行结束或者使用ob_flush()来结束。然后在服务器中缓冲区的内容才会发送到浏览器，由浏览器来解析显示。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml">ob_start();<br><br>echo <span class="hljs-symbol">&amp;quot;</span>Hello <span class="hljs-symbol">&amp;quot;</span>;<br><br>$out1 = ob_get_contents();<br><br>echo <span class="hljs-symbol">&amp;quot;</span>World<span class="hljs-symbol">&amp;quot;</span>;<br><br>$out2 = ob_get_contents();123456789<br></code></pre></td></tr></table></figure>
+
+<p>&gt; 输出：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">Hello</span> World1<br></code></pre></td></tr></table></figure>
+
+<p>如果只是想要存储缓存区而不是输出的话加上ob_end_clean();</p>
+<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sas">ob_start();<br><br>echo <span class="hljs-variable">&amp;quot</span>;Hello <span class="hljs-variable">&amp;quot</span>;;<br><br>$out1 = ob_get_contents();<br><br>echo <span class="hljs-variable">&amp;quot</span>;World<span class="hljs-variable">&amp;quot</span>;;<br><br>$out2 = ob_get_contents();<br><br>ob_end_clea<span class="hljs-meta">n</span>();1234567891011<br></code></pre></td></tr></table></figure>
+
+<p>可以看到浏览器上没有任何输出，这时我们加上var_dump来看看out1、out2两个变量</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">ob<span class="hljs-constructor">_start()</span>;<br><br>echo &amp;quot;Hello &amp;quot;;<br><br>$out1 = ob<span class="hljs-constructor">_get_contents()</span>;<br><br>echo &amp;quot;World&amp;quot;;<br><br>$out2 = ob<span class="hljs-constructor">_get_contents()</span>;<br><br><br><br>ob<span class="hljs-constructor">_end_clean()</span>;<br>var<span class="hljs-constructor">_dump($<span class="hljs-params">out1</span>, $<span class="hljs-params">out2</span>)</span>;<span class="hljs-number">1234567891011121314</span><br></code></pre></td></tr></table></figure>
+
+<p>&gt; 输出：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">string(6) <span class="hljs-symbol">&amp;quot;</span>Hello <span class="hljs-symbol">&amp;quot;</span> string(11) <span class="hljs-symbol">&amp;quot;</span>Hello World<span class="hljs-symbol">&amp;quot;</span>1<br></code></pre></td></tr></table></figure>
+
+<p>&gt; 接下来讲ob_clean()跟ob_end_clean()的区别</p>
+<p>&gt; 使用 ob_end_clean()</p>
+<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs sas">ob_start();<br><br>echo <span class="hljs-variable">&amp;quot</span>;Hello <span class="hljs-variable">&amp;quot</span>;;<br><br>$out1 = ob_get_contents();<br><br>echo <span class="hljs-variable">&amp;quot</span>;World1<span class="hljs-variable">&amp;quot</span>;;<br><br>$out2 = ob_get_contents();<br><br>ob_end_clea<span class="hljs-meta">n</span>();<br><br>echo <span class="hljs-variable">&amp;quot</span>;World2<span class="hljs-variable">&amp;lt</span>;br<span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;quot</span>;;<br>echo <span class="hljs-variable">&amp;quot</span>;World3<span class="hljs-variable">&amp;lt</span>;br<span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;quot</span>;;<br><br>$out3 = ob_get_contents();<br><br>var_dump($out3);123456789101112131415161718<br></code></pre></td></tr></table></figure>
+
+<p>&gt; 输出：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus">World2<br>World3<br><span class="hljs-function"><span class="hljs-title">bool</span><span class="hljs-params">(false)</span></span><span class="hljs-number">123</span><br></code></pre></td></tr></table></figure>
+
+<p>&gt; 使用 ob_clean()</p>
+<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs sas">ob_start();<br><br>echo <span class="hljs-variable">&amp;quot</span>;Hello <span class="hljs-variable">&amp;quot</span>;;<br><br>$out1 = ob_get_contents();<br><br>echo <span class="hljs-variable">&amp;quot</span>;World1<span class="hljs-variable">&amp;quot</span>;;<br><br>$out2 = ob_get_contents();<br><br>ob_clea<span class="hljs-meta">n</span>();<br><br>echo <span class="hljs-variable">&amp;quot</span>;World2<span class="hljs-variable">&amp;lt</span>;br<span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;quot</span>;;<br>echo <span class="hljs-variable">&amp;quot</span>;World3<span class="hljs-variable">&amp;lt</span>;br<span class="hljs-variable">&amp;gt</span>;<span class="hljs-variable">&amp;quot</span>;;<br><br>$out3 = ob_get_contents();<br><br>var_dump($out3);123456789101112131415161718<br></code></pre></td></tr></table></figure>
+
+<p>&gt; 输出：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs 1c">World2<br>World3<br>string(<span class="hljs-number">20</span>) <span class="hljs-meta">&amp;quot;World2</span><br>World3<br><span class="hljs-meta">&amp;quot;12345</span><br><br></code></pre></td></tr></table></figure>
+
+<p>&gt; 这里我们对out3使用转义函数</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">var<span class="hljs-constructor">_dump(<span class="hljs-params">htmlentities</span>($<span class="hljs-params">out3</span>)</span>);<span class="hljs-number">1</span><br><br></code></pre></td></tr></table></figure>
+
+<p>&gt; 输出：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml">World<br>World<br>string(32) <span class="hljs-symbol">&amp;quot;</span>World<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span>World<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>123<br><br></code></pre></td></tr></table></figure>
+
+<p>&gt; 解释</p>
+<p>ob_end_clean() 跟ob_clean() 都是清空了缓冲区，不让echo输出到浏览器,这是共同点，而不同点是ob_end_clean()还关闭了缓冲区</p>
+<p>&gt; 接下来讲ob_end_flush()跟ob_flush()跟flush()的区别</p>
+<p>&gt; 使用ob_end_flush()</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs xml">ob_start();<br><br>echo <span class="hljs-symbol">&amp;quot;</span>Hello<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>;<br><br>$out1 = ob_get_contents();<br><br>echo <span class="hljs-symbol">&amp;quot;</span>World1<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>;<br><br>$out2 = ob_get_contents();<br><br><br>ob_end_flush();<br><br>echo <span class="hljs-symbol">&amp;quot;</span>World2<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>;<br>echo <span class="hljs-symbol">&amp;quot;</span>World3<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>;<br><br>$out3 = ob_get_contents();<br><br><br>var_dump(htmlentities($out3));1234567891011121314151617181920<br><br></code></pre></td></tr></table></figure>
+
+<p>&gt; 输出</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Hello</span><br><span class="hljs-attribute">World1</span><br><span class="hljs-attribute">World2</span><br><span class="hljs-attribute">World3</span><br><span class="hljs-attribute">string</span>(<span class="hljs-number">0</span>) &amp;quot;&amp;quot;<span class="hljs-number">12345</span><br><br></code></pre></td></tr></table></figure>
+
+<p>补充：这里为了显示容易观察，我全部都给了<code> </code></p>
+<p>&gt; 使用ob_flush()</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs xml">ob_start();<br><br>echo <span class="hljs-symbol">&amp;quot;</span>Hello<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>;<br><br>$out1 = ob_get_contents();<br><br>echo <span class="hljs-symbol">&amp;quot;</span>World1<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>;<br><br>$out2 = ob_get_contents();<br><br><br>ob__flush();<br><br>echo <span class="hljs-symbol">&amp;quot;</span>World2<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>;<br>echo <span class="hljs-symbol">&amp;quot;</span>World3br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>;<br><br>$out3 = ob_get_contents();<br><br><br>var_dump(htmlentities($out3));1234567891011121314151617181920<br><br></code></pre></td></tr></table></figure>
+
+<p>&gt; 输出</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml">Hello<br>World1<br>World2<br>World3<br>string(32) <span class="hljs-symbol">&amp;quot;</span>World2<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span>World3<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>12345<br><br></code></pre></td></tr></table></figure>
+
+<p>&gt; 使用flush()</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml">ob_start();<br><br>echo <span class="hljs-symbol">&amp;quot;</span>Hello<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>;<br><br>$out1 = ob_get_contents();<br><br>echo <span class="hljs-symbol">&amp;quot;</span>World1<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>;<br><br>$out2 = ob_get_contents();<br><br><br>flush();<br><br>echo <span class="hljs-symbol">&amp;quot;</span>World2<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>;<br>echo <span class="hljs-symbol">&amp;quot;</span>World3br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>;<br><br>$out3 = ob_get_contents();<br><br><br>var_dump(htmlentities($out3));1234567891011121314151617181920<br></code></pre></td></tr></table></figure>
+
+<p>&gt; 输出</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml">Hello<br>World1<br>World2<br>World3<br>string(67) <span class="hljs-symbol">&amp;quot;</span>Hello<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span>World1<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span>World2<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span>World3<span class="hljs-symbol">&amp;lt;</span>br/<span class="hljs-symbol">&amp;gt;</span><span class="hljs-symbol">&amp;quot;</span>12345<br></code></pre></td></tr></table></figure>
+
+<p>&gt; 区别</p>
+<p>可以看出ob_end_flush() 是输出了缓冲区的内容并且关闭了缓冲区,而ob_flush()只是刷出了缓冲区内容，相当于将缓冲区清空，而flush()输出了缓冲区内容也没有将缓冲区清空，所以下面的缓冲区内容还会继续追加。</p>
+<p>&gt; 总结</p>
+<p>只能在实践中继续成长，有什么不对的地方望大家指出。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33862778/article/details/80787510">https://blog.csdn.net/qq_33862778/article/details/80787510</a></p>
+<p>header(&quot;Location:login.php&quot;)应该注意的几个问题<br>header(&quot;Location:login.php&quot;)应该注意的几个问题</p>
+<p>header(&quot;Location:&quot;)作为php的转向语句。其实在使用中，他有几点需要注意的地方。</p>
+<p>1、要求header前没有任何输出</p>
+<p>但是很多时候在header前我们已经输出了好多东西了，此时如果再次header的话，显然是出错的，在这里我们启用了一个ob的概念，ob的意思是在服务器端先存储有关输出，等待适当的时机再输出，而不是像现在这样运行一句，输出一句,发现header语句就只能报错了。</p>
+<p>具体的语句有： ob_start(); ob_end_clean();ob_flush();………</p>
+<p>2、在header(&quot;Location:&quot;)后要及时exit</p>
+<p>否则他是会继续执行的，虽然在浏览器端你看不到相应的数据出现，但是如果你进行抓包分析的话，你就会看到下面的语句也是在执行的。而且被输送到了浏览器客户端，只不过是没有被浏览器执行为html而已（浏览器执行了header进行了转向操作）。</p>
+<p>所以,标准的使用方法是：</p>
+<p>ob_start();</p>
+<p>……..</p>
+<p>if ( something ){</p>
+<p>ob_end_clean();</p>
+<p>header(&quot;Location: yourlocation&quot;)；</p>
+<p>exit;</p>
+<p>else{</p>
+<p>……….</p>
+<p>ob_flush(); &#x2F;&#x2F;可省略</p>
+<p>要想在header前有输出的话，可以修改php.ini文件</p>
+<p>output_handler &#x3D;mb_output_handler</p>
+<p>或 output_handler &#x3D;on</p>
+<p>Output Control 函数可以让你自由控制脚本中数据的输出。它非常地有用，特别是对于：当你想在数据已经输出后，再输出文件头的情况。输出控制函数不对使用 header() 或 setcookie(), 发送的文件头信息产生影响,只对那些类似于 echo() 和 PHP 代码的数据块有作用。<br>一、 相关函数简介：<br>1、Flush：刷新缓冲区的内容，输出。<br>函数格式：flush()<br>说明：这个函数经常使用，效率很高。<br>2、ob_start ：打开输出缓冲区<br>函数格式：void ob_start(void)<br>说明：当缓冲区激活时，所有来自PHP程序的非文件头信息均不会发送，而是保存在内部缓冲区。为了输出缓冲区的内容，可以使用ob_end_flush()或flush()输出缓冲区的内容。<br>3 、ob_get_contents ：返回内部缓冲区的内容。<br>使用方法：string ob_get_contents(void)<br>说明：这个函数会返回当前缓冲区中的内容，如果输出缓冲区没有激活，则返回 FALSE 。<br>4、ob_get_length：返回内部缓冲区的长度。<br>使用方法：int ob_get_length(void)<br>说明：这个函数会返回当前缓冲区中的长度；和ob_get_contents一样，如果输出缓冲区没有激活。则返回 FALSE。<br>5、ob_end_flush ：发送内部缓冲区的内容到浏览器，并且关闭输出缓冲区。<br>使用方法：void ob_end_flush(void)<br>说明：这个函数发送输出缓冲区的内容（如果有的话）。<br>6、ob_end_clean：删除内部缓冲区的内容，并且关闭内部缓冲区<br>使用方法：void ob_end_clean(void)<br>说明：这个函数不会输出内部缓冲区的内容而是把它删除！<br>7、ob_implicit_flush：打开或关闭绝对刷新<br>使用方法：void ob_implicit_flush ([int flag])<br>说明：使用过Perl的人都知道|&#x3D;x的意义，这个字符串可以打开&#x2F;关闭缓冲区，而obimplicitflush函数也和那个一样，默认为关闭缓冲区，打开绝对输出后，每个脚本输出都直接发送到浏览器，不再需要调用flush()obstart()开始输出缓冲,这时PHP停止输出,在这以后的输出都被转到一个内部的缓冲里.obgetcontents()这个函数返回内部缓冲的内容.这就等于把这些输出都变成了字符串.obgetlength()返回内部缓冲的长度.obendflush()结束输出缓冲,并输出缓冲里的内容.在这以后的输出都是正常输出.obendclean()结束输出缓冲,并扔掉缓冲里的内容.举个例子,vardump()函数输出一个变量的结构和内容,这在调试的时候很有用.但如果变量的内容里有&lt;,&gt;等HTML的特殊字符,输出到网页里就看不见了.怎么办呢?用输出缓冲函数能很容易的解决这个问题.obstart();vardump(var);<br>out&#x3D;obgetcontents();obendclean();这时vardump()的输出已经存在out 里了. 你可以现在就输出:<br>echo ‘&lt;pre&gt;’ . htmlspecialchars($out) . ‘&lt;&#x2F;pre&gt;’ ;<br>或者等到将来, 再或者把这个字符串送到模板(Template)里再输出.<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/suizhikuo/archive/2012/11/26/2789101.html">https://www.cnblogs.com/suizhikuo/archive/2012/11/26/2789101.html</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>php中ob函数的用法</div>
+      <div>http://example.com/2020/12/15/php中ob函数的用法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>December 15, 2020</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/01/04/Apache2%20CGI%20%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE/" title="Apache2 CGI 简单配置">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Apache2 CGI 简单配置</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/15/git%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" title="git 使用笔记">
+                        <span class="hidden-mobile">git 使用笔记</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

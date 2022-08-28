@@ -1,0 +1,616 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="最近在看秒杀相关的项目，针对防止库存超卖的问题，查阅了很多资料，其解决方案可以分为悲观锁、乐观锁、分布式锁、Redis原子操作、队列串行化等等，这里进行浅显的记录总结。 首先我们来看下库存超卖问题是怎样产生的： 123456&#x2F;&#x2F;1.查询出商品库存信息select stock from t_goods where id&#x3D;1;&#x2F;&#x2F;2.根据商品信息生成订单insert into t_orders (id">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高并发下防止库存超卖的解决方案">
+<meta property="og:url" content="http://example.com/2021/05/16/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8B%E9%98%B2%E6%AD%A2%E5%BA%93%E5%AD%98%E8%B6%85%E5%8D%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最近在看秒杀相关的项目，针对防止库存超卖的问题，查阅了很多资料，其解决方案可以分为悲观锁、乐观锁、分布式锁、Redis原子操作、队列串行化等等，这里进行浅显的记录总结。 首先我们来看下库存超卖问题是怎样产生的： 123456&#x2F;&#x2F;1.查询出商品库存信息select stock from t_goods where id&#x3D;1;&#x2F;&#x2F;2.根据商品信息生成订单insert into t_orders (id">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-16T15:07:44.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>高并发下防止库存超卖的解决方案 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="高并发下防止库存超卖的解决方案"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-05-16 23:07" pubdate>
+          May 16, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">高并发下防止库存超卖的解决方案</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>最近在看秒杀相关的项目，针对防止库存超卖的问题，查阅了很多资料，其解决方案可以分为悲观锁、乐观锁、分布式锁、Redis原子操作、队列串行化等等，这里进行浅显的记录总结。</p>
+<p>首先我们来看下库存超卖问题是怎样产生的：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-number">1.</span>查询出商品库存信息<br><span class="hljs-keyword">select</span> stock <span class="hljs-keyword">from</span> t_goods <span class="hljs-keyword">where</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span>;<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-number">2.</span>根据商品信息生成订单<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_orders (id,goods_id) <span class="hljs-keyword">values</span> (<span class="hljs-keyword">null</span>,<span class="hljs-number">1</span>);<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-number">3.</span>修改商品库存<br><span class="hljs-keyword">update</span> t_goods <span class="hljs-keyword">set</span> stock<span class="hljs-operator">=</span>stock<span class="hljs-number">-1</span> <span class="hljs-keyword">where</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>在高并发场景下，如果同时有两个线程a和b，同时查询到商品库存为1，他们都认为存库充足，于是开始下单减库存。如果线程a先完成减库存操作，库存为0，接着线程b也是减库存，于是库存就变成了-1，商品被超卖了。</p>
+<p>下面让我们来看看针对库存超卖问题的解决方案；</p>
+<h1 id="解决方案一：悲观锁"><a href="#解决方案一：悲观锁" class="headerlink" title="解决方案一：悲观锁"></a>解决方案一：悲观锁</h1><p>所谓悲观锁，即悲观的认为自己在操作数据库时，会大几率出现并发，于是在操作前会先进行加锁，操作完成后再释放锁。如果加锁失败说明该记录正在被修改，那么当前操作可以等待后尝试。</p>
+<p>以我们常用的MySQL为例，行锁、表锁、排他锁等都是悲观锁，为避免冲突，会在操作时先加锁，其他线程必须等待它的完成。</p>
+<p>这里我们通过使用select…for update语句，在查询商品表库存时将该条记录加锁，待下单减库存完成后，再释放锁。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-number">0.</span>开始事务<br><span class="hljs-keyword">begin</span>;<span class="hljs-operator">/</span><span class="hljs-keyword">begin</span> work;<span class="hljs-operator">/</span><span class="hljs-keyword">start</span> transaction; (三者选一就可以)<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-number">1.</span>查询出商品信息<br><span class="hljs-keyword">select</span> stock <span class="hljs-keyword">from</span> t_goods <span class="hljs-keyword">where</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">update</span>;<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-number">2.</span>根据商品信息生成订单<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_orders (id,goods_id) <span class="hljs-keyword">values</span> (<span class="hljs-keyword">null</span>,<span class="hljs-number">1</span>);<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-number">3.</span>修改商品stock减一<br><span class="hljs-keyword">update</span> t_goods <span class="hljs-keyword">set</span> stock<span class="hljs-operator">=</span>stock<span class="hljs-number">-1</span> <span class="hljs-keyword">where</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span>;<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-number">4.</span>提交事务<br><span class="hljs-keyword">commit</span>;<br></code></pre></td></tr></table></figure>
+
+<p>这样可以解决并发时库存超卖的问题，然而高并发时，所有的操作都被串行化了，效率很低，将严重影响系统的吞吐量。而且使用悲观锁还有可能造成死锁问题。</p>
+<h1 id="解决方案二：乐观锁"><a href="#解决方案二：乐观锁" class="headerlink" title="解决方案二：乐观锁"></a>解决方案二：乐观锁</h1><p>现在我们尝试下使用乐观锁，所谓乐观锁，是相对于悲观锁而言的，它假设数据一般情况下不会发生并发，因此不会对数据进行加锁，操作完成提交时才对数据是否冲突进行检测，如果发现冲突则返回错误。</p>
+<p>比较常见的实现方式是，在表中增加一个version字段，操作前先查询version信息，在数据提交时检查version字段是否被修改，如果没有被修改则进行提交，否则认为是过期数据。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-number">1.</span>查询出商品信息<br><span class="hljs-keyword">select</span> stock, version <span class="hljs-keyword">from</span> t_goods <span class="hljs-keyword">where</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span>;<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-number">2.</span>根据商品信息生成订单<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_orders (id,goods_id) <span class="hljs-keyword">values</span> (<span class="hljs-keyword">null</span>,<span class="hljs-number">1</span>);<br><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-number">3.</span>修改商品库存<br><span class="hljs-keyword">update</span> t_goods <span class="hljs-keyword">set</span> stock<span class="hljs-operator">=</span>stock<span class="hljs-number">-1</span>, version <span class="hljs-operator">=</span> version<span class="hljs-operator">+</span><span class="hljs-number">1</span> <span class="hljs-keyword">where</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span>, version<span class="hljs-operator">=</span>version;<br></code></pre></td></tr></table></figure>
+
+<p>这样，在并发时，如果线程a尝试修改商品库存时，发现版本号已经被线程b修改了，线程a执行update语句条件不满足便不再执行了，库存也不会被超卖。</p>
+<p>但是这种乐观锁的方式，在高并发时，只有一个线程能执行成功，会造成大量的失败，这给用户的体验显然是很不好的。</p>
+<p>这里我们可以减小锁的颗粒度，最大程度提升系统的吞吐量，提高并发能力：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-operator">/</span><span class="hljs-operator">/</span>修改商品库存时判断库存是否大于<span class="hljs-number">0</span><br><span class="hljs-keyword">update</span> t_goods <span class="hljs-keyword">set</span> stock<span class="hljs-operator">=</span>stock<span class="hljs-number">-1</span> <span class="hljs-keyword">where</span> id<span class="hljs-operator">=</span><span class="hljs-number">1</span> <span class="hljs-keyword">and</span> stock<span class="hljs-operator">&amp;</span>gt;<span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure>
+
+<p>上面的update语句通过stock&gt;0进行乐观锁的控制，在执行时，会在一次原子操作中查询stock的值，并扣减一。</p>
+<h1 id="解决方案三：分布式锁"><a href="#解决方案三：分布式锁" class="headerlink" title="解决方案三：分布式锁"></a>解决方案三：分布式锁</h1><p>除了在数据库层面加锁，我们还可以通过在内存中加锁，实现分布式锁。例如我们可以在Redis中设置一个锁，拿到锁的线程抢购成功，拿不到锁的抢购失败。</p>
+<p>Redis的setnx方法可以实现锁机制，key不存在时创建，并设置value，返回值为1；key存在时直接返回0。线程调用setnx方法成功返回1认为加锁成功，其他线程要等到当前线程业务操作完成释放锁后，才能再次调用setnx加锁成功。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Long</span> <span class="hljs-variable">TIMEOUT_SECOUND</span> <span class="hljs-operator">=</span> <span class="hljs-number">120000L</span>;<br><span class="hljs-type">Jedis</span> <span class="hljs-variable">client</span> <span class="hljs-operator">=</span> jedisPool.getResource();<br><span class="hljs-comment">//线程设置lock锁成功</span><br><span class="hljs-keyword">while</span>(client.setnx(&amp;quot;lock&amp;quot;,String.valueOf(System.currentTimeMillis())) == <span class="hljs-number">1</span>)&#123;<br><span class="hljs-type">Long</span> <span class="hljs-variable">lockTime</span> <span class="hljs-operator">=</span> Long.valueOf(client.get(&amp;quot;lock&amp;quot;));<br><span class="hljs-comment">//持有锁超时后自动释放锁</span><br><span class="hljs-keyword">if</span> (lockTime!=<span class="hljs-literal">null</span> &amp;amp;&amp;amp; System.currentTimeMillis() &amp;gt; lockTime+TIMEOUT_SECOUND)&#123;<br>client.del(&amp;quot;lock&amp;quot;);<br><br>&#125;<br>Thread.sleep(<span class="hljs-number">10000</span>);<br><br>&#125;<br>......<br>......<br>client.del(&amp;quot;lock&amp;quot;);<br></code></pre></td></tr></table></figure>
+
+<h1 id="解决方案四：Redis原子操作"><a href="#解决方案四：Redis原子操作" class="headerlink" title="解决方案四：Redis原子操作"></a>解决方案四：Redis原子操作</h1><p>虽然通过以上方按可以防止库存超卖，但是高并发情况下对数据库进行频繁操作，会造成严重的性能问题。因此我们必须在前端对请求进行限制。</p>
+<p>我们可以在Redis中设置一个队列key为商品的id，队列的长度为商品库存量。每次请求到达时pop出一个元素，这样拿到元素的请求即认为秒杀成功，后续通过MQ发送消息异步完成数据库减库存操作。没有拿到元素的请求即认为秒杀失败。</p>
+<p>由于Redis是工作线程是单线程的，而list的pop操作是原子性的，因此并发的请求都被串行化了，库存就不会超卖了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//获取商品库存</span><br><span class="hljs-type">String</span> <span class="hljs-variable">token</span> <span class="hljs-operator">=</span> redisTemplate.opsForList().leftPop(goodsStock);<br><span class="hljs-keyword">if</span>(token == <span class="hljs-literal">null</span>)&#123;<br>log.info(&amp;quot;&amp;gt;&amp;gt;&amp;gt;商品已售空&amp;quot;);<br><span class="hljs-keyword">return</span> setResultError(&amp;quot;亲，该秒杀已经售空，请下次再来!&amp;quot;);<br><br>&#125;<br><span class="hljs-comment">//异步发送MQ消息，执行数据库操作</span><br>sendSecondKillMsg(goodsId, userId);<br></code></pre></td></tr></table></figure>
+
+<p>…<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yishihuakai/article/details/104581576">https://blog.csdn.net/yishihuakai/article/details/104581576</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>高并发下防止库存超卖的解决方案</div>
+      <div>http://example.com/2021/05/16/高并发下防止库存超卖的解决方案/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 16, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/18/apache%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8/" title="apache模块使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">apache模块使用</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/16/%E5%87%A0%E5%A5%97%E5%A5%BD%E7%9C%8B%E7%9A%84%E7%BE%8E%E5%8C%96%E6%A1%86CSS/" title="几套好看的美化框CSS">
+                        <span class="hidden-mobile">几套好看的美化框CSS</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

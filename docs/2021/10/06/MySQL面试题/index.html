@@ -1,0 +1,1029 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="唯一索引比普通索引快吗, 为什么 唯一索引不一定比普通索引快, 还可能慢。 查询时, 在未使用 limit 1 的情况下, 在匹配到一条数据后, 唯一索引即返回, 普通索引会继续匹配下一条数据, 发现不匹配后返回. 如此看来唯一索引少了一次匹配, 但实际上这个消耗微乎其微. 更新时, 这个情况就比较复杂了. 普通索引将记录放到 change buffer 中语句就执行完毕了. 而对唯一索引而言,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL面试题">
+<meta property="og:url" content="http://example.com/2021/10/06/MySQL%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="唯一索引比普通索引快吗, 为什么 唯一索引不一定比普通索引快, 还可能慢。 查询时, 在未使用 limit 1 的情况下, 在匹配到一条数据后, 唯一索引即返回, 普通索引会继续匹配下一条数据, 发现不匹配后返回. 如此看来唯一索引少了一次匹配, 但实际上这个消耗微乎其微. 更新时, 这个情况就比较复杂了. 普通索引将记录放到 change buffer 中语句就执行完毕了. 而对唯一索引而言,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-06T02:19:15.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>MySQL面试题 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MySQL面试题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-06 10:19" pubdate>
+          October 6, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          109 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MySQL面试题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol>
+<li><p>唯一索引比普通索引快吗, 为什么</p>
+<p>唯一索引不一定比普通索引快, 还可能慢。</p>
+<p>查询时, 在未使用 limit 1 的情况下, 在匹配到一条数据后, 唯一索引即返回, 普通索引会继续匹配下一条数据, 发现不匹配后返回. 如此看来唯一索引少了一次匹配, 但实际上这个消耗微乎其微.</p>
+<p>更新时, 这个情况就比较复杂了. 普通索引将记录放到 change buffer 中语句就执行完毕了. 而对唯一索引而言, 它必须要校验唯一性, 因此, 必须将数据页读入内存确定没有冲突, 然后才能继续操作. 对于写多读少的情况, 普通索引利用 change buffer 有效减少了对磁盘的访问次数, 因此普通索引性能要高于唯一索引。</p>
+</li>
+<li><p>MySQL由哪些部分组成, 分别用来做什么</p>
+</li>
+</ol>
+<p>一. Server</p>
+<pre><code class="hljs">连接器: 管理连接, 权限验证.
+分析器: 词法分析, 语法分析.
+优化器: 执行计划生成, 索引的选择.
+执行器: 操作存储引擎, 返回执行结果.
+</code></pre>
+<p>二. 存储引擎: 存储数据, 提供读写接口。</p>
+<ol start="3">
+<li>MySQL查询缓存有什么弊端, 应该什么情况下使用, 8.0版本对查询缓存有什么变更</li>
+</ol>
+<p>查询缓存可能会失效非常频繁, 对于一个表, 只要有更新, 该表的全部查询缓存都会被清空. 因此对于频繁更新的表来说, 查询缓存不一定能起到正面效果.对于读远多于写的表可以考虑使用查询缓存.8.0版本的查询缓存功能被删了 (￣.￣)。<br>4.MyISAM和InnoDB的区别有哪些</p>
+<pre><code class="hljs">InnoDB支持事务, MyISAM不支持；
+InnoDB支持行级锁, MyISAM支持表级锁；
+InnoDB支持多版本并发控制(MVVC), MyISAM不支持；
+InnoDB支持外键, MyISAM不支持；
+MyISAM支持全文索引, InnoDB部分版本不支持(但可以使用Sphinx插件)；
+</code></pre>
+<p>5.MySQL怎么恢复半个月前的数据</p>
+<p>通过整库备份+binlog进行恢复. 前提是要有定期整库备份且保存了binlog日志<br>6.MySQL事务的隔离级别, 分别有什么特点</p>
+<pre><code class="hljs">读未提交(RU): 一个事务还没提交时, 它做的变更就能被别的事务看到.
+读提交(RC): 一个事务提交之后, 它做的变更才会被其他事务看到.
+可重复读(RR): 一个事务执行过程中看到的数据, 总是跟这个事务在启动时看到的数据是一致的. 当
+然在可重复读隔离级别下, 未提交变更对其他事务也是不可见的.
+串行化(S): 对于同一行记录, 读写都会加锁. 当出现读写锁冲突的时候, 后访问的事务必须等前一个事务执行完成才能继续执行
+</code></pre>
+<ol start="7">
+<li>做过哪些MySQL索引相关优化</li>
+</ol>
+<p>尽量使用主键查询:</p>
+<pre><code class="hljs">聚簇索引上存储了全部数据, 相比普通索引查询, 减少了回表的消耗.MySQL5.6之后引入了索引下推优化, 通过适当的使用联合索引, 减少回表判断的消耗.若频繁查询某一列数据, 可以考虑利用覆盖索引避免回表.联合索引将高频字段放在最左边。
+</code></pre>
+<ol start="8">
+<li><p>简要说一下数据库范式</p>
+<p>第一范式: 属性不可再分。<br>第二范式: 在一范式的基础上, 要求数据库表中的每个实例或行必须可以被惟一地区分. 通常需要为表加上一个列, 以存储各个实例的惟一标识. 这个惟一属性列被称为主关键字或主键。<br>第三范式: 在二范式的基础上, 要求一个数据库表中不包含已在其它表中已包含的非主关键字信息。</p>
+</li>
+</ol>
+<p>所以第三范式具有如下特征：1). 每一列只有一个值. 2). 每一行都能区分. 3). 每一个表都不包含其他表已经包含的非主关键字信息。</p>
+<ol start="9">
+<li>一千万条数据的表, 如何分页查询</li>
+</ol>
+<p>数据量过大的情况下, limit offset 分页会由于扫描数据太多而越往后查询越慢. 可以配合当前页最后一条ID进行查询, SELECT * FROM T WHERE id &gt; #{ID} LIMIT #{LIMIT} . 当然, 这种情况下ID必须是有序的, 这也是有序ID的好处之一。</p>
+<ol start="10">
+<li>订单表数据量越来越大导致查询缓慢, 如何处理</li>
+</ol>
+<p>分库分表. 由于历史订单使用率并不高, 高频的可能只是近期订单, 因此, 将订单表按照时间进行拆分, 根据数据量的大小考虑按月分表或按年分表. 订单ID最好包含时间(如根据雪花算法生成), 此时既能根据订单ID直接获取到订单记录, 也能按照时间进行查询。<br>MySQL基础</p>
+<p>在这里插入图片描述</p>
+<ol>
+<li><p>一张表里面有 ID 自增主键当 当insert 了17 条记录之后 ，删除了第 15,16,17 条记录 ， 再把Mysql 重启 ，再insert 一条记录，这条记录的 ID 是18还是15 ？</p>
+<p>如果表的类型是MyISAM，那么是18。因为MyISAM表会把自增主键的最大ID记录到内存中，所以重启数据库或者是对表进行OPTIMIZE操作，都会导致最大ID丢失。</p>
+</li>
+</ol>
+<p>2 .Mysql 的技术特点是什么？</p>
+<pre><code class="hljs">Mysql 数据库软件是一个客户端或服务器系统，其中包括：支持各种客户端程序和库的多线程 SQL 服务器、不同的后端、广泛的应用程序编程接口和管理工具。
+</code></pre>
+<p>3.Heap 表是什么？</p>
+<p>HEAP 表存在于内存中，用于临时高速存储。</p>
+<pre><code class="hljs">BLOB 或 TEXT 字段是不允许的
+只能使用比较运算符=，&amp;lt;，&amp;gt;，=&amp;gt;，= &amp;lt;
+HEAP 表不支持 AUTO_INCREMENT
+索引不可为 NULL
+</code></pre>
+<p>4.Mysql 服务器默认端口是什么？</p>
+<p>Mysql 服务器的默认端口是 3306。<br>5.与 Oracle 相比，Mysql 有什么优势？</p>
+<pre><code class="hljs">Mysql 是开源软件，随时可用，无需付费。
+Mysql 是便携式的
+带有命令提示符的 GUI。
+使用 Mysql 查询浏览器支持管理
+</code></pre>
+<p>6.如何区分FLOAT和DOUBLE ？</p>
+<p>以下是 FLOAT 和 DOUBLE 的区别：</p>
+<pre><code class="hljs">浮点数以 8 位精度存储在 FLOAT 中，并且有四个字节。
+浮点数存储在 DOUBLE 中，精度为 18 位，有八个字节。
+</code></pre>
+<p>7.区分 CHAR_LENGTH 和 和 LENGTH</p>
+<p>CHAR_LENGTH 是字符数，而 LENGTH 是字节数。Latin 字符的这两个数据是相同的，但是对于 Unicode 和其他编码，它们是不同的。<br>8.在 Mysql 中 ENUM 的用法是什么？</p>
+<p>ENUM 是一个字符串对象，用于指定一组预定义的值，并可在创建表时使用。<br>Create table size(name ENUM(&amp;#039;Smail,&amp;#039;Medium&amp;#039;,&amp;#039;Large&amp;#039;);<br>9.如何定义 REGEXP ？</p>
+<p>REGEXP 是模式匹配，其中匹配模式在搜索值的任何位置。<br>10 .CHAR 和 和 VARCHAR 的区别？</p>
+<p>以下是 CHAR 和 VARCHAR 的区别：</p>
+<pre><code class="hljs">CHAR 和 VARCHAR 类型在存储和检索方面有所不同
+CHAR 列长度固定为创建表时声明的长度，长度值范围是 1 到 255当 CHAR 值被存储时，它们被用空格填充到特定长度，检索 CHAR 值时需删除尾随空格。
+</code></pre>
+<p>11.列的字符串类型可以是什么？</p>
+<p>字符串类型是：</p>
+<pre><code class="hljs">SET
+BLOB
+ENUM
+CHAR
+TEXT
+VARCHAR
+</code></pre>
+<p>12.如何获取当前的 l Mysql 版本？</p>
+<p>SELECT VERSION();用于获取当前 Mysql 的版本。</p>
+<ol start="13">
+<li>Mysql 中使用什么存储引擎？</li>
+</ol>
+<p>存储引擎称为表类型，数据使用各种技术存储在文件中。<br>技术涉及：</p>
+<pre><code class="hljs">Storage mechanism
+Locking levels
+Indexing
+Capabilities and functions.
+</code></pre>
+<p>14.Mysql 驱动程序是什么？</p>
+<p>以下是 Mysql 中可用的驱动程序：</p>
+<pre><code class="hljs">PHP 驱动程序
+JDBC 驱动程序
+ODBC 驱动程序
+CWRAPPER
+PYTHON 驱动程序
+PERL 驱动程序
+RUBY 驱动程序
+CAP11PHP 驱动程序
+Ado.net5.mxj
+</code></pre>
+<p>15.TIMESTAMP 在 在 UPDATE P CURRENT_TIMESTAMP 数据类型上做什么？</p>
+<p>创建表时 TIMESTAMP 列用 Zero 更新。只要表中的其他字段发生更改，UPDATE<br>CURRENT_TIMESTAMP 修饰符就将时间戳字段更新为当前时间。<br>16.主键和候选键有什么区别？</p>
+<p>表格的每一行都由主键唯一标识,一个表只有一个主键。主键也是候选键。按照惯例，候选键可以被指定为主键，并且可以用于任何外键引用。<br>17.如何使用 Unix l shell 登录 Mysql ？</p>
+<p>我们可以通过以下命令登录：<br>18.myisamchk 是用来做什么的？</p>
+<p>它用来压缩 MyISAM 表，这减少了磁盘或内存使用。<br>19.如何控制 HEAP 表的最大尺寸？</p>
+<p>Heal 表的大小可通过称为 max_heap_table_size 的 Mysql 配置变量来控制。</p>
+<ol start="20">
+<li>MyISAM Static 和 和 MyISAM Dynamic 有什么区别？</li>
+</ol>
+<p>在 MyISAM Static 上的所有字段有固定宽度。动态 MyISAM 表将具有像 TEXT，BLOB等字段，以适应不同长度的数据类型。MyISAM Static 在受损情况下更容易恢复。<br>21.federated 表是什么？</p>
+<p>federated 表，允许访问位于其他服务器数据库上的表。<br>22.如果一个表有一列定义为 TIMESTAMP ，将发生什么？</p>
+<p>每当行被更改时，时间戳字段将获取当前时间戳。</p>
+<ol start="23">
+<li>列设置为 AUTO INCREMENT 时，如果在表中达到最大值，会发生什么情况？</li>
+</ol>
+<p>它会停止递增，任何进一步的插入都将产生错误，因为密钥已被使用。<br>24.怎样才能找出最后一次插入时分配了哪个自动增量？</p>
+<p>LAST_INSERT_ID 将返回由 Auto_increment分配的最后一个值，并且不需要指定表名<br>称。<br>25.你怎么看到为表格定义的所有索引？</p>
+<p>索引是通过以下方式为表格定义的：<br>sqlqSHOW INDEX FROM &lt;tablename&gt;;</p>
+<ol start="26">
+<li>LIKE 声明中的％和_ 是什么意思？</li>
+</ol>
+<p>％对应于 0 个或更多字符，_只是 LIKE 语句中的一个字符。<br>27.如何在 x Unix 和 和 l Mysql 时间戳之间进行转换？</p>
+<p>UNIX_TIMESTAMP 是从 Mysql 时间戳转换为 Unix 时间戳的命令<br>FROM_UNIXTIME 是从 Unix 时间戳转换为 Mysql 时间戳的命令<br>28.列对比运算符是什么？</p>
+<p>在 SELECT 语句的列比较中使用&#x3D;，&lt;&gt;，&lt;&#x3D;，&lt;，&gt; &#x3D;，&gt;，&lt;&lt;，&gt;&gt;，&lt;&#x3D;&gt;，AND，OR 或LIKE 运算符。<br>29.我们如何得到受查询影响的行数？</p>
+<p>行数可以通过以下代码获得：<br>SELECT COUNT(user_id)FROM users;<br>30.Mysql 查询是否区分大小写？</p>
+<p>不区分</p>
+<p>所有这些例子都是一样的，Mysql 不区分大小写。<br>31.LIKE 和 REGEXP 操作有什么区别？</p>
+<p>LIKE 和 REGEXP 运算符用于表示^和％。<br>SELECT * FROM employee WHERE emp_name REGEXP &quot;^b&quot;;<br>SELECT * FROM employee WHERE emp_name LIKE &quot;%b&quot;;</p>
+<ol start="32">
+<li>BLOB 和 和 TEXT 有什么区别？</li>
+</ol>
+<p>BLOB 是一个二进制对象，可以容纳可变数量的数据。有四种类型的 BLOB</p>
+<pre><code class="hljs">TINYBLOB
+BLOB
+MEDIUMBLOB
+LONGBLOB
+</code></pre>
+<p>它们只能在所能容纳价值的最大长度上有所不同。TEXT 是一个不区分大小写的 BLOB。四种 TEXT 类型</p>
+<pre><code class="hljs">TINYTEXT
+TEXT
+MEDIUMTEXT
+LONGTEXT
+</code></pre>
+<p>它们对应于四种 BLOB 类型，并具有相同的最大长度和存储要求。BLOB 和 TEXT 类型之间的唯一区别在于对 BLOB 值进行排序和比较时区分大小写，对TEXT 值不区分大小写。<br>33.mysql_fetch_array 和 和 mysql_fetch_object 的区别是什么？</p>
+<p>以下是 mysql_fetch_array 和 mysql_fetch_object 的区别：</p>
+<pre><code class="hljs">mysql_fetch_array（） - 将结果行作为关联数组或来自数据库的常规数组返回。
+mysql_fetch_object - 从数据库返回结果行作为对象。
+</code></pre>
+<p>34.我们如何在 mysql 中运行批处理模式？</p>
+<p>以下命令用于在批处理模式下运行：<br>35.MyISAM 表格将在哪里存储，并且还提供其存储格式？</p>
+<p>每个 MyISAM 表格以三种格式存储在磁盘上：</p>
+<pre><code class="hljs">“.frm”文件存储表定义
+数据文件具有“.MYD”（MYData）扩展名
+索引文件具有“.MYI”（MYIndex）扩展名
+</code></pre>
+<ol start="36">
+<li>Mysql 中有哪些不同的表格？</li>
+</ol>
+<p>共有 5 种类型的表格：</p>
+<pre><code class="hljs">MyISAM
+Heap
+Merge
+INNODB
+ISAM
+</code></pre>
+<p>MyISAM 是 Mysql 的默认存储引擎。</p>
+<ol start="37">
+<li>SAM 是什么？</li>
+</ol>
+<p>ISAM 简称为索引顺序访问方法。它是由 IBM 开发的，用于在磁带等辅助存储系统上存储和检索数据。<br>38.Mysql 如何优化 DISTINCT ？</p>
+<p>DISTINCT 在所有列上转换为 GROUP BY，并与 ORDER BY 子句结合使用。<br>SELECT DISTINCT t1.a FROM t1,t2 where t1.a&#x3D;t2.a;<br>39.如何输入字符为十六进制数字？</p>
+<p>如果想输入字符为十六进制数字，可以输入带有单引号的十六进制数字和前缀（X），或者只用（Ox）前缀输入十六进制数字。如果表达式上下文是字符串，则十六进制数字串将自动转换为字符串。<br>40.如何显示前 0 50 行？</p>
+<p>在 Mysql 中，使用以下代码查询显示前 50 行：<br>SELECT*FROM xx LIMIT 0,50;<br>41.可以使用多少列创建索引？</p>
+<p>任何标准表最多可以创建 16 个索引列。<br>42.NOW（）和 CURRENT_DATE （）有什么区别？</p>
+<p>NOW（）命令用于显示当前年份，月份，日期，小时，分钟和秒。<br>CURRENT_DATE（）仅显示当前年份，月份和日期。<br>43.什么样的对象可以使用 CREATE 语句创建？</p>
+<p>以下对象是使用 CREATE 语句创建的：</p>
+<pre><code class="hljs">DATABASE
+EVENT
+FUNCTION
+INDEX
+PROCEDURE
+TABLE
+TRIGGER
+USER
+VIEW
+</code></pre>
+<p>44.解释访问控制列表</p>
+<pre><code class="hljs">ACL（访问控制列表）是与对象关联的权限列表。这个列表是 Mysql 服务器安全模型的基础，它有助于排除用户无法连接的问题。
+Mysql 将 ACL（也称为授权表）缓存在内存中。当用户尝试认证或运行命令时，Mysql 会按照预定的顺序检查 ACL 的认证信息和权限。
+</code></pre>
+<p>45.MYSQL 数据表在什么情况下容易损坏？</p>
+<p>服务器突然断电导致数据文件损坏。强制关机，没有先关闭 mysql 服务等。<br>46.mysql 有关权限的表都有哪几个？</p>
+<p>Mysql 服务器通过权限表来控制用户对数据库的访问，权限表存放在 mysql 数据库里，由mysql_install_db 脚本初始化。这些权限表分别 user，db，table_priv，columns_priv和 host。<br>MySQL中级<br>1.MySQL 中有哪几种锁？</p>
+<pre><code class="hljs">表级锁： 开销小， 加锁快； 不会出现死锁； 锁定粒度大， 发生锁冲突的概率最高， 并发度最低。
+行级锁： 开销大， 加锁慢； 会出现死锁； 锁定粒度最小， 发生锁冲突的概率最低， 并发度也最高。
+页面锁： 开销和加锁时间界于表锁和行锁之间； 会出现死锁； 锁定粒度界于表锁和行锁之间， 并发度一般。
+</code></pre>
+<p>2.MySQL 中有哪些不同的表格？</p>
+<pre><code class="hljs">共有 5 种类型的表格： 1、MyISAM2、Heap 3、Merge 4、INNODB 5、MISAM
+</code></pre>
+<p>3.简述在MySQL 数据库中 MyISAM 和InnoDB 的区别</p>
+<p>MyISAM：</p>
+<pre><code class="hljs">不支持事务， 但是每次查询都是原子的； 支持表级锁， 即每次操作是对整个表加锁； 存储表的总行数；一个 MYISAM 表有三个文件： 索引文件、表结构文件、数据文件；采用菲聚集索引， 索引文件的数据域存储指向数据文件的指针。辅索引与主索引基本一致， 但是辅索引不用保证唯一性。
+</code></pre>
+<p>InnoDb：</p>
+<pre><code class="hljs">支持 ACID 的事务， 支持事务的四种隔离级别； 支持行级锁及外键约束： 因此可以支持写并发； 不存储总行数：一个 InnoDb 引擎存储在一个文件空间（ 共享表空间， 表大小不受操作系统控制，一个表可能分布在多个文件里）， 也有可能为多个（ 设置为独立表空， 表大小受操作系统文件大小限制， 一般为 2G）， 受操作系统文件大小的限制；主键索引采用聚集索引（ 索引的数据域存储数据文件本身）， 辅索引的数据域存储主键的值； 因此从辅索引查找数据， 需要先通过辅索引找到主键值， 再访问辅索引； 最好使用自增主键， 防止插入数据时， 为维持 B+树结构， 文件的大调整。
+</code></pre>
+<p>4.MySQL 中InnoDB 支持的四种事务隔离级别名称，以及逐级之间的区别？</p>
+<p>SQL 标准定义的四个隔离级别为：</p>
+<pre><code class="hljs">read uncommited ： 读到未提交数据
+read committed： 脏读， 不可重复读
+repeatable read： 可重读
+serializable ： 串行事物
+</code></pre>
+<p>5.CHAR 和VARCHAR 的区别？</p>
+<pre><code class="hljs">CHAR 和 VARCHAR 类型在存储和检索方面有所不同
+CHAR 列长度固定为创建表时声明的长度， 长度值范围是 1 到 255 当 CHAR 值被存储时， 它们被
+用空格填充到特定长度， 检索 CHAR 值时需删除尾随空格。
+</code></pre>
+<p>6.主键和候选键有什么区别？</p>
+<p>表格的每一行都由主键唯一标识,一个表只有一个主键。<br>主键也是候选键。按照惯例， 候选键可以被指定为主键， 并且可以用于任何外键引用。<br>7.myisamchk 是用来做什么的？</p>
+<pre><code class="hljs">它用来压缩 MyISAM 表， 这减少了磁盘或内存使用。
+</code></pre>
+<p>MyISAM Static 和 MyISAM Dynamic 有什么区别？</p>
+<pre><code class="hljs">在 MyISAM Static 上的所有字段有固定宽度。动态 MyISAM 表将具有像 TEXT， BLOB 等字段， 以适应不同长度的数据类型。MyISAM Static 在受损情况下更容易恢复。
+</code></pre>
+<p>8.如果一个表有一列定义为TIMESTAMP，将发生什么？</p>
+<pre><code class="hljs">每当行被更改时， 时间戳字段将获取当前时间戳。列设置为 AUTO INCREMENT 时， 如果在表中达到最大值， 会发生什么情况？它会停止递增， 任何进一步的插入都将产生错误， 因为密钥已被使用。怎样才能找出最后一次插入时分配了哪个自动增量？LAST_INSERT_ID 将返回由 Auto_increment 分配的最后一个值， 并且不需要指定表名称。
+</code></pre>
+<p>9.你怎么看到为表格定义的所有索引？</p>
+<p>索引是通过以下方式为表格定义的：<br>10.LIKE 声明中的％是什么意思？</p>
+<p>％ 对应于 0 个或更多字符，只是 LIKE 语句中的一个字符。<br>11.列对比运算符是什么？</p>
+<p>在 SELECT 语句的列比较中使用&#x3D;，&lt;&gt;，&lt;&#x3D;，&lt;，&gt; &#x3D;，&gt;，&lt;&lt;，&gt;&gt;，&lt;&#x3D;&gt;，AND， OR 或 LIKE 运算符。<br>12.BLOB 和TEXT 有什么区别？</p>
+<p>BLOB 是一个二进制对象， 可以容纳可变数量的数据。TEXT 是一个不区分大小写的 BLOB。BLOB 和 TEXT 类型之间的唯一区别在于对 BLOB 值进行排序和比较时区分大小写， 对 TEXT 值不区分大小写。<br>13.MySQL_fetch_array 和MySQL_fetch_object 的区别是什么？</p>
+<p>以下是 MySQL_fetch_array 和 MySQL_fetch_object 的区别：</p>
+<pre><code class="hljs">MySQL_fetch_array（ ） – 将结果行作为关联数组或来自数据库的常规数组返回。
+MySQL_fetch_object – 从数据库返回结果行作为对象。
+</code></pre>
+<p>14.MyISAM 表格将在哪里存储，并且还提供其存储格式？</p>
+<p>每个 MyISAM 表格以三种格式存储在磁盘上：</p>
+<pre><code class="hljs">·“.frm” 文件存储表定义
+
+·数据文件具有“.MYD”（ MYData）
+
+扩展名索引文件具有“.MYI”（ MYIndex） 扩展名
+</code></pre>
+<p>15.如何显示前 50 行？</p>
+<p>在 MySQL 中， 使用以下代码查询显示前 50 行：<br>SELECT*FROM TABLE LIMIT 0,50;<br>16.可以使用多少列创建索引？</p>
+<p>任何标准表最多可以创建 16 个索引列。<br>17.NOW（）和 CURRENT_DATE（）有什么区别？</p>
+<p>NOW（）: 命令用于显示当前年份， 月份， 日期， 小时， 分钟和秒。</p>
+<p>CURRENT_DATE（）: 仅显示当前年份， 月份和日期。<br>18.什么是非标准字符串类型？</p>
+<pre><code class="hljs">TINYTEXT
+TEXT
+MEDIUMTEXT
+LONGTEXT
+</code></pre>
+<p>19.什么是通用 SQL 函数？</p>
+<pre><code class="hljs">CONCAT(A, B) – 连接两个字符串值以创建单个字符串输出。通常用于将两个或多个字段合并为一个字段。
+
+FORMAT(X, D)- 格式化数字 X 到 D 有效数字。
+
+CURRDATE(), CURRTIME()- 返回当前日期或时间。
+
+NOW（） – 将当前日期和时间作为一个值返回。
+
+MONTH（）， DAY（ ）， YEAR（）， WEEK（）， WEEKDAY（） – 从日期值中提取给定数据。
+
+HOUR（）， MINUTE（）， SECOND（） – 从时间值中提取给定数据。
+
+DATEDIFF（ A， B） – 确定两个日期之间的差异， 通常用于计算年龄
+
+SUBTIMES（ A， B） – 确定两次之间的差异。
+
+FROMDAYS（ INT） – 将整数天数转换为日期值。
+</code></pre>
+<p>20.MySQL 支持事务吗？</p>
+<p>在缺省模式下，MySQL 是 autocommit 模式的，所有的数据库更新操作都会即时提交， 所以在缺省情况下， MySQL 是不支持事务的。</p>
+<pre><code class="hljs">但是如果你的 MySQL 表类型是使用 InnoDB Tables 或 BDB tables 的话， 你的MySQL 就可以使用事务处理,使用SETAUTOCOMMIT=0 就可以使 MySQL 允许在非 autocommit 模式， 在非autocommit 模式下，你必须使用 COMMIT 来提交你的更改，或者用 ROLLBACK 来回滚你的更改。
+</code></pre>
+<p>21.MySQL 里记录货币用什么字段类型好</p>
+<p>NUMERIC 和 DECIMAL 类型被 MySQL 实现为同样的类型， 这在 SQL92 标准允许。他们被用于保存值， 该值的准确精度是极其重要的值， 例如与金钱有关的数据。当声明一个类是这些类型之一时， 精度和规模的能被(并且通常是)指定。</p>
+<p>例如:</p>
+<pre><code class="hljs">salary DECIMAL(9,2)
+在这个例子中， 9(precision)代表将被用于存储值的总的小数位数，而 2(scale)代表将被用于存储小数
+点后的位数。因此， 在这种情况下， 能被存储在 salary 列中的值的范围是从-9999999.99 到
+9999999.99。
+</code></pre>
+<p>22.MySQL 有关权限的表都有哪几个？</p>
+<p>MySQL 服务器通过权限表来控制用户对数据库的访问， 权限表存放在 MySQL 数据库里，由MySQL_install_db 脚本初始化。</p>
+<pre><code class="hljs">这些权限表分别 user，db，table_priv， columns_priv 和 host 。
+</code></pre>
+<p>23.列的字符串类型可以是什么？</p>
+<p>字符串类型是：</p>
+<pre><code class="hljs">SET
+BLOB
+ENUM
+CHAR
+TEXT
+</code></pre>
+<p>24.MySQL 数据库作发布系统的存储，一天五万条以上的增量， 预计运维三年,怎么优化？</p>
+<pre><code class="hljs">设计良好的数据库结构， 允许部分数据冗余， 尽量避免 join 查询， 提高效率。
+选择合适的表字段数据类型和存储引擎， 适当的添加索引。
+MySQL 库主从读写分离。
+找规律分表， 减少单表中的数据量提高查询速度。
+添加缓存机制， 比如 memcached， apc等。
+不经常改动的页面， 生成静态页面。
+书写高效率的 SQL。比如 SELECT * FROM TABEL 改为 SELECT field_1, field_2, field_3 FROM
+TABLE.
+</code></pre>
+<p>25.锁的优化策略</p>
+<pre><code class="hljs">读写分离
+分段加锁
+减少锁持有的时间，多个线程尽量以相同的顺序去获取资源不能将锁的粒度过于细化， 不然可能会出现线程的加锁和释 放次数过多， 反而效率不如一次加一把大锁。
+</code></pre>
+<p>26.索引的底层实现原理和优化</p>
+<p>B+树，<br>经过优化的 B+树 主要是在所有的叶子结点中增加了指向下一个叶子节点的指针， 因此 InnoDB 建议为大部分表使用默认自增的主键作为主索引。<br>27.什么情况下设置了索引但无法使用</p>
+<pre><code class="hljs">以“%” 开头的 LIKE 语句， 模糊匹配
+OR 语句前后没有同时使用索引
+数据类型出现隐式转化（ 如 varchar 不加单引号的话可能会自动转换为 int 型）
+</code></pre>
+<p>28.实践中如何优化 MySQL</p>
+<p>最好是按照以下顺序优化：</p>
+<pre><code class="hljs">SQL 语句及索引的优化
+数据库表结构的优化
+系统配置的优化
+硬件的优化
+</code></pre>
+<p>29.优化数据库的方法</p>
+<pre><code class="hljs">选取最适用的字段属性，尽可能减少定义字段宽度，尽量把字段设置 NOTNULL， 例如省份, 性别 最好适用 ENUM
+使用连接(JOIN)来代替子查询
+适用联合(UNION)来代替手动创建的临时表
+事务处理
+锁定表、优化事务处理
+适用外键， 优化锁定表
+建立索引
+优化查询语句
+</code></pre>
+<p>30.简单描述 MySQL 中，索引，主键，唯一索引，联合索引的区别，对数据库的性能有什么影响（从读写两方面）</p>
+<pre><code class="hljs">索引是一种特殊的文件(InnoDB 数据表上的索引是表空间的一个组成部分)， 它们包含着对数据表里所有记录的引用指针。
+
+普通索引(由关键字KEY或 INDEX定义的索引)的唯一任务是加快对数据的访问速度。普通索引允许被索引的数据列包含重复的值。如果能确定某个数据列将只包含彼此各不相同的值， 在为这个数据列创建索引的时候就应该用关键字UNIQUE 把它定义为一个唯一索引。也就是说， 唯一索引可以保证数据记录的唯一性。
+
+主键， 是一种特殊的唯一索引， 在一张表中只能定义一个主键索引， 主键用于唯一标识一条记录， 使用关键字 PRIMARY KEY 来创建。索引可以覆盖多个数据列，如像INDEX(columnA, columnB)索引，这就是联合索引。索引可以极大的提高数据的查询速度， 但是会降低插入、删除、更新表的速度， 因为在执行这些写操作时， 还要操作索引文件。
+</code></pre>
+<p>31.数据库中的事务是什么？</p>
+<p>事务（ transaction） 是作为一个单元的一组有序的数据库操作。如果组中的所有操作都成功， 则认为事务成功， 即使只有一个操作失败， 事务也不成功。如果所有操作完成， 事务则提交， 其修改将作用于所有其他数据库进程。如果一个操作失败， 则事务将回滚， 该事务所有操作的影响都将取消。</p>
+<p>事务特性：</p>
+<pre><code class="hljs">    原子性： 即不可分割性， 事务要么全部被执行， 要么就全部不被执行。
+    一致性或可串性：事务的执行使得数据库从一种正确状态转换成另一种正确状态。
+    隔离性：在事务正确提交之前，不允许把该事务对数据的任何改变提供给任何其他事务。
+    持久性：事务正确提交后， 其结果将永久保存在数据库中， 即使在事务提交后有了其他故障， 事务的处理结果也会得到保存。
+    或者这样理解：事务就是被绑定在一起作为一个逻辑工作单元的 SQL 语句分组， 如果任何一个语句操作失败那么整个操作就被失败， 以后操作就会回滚到操作前状态， 或者是上有个节点。为了确保要么执行， 要么不执行， 就可以使用事务。要将有组语句作为事务考虑， 就需要通过 ACID 测试， 即原子性， 一致性， 隔离性和持久性。
+</code></pre>
+<p>32.SQL 注入漏洞产生的原因？如何防止？</p>
+<pre><code class="hljs">SQL 注入产生的原因： 程序开发过程中不注意规范书写 sql 语句和对特殊字符进行过滤，导致客户端可以通过全局变量 POST 和 GET 提交一些 sql 语句正常执行。
+</code></pre>
+<p>防止 SQL 注入的方式：</p>
+<pre><code class="hljs">开启配置文件中的 magic_quotes_gpc 和 magic_quotes_runtime 设置
+
+执行 sql 语句时使用 addslashes 进行 sql 语句转换Sql 语句书写尽量不要省略双引号和单引号。
+
+过滤掉 sql 语句中的一些关键词：update、insert、delete、select、 * 。
+
+提高数据库表和字段的命名技巧， 对一些重要的字段根据程序的特点命名， 取不易被猜到的。
+</code></pre>
+<p>33.为表中得字段选择合适得数据类型</p>
+<pre><code class="hljs">字段类型优先级: 整形&amp;gt;date,time&amp;gt;enum,char&amp;gt;varchar&amp;gt;blob,text
+</code></pre>
+<p>优先考虑数字类型， 其次是日期或者二进制类型， 最后是字符串类型， 同级别得数据类型， 应该优先选择占用空间小的数据类型。<br>34.存储时期(日期)</p>
+<pre><code class="hljs">Datatime: 以 YYYY-MM-DD HH:MM:SS 格式存储时期时间， 精确到秒， 占用 8 个字节得存储空间，datatime 类型与时区无关。
+
+Timestamp: 以时间戳格式存储，占用 4 个字节，范围小 1970-1-1 到 2038-1-19， 显示依赖于所指定得时区， 默认在第一个列行的数据修改时可以自动得修改timestamp 列得值 。
+
+Date: 占用得字节数比使用字符串.datatime.int 储存要少， 使用 date 只需要 3 个字节， 存储日期月份， 还可以利用日期时间函数进行日期间的计算。
+
+Time: 存储时间部分的数据
+</code></pre>
+<p>注意:不要使用字符串类型来存储日期时间数据（ 通常比字符串占用得储存空间小， 在进行查找过滤可以利用日期得函数）使用 int 存储日期时间不如使用 timestamp 类型<br>35.对于关系型数据库而言，索引是相当重要的概念，请回答有关索引的几个问题</p>
+<pre><code class="hljs">1、索引的目的是什么？
+
+快速访问数据表中的特定信息， 提高检索速度
+创建唯一性索引， 保证数据库表中每一行数据的唯一性。加速表和表之间的连接
+使用分组和排序子句进行数据检索时， 可以显著减少查询中分组和排序的时间
+
+2、索引对数据库系统的负面影响是什么？
+</code></pre>
+<p>负面影响：</p>
+<pre><code class="hljs">创建索引和维护索引需要耗费时间， 这个时间随着数据量的增加而增加； 索引需要占用物理空间， 不光是表需要占用数据空间， 每个索引也需要占用物理空间；当对表进行增、删、改、的时候索引也要动态维护， 这样就降低了数据的维护速度。
+
+3、为数据表建立索引的原则有哪些？
+
+在最频繁使用的、用以缩小查询范围的字段上建立索引。 在频繁使用的、需要排序的字段上建立索引。
+
+4、什么情况下不宜建立索引？
+
+对于查询中很少涉及的列或者重复值比较多的列， 不宜建立索引。
+对于一些特殊的数据类型， 不宜建立索引， 比如文本字段（ text） 等
+</code></pre>
+<p>36.解释 MySQL 外连接、内连接与自连接的区别</p>
+<p>先说什么是交叉连接: 交叉连接又叫笛卡尔积，它是指不使用任何条件，直接将一个表的所有记录和另一个表中的所有记录一一匹配。</p>
+<p>内连接： 则是只有条件的交叉连接，根据某个条件筛选出符合条件的记录，不符合条件的记录不会出现在结果集中， 即内连接只连接匹配的行。</p>
+<p>外连接： 其结果集中不仅包含符合连接条件的行，而且还会包括左表、右表或两个表中的所有数据行， 这三种情况依次称之为左外连接， 右外连接， 和全外连接。</p>
+<p>左外连接： 也称左连接，左表为主表， 左表中的所有记录都会出现在结果集中， 对于那些在右表中并没有匹配的记录， 仍然要显示， 右边对应的那些字段值以NULL 来填充。</p>
+<p>右外连接： 也称右连接，右表为主表，右表中的所有记录都会出现在结果集中。左连接和右连接可以互换， MySQL 目前还不支持全外连接。<br>37.Myql 中的事务回滚机制概述</p>
+<pre><code class="hljs">事务是用户定义的一个数据库操作序列， 这些操作要么全做要么全不做， 是一个不可分割的工作单位， 事务回滚是指将该事务已经完成的对数据库的更新操作撤销。
+要同时修改数据库中两个不同表时， 如果它们不是一个事务的话， 当第一个表修改完， 可能第二个表修改过程中出现了异常而没能修改， 此时就只有第二个表依旧是未修改之前的状态， 而第一个表已经被修改完毕。
+而当你把它们设定为一个事务的时候， 当第一个表修改完， 第二表修改出现异常而没能修改， 第一个表和第二个表都要回到未修改的状态， 这就是所谓的事务回滚。
+</code></pre>
+<p>38.SQL 语言包括哪几部分？每部分都有哪些操作关键字？</p>
+<p>SQL 语言包括数据定义(DDL)、数据操纵(DML),数据控制(DCL)和数据查询（ DQL） 四个部分。</p>
+<p>数据定义： Create Table,Alter Table,Drop Table, Craete&#x2F;Drop Index<br>等数据操纵： Select,insert,update,delete,<br>数据控制：grant,revoke<br>数据查询：select<br>39.完整性约束包括哪些？</p>
+<pre><code class="hljs">数据完整性(Data Integrity)是指数据的精确(Accuracy)和可靠性(Reliability)。
+</code></pre>
+<p>分为以下四类：</p>
+<pre><code class="hljs">实体完整性： 规定表的每一行在表中是惟一的实体。
+
+域完整性： 是指表中的列必须满足某种特定的数据类型约束，其中约束又包括 取值范围、精度等规定。
+
+参照完整性： 是指两个表的主关键字和外关键字的数据应一致， 保证了表之间的数据的一致性，防止了数据丢失或无意义的数据在数据库中扩散。
+
+用户定义的完整性： 不同的关系数据库系统根据其应用环境的不同，往往还需 要一些特殊的约束条件。用户定义的完整性即是针对某个特定关系数据库的约束条件， 它反映某一具体应用必须满足的语义要求。与表有关的约束：包括列约束(NOT NULL（ 非空约束）)和表约束(PRIMARY KEY、foreign key、check、UNIQUE)。
+</code></pre>
+<p>————————————————<br>版权声明：本文为CSDN博主「Cs 挽周」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45692705/article/details/119343669">https://blog.csdn.net/weixin_45692705/article/details/119343669</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MySQL面试题</div>
+      <div>http://example.com/2021/10/06/MySQL面试题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 6, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/13/GMT%E6%97%B6%E9%97%B4%E5%92%8CCookie/" title="GMT时间和Cookie">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GMT时间和Cookie</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/04/PHP%E6%95%B0%E7%BB%84%E7%9B%B8%E5%8A%A0%E5%92%8Carray_merge/" title="PHP数组相加和array_merge">
+                        <span class="hidden-mobile">PHP数组相加和array_merge</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

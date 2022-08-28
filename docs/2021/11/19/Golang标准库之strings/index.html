@@ -1,0 +1,785 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="&gt; package strings 1import &amp;quot;strings&amp;quot;  strings包实现了用于操作字符的简单函数。 func EqualFold 1func EqualFold(s, t string) bool  判断两个utf-8编码字符串（将unicode大写、小写、标题三种格式字符视为相同）是否相同。 Example func HasPref">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang标准库之strings">
+<meta property="og:url" content="http://example.com/2021/11/19/Golang%E6%A0%87%E5%87%86%E5%BA%93%E4%B9%8Bstrings/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="&gt; package strings 1import &amp;quot;strings&amp;quot;  strings包实现了用于操作字符的简单函数。 func EqualFold 1func EqualFold(s, t string) bool  判断两个utf-8编码字符串（将unicode大写、小写、标题三种格式字符视为相同）是否相同。 Example func HasPref">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-11-19T10:53:19.000Z">
+<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Golang标准库之strings - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Golang标准库之strings"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-19 18:53" pubdate>
+          November 19, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          47 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Golang标准库之strings</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>&gt; package strings</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">import</span> &amp;quot;strings&amp;quot;<br></code></pre></td></tr></table></figure>
+
+<p>strings包实现了用于操作字符的简单函数。</p>
+<p>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#674">EqualFold</a></p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">EqualFold(<span class="hljs-params">s</span>, <span class="hljs-params">t</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">bool</span><br></code></pre></td></tr></table></figure>
+
+<p>判断两个utf-8编码字符串（将unicode大写、小写、标题三种格式字符视为相同）是否相同。</p>
+<p>Example</p>
+<h1 id="func-HasPrefix"><a href="#func-HasPrefix" class="headerlink" title="func HasPrefix"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#371">HasPrefix</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">HasPrefix(<span class="hljs-params">s</span>, <span class="hljs-params">prefix</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">bool</span><br></code></pre></td></tr></table></figure>
+
+<p>判断s是否有前缀字符串prefix。</p>
+<h1 id="func-HasSuffix"><a href="#func-HasSuffix" class="headerlink" title="func HasSuffix"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#376">HasSuffix</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">HasSuffix(<span class="hljs-params">s</span>, <span class="hljs-params">suffix</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">bool</span><br></code></pre></td></tr></table></figure>
+
+<p>判断s是否有后缀字符串suffix。</p>
+<h1 id="func-Contains"><a href="#func-Contains" class="headerlink" title="func Contains"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#112">Contains</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">Contains(<span class="hljs-params">s</span>, <span class="hljs-params">substr</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">bool</span><br></code></pre></td></tr></table></figure>
+
+<p>判断字符串s是否包含子串substr。</p>
+<p>Example</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="func-ContainsRune"><a href="#func-ContainsRune" class="headerlink" title="func ContainsRune"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#122">ContainsRune</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">ContainsRune(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">r</span> <span class="hljs-params">rune</span>)</span> <span class="hljs-built_in">bool</span><br></code></pre></td></tr></table></figure>
+
+<p>判断字符串s是否包含utf-8码值r。</p>
+<h1 id="func-ContainsAny"><a href="#func-ContainsAny" class="headerlink" title="func ContainsAny"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#117">ContainsAny</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">ContainsAny(<span class="hljs-params">s</span>, <span class="hljs-params">chars</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">bool</span><br></code></pre></td></tr></table></figure>
+
+<p>判断字符串s是否包含字符串chars中的任一字符。</p>
+<p>Example</p>
+<h1 id="func-Count"><a href="#func-Count" class="headerlink" title="func Count"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#65">Count</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">Count(<span class="hljs-params">s</span>, <span class="hljs-params">sep</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">int</span><br></code></pre></td></tr></table></figure>
+
+<p>返回字符串s中有几个不重复的sep子串。</p>
+<p>Example</p>
+<h1 id="func-Index"><a href="#func-Index" class="headerlink" title="func Index"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#127">Index</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">Index(<span class="hljs-params">s</span>, <span class="hljs-params">sep</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">int</span><br></code></pre></td></tr></table></figure>
+
+<p>子串sep在字符串s中第一次出现的位置，不存在则返回-1。</p>
+<p>Example</p>
+<h1 id="func-IndexByte"><a href="#func-IndexByte" class="headerlink" title="func IndexByte"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings_decl.go?name=release#8">IndexByte</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">IndexByte(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">c</span> <span class="hljs-params">byte</span>)</span> <span class="hljs-built_in">int</span><br></code></pre></td></tr></table></figure>
+
+<p>字符c在s中第一次出现的位置，不存在则返回-1。</p>
+<h1 id="func-IndexRune"><a href="#func-IndexRune" class="headerlink" title="func IndexRune"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#190">IndexRune</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">IndexRune(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">r</span> <span class="hljs-params">rune</span>)</span> <span class="hljs-built_in">int</span><br></code></pre></td></tr></table></figure>
+
+<p>unicode码值r在s中第一次出现的位置，不存在则返回-1。</p>
+<p>Example</p>
+<h1 id="func-IndexAny"><a href="#func-IndexAny" class="headerlink" title="func IndexAny"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#211">IndexAny</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">IndexAny(<span class="hljs-params">s</span>, <span class="hljs-params">chars</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">int</span><br></code></pre></td></tr></table></figure>
+
+<p>字符串chars中的任一utf-8码值在s中第一次出现的位置，如果不存在或者chars为空字符串则返回-1。</p>
+<p>Example</p>
+<h1 id="func-IndexFunc"><a href="#func-IndexFunc" class="headerlink" title="func IndexFunc"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#537">IndexFunc</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">IndexFunc(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">f</span> <span class="hljs-params">func</span>(<span class="hljs-params">rune</span>)</span> <span class="hljs-built_in">bool</span>) <span class="hljs-built_in">int</span><br></code></pre></td></tr></table></figure>
+
+<p>s中第一个满足函数f的位置i（该处的utf-8码值r满足f(r)&#x3D;&#x3D;true），不存在则返回-1。</p>
+<p>Example</p>
+<h1 id="func-LastIndex"><a href="#func-LastIndex" class="headerlink" title="func LastIndex"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#164">LastIndex</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">LastIndex(<span class="hljs-params">s</span>, <span class="hljs-params">sep</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">int</span><br></code></pre></td></tr></table></figure>
+
+<p>子串sep在字符串s中最后一次出现的位置，不存在则返回-1。</p>
+<p>Example</p>
+<h1 id="func-LastIndexAny"><a href="#func-LastIndexAny" class="headerlink" title="func LastIndexAny"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#227">LastIndexAny</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">LastIndexAny(<span class="hljs-params">s</span>, <span class="hljs-params">chars</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">int</span><br></code></pre></td></tr></table></figure>
+
+<p>字符串chars中的任一utf-8码值在s中最后一次出现的位置，如不存在或者chars为空字符串则返回-1。</p>
+<h1 id="func-LastIndexFunc"><a href="#func-LastIndexFunc" class="headerlink" title="func LastIndexFunc"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#543">LastIndexFunc</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">LastIndexFunc(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">f</span> <span class="hljs-params">func</span>(<span class="hljs-params">rune</span>)</span> <span class="hljs-built_in">bool</span>) <span class="hljs-built_in">int</span><br></code></pre></td></tr></table></figure>
+
+<p>s中最后一个满足函数f的unicode码值的位置i，不存在则返回-1。</p>
+<h1 id="func-Title"><a href="#func-Title" class="headerlink" title="func Title"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#489">Title</a></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Title</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回s中每个单词的首字母都改为标题格式的字符串拷贝。</p>
+<p>BUG: Title用于划分单词的规则不能很好的处理Unicode标点符号。</p>
+<p>Example</p>
+<h1 id="func-ToLower"><a href="#func-ToLower" class="headerlink" title="func ToLower"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#437">ToLower</a></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">ToLower</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回将所有字母都转为对应的小写版本的拷贝。</p>
+<p>Example</p>
+<h1 id="func-ToLowerSpecial"><a href="#func-ToLowerSpecial" class="headerlink" title="func ToLowerSpecial"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#450">ToLowerSpecial</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">ToLowerSpecial(<span class="hljs-params">_case</span> <span class="hljs-params">unicode</span>.SpecialCase, <span class="hljs-params">s</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>使用_case规定的字符映射，返回将所有字母都转为对应的小写版本的拷贝。</p>
+<h1 id="func-ToUpper"><a href="#func-ToUpper" class="headerlink" title="func ToUpper"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#434">ToUpper</a></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">ToUpper</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回将所有字母都转为对应的大写版本的拷贝。</p>
+<p>Example</p>
+<h1 id="func-ToUpperSpecial"><a href="#func-ToUpperSpecial" class="headerlink" title="func ToUpperSpecial"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#444">ToUpperSpecial</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">ToUpperSpecial(<span class="hljs-params">_case</span> <span class="hljs-params">unicode</span>.SpecialCase, <span class="hljs-params">s</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>使用_case规定的字符映射，返回将所有字母都转为对应的大写版本的拷贝。</p>
+<h1 id="func-ToTitle"><a href="#func-ToTitle" class="headerlink" title="func ToTitle"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#440">ToTitle</a></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">ToTitle</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回将所有字母都转为对应的标题版本的拷贝。</p>
+<p>Example</p>
+<h1 id="func-ToTitleSpecial"><a href="#func-ToTitleSpecial" class="headerlink" title="func ToTitleSpecial"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#456">ToTitleSpecial</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">ToTitleSpecial(<span class="hljs-params">_case</span> <span class="hljs-params">unicode</span>.SpecialCase, <span class="hljs-params">s</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>使用_case规定的字符映射，返回将所有字母都转为对应的标题版本的拷贝。</p>
+<h1 id="func-Repeat"><a href="#func-Repeat" class="headerlink" title="func Repeat"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#424">Repeat</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">Repeat(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">count</span> <span class="hljs-params">int</span>)</span> <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回count个s串联的字符串。</p>
+<p>Example</p>
+<h1 id="func-Replace"><a href="#func-Replace" class="headerlink" title="func Replace"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#638">Replace</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">Replace(<span class="hljs-params">s</span>, <span class="hljs-params">old</span>, <span class="hljs-params">new</span> <span class="hljs-params">string</span>, <span class="hljs-params">n</span> <span class="hljs-params">int</span>)</span> <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回将s中前n个不重叠old子串都替换为new的新字符串，如果n&lt;0会替换所有old子串。</p>
+<p>Example</p>
+<h1 id="func-Map"><a href="#func-Map" class="headerlink" title="func Map"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#383">Map</a></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Map</span><span class="hljs-params">(mapping <span class="hljs-keyword">func</span>(<span class="hljs-type">rune</span>)</span></span> <span class="hljs-type">rune</span>, s <span class="hljs-type">string</span>) <span class="hljs-type">string</span><br></code></pre></td></tr></table></figure>
+
+<p>将s的每一个unicode码值r都替换为mapping(r)，返回这些新码值组成的字符串拷贝。如果mapping返回一个负值，将会丢弃该码值而不会被替换。（返回值中对应位置将没有码值）</p>
+<p>Example</p>
+<h1 id="func-Trim"><a href="#func-Trim" class="headerlink" title="func Trim"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#586">Trim</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">Trim(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">cutset</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回将s前后端所有cutset包含的utf-8码值都去掉的字符串。</p>
+<p>Example</p>
+<h1 id="func-TrimSpace"><a href="#func-TrimSpace" class="headerlink" title="func TrimSpace"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#613">TrimSpace</a></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">TrimSpace</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回将s前后端所有空白（unicode.IsSpace指定）都去掉的字符串。</p>
+<p>Example</p>
+<h1 id="func-TrimFunc"><a href="#func-TrimFunc" class="headerlink" title="func TrimFunc"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#531">TrimFunc</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">TrimFunc(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">f</span> <span class="hljs-params">func</span>(<span class="hljs-params">rune</span>)</span> <span class="hljs-built_in">bool</span>) <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回将s前后端所有满足f的unicode码值都去掉的字符串。</p>
+<h1 id="func-TrimLeft"><a href="#func-TrimLeft" class="headerlink" title="func TrimLeft"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#595">TrimLeft</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">TrimLeft(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">cutset</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回将s前端所有cutset包含的utf-8码值都去掉的字符串。</p>
+<h1 id="func-TrimLeftFunc"><a href="#func-TrimLeftFunc" class="headerlink" title="func TrimLeftFunc"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#508">TrimLeftFunc</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">TrimLeftFunc(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">f</span> <span class="hljs-params">func</span>(<span class="hljs-params">rune</span>)</span> <span class="hljs-built_in">bool</span>) <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回将s前端所有满足f的unicode码值都去掉的字符串。</p>
+<h1 id="func-TrimPrefix"><a href="#func-TrimPrefix" class="headerlink" title="func TrimPrefix"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#619">TrimPrefix</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">TrimPrefix(<span class="hljs-params">s</span>, <span class="hljs-params">prefix</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回去除s可能的前缀prefix的字符串。</p>
+<p>Example</p>
+<h1 id="func-TrimRight"><a href="#func-TrimRight" class="headerlink" title="func TrimRight"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#604">TrimRight</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">TrimRight(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">cutset</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回将s后端所有cutset包含的utf-8码值都去掉的字符串。</p>
+<h1 id="func-TrimRightFunc"><a href="#func-TrimRightFunc" class="headerlink" title="func TrimRightFunc"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#518">TrimRightFunc</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">TrimRightFunc(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">f</span> <span class="hljs-params">func</span>(<span class="hljs-params">rune</span>)</span> <span class="hljs-built_in">bool</span>) <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回将s后端所有满足f的unicode码值都去掉的字符串。</p>
+<h1 id="func-TrimSuffix"><a href="#func-TrimSuffix" class="headerlink" title="func TrimSuffix"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#628">TrimSuffix</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">TrimSuffix(<span class="hljs-params">s</span>, <span class="hljs-params">suffix</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回去除s可能的后缀suffix的字符串。</p>
+<p>Example</p>
+<h1 id="func-Fields"><a href="#func-Fields" class="headerlink" title="func Fields"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#307">Fields</a></h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Fields</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> []<span class="hljs-type">string</span><br></code></pre></td></tr></table></figure>
+
+<p>返回将字符串按照空白（unicode.IsSpace确定，可以是一到多个连续的空白字符）分割的多个字符串。如果字符串全部是空白或者是空字符串的话，会返回空切片。</p>
+<p>Example</p>
+<h1 id="func-FieldsFunc"><a href="#func-FieldsFunc" class="headerlink" title="func FieldsFunc"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#314">FieldsFunc</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">FieldsFunc(<span class="hljs-params">s</span> <span class="hljs-params">string</span>, <span class="hljs-params">f</span> <span class="hljs-params">func</span>(<span class="hljs-params">rune</span>)</span> <span class="hljs-built_in">bool</span>) <span class="hljs-literal">[]</span><span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>类似Fields，但使用函数f来确定分割符（满足f的unicode码值）。如果字符串全部是分隔符或者是空字符串的话，会返回空切片。</p>
+<p>Example</p>
+<h1 id="func-Split"><a href="#func-Split" class="headerlink" title="func Split"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#294">Split</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">Split(<span class="hljs-params">s</span>, <span class="hljs-params">sep</span> <span class="hljs-params">string</span>)</span> <span class="hljs-literal">[]</span><span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>用去掉s中出现的sep的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个sep都会进行一次切割，即使两个sep相邻，也会进行两次切割）。如果sep为空字符，Split会将s切分成每一个unicode码值一个字符串。</p>
+<p>Example</p>
+<h1 id="func-SplitN"><a href="#func-SplitN" class="headerlink" title="func SplitN"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#277">SplitN</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">SplitN(<span class="hljs-params">s</span>, <span class="hljs-params">sep</span> <span class="hljs-params">string</span>, <span class="hljs-params">n</span> <span class="hljs-params">int</span>)</span> <span class="hljs-literal">[]</span><span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>用去掉s中出现的sep的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个sep都会进行一次切割，即使两个sep相邻，也会进行两次切割）。如果sep为空字符，Split会将s切分成每一个unicode码值一个字符串。参数n决定返回的切片的数目：</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs excel"><span class="hljs-built_in">n</span> &amp;gt; <span class="hljs-number">0</span> <span class="hljs-symbol">:</span> 返回的切片最多<span class="hljs-built_in">n</span>个子字符串；最后一个子字符串包含未进行切割的部分。<br><span class="hljs-built_in">n</span> == <span class="hljs-symbol">0:</span> 返回nil<br><span class="hljs-built_in">n</span> &amp;lt; <span class="hljs-number">0</span> <span class="hljs-symbol">:</span> 返回所有的子字符串组成的切片<br></code></pre></td></tr></table></figure>
+
+<p>Example</p>
+<h1 id="func-SplitAfter"><a href="#func-SplitAfter" class="headerlink" title="func SplitAfter"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#300">SplitAfter</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">SplitAfter(<span class="hljs-params">s</span>, <span class="hljs-params">sep</span> <span class="hljs-params">string</span>)</span> <span class="hljs-literal">[]</span><span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>用从s中出现的sep后面切断的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个sep都会进行一次切割，即使两个sep相邻，也会进行两次切割）。如果sep为空字符，Split会将s切分成每一个unicode码值一个字符串。</p>
+<p>Example</p>
+<h1 id="func-SplitAfterN"><a href="#func-SplitAfterN" class="headerlink" title="func SplitAfterN"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#286">SplitAfterN</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">SplitAfterN(<span class="hljs-params">s</span>, <span class="hljs-params">sep</span> <span class="hljs-params">string</span>, <span class="hljs-params">n</span> <span class="hljs-params">int</span>)</span> <span class="hljs-literal">[]</span><span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>用从s中出现的sep后面切断的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个sep都会进行一次切割，即使两个sep相邻，也会进行两次切割）。如果sep为空字符，Split会将s切分成每一个unicode码值一个字符串。参数n决定返回的切片的数目：</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs excel"><span class="hljs-built_in">n</span> &amp;gt; <span class="hljs-number">0</span> <span class="hljs-symbol">:</span> 返回的切片最多<span class="hljs-built_in">n</span>个子字符串；最后一个子字符串包含未进行切割的部分。<br><span class="hljs-built_in">n</span> == <span class="hljs-symbol">0:</span> 返回nil<br><span class="hljs-built_in">n</span> &amp;lt; <span class="hljs-number">0</span> <span class="hljs-symbol">:</span> 返回所有的子字符串组成的切<br></code></pre></td></tr></table></figure>
+
+<p>Example</p>
+<h1 id="func-Join"><a href="#func-Join" class="headerlink" title="func Join"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#349">Join</a></h1><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func <span class="hljs-constructor">Join(<span class="hljs-params">a</span> []<span class="hljs-params">string</span>, <span class="hljs-params">sep</span> <span class="hljs-params">string</span>)</span> <span class="hljs-built_in">string</span><br></code></pre></td></tr></table></figure>
+
+<p>将一系列字符串连接为一个字符串，之间用sep来分隔。</p>
+<p>Example</p>
+<h1 id="type-Reader"><a href="#type-Reader" class="headerlink" title="type Reader"></a>type <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#16">Reader</a></h1><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-built_in">type</span> Reader <span class="hljs-keyword">struct</span> &#123;<br>    <span class="hljs-comment">// 内含隐藏或非导出字段</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Reader类型通过从一个字符串读取数据，实现了io.Reader、io.Seeker、io.ReaderAt、io.WriterTo、io.ByteScanner、io.RuneScanner接口。</p>
+<h2 id="func-NewReader"><a href="#func-NewReader" class="headerlink" title="func NewReader"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#144">NewReader</a></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewReader</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> *Reader<br></code></pre></td></tr></table></figure>
+
+<p>NewReader创建一个从s读取数据的Reader。本函数类似bytes.NewBufferString，但是更有效率，且为只读的。</p>
+<h2 id="func-Reader-Len"><a href="#func-Reader-Len" class="headerlink" title="func (*Reader) Len"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#24">Len</a></h2><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-keyword">func</span> <span class="hljs-params">(r *Reader)</span> <span class="hljs-title function_">Len</span><span class="hljs-params">()</span> <span class="hljs-title function_">int</span><br></code></pre></td></tr></table></figure>
+
+<p>Len返回r包含的字符串还没有被读取的部分。</p>
+<h2 id="func-Reader-Read"><a href="#func-Reader-Read" class="headerlink" title="func (*Reader) Read"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#31">Read</a></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(r *Reader)</span></span> Read(b []<span class="hljs-type">byte</span>) (n <span class="hljs-type">int</span>, err <span class="hljs-type">error</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="func-Reader-ReadByte"><a href="#func-Reader-ReadByte" class="headerlink" title="func (*Reader) ReadByte"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#59">ReadByte</a></h2><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-keyword">func</span> <span class="hljs-params">(r *Reader)</span> <span class="hljs-title function_">ReadByte</span><span class="hljs-params">()</span> <span class="hljs-params">(b byte, err error)</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="func-Reader-UnreadByte"><a href="#func-Reader-UnreadByte" class="headerlink" title="func (*Reader) UnreadByte"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#69">UnreadByte</a></h2><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-keyword">func</span> <span class="hljs-params">(r *Reader)</span> <span class="hljs-title function_">UnreadByte</span><span class="hljs-params">()</span> <span class="hljs-title function_">error</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="func-Reader-ReadRune"><a href="#func-Reader-ReadRune" class="headerlink" title="func (*Reader) ReadRune"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#78">ReadRune</a></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(r *Reader)</span></span> ReadRune() (ch <span class="hljs-type">rune</span>, size <span class="hljs-type">int</span>, err <span class="hljs-type">error</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="func-Reader-UnreadRune"><a href="#func-Reader-UnreadRune" class="headerlink" title="func (*Reader) UnreadRune"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#93">UnreadRune</a></h2><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-keyword">func</span> <span class="hljs-params">(r *Reader)</span> <span class="hljs-title function_">UnreadRune</span><span class="hljs-params">()</span> <span class="hljs-title function_">error</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="func-Reader-Seek"><a href="#func-Reader-Seek" class="headerlink" title="func (*Reader) Seek"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#103">Seek</a></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(r *Reader)</span></span> Seek(offset <span class="hljs-type">int64</span>, whence <span class="hljs-type">int</span>) (<span class="hljs-type">int64</span>, <span class="hljs-type">error</span>)<br></code></pre></td></tr></table></figure>
+
+<p>Seek实现了io.Seeker接口。</p>
+<h2 id="func-Reader-ReadAt"><a href="#func-Reader-ReadAt" class="headerlink" title="func (*Reader) ReadAt"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#44">ReadAt</a></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(r *Reader)</span></span> ReadAt(b []<span class="hljs-type">byte</span>, off <span class="hljs-type">int64</span>) (n <span class="hljs-type">int</span>, err <span class="hljs-type">error</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="func-Reader-WriteTo"><a href="#func-Reader-WriteTo" class="headerlink" title="func (*Reader) WriteTo"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#124">WriteTo</a></h2><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-keyword">func</span> <span class="hljs-params">(r *Reader)</span> <span class="hljs-title function_">WriteTo</span><span class="hljs-params">(w io.Writer)</span> <span class="hljs-params">(n int64, err error)</span><br></code></pre></td></tr></table></figure>
+
+<p>WriteTo实现了io.WriterTo接口。</p>
+<h1 id="type-Replacer"><a href="#type-Replacer" class="headerlink" title="type Replacer"></a>type <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/replace.go?name=release#10">Replacer</a></h1><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-built_in">type</span> Replacer <span class="hljs-keyword">struct</span> &#123;<br>    <span class="hljs-comment">// 内含隐藏或非导出字段</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Replacer类型进行一系列字符串的替换。</p>
+<h2 id="func-NewReplacer"><a href="#func-NewReplacer" class="headerlink" title="func NewReplacer"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/replace.go?name=release#31">NewReplacer</a></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewReplacer</span><span class="hljs-params">(oldnew ...<span class="hljs-type">string</span>)</span></span> *Replacer<br></code></pre></td></tr></table></figure>
+
+<p>使用提供的多组old、new字符串对创建并返回一个*Replacer。替换是依次进行的，匹配时不会重叠。</p>
+<p>Example</p>
+<h2 id="func-Replacer-Replace"><a href="#func-Replacer-Replace" class="headerlink" title="func (*Replacer) Replace"></a>func (*Replacer) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/replace.go?name=release#78">Replace</a></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(r *Replacer)</span></span> Replace(s <span class="hljs-type">string</span>) <span class="hljs-type">string</span><br></code></pre></td></tr></table></figure>
+
+<p>Replace返回s的所有替换进行完后的拷贝。</p>
+<h2 id="func-Replacer-WriteString"><a href="#func-Replacer-WriteString" class="headerlink" title="func (*Replacer) WriteString"></a>func (*Replacer) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/replace.go?name=release#83">WriteString</a></h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">func (r *Replacer) <span class="hljs-constructor">WriteString(<span class="hljs-params">w</span> <span class="hljs-params">io</span>.Writer, <span class="hljs-params">s</span> <span class="hljs-params">string</span>)</span> (n <span class="hljs-built_in">int</span>, err error)<br></code></pre></td></tr></table></figure>
+
+<p>WriteString向w中写入s的所有替换进行完后的拷贝。</p>
+<p>来源： <a target="_blank" rel="noopener" href="https://studygolang.com/pkgdoc">Go语言标准库文档中文版 | Go语言中文网 | Golang中文社区 | Golang中国 (studygolang.com)</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Golang标准库之strings</div>
+      <div>http://example.com/2021/11/19/Golang标准库之strings/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 19, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/20/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AC%94%E8%AE%B0/" title="负载均衡笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">负载均衡笔记</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/17/PHP%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E6%A8%A1%E5%BC%8F%E4%BF%AE%E6%AD%A3%E7%AC%A6%20(Pattern%20Modifiers)/" title="PHP正则表达式中模式修正符 (Pattern Modifiers)">
+                        <span class="hidden-mobile">PHP正则表达式中模式修正符 (Pattern Modifiers)</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
