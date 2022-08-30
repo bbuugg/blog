@@ -225,15 +225,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/09/12/PHP%207.4%E7%9A%84%E6%96%B0%E5%A2%9E%E7%89%B9%E6%80%A7%EF%BC%88%E5%8A%9F%E8%83%BD%EF%BC%8C%E5%BC%83%E7%94%A8%EF%BC%8C%E9%80%9F%E5%BA%A6%EF%BC%89/" target="_self">
-          PHP 7.4的新增特性（功能，弃用，速度）
+        <a href="/2020/07/05/PHP7%E5%86%85%E6%A0%B8zval/" target="_self">
+          PHP7内核zval
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/09/12/PHP%207.4%E7%9A%84%E6%96%B0%E5%A2%9E%E7%89%B9%E6%80%A7%EF%BC%88%E5%8A%9F%E8%83%BD%EF%BC%8C%E5%BC%83%E7%94%A8%EF%BC%8C%E9%80%9F%E5%BA%A6%EF%BC%89/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/07/05/PHP7%E5%86%85%E6%A0%B8zval/" target="_self">
         <div>
-          &gt; 原文链接：https:&#x2F;&#x2F;www.ffeeii.com&#x2F;1075.html 下一个PHP 7里程版本PHP 7.4预计将于2019年11月28日正式发布。因此，现在该让我们深入研究一些最令人兴奋的新增功能和新功能，这些功能将使PHP更快，更可靠。 。 实际上，即使PHP 7.4显着提高了性能并提高了代码的可读性，PHP 8仍将是PHP性能的真正里程碑，因为JIT包含的建议已得到批准。 无
+          一、简介zval可以表示一切PHP中的数据类型, 所以它包含了一个type字段, 表示这个zval存储的是什么类型的值, 常见的可能选项是IS_NULL, IS_LONG, IS_STRING, IS_ARRAY, IS_OBJECT等等。根据type字段的值不同, 我们就要用不同的方式解读value的值, 这个value是个联合体, 比如对于type是IS_STRING, 那么我们应该用valu
         </div>
       </a>
 
@@ -241,8 +241,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-12 21:23" pubdate>
-              2020-09-12
+            <time datetime="2020-07-05 11:34" pubdate>
+              2020-07-05
             </time>
           </div>
         
@@ -258,15 +258,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/08/15/%E7%AC%94%E8%AE%B0%EF%BC%9Aes6%E5%9F%BA%E7%A1%80/" target="_self">
-          笔记：es6基础
+        <a href="/2020/07/05/%E5%BC%80%E5%8F%91%E6%97%B6%E7%BC%93%E5%AD%98%E5%BE%88%E7%83%A6%E4%BA%BA%EF%BC%8C%E4%BF%AE%E6%94%B9%E4%B8%8D%E8%83%BD%E5%AE%9E%E6%97%B6%E7%94%9F%E6%95%88%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" target="_self">
+          开发时缓存很烦人，修改不能实时生效的解决方法
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/15/%E7%AC%94%E8%AE%B0%EF%BC%9Aes6%E5%9F%BA%E7%A1%80/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/07/05/%E5%BC%80%E5%8F%91%E6%97%B6%E7%BC%93%E5%AD%98%E5%BE%88%E7%83%A6%E4%BA%BA%EF%BC%8C%E4%BF%AE%E6%94%B9%E4%B8%8D%E8%83%BD%E5%AE%9E%E6%97%B6%E7%94%9F%E6%95%88%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" target="_self">
         <div>
-          ECMAScript 与 javascript&gt;ECMAScript 可以说是 javascript 的国际标准。 letlet 用来声明变量，用法类似 var 但由 let 声明的变量，只能在 let 命令所在的代码块内有效。 var 声明的变量在全局范围内都有效 var 命令会发生“变量提升”现象，即变量会在声明前可使用，而 let 做了语法处理，限制了这种情况 暂时性死区若区块中存在l
+          Opcache 简介 ¶OPcache 通过将 PHP 脚本预编译的字节码存储到共享内存中来提升 PHP 的性能， 存储预编译字节码的好处就是 省去了每次加载和解析 PHP 脚本的开销。 PHP 5.5.0 及后续版本中已经绑定了 OPcache 扩展。 对于 PHP 5.2，5.3 和 5.4 版本可以使用 » PECL 扩展中的 OPcache 库。 &gt; 原文地址： https:&#x2F;&#x2F;ww
         </div>
       </a>
 
@@ -274,8 +274,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-15 07:21" pubdate>
-              2020-08-15
+            <time datetime="2020-07-05 11:34" pubdate>
+              2020-07-05
             </time>
           </div>
         
@@ -291,15 +291,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2020/08/15/redis%E5%9F%BA%E7%A1%80/" target="_self">
-          redis基础
+        <a href="/2020/07/05/%E9%94%AE%E7%9B%98KeyCode%E5%AF%B9%E7%85%A7%E8%A1%A8/" target="_self">
+          键盘KeyCode对照表
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/15/redis%E5%9F%BA%E7%A1%80/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/07/05/%E9%94%AE%E7%9B%98KeyCode%E5%AF%B9%E7%85%A7%E8%A1%A8/" target="_self">
         <div>
-          Redis的优势和特点Redis的特点： 内存数据库，速度快，也支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。 Redis支持数据的备份，即master-slave模式的数据备份。 支持事务  Redis的优势： 性能极高 – Redis能读
+          keycode   0 &#x3D; &lt;br &#x2F;&gt;keycode   1 &#x3D; &lt;br &#x2F;&gt;keycode   2 &#x3D; &lt;br &#x2F;&gt;keycode   3 &#x3D; &lt;br &#x2F;&gt;keycode   4 &#x3D; &lt;br &#x2F;&gt;keycode   5 &#x3D; &amp;
         </div>
       </a>
 
@@ -307,239 +307,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-15 07:20" pubdate>
-              2020-08-15
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/15/php%E6%9D%82%E8%AE%B0/" target="_self">
-          php杂记
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/15/php%E6%9D%82%E8%AE%B0/" target="_self">
-        <div>
-          查看端口12netstat -tunlp | grep 端口号&#96;&#96;lsof -i:端口号  重启nginx12nginx -s reload&#96;&#96;service nginx restart  查找文件1find &#x2F; -name filename  解压1tar zxvf filename  过滤查找1cmd |grep findname  重命名文件夹1mv old_filename new_fil
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-15 07:19" pubdate>
-              2020-08-15
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/15/php%E7%AC%94%E8%AF%95%E3%80%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%94%B6%E5%BD%95%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" target="_self">
-          php笔试、面试题收录（持续更新）
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/15/php%E7%AC%94%E8%AF%95%E3%80%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%94%B6%E5%BD%95%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" target="_self">
-        <div>
-          php中isset,empty,is_null,?:,??is_nullbool is_null ( mixed $var )  当参数满足下面三种情况时，is_null()将返回TRUE，其它的情况就是FALSE1、它被赋值为NULL2、它还没有赋值3、它未定义，相当于unset()处理过的变量issetbool isset ( mixed $var [, mixed $… ] )，参数是一个
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-15 07:19" pubdate>
-              2020-08-15
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/15/%E5%85%B3%E4%BA%8Ehttp%E5%93%8D%E5%BA%94%E5%92%8C%E8%BF%9E%E6%8E%A5/" target="_self">
-          关于http响应和连接
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/15/%E5%85%B3%E4%BA%8Ehttp%E5%93%8D%E5%BA%94%E5%92%8C%E8%BF%9E%E6%8E%A5/" target="_self">
-        <div>
-          HTTP 响应头信息&gt;HTTP请求头提供了关于请求，响应或者其他的发送实体的信息。 Allow	服务器支持哪些请求方法（如GET、POST等）。 Content-Encoding	文档的编码（Encode）方法。只有在解码之后才可以得到Content-Type头指定的内容类型。利用gzip压缩文档能够显著地减少HTML文档的下载时间。Java的GZIPOutputStream可以很方便地进行
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-15 07:13" pubdate>
-              2020-08-15
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/14/%E5%85%B3%E4%BA%8Eapt-get%20remove%20%E4%B8%8E%20apt-get%20purge/" target="_self">
-          关于apt-get remove 与 apt-get purge
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/14/%E5%85%B3%E4%BA%8Eapt-get%20remove%20%E4%B8%8E%20apt-get%20purge/" target="_self">
-        <div>
-          今天在Ubuntu服务器上安装supervisor，部署没成功想卸载重来，sudo apt-get remove supervisor 后发现配置文件还在，便手动删除了配置文件。再次安装，提示配置文件不存在，WTF！配置文件不该你软件给我创建吗？我想。 查阅资料才知，还有 apt-get purge 这一选项，purge 清除。 划重点：apt-get remove 会删除软件包而保留软件的配置文
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-14 16:35" pubdate>
-              2020-08-14
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/14/mysql%EF%BC%88mariadb%EF%BC%89%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" target="_self">
-          mysql（mariadb）常用命令
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/14/mysql%EF%BC%88mariadb%EF%BC%89%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" target="_self">
-        <div>
-          首先了解一下SQL的注释  单行语句进行注释 1SELECT * FROM USERS; --查询所有用户信息 多行注释 123456&#x2F;*切换到USER数据库查询所有表信息*&#x2F;USE USER;SHOW TABLES; 注释快捷键  选中需要注释的语句先Ctrl+k，再Ctrl+c注释成功取消注释先Crtrl+k，在Ctrl+u  查看支持的表引擎12SHOW ENGINES;SHOW VARI
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-14 11:09" pubdate>
-              2020-08-14
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/13/php%E7%9A%84%E4%B8%89%E7%A7%8DCLI%E5%B8%B8%E9%87%8F%EF%BC%9ASTDIN,STDOUT,STDERR/" target="_self">
-          php的三种CLI常量：STDIN,STDOUT,STDERR
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/13/php%E7%9A%84%E4%B8%89%E7%A7%8DCLI%E5%B8%B8%E9%87%8F%EF%BC%9ASTDIN,STDOUT,STDERR/" target="_self">
-        <div>
-          &gt;PHP CLI(command line interface)中，有三个系统常量，分别是STDIN、STDOUT、STDERR，代表文件句柄。 应用一： 12345&amp;lt;?phpwhile($line &#x3D; fopen(&amp;#x27;php:&#x2F;&#x2F;stdin&amp;#x27;,&amp;#x27;r&amp;#x27;))&amp;#123;    echo fgets($line);&amp;#125;?&amp;gt;
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-13 13:22" pubdate>
-              2020-08-13
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/13/css%E7%AC%94%E8%AE%B0/" target="_self">
-          css笔记
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/13/css%E7%AC%94%E8%AE%B0/" target="_self">
-        <div>
-          #文本换行word-wrap: css的 word-wrap 属性用来标明是否允许浏览器在单词内进行断句，这是为了防止当一个字符串太长而找不到它的自然断句点时产生溢出现象。 word-break: css的 word-break 属性用来标明怎么样进行单词内的断句。 white-space:bread-spaces; 文本格式&gt;text-decoration : none || underl
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-13 09:31" pubdate>
-              2020-08-13
+            <time datetime="2020-07-05 11:34" pubdate>
+              2020-07-05
             </time>
           </div>
         
@@ -553,7 +322,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/18/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="page-number" href="/page/18/#board">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/#board">20</a><a class="page-number" href="/page/21/#board">21</a><a class="extend next" rel="next" href="/page/20/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/18/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="page-number" href="/page/18/#board">18</a><span class="page-number current">19</span>
     </span>
   </nav>
 

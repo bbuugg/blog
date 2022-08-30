@@ -23,15 +23,15 @@
 <meta property="og:site_name" content="笔记">
 <meta property="og:description" content="场景 遭受攻击大量随机生成的key访问，或是真正访问但数据库就是没数据 上线前没有进行老数据缓存预加载，大量老数据请求去查询数据库 热点key失效，对热点key的并发访问大 缓存失效，过期时间设置相同同一时间有大量key失效 缓存挂掉，直接查数据库  缓存处理流程前台请求，后台先从缓存中取数据，取到直接返回结果，取不到时从数据库中取，数据库取到更新缓存，并返回结果，数据库也没取到，那直接返回空结果">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20220309/e03a5cbbc97c3bc08bbf058c48e135c2.jpeg">
-<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20220309/4b34d93de755a0861d1e554e5c3e71ac.jpeg">
-<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20220309/4ab5c394716489101c445ec56504ee1f.jpeg">
-<meta property="og:image" content="https://www.chengyao.xyz/upload/images/20220309/3eeb41d79bd255c85ef61aedf0052315.jpeg">
+<meta property="og:image" content="https://www.chengyao.xyz/images/20220309/e03a5cbbc97c3bc08bbf058c48e135c2.jpeg">
+<meta property="og:image" content="https://www.chengyao.xyz/images/20220309/4b34d93de755a0861d1e554e5c3e71ac.jpeg">
+<meta property="og:image" content="https://www.chengyao.xyz/images/20220309/4ab5c394716489101c445ec56504ee1f.jpeg">
+<meta property="og:image" content="https://www.chengyao.xyz/images/20220309/3eeb41d79bd255c85ef61aedf0052315.jpeg">
 <meta property="article:published_time" content="2022-03-08T10:44:54.000Z">
-<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:modified_time" content="2022-08-30T02:23:13.453Z">
 <meta property="article:author" content="CY">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://www.chengyao.xyz/upload/images/20220309/e03a5cbbc97c3bc08bbf058c48e135c2.jpeg">
+<meta name="twitter:image" content="https://www.chengyao.xyz/images/20220309/e03a5cbbc97c3bc08bbf058c48e135c2.jpeg">
   
   
   
@@ -291,7 +291,7 @@
 </blockquote>
 <h2 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h2><ul>
 <li>接口层增加校验，如用户鉴权校验，id做基础校验，id&lt;&#x3D;0的直接拦截；</li>
-<li>从缓存取不到的数据，在数据库中也没有取到，这时也可以将key-value对写为key-null，缓存有效时间可以设置短点，如30秒（设置太长会导致正常情况也没法使用）。这样可以防止攻击用户反复用同一个id暴力攻击<br><img src="/upload/images/20220309/e03a5cbbc97c3bc08bbf058c48e135c2.jpeg" srcset="/img/loading.gif" lazyload></li>
+<li>从缓存取不到的数据，在数据库中也没有取到，这时也可以将key-value对写为key-null，缓存有效时间可以设置短点，如30秒（设置太长会导致正常情况也没法使用）。这样可以防止攻击用户反复用同一个id暴力攻击<br><img src="/images/20220309/e03a5cbbc97c3bc08bbf058c48e135c2.jpeg" srcset="/img/loading.gif" lazyload></li>
 </ul>
 <p>但是这种方法会存在两个问题：</p>
 <ol>
@@ -303,16 +303,16 @@
 </ul>
 <p>布隆过滤器是一种数据结构，垃圾网站和正常网站加起来全世界据统计也有几十亿个。网警要过滤这些垃圾网站，总不能到数据库里面一个一个去比较吧，这就可以使用布隆过滤器。假设我们存储一亿个垃圾网站地址。</p>
 <p>可以先有一亿个二进制比特，然后网警用八个不同的随机数产生器（F1,F2, …,F8） 产生八个信息指纹（f1, f2, …, f8）。接下来用一个随机数产生器 G 把这八个信息指纹映射到 1 到1亿中的八个自然数 g1, g2, …,g8。最后把这八个位置的二进制全部设置为一。过程如下</p>
-<p><img src="/upload/images/20220309/4b34d93de755a0861d1e554e5c3e71ac.jpeg" srcset="/img/loading.gif" lazyload><br>有一天网警查到了一个可疑的网站，想判断一下是否是XX网站，首先将可疑网站通过哈希映射到1亿个比特数组上的8个点。如果8个点的其中有一个点不为1，则可以判断该元素一定不存在集合中。</p>
+<p><img src="/images/20220309/4b34d93de755a0861d1e554e5c3e71ac.jpeg" srcset="/img/loading.gif" lazyload><br>有一天网警查到了一个可疑的网站，想判断一下是否是XX网站，首先将可疑网站通过哈希映射到1亿个比特数组上的8个点。如果8个点的其中有一个点不为1，则可以判断该元素一定不存在集合中。</p>
 <p>那这个布隆过滤器是如何解决redis中的缓存穿透呢？很简单首先也是对所有可能查询的参数以hash形式存储，当用户想要查询的时候，使用布隆过滤器发现不在集合中，就直接丢弃，不再对持久层查询。</p>
-<p><img src="/upload/images/20220309/4ab5c394716489101c445ec56504ee1f.jpeg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/images/20220309/4ab5c394716489101c445ec56504ee1f.jpeg" srcset="/img/loading.gif" lazyload></p>
 <h1 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h1><h2 id="描述：-1"><a href="#描述：-1" class="headerlink" title="描述："></a>描述：</h2><p>缓存击穿是指缓存中没有但数据库中有的数据（一般是缓存时间到期），这时由于并发用户特别多，同时读缓存没读到数据，又同时去数据库去取数据，引起数据库压力瞬间增大，造成过大压力</p>
 <h2 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h2><ul>
 <li>设置热点数据永远不过期</li>
 <li>加互斥锁</li>
 </ul>
 <h1 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h1><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>缓存雪崩是指缓存中数据大批量到过期时间或者缓存层出现错误，大量查询到达存储层，而查询数据量巨大，引起数据库压力过大甚至down机。和缓存击穿不同的是，缓存击穿指并发查同一条数据，缓存雪崩是不同数据都过期了，很多数据都查不到从而查数据库。</p>
-<p><img src="/upload/images/20220309/3eeb41d79bd255c85ef61aedf0052315.jpeg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/images/20220309/3eeb41d79bd255c85ef61aedf0052315.jpeg" srcset="/img/loading.gif" lazyload></p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ul>
 <li><p>缓存数据的过期时间设置随机，防止同一时间大量数据过期现象发生。</p>
 </li>

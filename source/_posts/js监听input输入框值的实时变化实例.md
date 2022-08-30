@@ -10,38 +10,38 @@ tags:
 
 实例：
 
-    &lt;script type=&quot;text/JavaScript&quot;&gt;
+    <script type="text/JavaScript">
     　　function watch(){
-    　　consolo.log(&quot;in&quot;)
+    　　consolo.log("in")
     } 
-    &lt;/script&gt;
-	&lt;input type=&quot;text&quot;  oninput=&quot;watch(event)&quot; onporpertychange=&quot;watch(event)&quot; /&gt;
+    </script>
+	<input type="text"  oninput="watch(event)" onporpertychange="watch(event)" />
 
 
 
 2.原生js
 ```javascript
-&lt;script type=&quot;text/javascript&quot;&gt;
+<script type="text/javascript">
  $(function(){
-　　　if(&quot;\v&quot;==&quot;v&quot;){//true为IE浏览器，感兴趣的同学可以去搜下，据说是现有最流行的判断浏览器的方法　document.getElementById(&quot;a&quot;).attachEvent(&quot;onporpertychange&quot;,function(e){
-　　　　console.log(&quot;inputting!!&quot;);
+　　　if("\v"=="v"){//true为IE浏览器，感兴趣的同学可以去搜下，据说是现有最流行的判断浏览器的方法　document.getElementById("a").attachEvent("onporpertychange",function(e){
+　　　　console.log("inputting!!");
 　　　　}
-　　}else{　document.getElementById(&quot;a&quot;).addEventListener(&quot;onporpertychange&quot;,function(e){
-　　　　console.log(&quot;inputting!!&quot;);
+　　}else{　document.getElementById("a").addEventListener("onporpertychange",function(e){
+　　　　console.log("inputting!!");
 　　　　}
 　　}
 });
-&lt;/script&gt;
-&lt;input type=&quot;text&quot; id=&quot;a&quot;/&gt;
+</script>
+<input type="text" id="a"/>
 ```
 3.使用jQuery绑定事件
 ```javascript
-&lt;script type=&quot;text/javascript&quot;&gt;
+<script type="text/javascript">
  $(function(){
-　　$(&quot;#a&quot;).bind('input porpertychange',function(){
-　　　　console.log(&quot;e&quot;);
+　　$("#a").bind('input porpertychange',function(){
+　　　　console.log("e");
 　　　　});
 　　});
-&lt;/script&gt;
-&lt;input type=&quot;text&quot; id=&quot;a&quot;/&gt;
+</script>
+<input type="text" id="a"/>
 ```
