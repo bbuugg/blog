@@ -24,7 +24,7 @@
 <meta property="og:description" content="常用Linux命令ps1ps -ef | grep redis  根据进程id查找文件，找到pid，例如123 1ls -lp &#x2F;proc&#x2F;123&#x2F;cwd  lsattr, chattr查看和修改文件属性 jobs1jobs -rp &#x2F;&#x2F; 暂时不知到什么用   查看挂起的进程，kill %1 可以停止jobs中标号为1的进程 也可以使用fg %1 来切到前台，部分可能不需要% statawkzca">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-07T09:26:40.000Z">
-<meta property="article:modified_time" content="2022-08-28T02:23:10.673Z">
+<meta property="article:modified_time" content="2022-08-30T02:01:03.132Z">
 <meta property="article:author" content="CY">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.5k 字
+          8.1k 字
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          63 分钟
+          68 分钟
         
       </span>
     
@@ -508,6 +508,45 @@
 <figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs nim"><span class="hljs-type">int</span> main(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])<br>&#123;<br>	<span class="hljs-type">int</span> c;<br>	<span class="hljs-keyword">while</span> ((c = getc(<span class="hljs-built_in">stdin</span>)) != <span class="hljs-type">EOF</span>)<br>	&#123;<br>		putc(c, <span class="hljs-built_in">stdout</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="umask"><a href="#umask" class="headerlink" title="umask"></a>umask</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">umask</span> <span class="hljs-number">022</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="查看进程占用网速和流量使用情况"><a href="#查看进程占用网速和流量使用情况" class="headerlink" title="查看进程占用网速和流量使用情况"></a>查看进程占用网速和流量使用情况</h1><blockquote>
+<p>有三个命令vnstat、iftop、nethogs（推荐）</p>
+</blockquote>
+<h2 id="vnstat"><a href="#vnstat" class="headerlink" title="vnstat"></a>vnstat</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vnstat -i eth0 -l #实时流量情况<br></code></pre></td></tr></table></figure>
+
+<h2 id="iftop"><a href="#iftop" class="headerlink" title="iftop"></a>iftop</h2><p>iftop可以用来监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等</p>
+<h3 id="命令用法："><a href="#命令用法：" class="headerlink" title="命令用法："></a>命令用法：</h3><ul>
+<li>-i设定监测的网卡，如：# iftop -i eth1</li>
+<li>-B 以bytes为单位显示流量(默认是bits)，如：# iftop -B</li>
+<li>-n使host信息默认直接都显示IP，如：# iftop -n</li>
+<li>-N使端口信息默认直接都显示端口号，如: # iftop -N</li>
+</ul>
+<h3 id="交互命令："><a href="#交互命令：" class="headerlink" title="交互命令："></a>交互命令：</h3><ul>
+<li>按n切换显示本机的IP或主机名;</li>
+<li>按s切换是否显示本机的host信息;</li>
+<li>按d切换是否显示远端目标主机的host信息;</li>
+<li>按t切换显示格式为2行&#x2F;1行&#x2F;只显示发送流量&#x2F;只显示接收流- 量;</li>
+<li>按N切换显示端口号或端口服务名称;</li>
+<li>按S切换是否显示本机的端口信息;</li>
+<li>按D切换是否显示远端目标主机的端口信息;</li>
+<li>按p切换是否显示端口信息;</li>
+</ul>
+<h2 id="nethogs"><a href="#nethogs" class="headerlink" title="nethogs"></a>nethogs</h2><blockquote>
+<p>按进程实时统计网络带宽利用率(推荐)</p>
+</blockquote>
+<h3 id="命令用法：-1"><a href="#命令用法：-1" class="headerlink" title="命令用法："></a>命令用法：</h3><ul>
+<li>设置5秒钟刷新一次，通过-d来指定刷新频率：nethogs -d 5</li>
+<li>监视eth0网络带宽 :nethogs eth0</li>
+<li>同时监视eth0和eth1接口 : nethogs eth0 eth1</li>
+</ul>
+<h3 id="交互命令：-1"><a href="#交互命令：-1" class="headerlink" title="交互命令："></a>交互命令：</h3><p>以下是NetHogs的一些交互命令(键盘快捷键)</p>
+<ul>
+<li>m : 修改单位</li>
+<li>r : 按流量排序</li>
+<li>s : 按发送流量排序</li>
+<li>q : 退出命令提示符</li>
+</ul>
+
                 
               </div>
             
