@@ -16,21 +16,21 @@
   <meta name="author" content="CY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="版本号的格式为 X.Y.Z(又称 Major.Minor.Patch)，递增的规则为：  X 表示主版本号，当 API 的兼容性变化时，X 需递增。 Y 表示次版本号，当增加功能时(不影响 API 的兼容性)，Y 需递增。 Z 表示修订号，当做 Bug 修复时(不影响 API 的兼容性)，Z 需递增。  详细的规则如下：  X, Y, Z 必须为非负整数，且不得包含前导零，必须按数值递增，如 1.">
+    <meta name="description" content="Go 中时间格式化的模板123456789101112131415161718const (    ANSIC       &#x3D; &quot;Mon Jan _2 15:04:05 2006&quot;    UnixDate    &#x3D; &quot;Mon Jan _2 15:04:05 MST 2006&quot;    RubyDate    &#x3D; &quot;Mon Jan 02 15:04:0">
 <meta property="og:type" content="article">
-<meta property="og:title" content="版本号命名规范">
-<meta property="og:url" content="https://www.chengyao.xyz/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/index.html">
+<meta property="og:title" content="Go各时间字符串的解析">
+<meta property="og:url" content="https://www.chengyao.xyz/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="笔记">
-<meta property="og:description" content="版本号的格式为 X.Y.Z(又称 Major.Minor.Patch)，递增的规则为：  X 表示主版本号，当 API 的兼容性变化时，X 需递增。 Y 表示次版本号，当增加功能时(不影响 API 的兼容性)，Y 需递增。 Z 表示修订号，当做 Bug 修复时(不影响 API 的兼容性)，Z 需递增。  详细的规则如下：  X, Y, Z 必须为非负整数，且不得包含前导零，必须按数值递增，如 1.">
+<meta property="og:description" content="Go 中时间格式化的模板123456789101112131415161718const (    ANSIC       &#x3D; &quot;Mon Jan _2 15:04:05 2006&quot;    UnixDate    &#x3D; &quot;Mon Jan _2 15:04:05 MST 2006&quot;    RubyDate    &#x3D; &quot;Mon Jan 02 15:04:0">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-21T02:56:27.000Z">
-<meta property="article:modified_time" content="2022-08-28T02:23:10.683Z">
+<meta property="article:published_time" content="2022-09-04T13:30:39.000Z">
+<meta property="article:modified_time" content="2022-09-04T13:30:55.279Z">
 <meta property="article:author" content="CY">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>版本号命名规范 - 笔记</title>
+  <title>Go各时间字符串的解析 - 笔记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="版本号命名规范"></span>
+            <span id="subtitle" data-typed-text="Go各时间字符串的解析"></span>
           
         </div>
 
@@ -206,8 +206,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-21 10:56" pubdate>
-          2022年8月21日 上午
+        <time datetime="2022-09-04 21:30" pubdate>
+          2022年9月4日 晚上
         </time>
       </span>
     
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          856 字
+          2.7k 字
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          8 分钟
+          23 分钟
         
       </span>
     
@@ -267,43 +267,36 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">版本号命名规范</h1>
+            <h1 style="display: none">Go各时间字符串的解析</h1>
             
             
               <div class="markdown-body">
                 
-                <p>版本号的格式为 X.Y.Z(又称 Major.Minor.Patch)，递增的规则为：</p>
-<ul>
-<li>X 表示主版本号，当 API 的兼容性变化时，X 需递增。</li>
-<li>Y 表示次版本号，当增加功能时(不影响 API 的兼容性)，Y 需递增。</li>
-<li>Z 表示修订号，当做 Bug 修复时(不影响 API 的兼容性)，Z 需递增。</li>
-</ul>
-<p>详细的规则如下：</p>
-<ul>
-<li>X, Y, Z 必须为非负整数，且不得包含前导零，必须按数值递增，如 1.9.0 -&gt; 1.10.0 -&gt; 1.11.0</li>
-<li>0.Y.Z 的版本号表明软件处于初始开发阶段，意味着 API 可能不稳定；1.0.0 表明版本已有稳定的 API。</li>
-<li>当 API 的兼容性变化时，X 必须递增，Y 和 Z 同时设置为 0；当新增功能(不影响 API 的兼容性)或者 API 被标记为 Deprecated 时，Y 必须递增，同时 Z 设置为 0；当进行 bug fix 时，Z 必须递增。</li>
-<li>先行版本号(Pre-release)意味该版本不稳定，可能存在兼容性问题，其格式为：X.Y.Z.[a-c][正整数]，如 1.0.0.a1，1.0.0.b99，1.0.0.c1000。</li>
-<li>开发版本号常用于 CI-CD，格式为 X.Y.Z.dev[正整数]，如 1.0.1.dev4。</li>
-<li>版本号的排序规则为依次比较主版本号、次版本号和修订号的数值，如 1.0.0 &lt; 1.0.1 &lt; 1.1.1 &lt; 2.0.0；对于先行版本号和开发版本号，有：1.0.0.a100 &lt; 1.0.0，2.1.0.dev3 &lt; 2.1.0；当存在字母时，以 ASCII 的排序来比较，如 1.0.0.a1 &lt; 1.0.0.b1。</li>
-<li>注意：版本一经发布，不得修改其内容，任何修改必须在新版本发布！</li>
-</ul>
-<p>一些修饰的词</p>
-<ul>
-<li><code>alpha</code>：内部版本</li>
-<li><code>beta</code>：测试版</li>
-<li><code>demo</code>：演示版</li>
-<li><code>enhance</code>：增强版</li>
-<li><code>free</code>：自由版</li>
-<li><code>full version</code>：完整版，即正式版</li>
-<li><code>lts</code>：长期维护版本</li>
-<li><code>release</code>：发行版</li>
-<li><code>rc</code>：即将作为正式版发布</li>
-<li><code>standard</code>：标准版</li>
-<li><code>ultimate</code>：旗舰版</li>
-<li><code>upgrade</code>：升级版</li>
-</ul>
-<p>原文地址： <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c675121a8bfd">https://www.jianshu.com/p/c675121a8bfd</a></p>
+                <h3 id="Go-中时间格式化的模板"><a href="#Go-中时间格式化的模板" class="headerlink" title="Go 中时间格式化的模板"></a><code>Go</code> 中时间格式化的模板</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> (<br>    <span class="hljs-variable constant_">ANSIC</span>       = <span class="hljs-string">&quot;Mon Jan _2 15:04:05 2006&quot;</span><br>    <span class="hljs-title class_">UnixDate</span>    = <span class="hljs-string">&quot;Mon Jan _2 15:04:05 MST 2006&quot;</span><br>    <span class="hljs-title class_">RubyDate</span>    = <span class="hljs-string">&quot;Mon Jan 02 15:04:05 -0700 2006&quot;</span><br>    <span class="hljs-title class_">RFC822</span>      = <span class="hljs-string">&quot;02 Jan 06 15:04 MST&quot;</span><br>    <span class="hljs-title class_">RFC822Z</span>     = <span class="hljs-string">&quot;02 Jan 06 15:04 -0700&quot;</span> <span class="hljs-comment">// RFC822 with numeric zone</span><br>    <span class="hljs-title class_">RFC850</span>      = <span class="hljs-string">&quot;Monday, 02-Jan-06 15:04:05 MST&quot;</span><br>    <span class="hljs-title class_">RFC1123</span>     = <span class="hljs-string">&quot;Mon, 02 Jan 2006 15:04:05 MST&quot;</span><br>    <span class="hljs-title class_">RFC1123Z</span>    = <span class="hljs-string">&quot;Mon, 02 Jan 2006 15:04:05 -0700&quot;</span> <span class="hljs-comment">// RFC1123 with numeric zone</span><br>    <span class="hljs-title class_">RFC3339</span>     = <span class="hljs-string">&quot;2006-01-02T15:04:05Z07:00&quot;</span><br>    <span class="hljs-title class_">RFC3339Nano</span> = <span class="hljs-string">&quot;2006-01-02T15:04:05.999999999Z07:00&quot;</span><br>    <span class="hljs-title class_">Kitchen</span>     = <span class="hljs-string">&quot;3:04PM&quot;</span><br>    <span class="hljs-comment">// Handy time stamps.</span><br>    <span class="hljs-title class_">Stamp</span>      = <span class="hljs-string">&quot;Jan _2 15:04:05&quot;</span><br>    <span class="hljs-title class_">StampMilli</span> = <span class="hljs-string">&quot;Jan _2 15:04:05.000&quot;</span><br>    <span class="hljs-title class_">StampMicro</span> = <span class="hljs-string">&quot;Jan _2 15:04:05.000000&quot;</span><br>    <span class="hljs-title class_">StampNano</span>  = <span class="hljs-string">&quot;Jan _2 15:04:05.000000000&quot;</span><br>)<br></code></pre></td></tr></table></figure>
+
+<p>上面这些是官方定义的<code>layout</code>常量，我们自己也可以定义，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-string">&quot;2006-01-02 15:04:05&quot;</span> <br><span class="hljs-string">&quot;2006-01-02&quot;</span><br><span class="hljs-string">&quot;2006-01-02 15:04&quot;</span><br><span class="hljs-string">&quot;2006-01-02T15:04&quot;</span> <span class="hljs-comment">//js和html中多用这种形式</span><br><span class="hljs-string">&quot;2006-01-02 15:03:04 -0700 MST&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Format-格式化为字符串"><a href="#Format-格式化为字符串" class="headerlink" title="Format 格式化为字符串"></a><code>Format</code> 格式化为字符串</h3><p><code>format</code> 的使用对象是一个 <code>time.Time</code> 对象，可以使用官方或者自己定义的布局进行格式化的输出，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">now := time.<span class="hljs-title class_">Now</span>()<br>now.<span class="hljs-title class_">Format</span>(<span class="hljs-string">&quot;2006-01-02 15:04:05&quot;</span>) <span class="hljs-comment">//输出 2020-07-21 10:12:13</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Parse-字符串解析为时间戳或int64"><a href="#Parse-字符串解析为时间戳或int64" class="headerlink" title="Parse 字符串解析为时间戳或int64"></a><code>Parse</code> 字符串解析为时间戳或<code>int64</code></h3><h4 id="Parse-方法"><a href="#Parse-方法" class="headerlink" title="Parse 方法"></a><code>Parse</code> 方法</h4><p>需要两个参数，第一个是布局，第二个是字符串</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//Parse解析格式化的字符串并返回它表示的时间值。</span><br><span class="hljs-comment">//布局通过显示参考时间（定义为2006年1月2日星期一1:04:05 -0700</span><br><span class="hljs-comment">//如果它是值，则将被解释；它作为一个例子</span><br><span class="hljs-comment">//输入格式。然后将对输入字符串。预定义的布局ANSIC，UnixDate，RFC3339等描述了参考时间的标准和便捷表示形式。有关格式和参考时间的定义的更多信息，请参见ANSIC文档以及此程序包定义的其他常量。</span><br><span class="hljs-comment">//解析时间偏移为-0700的时间时，如果偏移量对应于当前位置（本地）使用的时区，则Parse在返回的时间中使用该位置和时区。否则，它将时间记录为处于伪造位置，时间固定在给定的区域偏移量。</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//另外，Time.Format的可执行示例详细说明了布局字符串的工作原理，是一个很好的参考。</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//值中省略的元素假定为零，或者</span><br><span class="hljs-comment">//零不可能为1，因此解析“ 3:04 pm”将返回时间</span><br><span class="hljs-comment">//对应于1月1日，0，15:04:00 UTC（请注意，因为年份是</span><br><span class="hljs-comment">//0，此时间早于零时间）。</span><br><span class="hljs-comment">//年份必须在0000..9999的范围内。将检查星期几的语法，否则将忽略该语法。</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">//解析带有MST等区域缩写的时间时，如果该区域缩写在当前位置具有已定义的偏移量，则使用该偏移量。</span><br><span class="hljs-comment">//区域缩写“ UTC”被识别为UTC，与位置无关。</span><br><span class="hljs-comment">//如果未知区域缩写，则Parse将时间记录为位于指定位置的伪造位置，并具有零偏移量。</span><br><span class="hljs-comment">//此选择意味着可以使用相同的布局无损地解析和重新格式化这样的时间，但是表示中使用的确切瞬间将因实际区域偏移而有所不同。为避免此类问题，请首选使用数字区域偏移量的时间布局或使用ParseInLocation。</span><br><br>func <span class="hljs-title class_">Parse</span>(layout, value string) (<span class="hljs-title class_">Time</span>, error) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">parse</span>(layout, value, <span class="hljs-variable constant_">UTC</span>, <span class="hljs-title class_">Local</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">eg, err := time.<span class="hljs-title class_">Parse</span>(<span class="hljs-string">&quot;2006-01-02 15:04:05 -0700 MST&quot;</span>, <span class="hljs-string">&quot;2019-08-29 16:48:21 +0800 CST&quot;</span>)<br><span class="hljs-comment">//输出结果为time.Time格式 使用 format格式化后为 2019-08-29 16:48:21</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="ParseInLocation"><a href="#ParseInLocation" class="headerlink" title="ParseInLocation"></a><code>ParseInLocation</code></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//ParseInLocation类似于Parse，但在两个重要方面有所不同。</span><br><span class="hljs-comment">//首先，在没有时区信息的情况下，Parse将时间解释为UTC；</span><br><span class="hljs-comment">//ParseInLocation将时间解释为给定位置。</span><br><span class="hljs-comment">//第二，当给定区域偏移量或缩写时，Parse尝试将其与本地位置进行匹配； ParseInLocation使用给定的位置</span><br><br>func <span class="hljs-title class_">ParseInLocation</span>(layout, value string, loc *<span class="hljs-title class_">Location</span>) (<span class="hljs-title class_">Time</span>, error) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">parse</span>(layout, value, loc, loc)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>参数： 1. 布局 2. 字符串 3. 时区</p>
+<p>获取本地时区可以使用 <code>time.Local</code></p>
+<p>使用例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">onlineAt, err := time.<span class="hljs-title class_">ParseInLocation</span>(<span class="hljs-string">&quot;2006-01-02T15:04&quot;</span>, <span class="hljs-string">&quot;2020-01-02T15:04&quot;</span>), time.<span class="hljs-property">Local</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="解析为int64"><a href="#解析为int64" class="headerlink" title="解析为int64"></a>解析为<code>int64</code></h4><p>对于 <code>time.Time</code> 对象，可以使用<code>.Unix()</code> 方法转为 <code>int64</code>，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">eg.<span class="hljs-title class_">Unix</span>() <span class="hljs-comment">//默认使用 UTC时区 </span><br>eg.<span class="hljs-title class_">Local</span>().<span class="hljs-title class_">Unix</span>() <span class="hljs-comment">//返回本地时区的时间戳 int64</span><br></code></pre></td></tr></table></figure>
+
+<p>参考文章： <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f809b06144f7">golang的时区和神奇的time.Parse</a></p>
 
                 
               </div>
@@ -321,8 +314,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>版本号命名规范</div>
-      <div>https://www.chengyao.xyz/2022/08/21/版本号命名规范/</div>
+      <div>Go各时间字符串的解析</div>
+      <div>https://www.chengyao.xyz/2022/09/04/Go各时间字符串的解析/</div>
     </div>
     <div class="license-meta">
       
@@ -334,7 +327,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月21日</div>
+          <div>2022年9月4日</div>
         </div>
       
       
@@ -364,18 +357,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/" title="Go各时间字符串的解析">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Go各时间字符串的解析</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" title="Markdown基本语法">
-                        <span class="hidden-mobile">Markdown基本语法</span>
+                      <a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" title="版本号命名规范">
+                        <span class="hidden-mobile">版本号命名规范</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
