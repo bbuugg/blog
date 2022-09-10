@@ -92,6 +92,47 @@ fetch
 
 es6新语法fetch().then()
 
+```javascript
+
+//GET请求
+var httpGet = async function (getUrl) {
+    var opts = {
+        method: "GET",
+        credentials: 'include' // 强制加入凭据头
+    }
+    await fetch(getUrl, opts).then((response) => {
+        return response.text();
+    }).then((responseText) => {
+        result = responseText;
+    }).then((error) => {
+
+    });
+    return result;
+};
+```
+
+```javascript
+//下载
+var httpDownLoadFile = async function (getUrl, fileName) {
+    var opts = {
+        method: "GET",
+        credentials: 'include' // 强制加入凭据头
+    }
+    await fetch(getUrl, opts).then((response) => {
+        return response.blob();
+    }).then((blob) => {
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        window.URL.revokeObjectURL(url);
+    }).then((error) => {
+
+    });
+};
+```
+
 ## 一些发送请求后可以执行的方法:
 
 - always():一定会执行

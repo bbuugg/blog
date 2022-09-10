@@ -237,6 +237,12 @@ server {
 }
 ```
 
+```
+if ($host != 'www.xyz.com') {         ####注意，这里很严格，if后面要有空格，!=两边都是空格。
+   rewrite ^/(.*)$ http://www.xyz.com/$1 permanent;
+}
+```
+
 # 域名镜像
 
 ```

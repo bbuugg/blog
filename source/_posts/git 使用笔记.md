@@ -10,6 +10,7 @@ tags:
 
 ```
 git init
+git config -e # 编辑配置文件
 git config user.name 'username'
 git config user.email 'email'
 git clone [-b] branch xxx.git 拉取
@@ -29,6 +30,10 @@ git tag -d <tag> 删除本地tag
 git push origin :refs/tags/test_tag　　　　//本地tag删除了，再执行该句，删除线上tag
 git push origin :<tag>/<branch> 删除远程tag/分支
 git remote add origin https://git.com
+git remote set-url origin https://<token>@github.com/<username>/<repo>.git
+git remote set-url --add origin https://<token>@github.com/<username>/<repo>.git # 添加多个
+git remote get-url origin
+git remote -v # 列出所有
 git remote rename 原名 新名
 git remote remove 名字
 git add xx命令可以将xx文件添加到暂存区，如果有很多改动可以通过 git add -A .来一次添加所有改变的文件。注意 -A 选项后面还有一个句点。 git add -A表示添加所有内容， git add . 表示添加新文件和编辑过的文件不包括删除的文件; git add -u 表示添加编辑或者删除的文件，不包括新添加的文件
@@ -45,7 +50,6 @@ git checkout -b <branchname> 新建并切换至新分支
 git push origin  分支名称，一般使用：git push origin master
 git branch --set-upstream 本地关联远程分支
 git push --set-upstream origin master
-git remote -v
 git remote rm
 git config --global core.autocrlf false 禁用Git默认配置替换回车换行成统一的CRLF
 git diff  分支1 分支2 --stat （加上 --stat 是显示文件列表, 否则是文件内容diff）
