@@ -684,3 +684,25 @@ iftop可以用来监控网卡的实时流量（可以指定网段）、反向解
 - r : 按流量排序
 - s : 按发送流量排序
 - q : 退出命令提示符
+
+### 匹配进程名结束进程
+
+ps -ef | grep 进程名 | awk '{ print $2 }' | xargs kill -9
+
+### expect
+
+```shell
+#!/usr/bin/expect
+set user "git账号"
+set pass "密码"
+set timeout 10
+
+spawn git pull # spawn启动新的进程
+expect "Username*" # 匹配username*
+send "$user\n" #发送账号到进程内
+expect "Password*" # 匹配password
+send "$pass\n" #发送密码到进程内
+expect eof
+
+expect -f pull.sh #运行脚本
+```
