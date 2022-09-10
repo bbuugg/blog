@@ -196,5 +196,16 @@ xxd是linux的一个命令，vim可以通过”!”来调用外部命令，其�
 :%!xxd
 :%!xxd -r 16进制转为2进制
 ```
+
 参考：http://blog.chinaunix.net/uid-29767867-id-4413135.html
 推荐：https://blog.csdn.net/xxxxxx91116/article/details/8042312
+
+
+## 执行shell脚本报错/usr/bin/env: ‘bash\r’: No such file or directory
+
+```
+vim release.sh
+:set ff # 查看fileformat 应该是dos
+:set ff=unix # 设置为unix
+:wq
+```

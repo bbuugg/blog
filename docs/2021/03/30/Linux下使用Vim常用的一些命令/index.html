@@ -24,7 +24,7 @@
 <meta property="og:description" content="方法一 ：块选择模式批量注释： Ctrl + v 进入块选择模式，然后移动光标选中你要注释的行，再按大写的I进入行首插入模式输入注释符号如 &#x2F;&#x2F; 或 #，输入完毕之后，按两下ESC，Vim会自动将你选中的所有行首都加上注释，保存退出完成注释。 取消注释： Ctrl + v 进入块选择模式，选中你要删除的行首的注释符号，注意&#x2F;&#x2F; 要选中两个，选好之后按d即可删">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-30T02:21:47.000Z">
-<meta property="article:modified_time" content="2022-08-28T02:25:56.168Z">
+<meta property="article:modified_time" content="2022-09-10T01:26:31.940Z">
 <meta property="article:author" content="CY">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.6k 字
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          21 分钟
+          22 分钟
         
       </span>
     
@@ -340,8 +340,9 @@
 
 <p>xxd是linux的一个命令，vim可以通过”!”来调用外部命令，其功能就是进行十六进制的dump或者反之。</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-symbol">:%</span>!od <br><span class="hljs-symbol">:%</span>!xxd<br><span class="hljs-symbol">:%</span>!xxd -r <span class="hljs-number">16</span>进制转为<span class="hljs-number">2</span>进制<br></code></pre></td></tr></table></figure>
-<p>参考：<a target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-29767867-id-4413135.html">http://blog.chinaunix.net/uid-29767867-id-4413135.html</a><br>推荐：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xxxxxx91116/article/details/8042312">https://blog.csdn.net/xxxxxx91116/article/details/8042312</a></p>
 
+<p>参考：<a target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-29767867-id-4413135.html">http://blog.chinaunix.net/uid-29767867-id-4413135.html</a><br>推荐：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xxxxxx91116/article/details/8042312">https://blog.csdn.net/xxxxxx91116/article/details/8042312</a></p>
+<h2 id="执行shell脚本报错-x2F-usr-x2F-bin-x2F-env-‘bash-r’-No-such-file-or-directory"><a href="#执行shell脚本报错-x2F-usr-x2F-bin-x2F-env-‘bash-r’-No-such-file-or-directory" class="headerlink" title="执行shell脚本报错&#x2F;usr&#x2F;bin&#x2F;env: ‘bash\r’: No such file or directory"></a>执行shell脚本报错&#x2F;usr&#x2F;bin&#x2F;env: ‘bash\r’: No such file or directory</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">vim release.sh<br>:<span class="hljs-built_in">set</span> ff # 查看fileformat 应该是dos<br>:<span class="hljs-built_in">set</span> <span class="hljs-attribute">ff</span>=unix # 设置为unix<br>:wq<br></code></pre></td></tr></table></figure>
                 
               </div>
             
