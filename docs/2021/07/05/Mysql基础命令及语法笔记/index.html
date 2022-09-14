@@ -24,7 +24,7 @@
 <meta property="og:description" content="show 命令 help show 查看允许的show语句  12345678show databasesshow tablesshow [full] columns from &lt;table&gt;show create database &lt;name&gt;show statusshow grantsshow errorsshow warnings  set names设置编码 1se">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-05T14:49:20.000Z">
-<meta property="article:modified_time" content="2022-08-29T11:42:43.228Z">
+<meta property="article:modified_time" content="2022-09-14T13:04:34.812Z">
 <meta property="article:author" content="CY">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          25k 字
+          27k 字
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          212 分钟
+          223 分钟
         
       </span>
     
@@ -1328,6 +1328,48 @@
 
 <h2 id="ERROR-1269-HY000-Can’t-revoke-all-privileges-for-one-or-more-of-the-requested-users"><a href="#ERROR-1269-HY000-Can’t-revoke-all-privileges-for-one-or-more-of-the-requested-users" class="headerlink" title="ERROR 1269 (HY000): Can’t revoke all privileges for one or more of the requested users"></a>ERROR 1269 (HY000): Can’t revoke all privileges for one or more of the requested users</h2><p>需要加上host，例如</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">REVOKE</span> <span class="hljs-keyword">ALL</span> PRIVILEGES <span class="hljs-keyword">ON</span> <span class="hljs-operator">*</span>.<span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> <span class="hljs-string">&#x27;testuser&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<h2 id="字符校对规则问题"><a href="#字符校对规则问题" class="headerlink" title="字符校对规则问题"></a>字符校对规则问题</h2><p>查询视图时报错：java.sql.SQLException: Illegal mix of collations (utf8mb4_general_ci,IMPLICIT) and (utf8mb4_0900_ai_ci,IMPLICIT) for operation ‘&#x3D;’；</p>
+<p>本地环境:<code>mysql8.0.13</code></p>
+<p>异常提示排序规则编码混乱，mysql8.0.1之后的默认COLLATE为utf8mb4_0900_ai_ci；</p>
+<p>检查视图中所包含的表发现其中一个建表时 没有设置编码，并且其他的表设置的是 CHARSET&#x3D;utf8mb4 COLLATE&#x3D;utf8mb4_general_ci；因此导致混乱；</p>
+<p>查看当前数据库的默认编码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">mysql&gt; </span><span class="language-bash">show variables <span class="hljs-built_in">where</span> Variable_name like <span class="hljs-string">&#x27;collation%&#x27;</span>;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>查看各表编码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">mysql&gt; </span><span class="language-bash">show create table ‘table_name’;</span><br></code></pre></td></tr></table></figure>
+<p>解决方案给没有设置编码的表重新设置一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">mysql&gt; </span><span class="language-bash">alter table table_name default character <span class="hljs-built_in">set</span> utf8mb4 collate=utf8mb4_general_ci;</span><br></code></pre></td></tr></table></figure>
+
+
+<p>这样设置只针对表的，但是表中字段未修改：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">mysql&gt; </span><span class="language-bash">ALTER TABLE table_name convert to CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;</span><br></code></pre></td></tr></table></figure>
+
+<p>修改完成以后，重新创建视图！！！！</p>
+<h2 id="排序内存溢出问题"><a href="#排序内存溢出问题" class="headerlink" title="排序内存溢出问题"></a>排序内存溢出问题</h2><p>报错：<br><code>SQLSTATE[HY001]: Memory allocation error: 1038 Out of sort memory, consider increasing sort buffer size</code></p>
+<p>找到mysql配置文件（我的是<code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>）, 添加一行</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">sort_buffer_size</span>        = <span class="hljs-number">16</span>M<br></code></pre></td></tr></table></figure>
+<p>重启数据库，报错继续加大</p>
+<h2 id="数据类型相关"><a href="#数据类型相关" class="headerlink" title="数据类型相关"></a>数据类型相关</h2><p>记录datetime到毫秒<br>5.6 之后可以将字段类型设置为datetime(3), 其中的数字表示精度，三位精确到毫秒</p>
+<h2 id="Incorrect-key-file-for-notes"><a href="#Incorrect-key-file-for-notes" class="headerlink" title="Incorrect key file for notes"></a>Incorrect key file for notes</h2><p>解决方案（目前使用myisam引擎）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">optimize <span class="hljs-keyword">table</span> notes;<br></code></pre></td></tr></table></figure>
+<p>如果不行就google一下</p>
+<h2 id="不用密码登录"><a href="#不用密码登录" class="headerlink" title="不用密码登录"></a>不用密码登录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /etc/my.cnf<br></code></pre></td></tr></table></figure>
+
+<p>在[mysqld]段后加一行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">skip</span><span class="hljs-operator">-</span><span class="hljs-keyword">grant</span><span class="hljs-operator">-</span>tables<br></code></pre></td></tr></table></figure>
+
+<p>或者用这条命令运行</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>bin/mysqld --skip-grant-tables<br></code></pre></td></tr></table></figure>
+
+<p>重启mysql</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/etc/i</span>nit.d/mysql restart<br>service mysql restart<br></code></pre></td></tr></table></figure>
+
+<h2 id="修改validate-password-policy参数的值"><a href="#修改validate-password-policy参数的值" class="headerlink" title="修改validate_password_policy参数的值"></a>修改validate_password_policy参数的值</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> global <span class="hljs-attribute">validate_password_policy</span>=0;<br><span class="hljs-comment">#validate_password_length(密码长度)参数默认为8，修改为需要长度</span><br><span class="hljs-built_in">set</span> global <span class="hljs-attribute">validate_password_length</span>=1;<br></code></pre></td></tr></table></figure>
+
+<h2 id="mysqld命令"><a href="#mysqld命令" class="headerlink" title="mysqld命令"></a>mysqld命令</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shymen/p/8850655.html">https://www.cnblogs.com/shymen/p/8850655.html</a></p>
+
                 
               </div>
             

@@ -225,39 +225,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/10/30/Supervisor%20%E4%BD%BF%E7%94%A8%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0%20%E3%80%90%E9%85%8D%E7%BD%AEsyncd%E3%80%91/" target="_self">
-          Supervisor 使用踩坑笔记 【配置syncd】
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/30/Supervisor%20%E4%BD%BF%E7%94%A8%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0%20%E3%80%90%E9%85%8D%E7%BD%AEsyncd%E3%80%91/" target="_self">
-        <div>
-          前言 之前有使用hyperf这样的框架开发过，但是线上部署没有实操，也不清楚进程监控怎么配置，所以学习了一下，记录一篇笔记。  我主要是看了这篇文章的讲解：https:&#x2F;&#x2F;www.1kmb.com&#x2F;note&#x2F;284.html内容很不错，推荐在这里。 实操根据教程配置了syncd的监控配置如下 123456789101112[program:syncd]directory&#x3D;&#x2F;root&#x2F;syncd-d
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-30 11:43" pubdate>
-              2021-10-30
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
         <a href="/2021/10/28/%E6%B6%88%E6%81%AF%E5%A4%B4%E5%AD%97%E6%AE%B5%E4%B9%8BCache-Control/" target="_self">
           消息头字段之Cache-Control
         </a>
@@ -540,6 +507,39 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2021-07-26 19:53" pubdate>
               2021-07-26
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/16/Mysql%20binlog%E7%9B%B8%E5%85%B3%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_self">
+          Mysql binlog相关使用笔记
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/07/16/Mysql%20binlog%E7%9B%B8%E5%85%B3%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          开启bin-log1vim &#x2F;etc&#x2F;mysql&#x2F;mysql.conf.d&#x2F;mysqld.cnf  1234[mysqld]区块添加log-bin&#x3D;mysql-bin(也可指定二进制日志生成的路径，如：log-bin&#x3D;&#x2F;opt&#x2F;Data&#x2F;mysql-bin)server-id&#x3D;1binlog_format&#x3D;MIXED(加入此参数才能记录到insert语句)  重启Mysql123systemctl
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-16 12:29" pubdate>
+              2021-07-16
             </time>
           </div>
         
