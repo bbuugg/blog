@@ -377,3 +377,156 @@ for (let [k, v] of m) {
     console.log(k, v)
 }
 ```
+
+## 元组
+
+```typescript
+var a :[string, number] = ["杜甫", 80];
+```
+
+```typescript
+var b = ["李白", 20];
+b.push("陶渊明");
+b.pop();
+console.log(b[0])
+```
+
+## 联合类型
+
+```typescript
+var unionTypeVariable : string | number = 10
+unionTypeVariable = "王维"
+
+// 数组也可以作为联合类型
+var unionTypeVariable2 : string[] | number[] = ["李清照"]
+```
+
+## 接口
+
+> 接口是一系列抽象方法的声明，是一些方法特征的集合
+
+```typescript
+interface animal {
+    type: string
+    run(): void
+    eat(): void
+}
+
+var panda: animal = {
+    type: "panda",
+    run(): void {
+        console.log(this.type + " run")
+    },
+    eat(): void {
+        console.log(this.type + " eat")
+    }
+}
+
+panda.run()
+panda.eat()
+```
+
+在接口中使用联合类型
+
+```typescript
+interface controller {
+    action: string | string[] | (() => string)
+}
+```
+
+### 接口继承
+
+```typescript
+interface person {
+    name: string
+}
+interface man extends person {
+    height: number
+}
+interface baby extends man {
+    age: number
+}
+
+const ba: baby = <baby>{}
+
+ba.age = 10
+ba.height = 100
+ba.name = "张择端"
+
+console.log(ba)
+```
+
+> 多继承可以使用逗号分割
+
+## 类
+
+```typescript
+interface AuthManager {
+    name: string
+}
+
+class Auth implements AuthManager {
+    name: string
+
+    constructor(name: string) {
+        this.name = name
+    }
+
+    protected login(): string {
+        return this.name + " auth";
+    }
+
+    private logout() {
+        // ...
+    }
+}
+
+class JwtAuth extends Auth {
+    static type: string = "jwt"
+    // 重写login方法 ，并将访问权限更改为public
+    public login(): string {
+        return this.name + " jwt auth"
+    }
+}
+
+var auth = new JwtAuth("刘备")
+var data = auth.login()
+
+console.log(auth, data, JwtAuth.type, auth instanceof Auth)
+```
+
+## 对象
+
+```typescript
+var obj = {
+    name: "user",
+    say: function () {
+        console.log(this.name)
+    }
+}
+
+console.log(obj.say())
+```
+
+对象也可以作为参数传递
+
+```typescript
+function Test (func: () => string) {
+    // 接收一个返回类型为string的闭包
+}
+```
+
+## 命名空间
+
+```typescript
+namespace Max {
+    // 嵌套命名空间
+    export namespace Di {
+        export class Container {
+
+        }
+    }
+}
+
+var container = new Max.Di.Container()
+```
