@@ -518,6 +518,12 @@ function Test (func: () => string) {
 
 ## 命名空间
 
+如果一个命名空间在一个单独的 TypeScript 文件中，则应使用三斜杠 /// 引用它，语法格式如下：
+
+```
+/// <reference path = "SomeFileName.ts" />
+```
+
 ```typescript
 namespace Max {
     // 嵌套命名空间
