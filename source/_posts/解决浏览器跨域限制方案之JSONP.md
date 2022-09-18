@@ -75,6 +75,35 @@ public Object testAjaxJsonp(HttpServletRequest req, HttpServletResponse resp,
 }
 ```
 
+
+### jquery中使用getJson
+
+```javascript
+$("#b1").click(function () {
+    $.getJSON("http://127.0.0.1:8989/jsonp/?callback=?", function (res) {
+      console.log(res);
+    })
+});
+```
+
+> 要注意的是在url的后面必须要有一个callback参数，这样getJSON方法才会知道是用JSONP方式去访问服务，callback后面的那个？是jQuery内部自动生成的一个回调函数名。
+
+想要自己指定回调名,可以使用$.ajax实现
+
+```javascript
+$("#b1").click(function () {
+    $.ajax({
+      url: "http://127.0.0.1:8989/jsonp/",
+      dataType: "jsonp",
+      jsonp: "callback",
+      jsonpCallback: "rion2"
+    })
+  });
+  function rion2(res) {
+    console.log(res);
+  }
+```
+
 【参考】
  http://www.nowamagic.net/librarys/veda/detail/224 JSONP跨域的原理解析
  http://www.xiaoxiaozi.com/2011/11/25/2239/ JSONP与POST方式请求

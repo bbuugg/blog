@@ -225,72 +225,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/05/18/apache%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8/" target="_self">
-          apache模块使用
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/18/apache%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8/" target="_self">
-        <div>
-          加载SSL模块sudo a2enmod ssl sudo a2enmod http_proxysudo a2enmod proxy
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-18 10:48" pubdate>
-              2021-05-18
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/16/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8B%E9%98%B2%E6%AD%A2%E5%BA%93%E5%AD%98%E8%B6%85%E5%8D%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_self">
-          高并发下防止库存超卖的解决方案
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/16/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8B%E9%98%B2%E6%AD%A2%E5%BA%93%E5%AD%98%E8%B6%85%E5%8D%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" target="_self">
-        <div>
-          最近在看秒杀相关的项目，针对防止库存超卖的问题，查阅了很多资料，其解决方案可以分为悲观锁、乐观锁、分布式锁、Redis原子操作、队列串行化等等，这里进行浅显的记录总结。 首先我们来看下库存超卖问题是怎样产生的： 123456&#x2F;&#x2F;1.查询出商品库存信息select stock from t_goods where id&#x3D;1;&#x2F;&#x2F;2.根据商品信息生成订单insert into t_orders (id
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-16 23:07" pubdate>
-              2021-05-16
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
         <a href="/2021/05/16/%E5%87%A0%E5%A5%97%E5%A5%BD%E7%9C%8B%E7%9A%84%E7%BE%8E%E5%8C%96%E6%A1%86CSS/" target="_self">
           几套好看的美化框CSS
         </a>
@@ -549,11 +483,77 @@
     </article>
   </div>
 
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/05/01/Linux%20find%20%E5%91%BD%E4%BB%A4/" target="_self">
+          Linux find 命令
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/01/Linux%20find%20%E5%91%BD%E4%BB%A4/" target="_self">
+        <div>
+          Linux find 命令用来在指定目录下查找文件。任何位于参数之前的字符串都将被视为欲查找的目录名。如果使用该命令时，不设置任何参数，则 find 命令将在当前目录下查找子目录与文件。并且将查找到的子目录和文件全部进行显示。 语法1find   path   -option   [   -print ]   [ -exec   -ok   command ]   &amp;#123;&amp;#125; \;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-01 20:38" pubdate>
+              2021-05-01
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/21/Ubuntu%E7%9A%84messages%20Log%E5%BC%80%E5%90%AF/" target="_self">
+          Ubuntu的messages Log开启
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/21/Ubuntu%E7%9A%84messages%20Log%E5%BC%80%E5%90%AF/" target="_self">
+        <div>
+          ubuntu开启messages logless &#x2F;etc&#x2F;rsyslog.d&#x2F;50-default.conf  1234#*.&#x3D;info;*.&#x3D;notice;*.&#x3D;warn;\#       auth,authpriv.none;\#       cron,daemon.none;\#       mail,news.none          -&#x2F;var&#x2F;log&#x2F;messages  删掉以上部
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-21 22:49" pubdate>
+              2021-04-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/10/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#board">9</a><a class="page-number" href="/page/10/#board">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/#board">12</a><a class="page-number" href="/page/13/#board">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/#board">19</a><a class="extend next" rel="next" href="/page/12/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/10/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#board">9</a><a class="page-number" href="/page/10/#board">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/#board">12</a><a class="page-number" href="/page/13/#board">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/#board">18</a><a class="extend next" rel="next" href="/page/12/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

@@ -6,7 +6,7 @@ tags:
 
 先看一段代码
 
-```
+```php
 <?php
 
 $request = Max\Di\Context::getContainer()->get(ServerRequestInterface::class);
@@ -19,7 +19,7 @@ $get     = $request->get();
 
 方法一：
 
-```
+```php
 <?php
 /** @var ServerRequestInterface $request */
 $request = Max\Di\Context::getContainer()->get(ServerRequestInterface::class);
@@ -43,7 +43,7 @@ namespace PHPSTORM_META {
 
 方法三：
 
-```
+```php
 	/**
      * @template T
      *
@@ -62,7 +62,8 @@ namespace PHPSTORM_META {
 另外再提一点关于方法注释的问题
 
 php 越来越向强类型转换了，因此在使用高版本php的代码中，有一些注释我认为是可以去掉的，如下：
-```
+
+```php
 if (function_exists('base_path') === false) {
     /**
      * @param string $path
@@ -76,7 +77,7 @@ if (function_exists('base_path') === false) {
 ```
 
 其中的
-```
+```php
     /**
      * @param string $path
      * @return string
@@ -85,7 +86,7 @@ if (function_exists('base_path') === false) {
 
 是完全可以删除的，因为函数的原型已经描述得很清楚了，参数path类型是string，返回值是string。对于方法中没有提示类型的可以加上参数类型的注释，对于抛出异常应该加注释，如果想要解释这个函数的作用
 
-```
+```php
 /**
 * balabala
 */

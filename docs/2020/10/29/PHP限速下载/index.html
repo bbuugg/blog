@@ -16,15 +16,15 @@
   <meta name="author" content="CY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="12345678910111213141516171819&amp;lt;?php$arr &#x3D; [    &amp;#039;b798abe6e1b1318ee36b0dcb3fb9e4d3&amp;#039; &#x3D;&amp;gt; [&amp;#039;.&#x2F;img&#x2F;img.jpg&amp;#039;, &amp;#039;img.jpg&amp;#039;],    &amp;#039;4cf35">
+    <meta name="description" content="1234567891011121314151617&lt;?php$arr &#x3D; [    &quot;b798abe6e1b1318ee36b0dcb3fb9e4d3&quot; &#x3D;&amp;gt; [&quot;.&#x2F;img&#x2F;img.jpg&quot;, &quot;img.jpg&quot;],    &quot;4cf350692a4a3bb54d13daacfe8c683b&quot; &#x3D;&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP限速下载">
 <meta property="og:url" content="https://www.chengyao.xyz/2020/10/29/PHP%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD/index.html">
 <meta property="og:site_name" content="笔记">
-<meta property="og:description" content="12345678910111213141516171819&amp;lt;?php$arr &#x3D; [    &amp;#039;b798abe6e1b1318ee36b0dcb3fb9e4d3&amp;#039; &#x3D;&amp;gt; [&amp;#039;.&#x2F;img&#x2F;img.jpg&amp;#039;, &amp;#039;img.jpg&amp;#039;],    &amp;#039;4cf35">
+<meta property="og:description" content="1234567891011121314151617&lt;?php$arr &#x3D; [    &quot;b798abe6e1b1318ee36b0dcb3fb9e4d3&quot; &#x3D;&amp;gt; [&quot;.&#x2F;img&#x2F;img.jpg&quot;, &quot;img.jpg&quot;],    &quot;4cf350692a4a3bb54d13daacfe8c683b&quot; &#x3D;&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-29T12:38:50.000Z">
-<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:modified_time" content="2022-09-18T01:43:48.411Z">
 <meta property="article:author" content="CY">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          726 字
+          622 字
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          7 分钟
+          6 分钟
         
       </span>
     
@@ -272,7 +272,7 @@
             
               <div class="markdown-body">
                 
-                <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-symbol">&amp;lt;</span>?php<br><br>$arr = [<br>    <span class="hljs-symbol">&amp;#039;</span>b798abe6e1b1318ee36b0dcb3fb9e4d3<span class="hljs-symbol">&amp;#039;</span> =<span class="hljs-symbol">&amp;gt;</span> [<span class="hljs-symbol">&amp;#039;</span>./img/img.jpg<span class="hljs-symbol">&amp;#039;</span>, <span class="hljs-symbol">&amp;#039;</span>img.jpg<span class="hljs-symbol">&amp;#039;</span>],<br>    <span class="hljs-symbol">&amp;#039;</span>4cf350692a4a3bb54d13daacfe8c683b<span class="hljs-symbol">&amp;#039;</span> =<span class="hljs-symbol">&amp;gt;</span> [<span class="hljs-symbol">&amp;#039;</span>./img/小明.chw<span class="hljs-symbol">&amp;#039;</span>, <span class="hljs-symbol">&amp;#039;</span>小明.chw<span class="hljs-symbol">&amp;#039;</span>]<br>];<br><br><br>header(<span class="hljs-symbol">&amp;#039;</span>Content-type:application/octet-stream<span class="hljs-symbol">&amp;#039;</span>);<br>header(<span class="hljs-symbol">&amp;#039;</span>Content-disposition:attachment;filename=<span class="hljs-symbol">&amp;#039;</span> . $arr[$_GET[<span class="hljs-symbol">&amp;#039;</span>file<span class="hljs-symbol">&amp;#039;</span>]][1]);<br>//    readfile($arr[$_GET[<span class="hljs-symbol">&amp;#039;</span>file<span class="hljs-symbol">&amp;#039;</span>]][0]);<br>$handler = fopen($arr[$_GET[<span class="hljs-symbol">&amp;#039;</span>file<span class="hljs-symbol">&amp;#039;</span>]][0], <span class="hljs-symbol">&amp;#039;</span>rb<span class="hljs-symbol">&amp;#039;</span>);<br>while (!feof($handler)) &#123;<br>    $files = fread($handler, 100); //限速下载<br>//        flush();<br>    print_r($files);<br>    usleep(20);<br>&#125;<br>fclose($handler);<br></code></pre></td></tr></table></figure>
+                <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-variable">$arr</span> = [<br>    <span class="hljs-string">&quot;b798abe6e1b1318ee36b0dcb3fb9e4d3&quot;</span> =&amp;gt; [<span class="hljs-string">&quot;./img/img.jpg&quot;</span>, <span class="hljs-string">&quot;img.jpg&quot;</span>],<br>    <span class="hljs-string">&quot;4cf350692a4a3bb54d13daacfe8c683b&quot;</span> =&amp;gt; [<span class="hljs-string">&quot;./img/小明.chw&quot;</span>, <span class="hljs-string">&quot;小明.chw&quot;</span>]<br>];<br><br><span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Content-type:application/octet-stream&quot;</span>);<br><span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Content-disposition:attachment;filename=&quot;</span> . <span class="hljs-variable">$arr</span>[<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;file&quot;</span>]][<span class="hljs-number">1</span>]);<br><span class="hljs-comment">//    readfile($arr[$_GET[&quot;file&quot;]][0]);</span><br><span class="hljs-variable">$handler</span> = <span class="hljs-title function_ invoke__">fopen</span>(<span class="hljs-variable">$arr</span>[<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;file&quot;</span>]][<span class="hljs-number">0</span>], <span class="hljs-string">&quot;rb&quot;</span>);<br><span class="hljs-keyword">while</span> (!<span class="hljs-title function_ invoke__">feof</span>(<span class="hljs-variable">$handler</span>)) &#123;<br>    <span class="hljs-variable">$files</span> = <span class="hljs-title function_ invoke__">fread</span>(<span class="hljs-variable">$handler</span>, <span class="hljs-number">100</span>); <span class="hljs-comment">//限速下载</span><br><span class="hljs-comment">//        flush();</span><br>    <span class="hljs-title function_ invoke__">print_r</span>(<span class="hljs-variable">$files</span>);<br>    <span class="hljs-title function_ invoke__">usleep</span>(<span class="hljs-number">20</span>);<br>&#125;<br><span class="hljs-title function_ invoke__">fclose</span>(<span class="hljs-variable">$handler</span>);<br></code></pre></td></tr></table></figure>
                 
               </div>
             

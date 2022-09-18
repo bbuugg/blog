@@ -24,7 +24,7 @@
 <meta property="og:description" content="自定义函数in_array123456789function in_array(stringToSearch, arrayToSearch) &amp;#123;	for (s &#x3D; 0; s &lt; arrayToSearch.length; s++) &amp;#123;		thisEntry &#x3D; arrayToSearch[s].toString();		if (thisEntry &#x3D;&#x3D; stringToS">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-26T14:53:26.000Z">
-<meta property="article:modified_time" content="2022-08-28T02:23:10.663Z">
+<meta property="article:modified_time" content="2022-09-18T01:31:51.621Z">
 <meta property="article:author" content="CY">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.1k 字
+          4.3k 字
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          34 分钟
+          37 分钟
         
       </span>
     
@@ -319,6 +319,10 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$.<span class="hljs-title function_">inArray</span>(element,array);<br></code></pre></td></tr></table></figure>
 <p>存在返回元素下标，否则返回-1，可以使用<code>arr.splice($.inArray(&#39;test&#39;,arr),1);</code> 删除某一个元素，删除前需要判断元素是否存在否则当数组中只有一个值的时候会删除该值【未测试】。</p>
 <h2 id="jq点击复制"><a href="#jq点击复制" class="headerlink" title="jq点击复制"></a>jq点击复制</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://libs.baidu.com/jquery/1.9.0/jquery.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>  <br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>  <br>微信号：<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;target&quot;</span>&gt;</span>xyz2018<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn&quot;</span> <span class="hljs-attr">data-clipboard-action</span>=<span class="hljs-string">&quot;copy&quot;</span> <span class="hljs-attr">data-clipboard-target</span>=<span class="hljs-string">&quot;#target&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;copy_btn&quot;</span>&gt;</span>    <br>    点击复制    <br><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>   <br>	<br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">    </span><br><span class="language-javascript">    $(<span class="hljs-variable language_">document</span>).<span class="hljs-title function_">ready</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;      </span><br><span class="language-javascript">        <span class="hljs-keyword">var</span> clipboard = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Clipboard</span>(<span class="hljs-string">&#x27;#copy_btn&#x27;</span>);    </span><br><span class="language-javascript">        clipboard.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;success&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) &#123;    </span><br><span class="language-javascript">            <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;微信号复制成功&quot;</span>,<span class="hljs-number">1500</span>);</span><br><span class="language-javascript">            e.<span class="hljs-title function_">clearSelection</span>();    </span><br><span class="language-javascript">            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e.<span class="hljs-property">clearSelection</span>);    </span><br><span class="language-javascript">        &#125;);    </span><br><span class="language-javascript">    &#125;);    </span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="void-0-相关"><a href="#void-0-相关" class="headerlink" title="void 0 相关"></a>void 0 相关</h2><p>void其实是javascript中的一个函数，接受一个参数，返回值永远是undefined。可以说，使用void目的就是为了得到javascript中的undefined</p>
+<p>为什么不直接使用undefined呢？ 使用void 0比使用undefined能够减少3个字节。虽然这是个优势，个人但感觉意义不大，牺牲了可读性和简单性，undefined并不是javascript中的保留字，我们可以使用undefined作为变量名字，然后给它赋值,, 但在chrome 中打印出来的是 undefined</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-literal">undefined</span> === <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>  <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
