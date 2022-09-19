@@ -536,3 +536,11 @@ namespace Max {
 
 var container = new Max.Di.Container()
 ```
+
+## 模块
+
+### 报错 ReferenceError: define is not defined 
+
+编译选项添加 --module commonjs
+
+参考：https://segmentfault.com/a/1190000018249137
