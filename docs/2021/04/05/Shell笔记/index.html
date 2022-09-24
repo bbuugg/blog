@@ -24,7 +24,7 @@
 <meta property="og:description" content="#let  let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。  1let arg [arg ...] 实例：自加操作：let no++ 自减操作：let no-- 简写形式 let no+&#x3D;10，let no-&#x3D;20，分别等同于 let no&#x3D;no+10，let no&#x3D;no-20。 以下">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-05T14:44:57.000Z">
-<meta property="article:modified_time" content="2022-09-14T12:56:04.947Z">
+<meta property="article:modified_time" content="2022-09-22T01:30:37.614Z">
 <meta property="article:author" content="CY">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          5.9k 字
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          16 分钟
+          49 分钟
         
       </span>
     
@@ -299,7 +299,89 @@
 <p>其他方法：</p>
 <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">if` `[ ``<span class="hljs-string">&quot;$str&quot;</span>` `= ``<span class="hljs-string">&quot;&quot;</span>` `]<br></code></pre></td></tr></table></figure>
 
+<h1 id="shell中的2-gt-amp-1"><a href="#shell中的2-gt-amp-1" class="headerlink" title="shell中的2&gt;&amp;1"></a>shell中的2&gt;&amp;1</h1><h2 id="A-首先了解下1和2在Linux中代表什么"><a href="#A-首先了解下1和2在Linux中代表什么" class="headerlink" title="A.首先了解下1和2在Linux中代表什么"></a>A.首先了解下1和2在Linux中代表什么</h2><p>在Linux系统中0 1 2是一个文件描述符</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>代码</th>
+<th>操作符</th>
+<th>Java中表示</th>
+<th>Linux 下文件描述符（Debian 为例)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标准输入(stdin)</td>
+<td>0</td>
+<td>&lt; 或 &lt;&lt;</td>
+<td>System.in</td>
+<td>&#x2F;dev&#x2F;stdin -&gt; &#x2F;proc&#x2F;self&#x2F;fd&#x2F;0 -&gt; &#x2F;dev&#x2F;pts&#x2F;0</td>
+</tr>
+<tr>
+<td>标准输出(stdout)</td>
+<td>1</td>
+<td>&gt;, &gt;&gt;, 1&gt; 或 1&gt;&gt;</td>
+<td>System.out</td>
+<td>&#x2F;dev&#x2F;stdout -&gt; &#x2F;proc&#x2F;self&#x2F;fd&#x2F;1 -&gt; &#x2F;dev&#x2F;pts&#x2F;0</td>
+</tr>
+<tr>
+<td>标准错误输出(stderr)</td>
+<td>2</td>
+<td>2&gt; 或 2&gt;&gt;</td>
+<td>System.err</td>
+<td>&#x2F;dev&#x2F;stderr -&gt; &#x2F;proc&#x2F;self&#x2F;fd&#x2F;2 -&gt; &#x2F;dev&#x2F;pts&#x2F;0</td>
+</tr>
+</tbody></table>
+<p>上面表格引用自<a target="_blank" rel="noopener" href="https://yanbin.blog/linux-input-output-redirection/">这里</a><br>从上表看的出来，我们平时使用的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo &quot;hello&quot; &gt; t.log<br></code></pre></td></tr></table></figure>
 
+
+<p>其实也可以写成</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo &quot;hello&quot; 1&gt; t.log<br></code></pre></td></tr></table></figure>
+
+<h1 id="B-关于2-gt-amp-1的含义"><a href="#B-关于2-gt-amp-1的含义" class="headerlink" title="B.关于2&gt;&amp;1的含义"></a>B.关于2&gt;&amp;1的含义</h1><p>（关于输入&#x2F;输出重定向本文就不细说了，不懂的可以参考这里，主要是要了解&gt; &lt; &lt;&lt; &gt;&gt; &lt;&amp; &gt;&amp; 这6个符号的使用）</p>
+<p>含义：将标准错误输出重定向到标准输出<br>符号&gt;&amp;是一个整体，不可分开，分开后就不是上述含义了。<br>比如有些人可能会这么想：2是标准错误输入，1是标准输出，&gt;是重定向符号，那么”将标准错误输出重定向到标准输出”是不是就应该写成”2&gt;1”就行了？是这样吗？<br>如果是尝试过，你就知道2&gt;1的写法其实是将标准错误输出重定向到名为”1”的文件里去了<br>写成2&amp;&gt;1也是不可以的<br>C.为什么2&gt;&amp;1要放在后面<br>考虑如下一条shell命令</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">nohup <span class="hljs-keyword">java </span>-<span class="hljs-keyword">jar </span>app.<span class="hljs-keyword">jar </span>&gt;log <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span> &amp;<br></code></pre></td></tr></table></figure>
+
+
+<p>(最后一个&amp;表示把条命令放到后台执行，不是本文重点，不懂的可以自行Google)<br>为什么2&gt;&amp;1一定要写到&gt;log后面，才表示标准错误输出和标准输出都定向到log中？<br>我们不妨把1和2都理解是一个指针,然后来看上面的语句就是这样的：</p>
+<ol>
+<li>本来1—–&gt;屏幕 （1指向屏幕）</li>
+<li>执行&gt;log后， 1—–&gt;log (1指向log)</li>
+<li>执行2&gt;&amp;1后， 2—–&gt;1 (2指向1，而1指向log,因此2也指向了log)</li>
+</ol>
+<p>再来分析下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nohup java -jar app.jar 2&gt;&amp;1 &gt;log &amp;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>本来1—–&gt;屏幕 （1指向屏幕）</li>
+<li>执行2&gt;&amp;1后， 2—–&gt;1 (2指向1，而1指向屏幕,因此2也指向了屏幕)</li>
+<li>执行&gt;log后， 1—–&gt;log (1指向log，2还是指向屏幕)</li>
+</ol>
+<p>所以这就不是我们想要的结果。<br><strong>简单做个试验测试下上面的想法</strong>：<br>java代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Htest</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;out1&quot;</span>);<br>        System.err.println(<span class="hljs-string">&quot;error1&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>javac编译后运行下面指令：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">java</span> Htest <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span> &gt; log<br></code></pre></td></tr></table></figure>
+
+
+
+<p>你会在终端上看到只输出了”error1”，log文件中则只有”out1”</p>
+<p>D.每次都写”&gt;log 2&gt;&amp;1”太麻烦，能简写吗？<br>有以下两种简写方式</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-meta">&amp;&gt;log</span><br><br><span class="hljs-meta">&amp;log</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>比如上面小节中的写法就可以简写为：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">nohup <span class="hljs-keyword">java </span>-<span class="hljs-keyword">jar </span>app.<span class="hljs-keyword">jar </span>&amp;&gt;log &amp;<br></code></pre></td></tr></table></figure>
+<p>上面两种方式都和<code>&gt;log 2&gt;&amp;1</code>一个语义。<br>那么 上面两种方式中&amp;&gt;和&gt;&amp;有区别吗？<br><strong>语义上是没有任何区别的，但是第一中方式是最佳选择，一般使用第一种</strong></p>
+<h1 id="输出带颜色字体"><a href="#输出带颜色字体" class="headerlink" title="输出带颜色字体"></a>输出带颜色字体</h1><p>输出特效格式控制：*<br>\033[0m*  关闭所有属性 *<br>\033[1m*  设置高亮度 *<br>\03[4m*  下划线 *<br>\033[5m*  闪烁 *<br>\033[7m*  反显 *<br>\033[8m*  消隐 *<br>\033[30m  –  \033[37m*  设置前景色 *<br>\033[40m  –  \033[47m*  设置背景色</p>
+<p>光标位置等的格式控制：<br>\033[nA  光标上移n行<br>\03[nB  光标下移n行<br>\033[nC  光标右移n行<br>\033[nD  光标左移n行<br>\033[y;xH设置光标位置<br>\033[2J  清屏<br>\033[K  清除从光标到行尾的内容<br>\033[s  保存光标位置<br>\033[u  恢复光标位置<br>\033[?25l  隐藏光标  </p>
+<p>\33[?25h  显示光标</p>
+<p>整理：<br>  编码 颜色&#x2F;动作<br>　　0  重新设置属性到缺省设置<br>　　1  设置粗体<br>　　2  设置一半亮度(模拟彩色显示器的颜色)<br>　　4  设置下划线(模拟彩色显示器的颜色)<br>　　5  设置闪烁<br>　　7  设置反向图象<br>　　22 设置一般密度<br>　　24 关闭下划线<br>　　25 关闭闪烁<br>　　27 关闭反向图象<br>　　30 设置黑色前景<br>　　31 设置红色前景<br>　　32 设置绿色前景<br>　　33 设置棕色前景<br>　　34 设置蓝色前景<br>　　35 设置紫色前景<br>　　36 设置青色前景<br>　　37 设置白色前景<br>　　38 在缺省的前景颜色上设置下划线<br>　　39 在缺省的前景颜色上关闭下划线<br>　　40 设置黑色背景<br>　　41 设置红色背景<br>　　42 设置绿色背景<br>　　43 设置棕色背景<br>　　44 设置蓝色背景<br>　　45 设置紫色背景<br>　　46 设置青色背景<br>　　47 设置白色背景<br>　　49 设置缺省黑色背景<br>特效可以叠加，需要使用“;”隔开，例如：闪烁+下划线+白底色+黑字为  \033[5;4;47;30m闪烁+下划线+白底色+黑字为\033[0m<br>下面是一段小例子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment">#下面是字体输出颜色及终端格式控制</span><br><span class="hljs-comment">#字体色范围：30-37</span><br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[30m 黑色字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[31m 红色字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[32m 绿色字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[33m 黄色字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[34m 蓝色字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[35m 紫色字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[36m 天蓝字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[37m 白色字 \033[0m&amp;quot;<br><span class="hljs-comment">#字背景颜色范围：40-47</span><br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[40;37m 黑底白字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[41;30m 红底黑字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[42;34m 绿底蓝字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[43;34m 黄底蓝字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[44;30m 蓝底黑字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[45;30m 紫底黑字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[46;30m 天蓝底黑字 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[47;34m 白底蓝字 \033[0m&amp;quot;<br><br><span class="hljs-comment">#控制选项说明</span><br><span class="hljs-comment">#\033[0m 关闭所有属性</span><br><span class="hljs-comment">#\033[1m 设置高亮度</span><br><span class="hljs-comment">#\033[4m 下划线</span><br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[4;31m 下划线红字 \033[0m&amp;quot;<br><span class="hljs-comment">#闪烁</span><br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[5;34m 红字在闪烁 \033[0m&amp;quot;<br><span class="hljs-comment">#反影</span><br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[8m 消隐 \033[0m &amp;quot;<br><br><span class="hljs-comment">#\033[30m-\033[37m 设置前景色</span><br><span class="hljs-comment">#\033[40m-\033[47m 设置背景色</span><br><span class="hljs-comment">#\033[nA光标上移n行</span><br><span class="hljs-comment">#\033[nB光标下移n行</span><br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[4A 光标上移4行 \033[0m&amp;quot;<br><span class="hljs-comment">#\033[nC光标右移n行</span><br><span class="hljs-comment">#\033[nD光标左移n行</span><br><span class="hljs-comment">#\033[y;xH设置光标位置</span><br><span class="hljs-comment">#\033[2J清屏</span><br><span class="hljs-comment">#\033[K清除从光标到行尾的内容</span><br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[K 清除光标到行尾的内容 \033[0m&amp;quot;<br><span class="hljs-comment">#\033[s 保存光标位置</span><br><span class="hljs-comment">#\033[u 恢复光标位置</span><br><span class="hljs-comment">#\033[?25| 隐藏光标</span><br><span class="hljs-comment">#\033[?25h 显示光标</span><br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[?25l 隐藏光标 \033[0m&amp;quot;<br><span class="hljs-built_in">echo</span> -e &amp;quot;\033[?25h 显示光标 \033[0m&amp;quot;<br></code></pre></td></tr></table></figure>
                 
               </div>
             

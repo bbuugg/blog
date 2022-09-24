@@ -209,3 +209,27 @@ vim release.sh
 :set ff=unix # 设置为unix
 :wq
 ```
+
+## 统计关键词出现的次数
+
+```shell
+:%s/keyword/gn
+```
+
+参数说明：
+
+- % - 指明操作区间，%表示全文本；可以使用1,$或者行区间代替
+- s – substitute，表示替换
+- pattern - 要查找的字符串
+- // - 替代文本应该放在这里，两个斜杠中间没有任何字符表示无替代文本
+- g – Replace all occurences in the line. Without this argument, replacement occurs only for the first occurence - in each line.
+- n – Report the number of matches, and do not actually substitute. 这是核心功能，同时也说明为什么//之间可以添加任意字符。
+ 
+一些引申出的应用：
+
+(1) :k,ls/pattern//gn
+统计k行到l行出现pattern的次数
+(2) :%s/pattern//gn
+统计在当前编辑文本出现的次数
+(3) cat file|greg –i pattern |wc –l
+统计在文件中出现的行数
