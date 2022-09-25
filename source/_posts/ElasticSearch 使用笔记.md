@@ -73,10 +73,9 @@ xpack.security.enabled: false
 
 ## 新增文档
 
-```
-PUT /index/_doc/1
-```
-> 如果ID相同则更新
+> PUT /index/_doc/1
+
+如果ID相同则更新
 
 请求
 ```json
@@ -106,9 +105,7 @@ PUT /index/_doc/1
 
 ## 查询文档
 
-```
-GET /index/_doc/1
-```
+> GET /index/_doc/1
 
 响应
 ```json
@@ -128,9 +125,7 @@ GET /index/_doc/1
 
 ## 删除
 
-```
-DELETE /index/_doc/2
-```
+> DELETE /index/_doc/2
 
 响应
 
@@ -155,9 +150,7 @@ DELETE /index/_doc/2
 
 > 默认情况返回前10个符合查询的文档
 
-```
-GET /user/_search
-```
+> GET /user/_search
 
 ### 简单查询
 
@@ -242,4 +235,30 @@ action.destructive_requires_name: true
 ```
 这个设置使删除只限于特定名称指向的数据, 而不允许通过指定 _all 或通配符来删除指定索引库
 
+## 聚合查询
 
+> GET /user/_search
+
+```json
+{
+  "size": 0,
+  "aggs": {
+    "group_by_country": {
+      "terms": {
+        "field": "country.keyword",
+        "order": {
+            "average_age": "desc"
+        }
+      },
+      "aggs": {
+        "average_age": {
+            "avg": {
+                "field": "age"
+            }
+        }
+      }
+    }
+  }
+}
+```
+其中size为0，所以只返回聚合数据，请求使用 terms 聚合 索引中对所有国家进行分组，使用组合聚合，查询分组内所有age字段平均数，还可以使用聚合字段进行排序
