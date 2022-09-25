@@ -71,6 +71,85 @@ xpack.security.enabled: false
 
 > 请求须指定文档的索引名称，唯一的文档 ID，以及请求体中一个或多个键值对
 
+## 查看映射
+
+> GET /user/_mapping
+
+```json
+{
+    "user": {
+        "mappings": {
+            "properties": {
+                "name": {
+                    "type": "text",
+                    "fields": {
+                        "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                        }
+                    }
+                },
+                "age": {
+                    "type": "long"
+                }
+            }
+        }
+    }
+}
+```
+
+### 查看单个字段
+
+> GET /user/_mapping/field/address
+
+```json
+{
+    "user": {
+        "mappings": {
+            "address": {
+                "full_name": "address",
+                "mapping": {
+                    "address": {
+                        "type": "text",
+                        "fields": {
+                            "keyword": {
+                                "type": "keyword",
+                                "ignore_above": 25
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+## 新建映射
+
+> PUT /user/_mapping
+
+```json
+{
+    "properties": {
+        "address": {
+            "type": "text",
+            "fields": {
+                "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                }
+            }
+        }
+    }
+}
+
+```
+
+## 修改映射
+
+text类型不能转为long类型
+
 ## 新增文档
 
 > PUT /index/_doc/1
@@ -262,3 +341,10 @@ action.destructive_requires_name: true
 }
 ```
 其中size为0，所以只返回聚合数据，请求使用 terms 聚合 索引中对所有国家进行分组，使用组合聚合，查询分组内所有age字段平均数，还可以使用聚合字段进行排序
+
+
+# 常见报错
+
+- Text fields are not optimised for operations that require per-document field data like aggregations and sorting, so these operations are disabled by default. Please use a keyword field instead. Alternatively, set fielddata=true on [interests] in order to load field data by uninverting the inverted index. Note that this can use significant memory.
+
+        因为interests的类型type是text，text或annotated_text字段doc_values默认为false，也就是说，text字段作为整体，默认没有索引
