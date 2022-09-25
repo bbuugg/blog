@@ -16,15 +16,15 @@
   <meta name="author" content="CY">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Docker 启动拉取镜像 1docker pull elasticsearch 启动容器 1docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e &quot;discovery.type&#x3D;single-node&quot; elasticsearch:tag  Elasticsearch">
+    <meta name="description" content="Docker 启动拉取镜像1docker pull elasticsearch  启动容器1docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e &quot;discovery.type&#x3D;single-node&quot; elasticsearch:tag  Elasticsearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ElasticSearch 使用笔记">
 <meta property="og:url" content="https://www.chengyao.xyz/2022/07/31/ElasticSearch%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="笔记">
-<meta property="og:description" content="Docker 启动拉取镜像 1docker pull elasticsearch 启动容器 1docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e &quot;discovery.type&#x3D;single-node&quot; elasticsearch:tag  Elasticsearch">
+<meta property="og:description" content="Docker 启动拉取镜像1docker pull elasticsearch  启动容器1docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e &quot;discovery.type&#x3D;single-node&quot; elasticsearch:tag  Elasticsearch">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-31T14:09:17.000Z">
-<meta property="article:modified_time" content="2022-08-28T02:23:10.683Z">
+<meta property="article:modified_time" content="2022-09-25T02:56:23.124Z">
 <meta property="article:author" content="CY">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          327 字
+          4.6k 字
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          3 分钟
+          39 分钟
         
       </span>
     
@@ -272,14 +272,92 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Docker-启动"><a href="#Docker-启动" class="headerlink" title="Docker 启动"></a>Docker 启动</h1><p>拉取镜像</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull elasticsearch<br></code></pre></td></tr></table></figure>
-<p>启动容器</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; elasticsearch:tag<br></code></pre></td></tr></table></figure>
+                <h1 id="Docker-启动"><a href="#Docker-启动" class="headerlink" title="Docker 启动"></a>Docker 启动</h1><h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull elasticsearch<br></code></pre></td></tr></table></figure>
+
+<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; elasticsearch:tag<br></code></pre></td></tr></table></figure>
 
 <h1 id="Elasticsearch-8-0报错：received-plaintext-http-traffic-on-an-https-channel-closing-connection"><a href="#Elasticsearch-8-0报错：received-plaintext-http-traffic-on-an-https-channel-closing-connection" class="headerlink" title="Elasticsearch 8.0报错：received plaintext http traffic on an https channel, closing connection"></a>Elasticsearch 8.0报错：received plaintext http traffic on an https channel, closing connection</h1><p><strong>原因</strong>：是因为ES8默认开启了 ssl 认证。</p>
 <p>修改elasticsearch.yml配置文件，改为flase</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">xpack.security.enabled: false<br></code></pre></td></tr></table></figure>
+
+<h2 id="index和type区别以及如何选择"><a href="#index和type区别以及如何选择" class="headerlink" title="index和type区别以及如何选择"></a>index和type区别以及如何选择</h2><p>对于 ES 的新用户来说，有一个常见的问题：要存储一批新数据时，应该在已有 index 里新建一个 type，还是给它新建一个 index？要想回答这个问题，我们必须先理解这两者是怎么实现的。</p>
+<p>在过去，我们试图通过与关系数据库建立类比来使弹性搜索更容易理解：索引<code>index</code>就像数据库一样，类型<code>type</code>似于数据库中的表。这是一个错误：数据的存储方式是如此不同，以至于任何比较几乎都没有意义，这最终会导致在有害的情况下过度使用类型。</p>
+<h2 id="index-是什么"><a href="#index-是什么" class="headerlink" title="index 是什么"></a>index 是什么</h2><p>索引<code>index</code>存储在一系列分片中，它们本身就是Lucene index。所以使用新索引应该注意：Lucene索引在磁盘空间，内存使用和使用的文件描述符方面有一个小而固定的开销。因此，单个大index比几个小index效率更高，Lucene index的固定开销更好地摊销在多个文档中。</p>
+<p>另一个重要因素是如何搜索数据,虽然每个分片都是独立搜索的，但<code>Elasticsearch</code>最终需要合并所有搜索分片的结果。例如，搜索10个<code>index</code>,每个<code>index</code>有5个分片，则协调搜索请求执行的节点将需要合并5x10 &#x3D; 50个分片结果。在这里需要注意：如果有太多的分片结果要合并，或者运行了一个产生大量分片响应的大量请求，合并这些分片结果的任务会非常消耗CPU和内存资源。这也是提倡少用<code>index</code>的原因。</p>
+<h2 id="type是什么"><a href="#type是什么" class="headerlink" title="type是什么"></a>type是什么</h2><p>使用<code>type</code>允许我们在一个<code>index</code>里存储多种类型的数据，这样就可以减少<code>index</code>的数量了。在使用时，向每个文档加入<code>_type</code> 字段，在指定type搜索时就会被用于过滤。使用type的一个好处是，搜索一个index下的多个type，和只搜索一个type相比没有额外的开销 —— 需要合并结果的分片数量是一样的。</p>
+<p>但是，这也是有限制的：</p>
+<ul>
+<li>不同type里的字段需要保持一致。例如，一个<code>index</code>下的不同<code>type</code>里有两个名字相同的字段，他们的类型（string, date 等等）和配置也必须相同。</li>
+<li>只在某个<code>type</code>里存在的字段，在其他没有该字段的 type 中也会消耗资源。这是<code>Lucene Index</code>带来的常见问题：它不喜欢稀疏。由于连续文档之间的差异太大，稀疏的 posting list 的压缩效率不高。这个问题在 doc value 上更为严重：为了提高速度，doc value 通常会为每个文档预留一个固定大小的空间，以便文档可以被高速检索。这意味着，如果 Lucene 确定它需要一个字节来存储某个数字类型的字段，它同样会给没有这个字段的文档预留一个字节。未来版本的 ES 会在这方面做一些改进，但是我仍然建议你在建模的时候尽量避免稀疏。[1]</li>
+<li>得分是由<code>index</code>内的统计数据来决定的。也就是说，一个 type 中的文档会影响另一个 type 中的文档的得分。</li>
+</ul>
+<p>这意味着，只有同一个<code>index</code>的中的 type 都有类似的映射 (mapping) 时，才应该使用 <code>type</code>。否则，使用多个<code>type</code>可能比使用多个<code>index</code>消耗的资源更多。</p>
+<h2 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h2><p>这是个困难的问题，它的答案取决于你用的硬件、数据和用例。首先你要明白 type 是有用的，因为它能减少 ES 需要管理的<code>Lucene Index</code>的数量。但是也有另外一种方式可以减少这个数量：创建 index 的时候让它的分片少一些。例如，与其在一个 index 里塞上 5 个 type，不如创建 5 个只有一个分片的 index。</p>
+<p>在你做决定的时候可以问自己下面几个问题：</p>
+<ul>
+<li>你需要使用父子文档吗？如果需要，只能在一个 index 里建立多个 type。</li>
+<li>你的文档的映射是否相似？如果不相似，使用多个 index。</li>
+<li>如果你的每个 type 都有足够多的文档，Lucene Index 的开销可以被分摊掉，你就可以安全的使用多个 index 了。如果有必要的话，可以把分片数量设小一点。</li>
+<li>如果文档不够多，你可以考虑把文档放进一个 index 里的多个 type 里，甚至放进一个 type 里。</li>
+</ul>
+<p>总之，你可能有点惊讶，因为 type 的使用场景没有你想象的多，这是正确的。由于我们上面提到原因，在一个 index 中使用多个 type 的情景其实很少。如果你的数据有不同的映射，那就给他们分配不同的 index。但是请记住，如果不需要很高的写入吞吐量，或者存储的文档数量不多，你可以通过减少 index 的分片来使集群中的分片数量保持合理。</p>
+<p>[1] posting list 和 doc value 都是 Lucene 的压缩技术，原理是保存后一个文档和前一个文档的差异，而不是完整的文档。</p>
+<h1 id="RestApi"><a href="#RestApi" class="headerlink" title="RestApi"></a>RestApi</h1><blockquote>
+<p>请求须指定文档的索引名称，唯一的文档 ID，以及请求体中一个或多个键值对</p>
+</blockquote>
+<h2 id="新增文档"><a href="#新增文档" class="headerlink" title="新增文档"></a>新增文档</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">PUT <span class="hljs-regexp">/index/</span>_doc/<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>如果ID相同则更新</p>
+</blockquote>
+<p>请求</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;john&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>响应</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;_index&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;index&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;_doc&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;result&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deleted&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_shards&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;total&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;successful&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;failed&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_seq_no&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_primary_term&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>索引index不存在则自动创建</p>
+</blockquote>
+<h2 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">GET <span class="hljs-regexp">/index/</span>_doc/<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>响应</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;_index&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;index&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;_doc&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_seq_no&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_primary_term&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;found&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_source&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-keyword">DELETE</span> <span class="hljs-regexp">/index/</span>_doc/<span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
+<p>响应</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;_index&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;index&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;_doc&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;result&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deleted&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_shards&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;total&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;successful&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;failed&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><br>    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_seq_no&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;_primary_term&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><blockquote>
+<p>默认情况返回前10个符合查询的文档</p>
+</blockquote>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">GET <span class="hljs-regexp">/user/</span>_search<br></code></pre></td></tr></table></figure>
+
+<h3 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h3><blockquote>
+<p>按照age正序，查询前10个</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;query&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span> <span class="hljs-attr">&quot;match_all&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span> <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;sort&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span> <span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;asc&quot;</span> <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;from&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;size&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10</span><span class="hljs-punctuation">,</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查询name包含包含zhang或者zhao的文档</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;query&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;match&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;zhang zhao&quot;</span><br>        <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>如果需要完全匹配，查询name同时包含zhang和zhao的文档，可以使用match_phrase</p>
+<h3 id="复杂查询"><a href="#复杂查询" class="headerlink" title="复杂查询"></a>复杂查询</h3><blockquote>
+<p>使用布尔查询组合多个查询条件，must match、should match、must not match</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-string">&quot;query&quot;</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;bool&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>            <span class="hljs-attr">&quot;must&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>                <span class="hljs-attr">&quot;match&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>                    <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;zhang&quot;</span><br>                <span class="hljs-punctuation">&#125;</span><br>            <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;must_not&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>                <span class="hljs-attr">&quot;match&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>                    <span class="hljs-attr">&quot;scool&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;shifan&quot;</span><br>                <span class="hljs-punctuation">&#125;</span><br>            <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-attr">&quot;filter&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>                <span class="hljs-attr">&quot;range&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>                    <span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>                        <span class="hljs-attr">&quot;lte&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10</span><span class="hljs-punctuation">,</span><br>                        <span class="hljs-attr">&quot;gte&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><br>                    <span class="hljs-punctuation">&#125;</span><br>                <span class="hljs-punctuation">&#125;</span><br>            <span class="hljs-punctuation">&#125;</span><br>        <span class="hljs-punctuation">&#125;</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>布尔查询中每个 must，should,must_not 都被称为查询子句。每个<br>must 或者 should 查询子句中的条件都会影响文档的相关得分。得分越高，文档跟搜索条件匹配得越好。默认情况下，Elasticsearch 返回的文档会根据相关性算分倒序排列，must_not 子句中认为是过滤条件。它会过滤返回结果，但不会影响文档的相关性算分</p>
+<blockquote>
+<p>你还可以明确指定任意过滤条件去筛选结构化数据文档，如上查询中的filter</p>
+</blockquote>
+<h2 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h2><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-comment">//删除指定索引</span><br><span class="hljs-keyword">DELETE</span> /index<br><span class="hljs-keyword">DELETE</span> /index1,index2<br><span class="hljs-keyword">DELETE</span> /index_*<br><span class="hljs-comment">// 删除全部</span><br><span class="hljs-keyword">DELETE</span> /_all <br><span class="hljs-keyword">DELETE</span> <span class="hljs-comment">/*</span><br></code></pre></td></tr></table></figure>
+
+<p>删除全部索引操作非常危险，禁止措施，elasticsearch.yml 做如下配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">action.destructive_requires_name: true<br></code></pre></td></tr></table></figure>
+<p>这个设置使删除只限于特定名称指向的数据, 而不允许通过指定 _all 或通配符来删除指定索引库</p>
+
                 
               </div>
             
