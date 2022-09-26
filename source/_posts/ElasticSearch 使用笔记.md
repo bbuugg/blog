@@ -71,6 +71,12 @@ xpack.security.enabled: false
 
 > 请求须指定文档的索引名称，唯一的文档 ID，以及请求体中一个或多个键值对
 
+## 创建索引
+
+```
+PUT /user
+```
+
 ## 查看映射
 
 > GET /user/_mapping

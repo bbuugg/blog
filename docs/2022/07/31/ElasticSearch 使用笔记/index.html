@@ -24,7 +24,7 @@
 <meta property="og:description" content="Docker 启动拉取镜像1docker pull elasticsearch  启动容器1docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e &quot;discovery.type&#x3D;single-node&quot; elasticsearch:tag  Elasticsearch">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-31T14:09:17.000Z">
-<meta property="article:modified_time" content="2022-09-25T10:58:35.667Z">
+<meta property="article:modified_time" content="2022-09-26T04:17:54.672Z">
 <meta property="article:author" content="CY">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -305,6 +305,8 @@
 <h1 id="RestApi"><a href="#RestApi" class="headerlink" title="RestApi"></a>RestApi</h1><blockquote>
 <p>请求须指定文档的索引名称，唯一的文档 ID，以及请求体中一个或多个键值对</p>
 </blockquote>
+<h2 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">PUT /user<br></code></pre></td></tr></table></figure>
+
 <h2 id="查看映射"><a href="#查看映射" class="headerlink" title="查看映射"></a>查看映射</h2><blockquote>
 <p>GET &#x2F;user&#x2F;_mapping</p>
 </blockquote>
