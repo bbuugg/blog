@@ -495,6 +495,18 @@ var data = auth.login()
 console.log(auth, data, JwtAuth.type, auth instanceof Auth)
 ```
 
+> 给构造函数参数加入public修饰，等同于创建了同名的成员变量
+
+```typescript
+class User {
+    constructor(public name: string) {
+        console.log(this.name)
+    }
+}
+
+var user = new User("user")
+```
+
 ## 对象
 
 ```typescript

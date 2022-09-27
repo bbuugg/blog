@@ -342,3 +342,19 @@ redis配置文件分为几大区域：
 - LUA脚本（lua scripting）
 - 慢日志（slow log）
 - 事件通知（event notification）
+
+## PHP秒杀示例
+
+```php
+$redis->watch('lucky');        // 监听lucky，lucky的值可以是0
+$value = $redis->get('lucky'); // 获取lucky的值 
+$redis->multi();               // 开启事务
+if ($value < 20) {             // 如果库存足够，则幸运数量加一
+    $redis->incr('lucky');
+}
+if ($redis->exec()) {          // 如果有其它线程改变了lucky的值，则秒杀失败，否则提交事务，秒杀成功，幸运数量加一
+    dump('秒杀成功');
+} else {
+    dump('秒杀失败');
+}
+```
