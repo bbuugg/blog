@@ -1,6 +1,7 @@
 ---
 title: Ubuntu下安装PHP的一系列笔记
 date: 2021-10-15 21:27:36
+cover: /images/20221002/479957f28aaac672b0df86525a7dcde0.jfif
 tags:
 ---
 
@@ -10,6 +11,8 @@ tags:
 ```
 php -i | grep configure
 ```
+
+<!-- more -->
 
 ```
 php --ini

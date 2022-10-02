@@ -1,6 +1,7 @@
 ---
 title: ElasticSearch 使用笔记
 date: 2022-07-31 22:09:17
+cover: https://pic2.zhimg.com/v2-e50030c0ad180b99b51d2505353808cc_720w.jpg?source=172ae18b
 tags:
 ---
 

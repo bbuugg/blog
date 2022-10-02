@@ -1,6 +1,7 @@
 ---
 title: Springboot实践
 date: 2022-07-10 08:47:55
+cover: https://pic2.zhimg.com/v2-704d04346a5e35b9bd3a4923732a589d_180x120.jpg
 tags:
 ---
 

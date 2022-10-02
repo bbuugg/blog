@@ -1,6 +1,7 @@
 ---
 title: htop使用详解
 date: 2022-03-12 18:41:49
+cover: https://techsphinx.com/wp-content/uploads/2020/11/Htop_command-768x480.png
 tags:
 ---
 
@@ -12,6 +13,8 @@ tags:
 - 默认支持图形界面的鼠标操作
 - 可以横向或纵向滚动浏览进程列表，以便看到所有的进程和完整的命令行
 - 杀进程时不需要输入进程号等
+
+<!-- more -->
 
 **二．软件的获取与安装**
 

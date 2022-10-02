@@ -8,6 +8,8 @@ tags:
 
 PHP作为世界上最好的语言，爬页面当然不在话下，官方提供了解析DOM的类DOMDocument和XPATH相关的类DOMXPath，使用起来方便快速，但是对于一些不标准的页面可能会出现各种报错。所以推荐下面一款包，虽然依然是使用上面提到的两个类，但是却做了许多容错处理
 
+<!-- more -->
+
 ```shell
 composer require voku/simple_html_dom
 ```

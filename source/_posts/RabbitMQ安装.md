@@ -1,6 +1,7 @@
 ---
 title: RabbitMQ安装
 date: 2022-01-23 15:56:30
+cover: https://pic4.zhimg.com/v2-15a39b65844fd6d1d786dfec6eea34a3_1200x500.jpg
 tags:
 ---
 
@@ -11,6 +12,8 @@ tags:
 ```shell
 docker pull rabbitmq:management  #management标签的含义是下载的镜像包含manage模块。包含web管理页面。
 ```
+
+<!-- more -->
 
 ## 安装
 

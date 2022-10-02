@@ -1,8 +1,13 @@
 ---
 title: 19个例子学习Oracle
 date: 2021-11-25 23:10:27
+cover: /images/20221002/f35873cf8054bdddd09e2c4825ab11f2.jpg
 tags:
 ---
+
+19个学习Oracle的例子
+
+<!-- more -->
 
 ```sql
 --p1

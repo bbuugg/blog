@@ -1,6 +1,7 @@
 ---
 title: WSL2 使用笔记
 date: 2021-11-05 22:18:35
+cover: /images/20221002/4ef60d7e7f9c9677fdff1d931d71e43b.jpg
 tags:
 ---
 
@@ -22,6 +23,8 @@ wsl --shutdown
 
 可以根据下面文档去掉密码：
 https://www.1kmb.com/note/232.html
+
+<!-- more -->
 
 # 默认使用root用户
 

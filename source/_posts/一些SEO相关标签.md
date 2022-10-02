@@ -1,6 +1,7 @@
 ---
 title: 一些SEO相关标签
 date: 2022-03-06 16:55:50
+cover: https://webdesignerdrops.com/wp-content/uploads/2017/03/WordPress-SEO-Tips-for-Non-Techies.jpg
 tags:
 ---
 
@@ -12,6 +13,8 @@ tags:
 <meta name="keywords" content="网易云音乐，音乐，播放器，网易，下载，播放，DJ，免费，明星，精选，歌单，识别音乐，收藏，分享音乐，音乐互动，高音质，320K，音乐社交，官网，music.163.com" />
 <meta name="Author" contect="CZQ">
 ```
+
+<!-- more -->
 
 # Robots
 

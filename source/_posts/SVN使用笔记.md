@@ -1,8 +1,13 @@
 ---
 title: SVN使用笔记
 date: 2022-04-07 21:45:35
+cover: https://tse1-mm.cn.bing.net/th/id/R-C.80e8b3d17fc241b9e731d24653374a98?rik=Csooa2zqLqfH1Q&riu=http%3a%2f%2fis4.mzstatic.com%2fimage%2fthumb%2fPurple111%2fv4%2f0b%2fd8%2fd7%2f0bd8d7c9-7ee8-4ada-2aa8-dcc5be1b8660%2fsource%2f512x512bb.png&ehk=wKEoAcFSubpSuGBE9ib0s4%2bEkgW9KQGXRsLqMKkW1qE%3d&risl=&pid=ImgRaw&r=0
 tags:
 ---
+
+常用svn命令
+
+<!-- more -->
 
 svnadmin create .
 

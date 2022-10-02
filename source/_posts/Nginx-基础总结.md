@@ -1,10 +1,13 @@
 ---
 title: Nginx-基础总结
 date: 2021-06-16 23:43:03
+cover: /images/20221002/63cdcd1e7be57527e26bf368f4e665f7.jpg
 tags:
 ---
 
 原文地址：https://www.mwbo.com/133.html
+
+<!-- more -->
 
 # 常规配置模板
 

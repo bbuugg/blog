@@ -1,6 +1,7 @@
 ---
 title: git commit 使用及规范
 date: 2022-04-26 19:03:31
+cover: https://tse1-mm.cn.bing.net/th/id/R-C.c81d89b85dae3966a7f951931c2134c9?rik=AI7Qvu8Vx388qg&riu=http%3a%2f%2fwww.artit-k.com%2fwp-content%2fuploads%2f2017%2f09%2fGit-Workshop.png&ehk=hvkGU9i169m0Qglqt%2fbkNg7vEGCGZE23ByZLTjRN6%2f8%3d&risl=&pid=ImgRaw&r=0
 tags:
 ---
 
@@ -9,6 +10,8 @@ tags:
 ### 1 概述
 
 git提交推荐使用命令行工具，请严格遵循提交格式。
+
+<!-- more -->
 
 ### 2 提交格式
 

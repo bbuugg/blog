@@ -9,6 +9,8 @@ tags:
 vim /etc/mysql/mysql.conf.d/mysqld.cnf
 ```
 
+<!-- more -->
+
 ```
 [mysqld]区块添加
 log-bin=mysql-bin(也可指定二进制日志生成的路径，如：log-bin=/opt/Data/mysql-bin)

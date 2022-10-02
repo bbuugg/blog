@@ -6,8 +6,8 @@ tags:
 
 apache 的 
 ```
-&lt;location&gt;
-&lt;/location&gt;
+<location>
+</location>
 ```
 ```
 Substitute https://httpd.apache.org/docs/2.4/mod/mod_substitute.html
@@ -23,20 +23,20 @@ Substitute s///[iqnf]
 
 
 ```
-Substitute &quot;s|((?:\&lt;\s*/body\s*\&gt;\s*)\z)|\
-     &lt;script type=\&quot;text/javascript\&quot;&gt;\
+Substitute "s|((?:\<\s*/body\s*\>\s*)\z)|\
+     <script type=\"text/javascript\">\
        (function () {\
-         var tagjs = document.createElement(\&quot;script\&quot;);\
-         var s = document.getElementsByTagName(\&quot;script\&quot;)[0];\
+         var tagjs = document.createElement(\"script\");\
+         var s = document.getElementsByTagName(\"script\")[0];\
          tagjs.async = true;\
-         tagjs.src = \&quot;//s.tag.cn/tag.js#site=1234\&quot;;\
+         tagjs.src = \"//s.tag.cn/tag.js#site=1234\";\
          s.parentNode.insertBefore(tagjs, s);\
        }());\
-     &lt;/script&gt;\
-     &lt;noscript&gt;\
-       &lt;iframe src=\&quot;//b.tag.cn/iframe?c=1234\&quot; width=\&quot;1\&quot; height=\&quot;1\&quot; frameborder=\&quot;0\&quot; scrolling=\&quot;no\&quot; marginheight=\&quot;0\&quot; marginwidth=\&quot;0\&quot;&gt;\
-     &lt;/iframe&gt;\
-     &lt;/noscript&gt;\
-     &lt;/script&gt;\
-     &lt;/body&gt;\
+     </script>\
+     <noscript>\
+       <iframe src=\"//b.tag.cn/iframe?c=1234\" width=\"1\" height=\"1\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\">\
+     </iframe>\
+     </noscript>\
+     </script>\
+     </body>\
 ```

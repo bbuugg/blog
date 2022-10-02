@@ -1,6 +1,7 @@
 ---
 title: Typescript学习笔记
 date: 2022-09-18 13:06:34
+cover: https://ts1.cn.mm.bing.net/th/id/R-C.11405798e565f05e91995c792278ff4d?rik=IODGhCnazbsF%2fg&riu=http%3a%2f%2fwww.jayleen.wang%2fuploads%2f727a65c7ad06d6cd6e90ae8775ec75b8.png&ehk=WbWyMqj9YFWuRdk0NnCOIged3lN%2b8u7LBjfBW7WGCq8%3d&risl=&pid=ImgRaw&r=0
 tags:
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: PHP yield ，生成器，迭代器，聚合迭代器，协程
 date: 2021-12-26 18:41:13
+cover: /images/20221002/6605d992c6717e8ce8b191333fde8c58.jpg
 tags:
 ---
 
@@ -12,6 +13,8 @@ tags:
 $data = (yield $express);
 ```
 > yield 的左边是一个赋值语句，右边可以是值（也可是表达式） 。而yield 会先执行右边的表达式，并把值$value送到生成器外面。当生成器收到值后，会执行yield左边的语句，赋值给$data.
+
+<!-- more -->
 
 ## 使用
 

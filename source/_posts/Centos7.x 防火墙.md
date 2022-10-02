@@ -1,10 +1,11 @@
 ---
 title: Centos7.x 防火墙
 date: 2021-11-14 22:34:17
+cover: /images/20221002/7757f363fe2a7e6bae816004e1203bee.jpg
 tags:
 ---
 
-&gt; CentOS 7.x 默认使用的是firewall作为防火墙，取代6.x的iptables
+> CentOS 7.x 默认使用的是firewall作为防火墙，取代6.x的iptables
 
 #### 1. 查看防火墙状态
 
@@ -15,6 +16,8 @@ tags:
 ```
 firewall-cmd --state
 ```
+
+<!-- more -->
 
 该命令有两种结果：`running`、`not running`；前者代表是`开启状态`，后者代表是`关闭状态`
 

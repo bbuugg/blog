@@ -1,6 +1,7 @@
 ---
 title: mysql导出csv文件
 date: 2022-06-18 16:04:16
+cover: https://tse2-mm.cn.bing.net/th/id/OIP-C.gUNsLfFkEFpk_hNfvSe-ZQHaHa?pid=ImgDet&rs=1
 tags:
 ---
 
@@ -8,6 +9,8 @@ CSV格式，其要点包括：
 
 - 字段之间以逗号分隔，数据行之间以\r\n分隔；
 - 字符串以半角双引号包围，字符串本身的双引号用两个双引号表示。
+
+<!-- more -->
 
 # 准备
 

@@ -1,6 +1,7 @@
 ---
 title: Docker学习笔记
 date: 2021-12-12 12:38:00
+cover: http://www.x.com/upload/thumb/20211121/284059632911974a54235050016a79e3.png
 tags:
 ---
 
@@ -11,6 +12,8 @@ tags:
 - 中文参考手册:https://docker_practice.gitee.io/zh-cn/
 
 -----
+
+<!-- more -->
 
 ## 1.什么是 Docker
 

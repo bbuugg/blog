@@ -1,6 +1,7 @@
 ---
 title: ubuntu 安装ImageMagic
 date: 2021-08-29 13:36:49
+cover: /images/20221002/9ac181488fd6dd06c818b9643bd255fa.png
 tags:
 ---
 
@@ -8,7 +9,11 @@ I. 安装ImageMagic
 
 1. 安装：
 
-sudo  apt-get install imagemagick
+```shell
+sudo apt-get install imagemagick
+```
+
+<!-- more -->
 
 2. 测试:
 1). 版本察看

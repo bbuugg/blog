@@ -1,6 +1,7 @@
 ---
 title: CURL命令用法介绍
 date: 2021-04-19 18:18:54
+cover: https://img-blog.csdnimg.cn/img_convert/1bac7e6ab831fceabf2133084c7142db.png
 tags:
 ---
 
@@ -9,6 +10,8 @@ tags:
 ```
 curl -I -m 10 -o /dev/null -s -w %{http_code} www.baidu.com
 ```
+
+<!-- more -->
 
 - -I 仅测试HTTP头
 - -m 10 最多查询10s

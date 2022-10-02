@@ -1,16 +1,20 @@
 ---
 title: SSH设置公钥实现免密登录
 date: 2021-05-04 16:51:01
+cover: /images/20221002/62ded1aaf4a03624bb72ccac2461bcda.jpg
 tags:
 ---
 
-&gt; 前提准备： 机器A需要使用免密登录连接机器B。测试机器为笔记本一台【wsl2 ubuntu】， centos7.6一台
+> 前提准备： 机器A需要使用免密登录连接机器B。测试机器为笔记本一台【wsl2 ubuntu】， centos7.6一台
 
 # 准备
 ## 步骤一、首先在机器A上执行下面的命令
 ```shell
 ssh-keygen -t rsa
 ```
+
+<!-- more -->
+
 执行结果如下：
 ```shell
 root@DESKTOP-1SDORV4:~/.ssh# ssh-keygen -t rsa
@@ -24,7 +28,7 @@ Your identification has been saved in /root/.ssh/id_rsa
 Your public key has been saved in /root/.ssh/id_rsa.pub
 The key fingerprint is:
 SHA256:u5Su/vifiFGxYSj8B6+7kLBAgX1iPrSL0scpPK6E4JM root@DESKTOP-1SDORV4
-The key&#039;s randomart image is:
+The key's randomart image is:
 +---[RSA 3072]----+
 |.o               |
 |. *..  .         |
@@ -57,7 +61,7 @@ Last login: Tue May  4 16:40:39 2021 from 111.19.83.22*
 
 Welcome to Alibaba Cloud Elastic Compute Service !
 
-manpath: can&#039;t set the locale; make sure $LC_* and $LANG are correct
+manpath: can't set the locale; make sure $LC_* and $LANG are correct
 [user@iZ2zeir6up2905ofunx6tdZ ~]#
 ```
 

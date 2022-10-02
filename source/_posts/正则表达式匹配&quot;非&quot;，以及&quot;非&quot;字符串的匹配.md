@@ -1,17 +1,18 @@
 ---
-title: 正则表达式匹配&quot;非&quot;，以及&quot;非&quot;字符串的匹配
+title: 正则表达式匹配"非"，以及"非"字符串的匹配
 date: 2021-04-04 15:20:54
 tags:
 ---
 
 #写法介绍
-首先，正则表达式的&quot;非&quot;，代表不想匹配某个字符。
-
+首先，正则表达式的"非"，代表不想匹配某个字符。
 比如字符串 helloword123，/[^0-9]+/g 可以匹配非数字，即匹配结果为 helloword；
+
+<!-- more -->
 
 同样的，/[^he]+/g 可以匹配非h非e的字符，匹配结果为lloword123；
 
-那么 /[^hello]/g 呢？乍一看可能会以为能匹配word123，其实不然，[^] 内的多个字符是&quot;或&quot;的关系存在的，即它们并不是一个整体，/[^hello]/g 表示 非h非e非l非o，并不能理解为 非(hello)，所以匹配结果是 w 和 rd123。
+那么 /[^hello]/g 呢？乍一看可能会以为能匹配word123，其实不然，[^] 内的多个字符是"或"的关系存在的，即它们并不是一个整体，/[^hello]/g 表示 非h非e非l非o，并不能理解为 非(hello)，所以匹配结果是 w 和 rd123。
 
 道理我们都懂，可我们就是想匹配非某个字符串呢？比如某一字符串若是含有hello则无匹配，若是不含hello则匹配，写成[^hello]是显然不行的，[^(hello)] 呢？其实不起作用。
 
@@ -27,22 +28,22 @@ tags:
 
 #用法实战
 
-##匹配&amp;和;之间不含有test的字符
+##匹配&和;之间不含有test的字符
 
 ```
-str = &quot;hello&amp;nbsp;&amp;test1;test&amp;qout;&quot;;
+str = "hello&nbsp;&test1;test"";
 ```
 
-正则表达式：`/&amp;((?!test).)+;/g`
+正则表达式：`/&((?!test).)+;/g`
 
-匹配结果：`&amp;nbsp;` 和 `&amp;qout;`
+匹配结果：`&nbsp;` 和 `"`
 
 ## 匹配不含有`&lt;img&gt;`标签的`&lt;div&gt;&lt;/div&gt;`标签
 
 ```
-str = &quot;&lt;div id='1'&gt;&lt;img class='xx'&gt;&lt;/div&gt;&lt;div id='1'&gt;&lt;input type=''text&quot;&gt;&lt;/div&gt;&quot;;
+str = "&lt;div id='1'&gt;&lt;img class='xx'&gt;&lt;/div&gt;&lt;div id='1'&gt;&lt;input type=''text"&gt;&lt;/div&gt;";
 ```
 
 正则表达式：` /&lt;div[^&gt;]*&gt;((?!&lt;img[^&gt;]*&gt;).)+&lt;/div&gt;/g`
 
-匹配结果：`&lt;div id='1'&gt;&lt;input type=''text&quot;&gt;&lt;/div&gt;`
+匹配结果：`&lt;div id='1'&gt;&lt;input type=''text"&gt;&lt;/div&gt;`

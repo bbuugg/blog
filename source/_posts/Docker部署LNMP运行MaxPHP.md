@@ -14,6 +14,8 @@ tags:
 apt install docker.io
 ```
 
+<!-- more -->
+
 ## 安装软件
 
 lnmp指的是linux，nginx，mysql，php。 MaxPHP是运行在php的cli模式下的框架，所以不需要安装fpm。下面介绍docker安装lnmp的一些步骤，来运行MaxPHP类似的框架，这里软件均选择最新版本

@@ -1,10 +1,13 @@
 ---
 title: Vue操作select
 date: 2022-05-22 16:59:48
+cover: https://tse2-mm.cn.bing.net/th/id/OIP-C.HVhbb7dbGzpPL2gtNXKVCgHaE7?pid=ImgDet&rs=1
 tags:
 ---
 
 Vue操作select
+
+<!-- more -->
 
 html如下
 ```html

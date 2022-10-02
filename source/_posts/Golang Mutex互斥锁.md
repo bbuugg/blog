@@ -1,12 +1,15 @@
 ---
 title: Golang Mutex互斥锁
 date: 2022-04-24 18:58:24
+cover: https://img-blog.csdnimg.cn/20210408215347576.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0szNDZLMzQ2,size_16,color_FFFFFF,t_70
 tags:
 ---
 
 ### 互斥锁
 
 其中Mutex为互斥锁，Lock()加锁，Unlock()解锁，使用Lock()加锁后，便不能再次对其进行加锁，直到利用Unlock()解锁对其解锁后，才能再次加锁．适用于读写不确定场景，即读写次数没有明显的区别，并且只允许只有一个读或者写的场景，所以该锁叶叫做全局锁．
+
+<!-- more -->
 
 ```
 package main

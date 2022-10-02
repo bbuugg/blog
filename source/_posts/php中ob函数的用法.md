@@ -19,6 +19,8 @@ tags:
 
 而默认直接是开启缓冲区的，所以我们可以直接不用ob_start()，所以我先把缓冲区关闭
 
+<!-- more -->
+
 下面几个函数的用法
 
 - ob_start() - 打开缓冲区
@@ -29,21 +31,21 @@ tags:
 - ob_end_clean() - 清空（擦除）缓冲区并关闭输出缓冲
 - flush() - 刷新输出缓冲　
 
-&gt; ob_start()在服务器打开一个缓冲区来保存所有的输出。所以在任何时候使用echo ，输出都将被加入缓冲区中，直到程序运行结束或者使用ob_flush()来结束。然后在服务器中缓冲区的内容才会发送到浏览器，由浏览器来解析显示。
+> ob_start()在服务器打开一个缓冲区来保存所有的输出。所以在任何时候使用echo ，输出都将被加入缓冲区中，直到程序运行结束或者使用ob_flush()来结束。然后在服务器中缓冲区的内容才会发送到浏览器，由浏览器来解析显示。
 
 ```
 ob_start();
 
-echo &quot;Hello &quot;;
+echo "Hello ";
 
 $out1 = ob_get_contents();
 
-echo &quot;World&quot;;
+echo "World";
 
 $out2 = ob_get_contents();123456789
 ```
 
-&gt; 输出：
+> 输出：
 
 ```
 Hello World1
@@ -54,11 +56,11 @@ Hello World1
 ```
 ob_start();
 
-echo &quot;Hello &quot;;
+echo "Hello ";
 
 $out1 = ob_get_contents();
 
-echo &quot;World&quot;;
+echo "World";
 
 $out2 = ob_get_contents();
 
@@ -70,11 +72,11 @@ ob_end_clean();1234567891011
 ```
 ob_start();
 
-echo &quot;Hello &quot;;
+echo "Hello ";
 
 $out1 = ob_get_contents();
 
-echo &quot;World&quot;;
+echo "World";
 
 $out2 = ob_get_contents();
 
@@ -84,38 +86,38 @@ ob_end_clean();
 var_dump($out1, $out2);1234567891011121314
 ```
 
-&gt; 输出：
+> 输出：
 
 ```
-string(6) &quot;Hello &quot; string(11) &quot;Hello World&quot;1
+string(6) "Hello " string(11) "Hello World"1
 ```
 
-&gt; 接下来讲ob_clean()跟ob_end_clean()的区别
+> 接下来讲ob_clean()跟ob_end_clean()的区别
 
-&gt; 使用 ob_end_clean()
+> 使用 ob_end_clean()
 
 ```
 ob_start();
 
-echo &quot;Hello &quot;;
+echo "Hello ";
 
 $out1 = ob_get_contents();
 
-echo &quot;World1&quot;;
+echo "World1";
 
 $out2 = ob_get_contents();
 
 ob_end_clean();
 
-echo &quot;World2&lt;br&gt;&quot;;
-echo &quot;World3&lt;br&gt;&quot;;
+echo "World2<br>";
+echo "World3<br>";
 
 $out3 = ob_get_contents();
 
 var_dump($out3);123456789101112131415161718
 ```
 
-&gt; 输出：
+> 输出：
 
 ```
 World2
@@ -123,80 +125,80 @@ World3
 bool(false)123
 ```
 
-&gt; 使用 ob_clean()
+> 使用 ob_clean()
 
 ```
 ob_start();
 
-echo &quot;Hello &quot;;
+echo "Hello ";
 
 $out1 = ob_get_contents();
 
-echo &quot;World1&quot;;
+echo "World1";
 
 $out2 = ob_get_contents();
 
 ob_clean();
 
-echo &quot;World2&lt;br&gt;&quot;;
-echo &quot;World3&lt;br&gt;&quot;;
+echo "World2<br>";
+echo "World3<br>";
 
 $out3 = ob_get_contents();
 
 var_dump($out3);123456789101112131415161718
 ```
 
-&gt; 输出：
+> 输出：
 
 ```
 World2
 World3
-string(20) &quot;World2
+string(20) "World2
 World3
-&quot;12345
+"12345
 
 ```
 
-&gt; 这里我们对out3使用转义函数
+> 这里我们对out3使用转义函数
 
 ```
 var_dump(htmlentities($out3));1
 
 ```
 
-&gt; 输出：
+> 输出：
 
 ```
 World
 World
-string(32) &quot;World&lt;br/&gt;World&lt;br/&gt;&quot;123
+string(32) "World<br/>World<br/>"123
 
 ```
 
-&gt; 解释
+> 解释
 
 ob_end_clean() 跟ob_clean() 都是清空了缓冲区，不让echo输出到浏览器,这是共同点，而不同点是ob_end_clean()还关闭了缓冲区
 
-&gt; 接下来讲ob_end_flush()跟ob_flush()跟flush()的区别
+> 接下来讲ob_end_flush()跟ob_flush()跟flush()的区别
 
-&gt; 使用ob_end_flush()
+> 使用ob_end_flush()
 
 ```
 ob_start();
 
-echo &quot;Hello&lt;br/&gt;&quot;;
+echo "Hello<br/>";
 
 $out1 = ob_get_contents();
 
-echo &quot;World1&lt;br/&gt;&quot;;
+echo "World1<br/>";
 
 $out2 = ob_get_contents();
 
 
 ob_end_flush();
 
-echo &quot;World2&lt;br/&gt;&quot;;
-echo &quot;World3&lt;br/&gt;&quot;;
+echo "World2<br/>";
+echo "World3<br/>";
 
 $out3 = ob_get_contents();
 
@@ -205,37 +207,37 @@ var_dump(htmlentities($out3));1234567891011121314151617181920
 
 ```
 
-&gt; 输出
+> 输出
 
 ```
 Hello
 World1
 World2
 World3
-string(0) &quot;&quot;12345
+string(0) ""12345
 
 ```
 
 补充：这里为了显示容易观察，我全部都给了` `
 
-&gt; 使用ob_flush()
+> 使用ob_flush()
 
 ```
 ob_start();
 
-echo &quot;Hello&lt;br/&gt;&quot;;
+echo "Hello<br/>";
 
 $out1 = ob_get_contents();
 
-echo &quot;World1&lt;br/&gt;&quot;;
+echo "World1<br/>";
 
 $out2 = ob_get_contents();
 
 
 ob__flush();
 
-echo &quot;World2&lt;br/&gt;&quot;;
-echo &quot;World3br/&gt;&quot;;
+echo "World2<br/>";
+echo "World3br/>";
 
 $out3 = ob_get_contents();
 
@@ -244,35 +246,35 @@ var_dump(htmlentities($out3));1234567891011121314151617181920
 
 ```
 
-&gt; 输出
+> 输出
 
 ```
 Hello
 World1
 World2
 World3
-string(32) &quot;World2&lt;br/&gt;World3&lt;br/&gt;&quot;12345
+string(32) "World2<br/>World3<br/>"12345
 
 ```
 
-&gt; 使用flush()
+> 使用flush()
 
 ```
 ob_start();
 
-echo &quot;Hello&lt;br/&gt;&quot;;
+echo "Hello<br/>";
 
 $out1 = ob_get_contents();
 
-echo &quot;World1&lt;br/&gt;&quot;;
+echo "World1<br/>";
 
 $out2 = ob_get_contents();
 
 
 flush();
 
-echo &quot;World2&lt;br/&gt;&quot;;
-echo &quot;World3br/&gt;&quot;;
+echo "World2<br/>";
+echo "World3br/>";
 
 $out3 = ob_get_contents();
 
@@ -280,30 +282,30 @@ $out3 = ob_get_contents();
 var_dump(htmlentities($out3));1234567891011121314151617181920
 ```
 
-&gt; 输出
+> 输出
 
 ```
 Hello
 World1
 World2
 World3
-string(67) &quot;Hello&lt;br/&gt;World1&lt;br/&gt;World2&lt;br/&gt;World3&lt;br/&gt;&quot;12345
+string(67) "Hello<br/>World1<br/>World2<br/>World3<br/>"12345
 ```
 
-&gt; 区别
+> 区别
 
 可以看出ob_end_flush() 是输出了缓冲区的内容并且关闭了缓冲区,而ob_flush()只是刷出了缓冲区内容，相当于将缓冲区清空，而flush()输出了缓冲区内容也没有将缓冲区清空，所以下面的缓冲区内容还会继续追加。
 
-&gt; 总结
+> 总结
 
 只能在实践中继续成长，有什么不对的地方望大家指出。
 
 https://blog.csdn.net/qq_33862778/article/details/80787510
 
-header(&quot;Location:login.php&quot;)应该注意的几个问题
-header(&quot;Location:login.php&quot;)应该注意的几个问题
+header("Location:login.php")应该注意的几个问题
+header("Location:login.php")应该注意的几个问题
 
-header(&quot;Location:&quot;)作为php的转向语句。其实在使用中，他有几点需要注意的地方。
+header("Location:")作为php的转向语句。其实在使用中，他有几点需要注意的地方。
 
 1、要求header前没有任何输出
 
@@ -311,7 +313,7 @@ header(&quot;Location:&quot;)作为php的转向语句。其实在使用中，他
 
 具体的语句有： ob_start(); ob_end_clean();ob_flush();.........
 
-2、在header(&quot;Location:&quot;)后要及时exit
+2、在header("Location:")后要及时exit
 
 否则他是会继续执行的，虽然在浏览器端你看不到相应的数据出现，但是如果你进行抓包分析的话，你就会看到下面的语句也是在执行的。而且被输送到了浏览器客户端，只不过是没有被浏览器执行为html而已（浏览器执行了header进行了转向操作）。
 
@@ -325,7 +327,7 @@ if ( something ){
 
 ob_end_clean();
 
-header(&quot;Location: yourlocation&quot;)；
+header("Location: yourlocation")；
 
 exit;
 
@@ -363,8 +365,8 @@ Output Control 函数可以让你自由控制脚本中数据的输出。它非�
 说明：这个函数不会输出内部缓冲区的内容而是把它删除！
 7、ob_implicit_flush：打开或关闭绝对刷新
 使用方法：void ob_implicit_flush ([int flag])
-说明：使用过Perl的人都知道|=x的意义，这个字符串可以打开/关闭缓冲区，而obimplicitflush函数也和那个一样，默认为关闭缓冲区，打开绝对输出后，每个脚本输出都直接发送到浏览器，不再需要调用flush()obstart()开始输出缓冲,这时PHP停止输出,在这以后的输出都被转到一个内部的缓冲里.obgetcontents()这个函数返回内部缓冲的内容.这就等于把这些输出都变成了字符串.obgetlength()返回内部缓冲的长度.obendflush()结束输出缓冲,并输出缓冲里的内容.在这以后的输出都是正常输出.obendclean()结束输出缓冲,并扔掉缓冲里的内容.举个例子,vardump()函数输出一个变量的结构和内容,这在调试的时候很有用.但如果变量的内容里有&lt;,&gt;等HTML的特殊字符,输出到网页里就看不见了.怎么办呢?用输出缓冲函数能很容易的解决这个问题.obstart();vardump(var);
+说明：使用过Perl的人都知道|=x的意义，这个字符串可以打开/关闭缓冲区，而obimplicitflush函数也和那个一样，默认为关闭缓冲区，打开绝对输出后，每个脚本输出都直接发送到浏览器，不再需要调用flush()obstart()开始输出缓冲,这时PHP停止输出,在这以后的输出都被转到一个内部的缓冲里.obgetcontents()这个函数返回内部缓冲的内容.这就等于把这些输出都变成了字符串.obgetlength()返回内部缓冲的长度.obendflush()结束输出缓冲,并输出缓冲里的内容.在这以后的输出都是正常输出.obendclean()结束输出缓冲,并扔掉缓冲里的内容.举个例子,vardump()函数输出一个变量的结构和内容,这在调试的时候很有用.但如果变量的内容里有<,>等HTML的特殊字符,输出到网页里就看不见了.怎么办呢?用输出缓冲函数能很容易的解决这个问题.obstart();vardump(var);
 out=obgetcontents();obendclean();这时vardump()的输出已经存在out 里了. 你可以现在就输出:
-echo '&lt;pre&gt;' . htmlspecialchars($out) . '&lt;/pre&gt;' ;
+echo '<pre>' . htmlspecialchars($out) . '</pre>' ;
 或者等到将来, 再或者把这个字符串送到模板(Template)里再输出.
 https://www.cnblogs.com/suizhikuo/archive/2012/11/26/2789101.html

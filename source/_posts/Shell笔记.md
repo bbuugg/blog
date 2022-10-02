@@ -1,15 +1,19 @@
 ---
 title: Shell笔记
 date: 2021-04-05 22:44:57
+cover: https://tse1-mm.cn.bing.net/th/id/R-C.a6e88686b0f7dda73f772fdb7ea5eb38?rik=WywAPm%2fgbGJvEA&riu=http%3a%2f%2ffullhdpictures.com%2fwp-content%2fuploads%2f2016%2f06%2fShell-Logo-Wallpaper.jpg&ehk=09BEzQavZ8lju%2bU3VS6B75zB6yVgP%2fauUO%2fr1VvVTXU%3d&risl=&pid=ImgRaw&r=0
 tags:
 ---
 
 #let
->let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。
+> let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。
 
 ```shell
 let arg [arg ...]
 ```
+
+<!-- more -->
+
 ## 实例：
 自加操作：`let no++`
 

@@ -1,6 +1,7 @@
 ---
 title: 如何使用Telnet
 date: 2021-11-21 15:07:42
+cover: /images/20221002/c5696f1aa7d6de580dd929571f3a07fb.webp
 tags:
 ---
 
@@ -13,6 +14,8 @@ tags:
 ```
 telnet chengyao.xyz 80
 ```
+
+<!-- more -->
 
 ## 发送数据
 

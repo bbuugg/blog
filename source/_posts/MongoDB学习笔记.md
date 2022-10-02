@@ -1,6 +1,7 @@
 ---
 title: MongoDB学习笔记
 date: 2021-11-28 20:07:11
+cover: /images/20221002/f54ff79bb8c0e8c060e84b4f87bfb73f.jpg
 tags:
 ---
 
@@ -14,7 +15,7 @@ tags:
 
 **不适用于**：电子商务系统等需要连多表查询的功能。
 
-
+<!-- more -->
 
 # 概念
 

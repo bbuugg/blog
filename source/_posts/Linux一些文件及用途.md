@@ -27,6 +27,8 @@ HWADDR=00:0C:29:FE:1A:09        #网卡MAC地址
 TYPE=Ethernet       #网卡类型为以太网
 ```
 
+<!-- more -->
+
 ## /etc/sysconfig/i18n
 
 i18n是internationalization的缩写，意思指i和n之间有18个字母。/etc/sysconfig/i18n里面存放着系统的区域语言设置，可以使linux系统支持国际化信息显示。就是支持多种字符集的转换，避免出现乱码。同一时间i18n只能是英文和一种选定的语言，例如英文+中文、英文+德文、英文+韩文等等。

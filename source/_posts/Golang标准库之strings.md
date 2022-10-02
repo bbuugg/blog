@@ -1,14 +1,17 @@
 ---
 title: Golang标准库之strings
 date: 2021-11-19 18:53:19
+cover: /images/20221002/6e18c44d7a4d123919bf1c513224408b.png
 tags:
 ---
 
-&gt; package strings
+> package strings
 
 ```go
-import &quot;strings&quot;
+import "strings"
 ```
+
+<!-- more -->
 
 strings包实现了用于操作字符的简单函数。
 
@@ -232,7 +235,7 @@ Example
 func Replace(s, old, new string, n int) string
 ```
 
-返回将s中前n个不重叠old子串都替换为new的新字符串，如果n&lt;0会替换所有old子串。
+返回将s中前n个不重叠old子串都替换为new的新字符串，如果n<0会替换所有old子串。
 
 Example
 
@@ -365,9 +368,9 @@ func SplitN(s, sep string, n int) []string
 用去掉s中出现的sep的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个sep都会进行一次切割，即使两个sep相邻，也会进行两次切割）。如果sep为空字符，Split会将s切分成每一个unicode码值一个字符串。参数n决定返回的切片的数目：
 
 ```
-n &gt; 0 : 返回的切片最多n个子字符串；最后一个子字符串包含未进行切割的部分。
+n > 0 : 返回的切片最多n个子字符串；最后一个子字符串包含未进行切割的部分。
 n == 0: 返回nil
-n &lt; 0 : 返回所有的子字符串组成的切片
+n < 0 : 返回所有的子字符串组成的切片
 ```
 
 Example
@@ -391,9 +394,9 @@ func SplitAfterN(s, sep string, n int) []string
 用从s中出现的sep后面切断的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个sep都会进行一次切割，即使两个sep相邻，也会进行两次切割）。如果sep为空字符，Split会将s切分成每一个unicode码值一个字符串。参数n决定返回的切片的数目：
 
 ```
-n &gt; 0 : 返回的切片最多n个子字符串；最后一个子字符串包含未进行切割的部分。
+n > 0 : 返回的切片最多n个子字符串；最后一个子字符串包含未进行切割的部分。
 n == 0: 返回nil
-n &lt; 0 : 返回所有的子字符串组成的切
+n < 0 : 返回所有的子字符串组成的切
 ```
 
 Example

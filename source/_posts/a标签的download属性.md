@@ -6,6 +6,8 @@ tags:
 
 a标签加上downlaod属性后，就可完成对href属性链接文件的下载，但仅仅是限于同源文件，如果是非同源，download属性会失效。没有download属性的时候，a标签的默认行为是链接跳转进行预览，而针对浏览无法预览的文件，也可达到下载的效果。怎么解决下载非同源文件的问题？？ 例如image图片
 
+<!-- more -->
+
 方法： 通过canvas绘制，生成临时路径 (
 
 data协议路径  // data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...9oADAMBAAIRAxEAPwD/AD/6AP/Z")，这个路径就是一个同源路径，然后传入下载函数进行下载。 

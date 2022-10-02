@@ -1,12 +1,15 @@
 ---
 title: PHP8配置opcache并开启jit
 date: 2022-06-15 00:00:10
+cover: https://tse2-mm.cn.bing.net/th/id/OIP-C.0WhxJnoBjmg3p3YiPOuN-gHaD4?pid=ImgDet&rs=1
 tags:
 ---
 
 # 配置
 
 php编译参数需要加上--enable-opcache 
+
+<!-- more -->
 
 配置文件如下：
 

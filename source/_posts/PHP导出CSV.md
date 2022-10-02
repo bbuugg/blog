@@ -1,6 +1,7 @@
 ---
 title: PHP导出CSV
 date: 2022-04-21 23:32:59
+cover: https://tse2-mm.cn.bing.net/th/id/OIP-C.gUNsLfFkEFpk_hNfvSe-ZQHaHa?pid=ImgDet&rs=1
 tags:
 ---
 
@@ -13,6 +14,8 @@ fopen
 fputs
 fputcsv
 ```
+
+<!-- more -->
 
 # 示例代码
 

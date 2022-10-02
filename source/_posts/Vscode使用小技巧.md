@@ -1,6 +1,7 @@
 ---
 title: Vscode使用小技巧
 date: 2021-04-07 18:39:11
+cover: /images/20221002/e49c28ada95f14ad22b9a1cd274f4a09.png
 tags:
 ---
 

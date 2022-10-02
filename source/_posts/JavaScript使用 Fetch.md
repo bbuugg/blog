@@ -1,6 +1,7 @@
 ---
 title: JavaScript使用 Fetch
 date: 2022-05-22 19:24:21
+cover: https://tse3-mm.cn.bing.net/th/id/OIP-C.jVzsdpfvdnQFXsELK5etlQHaDg?pid=ImgDet&rs=1
 tags:
 ---
 

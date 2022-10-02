@@ -4,9 +4,12 @@ date: 2021-05-16 22:30:25
 tags:
 ---
 
-&gt; 新技能GET感谢zmki小伙伴
+> 新技能GET感谢zmki小伙伴
 
 ![](/upload/79af1c468b846726c87cc1afeada45a3.jpg)
+
+<!-- more -->
+
 **CSS代码**
 
 ```css
@@ -122,15 +125,15 @@ tags:
 
 **调用代码**
 ```html
-&lt;div id=&quot;zm_mhz&quot;&gt; 迷幻紫&lt;/div&gt;
-&lt;div id=&quot;zm_xgh&quot;&gt; 西瓜红&lt;/div&gt;
-&lt;div id=&quot;zm_tkzj&quot;&gt;天空之境&lt;/div&gt;
-&lt;div id=&quot;zm_xyz&quot;&gt;小宇宙&lt;/div&gt;
-&lt;div id=&quot;zm_gll&quot;&gt;撖榄绿&lt;/div&gt;
-&lt;div id=&quot;zm_xty&quot;&gt;小太阳&lt;/div&gt;
-&lt;div id=&quot;zm_yyz&quot;&gt;优雅紫&lt;/div&gt;
-&lt;div id=&quot;zm_szh&quot;&gt;深邃黑&lt;/div&gt;
-&lt;div id=&quot;zm_wbk&quot;&gt;无边框&lt;/div&gt;
+<div id="zm_mhz"> 迷幻紫</div>
+<div id="zm_xgh"> 西瓜红</div>
+<div id="zm_tkzj">天空之境</div>
+<div id="zm_xyz">小宇宙</div>
+<div id="zm_gll">撖榄绿</div>
+<div id="zm_xty">小太阳</div>
+<div id="zm_yyz">优雅紫</div>
+<div id="zm_szh">深邃黑</div>
+<div id="zm_wbk">无边框</div>
  
 ```
 

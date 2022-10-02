@@ -8,6 +8,8 @@ tags:
 
 `Cache-Control` 通用消息头字段，被用于在http请求和响应中，通过指定指令来实现缓存机制。缓存指令是单向的，这意味着在请求中设置的指令，不一定被包含在响应中。
 
+<!-- more -->
+
 | Header type                                                  | [General header](https://developer.mozilla.org/zh-CN/docs/Glossary/General_header) |
 | :----------------------------------------------------------- | ------------------------------------------------------------ |
 | [Forbidden header name](https://developer.mozilla.org/zh-CN/docs/Glossary/Forbidden_header_name) | no                                                           |

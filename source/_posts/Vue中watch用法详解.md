@@ -1,6 +1,7 @@
 ---
 title: Vue中watch用法详解
 date: 2022-05-21 22:42:47
+cover: https://swansoftwaresolutions.com/wp-content/uploads/2020/01/Benefits-of-Using-VUE.JS.jpeg
 tags:
 ---
 
@@ -8,7 +9,7 @@ tags:
 
  当firstName值变化时，watch监听到并且执行
 
-
+<!-- more -->
 
 ```jsx
 <div>

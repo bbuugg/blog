@@ -1,6 +1,7 @@
 ---
 title: RBAC权限系统分析、设计与实现
 date: 2022-01-05 21:32:42
+cover: /images/20221002/0fa564bbfe97a5275de41e6e072f1445.jpg
 tags:
 ---
 
@@ -9,6 +10,8 @@ tags:
 最近，因为项目上需要设计实现一个权限管理模块，所以专门整理总结了RBAC的一些知识。
 
 目前，使用最普遍的权限管理模型正是RBAC（Role-Based Access Control）模型，这篇文章也主要是介绍基于RBAC的权限管理系统，我会从RBAC是什么、如何设计RBAC两部分来介绍。
+
+<!-- more -->
 
 # 一、RBAC是什么
 

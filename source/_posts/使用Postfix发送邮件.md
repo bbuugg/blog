@@ -1,6 +1,7 @@
 ---
 title: 使用Postfix发送邮件
 date: 2021-07-10 12:48:31
+cover: /images/20221002/2123bf62966d704eff8297d23be2795c.png
 tags:
 ---
 
@@ -10,6 +11,8 @@ tags:
 sudo apt-get install postfix 
 sudo apt-get install mailutils
 ```
+
+<!-- more -->
 
 我这边是按照默认配置安装的。
 

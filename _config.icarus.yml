@@ -147,7 +147,7 @@ widgets:
         collapsed: true
         depth: 3
     -
-        position: left
+        position: right
         type: categories
     -
         position: right

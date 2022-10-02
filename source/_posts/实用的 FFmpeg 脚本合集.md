@@ -4,6 +4,10 @@ date: 2022-05-05 13:55:16
 tags:
 ---
 
+分享一些使用的FFmpeg脚本
+
+<!-- more -->
+
 # FFMPEG实例
 
 [(50条消息) FFmpeg命令实例合集_张雨zy的博客-CSDN博客_ffmpeg gblur](https://blog.csdn.net/yu540135101/article/details/103025957)

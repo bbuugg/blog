@@ -1,6 +1,7 @@
 ---
 title: Supervisor 使用踩坑笔记 【配置syncd】
 date: 2021-10-30 11:43:09
+cover: https://tse2-mm.cn.bing.net/th/id/OIP-C.JD8jlC184GfGpX9NNub-RwAAAA?pid=ImgDet&rs=1
 tags:
 ---
 
@@ -9,6 +10,8 @@ tags:
 
 我主要是看了这篇文章的讲解：https://www.1kmb.com/note/284.html
 内容很不错，推荐在这里。
+
+<!-- more -->
 
 # 实操
 

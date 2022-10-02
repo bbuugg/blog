@@ -1,12 +1,15 @@
 ---
 title: 自动化SQL注入工具 sqlmap 中文手册
 date: 2021-12-05 11:49:19
+cover: https://tse4-mm.cn.bing.net/th/id/OIP-C.49OXDwoTEU-4HhgU6yftlwHaFj?pid=ImgDet&rs=1
 tags:
 ---
 
 ## 简介
 
 sqlmap是一个开源的渗透测试工具，它可以自动化检测和利用SQL注入漏洞并接管数据库服务器。它有一个强大的检测引擎，许多适合于终极渗透测试的良好特性和众多的操作选项，从数据库指纹、数据获取到访问底层文件系统、执行操作系统命令。
+
+<!-- more -->
 
 ## 特点
 

@@ -1,6 +1,7 @@
 ---
 title: Linux命令
 date: 2021-11-07 17:26:40
+cover: /images/20221002/481609447b841bc3b398b04756767e24.jpg
 tags:
 ---
 
@@ -18,6 +19,7 @@ ps -ef | grep redis
 ls -lp /proc/123/cwd
 ```
 
+<!-- more -->
 
 # cat命令
 

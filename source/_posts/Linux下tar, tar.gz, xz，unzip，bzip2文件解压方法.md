@@ -1,6 +1,7 @@
 ---
 title: Linux下tar, tar.gz, xz，unzip，bzip2文件解压方法
 date: 2022-04-24 19:11:45
+cover: https://tse1-mm.cn.bing.net/th/id/R-C.59ea81883a2d99c42444a7b9c0d581c8?rik=Ks1hzEuACgHScA&riu=http%3a%2f%2fdigitizor.com%2fwp-content%2fuploads%2f2009%2f10%2furl.png&ehk=8MNtdUfove24Besa%2fYqPXbe7hzdANF8GPbujtS8Y%2fH0%3d&risl=&pid=ImgRaw&r=0
 tags:
 ---
 
@@ -28,6 +29,8 @@ tar -zcvf  back.tar.gz .[!.]* *
 ```
 
 > tar czvf test.tar.gz * 压缩当前文件夹下非[隐藏文件]的文件; tar czvf test.tar.gz .[!.]* 压缩当前文件夹下[隐藏文件]排除两个[隐藏文件]夹"."和“..”
+
+<!-- more -->
 
 先创建tar包最后删除
 

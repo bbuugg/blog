@@ -30,6 +30,8 @@ function quickSort($arr)
 }
 ```
 
+<!-- more -->
+
 # 无限级分类
 
 例如数据格式如下：

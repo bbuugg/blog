@@ -19,6 +19,8 @@ show errors
 show warnings
 ```
 
+<!-- more -->
+
 # set names 
 
 设置编码
