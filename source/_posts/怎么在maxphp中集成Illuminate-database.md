@@ -8,6 +8,8 @@ tags:
 composer require illuminate/database illuminate/pagination illuminate/events
 ```
 
+<!-- more -->
+
 # 配置
 ```php
 <?php

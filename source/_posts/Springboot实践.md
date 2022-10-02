@@ -8,6 +8,8 @@ tags:
 
 [(50条消息) 创建一个Spring Boot项目_慕北丶的博客-CSDN博客_创建springboot项目](https://blog.csdn.net/qq_42539533/article/details/90607415)
 
+<!-- more -->
+
 ## Maven更换仓库
 
 从官方仓库[http://repo.maven.apache.org/maven2/](https://link.jianshu.com/?t=http://repo.maven.apache.org/maven2/) 下载较慢，可以设置[maven](https://so.csdn.net/so/search?q=maven&spm=1001.2101.3001.7020)仓库源为国内镜像，加快依赖的下载。
