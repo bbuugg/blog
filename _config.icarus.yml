@@ -110,7 +110,7 @@ share:
     install_url: 'https://www.chengyao.xyz'
 sidebar:
     left:
-        sticky: false
+        sticky: true
     right:
         sticky: false
 widgets:
@@ -141,7 +141,7 @@ widgets:
             #     icon: fas fa-rss
             #     url: /
     -
-        position: left
+        position: right
         type: toc
         index: true
         collapsed: true
@@ -159,13 +159,13 @@ widgets:
         position: right
         type: recent_posts
     -
-        position: right
+        position: left
         type: links
         links:
             maxphp: https://github.com/marxphp
-    -
-        position: left
-        type: archives
+    # -
+    #     position: right
+    #     type: archives
     # -
     #     position: left
     #     type: subscribe_email
