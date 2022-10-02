@@ -128,18 +128,18 @@ widgets:
             Github:
                 icon: fab fa-github
                 url: https://github.com/tab-engineer
-            Facebook:
-                icon: fab fa-facebook
-                url: https://facebook.com
-            Twitter:
-                icon: fab fa-twitter
-                url: https://twitter.com
-            Dribbble:
-                icon: fab fa-dribbble
-                url: https://dribbble.com
-            RSS:
-                icon: fas fa-rss
-                url: /
+            # Facebook:
+            #     icon: fab fa-facebook
+            #     url: https://facebook.com
+            # Twitter:
+            #     icon: fab fa-twitter
+            #     url: https://twitter.com
+            # Dribbble:
+            #     icon: fab fa-dribbble
+            #     url: https://dribbble.com
+            # RSS:
+            #     icon: fas fa-rss
+            #     url: /
     -
         position: left
         type: toc
@@ -148,25 +148,24 @@ widgets:
         depth: 3
     -
         position: left
-        type: links
-        links:
-            Hexo: https://hexo.io
-            Bulma: https://bulma.io
-    -
-        position: left
         type: categories
     -
-        position: left
-        type: recent_posts
-    -
-        position: left
-        type: archives
-    -
-        position: left
+        position: right
         type: tags
         order_by: name
         amount: 
         show_count: true
+    -
+        position: right
+        type: recent_posts
+    -
+        position: right
+        type: links
+        links:
+            maxphp: https://github.com/marxphp
+    -
+        position: left
+        type: archives
     # -
     #     position: left
     #     type: subscribe_email
