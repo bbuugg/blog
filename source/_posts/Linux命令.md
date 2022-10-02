@@ -706,3 +706,9 @@ expect eof
 
 expect -f pull.sh #运行脚本
 ```
+
+## 查看公网ip
+
+```shell
+curl ifconfig.me
+```

@@ -1,642 +1,133 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Docker部署LNMP运行MaxPHP - 笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="环境 linux[腾讯云ubuntu20.04]  也可以手动安装docker 1apt install docker.io  安装软件lnmp指的是linux，nginx，mysql，php。 MaxPHP是运行在php的cli模式下的框架，所以不需要安装fpm。下面介绍docker安装lnmp的一些步骤，来运行MaxPHP类似的框架，这里软件均选择最新版本  为了多个容器可以通信，需要新建一个"><meta property="og:type" content="blog"><meta property="og:title" content="Docker部署LNMP运行MaxPHP"><meta property="og:url" content="https://www.chengyao.xyz/2022/04/06/Docker%E9%83%A8%E7%BD%B2LNMP%E8%BF%90%E8%A1%8CMaxPHP/"><meta property="og:site_name" content="笔记"><meta property="og:description" content="环境 linux[腾讯云ubuntu20.04]  也可以手动安装docker 1apt install docker.io  安装软件lnmp指的是linux，nginx，mysql，php。 MaxPHP是运行在php的cli模式下的框架，所以不需要安装fpm。下面介绍docker安装lnmp的一些步骤，来运行MaxPHP类似的框架，这里软件均选择最新版本  为了多个容器可以通信，需要新建一个"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:published_time" content="2022-04-06T15:37:38.000Z"><meta property="article:modified_time" content="2022-08-28T02:23:10.673Z"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz/2022/04/06/Docker%E9%83%A8%E7%BD%B2LNMP%E8%BF%90%E8%A1%8CMaxPHP/"},"headline":"Docker部署LNMP运行MaxPHP","image":["https://www.chengyao.xyz/img/og_image.png"],"datePublished":"2022-04-06T15:37:38.000Z","dateModified":"2022-08-28T02:23:10.673Z","author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"环境 linux[腾讯云ubuntu20.04]  也可以手动安装docker 1apt install docker.io  安装软件lnmp指的是linux，nginx，mysql，php。 MaxPHP是运行在php的cli模式下的框架，所以不需要安装fpm。下面介绍docker安装lnmp的一些步骤，来运行MaxPHP类似的框架，这里软件均选择最新版本  为了多个容器可以通信，需要新建一个"}</script><link rel="canonical" href="https://www.chengyao.xyz/2022/04/06/Docker%E9%83%A8%E7%BD%B2LNMP%E8%BF%90%E8%A1%8CMaxPHP/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="CY">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="环境 linux[腾讯云ubuntu20.04]  也可以手动安装docker 1apt install docker.io  安装软件lnmp指的是linux，nginx，mysql，php。 MaxPHP是运行在php的cli模式下的框架，所以不需要安装fpm。下面介绍docker安装lnmp的一些步骤，来运行MaxPHP类似的框架，这里软件均选择最新版本  为了多个容器可以通信，需要新建一个">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Docker部署LNMP运行MaxPHP">
-<meta property="og:url" content="https://www.chengyao.xyz/2022/04/06/Docker%E9%83%A8%E7%BD%B2LNMP%E8%BF%90%E8%A1%8CMaxPHP/index.html">
-<meta property="og:site_name" content="笔记">
-<meta property="og:description" content="环境 linux[腾讯云ubuntu20.04]  也可以手动安装docker 1apt install docker.io  安装软件lnmp指的是linux，nginx，mysql，php。 MaxPHP是运行在php的cli模式下的框架，所以不需要安装fpm。下面介绍docker安装lnmp的一些步骤，来运行MaxPHP类似的框架，这里软件均选择最新版本  为了多个容器可以通信，需要新建一个">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-06T15:37:38.000Z">
-<meta property="article:modified_time" content="2022-09-14T12:56:04.892Z">
-<meta property="article:author" content="CY">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>Docker部署LNMP运行MaxPHP - 笔记</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="Docker部署LNMP运行MaxPHP"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-04-06 23:37" pubdate>
-          2022年4月6日 晚上
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          4.8k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          41 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Docker部署LNMP运行MaxPHP</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-04-06T15:37:38.000Z" title="2022/4/6 下午11:37:38">2022-04-06</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">8 分钟读完 (大约1226个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Docker部署LNMP运行MaxPHP</h1><div class="content"><h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
 <li>linux[腾讯云ubuntu20.04]</li>
 </ul>
 <p><strong>也可以手动安装docker</strong></p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">apt <span class="hljs-keyword">install</span> docker.io<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install docker.io</span><br></pre></td></tr></table></figure>
 
 <h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><p>lnmp指的是linux，nginx，mysql，php。 MaxPHP是运行在php的cli模式下的框架，所以不需要安装fpm。下面介绍docker安装lnmp的一些步骤，来运行MaxPHP类似的框架，这里软件均选择最新版本</p>
 <blockquote>
 <p>为了多个容器可以通信，需要新建一个网桥</p>
 </blockquote>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">docker<span class="hljs-built_in"> network </span>create -d<span class="hljs-built_in"> bridge </span>lnmp<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d bridge lnmp</span><br></pre></td></tr></table></figure>
 
-<h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull nginx<br></code></pre></td></tr></table></figure>
+<h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
 
 <p>拉取镜像后使用下面的命令运行容器</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker run -itd --name nginx -v /www:/www -p 80:80 -p 443:443 --network lnmp &lt;镜像id&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name nginx -v /www:/www -p 80:80 -p 443:443 --network lnmp &lt;镜像id&gt;</span><br></pre></td></tr></table></figure>
 
 <p>这里我做了http和https默认两个端口的映射，下面是我的网站配置文件，具体需要代理的主机需要使用下面的命令查看</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">docker network inspect lnmp</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network inspect lnmp</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span><br>&#123;<br>    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;<br>    <span class="hljs-attribute">listen</span> <span class="hljs-number">443</span> ssl http2;<br>    <span class="hljs-attribute">server_name</span> 1kmb.com www.1kmb.com;<br>    <span class="hljs-attribute">index</span> index.php index.html index.htm default.php default.htm default.html;<br>    <span class="hljs-attribute">root</span> /www/wwwroot/1kmb.com.main/public;<br>    <span class="hljs-section">location</span> / &#123;<br>      <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;<br>      <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>      <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>      <span class="hljs-attribute">if</span> (!-f <span class="hljs-variable">$request_filename</span> ) &#123;<br>        <span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:9999;<br>      &#125;<br>    &#125;<br>    <span class="hljs-comment">#SSL-START SSL相关配置，请勿删除或修改下一行带注释的404规则</span><br>    <span class="hljs-comment">#error_page 404/404.html;</span><br>    <span class="hljs-comment">#limit_conn perserver 50;</span><br>    <span class="hljs-comment">#limit_conn perip 15;</span><br>    <span class="hljs-comment">#limit_rate 256k;</span><br>    <span class="hljs-comment">#HTTP_TO_HTTPS_START</span><br>    <br>    <span class="hljs-attribute">if</span> (<span class="hljs-variable">$host</span> !<span class="hljs-regexp">~ &quot;www&quot;)</span> &#123;<br>      <span class="hljs-attribute">rewrite</span><span class="hljs-regexp"> ^(/.*)$</span> https://www.<span class="hljs-variable">$host</span><span class="hljs-variable">$1</span> <span class="hljs-literal">permanent</span>;<br>    &#125;<br>    <br>    <span class="hljs-attribute">if</span> (<span class="hljs-variable">$server_port</span> !<span class="hljs-regexp">~ 443)</span>&#123;<br>        <span class="hljs-attribute">rewrite</span><span class="hljs-regexp"> ^(/.*)$</span> https://<span class="hljs-variable">$host</span><span class="hljs-variable">$1</span> <span class="hljs-literal">permanent</span>;<br>    &#125;<br>    <span class="hljs-comment">#HTTP_TO_HTTPS_END</span><br>    <span class="hljs-attribute">ssl_certificate</span>    /www/server/panel/vhost/cert/1kmb.com.main/fullchain.pem;<br>    <span class="hljs-attribute">ssl_certificate_key</span>    /www/server/panel/vhost/cert/1kmb.com.main/privkey.pem;<br>    <span class="hljs-attribute">ssl_protocols</span> TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span> TLSv1.<span class="hljs-number">3</span>;<br>    <span class="hljs-attribute">ssl_ciphers</span> EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;<br>    <span class="hljs-attribute">ssl_prefer_server_ciphers</span> <span class="hljs-literal">on</span>;<br>    <span class="hljs-attribute">ssl_session_cache</span> shared:SSL:<span class="hljs-number">10m</span>;<br>    <span class="hljs-attribute">ssl_session_timeout</span> <span class="hljs-number">10m</span>;<br>    <span class="hljs-attribute">add_header</span> Strict-Transport-Security <span class="hljs-string">&quot;max-age=31536000&quot;</span>;<br>    <span class="hljs-attribute">error_page</span> <span class="hljs-number">497</span>  https://<span class="hljs-variable">$host</span><span class="hljs-variable">$request_uri</span>;<br><br>    <span class="hljs-comment">#SSL-END</span><br>    <br>    <span class="hljs-comment">#ERROR-PAGE-START  错误页配置，可以注释、删除或修改</span><br>    <span class="hljs-comment">#error_page 404 /404.html;</span><br>    <span class="hljs-comment">#error_page 502 /502.html;</span><br>    <span class="hljs-comment">#ERROR-PAGE-END</span><br>    <br>    <span class="hljs-comment">#PHP-INFO-START  PHP引用配置，可以注释或修改</span><br>    <span class="hljs-comment"># include enable-php-00.conf;</span><br>    <span class="hljs-comment">#PHP-INFO-END</span><br>    <br>    <span class="hljs-comment">#REWRITE-START URL重写规则引用,修改后将导致面板设置的伪静态规则失效</span><br>    <span class="hljs-comment"># include /www/server/panel/vhost/rewrite/1kmb.com.main.conf;</span><br>    <span class="hljs-comment">#REWRITE-END</span><br>    <br>    <span class="hljs-comment">#禁止访问的文件或目录</span><br>    <span class="hljs-section">location</span> <span class="hljs-regexp">~ ^/(\.user.ini|\.htaccess|\.git|\.svn|\.project|LICENSE|README.md)</span><br>    &#123;<br>        <span class="hljs-attribute">return</span> <span class="hljs-number">404</span>;<br>    &#125;<br>    <br>    <span class="hljs-comment">#一键申请SSL证书验证目录相关设置</span><br>    <span class="hljs-section">location</span> <span class="hljs-regexp">~ \.well-known</span>&#123;<br>        <span class="hljs-attribute">allow</span> all;<br>    &#125;<br>    <br>    <span class="hljs-section">location</span> <span class="hljs-regexp">~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</span><br>    &#123;<br>        <span class="hljs-attribute">expires</span>      <span class="hljs-number">30d</span>;<br>        <span class="hljs-attribute">error_log</span> /dev/null;<br>        <span class="hljs-attribute">access_log</span> /dev/null;<br>    &#125;<br>    <br>    <span class="hljs-section">location</span> <span class="hljs-regexp">~ .*\.(js|css)?$</span><br>    &#123;<br>        <span class="hljs-attribute">expires</span>      <span class="hljs-number">12h</span>;<br>        <span class="hljs-attribute">error_log</span> /dev/null;<br>        <span class="hljs-attribute">access_log</span> /dev/null; <br>    &#125;<br>    <span class="hljs-attribute">access_log</span>  /www/wwwlogs/1kmb.com.main.log;<br>    <span class="hljs-attribute">error_log</span>  /www/wwwlogs/1kmb.com.main.<span class="hljs-literal">error</span>.log;<br>&#125;<br><br><span class="hljs-section">server</span> &#123;<br>  <span class="hljs-attribute">listen</span> <span class="hljs-number">443</span> ssl;<br>  <span class="hljs-attribute">server_name</span> ws.1kmb.com;<br>  <span class="hljs-section">location</span> / &#123;<br>    <span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:8787;<br>    <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;<br>    <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>    <span class="hljs-attribute">proxy_http_version</span> <span class="hljs-number">1</span>.<span class="hljs-number">1</span>;<br>    <span class="hljs-attribute">proxy_set_header</span>   Sec-Websocket-Version <span class="hljs-number">13</span>;<br>    <span class="hljs-attribute">proxy_set_header</span> Upgrade <span class="hljs-variable">$http_upgrade</span>;<br>    <span class="hljs-attribute">proxy_set_header</span> Connection <span class="hljs-variable">$connection_upgrade</span>;<br>  &#125;<br>    <span class="hljs-attribute">ssl_certificate</span>    /www/wwwroot/7328958_ws.1kmb.com.pem;<br>    <span class="hljs-attribute">ssl_certificate_key</span>    /www/wwwroot/7328958_ws.1kmb.com.key;<br>    <span class="hljs-attribute">ssl_protocols</span> TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span> TLSv1.<span class="hljs-number">3</span>;<br>    <span class="hljs-attribute">ssl_ciphers</span> EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;<br>    <span class="hljs-attribute">ssl_prefer_server_ciphers</span> <span class="hljs-literal">on</span>;<br>    <span class="hljs-attribute">ssl_session_cache</span> shared:SSL:<span class="hljs-number">10m</span>;<br>    <span class="hljs-attribute">ssl_session_timeout</span> <span class="hljs-number">10m</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">server</span><br><span class="line">&#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    listen 443 ssl http2;</span><br><span class="line">    server_name 1kmb.com www.1kmb.com;</span><br><span class="line">    index index.php index.html index.htm default.php default.htm default.html;</span><br><span class="line">    root /www/wwwroot/1kmb.com.main/public;</span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_set_header Host $host;</span><br><span class="line">      proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">      if (!-f $request_filename ) &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:9999;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    #SSL-START SSL相关配置，请勿删除或修改下一行带注释的404规则</span><br><span class="line">    #error_page 404/404.html;</span><br><span class="line">    #limit_conn perserver 50;</span><br><span class="line">    #limit_conn perip 15;</span><br><span class="line">    #limit_rate 256k;</span><br><span class="line">    #HTTP_TO_HTTPS_START</span><br><span class="line">    </span><br><span class="line">    if ($host !~ &quot;www&quot;) &#123;</span><br><span class="line">      rewrite ^(/.*)$ https://www.$host$1 permanent;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if ($server_port !~ 443)&#123;</span><br><span class="line">        rewrite ^(/.*)$ https://$host$1 permanent;</span><br><span class="line">    &#125;</span><br><span class="line">    #HTTP_TO_HTTPS_END</span><br><span class="line">    ssl_certificate    /www/server/panel/vhost/cert/1kmb.com.main/fullchain.pem;</span><br><span class="line">    ssl_certificate_key    /www/server/panel/vhost/cert/1kmb.com.main/privkey.pem;</span><br><span class="line">    ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;</span><br><span class="line">    ssl_ciphers EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    ssl_session_cache shared:SSL:10m;</span><br><span class="line">    ssl_session_timeout 10m;</span><br><span class="line">    add_header Strict-Transport-Security &quot;max-age=31536000&quot;;</span><br><span class="line">    error_page 497  https://$host$request_uri;</span><br><span class="line"></span><br><span class="line">    #SSL-END</span><br><span class="line">    </span><br><span class="line">    #ERROR-PAGE-START  错误页配置，可以注释、删除或修改</span><br><span class="line">    #error_page 404 /404.html;</span><br><span class="line">    #error_page 502 /502.html;</span><br><span class="line">    #ERROR-PAGE-END</span><br><span class="line">    </span><br><span class="line">    #PHP-INFO-START  PHP引用配置，可以注释或修改</span><br><span class="line">    # include enable-php-00.conf;</span><br><span class="line">    #PHP-INFO-END</span><br><span class="line">    </span><br><span class="line">    #REWRITE-START URL重写规则引用,修改后将导致面板设置的伪静态规则失效</span><br><span class="line">    # include /www/server/panel/vhost/rewrite/1kmb.com.main.conf;</span><br><span class="line">    #REWRITE-END</span><br><span class="line">    </span><br><span class="line">    #禁止访问的文件或目录</span><br><span class="line">    location ~ ^/(\.user.ini|\.htaccess|\.git|\.svn|\.project|LICENSE|README.md)</span><br><span class="line">    &#123;</span><br><span class="line">        return 404;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    #一键申请SSL证书验证目录相关设置</span><br><span class="line">    location ~ \.well-known&#123;</span><br><span class="line">        allow all;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</span><br><span class="line">    &#123;</span><br><span class="line">        expires      30d;</span><br><span class="line">        error_log /dev/null;</span><br><span class="line">        access_log /dev/null;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    location ~ .*\.(js|css)?$</span><br><span class="line">    &#123;</span><br><span class="line">        expires      12h;</span><br><span class="line">        error_log /dev/null;</span><br><span class="line">        access_log /dev/null; </span><br><span class="line">    &#125;</span><br><span class="line">    access_log  /www/wwwlogs/1kmb.com.main.log;</span><br><span class="line">    error_log  /www/wwwlogs/1kmb.com.main.error.log;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  listen 443 ssl;</span><br><span class="line">  server_name ws.1kmb.com;</span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1:8787;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">    proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">    proxy_http_version 1.1;</span><br><span class="line">    proxy_set_header   Sec-Websocket-Version 13;</span><br><span class="line">    proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">    proxy_set_header Connection $connection_upgrade;</span><br><span class="line">  &#125;</span><br><span class="line">    ssl_certificate    /www/wwwroot/7328958_ws.1kmb.com.pem;</span><br><span class="line">    ssl_certificate_key    /www/wwwroot/7328958_ws.1kmb.com.key;</span><br><span class="line">    ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;</span><br><span class="line">    ssl_ciphers EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    ssl_session_cache shared:SSL:10m;</span><br><span class="line">    ssl_session_timeout 10m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我开启了websocket服务，所以配置了$connection_upgrade变量，配置方法如下</p>
 <h2 id="配置-“-connection-upgrade”-变量"><a href="#配置-“-connection-upgrade”-变量" class="headerlink" title="配置 “$connection_upgrade” 变量"></a>配置 “$connection_upgrade” 变量</h2><p>连接升级通常与 WebSockets 结合使用。 在 nginx 中，我们可以根据 <code>$http_upgrade</code> 变量将 HTTP 连接升级为 WebSocket 连接。</p>
 <p>我们可以使用 <strong>map</strong> 块在 nginx 中定义连接和 http 升级之间的依赖关系：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">map</span> <span class="hljs-variable">$http_upgrade</span> <span class="hljs-variable">$connection_upgrade</span> &#123;  <br>    <span class="hljs-attribute">default</span> upgrade;<br>    &#x27;&#x27;      close;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">map</span> <span class="variable">$http_upgrade</span> <span class="variable">$connection_upgrade</span> &#123;  </span><br><span class="line">    <span class="attribute">default</span> upgrade;</span><br><span class="line">    &#x27;&#x27;      close;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>如果 Upgrade 标头设置为 ‘’，此 <strong>map</strong> 块告诉 nginx 正确设置相关的 Connection 标头来关闭连接。</p>
 <p>将 map 块放入 nginx 配置的 http 块中。 nginx 配置的默认文件路径是 <strong>&#x2F;etc&#x2F;nginx&#x2F;nginx.conf</strong> 。</p>
 <p>这是一个使用定义 $connection_upgrade 变量的 map 块的 nginx 配置示例。</p>
-<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs nsis"><span class="hljs-literal">user</span> www-data<span class="hljs-comment">;  </span><br>worker_processes <span class="hljs-literal">auto</span><span class="hljs-comment">;  </span><br>pid /run/nginx.pid<span class="hljs-comment">;</span><br><br>events &#123;  <br>        multi_accept       <span class="hljs-literal">on</span><span class="hljs-comment">;</span><br>        worker_connections <span class="hljs-number">65535</span><span class="hljs-comment">;</span><br>&#125;<br><br>http &#123;  <br>	sendfile <span class="hljs-literal">on</span><span class="hljs-comment">;</span><br>	tcp_nopush <span class="hljs-literal">on</span><span class="hljs-comment">;</span><br>	tcp_nodelay <span class="hljs-literal">on</span><span class="hljs-comment">;</span><br>	…<br><br>	<span class="hljs-comment"># Connection header for WebSocket reverse proxy</span><br>	map <span class="hljs-variable">$http_upgrade</span> <span class="hljs-variable">$connection_upgrade</span> &#123;<br>	    default upgrade<span class="hljs-comment">;</span><br>	    <span class="hljs-string">&#x27;&#x27;</span>      close<span class="hljs-comment">;</span><br>	&#125;<br>	<span class="hljs-comment"># further configurations …</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">user www-data;  </span><br><span class="line">worker_processes auto;  </span><br><span class="line">pid /run/nginx.pid;</span><br><span class="line"></span><br><span class="line">events &#123;  </span><br><span class="line">        multi_accept       on;</span><br><span class="line">        worker_connections 65535;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;  </span><br><span class="line">	sendfile on;</span><br><span class="line">	tcp_nopush on;</span><br><span class="line">	tcp_nodelay on;</span><br><span class="line">	…</span><br><span class="line"></span><br><span class="line">	# Connection header for WebSocket reverse proxy</span><br><span class="line">	map $http_upgrade $connection_upgrade &#123;</span><br><span class="line">	    default upgrade;</span><br><span class="line">	    &#x27;&#x27;      close;</span><br><span class="line">	&#125;</span><br><span class="line">	# further configurations …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>保存更新的 nginx 配置文件。 然后，使用 nginx -t 再次检查配置文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ sudo nginx -t<br><br>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok  <br>nginx: configuration file /etc/nginx/nginx.conf <span class="hljs-built_in">test</span> is successful  <br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nginx -t</span><br><span class="line"></span><br><span class="line">nginx: the configuration file /etc/nginx/nginx.conf syntax is ok  </span><br><span class="line">nginx: configuration file /etc/nginx/nginx.conf <span class="built_in">test</span> is successful  </span><br></pre></td></tr></table></figure>
 
 <p>如果配置文件出错导致容器不能启动，则可以使用下面命令拷贝配置文件到容器外部修改后再拷贝进去</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs elixir">docker cp /nginx.conf &lt;容器id&gt;<span class="hljs-symbol">:/etc/nginx/nginx</span>.conf<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp /nginx.conf &lt;容器id&gt;:/etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
 
-<h3 id="安装php"><a href="#安装php" class="headerlink" title="安装php"></a>安装php</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull php<br></code></pre></td></tr></table></figure>
+<h3 id="安装php"><a href="#安装php" class="headerlink" title="安装php"></a>安装php</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull php</span><br></pre></td></tr></table></figure>
 
 <p>运行容器</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">docker <span class="hljs-keyword">run</span><span class="language-bash"> -itd --name php81 --network lnmp -v /www:/www &lt;容器<span class="hljs-built_in">id</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name php81 --network lnmp -v /www:/www &lt;容器id&gt;</span><br></pre></td></tr></table></figure>
 
 <p>添加pcntl（maxphp的切面实现使用了子进程扫描），redis，pdo，pdo_mysql扩展，从官网下载对应版本的源码包，解压后进入ext目录的对应扩展目录，执行</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">phpize<br>.<span class="hljs-regexp">/configure --enable-pcntl --with-php-config=/u</span>sr<span class="hljs-regexp">/local/</span>php-config <br>make &amp;&amp; make install<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">phpize</span><br><span class="line">./configure --enable-pcntl --with-php-config=/usr/local/php-config </span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 
 <p>然后将扩展添加到配置文件中，配置文件可以通过php –ini查看</p>
 <p>如果出现下面的报错</p>
-<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">error: </span>openssl/ssl.h: No such file or directory<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: openssl/ssl.h: No such file or directory</span><br></pre></td></tr></table></figure>
 
 <p>就执行下下面的命令</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">sudo apt-get <span class="hljs-keyword">install </span>openssl<br>sudo apt-get <span class="hljs-keyword">install </span>libssl-dev <span class="hljs-keyword">build-essential </span>zlibc zlib-<span class="hljs-keyword">bin </span>libidn11-dev libidn11<br></code></pre></td></tr></table></figure>
-
-
-<h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">docker pull mysql</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">docker <span class="hljs-built_in">run</span> -itd --name mysql -p 3306:3306 -e <span class="hljs-attribute">MYSQL_ROOT_PASSWORD</span>=root &lt;容器id&gt;<br></code></pre></td></tr></table></figure>
-
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Docker部署LNMP运行MaxPHP</div>
-      <div>https://www.chengyao.xyz/2022/04/06/Docker部署LNMP运行MaxPHP/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>CY</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年4月6日</div>
-        </div>
-      
-      
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
-            
-            
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/04/07/SVN%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" title="SVN使用笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SVN使用笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/03/13/%E5%9B%9E%E8%BD%A6%E5%92%8C%E6%8D%A2%E8%A1%8C/" title="回车和换行">
-                        <span class="hidden-mobile">回车和换行</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
-      scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssl</span><br><span class="line">sudo apt-get install libssl-dev build-essential zlibc zlib-bin libidn11-dev libidn11</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root &lt;容器id&gt;</span><br></pre></td></tr></table></figure>
+
+</div><div class="article-licensing box"><div class="licensing-title"><p>Docker部署LNMP运行MaxPHP</p><p><a href="https://www.chengyao.xyz/2022/04/06/Docker部署LNMP运行MaxPHP/">https://www.chengyao.xyz/2022/04/06/Docker部署LNMP运行MaxPHP/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>CY</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2022-04-06</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2022-08-28</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2022/04/07/SVN%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">SVN使用笔记</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2022/03/13/%E5%9B%9E%E8%BD%A6%E5%92%8C%E6%8D%A2%E8%A1%8C/"><span class="level-item">回车和换行</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果也！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">170</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-01T06:56:20.000Z">2022-10-01</time></p><p class="title"><a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-18T05:06:34.000Z">2022-09-18</time></p><p class="title"><a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-04T13:30:39.000Z">2022-09-04</time></p><p class="title"><a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-21T02:56:27.000Z">2022-08-21</time></p><p class="title"><a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-19T12:54:39.000Z">2022-08-19</time></p><p class="title"><a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown基本语法</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">五月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

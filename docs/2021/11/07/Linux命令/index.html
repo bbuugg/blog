@@ -1,281 +1,37 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Linux命令 - 笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="常用Linux命令ps1ps -ef | grep redis  根据进程id查找文件，找到pid，例如123 1ls -lp &amp;#x2F;proc&amp;#x2F;123&amp;#x2F;cwd   cat命令&amp;gt;连接文件并打印到标准输出设备上，cat经常用来显示文件的内容。 注意：当文件较大时，文本在屏幕上迅速闪过（滚屏），用户往往看不清所显示的内容。因此，一般用more等命令分屏显示。 为了控制滚屏，可以按Ctrl+S键，停止滚"><meta property="og:type" content="blog"><meta property="og:title" content="Linux命令"><meta property="og:url" content="https://www.chengyao.xyz/2021/11/07/Linux%E5%91%BD%E4%BB%A4/"><meta property="og:site_name" content="笔记"><meta property="og:description" content="常用Linux命令ps1ps -ef | grep redis  根据进程id查找文件，找到pid，例如123 1ls -lp &amp;#x2F;proc&amp;#x2F;123&amp;#x2F;cwd   cat命令&amp;gt;连接文件并打印到标准输出设备上，cat经常用来显示文件的内容。 注意：当文件较大时，文本在屏幕上迅速闪过（滚屏），用户往往看不清所显示的内容。因此，一般用more等命令分屏显示。 为了控制滚屏，可以按Ctrl+S键，停止滚"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:published_time" content="2021-11-07T09:26:40.000Z"><meta property="article:modified_time" content="2022-09-27T07:27:16.888Z"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz/2021/11/07/Linux%E5%91%BD%E4%BB%A4/"},"headline":"Linux命令","image":["https://www.chengyao.xyz/img/og_image.png"],"datePublished":"2021-11-07T09:26:40.000Z","dateModified":"2022-09-27T07:27:16.888Z","author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"常用Linux命令ps1ps -ef | grep redis  根据进程id查找文件，找到pid，例如123 1ls -lp &#x2F;proc&#x2F;123&#x2F;cwd   cat命令&gt;连接文件并打印到标准输出设备上，cat经常用来显示文件的内容。 注意：当文件较大时，文本在屏幕上迅速闪过（滚屏），用户往往看不清所显示的内容。因此，一般用more等命令分屏显示。 为了控制滚屏，可以按Ctrl+S键，停止滚"}</script><link rel="canonical" href="https://www.chengyao.xyz/2021/11/07/Linux%E5%91%BD%E4%BB%A4/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="CY">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="常用Linux命令ps1ps -ef | grep redis  根据进程id查找文件，找到pid，例如123 1ls -lp &#x2F;proc&#x2F;123&#x2F;cwd   cat命令&gt;连接文件并打印到标准输出设备上，cat经常用来显示文件的内容。 注意：当文件较大时，文本在屏幕上迅速闪过（滚屏），用户往往看不清所显示的内容。因此，一般用more等命令分屏显示。 为了控制滚屏，可以按Ctrl+S键，停止滚">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Linux命令">
-<meta property="og:url" content="https://www.chengyao.xyz/2021/11/07/Linux%E5%91%BD%E4%BB%A4/index.html">
-<meta property="og:site_name" content="笔记">
-<meta property="og:description" content="常用Linux命令ps1ps -ef | grep redis  根据进程id查找文件，找到pid，例如123 1ls -lp &#x2F;proc&#x2F;123&#x2F;cwd   cat命令&gt;连接文件并打印到标准输出设备上，cat经常用来显示文件的内容。 注意：当文件较大时，文本在屏幕上迅速闪过（滚屏），用户往往看不清所显示的内容。因此，一般用more等命令分屏显示。 为了控制滚屏，可以按Ctrl+S键，停止滚">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-11-07T09:26:40.000Z">
-<meta property="article:modified_time" content="2022-09-14T12:56:04.914Z">
-<meta property="article:author" content="CY">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>Linux命令 - 笔记</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="Linux命令"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-11-07 17:26" pubdate>
-          2021年11月7日 下午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          9.3k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          78 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Linux命令</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h1 id="常用Linux命令"><a href="#常用Linux命令" class="headerlink" title="常用Linux命令"></a>常用Linux命令</h1><h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">ps</span> -ef | <span class="hljs-keyword">grep</span> redis<br></code></pre></td></tr></table></figure>
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-07T09:26:40.000Z" title="2021/11/7 下午5:26:40">2021-11-07</time>发表</span><span class="level-item"><time dateTime="2022-09-27T07:27:16.888Z" title="2022/9/27 下午3:27:16">2022-09-27</time>更新</span><span class="level-item">28 分钟读完 (大约4271个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Linux命令</h1><div class="content"><h1 id="常用Linux命令"><a href="#常用Linux命令" class="headerlink" title="常用Linux命令"></a>常用Linux命令</h1><h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep redis</span><br></pre></td></tr></table></figure>
 
 <p>根据进程id查找文件，找到pid，例如123</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">ls</span> -lp /proc/123/cwd<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lp /proc/123/cwd</span><br></pre></td></tr></table></figure>
 
 
 <h1 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a>cat命令</h1><p>&gt;连接文件并打印到标准输出设备上，cat经常用来显示文件的内容。</p>
@@ -326,27 +82,27 @@
 <p>它可以对调试日志文件提供了很大的帮助，扭转日志内容的时间顺序。</p>
 <p>$ tac e.txt</p>
 <h2 id="lsattr-chattr"><a href="#lsattr-chattr" class="headerlink" title="lsattr, chattr"></a>lsattr, chattr</h2><p>查看和修改文件属性</p>
-<h2 id="jobs"><a href="#jobs" class="headerlink" title="jobs"></a>jobs</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">jobs -rp <span class="hljs-regexp">//</span> 暂时不知到什么用<br></code></pre></td></tr></table></figure>
+<h2 id="jobs"><a href="#jobs" class="headerlink" title="jobs"></a>jobs</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jobs -rp // 暂时不知到什么用</span><br></pre></td></tr></table></figure>
 
 <p> 查看挂起的进程，<code>kill %1</code> 可以停止<code>jobs</code>中标号为<code>1</code>的进程</p>
 <p>也可以使用fg %1 来切到前台，部分可能不需要%</p>
-<h2 id="stat"><a href="#stat" class="headerlink" title="stat"></a>stat</h2><h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><h2 id="zcat"><a href="#zcat" class="headerlink" title="zcat"></a>zcat</h2><h2 id="zgrep"><a href="#zgrep" class="headerlink" title="zgrep"></a>zgrep</h2><h2 id="tee"><a href="#tee" class="headerlink" title="tee"></a>tee</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">将sql输入到文件back.sql</span><br>tee back.sql &lt;&lt;-&#x27;EOT&#x27;<br>insert into<br>users<br>(id)<br>values<br>1;<br>EOT<br></code></pre></td></tr></table></figure>
+<h2 id="stat"><a href="#stat" class="headerlink" title="stat"></a>stat</h2><h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><h2 id="zcat"><a href="#zcat" class="headerlink" title="zcat"></a>zcat</h2><h2 id="zgrep"><a href="#zgrep" class="headerlink" title="zgrep"></a>zgrep</h2><h2 id="tee"><a href="#tee" class="headerlink" title="tee"></a>tee</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将sql输入到文件back.sql</span></span><br><span class="line">tee back.sql &lt;&lt;-&#x27;EOT&#x27;</span><br><span class="line">insert into</span><br><span class="line">users</span><br><span class="line">(id)</span><br><span class="line">values</span><br><span class="line">1;</span><br><span class="line">EOT</span><br></pre></td></tr></table></figure>
 
-<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">sed -e <span class="hljs-string">&quot;1ititle:test&quot;</span> <span class="hljs-built_in">back</span>.txt  <span class="hljs-comment">// 给back.txt文件第一行前添加title:text</span><br></code></pre></td></tr></table></figure>
+<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &quot;1ititle:test&quot; back.txt  // 给back.txt文件第一行前添加title:text</span><br></pre></td></tr></table></figure>
 
 <h2 id="jq"><a href="#jq" class="headerlink" title="jq"></a>jq</h2><blockquote>
 <p>解析json</p>
 </blockquote>
-<figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scilab">echo <span class="hljs-string">&#x27;&#123;&quot;</span>name<span class="hljs-string">&quot;: &quot;</span><span class="hljs-built_in">max</span><span class="hljs-string">&quot;&#125;&#x27;</span> | jq<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;&#123;&quot;name&quot;: &quot;max&quot;&#125;&#x27; | jq</span><br></pre></td></tr></table></figure>
 
-<h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">ls</span> -SX 按照文件类型排序，文件夹在前<br><span class="hljs-keyword">ll</span> -ht 按照时间排序<br><span class="hljs-keyword">ll</span> -hS 按照大小排序<br></code></pre></td></tr></table></figure>
+<h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -SX 按照文件类型排序，文件夹在前</span><br><span class="line">ll -ht 按照时间排序</span><br><span class="line">ll -hS 按照大小排序</span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ginvip/p/6351696.html">https://www.cnblogs.com/ginvip/p/6351696.html</a></p>
 <h2 id="nohup"><a href="#nohup" class="headerlink" title="nohup"></a>nohup</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/baby123/p/6477429.html">https://www.cnblogs.com/baby123/p/6477429.html</a></p>
 <h2 id="pidof"><a href="#pidof" class="headerlink" title="pidof"></a>pidof</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fengzhilaoling/p/12269923.html">https://www.cnblogs.com/fengzhilaoling/p/12269923.html</a></p>
 <h2 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010486679/article/details/78415666">https://blog.csdn.net/u010486679/article/details/78415666</a></p>
 <h2 id="hostname"><a href="#hostname" class="headerlink" title="hostname"></a>hostname</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qhairen/article/details/45913465">https://blog.csdn.net/qhairen/article/details/45913465</a></p>
-<h2 id="expr"><a href="#expr" class="headerlink" title="expr"></a>expr</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">expr</span> <span class="hljs-number">1</span> + <span class="hljs-number">2</span><br><span class="hljs-attribute">expr</span> lentdh <span class="hljs-string">&quot;test&quot;</span><br></code></pre></td></tr></table></figure>
+<h2 id="expr"><a href="#expr" class="headerlink" title="expr"></a>expr</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">expr 1 + 2</span><br><span class="line">expr lentdh &quot;test&quot;</span><br></pre></td></tr></table></figure>
 
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-expr.html">Linux expr命令 | 菜鸟教程 (runoob.com)</a></p>
 <h2 id="lscpu"><a href="#lscpu" class="headerlink" title="lscpu"></a>lscpu</h2><p>查看CPU信息</p>
@@ -354,36 +110,36 @@
 <h2 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h2><p>cut命令用于显示每行从开头算起 num1 到 num2 的文字</p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cut.html">Linux cut命令 | 菜鸟教程 (runoob.com)</a></p>
 <h2 id="netcat"><a href="#netcat" class="headerlink" title="netcat"></a>netcat</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangqingchuan92/article/details/79666885">(38条消息) Linux系统终端命令：netcat的基本使用_麒麒川的博客-CSDN博客_linux netcat</a></p>
-<h2 id="systemctl"><a href="#systemctl" class="headerlink" title="systemctl"></a>systemctl</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">systemctl status -l</span><br></code></pre></td></tr></table></figure>
+<h2 id="systemctl"><a href="#systemctl" class="headerlink" title="systemctl"></a>systemctl</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status -l</span><br></pre></td></tr></table></figure>
 
-<h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">ssh -n -x</span><br></code></pre></td></tr></table></figure>
+<h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -n -x</span><br></pre></td></tr></table></figure>
 
-<h2 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a>ssh-keygen</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">ssh-keygen -t rsa<br>ssh-keygen -<span class="hljs-selector-tag">A</span><br></code></pre></td></tr></table></figure>
+<h2 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a>ssh-keygen</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">ssh-keygen -A</span><br></pre></td></tr></table></figure>
 
-<h2 id="htop"><a href="#htop" class="headerlink" title="htop"></a>htop</h2><h2 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">updatedb</span> 更新locatedb<br></code></pre></td></tr></table></figure>
+<h2 id="htop"><a href="#htop" class="headerlink" title="htop"></a>htop</h2><h2 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updatedb 更新locatedb</span><br></pre></td></tr></table></figure>
 
-<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h2 id="free"><a href="#free" class="headerlink" title="free"></a>free</h2><h2 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h2><h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h2><h1 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h1><h2 id="objdump"><a href="#objdump" class="headerlink" title="objdump"></a>objdump</h2><h2 id="gdb"><a href="#gdb" class="headerlink" title="gdb"></a>gdb</h2><h1 id="PHP相关"><a href="#PHP相关" class="headerlink" title="PHP相关"></a>PHP相关</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">php --ri grpc  <span class="hljs-regexp">//</span> 查看swoole扩展<br>php -l index.php <span class="hljs-regexp">//</span> 检查语法错误<br></code></pre></td></tr></table></figure>
+<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h2 id="free"><a href="#free" class="headerlink" title="free"></a>free</h2><h2 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h2><h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h2><h1 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h1><h2 id="objdump"><a href="#objdump" class="headerlink" title="objdump"></a>objdump</h2><h2 id="gdb"><a href="#gdb" class="headerlink" title="gdb"></a>gdb</h2><h1 id="PHP相关"><a href="#PHP相关" class="headerlink" title="PHP相关"></a>PHP相关</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">php --ri grpc  // 查看swoole扩展</span><br><span class="line">php -l index.php // 检查语法错误</span><br></pre></td></tr></table></figure>
 
-<h1 id="安装build-essential"><a href="#安装build-essential" class="headerlink" title="安装build-essential"></a>安装build-essential</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">apt-get install build-essential<br></code></pre></td></tr></table></figure>
+<h1 id="安装build-essential"><a href="#安装build-essential" class="headerlink" title="安装build-essential"></a>安装build-essential</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install build-essential</span><br></pre></td></tr></table></figure>
 
 <h1 id="lrzsz，可以在ssh终端中上传和下载文件"><a href="#lrzsz，可以在ssh终端中上传和下载文件" class="headerlink" title="lrzsz，可以在ssh终端中上传和下载文件"></a>lrzsz，可以在ssh终端中上传和下载文件</h1><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>ubuntu下</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">sudo apt <span class="hljs-keyword">install</span> lrzsz<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install lrzsz</span><br></pre></td></tr></table></figure>
 <p>或者编译安装</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vim">tar zxvf lrzsz-<span class="hljs-number">0.12</span>.<span class="hljs-number">20</span>.tar.gz<br><span class="hljs-keyword">cd</span> lrzsz-<span class="hljs-number">0.12</span>.<span class="hljs-number">20</span><br>./configure<br><span class="hljs-keyword">make</span><br><span class="hljs-keyword">make</span> install<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf lrzsz-0.12.20.tar.gz</span><br><span class="line">cd lrzsz-0.12.20</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>上面安装过程默认把lsz和lrz安装到了&#x2F;usr&#x2F;local&#x2F;bin&#x2F;目录下,可以建立一个软连接</p>
 </blockquote>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">cd <span class="hljs-regexp">/usr/</span>bin<br>ln -s <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>lrz rz<br>ln -s <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/bin/</span>lsz sz<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/bin</span><br><span class="line">ln -s /usr/local/bin/lrz rz</span><br><span class="line">ln -s /usr/local/bin/lsz sz</span><br></pre></td></tr></table></figure>
 
 <p>上传</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">rz</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rz</span><br></pre></td></tr></table></figure>
 
 <p>下载</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">sz <span class="hljs-tag">&lt;<span class="hljs-name">filename</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sz &lt;filename&gt;</span><br></pre></td></tr></table></figure>
 
 <h1 id="killall"><a href="#killall" class="headerlink" title="killall"></a>killall</h1><p>命令找不到，可以用下面的命令安装</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">apt-<span class="hljs-built_in">get</span> install psmisc<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install psmisc</span><br></pre></td></tr></table></figure>
 
 <h1 id="put上传ftp文件"><a href="#put上传ftp文件" class="headerlink" title="put上传ftp文件"></a>put上传ftp文件</h1><p><strong>put</strong></p>
 <p>   使用lftp登录ftp服务器之后，可以使用put指令将文件上传到服务器。</p>
@@ -420,20 +176,20 @@
 </tbody></table>
 <p>##实例</p>
 <p>上传文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@localhost weijie]# lftp 192.168.1.8          //登录服务器<br><br>lftp 192.168.1.8:~&gt; cd pub/                           //切换目录<br><br>lftp 192.168.1.8:/pub&gt; put 3.c                       //上传文件<br><br>65 bytes transferred<br><br>lftp 192.168.1.8:/pub&gt; ls                             //查看内容，已经上传成功<br><br>-rwxrwxrwx    1 0        0        2375494044 Aug 14 06:38 1.zip<br><br>-rw-r--r--    1 0       0               0 Oct 02 01:19 11c<br><br>-rw-r--r--    1 0       0               0 Oct 02 01:19 22c<br><br>-rw-------    1 14      50             65 Oct 02 01:48 3.c<br><br>drwxr-xr-x    2 0       0            4096 Oct 02 01:12 testftp<br><br>lftp 192.168.1.8:/pub&gt; <br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost weijie]# lftp 192.168.1.8          //登录服务器</span><br><span class="line"></span><br><span class="line">lftp 192.168.1.8:~&gt; cd pub/                           //切换目录</span><br><span class="line"></span><br><span class="line">lftp 192.168.1.8:/pub&gt; put 3.c                       //上传文件</span><br><span class="line"></span><br><span class="line">65 bytes transferred</span><br><span class="line"></span><br><span class="line">lftp 192.168.1.8:/pub&gt; ls                             //查看内容，已经上传成功</span><br><span class="line"></span><br><span class="line">-rwxrwxrwx    1 0        0        2375494044 Aug 14 06:38 1.zip</span><br><span class="line"></span><br><span class="line">-rw-r--r--    1 0       0               0 Oct 02 01:19 11c</span><br><span class="line"></span><br><span class="line">-rw-r--r--    1 0       0               0 Oct 02 01:19 22c</span><br><span class="line"></span><br><span class="line">-rw-------    1 14      50             65 Oct 02 01:48 3.c</span><br><span class="line"></span><br><span class="line">drwxr-xr-x    2 0       0            4096 Oct 02 01:12 testftp</span><br><span class="line"></span><br><span class="line">lftp 192.168.1.8:/pub&gt; </span><br></pre></td></tr></table></figure>
 
 
 
 <h1 id="测试端口"><a href="#测试端口" class="headerlink" title="测试端口"></a>测试端口</h1><blockquote>
 <p>linux测试某个端口的bai连通性可以du使用zhi如下命令测试daoTCP协议</p>
 </blockquote>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">telnet</span>  <span class="hljs-built_in">ip</span>  port<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet  ip  port</span><br></pre></td></tr></table></figure>
 
 <p>TCP&#x2F;UDP协议测试zhuan端口</p>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pf">nc -vuz ip  <span class="hljs-keyword">port</span> <span class="hljs-comment">#测试udp协议</span><br>nc -vtz ip <span class="hljs-keyword">port</span>  <span class="hljs-comment">#测试tcp协议</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc -vuz ip  port #测试udp协议</span><br><span class="line">nc -vtz ip port  #测试tcp协议</span><br></pre></td></tr></table></figure>
 
 <p>端口扫描 nc -z -v -n 192.168.21.135 1-100 z参数告诉nc使用0 输入&#x2F;输出模式，一般在扫描通信端口的时候使用</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Nc</span> -z -v -n <span class="hljs-number">192.168.21.135</span> <span class="hljs-number">1</span>-<span class="hljs-number">100</span> # 检测<span class="hljs-number">1</span>-<span class="hljs-number">100</span>端口<br><span class="hljs-attribute">Nc</span> -z -v -n <span class="hljs-number">192.168.21.135</span> <span class="hljs-number">8989</span>  #检测<span class="hljs-number">8989</span>端口<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Nc -z -v -n 192.168.21.135 1-100 # 检测1-100端口</span><br><span class="line">Nc -z -v -n 192.168.21.135 8989  #检测8989端口</span><br></pre></td></tr></table></figure>
 
 <h2 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h2><blockquote>
 <p>你可以使用 lsof 命令来查看某一端口是否开放。查看端口可以这样来使用，我就以80端口为例：</p>
@@ -451,7 +207,7 @@
 <p>vim中统计文字出现次数 :%s&#x2F;name&#x2F;&#x2F;gn</p>
 <p>##其他<br>lha<br>linux 的 ls -1 和 -l<br>shell 的[ -s file] 文件大小不为0为真 elif<br>lcd  put lftp<br>psql -c -f<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ftl1012/p/ssh.html">https://www.cnblogs.com/ftl1012/p/ssh.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hmwh/p/11015439.html">https://www.cnblogs.com/hmwh/p/11015439.html</a></p>
 <p>telnet</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">telnet</span> <span class="hljs-number">127.0.0.1</span> <span class="hljs-number">9501</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet 127.0.0.1 9501</span><br></pre></td></tr></table></figure>
 <p>退出 <code>ctrl</code> + <code>]</code> 再按<code>ctrl</code> + <code>d</code> 或者输入 <code>quit</code></p>
 <h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h1 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h1><p>vim ctrl + g 显示当前编辑的文件名</p>
 <ol>
@@ -541,26 +297,26 @@
 </li>
 <li><p><code>lsb_release -a</code> ubuntu 查看版本信息 </p>
 <p>uname [参数]</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs csharp">$ uname -a　　<span class="hljs-comment">//显示所有信息</span><br>Linux BigManing <span class="hljs-number">4.4</span><span class="hljs-number">.0</span><span class="hljs-number">-83</span>-generic <span class="hljs-meta">#106-Ubuntu SMP Mon Jun 26 17:54:43 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</span><br><br>$ uname -s　　<span class="hljs-comment">//显示内核名称</span><br>Linux<br><br>$ uname -n　　<span class="hljs-comment">//显示网络节点上的主机名</span><br>BigManing<br><br>$ uname -r　　<span class="hljs-comment">//显示内核发行号</span><br><span class="hljs-number">4.4</span><span class="hljs-number">.0</span><span class="hljs-number">-83</span>-generic<br><br>$ uname -v　　　<span class="hljs-comment">//显示内核版本号</span><br><span class="hljs-meta">#106-Ubuntu SMP Mon Jun 26 17:54:43 UTC 2017</span><br>    $ uname -m　　　<span class="hljs-comment">//显示机器硬件名称　显示i686说明你安装了32位操作系统　　　显示 x86_64说明你安装了64位操作系统</span><br>x86_64<br><br>$ uname -p　　　<span class="hljs-comment">//显示处理器类型</span><br>x86_64<br><br>$ uname -i　　　<span class="hljs-comment">//显示硬件平台</span><br>x86_64<br><br>$ uname -o　　　<span class="hljs-comment">//操作系统</span><br>GNU/Linux<br></code></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ uname -a　　<span class="comment">//显示所有信息</span></span><br><span class="line">Linux BigManing <span class="number">4.4</span><span class="number">.0</span><span class="number">-83</span>-generic <span class="meta">#106-Ubuntu SMP Mon Jun 26 17:54:43 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</span></span><br><span class="line"></span><br><span class="line">$ uname -s　　<span class="comment">//显示内核名称</span></span><br><span class="line">Linux</span><br><span class="line"></span><br><span class="line">$ uname -n　　<span class="comment">//显示网络节点上的主机名</span></span><br><span class="line">BigManing</span><br><span class="line"></span><br><span class="line">$ uname -r　　<span class="comment">//显示内核发行号</span></span><br><span class="line"><span class="number">4.4</span><span class="number">.0</span><span class="number">-83</span>-generic</span><br><span class="line"></span><br><span class="line">$ uname -v　　　<span class="comment">//显示内核版本号</span></span><br><span class="line"><span class="meta">#106-Ubuntu SMP Mon Jun 26 17:54:43 UTC 2017</span></span><br><span class="line">    $ uname -m　　　<span class="comment">//显示机器硬件名称　显示i686说明你安装了32位操作系统　　　显示 x86_64说明你安装了64位操作系统</span></span><br><span class="line">x86_64</span><br><span class="line"></span><br><span class="line">$ uname -p　　　<span class="comment">//显示处理器类型</span></span><br><span class="line">x86_64</span><br><span class="line"></span><br><span class="line">$ uname -i　　　<span class="comment">//显示硬件平台</span></span><br><span class="line">x86_64</span><br><span class="line"></span><br><span class="line">$ uname -o　　　<span class="comment">//操作系统</span></span><br><span class="line">GNU/Linux</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>wget在下载的时候就重命名:</p>
 <p><code>wget -c &quot;www.baidu.com&quot; -O baidu.index.html</code><br>保存输出日至，可以使用:</p>
 <p><code>wget -c &quot;www.baidu.com&quot; -O baidu.index.html -o wget.log</code></p>
 <p>递归下载</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">wget -r -p -np -k http://archives.fedoraproject.org/pub/archive/epel/5Server/x86_64/</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">wget -r -p -np -k http://archives.fedoraproject.org/pub/epel/6Server/x86_64/</span><br>-c,  --continue                 resume getting a partially-downloaded file. 断点续传<br>-nd, --no-directories           don&#x27;t create directories. 不创建层级目录，所有文件下载到当前目录<br>-r,  --recursive                specify recursive download. 递归下载<br>-p,  --page-requisites          get all images, etc. needed to display HTML page. 下载页面所有文件，使页面能在本地打开<br>-k,  --convert-links            make links in downloaded HTML or CSS point to local files. 转换链接指向本地文件<br>-np, --no-parent                don&#x27;t ascend to the parent directory. 不下载父级目录的文件<br>-o,  --output-file=FILE         log messages to FILE. 指定日志输出文件<br>-O,  --output-document=FILE     write documents to FILE. 指定文件下载位置<br>-L,  --relative                 follow relative links only. 只下载相对链接，如果页面嵌入其他站点不会被下载<br>wget -m&lt;镜像/整站抓取&gt; -e rebots=off&lt;忽略robots协议&gt; -k&lt;将绝对url转换为本地相对url&gt; -E&lt;将所有text/html以html扩展名保存&gt; &#x27;http://baidu,com&#x27;<br><br></code></pre></td></tr></table></figure></li>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">wget -r -p -np -k http://archives.fedoraproject.org/pub/archive/epel/5Server/x86_64/</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">wget -r -p -np -k http://archives.fedoraproject.org/pub/epel/6Server/x86_64/</span></span><br><span class="line">-c,  --continue                 resume getting a partially-downloaded file. 断点续传</span><br><span class="line">-nd, --no-directories           don&#x27;t create directories. 不创建层级目录，所有文件下载到当前目录</span><br><span class="line">-r,  --recursive                specify recursive download. 递归下载</span><br><span class="line">-p,  --page-requisites          get all images, etc. needed to display HTML page. 下载页面所有文件，使页面能在本地打开</span><br><span class="line">-k,  --convert-links            make links in downloaded HTML or CSS point to local files. 转换链接指向本地文件</span><br><span class="line">-np, --no-parent                don&#x27;t ascend to the parent directory. 不下载父级目录的文件</span><br><span class="line">-o,  --output-file=FILE         log messages to FILE. 指定日志输出文件</span><br><span class="line">-O,  --output-document=FILE     write documents to FILE. 指定文件下载位置</span><br><span class="line">-L,  --relative                 follow relative links only. 只下载相对链接，如果页面嵌入其他站点不会被下载</span><br><span class="line">wget -m&lt;镜像/整站抓取&gt; -e rebots=off&lt;忽略robots协议&gt; -k&lt;将绝对url转换为本地相对url&gt; -E&lt;将所有text/html以html扩展名保存&gt; &#x27;http://baidu,com&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>fdisk -l<br>lsblk -f</p>
 <p>创建两个文件<br>touch app.{js,css}</p>
-<h3 id="linux下如何输入EOF"><a href="#linux下如何输入EOF" class="headerlink" title="linux下如何输入EOF"></a>linux下如何输入EOF</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">ctrl</span> + d <br></code></pre></td></tr></table></figure>
+<h3 id="linux下如何输入EOF"><a href="#linux下如何输入EOF" class="headerlink" title="linux下如何输入EOF"></a>linux下如何输入EOF</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl + d </span><br></pre></td></tr></table></figure>
 <p>不同系统有不同组合键</p>
-<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs nim"><span class="hljs-type">int</span> main(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])<br>&#123;<br>	<span class="hljs-type">int</span> c;<br>	<span class="hljs-keyword">while</span> ((c = getc(<span class="hljs-built_in">stdin</span>)) != <span class="hljs-type">EOF</span>)<br>	&#123;<br>		putc(c, <span class="hljs-built_in">stdout</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	int c;</span><br><span class="line">	while ((c = getc(stdin)) != EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		putc(c, stdout);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="umask"><a href="#umask" class="headerlink" title="umask"></a>umask</h2><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">umask</span> <span class="hljs-number">022</span><br></code></pre></td></tr></table></figure>
+<h2 id="umask"><a href="#umask" class="headerlink" title="umask"></a>umask</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umask 022</span><br></pre></td></tr></table></figure>
 
 <h1 id="查看进程占用网速和流量使用情况"><a href="#查看进程占用网速和流量使用情况" class="headerlink" title="查看进程占用网速和流量使用情况"></a>查看进程占用网速和流量使用情况</h1><blockquote>
 <p>有三个命令vnstat、iftop、nethogs（推荐）</p>
 </blockquote>
-<h2 id="vnstat"><a href="#vnstat" class="headerlink" title="vnstat"></a>vnstat</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vnstat -i eth0 -l #实时流量情况<br></code></pre></td></tr></table></figure>
+<h2 id="vnstat"><a href="#vnstat" class="headerlink" title="vnstat"></a>vnstat</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vnstat -i eth0 -l #实时流量情况</span><br></pre></td></tr></table></figure>
 
 <h2 id="iftop"><a href="#iftop" class="headerlink" title="iftop"></a>iftop</h2><p>iftop可以用来监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等</p>
 <h3 id="命令用法："><a href="#命令用法：" class="headerlink" title="命令用法："></a>命令用法：</h3><ul>
@@ -595,313 +351,50 @@
 <li>q : 退出命令提示符</li>
 </ul>
 <h3 id="匹配进程名结束进程"><a href="#匹配进程名结束进程" class="headerlink" title="匹配进程名结束进程"></a>匹配进程名结束进程</h3><p>ps -ef | grep 进程名 | awk ‘{ print $2 }’ | xargs kill -9</p>
-<h3 id="expect"><a href="#expect" class="headerlink" title="expect"></a>expect</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">#</span><span class="language-bash">!/usr/bin/expect</span><br>set user &quot;git账号&quot;<br>set pass &quot;密码&quot;<br>set timeout 10<br><br>spawn git pull # spawn启动新的进程<br>expect &quot;Username*&quot; # 匹配username*<br>send &quot;$user\n&quot; #发送账号到进程内<br>expect &quot;Password*&quot; # 匹配password<br>send &quot;$pass\n&quot; #发送密码到进程内<br>expect eof<br><br>expect -f pull.sh #运行脚本<br></code></pre></td></tr></table></figure>
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Linux命令</div>
-      <div>https://www.chengyao.xyz/2021/11/07/Linux命令/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>CY</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2021年11月7日</div>
-        </div>
-      
-      
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
-            
-            
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/11/07/OpenAPI%E6%A0%87%E5%87%86%E8%A7%84%E8%8C%83/" title="OpenAPI标准规范">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">OpenAPI标准规范</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/11/05/WSL2%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" title="WSL2 使用笔记">
-                        <span class="hidden-mobile">WSL2 使用笔记</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
-      scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+<h3 id="expect"><a href="#expect" class="headerlink" title="expect"></a>expect</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/expect</span></span><br><span class="line">set user &quot;git账号&quot;</span><br><span class="line">set pass &quot;密码&quot;</span><br><span class="line">set timeout 10</span><br><span class="line"></span><br><span class="line">spawn git pull # spawn启动新的进程</span><br><span class="line">expect &quot;Username*&quot; # 匹配username*</span><br><span class="line">send &quot;$user\n&quot; #发送账号到进程内</span><br><span class="line">expect &quot;Password*&quot; # 匹配password</span><br><span class="line">send &quot;$pass\n&quot; #发送密码到进程内</span><br><span class="line">expect eof</span><br><span class="line"></span><br><span class="line">expect -f pull.sh #运行脚本</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看公网ip"><a href="#查看公网ip" class="headerlink" title="查看公网ip"></a>查看公网ip</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl ifconfig.me</span><br></pre></td></tr></table></figure></div><div class="article-licensing box"><div class="licensing-title"><p>Linux命令</p><p><a href="https://www.chengyao.xyz/2021/11/07/Linux命令/">https://www.chengyao.xyz/2021/11/07/Linux命令/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>CY</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-11-07</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2022-09-27</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/11/07/OpenAPI%E6%A0%87%E5%87%86%E8%A7%84%E8%8C%83/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">OpenAPI标准规范</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/11/05/WSL2%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/"><span class="level-item">WSL2 使用笔记</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果也！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">170</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-01T06:56:20.000Z">2022-10-01</time></p><p class="title"><a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-18T05:06:34.000Z">2022-09-18</time></p><p class="title"><a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-04T13:30:39.000Z">2022-09-04</time></p><p class="title"><a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-21T02:56:27.000Z">2022-08-21</time></p><p class="title"><a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-19T12:54:39.000Z">2022-08-19</time></p><p class="title"><a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown基本语法</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">五月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

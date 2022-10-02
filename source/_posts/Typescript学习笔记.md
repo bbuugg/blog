@@ -21,6 +21,8 @@ enum Color {Red, Blue, Green}
 let c Color = Color.Red
 ```
 
+<!-- more -->
+
 # 类型断言
 
 ```typescript

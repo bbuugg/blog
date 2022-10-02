@@ -1,678 +1,531 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="CY">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="笔记">
-<meta property="og:url" content="https://www.chengyao.xyz/page/12/index.html">
-<meta property="og:site_name" content="笔记">
-<meta property="og:description" content="笔记">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="CY">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>笔记</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 100vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
-          
-        </div>
-
-        
-      </div>
-
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          style="margin-top: 0">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/16/js%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE%E7%9A%84%E5%9C%B0%E7%90%86%E5%9D%90%E6%A0%87%EF%BC%88%E7%BB%8F%E7%BA%AC%E5%BA%A6%EF%BC%89/" target="_self">
-          js获取当前位置的地理坐标（经纬度）
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/16/js%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE%E7%9A%84%E5%9C%B0%E7%90%86%E5%9D%90%E6%A0%87%EF%BC%88%E7%BB%8F%E7%BA%AC%E5%BA%A6%EF%BC%89/" target="_self">
-        <div>
-          1234567891011if(navigator.geolocation) &amp;#123;    navigator.geolocation.getCurrentPosition(        function (position) &amp;#123;              console.log( position.coords.longitude );            console.l
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-16 09:57" pubdate>
-              2021-04-16
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/15/vim%E4%B8%AD%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88%E5%85%B3%E4%BA%8Emagic%EF%BC%89/" target="_self">
-          vim中正则表达式（关于magic）
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/15/vim%E4%B8%AD%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88%E5%85%B3%E4%BA%8Emagic%EF%BC%89/" target="_self">
-        <div>
-          毋庸多言，在vim中正则表达式得到了十分广泛的应用。最常用的 &#x2F; 和 :s 命令中，正则表达式都是不可或缺的。下面对vim中的正则表达式的一些难点进行说明  关于magicvim中有个magic的设定，设定方法为： 123:set magic             &quot; 设置magic:set nomagic           &quot; 取消magic:h magic
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-15 08:55" pubdate>
-              2021-04-15
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/07/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%8F%AF%E4%BB%A5%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9%E7%BC%A9%E5%AE%B9%E7%9A%84%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E6%96%B9%E6%A1%88/" target="_self">
-          如何设计可以动态扩容缩容的分库分表方案
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/07/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%8F%AF%E4%BB%A5%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9%E7%BC%A9%E5%AE%B9%E7%9A%84%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E6%96%B9%E6%A1%88/" target="_self">
-        <div>
-          设定好几台数据库服务器，每台服务器上几个库，每个库多少个表，推荐是32库 * 32表。 　　比如4台服务器，每台服务器上8个库，每个库32张表。 　　路由的规则，orderId%32 &#x3D; 库，orderId &#x2F; 32 %32 &#x3D; 表 　　扩容的时候，申请增加更多的数据库服务器，装好mysql，倍数扩容，4台服务器，扩到8台服务器，16台服务器 　　由dba负责
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-07 22:30" pubdate>
-              2021-04-07
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/07/dubbo%E6%94%AF%E6%8C%81%E5%93%AA%E4%BA%9B%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96%E5%8D%8F%E8%AE%AE/" target="_self">
-          dubbo支持哪些通信协议和序列化协议
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/07/dubbo%E6%94%AF%E6%8C%81%E5%93%AA%E4%BA%9B%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96%E5%8D%8F%E8%AE%AE/" target="_self">
-        <div>
-          dubbo支持的通信协议dubbo协议 　　dubbo:&#x2F;&#x2F;192.168.0.1:20188 　　默认就是走dubbo协议的，单一长连接，NIO异步通信，基于hessian作为序列化协议 　　适用的场景就是：传输数据量很小（每次请求在100kb以内），但是并发量很高 　　为了要支持高并发场景，一般是服务提供者就几台机器，但是服务消费者有上百台，可能每天调用量达到上亿次！此时用
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-07 22:27" pubdate>
-              2021-04-07
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/07/ActiveMQ%E3%80%81RabbitMQ%E3%80%81RocketMQ%E3%80%81Kafka%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9/" target="_self">
-          ActiveMQ、RabbitMQ、RocketMQ、Kafka有什么优点和缺点
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/07/ActiveMQ%E3%80%81RabbitMQ%E3%80%81RocketMQ%E3%80%81Kafka%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9/" target="_self">
-        <div>
-          ActiveMQ　　单机吞吐量：万级 　　topic数量都吞吐量的影响： 　　时效性：ms级 　　可用性：高，基于主从架构实现高可用性 　　消息可靠性：有较低的概率丢失数据 　　功能支持：MQ领域的功能极其完备 　　总结： 　　　　非常成熟，功能强大，在早些年业内大量的公司以及项目中都有应用   　　　　偶尔会有较低概率丢失消息   　　　　现在社区以及国内应用都越来越少，官方社区现在对Activ
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-07 22:25" pubdate>
-              2021-04-07
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/07/Vscode%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" target="_self">
-          Vscode使用小技巧
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/07/Vscode%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/" target="_self">
-        <div>
-          vscode删除重复行并排序&#96;安装插件:Transformer ctrl + a 全选文字ctrl + shift + P 打开命令窗口输入： 1Transform:Unique Lines &#x2F;&#x2F;删除重复行 或 1Transform:Sort Lines &#x2F;&#x2F;排序 更多功能，查看插件页面，有git动画示例 vscode删除行前的空格 输入^\s选择使用正则表达式vscode删除行尾的空格
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-07 18:39" pubdate>
-              2021-04-07
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%96%AD%E8%A8%80%20-%20(%EF%80%BF!),%20(%EF%80%BF%EF%80%BA),%20(%EF%80%BF=)/" target="_self">
-          正则表达式断言 - (?!), (?:), (?=)
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%96%AD%E8%A8%80%20-%20(%EF%80%BF!),%20(%EF%80%BF%EF%80%BA),%20(%EF%80%BF=)/" target="_self">
-        <div>
-          一个断言就是一个对当前匹配位置之前或之后的字符的测试， 它不会实际消耗任何字符。简单的断言代码有\b、\B、 \A、 \Z、\z、 ^、$ 等，在 转义序列(反斜线) 中有描述。 更加复杂的断言以子组的方式编码。 它有两种类型： 前瞻断言(从当前位置向前测试)和后瞻断言(从当前位置向后测试)。 一个断言子组的匹配还是通过普通方式进行的， 不同在于它不会导致当前的匹配点发生改变。 前瞻断言中的正面断
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-06 18:43" pubdate>
-              2021-04-06
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/05/Shell%E7%AC%94%E8%AE%B0/" target="_self">
-          Shell笔记
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/05/Shell%E7%AC%94%E8%AE%B0/" target="_self">
-        <div>
-          #let  let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。  1let arg [arg ...] 实例：自加操作：let no++ 自减操作：let no-- 简写形式 let no+&#x3D;10，let no-&#x3D;20，分别等同于 let no&#x3D;no+10，let no&#x3D;no-20。 以下
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-05 22:44" pubdate>
-              2021-04-05
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/04/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D&amp;quot;%E9%9D%9E&amp;quot;%EF%BC%8C%E4%BB%A5%E5%8F%8A&amp;quot;%E9%9D%9E&amp;quot;%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8C%B9%E9%85%8D/" target="_self">
-          正则表达式匹配&amp;quot;非&amp;quot;，以及&amp;quot;非&amp;quot;字符串的匹配
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/04/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D&amp;quot;%E9%9D%9E&amp;quot;%EF%BC%8C%E4%BB%A5%E5%8F%8A&amp;quot;%E9%9D%9E&amp;quot;%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8C%B9%E9%85%8D/" target="_self">
-        <div>
-          #写法介绍首先，正则表达式的&quot;非&quot;，代表不想匹配某个字符。 比如字符串 helloword123，&#x2F;[^0-9]+&#x2F;g 可以匹配非数字，即匹配结果为 helloword； 同样的，&#x2F;[^he]+&#x2F;g 可以匹配非h非e的字符，匹配结果为lloword123； 那么 &#x2F;[^hello]&#x2F;g 呢？乍一看可能会以为能匹配wor
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-04 15:20" pubdate>
-              2021-04-04
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/04/Linux%E4%B8%8B%E7%99%BB%E5%BD%95Oracle%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%97%B6%E5%88%A0%E9%99%A4%E9%94%AE%5EH%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" target="_self">
-          Linux下登录Oracle命令行时删除键^H解决方法
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/04/Linux%E4%B8%8B%E7%99%BB%E5%BD%95Oracle%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%97%B6%E5%88%A0%E9%99%A4%E9%94%AE%5EH%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" target="_self">
-        <div>
-          在linux服务器下登录oracle的控制台，如果输入错误，想用删除键删除时却不能删除，打出的是^H的字符。 方法1：用如下的命令可以使删除键生效： 1$ stty erase ^H1  恢复以前的设置的命令是： 1$ stty erase ^？1  方法2：利用rlwrap工具解决： 1、安装rlwrap和readline库 CentOS下可以用EPEL的yum源直接安装，步骤如下： （1）RH
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-04 15:19" pubdate>
-              2021-04-04
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/11/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#board">10</a><a class="page-number" href="/page/11/#board">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/#board">13</a><a class="page-number" href="/page/14/#board">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/13/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="笔记"><meta property="og:type" content="blog"><meta property="og:title" content="笔记"><meta property="og:url" content="https://www.chengyao.xyz/"><meta property="og:site_name" content="笔记"><meta property="og:description" content="笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz"},"headline":"笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"笔记"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-18T11:40:35.000Z" title="2021/4/18 下午7:40:35">2021-04-18</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">7 分钟读完 (大约1097个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/18/echo%20-e%20%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/">echo -e 命令详解</a></h1><div class="content"><p>echo在php中是输入那么在linux中是不是也是输入呢，当然echo在linux也是输入不过它的用法比php强大多了可以带参数及一些东西，下面我们来看一篇关于linux echo命令介绍及-n、-e参数详解吧，具体如下所示。</p>
+<p>echo命令用于在shell中打印shell变量的值，或者直接输出指定的字符串。linux的echo命令，在shell编程中极为常用, 在终端下打印变量value的时候也是常常用到的，因此有必要了解下echo的用法echo命令的功能是在显示器上显示一段文字，一般起到一个提示的作用。</p>
+<p>语法</p>
+<p>echo(选项)(参数)选项</p>
+<p>-e：激活转义字符。使用-e选项时，若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：</p>
+<p>•\a 发出警告声；<br>•\b 删除前一个字符；<br>•\c 最后不加上换行符号；<br>•\f 换行但光标仍旧停留在原来的位置；<br>•\n 换行且光标移至行首；<br>•\r 光标移至行首，但不换行；<br>•\t 插入tab；<br>•\v 与\f相同；<br>•\ 插入\字符；<br>•\nnn 插入nnn（八进制）所代表的ASCII字符；<br>参数</p>
+<p>变量：指定要打印的变量。</p>
+<p>实例</p>
+<p>用echo命令打印带有色彩的文字：</p>
+<p>文字色：</p>
+<p>echo -e &quot;\e[1;31mThis is red text\e[0m&quot;<br>This is red text•\e[1;31m 将颜色设置为红色<br>•\e[0m 将颜色重新置回<br>颜色码：重置&#x3D;0，黑色&#x3D;30，红色&#x3D;31，绿色&#x3D;32，黄色&#x3D;33，蓝色&#x3D;34，洋红&#x3D;35，青色&#x3D;36，白色&#x3D;37</p>
+<p>背景色：</p>
+<p>echo -e &quot;\e[1;42mGreed Background\e[0m&quot;<br>Greed Background颜色码：重置&#x3D;0，黑色&#x3D;40，红色&#x3D;41，绿色&#x3D;42，黄色&#x3D;43，蓝色&#x3D;44，洋红&#x3D;45，青色&#x3D;46，白色&#x3D;47</p>
+<p>文字闪动：</p>
+<p>echo -e &quot;\033[37;31;5mMySQL Server Stop…\033[39;49;0m&quot;<br>红色数字处还有其他数字参数：0 关闭所有属性、1 设置高亮度（加粗）、4 下划线、5 闪烁、7 反显、8 消隐</p>
+<p>echo -n 不换行输出<br>$echo -n &quot;123&quot;<br>$echo &quot;456&quot;</p>
+<p>最终输出<br>123456</p>
+<p>而不是<br>123<br>456<br>echo -e 处理特殊字符</p>
+<p>若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：</p>
+<p>\a 发出警告声；<br>\b 删除前一个字符；<br>\c 最后不加上换行符号；<br>\f 换行但光标仍旧停留在原来的位置；<br>\n 换行且光标移至行首；<br>\r 光标移至行首，但不换行；<br>\t 插入tab；<br>\v 与\f相同；<br>\ 插入\字符；<br>\nnn 插入nnn（八进制）所代表的ASCII字符；</p>
+<p>下面举例说明一下：</p>
+<p>$echo -e &quot;a\bdddd&quot;  &#x2F;&#x2F;前面的a会被擦除<br>dddd</p>
+<p>$echo -e &quot;a\adddd&quot; &#x2F;&#x2F;输出同时会发出报警声音<br>adddd</p>
+<p>$echo -e &quot;a\ndddd&quot; &#x2F;&#x2F;自动换行<br>a<br>dddd</p>
+<p>我们在使用linux的过程中，经常会去下载安装包，下载时候的那个进度提示是不是比较好玩，下载进度的百分比在不断变化，利用echo -e和-n参数我们也可以实现这个效果了。</p>
+<hr>
+<p>echo -e &quot;\033[背景颜色;字体颜色m字符串\033[0m<br>格式: echo -e &quot;\033[字背景颜色;字体颜色m字符串\033[0m&quot; </p>
+<p>例如:<br>echo -e &quot;\033[41;36m something here \033[0m&quot; </p>
+<p>其中41的位置代表底色, 36的位置是代表字的颜色 </p>
+<p>那些ascii code 是对颜色调用的始末.<br>\033[ ; m …… \033[0m </p>
+<p>字背景颜色范围:40—-49<br>40:黑<br>41:深红<br>42:绿<br>43:黄色<br>44:蓝色<br>45:紫色<br>46:深绿<br>47:白色 </p>
+<p>字颜色:30———–39<br>30:黑<br>31:红<br>32:绿<br>33:黄<br>34:蓝色<br>35:紫色<br>36:深绿<br>37:白色 </p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;ANSI控制码的说明<br>\33[0m 关闭所有属性<br>\33[1m 设置高亮度<br>\33[4m 下划线<br>\33[5m 闪烁<br>\33[7m 反显<br>\33[8m 消隐<br>\33[30m – \33[37m 设置前景色<br>\33[40m – \33[47m 设置背景色<br>\33[nA 光标上移n行<br>\33[nB 光标下移n行<br>\33[nC 光标右移n行<br>\33[nD 光标左移n行<br>\33[y;xH设置光标位置<br>\33[2J 清屏<br>\33[K 清除从光标到行尾的内容<br>\33[s 保存光标位置<br>\33[u 恢复光标位置<br>\33[?25l 隐藏光标<br>\33[?25h 显示光标</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-16T01:57:41.000Z" title="2021/4/16 上午9:57:41">2021-04-16</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">几秒读完 (大约23个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/16/js%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE%E7%9A%84%E5%9C%B0%E7%90%86%E5%9D%90%E6%A0%87%EF%BC%88%E7%BB%8F%E7%BA%AC%E5%BA%A6%EF%BC%89/">js获取当前位置的地理坐标（经纬度）</a></h1><div class="content"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if(navigator.geolocation) &#123;</span><br><span class="line">    navigator.geolocation.getCurrentPosition(</span><br><span class="line">        function (position) &#123;  </span><br><span class="line">            console.log( position.coords.longitude );</span><br><span class="line">            console.log( position.coords.latitude );</span><br><span class="line">        &#125;,</span><br><span class="line">        function (e) &#123;</span><br><span class="line">           throw(e.message);</span><br><span class="line">        &#125;</span><br><span class="line">    ) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-15T00:55:44.000Z" title="2021/4/15 上午8:55:44">2021-04-15</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">7 分钟读完 (大约1031个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/15/vim%E4%B8%AD%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%88%E5%85%B3%E4%BA%8Emagic%EF%BC%89/">vim中正则表达式（关于magic）</a></h1><div class="content"><blockquote>
+<p>毋庸多言，在vim中正则表达式得到了十分广泛的应用。最常用的 &#x2F; 和 :s 命令中，正则表达式都是不可或缺的。下面对vim中的正则表达式的一些难点进行说明</p>
+</blockquote>
+<h1 id="关于magic"><a href="#关于magic" class="headerlink" title="关于magic"></a>关于magic</h1><p>vim中有个<b style="color:red">magic</b>的设定，设定方法为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:set magic             &quot; 设置magic</span><br><span class="line">:set nomagic           &quot; 取消magic</span><br><span class="line">:h magic               &quot; 查看帮助</span><br></pre></td></tr></table></figure>
+
+<p>vim毕竟是个编辑器，正则表达式中包含的大量元字符如果原封不动地引用（像perl那样），势必会给不懂正则表达式的人造成麻烦，比如 &#x2F;foo(1) 命令，大多数人都用它来查找foo(1)这个字符串，但如果按照正则表达式来解释，被查找的对象就成了 foo1 了。</p>
+<p>于是，vim就规定，正则表达式的元字符必须用反斜杠进行转义才行，如上面的例子，如果确实要用正则表达式，就应当写成 &#x2F;foo&#x2F;(1&#x2F;) 。但是，像 . * 这种极其常用的元字符，都加上反斜杠就太麻烦了。而且，众口难调，有些人喜欢用正则表达式，有些人不喜欢用……</p>
+<p>为了解决这个问题，vim设置了 magic 这个东西。简单地说， magic就是设置哪些元字符要加反斜杠哪些不用加的。简单来说：</p>
+<ul>
+<li><strong>magic</strong> (&#x2F;m)：除了 $ . * ^ 之外其他元字符都要加反斜杠。</li>
+<li><strong>nomagic</strong> (&#x2F;M)：除了 $ ^ 之外其他元字符都要加反斜杠。</li>
+</ul>
+<p>这个设置也可以在正则表达式中通过 &#x2F;m &#x2F;M 开关临时切换。 &#x2F;m 后面的正则表达式会按照 magic 处理，&#x2F;M 后面的正则表达式按照 nomagic 处理，而忽略实际的magic设置。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//m.*          # 查找任意字符串</span><br><span class="line">//M.*          # 查找字符串 .* （点号后面跟个星号）</span><br></pre></td></tr></table></figure>
+
+<p>另外还有更强大的 &#x2F;v 和 &#x2F;V。</p>
+<ul>
+<li><strong>&#x2F;v</strong> （即 very magic 之意）：任何元字符都不用加反斜杠</li>
+<li><strong>&#x2F;V</strong> （即 very nomagic 之意）：任何元字符都必须加反斜杠</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//v(a.c)&#123;3&#125;$   # 查找行尾的abcaccadc</span><br><span class="line">//m(a.c)&#123;3&#125;$   # 查找行尾的(abc)&#123;3&#125;</span><br><span class="line">//M(a.c)&#123;3&#125;$   # 查找行尾的(a.c)&#123;3&#125;</span><br><span class="line">//V(a.c)&#123;3&#125;$   # 查找任意位置的(a.c)&#123;3&#125;$</span><br></pre></td></tr></table></figure>
+
+<p>默认设置是 magic，vim也推荐大家都使用magic的设置，在有特殊需要时，直接通过 &#x2F;v&#x2F;m&#x2F;M&#x2F;V 即可。</p>
+<p>本文下面使用的元字符都是 magic 模式下的。</p>
+<h1 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h1><p>vim的量词与perl相比一点也不逊色。</p>
+<table>
+<thead>
+<tr>
+<th>vim</th>
+<th>Perl</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>*</td>
+<td>0个或多个(匹配优先)</td>
+</tr>
+<tr>
+<td>&#x2F;+</td>
+<td>+</td>
+<td>1个或多个(匹配优先)</td>
+</tr>
+<tr>
+<td>&#x2F;? 或 &#x2F;&#x3D;</td>
+<td>?</td>
+<td>0个或1个(匹配优先)，&#x2F;?不能在 ? 命令（逆向查找）中使用</td>
+</tr>
+<tr>
+<td>&#x2F;{n,m}</td>
+<td>{n,m}</td>
+<td>n个到m个(匹配优先)</td>
+</tr>
+<tr>
+<td>&#x2F;{n,}</td>
+<td>{n,}</td>
+<td>最少n个(匹配优先)</td>
+</tr>
+<tr>
+<td>&#x2F;{,m}</td>
+<td>{,m}</td>
+<td>最多m个(匹配优先)</td>
+</tr>
+<tr>
+<td>&#x2F;{n}</td>
+<td>{n}</td>
+<td>恰好n个</td>
+</tr>
+<tr>
+<td>&#x2F;{-n,m}</td>
+<td>{n,m}?</td>
+<td>n个到m个(忽略优先)</td>
+</tr>
+<tr>
+<td>&#x2F;{-}</td>
+<td>*?</td>
+<td>0个或多个(忽略优先)</td>
+</tr>
+<tr>
+<td>&#x2F;{-1,}</td>
+<td>+?</td>
+<td>1个或多个(忽略优先)</td>
+</tr>
+<tr>
+<td>&#x2F;{-,1}</td>
+<td>??</td>
+<td>0个或1个(忽略优先)</td>
+</tr>
+</tbody></table>
+<p>从上表中可见，vim的忽略优先量词不像perl的 *? +? ?? 那样，而是统一使用 &#x2F;{- 实现的。这大概跟忽略优先量词不常用有关吧。</p>
+<h1 id="环视和固化分组"><a href="#环视和固化分组" class="headerlink" title="环视和固化分组"></a>环视和固化分组</h1><p>vim居然还支持环视和固化分组的功能，强大，赞一个 <img src="http://tech.idv2.com/2008/07/08/vim-regexp/images/face/bigsmile.png" alt=":D"> 关于环视的解释请参考Yurii的<a target="_blank" rel="noopener" href="http://www.douban.com/subject/2154713/">《精通正则表达式》</a> 一书吧。</p>
+<table>
+<thead>
+<tr>
+<th>vim</th>
+<th>Perl</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#x2F;@&#x3D;</td>
+<td>(?&#x3D;</td>
+<td>顺序环视</td>
+</tr>
+<tr>
+<td>&#x2F;@!</td>
+<td>(?!</td>
+<td>顺序否定环视</td>
+</tr>
+<tr>
+<td>&#x2F;@&lt;&#x3D;</td>
+<td>(?&lt;&#x3D;</td>
+<td>逆序环视</td>
+</tr>
+<tr>
+<td>&#x2F;@&lt;!</td>
+<td>(?&lt;!</td>
+<td>逆序否定环视</td>
+</tr>
+<tr>
+<td>&#x2F;@&gt;</td>
+<td>(?&gt;</td>
+<td>固化分组</td>
+</tr>
+<tr>
+<td>&#x2F;%(atom&#x2F;)</td>
+<td>(?:</td>
+<td>非捕获型括号</td>
+</tr>
+</tbody></table>
+<p>和perl稍有不同的是，vim中的环视和固化分组的模式的位置与perl不同。例如，查找紧跟在 foo 之后的 bar，perl将模式写在环视的括号内，而vim将模式写在环视的元字符之前。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Perl的写法</span><br><span class="line">/(?&lt;=foo)bar/</span><br><span class="line"></span><br><span class="line"># vim的写法</span><br><span class="line">//(foo/)/@&lt;=bar</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-07T14:30:20.000Z" title="2021/4/7 下午10:30:20">2021-04-07</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">2 分钟读完 (大约277个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/07/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%8F%AF%E4%BB%A5%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9%E7%BC%A9%E5%AE%B9%E7%9A%84%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E6%96%B9%E6%A1%88/">如何设计可以动态扩容缩容的分库分表方案</a></h1><div class="content"><p><img src="/upload/75932a005c95e3bd1d321a432720cf85.png"><br>    设定好几台数据库服务器，每台服务器上几个库，每个库多少个表，推荐是32库 * 32表。</p>
+<p>　　比如4台服务器，每台服务器上8个库，每个库32张表。</p>
+<p>　　路由的规则，orderId%32 &#x3D; 库，orderId &#x2F; 32 %32 &#x3D; 表</p>
+<p>　　扩容的时候，申请增加更多的数据库服务器，装好mysql，倍数扩容，4台服务器，扩到8台服务器，16台服务器</p>
+<p>　　由dba负责将原先数据库服务器的库，迁移到新的数据库服务器上去，很多工具，库迁移，比较便捷</p>
+<p>　　我们这边就是修改一下配置，调整迁移的库所在数据库服务器的地址</p>
+<p>　　重新发布系统，上线，原先的路由规则变都不用变，直接可以基于2倍的数据库服务器的资源，继续进行线上系统的提供服务</p>
+<p>转自：中华石杉Java工程师面试突击</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-07T14:27:38.000Z" title="2021/4/7 下午10:27:38">2021-04-07</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">3 分钟读完 (大约506个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/07/dubbo%E6%94%AF%E6%8C%81%E5%93%AA%E4%BA%9B%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E5%92%8C%E5%BA%8F%E5%88%97%E5%8C%96%E5%8D%8F%E8%AE%AE/">dubbo支持哪些通信协议和序列化协议</a></h1><div class="content"><h1 id="dubbo支持的通信协议"><a href="#dubbo支持的通信协议" class="headerlink" title="dubbo支持的通信协议"></a>dubbo支持的通信协议</h1><p><strong>dubbo协议</strong></p>
+<p>　　dubbo:&#x2F;&#x2F;192.168.0.1:20188</p>
+<p>　　默认就是走dubbo协议的，单一长连接，NIO异步通信，基于hessian作为序列化协议</p>
+<p>　　适用的场景就是：传输数据量很小（每次请求在100kb以内），但是并发量很高</p>
+<p>　　为了要支持高并发场景，一般是服务提供者就几台机器，但是服务消费者有上百台，可能每天调用量达到上亿次！此时用长连接是最合适的，就是跟每个服务消费者维持一个长连接就可以，可能总共就100个连接。然后后面直接基于长连接NIO异步通信，可以支撑高并发请求。</p>
+<p>　　否则如果上亿次请求每次都是短连接的话，服务提供者会扛不住。</p>
+<p>　　而且因为走的是单一长连接，所以传输数据量太大的话，会导致并发能力降低。所以一般建议是传输数据量很小，支撑高并发访问。</p>
+<p> <img src="/upload/34f698b8c637d38880fff8a377121c97.png"></p>
+<p><strong>rmi协议</strong></p>
+<p>　　走java二进制序列化，多个短连接，适合消费者和提供者数量差不多，适用于文件的传输，一般较少用</p>
+<p><strong>hessian协议</strong></p>
+<p>　　走hessian序列化协议，多个短连接，适用于提供者数量比消费者数量还多，适用于文件的传输，一般较少用</p>
+<p><strong>http协议</strong></p>
+<p>　　走json序列化</p>
+<p><strong>webservice</strong></p>
+<p>　　走SOAP文本序列化</p>
+<h1 id="dubbo支持的序列化协议"><a href="#dubbo支持的序列化协议" class="headerlink" title="dubbo支持的序列化协议"></a>dubbo支持的序列化协议</h1><p>　　dubbo实际基于不同的通信协议，支持hessian、java二进制序列化、json、SOAP文本序列化多种序列化协议。</p>
+<p>　　但是hessian是其默认的序列化协议。</p>
+<p>转自：中华石杉Java工程师面试突击</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-07T14:25:19.000Z" title="2021/4/7 下午10:25:19">2021-04-07</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">11 分钟读完 (大约1643个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/07/ActiveMQ%E3%80%81RabbitMQ%E3%80%81RocketMQ%E3%80%81Kafka%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9/">ActiveMQ、RabbitMQ、RocketMQ、Kafka有什么优点和缺点</a></h1><div class="content"><h1 id="ActiveMQ"><a href="#ActiveMQ" class="headerlink" title="ActiveMQ"></a>ActiveMQ</h1><p>　　<strong>单机吞吐量：</strong>万级</p>
+<p>　　<strong>topic数量都吞吐量的影响：</strong></p>
+<p>　　<strong>时效性：</strong>ms级</p>
+<p>　　<strong>可用性：</strong>高，基于主从架构实现高可用性</p>
+<p>　　<strong>消息可靠性：</strong>有较低的概率丢失数据</p>
+<p>　　<strong>功能支持：</strong>MQ领域的功能极其完备</p>
+<p>　　<strong>总结：</strong></p>
+<p>　　　　非常成熟，功能强大，在早些年业内大量的公司以及项目中都有应用  </p>
+<p>　　　　偶尔会有较低概率丢失消息  </p>
+<p>　　　　现在社区以及国内应用都越来越少，官方社区现在对ActiveMQ 5.x维护越来越少，几个月才发布一个版本  </p>
+<p>　　　　主要是基于解耦和异步来用的，较少在大规模吞吐的场景中使用</p>
+<h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><p>　　<strong>单机吞吐量：</strong>万级</p>
+<p>　　<strong>topic数量都吞吐量的影响：</strong></p>
+<p>　　<strong>时效性：</strong>微秒级，延时低是一大特点。</p>
+<p>　　<strong>可用性：</strong>高，基于主从架构实现高可用性</p>
+<p>　　<strong>消息可靠性：</strong></p>
+<p>　　<strong>功能支持：</strong>基于erlang开发，所以并发能力很强，性能极其好，延时很低</p>
+<p>　　<strong>总结：</strong>　　</p>
+<p>　　　　erlang语言开发，性能极其好，延时很低；  </p>
+<p>　　　　吞吐量到万级，MQ功能比较完备  </p>
+<p>　　　　开源提供的管理界面非常棒，用起来很好用  </p>
+<p>　　　　社区相对比较活跃，几乎每个月都发布几个版本分  </p>
+<p>　　　　在国内一些互联网公司近几年用rabbitmq也比较多一些  但是问题也是显而易见的，RabbitMQ确实吞吐量会低一些，这是因为他做的实现机制比较重。  </p>
+<p>　　　　erlang开发，很难去看懂源码，基本职能依赖于开源社区的快速维护和修复bug。  </p>
+<p>　　　　rabbitmq集群动态扩展会很麻烦，不过这个我觉得还好。其实主要是erlang语言本身带来的问题。很难读源码，很难定制和掌控。</p>
+<h1 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h1><p>　　<strong>单机吞吐量：</strong>十万级</p>
+<p>　　<strong>topic数量都吞吐量的影响：</strong>topic可以达到几百，几千个的级别，吞吐量会有较小幅度的下降。可支持大量topic是一大优势。</p>
+<p>　　<strong>时效性：</strong>ms级</p>
+<p>　　<strong>可用性：</strong>非常高，分布式架构</p>
+<p>　　<strong>消息可靠性：</strong>经过参数优化配置，消息可以做到0丢失</p>
+<p>　　<strong>功能支持：</strong>MQ功能较为完善，还是分布式的，扩展性好</p>
+<p>　　<strong>总结：</strong></p>
+<p>　　　　接口简单易用，可以做到大规模吞吐，性能也非常好，分布式扩展也很方便，社区维护还可以，可靠性和可用性都是ok的，还可以支撑大规模的topic数量，支持复杂MQ业务场景  </p>
+<p>　　　　而且一个很大的优势在于，源码是java，我们可以自己阅读源码，定制自己公司的MQ，可以掌控  </p>
+<p>　　　　社区活跃度相对较为一般，不过也还可以，文档相对来说简单一些，然后接口这块不是按照标准JMS规范走的有些系统要迁移需要修改大量代码  </p>
+<h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><p>　　<strong>单机吞吐量：</strong>十万级，最大的优点，就是吞吐量高。</p>
+<p>　　<strong>topic数量都吞吐量的影响：</strong>topic从几十个到几百个的时候，吞吐量会大幅度下降。所以在同等机器下，kafka尽量保证topic数量不要过多。如果要支撑大规模topic，需要增加更多的机器资源</p>
+<p>　　<strong>时效性：</strong>ms级</p>
+<p>　　<strong>可用性：</strong>非常高，kafka是分布式的，一个数据多个副本，少数机器宕机，不会丢失数据，不会导致不可用</p>
+<p>　　<strong>消息可靠性：</strong>经过参数优化配置，消息可以做到0丢失</p>
+<p>　　<strong>功能支持：</strong>功能较为简单，主要支持简单的MQ功能，在大数据领域的实时计算以及日志采集被大规模使用</p>
+<p>　　<strong>总结：</strong></p>
+<p>　　　　kafka的特点其实很明显，就是仅仅提供较少的核心功能，但是提供超高的吞吐量，ms级的延迟，极高的可用性以及可靠性，而且分布式可以任意扩展  </p>
+<p>　　　　同时kafka最好是支撑较少的topic数量即可，保证其超高吞吐量  </p>
+<p>　　　　kafka唯一的一点劣势是有可能消息重复消费，那么对数据准确性会造成极其轻微的影响，在大数据领域中以及日志采集中，这点轻微影响可以忽略</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a><strong>最后</strong></h1><p>　　一般的业务系统要引入MQ，最早大家都用ActiveMQ，但是现在确实大家用的不多了，没经过大规模吞吐量场景的验证，社区也不是很活跃</p>
+<p>　　后来大家开始用RabbitMQ，但是确实erlang语言阻止了大量的java工程师去深入研究和掌控他，对公司而言，几乎处于不可控的状态，但是确实人家是开源的，比较稳定的支持，活跃度也高；</p>
+<p>　　不过现在确实越来越多的公司，会去用RocketMQ，确实很不错，但是要想好社区万一突然黄掉的风险</p>
+<p>　　所以中小型公司，技术实力较为一般，技术挑战不是特别高，用RabbitMQ是不错的选择；大型公司，基础架构研发实力较强，用RocketMQ是很好的选择</p>
+<p>　　如果是大数据领域的实时计算、日志采集等场景，用Kafka是业内标准的，绝对没问题，社区活跃度很高，绝对不会黄，何况几乎是全世界这个领域的事实性规范</p>
+<p>转自：中华石杉Java工程师面试突击</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-07T10:39:11.000Z" title="2021/4/7 下午6:39:11">2021-04-07</time>发表</span><span class="level-item"><time dateTime="2022-09-18T01:46:18.538Z" title="2022/9/18 上午9:46:18">2022-09-18</time>更新</span><span class="level-item">3 分钟读完 (大约509个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/07/Vscode%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/">Vscode使用小技巧</a></h1><div class="content"><h1 id="vscode删除重复行并排序-96"><a href="#vscode删除重复行并排序-96" class="headerlink" title="vscode删除重复行并排序&#96;"></a>vscode删除重复行并排序&#96;</h1><p>安装插件:<code>Transformer</code></p>
+<p><code>ctrl + a</code> 全选文字<br><code>ctrl + shift + P</code> 打开命令窗口<br>输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Transform:Unique Lines //删除重复行</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Transform:Sort Lines //排序</span><br></pre></td></tr></table></figure>
+<p>更多功能，查看插件页面，有<code>git</code>动画示例</p>
+<p><code>vscode</code>删除行前的空格</p>
+<p>输入<code>^\s</code><br>选择使用正则表达式<br><code>vscode</code>删除行尾的空格</p>
+<p>输入<code>\s$</code><br>选择使用正则表达式</p>
+<h1 id="VScode多行编辑的设置"><a href="#VScode多行编辑的设置" class="headerlink" title="VScode多行编辑的设置"></a>VScode多行编辑的设置</h1><p>VScode对多行编辑有两种模式。</p>
+<p>第一种模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alt+Shift   竖列选择</span><br></pre></td></tr></table></figure>
+
+<p>这种模式下只可以选择竖列，不可以随意插入光标。所以只限制于同一列且不间隔的情况下。</p>
+<p>第二种模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Shift+Ctrl 竖列选择</span><br><span class="line">Ctrl+光标点击 选择多个编辑位点</span><br></pre></td></tr></table></figure>
+
+<p>这种模式下不仅可以选择竖列，同时还可以在多个地方插入光标。</p>
+<p>两种模式的切换<br>使用<code>Shift+Ctrl+p</code>快捷键调用查询输入栏，输入<code>cursor</code>，列表中会出现“切换多行修改键”这个选项。选择这个选项就可以在两种模式下切换。</p>
+<h1 id="同时选中多个相同字符-多行-编辑"><a href="#同时选中多个相同字符-多行-编辑" class="headerlink" title="同时选中多个相同字符 多行 编辑"></a>同时选中多个相同字符 多行 编辑</h1><blockquote>
+<p>ctrl + shift + L</p>
+</blockquote>
+<p>同时选中多个相同的字符使用步骤如下，比如：冒号</p>
+<ol>
+<li>使用鼠标选中  冒号</li>
+<li>ctrl + shift + L</li>
+<li>使用键盘左右箭头 ← → 可以移动至需要位置</li>
+<li>输入需要的数值</li>
+</ol>
+<blockquote>
+<p>alt + 鼠标左键点击单个选择</p>
+</blockquote>
+<p>同时选中多行不同位置使用步骤如下，比如：冒号</p>
+<ol>
+<li>按住alt + 鼠标左键选择第一行目标位置</li>
+<li>重复第一步，选择目标行目标位置</li>
+<li>使用键盘左右箭头 ← → 可以移动至需要位置</li>
+<li>输入需要的数值</li>
+</ol>
+<blockquote>
+<p>alt + shift + 鼠标左键竖拉</p>
+</blockquote>
+<blockquote>
+<p>IDEA 选中多行相同的内容，快捷键ctrl+alt+shift+j</p>
+</blockquote>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p>选中字母后多次按下 ALT + J 选中多个相同的字母</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-06T10:43:54.000Z" title="2021/4/6 下午6:43:54">2021-04-06</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">12 分钟读完 (大约1855个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/06/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%96%AD%E8%A8%80%20-%20(%EF%80%BF!),%20(%EF%80%BF%EF%80%BA),%20(%EF%80%BF=)/">正则表达式断言 - (?!), (?:), (?=)</a></h1><div class="content"><p>一个断言就是一个对当前匹配位置之前或之后的字符的测试， 它不会实际消耗任何字符。简单的断言代码有\b、\B、 \A、 \Z、\z、 ^、$ 等，在 转义序列(反斜线) 中有描述。 更加复杂的断言以子组的方式编码。 它有两种类型： 前瞻断言(从当前位置向前测试)和后瞻断言(从当前位置向后测试)。</p>
+<p>一个断言子组的匹配还是通过普通方式进行的， 不同在于它不会导致当前的匹配点发生改变。 前瞻断言中的正面断言(断言此匹配为真)以 ”(?&#x3D;” 开始，消极断言以 ”(?!” 开头。比如， \w+(?&#x3D;;) 匹配一个单词紧跟着一个分号但是匹配结果不会包含分号， foo(?!bar) 匹配所有后面没有紧跟 ”bar” 的 ”foo” 字符串。 注意一个类似的模式 (?!foo)bar 它不能用于查找之前出现所有不是 ”foo” 的 ”bar” 匹配， 它会查找到任意的 ”bar” 出现的情况， 因为 (?!foo) 这个断言在接下来三个字符时 ”bar” 的时候是永远都 true 的。 前瞻断言需要达到的就是这样的效果。</p>
+<p>后瞻断言中的正面断言以”(?&lt;&#x3D;”开始, 消极断言以”(?&lt;!”开始。比如， (?&lt;!foo)bar 用于查找任何前面不是 ”foo” 的 ”bar”。 后瞻断言的内容被严格限制为只能用于匹配定长字符串。但是，如果有多个可选分支， 它们不需要拥有相同的长度。比如 (?&lt;&#x3D;bullock|donkey) 是允许的， 但是 (?&lt;!dogs?|cats?) 将会引发一个编译期的错误。在最上级分支可以匹配不同长度的字符串是允许的。 相比较于 perl 5.005 而言，它会要求多个分支使用相同长度的字符串匹配。 (?&lt;&#x3D;ab(c|de)) 这样的断言是不允许的， 因为它单个的顶级分支可以匹配两个不同的长度， 但是它可以接受使用两个顶级分支的写法 (?&lt;&#x3D;abc|abde) 这样的断言实现， 对于每个可选分支，暂时将当前位置移动到尝试匹配的当前位置之前的固定宽度处。 如果在当前没有足够的字符就视为匹配失败。后瞻断言与一次性子组结合使用可以用来匹配字符串结尾； 一个例子就是在一次性子组上给出字符串结尾。</p>
+<p>多个断言(任意顺序)可以同时出现。 比如 (?&lt;&#x3D;\d{3})(?&lt;!999)foo 匹配前面有三个数字但不是 ”999” 的字符串 ”foo”。注意， 每个断言独立应用到对目标字符串该点的匹配。 首先它会检查前面的三位都是数字， 然后检查这三位不是 ”999”。 这个模式不能匹配 ”foo” 前面有三位数字然后紧跟 3 位非 999 共 6 个字符的字符串，比如， 它不匹配 ”123abcfoo”。 匹配 ”123abcfoo” 这个字符串的模式可以是 (?&lt;&#x3D;\d{3}…)(?&lt;!999)foo。</p>
+<p>这种情况下，第一个断言查看(当前匹配点)前面的 6 个字符，检查前三个是数字， 然后第二个断言检查(当前匹配点)前三个字符不是 ”999”。</p>
+<p>断言可以以任意复杂度嵌套。 比如 (?&lt;&#x3D;(?&lt;!foo)bar)baz 匹配前面有 ”bar” 但是 ”bar” 前面没有 ”foo” 的 ”baz”。 另外一个模式 (?&lt;&#x3D;\d{3}…(?&lt;!999))foo 则匹配前面有三个数字字符紧跟 3 个不是 999 的任意字符的 ”foo”。</p>
+<p>断言子组时非捕获子组，并且不能用量词修饰， 因为对同一件事做多次断言是没有意义的.如果所有的断言都包含一个捕获子组， 那么为了在整个模式中捕获子组计数的目的，它们都会被计算在内。然而， 子字符串的捕获仅可以用于正面断言，因为对于消极的断言是没有意义的。</p>
+<p>将断言计算在内，可以拥有的最大子组数量是 200 个。</p>
+<blockquote>
+<p>以上来自： <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/regexp.reference.assertions.php">https://www.php.net/manual/zh/regexp.reference.assertions.php</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?:pattern) </span><br></pre></td></tr></table></figure>
+
+<p>非获取匹配，匹配pattern但不获取匹配结果，不进行存储供以后使用。这在使用或字符“(|)”来组合一个模式的各个部分是很有用。例如“industr(?:y|ies)”就是一个比“industry|industries”更简略的表达式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?=pattern)</span><br></pre></td></tr></table></figure>
+
+<p>非获取匹配，正向肯定预查，在任何匹配pattern的字符串开始处匹配查找字符串，该匹配不需要获取供以后使用。例如，“Windows(?&#x3D;95|98|NT|2000)”能匹配“Windows2000”中的“Windows”，但不能匹配“Windows3.1”中的“Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?!pattern)</span><br></pre></td></tr></table></figure>
+
+<p>非获取匹配，正向否定预查，在任何不匹配pattern的字符串开始处匹配查找字符串，该匹配不需要获取供以后使用。例如“Windows(?!95|98|NT|2000)”能匹配“Windows3.1”中的“Windows”，但不能匹配“Windows2000”中的“Windows”。<br>(?&lt;&#x3D;pattern)<br>非获取匹配，反向肯定预查，与正向肯定预查类似，只是方向相反。例如，“(?&lt;&#x3D;95|98|NT|2000)Windows”能匹配“2000Windows”中的“Windows”，但不能匹配“3.1Windows”中的“Windows”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?&lt;!pattern)</span><br></pre></td></tr></table></figure>
+
+<p>非获取匹配，反向否定预查，与正向否定预查类似，只是方向相反。例如“(?&lt;!95|98|NT|2000)Windows”能匹配“3.1Windows”中的“Windows”，但不能匹配“2000Windows”中的“Windows”。这个地方不正确，有问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?&lt;=1)test</span><br></pre></td></tr></table></figure>
+<p>匹配前面不是1的test</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 前瞻：</span><br><span class="line">exp1(?=exp2) 查找exp2前面的exp1</span><br><span class="line">// 后顾：</span><br><span class="line">(?&lt;=exp2)exp1 查找exp2后面的exp1</span><br><span class="line">// 负前瞻：</span><br><span class="line">exp1(?!exp2) 查找后面不是exp2的exp1</span><br><span class="line">// 负后顾：</span><br><span class="line">(?&lt;!exp2)exp1 查找前面不是exp2的exp1</span><br></pre></td></tr></table></figure>
+
+<p>举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;中国人&quot;.replace(/(?&lt;=中国)人/, &quot;rr&quot;) // 匹配中国人中的人，将其替换为rr，结果为 中国rr</span><br><span class="line">&quot;法国人&quot;.replace(/(?&lt;=中国)人/, &quot;rr&quot;) // 结果为 法国人，因为人前面不是中国，所以无法匹配到</span><br></pre></td></tr></table></figure>
 
 
 
+<p>要理解?:则需要理解捕获分组和非捕获分组的概念：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">()表示捕获分组，()会把每个分组里的匹配的值保存起来，使用$n(n是一个数字，表示第n个捕获组的内容)</span><br><span class="line">(?:)表示非捕获分组，和捕获分组唯一的区别在于，非捕获分组匹配的值不会保存起来</span><br></pre></td></tr></table></figure>
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<p>举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 数字格式化 1,123,000</span><br><span class="line">&quot;1234567890&quot;.replace(/\B(?=(?:\d&#123;3&#125;)+(?!\d))/g,&quot;,&quot;) // 结果：1,234,567,890，匹配的是后面是3*n个数字的非单词边界(\B)</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-05T14:44:57.000Z" title="2021/4/5 下午10:44:57">2021-04-05</time>发表</span><span class="level-item"><time dateTime="2022-09-22T01:30:37.614Z" title="2022/9/22 上午9:30:37">2022-09-22</time>更新</span><span class="level-item">15 分钟读完 (大约2323个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/05/Shell%E7%AC%94%E8%AE%B0/">Shell笔记</a></h1><div class="content"><p>#let</p>
+<blockquote>
+<p>let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。如果表达式中包含了空格或其他特殊字符，则必须引起来。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let arg [arg ...]</span><br></pre></td></tr></table></figure>
+<h2 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h2><p>自加操作：<code>let no++</code></p>
+<p>自减操作：<code>let no--</code></p>
+<p>简写形式 <code>let no+=10</code>，<code>let no-=20</code>，分别等同于 <code>let no=no+10</code>，<code>let no=no-20</code>。</p>
+<p>以下实例计算 a 和 b 两个表达式，并输出结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">let a=5+4</span><br><span class="line">let b=9-3 </span><br><span class="line">echo $a $b</span><br></pre></td></tr></table></figure>
+
+<p>上条命令执行成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if [ $? -eq 0 ]; then</span><br><span class="line">	echo &quot;OK&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">-s file　　　　　文件大小非0时为真</span><br><span class="line">[ -f &quot;somefile&quot; ] ：判断是否是一个文件</span><br><span class="line"></span><br><span class="line">[ -x &quot;/bin/ls&quot; ] ：判断/bin/ls是否存在并有可执行权限</span><br><span class="line"></span><br><span class="line">[ -n &quot;$var&quot; ] ：判断$var变量是否有值</span><br><span class="line"></span><br><span class="line">[ &quot;$a&quot; = &quot;$b&quot; ] ：判断$a和$b是否相等 </span><br><span class="line"></span><br><span class="line">-r file　　　　　用户可读为真</span><br><span class="line"></span><br><span class="line">-w file　　　　　用户可写为真</span><br><span class="line"></span><br><span class="line">-x file　　　　　用户可执行为真</span><br><span class="line"></span><br><span class="line">-f file　　　　　文件为正规文件为真</span><br><span class="line"></span><br><span class="line">-d file　　　　　文件为目录为真</span><br><span class="line"></span><br><span class="line">-c file　　　　　文件为字符特殊文件为真</span><br><span class="line"></span><br><span class="line">-b file　　　　　文件为块特殊文件为真</span><br><span class="line"></span><br><span class="line">-s file　　　　　文件大小非0时为真　　　　-s file true if the file has nonzero size</span><br><span class="line"></span><br><span class="line">-t file　　　　　当文件描述符(默认为1)指定的设备为终端时为真</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">-a file exists.</span><br><span class="line">-b file exists and is a block special file.</span><br><span class="line">-c file exists and is a character special file.</span><br><span class="line">-d file exists and is a directory.</span><br><span class="line">-e file exists (just the same as -a).</span><br><span class="line">-f file exists and is a regular file.</span><br><span class="line">-g file exists and has its setgid(2) bit set.</span><br><span class="line">-G file exists and has the same group ID as this process.</span><br><span class="line">-k file exists and has its sticky bit set.</span><br><span class="line">-L file exists and is a symbolic link.</span><br><span class="line">-n string length is not zero.</span><br><span class="line">-o Named option is set on.</span><br><span class="line">-O file exists and is owned by the user ID of this process.</span><br><span class="line">-p file exists and is a first in, first out (FIFO) special file or</span><br><span class="line">named pipe.</span><br><span class="line">-r file exists and is readable by the current process.</span><br><span class="line">-s file exists and has a size greater than zero.</span><br><span class="line">-S file exists and is a socket.</span><br><span class="line">-t file descriptor number fildes is open and associated with a</span><br><span class="line">terminal device.</span><br><span class="line">-u file exists and has its setuid(2) bit set.</span><br><span class="line">-w file exists and is writable by the current process.</span><br><span class="line">-x file exists and is executable by the current process.</span><br><span class="line">-z string length is zero.</span><br></pre></td></tr></table></figure>
+
+<p><strong>shell判断字符串为空的方法</strong></p>
+<p>Linux 下判断字符串是否为空，可以使用两个参数：</p>
+<p>● -z ：判断 string 是否是空串</p>
+<p>● -n ：判断 string 是否是非空串</p>
+<p>例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh`` ` `STRING=`` ` `if` `[ -z ``&quot;$STRING&quot;` `]; then`` ``echo` `&quot;STRING is empty&quot;``fi`` ` `if` `[ -n ``&quot;$STRING&quot;` `]; then`` ``echo` `&quot;STRING is not empty&quot;``fi`` ` `root@desktop:~# ./zerostring.sh ``STRING is ``empty</span><br></pre></td></tr></table></figure>
+
+<p>注：在进行字符串比较时， 用引号将字符串界定起来 ，是一个非常好的习惯！</p>
+<p>其他方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if` `[ ``&quot;$str&quot;` `= ``&quot;&quot;` `]</span><br></pre></td></tr></table></figure>
+
+<h1 id="shell中的2-gt-amp-1"><a href="#shell中的2-gt-amp-1" class="headerlink" title="shell中的2&gt;&amp;1"></a>shell中的2&gt;&amp;1</h1><h2 id="A-首先了解下1和2在Linux中代表什么"><a href="#A-首先了解下1和2在Linux中代表什么" class="headerlink" title="A.首先了解下1和2在Linux中代表什么"></a>A.首先了解下1和2在Linux中代表什么</h2><p>在Linux系统中0 1 2是一个文件描述符</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>代码</th>
+<th>操作符</th>
+<th>Java中表示</th>
+<th>Linux 下文件描述符（Debian 为例)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>标准输入(stdin)</td>
+<td>0</td>
+<td>&lt; 或 &lt;&lt;</td>
+<td>System.in</td>
+<td>&#x2F;dev&#x2F;stdin -&gt; &#x2F;proc&#x2F;self&#x2F;fd&#x2F;0 -&gt; &#x2F;dev&#x2F;pts&#x2F;0</td>
+</tr>
+<tr>
+<td>标准输出(stdout)</td>
+<td>1</td>
+<td>&gt;, &gt;&gt;, 1&gt; 或 1&gt;&gt;</td>
+<td>System.out</td>
+<td>&#x2F;dev&#x2F;stdout -&gt; &#x2F;proc&#x2F;self&#x2F;fd&#x2F;1 -&gt; &#x2F;dev&#x2F;pts&#x2F;0</td>
+</tr>
+<tr>
+<td>标准错误输出(stderr)</td>
+<td>2</td>
+<td>2&gt; 或 2&gt;&gt;</td>
+<td>System.err</td>
+<td>&#x2F;dev&#x2F;stderr -&gt; &#x2F;proc&#x2F;self&#x2F;fd&#x2F;2 -&gt; &#x2F;dev&#x2F;pts&#x2F;0</td>
+</tr>
+</tbody></table>
+<p>上面表格引用自<a target="_blank" rel="noopener" href="https://yanbin.blog/linux-input-output-redirection/">这里</a><br>从上表看的出来，我们平时使用的</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;hello&quot; &gt; t.log</span><br></pre></td></tr></table></figure>
+
+
+<p>其实也可以写成</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;hello&quot; 1&gt; t.log</span><br></pre></td></tr></table></figure>
+
+<h1 id="B-关于2-gt-amp-1的含义"><a href="#B-关于2-gt-amp-1的含义" class="headerlink" title="B.关于2&gt;&amp;1的含义"></a>B.关于2&gt;&amp;1的含义</h1><p>（关于输入&#x2F;输出重定向本文就不细说了，不懂的可以参考这里，主要是要了解&gt; &lt; &lt;&lt; &gt;&gt; &lt;&amp; &gt;&amp; 这6个符号的使用）</p>
+<p>含义：将标准错误输出重定向到标准输出<br>符号&gt;&amp;是一个整体，不可分开，分开后就不是上述含义了。<br>比如有些人可能会这么想：2是标准错误输入，1是标准输出，&gt;是重定向符号，那么”将标准错误输出重定向到标准输出”是不是就应该写成”2&gt;1”就行了？是这样吗？<br>如果是尝试过，你就知道2&gt;1的写法其实是将标准错误输出重定向到名为”1”的文件里去了<br>写成2&amp;&gt;1也是不可以的<br>C.为什么2&gt;&amp;1要放在后面<br>考虑如下一条shell命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -jar app.jar &gt;log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+
+
+<p>(最后一个&amp;表示把条命令放到后台执行，不是本文重点，不懂的可以自行Google)<br>为什么2&gt;&amp;1一定要写到&gt;log后面，才表示标准错误输出和标准输出都定向到log中？<br>我们不妨把1和2都理解是一个指针,然后来看上面的语句就是这样的：</p>
+<ol>
+<li>本来1—–&gt;屏幕 （1指向屏幕）</li>
+<li>执行&gt;log后， 1—–&gt;log (1指向log)</li>
+<li>执行2&gt;&amp;1后， 2—–&gt;1 (2指向1，而1指向log,因此2也指向了log)</li>
+</ol>
+<p>再来分析下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -jar app.jar 2&gt;&amp;1 &gt;log &amp;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>本来1—–&gt;屏幕 （1指向屏幕）</li>
+<li>执行2&gt;&amp;1后， 2—–&gt;1 (2指向1，而1指向屏幕,因此2也指向了屏幕)</li>
+<li>执行&gt;log后， 1—–&gt;log (1指向log，2还是指向屏幕)</li>
+</ol>
+<p>所以这就不是我们想要的结果。<br><strong>简单做个试验测试下上面的想法</strong>：<br>java代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Htest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;out1&quot;</span>);</span><br><span class="line">        System.err.println(<span class="string">&quot;error1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-
-  <script  src="/js/local-search.js" ></script>
-
-
+<p>javac编译后运行下面指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java Htest 2&gt;&amp;1 &gt; log</span><br></pre></td></tr></table></figure>
 
 
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<p>你会在终端上看到只输出了”error1”，log文件中则只有”out1”</p>
+<p>D.每次都写”&gt;log 2&gt;&amp;1”太麻烦，能简写吗？<br>有以下两种简写方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&amp;&gt;log</span><br><span class="line"></span><br><span class="line">&amp;log</span><br></pre></td></tr></table></figure>
 
 
-  
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+<p>比如上面小节中的写法就可以简写为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -jar app.jar &amp;&gt;log &amp;</span><br></pre></td></tr></table></figure>
+<p>上面两种方式都和<code>&gt;log 2&gt;&amp;1</code>一个语义。<br>那么 上面两种方式中&amp;&gt;和&gt;&amp;有区别吗？<br><strong>语义上是没有任何区别的，但是第一中方式是最佳选择，一般使用第一种</strong></p>
+<h1 id="输出带颜色字体"><a href="#输出带颜色字体" class="headerlink" title="输出带颜色字体"></a>输出带颜色字体</h1><p>输出特效格式控制：*<br>\033[0m*  关闭所有属性 *<br>\033[1m*  设置高亮度 *<br>\03[4m*  下划线 *<br>\033[5m*  闪烁 *<br>\033[7m*  反显 *<br>\033[8m*  消隐 *<br>\033[30m  –  \033[37m*  设置前景色 *<br>\033[40m  –  \033[47m*  设置背景色</p>
+<p>光标位置等的格式控制：<br>\033[nA  光标上移n行<br>\03[nB  光标下移n行<br>\033[nC  光标右移n行<br>\033[nD  光标左移n行<br>\033[y;xH设置光标位置<br>\033[2J  清屏<br>\033[K  清除从光标到行尾的内容<br>\033[s  保存光标位置<br>\033[u  恢复光标位置<br>\033[?25l  隐藏光标  </p>
+<p>\33[?25h  显示光标</p>
+<p>整理：<br>  编码 颜色&#x2F;动作<br>　　0  重新设置属性到缺省设置<br>　　1  设置粗体<br>　　2  设置一半亮度(模拟彩色显示器的颜色)<br>　　4  设置下划线(模拟彩色显示器的颜色)<br>　　5  设置闪烁<br>　　7  设置反向图象<br>　　22 设置一般密度<br>　　24 关闭下划线<br>　　25 关闭闪烁<br>　　27 关闭反向图象<br>　　30 设置黑色前景<br>　　31 设置红色前景<br>　　32 设置绿色前景<br>　　33 设置棕色前景<br>　　34 设置蓝色前景<br>　　35 设置紫色前景<br>　　36 设置青色前景<br>　　37 设置白色前景<br>　　38 在缺省的前景颜色上设置下划线<br>　　39 在缺省的前景颜色上关闭下划线<br>　　40 设置黑色背景<br>　　41 设置红色背景<br>　　42 设置绿色背景<br>　　43 设置棕色背景<br>　　44 设置蓝色背景<br>　　45 设置紫色背景<br>　　46 设置青色背景<br>　　47 设置白色背景<br>　　49 设置缺省黑色背景<br>特效可以叠加，需要使用“;”隔开，例如：闪烁+下划线+白底色+黑字为  \033[5;4;47;30m闪烁+下划线+白底色+黑字为\033[0m<br>下面是一段小例子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#下面是字体输出颜色及终端格式控制</span></span><br><span class="line"><span class="comment">#字体色范围：30-37</span></span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[30m 黑色字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[31m 红色字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[32m 绿色字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[33m 黄色字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[34m 蓝色字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[35m 紫色字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[36m 天蓝字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[37m 白色字 \033[0m&amp;quot;</span><br><span class="line"><span class="comment">#字背景颜色范围：40-47</span></span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[40;37m 黑底白字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[41;30m 红底黑字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[42;34m 绿底蓝字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[43;34m 黄底蓝字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[44;30m 蓝底黑字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[45;30m 紫底黑字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[46;30m 天蓝底黑字 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[47;34m 白底蓝字 \033[0m&amp;quot;</span><br><span class="line"></span><br><span class="line"><span class="comment">#控制选项说明</span></span><br><span class="line"><span class="comment">#\033[0m 关闭所有属性</span></span><br><span class="line"><span class="comment">#\033[1m 设置高亮度</span></span><br><span class="line"><span class="comment">#\033[4m 下划线</span></span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[4;31m 下划线红字 \033[0m&amp;quot;</span><br><span class="line"><span class="comment">#闪烁</span></span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[5;34m 红字在闪烁 \033[0m&amp;quot;</span><br><span class="line"><span class="comment">#反影</span></span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[8m 消隐 \033[0m &amp;quot;</span><br><span class="line"></span><br><span class="line"><span class="comment">#\033[30m-\033[37m 设置前景色</span></span><br><span class="line"><span class="comment">#\033[40m-\033[47m 设置背景色</span></span><br><span class="line"><span class="comment">#\033[nA光标上移n行</span></span><br><span class="line"><span class="comment">#\033[nB光标下移n行</span></span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[4A 光标上移4行 \033[0m&amp;quot;</span><br><span class="line"><span class="comment">#\033[nC光标右移n行</span></span><br><span class="line"><span class="comment">#\033[nD光标左移n行</span></span><br><span class="line"><span class="comment">#\033[y;xH设置光标位置</span></span><br><span class="line"><span class="comment">#\033[2J清屏</span></span><br><span class="line"><span class="comment">#\033[K清除从光标到行尾的内容</span></span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[K 清除光标到行尾的内容 \033[0m&amp;quot;</span><br><span class="line"><span class="comment">#\033[s 保存光标位置</span></span><br><span class="line"><span class="comment">#\033[u 恢复光标位置</span></span><br><span class="line"><span class="comment">#\033[?25| 隐藏光标</span></span><br><span class="line"><span class="comment">#\033[?25h 显示光标</span></span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[?25l 隐藏光标 \033[0m&amp;quot;</span><br><span class="line"><span class="built_in">echo</span> -e &amp;quot;\033[?25h 显示光标 \033[0m&amp;quot;</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-04T07:20:54.000Z" title="2021/4/4 下午3:20:54">2021-04-04</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">4 分钟读完 (大约538个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/04/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D&amp;quot;%E9%9D%9E&amp;quot;%EF%BC%8C%E4%BB%A5%E5%8F%8A&amp;quot;%E9%9D%9E&amp;quot;%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8C%B9%E9%85%8D/">正则表达式匹配&amp;quot;非&amp;quot;，以及&amp;quot;非&amp;quot;字符串的匹配</a></h1><div class="content"><p>#写法介绍<br>首先，正则表达式的&quot;非&quot;，代表不想匹配某个字符。</p>
+<p>比如字符串 helloword123，&#x2F;[^0-9]+&#x2F;g 可以匹配非数字，即匹配结果为 helloword；</p>
+<p>同样的，&#x2F;[^he]+&#x2F;g 可以匹配非h非e的字符，匹配结果为lloword123；</p>
+<p>那么 &#x2F;[^hello]&#x2F;g 呢？乍一看可能会以为能匹配word123，其实不然，[^] 内的多个字符是&quot;或&quot;的关系存在的，即它们并不是一个整体，&#x2F;[^hello]&#x2F;g 表示 非h非e非l非o，并不能理解为 非(hello)，所以匹配结果是 w 和 rd123。</p>
+<p>道理我们都懂，可我们就是想匹配非某个字符串呢？比如某一字符串若是含有hello则无匹配，若是不含hello则匹配，写成[^hello]是显然不行的，[^(hello)] 呢？其实不起作用。</p>
+<p>这时我们需要用到正则表达式的断言——(?!pattern) 零宽负向先行断言 或者 (?&lt;!pattern) 零宽负向后行断言 均可。</p>
+<p>这里只介绍一种写法，大家可以都去尝试一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^((?!hello).)+$/</span><br></pre></td></tr></table></figure>
+
+<p>由于断言 (?!hello)是不占位的，后跟的 . 在原位置匹配任意字符，再用括号将其括起来，用+重复一次或多次，前后加上^和$，若是字符串中存在hello，则匹配到h字符之前的时候，断言(?!hello)匹配失败，正则匹配结果为false， 若是字符串中不存在hello，则匹配结果是整个字符串。</p>
+<p>#用法实战</p>
+<p>##匹配&amp;和;之间不含有test的字符</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = &amp;quot;hello&amp;amp;nbsp;&amp;amp;test1;test&amp;amp;qout;&amp;quot;;</span><br></pre></td></tr></table></figure>
+
+<p>正则表达式：<code>/&amp;amp;((?!test).)+;/g</code></p>
+<p>匹配结果：<code>&amp;amp;nbsp;</code> 和 <code>&amp;amp;qout;</code></p>
+<h2 id="匹配不含有-amp-lt-img-amp-gt-标签的-amp-lt-div-amp-gt-amp-lt-div-amp-gt-标签"><a href="#匹配不含有-amp-lt-img-amp-gt-标签的-amp-lt-div-amp-gt-amp-lt-div-amp-gt-标签" class="headerlink" title="匹配不含有&amp;lt;img&amp;gt;标签的&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;标签"></a>匹配不含有<code>&amp;lt;img&amp;gt;</code>标签的<code>&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;</code>标签</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = &amp;quot;&amp;lt;div id=&#x27;1&#x27;&amp;gt;&amp;lt;img class=&#x27;xx&#x27;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div id=&#x27;1&#x27;&amp;gt;&amp;lt;input type=&#x27;&#x27;text&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;quot;;</span><br></pre></td></tr></table></figure>
+
+<p>正则表达式：<code> /&amp;lt;div[^&amp;gt;]*&amp;gt;((?!&amp;lt;img[^&amp;gt;]*&amp;gt;).)+&amp;lt;/div&amp;gt;/g</code></p>
+<p>匹配结果：<code>&amp;lt;div id=&#39;1&#39;&amp;gt;&amp;lt;input type=&#39;&#39;text&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;</code></p>
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/11/">上一页</a></div><div class="pagination-next"><a href="/page/13/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/11/">11</a></li><li><a class="pagination-link is-current" href="/page/12/">12</a></li><li><a class="pagination-link" href="/page/13/">13</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/17/">17</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果也！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">170</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-01T06:56:20.000Z">2022-10-01</time></p><p class="title"><a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-18T05:06:34.000Z">2022-09-18</time></p><p class="title"><a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-04T13:30:39.000Z">2022-09-04</time></p><p class="title"><a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-21T02:56:27.000Z">2022-08-21</time></p><p class="title"><a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-19T12:54:39.000Z">2022-08-19</time></p><p class="title"><a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown基本语法</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">五月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

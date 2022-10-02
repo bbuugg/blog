@@ -1,678 +1,784 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="CY">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="笔记">
-<meta property="og:url" content="https://www.chengyao.xyz/page/8/index.html">
-<meta property="og:site_name" content="笔记">
-<meta property="og:description" content="笔记">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="CY">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>笔记</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 100vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
-          
-        </div>
-
-        
-      </div>
-
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          style="margin-top: 0">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/14/%E5%8A%A0%E5%BF%AB%E4%BD%A0%E7%9A%84Github%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6/" target="_self">
-          加快你的Github访问速度
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/14/%E5%8A%A0%E5%BF%AB%E4%BD%A0%E7%9A%84Github%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6/" target="_self">
-        <div>
-          有时候打开Github是真的慢，紧急时刻总是打不开，所以在这里写下加快Github访问的一些步骤，供大家参考 前期准备云服务器一台我使用了Docker, 你也可以直接装到当前系统， 服务器的话国外的最好，因为国外访问Github是比较快的。 拉取Nginx镜像https:&#x2F;&#x2F;registry.hub.docker.com&#x2F;_&#x2F;nginx 1docker pull nginx  这个版本是真的新啊
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-14 17:49" pubdate>
-              2021-11-14
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/13/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" target="_self">
-          微信开发笔记
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/13/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" target="_self">
-        <div>
-          微信公众号授权流程可能是很早的版本 UA 安坐  12345Mozilla&#x2F;5.0 (Linux; Android 7.1.1; MI 6 Build&#x2F;NMF26X; wv) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Version&#x2F;4.0 Chrome&#x2F;57.0.2987.132 MQQBrowser&#x2F;6.2 TBS&#x2F;043807 Mobile Safari&#x2F;
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-13 12:00" pubdate>
-              2021-11-13
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/07/OpenAPI%E6%A0%87%E5%87%86%E8%A7%84%E8%8C%83/" target="_self">
-          OpenAPI标准规范
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/07/OpenAPI%E6%A0%87%E5%87%86%E8%A7%84%E8%8C%83/" target="_self">
-        <div>
-          https:&#x2F;&#x2F;honeypps.com&#x2F;architect&#x2F;openapi-standard-specification&#x2F;
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-07 17:26" pubdate>
-              2021-11-07
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/07/Linux%E5%91%BD%E4%BB%A4/" target="_self">
-          Linux命令
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/07/Linux%E5%91%BD%E4%BB%A4/" target="_self">
-        <div>
-          常用Linux命令ps1ps -ef | grep redis  根据进程id查找文件，找到pid，例如123 1ls -lp &#x2F;proc&#x2F;123&#x2F;cwd   cat命令&gt;连接文件并打印到标准输出设备上，cat经常用来显示文件的内容。 注意：当文件较大时，文本在屏幕上迅速闪过（滚屏），用户往往看不清所显示的内容。因此，一般用more等命令分屏显示。 为了控制滚屏，可以按Ctrl+S键，停止滚
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-07 17:26" pubdate>
-              2021-11-07
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/05/WSL2%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_self">
-          WSL2 使用笔记
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/05/WSL2%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" target="_self">
-        <div>
-          安装 官方文档  https:&#x2F;&#x2F;docs.microsoft.com&#x2F;zh-cn&#x2F;windows&#x2F;wsl&#x2F;install-manual https:&#x2F;&#x2F;docs.microsoft.com&#x2F;zh-cn&#x2F;windows&#x2F;wsl&#x2F;install 登录相关停止wsl21wsl --shutdown  wsl切换用户需要输入密码  可以根据下面文档去掉密码：https:&#x2F;&#x2F;www.1kmb.com&#x2F;no
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-05 22:18" pubdate>
-              2021-11-05
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/02/%E4%BB%80%E4%B9%88%E6%98%AFPOP3%E3%80%81SMTP%E5%92%8CIMAP%EF%80%BF/" target="_self">
-          什么是POP3、SMTP和IMAP?
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/02/%E4%BB%80%E4%B9%88%E6%98%AFPOP3%E3%80%81SMTP%E5%92%8CIMAP%EF%80%BF/" target="_self">
-        <div>
-          POP3POP3是Post Office Protocol 3的简称，即邮局协议的第3个版本,它规定怎样将个人计算机连接到Internet的邮件服务器和下载电子邮件的电子协议。它是因特网电子邮件的第一个离线协议标准,POP3允许用户从服务器上把邮件存储到本地主机（即自己的计算机）上,同时删除保存在邮件服务器上的邮件，而POP3服务器则是遵循POP3协议的接收邮件服务器，用来接收电子邮件的。(与IM
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-02 22:12" pubdate>
-              2021-11-02
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/02/PHP%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8E%E5%BC%95%E7%94%A8%E8%BF%94%E5%9B%9E/" target="_self">
-          PHP箭头函数与引用返回
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/02/PHP%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8E%E5%BC%95%E7%94%A8%E8%BF%94%E5%9B%9E/" target="_self">
-        <div>
-          箭头函数文档来自PHP手册： https:&#x2F;&#x2F;www.php.net&#x2F;manual&#x2F;zh&#x2F;functions.arrow.php  箭头函数是 PHP 7.4 的新语法，是一种更简洁的 匿名函数 写法。  匿名函数和箭头函数都是 Closure 类的实现。 箭头函数的基本语法为  1fn (argument_list) &#x3D;&gt; expr  箭头函数支持与 匿名函数 相同的功能，只是其父作用域的
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-02 22:07" pubdate>
-              2021-11-02
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/30/Supervisor%20%E4%BD%BF%E7%94%A8%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0%20%E3%80%90%E9%85%8D%E7%BD%AEsyncd%E3%80%91/" target="_self">
-          Supervisor 使用踩坑笔记 【配置syncd】
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/30/Supervisor%20%E4%BD%BF%E7%94%A8%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0%20%E3%80%90%E9%85%8D%E7%BD%AEsyncd%E3%80%91/" target="_self">
-        <div>
-          前言 之前有使用hyperf这样的框架开发过，但是线上部署没有实操，也不清楚进程监控怎么配置，所以学习了一下，记录一篇笔记。  我主要是看了这篇文章的讲解：https:&#x2F;&#x2F;www.1kmb.com&#x2F;note&#x2F;284.html内容很不错，推荐在这里。 实操根据教程配置了syncd的监控配置如下 123456789101112[program:syncd]directory&#x3D;&#x2F;root&#x2F;syncd-d
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-30 11:43" pubdate>
-              2021-10-30
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/28/%E6%B6%88%E6%81%AF%E5%A4%B4%E5%AD%97%E6%AE%B5%E4%B9%8BCache-Control/" target="_self">
-          消息头字段之Cache-Control
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/28/%E6%B6%88%E6%81%AF%E5%A4%B4%E5%AD%97%E6%AE%B5%E4%B9%8BCache-Control/" target="_self">
-        <div>
-          Cache-ControlCache-Control 通用消息头字段，被用于在http请求和响应中，通过指定指令来实现缓存机制。缓存指令是单向的，这意味着在请求中设置的指令，不一定被包含在响应中。    Header type General header    Forbidden header name no   CORS-safelisted response-header yes   语法指
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-28 13:44" pubdate>
-              2021-10-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/20/%E5%8E%BB%E6%8E%89sudo%E7%9A%84%E5%AF%86%E7%A0%81/" target="_self">
-          去掉sudo的密码
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/20/%E5%8E%BB%E6%8E%89sudo%E7%9A%84%E5%AF%86%E7%A0%81/" target="_self">
-        <div>
-          sudo执行命令的时候老是让输入密码，真的好烦，下面为去掉密码的方法： 首先打开&#x2F;etc&#x2F;sudoers “sudo visudo” 或 “sudo vi &#x2F;etc&#x2F;sudoers” 建议用以下命令打开”sudo visudo”，用该命令编辑sudoers后保存时如果有语法错误系统会给出提示，而用“vi &#x2F;etc&#x2F;sudoers”就不会给
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-20 22:42" pubdate>
-              2021-10-20
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/7/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/#board">9</a><a class="page-number" href="/page/10/#board">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/9/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="笔记"><meta property="og:type" content="blog"><meta property="og:title" content="笔记"><meta property="og:url" content="https://www.chengyao.xyz/"><meta property="og:site_name" content="笔记"><meta property="og:description" content="笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz"},"headline":"笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"笔记"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-14T14:34:17.000Z" title="2021/11/14 下午10:34:17">2021-11-14</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">2 分钟读完 (大约249个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/14/Centos7.x%20%E9%98%B2%E7%81%AB%E5%A2%99/">Centos7.x 防火墙</a></h1><div class="content"><p>&gt; CentOS 7.x 默认使用的是firewall作为防火墙，取代6.x的iptables</p>
+<h4 id="1-查看防火墙状态"><a href="#1-查看防火墙状态" class="headerlink" title="1. 查看防火墙状态"></a>1. 查看防火墙状态</h4><hr>
+<p><strong>命令如下</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --state</span><br></pre></td></tr></table></figure>
+
+<p>该命令有两种结果：<code>running</code>、<code>not running</code>；前者代表是<code>开启状态</code>，后者代表是<code>关闭状态</code></p>
+<p>在 vmware 上安装的centos7最小化镜像防火墙默认是开机自启的</p>
+<p><a target="_blank" rel="noopener" href="https://img.itqaq.com/art/content/028e377d019bac9774c07fecd426191f.png"><img src="https://img.itqaq.com/art/content/028e377d019bac9774c07fecd426191f.png" alt="img"></a></p>
+<h4 id="2-修改防火墙状态的相关命令（后缀-service-可以省略）"><a href="#2-修改防火墙状态的相关命令（后缀-service-可以省略）" class="headerlink" title="2. 修改防火墙状态的相关命令（后缀 .service 可以省略）"></a>2. 修改防火墙状态的相关命令（后缀 .service 可以省略）</h4><hr>
+<p><strong>开启防火墙</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p><strong>关闭防火墙</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p><strong>防火墙开机自启</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p><strong>重启防火墙</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p><strong>禁止防火墙开机自启</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-测试以上命令时可能会用到关机重启命令，在此也写下吧"><a href="#3-测试以上命令时可能会用到关机重启命令，在此也写下吧" class="headerlink" title="3. 测试以上命令时可能会用到关机重启命令，在此也写下吧"></a>3. 测试以上命令时可能会用到关机重启命令，在此也写下吧</h4><hr>
+<p><strong>重启</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p><strong>关机（其实有很多方式，这里只写一种）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 0</span><br></pre></td></tr></table></figure>
+
+<p>文章来源：<a target="_blank" rel="noopener" href="http://www.itqaq.com/index/art/126.html">http://www.itqaq.com/index/art/126.html</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-14T09:49:39.000Z" title="2021/11/14 下午5:49:39">2021-11-14</time>发表</span><span class="level-item"><time dateTime="2022-09-18T01:47:38.909Z" title="2022/9/18 上午9:47:38">2022-09-18</time>更新</span><span class="level-item">6 分钟读完 (大约873个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/14/%E5%8A%A0%E5%BF%AB%E4%BD%A0%E7%9A%84Github%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6/">加快你的Github访问速度</a></h1><div class="content"><p>有时候打开Github是真的慢，紧急时刻总是打不开，所以在这里写下加快Github访问的一些步骤，供大家参考</p>
+<h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><h2 id="云服务器一台"><a href="#云服务器一台" class="headerlink" title="云服务器一台"></a>云服务器一台</h2><p>我使用了Docker, 你也可以直接装到当前系统， 服务器的话国外的最好，因为国外访问Github是比较快的。</p>
+<h2 id="拉取Nginx镜像"><a href="#拉取Nginx镜像" class="headerlink" title="拉取Nginx镜像"></a>拉取Nginx镜像</h2><p><a target="_blank" rel="noopener" href="https://registry.hub.docker.com/_/nginx">https://registry.hub.docker.com/_/nginx</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+
+<p>这个版本是真的新啊</p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd -p 89:80 --name nginx nginx </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以下操作均在容器中进行</p>
+</blockquote>
+<h2 id="官网下载Nginx源码"><a href="#官网下载Nginx源码" class="headerlink" title="官网下载Nginx源码"></a>官网下载Nginx源码</h2><p><a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://nginx.org/download/nginx-1.21.4.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载要新增的模块"><a href="#下载要新增的模块" class="headerlink" title="下载要新增的模块"></a>下载要新增的模块</h2><p><a target="_blank" rel="noopener" href="https://github.com/chobits/ngx_http_proxy_connect_module">https://github.com/chobits/ngx_http_proxy_connect_module</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/chobits/ngx_http_proxy_connect_module.git</span><br></pre></td></tr></table></figure>
+
+<h1 id="重新编译Nginx"><a href="#重新编译Nginx" class="headerlink" title="重新编译Nginx"></a>重新编译Nginx</h1><h2 id="查看Nginx编译参数"><a href="#查看Nginx编译参数" class="headerlink" title="查看Nginx编译参数"></a>查看Nginx编译参数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -V</span><br></pre></td></tr></table></figure>
+
+<p>将编译参数保存起来</p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="解压下载的Nginx和模块"><a href="#解压下载的Nginx和模块" class="headerlink" title="解压下载的Nginx和模块"></a>解压下载的Nginx和模块</h3><blockquote>
+<p>如果需要的话</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxf nginx-***.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>进入Nginx源码路径，根据你的Nginx版本及下面的对应关系，执行类似下面的命令</p>
+<table>
+<thead>
+<tr>
+<th>nginx version</th>
+<th>enable REWRITE phase</th>
+<th>patch</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.4.x ~ 1.12.x</td>
+<td>NO</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chobits/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect.patch">proxy_connect.patch</a></td>
+</tr>
+<tr>
+<td>1.4.x ~ 1.12.x</td>
+<td>YES</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chobits/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect_rewrite.patch">proxy_connect_rewrite.patch</a></td>
+</tr>
+<tr>
+<td>1.13.x ~ 1.14.x</td>
+<td>NO</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chobits/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect_1014.patch">proxy_connect_1014.patch</a></td>
+</tr>
+<tr>
+<td>1.13.x ~ 1.14.x</td>
+<td>YES</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chobits/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect_rewrite_1014.patch">proxy_connect_rewrite_1014.patch</a></td>
+</tr>
+<tr>
+<td>1.15.2</td>
+<td>YES</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chobits/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect_rewrite_1015.patch">proxy_connect_rewrite_1015.patch</a></td>
+</tr>
+<tr>
+<td>1.15.4 ~ 1.16.x</td>
+<td>YES</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chobits/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect_rewrite_101504.patch">proxy_connect_rewrite_101504.patch</a></td>
+</tr>
+<tr>
+<td>1.17.x ~ 1.18.0</td>
+<td>YES</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chobits/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect_rewrite_1018.patch">proxy_connect_rewrite_1018.patch</a></td>
+</tr>
+<tr>
+<td>1.19.x ~ 1.21.0</td>
+<td>YES</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chobits/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect_rewrite_1018.patch">proxy_connect_rewrite_1018.patch</a></td>
+</tr>
+<tr>
+<td>1.21.1</td>
+<td>YES</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/chobits/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect_rewrite_102101.patch">proxy_connect_rewrite_102101.patch</a></td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">patch -p1 &lt; /path/to/ngx_http_proxy_connect_module/patch/proxy_connect.patch</span><br><span class="line">./configure --add-module=/path/to/ngx_http_proxy_connect_module</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>注意，上面的编译参数要把你刚刚复制的那段加上去安装完成</p>
+<h2 id="添加配置"><a href="#添加配置" class="headerlink" title="添加配置"></a>添加配置</h2><p>我们需要修改一下配置，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">     listen                         80;</span><br><span class="line">     resolver                       8.8.8.8;</span><br><span class="line">     proxy_connect;</span><br><span class="line">     proxy_connect_allow            443 563;</span><br><span class="line">     proxy_connect_connect_timeout  10s;</span><br><span class="line">     proxy_connect_read_timeout     10s;</span><br><span class="line">     proxy_connect_send_timeout     10s;</span><br><span class="line">	</span><br><span class="line">	 # 下面这个配置应该需要改下</span><br><span class="line">     location / &#123;</span><br><span class="line">         proxy_pass $scheme://$host/;</span><br><span class="line">         proxy_set_header Host $host;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个配置你可能需要根据需要做相应修改，例如你需要转发某个header头，你可以使用</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxy_set_header Accpet &quot;*/*&quot;</span><br></pre></td></tr></table></figure>
+
+<p>然后重载一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<p>或者直接重启</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>修改你电脑或者浏览器的代理配置，如下</p>
+<p><img src="/images/20211114/64756e1a123133753a1478a85f46de5c.png"></p>
+<p>这里的127.0.0.1是你服务器的ip地址，89是你映射到nginx的端口，可以看下</p>
+<p><img src="/images/20211114/115a8544b17a91ac4c746537af39e822.png"></p>
+<p>如果远程地址是[你服务器ip]:89 就说明成功了，如果你使用的是国外的机器那么速度应该会很快。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>教程是前几天搭建之后总结的，总结的时候并没有再操作一遍，所以可能会有一些问题，如果有问题可以留言给我。</p>
+<p>还可以使用nginx代理socket，可以参考下面两篇文章</p>
+<p><a target="_blank" rel="noopener" href="https://www.zybuluo.com/orangleliu/note/478334" title="Nginx折腾－TCP代理和负载均衡">Nginx折腾－TCP代理和负载均衡</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/knowledgesea/p/6497783.html" title="Nginx支持Socket转发过程详解">Nginx支持Socket转发过程详解</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-13T04:00:08.000Z" title="2021/11/13 下午12:00:08">2021-11-13</time>发表</span><span class="level-item"><time dateTime="2022-09-10T15:34:18.706Z" title="2022/9/10 下午11:34:18">2022-09-10</time>更新</span><span class="level-item">5 分钟读完 (大约691个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/13/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/">微信开发笔记</a></h1><div class="content"><h2 id="微信公众号授权流程"><a href="#微信公众号授权流程" class="headerlink" title="微信公众号授权流程"></a>微信公众号授权流程</h2><p>可能是很早的版本<br><img src="/images/20211113/f05d055280c2e92ee96018088169bbd0.png"></p>
+<h2 id="UA"><a href="#UA" class="headerlink" title="UA"></a>UA</h2><blockquote>
+<p>安坐</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (Linux; Android 7.1.1; MI 6 Build/NMF26X; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/043807 Mobile Safari/537.36 MicroMessenger/6.6.1.1220(0x26060135) NetType/WIFI Language/zh_CN</span><br><span class="line">Mozilla/5.0 (Linux; Android 7.1.1; OD103 Build/NMF26F; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043632 Safari/537.36 MicroMessenger/6.6.1.1220(0x26060135) NetType/4G Language/zh_CN</span><br><span class="line">Mozilla/5.0 (Linux; Android 6.0.1; SM919 Build/MXB48T; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043632 Safari/537.36 MicroMessenger/6.6.1.1220(0x26060135) NetType/WIFI Language/zh_CN</span><br><span class="line">Mozilla/5.0 (Linux; Android 5.1.1; vivo X6S A Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043632 Safari/537.36 MicroMessenger/6.6.1.1220(0x26060135) NetType/WIFI Language/zh_CN</span><br><span class="line">Mozilla/5.0 (Linux; Android 5.1; HUAWEI TAG-AL00 Build/HUAWEITAG-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043622 Safari/537.36 MicroMessenger/6.6.1.1220(0x26060135) NetType/4G Language/zh_CN</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>iPhone 系统下的微信 User Agent</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13F69 MicroMessenger/6.6.1 NetType/4G Language/zh_CN</span><br><span class="line">Mozilla/5.0 (iPhone; CPU iPhone OS 11_2_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C202 MicroMessenger/6.6.1 NetType/4G Language/zh_CN</span><br><span class="line">Mozilla/5.0 (iPhone; CPU iPhone OS 11_1_1 like Mac OS X) AppleWebKit/604.3.5 (KHTML, like Gecko) Mobile/15B150 MicroMessenger/6.6.1 NetType/WIFI Language/zh_CN</span><br><span class="line">Mozilla/5.0 (iphone x Build/MXB48T; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.49 Mobile MQQBrowser/6.2 TBS/043632 Safari/537.36 MicroMessenger/6.6.1.1220(0x26060135) NetType/WIFI Language/zh_CN</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>微信内置浏览器与小程序中的 User Agent 对比</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 安卓系统中小程序 User Agent</span><br><span class="line">Mozilla/5.0 (Linux; Android 7.1.1; MI 6 Build/NMF26X; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/043807 Mobile Safari/537.36 MicroMessenger/6.6.1.1220(0x26060135) NetType/4G Language/zh_CN MicroMessenger/6.6.1.1220(0x26060135) NetType/4G Language/zh_CN miniProgram</span><br><span class="line">// 安卓系统中微信内置浏览器 User Agent</span><br><span class="line">Mozilla/5.0 (Linux; Android 7.1.1; MI 6 Build/NMF26X; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/6.2 TBS/043807 Mobile Safari/537.36 MicroMessenger/6.6.1.1220(0x26060135) NetType/4G Language/zh_CN</span><br></pre></td></tr></table></figure>
+
+<p>以上两段字符串均为子凡自用 MI6 安卓设备中获得，可以看出微信小程序的 UA 是和微信内置浏览器 UA 是不同的，后面会多出一小段，特别是最后的“miniProgram”字符串，就是小程序的特别的 UA，而在 iPhone 系统设备中 UA 都是一致的，小程序和内置浏览器 UA 是没有区别的。</p>
+<h3 id="UA-检测和判断方法"><a href="#UA-检测和判断方法" class="headerlink" title="UA 检测和判断方法"></a>UA 检测和判断方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//php 版本</span></span><br><span class="line"><span class="keyword">if</span>( <span class="title function_ invoke__">preg_match</span>( <span class="string">&#x27;/MicroMessenger/&#x27;</span>, <span class="variable">$_SERVER</span>[<span class="string">&#x27;HTTP_USER_AGENT&#x27;</span>] ) ) &#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&#x27;你真正使用微信访问&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//js 版本 </span></span><br><span class="line"><span class="keyword">if</span>(<span class="regexp">/MicroMessenger/i</span>.<span class="title function_">test</span>(navigator.<span class="property">userAgent</span>))&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&#x27;你真正使用微信访问&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="keyword">if</span>(navigator.<span class="property">userAgent</span>.<span class="title function_">match</span>(<span class="regexp">/(MicroMessenger)/i</span>))&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&#x27;你真正使用微信访问&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上子凡给出的两种判断方法默认都是直接使用正则表达式的方式判断是否为微信，也就是不论安卓还是苹果系统，是否小程序，都是通过 UA 中共有的“MicroMessenger”字符串来作为判断，只要判断为微信设备访问，代码中&#x2F;&#x2F;true 就可以改为自己想要执行的代码。当然为了更准确的判断还可以自己写正则表达式匹配。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Android.*MicroMessenger.*miniProgram//安卓端的小程序</span><br><span class="line">iPhone.*MicroMessenger//苹果端微信或小程序</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-07T09:26:50.000Z" title="2021/11/7 下午5:26:50">2021-11-07</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">几秒读完 (大约7个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/07/OpenAPI%E6%A0%87%E5%87%86%E8%A7%84%E8%8C%83/">OpenAPI标准规范</a></h1><div class="content"><p><a target="_blank" rel="noopener" href="https://honeypps.com/architect/openapi-standard-specification/">https://honeypps.com/architect/openapi-standard-specification/</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-07T09:26:40.000Z" title="2021/11/7 下午5:26:40">2021-11-07</time>发表</span><span class="level-item"><time dateTime="2022-09-27T07:27:16.888Z" title="2022/9/27 下午3:27:16">2022-09-27</time>更新</span><span class="level-item">28 分钟读完 (大约4271个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/07/Linux%E5%91%BD%E4%BB%A4/">Linux命令</a></h1><div class="content"><h1 id="常用Linux命令"><a href="#常用Linux命令" class="headerlink" title="常用Linux命令"></a>常用Linux命令</h1><h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep redis</span><br></pre></td></tr></table></figure>
+
+<p>根据进程id查找文件，找到pid，例如123</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -lp /proc/123/cwd</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a>cat命令</h1><p>&gt;连接文件并打印到标准输出设备上，cat经常用来显示文件的内容。</p>
+<p>注意：当文件较大时，文本在屏幕上迅速闪过（滚屏），用户往往看不清所显示的内容。因此，一般用more等命令分屏显示。</p>
+<p>为了控制滚屏，可以按Ctrl+S键，停止滚屏；按Ctrl+Q键可以恢复滚屏。按Ctrl+C（中断）键可以终止该命令的执行，并且返回Shell提示符状态。</p>
+<ul>
+<li><p>-n或-number：有1开始对所有输出的行数编号；</p>
+</li>
+<li><p>-b或–number-nonblank：和-n相似，只不过对于空白行不编号；</p>
+</li>
+<li><p>-s或–squeeze-blank：当遇到有连续两行以上的空白行，就代换为一行的空白行；</p>
+</li>
+<li><p>-A：显示不可打印字符，行尾显示“$”；</p>
+</li>
+<li><p>-e：等价于&quot;-vE&quot;选项；</p>
+</li>
+<li><p>-t：等价于&quot;-vT&quot;选项；</p>
+</li>
+</ul>
+<p>##从键盘创建一个文件</p>
+<p>$ cat &gt; d.txt</p>
+<p>##将几个文件合并为一个文件</p>
+<p>$ cat c.txt d.txt &gt; e.txt</p>
+<p>##显示一个文件的内容</p>
+<p>$ cat e.txt</p>
+<p>显示多个文件的内容</p>
+<p>$ cat e.txt a.txt</p>
+<p>对所有输出行编号</p>
+<p>$ cat  -n e.txt</p>
+<p>对非空输出行编号</p>
+<p>$ cat -b e.txt</p>
+<p>如果有连续两行以上的空白行，输出时只显示一行</p>
+<p>$ cat -s e.txt</p>
+<p>显示不可打印字符，输出时每行结尾会加上一个$</p>
+<p>$ cat -A e.txt</p>
+<p>将一个文件的内容加上行号后输入到另一个文件里（直接覆盖掉这个文件原来的内容）</p>
+<p>$ cat -n e.txt &gt; a.txt</p>
+<p>将一个文件的内容加上行号后输入到另一个文件里（在尾部追加）</p>
+<p>$ cat -n e.txt &gt;&gt; a.txt</p>
+<p>复制这个文件</p>
+<p>$ cat  e.txt &gt; a.txt </p>
+<p>合并几个文件，并且test4是已经排好序的</p>
+<p>$ cat test test1 test2 test3 | sort &gt; test4</p>
+<p>如果有大量的文件包含不适合在输出端子和屏幕滚动起来非常快，我们可以多和少用参数与cat命令如上表演。</p>
+<p>$ cat e.txt | more</p>
+<p>$ cat e.txt | less</p>
+<h1 id="tac命令"><a href="#tac命令" class="headerlink" title="tac命令"></a>tac命令</h1><p>反序输出文件的内容，文件的最后一行显示在第一行</p>
+<p>它可以对调试日志文件提供了很大的帮助，扭转日志内容的时间顺序。</p>
+<p>$ tac e.txt</p>
+<h2 id="lsattr-chattr"><a href="#lsattr-chattr" class="headerlink" title="lsattr, chattr"></a>lsattr, chattr</h2><p>查看和修改文件属性</p>
+<h2 id="jobs"><a href="#jobs" class="headerlink" title="jobs"></a>jobs</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jobs -rp // 暂时不知到什么用</span><br></pre></td></tr></table></figure>
+
+<p> 查看挂起的进程，<code>kill %1</code> 可以停止<code>jobs</code>中标号为<code>1</code>的进程</p>
+<p>也可以使用fg %1 来切到前台，部分可能不需要%</p>
+<h2 id="stat"><a href="#stat" class="headerlink" title="stat"></a>stat</h2><h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><h2 id="zcat"><a href="#zcat" class="headerlink" title="zcat"></a>zcat</h2><h2 id="zgrep"><a href="#zgrep" class="headerlink" title="zgrep"></a>zgrep</h2><h2 id="tee"><a href="#tee" class="headerlink" title="tee"></a>tee</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将sql输入到文件back.sql</span></span><br><span class="line">tee back.sql &lt;&lt;-&#x27;EOT&#x27;</span><br><span class="line">insert into</span><br><span class="line">users</span><br><span class="line">(id)</span><br><span class="line">values</span><br><span class="line">1;</span><br><span class="line">EOT</span><br></pre></td></tr></table></figure>
+
+<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &quot;1ititle:test&quot; back.txt  // 给back.txt文件第一行前添加title:text</span><br></pre></td></tr></table></figure>
+
+<h2 id="jq"><a href="#jq" class="headerlink" title="jq"></a>jq</h2><blockquote>
+<p>解析json</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;&#123;&quot;name&quot;: &quot;max&quot;&#125;&#x27; | jq</span><br></pre></td></tr></table></figure>
+
+<h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -SX 按照文件类型排序，文件夹在前</span><br><span class="line">ll -ht 按照时间排序</span><br><span class="line">ll -hS 按照大小排序</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ginvip/p/6351696.html">https://www.cnblogs.com/ginvip/p/6351696.html</a></p>
+<h2 id="nohup"><a href="#nohup" class="headerlink" title="nohup"></a>nohup</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/baby123/p/6477429.html">https://www.cnblogs.com/baby123/p/6477429.html</a></p>
+<h2 id="pidof"><a href="#pidof" class="headerlink" title="pidof"></a>pidof</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fengzhilaoling/p/12269923.html">https://www.cnblogs.com/fengzhilaoling/p/12269923.html</a></p>
+<h2 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010486679/article/details/78415666">https://blog.csdn.net/u010486679/article/details/78415666</a></p>
+<h2 id="hostname"><a href="#hostname" class="headerlink" title="hostname"></a>hostname</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qhairen/article/details/45913465">https://blog.csdn.net/qhairen/article/details/45913465</a></p>
+<h2 id="expr"><a href="#expr" class="headerlink" title="expr"></a>expr</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">expr 1 + 2</span><br><span class="line">expr lentdh &quot;test&quot;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-expr.html">Linux expr命令 | 菜鸟教程 (runoob.com)</a></p>
+<h2 id="lscpu"><a href="#lscpu" class="headerlink" title="lscpu"></a>lscpu</h2><p>查看CPU信息</p>
+<h2 id="lsmem"><a href="#lsmem" class="headerlink" title="lsmem"></a>lsmem</h2><p>查看内存信息</p>
+<h2 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h2><p>cut命令用于显示每行从开头算起 num1 到 num2 的文字</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-cut.html">Linux cut命令 | 菜鸟教程 (runoob.com)</a></p>
+<h2 id="netcat"><a href="#netcat" class="headerlink" title="netcat"></a>netcat</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wangqingchuan92/article/details/79666885">(38条消息) Linux系统终端命令：netcat的基本使用_麒麒川的博客-CSDN博客_linux netcat</a></p>
+<h2 id="systemctl"><a href="#systemctl" class="headerlink" title="systemctl"></a>systemctl</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status -l</span><br></pre></td></tr></table></figure>
+
+<h2 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -n -x</span><br></pre></td></tr></table></figure>
+
+<h2 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a>ssh-keygen</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">ssh-keygen -A</span><br></pre></td></tr></table></figure>
+
+<h2 id="htop"><a href="#htop" class="headerlink" title="htop"></a>htop</h2><h2 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">updatedb 更新locatedb</span><br></pre></td></tr></table></figure>
+
+<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h2 id="free"><a href="#free" class="headerlink" title="free"></a>free</h2><h2 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h2><h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h2><h1 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h1><h2 id="objdump"><a href="#objdump" class="headerlink" title="objdump"></a>objdump</h2><h2 id="gdb"><a href="#gdb" class="headerlink" title="gdb"></a>gdb</h2><h1 id="PHP相关"><a href="#PHP相关" class="headerlink" title="PHP相关"></a>PHP相关</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">php --ri grpc  // 查看swoole扩展</span><br><span class="line">php -l index.php // 检查语法错误</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装build-essential"><a href="#安装build-essential" class="headerlink" title="安装build-essential"></a>安装build-essential</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install build-essential</span><br></pre></td></tr></table></figure>
+
+<h1 id="lrzsz，可以在ssh终端中上传和下载文件"><a href="#lrzsz，可以在ssh终端中上传和下载文件" class="headerlink" title="lrzsz，可以在ssh终端中上传和下载文件"></a>lrzsz，可以在ssh终端中上传和下载文件</h1><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>ubuntu下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install lrzsz</span><br></pre></td></tr></table></figure>
+<p>或者编译安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf lrzsz-0.12.20.tar.gz</span><br><span class="line">cd lrzsz-0.12.20</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面安装过程默认把lsz和lrz安装到了&#x2F;usr&#x2F;local&#x2F;bin&#x2F;目录下,可以建立一个软连接</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/bin</span><br><span class="line">ln -s /usr/local/bin/lrz rz</span><br><span class="line">ln -s /usr/local/bin/lsz sz</span><br></pre></td></tr></table></figure>
+
+<p>上传</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rz</span><br></pre></td></tr></table></figure>
+
+<p>下载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sz &lt;filename&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="killall"><a href="#killall" class="headerlink" title="killall"></a>killall</h1><p>命令找不到，可以用下面的命令安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install psmisc</span><br></pre></td></tr></table></figure>
+
+<h1 id="put上传ftp文件"><a href="#put上传ftp文件" class="headerlink" title="put上传ftp文件"></a>put上传ftp文件</h1><p><strong>put</strong></p>
+<p>   使用lftp登录ftp服务器之后，可以使用put指令将文件上传到服务器。</p>
+<p>##语法</p>
+<p>   <strong>put [-E] [-a] [-c] [-O base] lfile [-o rfile]</strong></p>
+<p>##选项列表</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>-o</strong></td>
+<td>指定输出文件的名字，不指定则使用原来的名字</td>
+</tr>
+<tr>
+<td><strong>-c</strong></td>
+<td>如果失败，持续获取</td>
+</tr>
+<tr>
+<td><strong>-E</strong></td>
+<td>获取之后，删除源文件</td>
+</tr>
+<tr>
+<td><strong>-a</strong></td>
+<td>使用ascii模式</td>
+</tr>
+<tr>
+<td><strong>-O</strong></td>
+<td>指定输出文件存放的目录</td>
+</tr>
+</tbody></table>
+<p>##实例</p>
+<p>上传文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost weijie]# lftp 192.168.1.8          //登录服务器</span><br><span class="line"></span><br><span class="line">lftp 192.168.1.8:~&gt; cd pub/                           //切换目录</span><br><span class="line"></span><br><span class="line">lftp 192.168.1.8:/pub&gt; put 3.c                       //上传文件</span><br><span class="line"></span><br><span class="line">65 bytes transferred</span><br><span class="line"></span><br><span class="line">lftp 192.168.1.8:/pub&gt; ls                             //查看内容，已经上传成功</span><br><span class="line"></span><br><span class="line">-rwxrwxrwx    1 0        0        2375494044 Aug 14 06:38 1.zip</span><br><span class="line"></span><br><span class="line">-rw-r--r--    1 0       0               0 Oct 02 01:19 11c</span><br><span class="line"></span><br><span class="line">-rw-r--r--    1 0       0               0 Oct 02 01:19 22c</span><br><span class="line"></span><br><span class="line">-rw-------    1 14      50             65 Oct 02 01:48 3.c</span><br><span class="line"></span><br><span class="line">drwxr-xr-x    2 0       0            4096 Oct 02 01:12 testftp</span><br><span class="line"></span><br><span class="line">lftp 192.168.1.8:/pub&gt; </span><br></pre></td></tr></table></figure>
 
 
 
+<h1 id="测试端口"><a href="#测试端口" class="headerlink" title="测试端口"></a>测试端口</h1><blockquote>
+<p>linux测试某个端口的bai连通性可以du使用zhi如下命令测试daoTCP协议</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet  ip  port</span><br></pre></td></tr></table></figure>
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<p>TCP&#x2F;UDP协议测试zhuan端口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc -vuz ip  port #测试udp协议</span><br><span class="line">nc -vtz ip port  #测试tcp协议</span><br></pre></td></tr></table></figure>
 
+<p>端口扫描 nc -z -v -n 192.168.21.135 1-100 z参数告诉nc使用0 输入&#x2F;输出模式，一般在扫描通信端口的时候使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Nc -z -v -n 192.168.21.135 1-100 # 检测1-100端口</span><br><span class="line">Nc -z -v -n 192.168.21.135 8989  #检测8989端口</span><br></pre></td></tr></table></figure>
 
+<h2 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h2><blockquote>
+<p>你可以使用 lsof 命令来查看某一端口是否开放。查看端口可以这样来使用，我就以80端口为例：</p>
+</blockquote>
+<p>lsof -i:80<br>或者<br>lsof -i:22<br>如果有显示说明已经开放了，如果没有显示说明没有开放<br>##netstat -aptn<br>是否监听在0.0.0.0:3306</p>
+<h2 id="其他方式"><a href="#其他方式" class="headerlink" title="其他方式"></a>其他方式</h2><p>netstat -nupl (UDP类型的端口)<br>netstat -ntpl (TCP类型的端口)</p>
+<h2 id="telnet-ip端口号-方式"><a href="#telnet-ip端口号-方式" class="headerlink" title="telnet ip端口号 方式"></a>telnet ip端口号 方式</h2><blockquote>
+<p>测试远程主机端口是否打开</p>
+</blockquote>
+<p>telnet 127.0.0.1 3306</p>
+<p>#其他命令</p>
+<h2 id="删除输入的错误"><a href="#删除输入的错误" class="headerlink" title="删除输入的错误"></a>删除输入的错误</h2><p>有时候在linux终端中执行某个命令时，往往会输错命令，想删除掉重敲可以按backspace键，但这样较慢，一种简便技巧是，按住esc键同时按backspace键会较快删除【esc+backspace】组合键。或者【ctrl+u】组合键</p>
+<p>当然，直接回车更直接，但可能会产生一堆的错误提示。<br>##vim<br>v &#x2F; ctrl + v 可视模式，&lt; &gt; 缩进，d,D,y dw d$</p>
+<p>vim :行号，行号&lt; 回车  可以缩进</p>
+<p>vim中统计文字出现次数 :%s&#x2F;name&#x2F;&#x2F;gn</p>
+<p>##其他<br>lha<br>linux 的 ls -1 和 -l<br>shell 的[ -s file] 文件大小不为0为真 elif<br>lcd  put lftp<br>psql -c -f<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ftl1012/p/ssh.html">https://www.cnblogs.com/ftl1012/p/ssh.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hmwh/p/11015439.html">https://www.cnblogs.com/hmwh/p/11015439.html</a></p>
+<p>telnet</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet 127.0.0.1 9501</span><br></pre></td></tr></table></figure>
+<p>退出 <code>ctrl</code> + <code>]</code> 再按<code>ctrl</code> + <code>d</code> 或者输入 <code>quit</code></p>
+<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><h1 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h1><p>vim ctrl + g 显示当前编辑的文件名</p>
+<ol>
+<li><p><code>sudo nautilus</code>   	<code>ubuntu</code>以管理员方式打开文件可视化文件管理器 </p>
+</li>
+<li><p><code>apt install build-essential</code> ubuntu安装需要的文件</p>
+</li>
+<li><p><code>du -sh</code>  <code>df -h</code> 查看硬盘占用情况</p>
+</li>
+<li><p><code>wc -l -w -c / -lwc</code> 统计行数，字数字节数</p>
+</li>
+<li><p>排除<code>grep -v</code> 包含  <code>egrep/grep -e &#39;a|b|c&#39; 路径</code> 可以使用正则</p>
+</li>
+<li><p><code>cat /tac</code> <code>tail</code> <code>head</code> </p>
+</li>
+<li><p><code>ps -ef/af/x/aux</code> 不与终端有关的进程也显示出来 </p>
+</li>
+<li><p><code>pstree -Aup</code> kill -9 强制结束 kill -2 相当于ctrl+c</p>
+</li>
+<li><p>数字+G<code> 跳行，</code>数字+D<code>删除</code>数字+Y<code>复制，</code>:setnu<code>显示行号，</code>G&#x2F;gg<code> ，</code>dd&#96;剪切</p>
+</li>
+<li><p><code>su + username</code> 切换用户 <code>ctrl + d</code> 注销 <code>sudo -l</code> 查看自己的权限  <code>visudo</code> 修改用户权限 <code>admin[</code>用户] <code>ALL</code>[允许登录的主机]&#x3D;<code>(ALL</code>[以root运行]<code>) ALL</code>[所有命令]</p>
+</li>
+<li><p><code>[%]s/搜索内容/替换内容/[g]</code> %表示替换所有，没有g表示一行，有g表示所有</p>
+</li>
+<li><p><code>netstat -tunpl | grep 80</code> 查看80口占用 <code>-ano</code> <code>-lntp</code>列出系统里监听网络链接的端口号和相应进程pid </p>
+</li>
+<li><p><code>lsof [-i :80]</code> 列出当前系统打开的文件(listen opened files)</p>
+</li>
+<li><p>ubuntu-drivers devices 查看可以安装的闭源显卡驱动</p>
+</li>
+<li><p>apt editor-sources 修改源 </p>
+</li>
+<li><p>select-editor 更换默认编辑器</p>
+</li>
+<li><p>chown&#x2F;chgrp -R 用户名&#x2F;组名 文档  chown -R username:group &#x2F;etc&#x2F;文件…同时修改</p>
+</li>
+<li><p>rsync</p>
+</li>
+<li><p>{d}{rwx}{rwx}{rwx} -&gt; d表示文件夹，rwx-1 表示拥有者，rwx-2表示用户所在组，rwx-3表示其他人，使用chmod修改权限 chmod ug+w,o-w file1.txt file2.txt 给file1.txt 和file2.txt 加上对用户和用户组的写权限，去掉其他人的写权限</p>
+</li>
+<li><p>清空文件 gg跳到行首dG清空</p>
+</li>
+<li><p>ctrl-c 发送 SIGINT 信号给前台进程bai组中的所有进du程。常用于终止正在运zhi行的程序。<br>ctrl-z 发送 SIGTSTP 信号给前台进程dao组中的所有进程，常用于挂起一个进程。用户可以使用fg&#x2F;bg操作继续前台或后台的任务，fg命令重新启动前台被中断的任务,bg命令把被中断的任务放在后台执行.<br>ctrl-d 不是发送信号，而是表示一个特殊的二进制值，表示 EOF。<br>ctrl-\ 发送 SIGQUIT 信号给前台进程组中的所有进程，终止前台进程并生成 core 文件。</p>
+</li>
+<li><p>linux添加计划任务                                                        </p>
+<p>crond 是linux用来定期执行程序的命令。当安装完成操作系统之后，默认便会启动此任务调度命令。crond命令每分锺会定期检查是否有要执行的工作，如果有要执行的工作便会自动执行该工作。可以用以下的方法启动、关闭这个服务:</p>
+<p>&#x2F;sbin&#x2F;service crond start &#x2F;&#x2F;启动服务</p>
+<p>&#x2F;sbin&#x2F;service crond stop &#x2F;&#x2F;关闭服务</p>
+<p>&#x2F;sbin&#x2F;service crond restart &#x2F;&#x2F;重启服务</p>
+<p>&#x2F;sbin&#x2F;service crond reload &#x2F;&#x2F;重新载入配置</p>
+<p>1.linux任务调度的工作主要分为以下两类：</p>
+<p>*系统执行的工作：系统周期性所要执行的工作，如备份系统数据、清理缓存</p>
+<p>*个人执行的工作：某个用户定期要做的工作，例如每隔10分钟检查邮件服务器是否有新信，这些工作可由每个用户自行设置。</p>
+<p>2.crontab命令选项:</p>
+<p>cron服务提供crontab命令来设定cron服务的，以下是这个命令的一些参数与说明:</p>
+<p>crontab -u &#x2F;&#x2F;设定某个用户的cron服务，一般root用户在执行这个命令的时候需要此参数</p>
+<p>crontab -l &#x2F;&#x2F;列出某个用户cron服务的详细内容</p>
+<p>crontab -r &#x2F;&#x2F;删除没个用户的cron服务</p>
+<p>crontab -e &#x2F;&#x2F;编辑某个用户的cron服务</p>
+<p>比如说root查看自己的cron设置:crontab -u root -l</p>
+<p>再例如，root想删除fred的cron设置:crontab -u fred -r</p>
+<p>在编辑cron服务时，编辑的内容有一些格式和约定，输入:crontab -u root -e</p>
+<p>进入vi编辑模式，编辑的内容一定要符合下面的格式:*&#x2F;1 * * * * ls &gt;&gt; &#x2F;tmp&#x2F;ls.txt</p>
+<p>3.cron文件语法</p>
+<p>  分   小时   日    月    星期   命令</p>
+<p> 0-59  0-23  1-31  1-12   0-6   command   (取值范围,0表示周日一般一行对应一个任务)</p>
+<p>4.记住几个特殊符号的含义:</p>
+<p>“*”代表取值范围内的数字,</p>
+<p>“&#x2F;“代表”每”,</p>
+<p>“-“代表从某个数字到某个数字,</p>
+<p>“,”分开几个离散的数字</p>
+<p>5.举几个例子</p>
+<p>5    *    *    *   *   ls       &#x2F;&#x2F;指定每小时的第5分钟执行一次ls命令</p>
+<p>30   5    *    *   *   ls       &#x2F;&#x2F;指定每天的 5:30 执行ls命令</p>
+<p>30   7    8    *   *   ls       &#x2F;&#x2F;指定每月8号的7：30分执行ls命令</p>
+<p>30   5    8    6   *   ls       &#x2F;&#x2F;指定每年的6月8日5：30执行ls命令</p>
+<p>30   6    *    *   0   ls       &#x2F;&#x2F;指定每星期日的6:30执行ls命令[注：0表示星期天，1表示星期1，以此类推，也可以用英文来表示，sun表示星期天，mon表示星期一等。]</p>
+<p>30   3  10,20   *   *   ls       &#x2F;&#x2F;每月10号及20号的3：30执行ls命令[注：”,”用来连接多个不连续的时段]</p>
+<p>25   8-11 *    *   *   ls       &#x2F;&#x2F;每天8-11点的第25分钟执行ls命令[注：”-”用来连接连续的时段]</p>
+<p>*&#x2F;15  *   *    *   *   ls      &#x2F;&#x2F;每15分钟执行一次ls命令 [即每个小时的第0 15 30 45 60分钟执行ls命令 ]</p>
+<p>30   6  *&#x2F;10   *   *   ls      &#x2F;&#x2F;每个月中，每隔10天6:30执行一次ls命令[即每月的1、11、21、31日是的6：30执行一次ls命令。 ]</p>
+<p>50   7    *     *   *   root run-parts &#x2F;etc&#x2F;cron.daily   &#x2F;&#x2F;每天7：50以root 身份执行&#x2F;etc&#x2F;cron.daily目录中的所有可执行文件[  注：run-parts参数表示，执行后面目录中的所有可执行文件。 ]</p>
+<p>6.新增调度任务可用两种方法：</p>
+<p>a.在命令行输入: crontab -e 然后添加相应的任务，wq存盘退出。</p>
+<p>b.直接编辑&#x2F;etc&#x2F;crontab 文件，即vi &#x2F;etc&#x2F;crontab，添加相应的任务。</p>
+</li>
+<li><p><code>lsb_release -a</code> ubuntu 查看版本信息 </p>
+<p>uname [参数]</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ uname -a　　<span class="comment">//显示所有信息</span></span><br><span class="line">Linux BigManing <span class="number">4.4</span><span class="number">.0</span><span class="number">-83</span>-generic <span class="meta">#106-Ubuntu SMP Mon Jun 26 17:54:43 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</span></span><br><span class="line"></span><br><span class="line">$ uname -s　　<span class="comment">//显示内核名称</span></span><br><span class="line">Linux</span><br><span class="line"></span><br><span class="line">$ uname -n　　<span class="comment">//显示网络节点上的主机名</span></span><br><span class="line">BigManing</span><br><span class="line"></span><br><span class="line">$ uname -r　　<span class="comment">//显示内核发行号</span></span><br><span class="line"><span class="number">4.4</span><span class="number">.0</span><span class="number">-83</span>-generic</span><br><span class="line"></span><br><span class="line">$ uname -v　　　<span class="comment">//显示内核版本号</span></span><br><span class="line"><span class="meta">#106-Ubuntu SMP Mon Jun 26 17:54:43 UTC 2017</span></span><br><span class="line">    $ uname -m　　　<span class="comment">//显示机器硬件名称　显示i686说明你安装了32位操作系统　　　显示 x86_64说明你安装了64位操作系统</span></span><br><span class="line">x86_64</span><br><span class="line"></span><br><span class="line">$ uname -p　　　<span class="comment">//显示处理器类型</span></span><br><span class="line">x86_64</span><br><span class="line"></span><br><span class="line">$ uname -i　　　<span class="comment">//显示硬件平台</span></span><br><span class="line">x86_64</span><br><span class="line"></span><br><span class="line">$ uname -o　　　<span class="comment">//操作系统</span></span><br><span class="line">GNU/Linux</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>wget在下载的时候就重命名:</p>
+<p><code>wget -c &quot;www.baidu.com&quot; -O baidu.index.html</code><br>保存输出日至，可以使用:</p>
+<p><code>wget -c &quot;www.baidu.com&quot; -O baidu.index.html -o wget.log</code></p>
+<p>递归下载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">wget -r -p -np -k http://archives.fedoraproject.org/pub/archive/epel/5Server/x86_64/</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">wget -r -p -np -k http://archives.fedoraproject.org/pub/epel/6Server/x86_64/</span></span><br><span class="line">-c,  --continue                 resume getting a partially-downloaded file. 断点续传</span><br><span class="line">-nd, --no-directories           don&#x27;t create directories. 不创建层级目录，所有文件下载到当前目录</span><br><span class="line">-r,  --recursive                specify recursive download. 递归下载</span><br><span class="line">-p,  --page-requisites          get all images, etc. needed to display HTML page. 下载页面所有文件，使页面能在本地打开</span><br><span class="line">-k,  --convert-links            make links in downloaded HTML or CSS point to local files. 转换链接指向本地文件</span><br><span class="line">-np, --no-parent                don&#x27;t ascend to the parent directory. 不下载父级目录的文件</span><br><span class="line">-o,  --output-file=FILE         log messages to FILE. 指定日志输出文件</span><br><span class="line">-O,  --output-document=FILE     write documents to FILE. 指定文件下载位置</span><br><span class="line">-L,  --relative                 follow relative links only. 只下载相对链接，如果页面嵌入其他站点不会被下载</span><br><span class="line">wget -m&lt;镜像/整站抓取&gt; -e rebots=off&lt;忽略robots协议&gt; -k&lt;将绝对url转换为本地相对url&gt; -E&lt;将所有text/html以html扩展名保存&gt; &#x27;http://baidu,com&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>fdisk -l<br>lsblk -f</p>
+<p>创建两个文件<br>touch app.{js,css}</p>
+<h3 id="linux下如何输入EOF"><a href="#linux下如何输入EOF" class="headerlink" title="linux下如何输入EOF"></a>linux下如何输入EOF</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl + d </span><br></pre></td></tr></table></figure>
+<p>不同系统有不同组合键</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">	int c;</span><br><span class="line">	while ((c = getc(stdin)) != EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		putc(c, stdout);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="umask"><a href="#umask" class="headerlink" title="umask"></a>umask</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umask 022</span><br></pre></td></tr></table></figure>
 
-  <script  src="/js/local-search.js" ></script>
+<h1 id="查看进程占用网速和流量使用情况"><a href="#查看进程占用网速和流量使用情况" class="headerlink" title="查看进程占用网速和流量使用情况"></a>查看进程占用网速和流量使用情况</h1><blockquote>
+<p>有三个命令vnstat、iftop、nethogs（推荐）</p>
+</blockquote>
+<h2 id="vnstat"><a href="#vnstat" class="headerlink" title="vnstat"></a>vnstat</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vnstat -i eth0 -l #实时流量情况</span><br></pre></td></tr></table></figure>
 
+<h2 id="iftop"><a href="#iftop" class="headerlink" title="iftop"></a>iftop</h2><p>iftop可以用来监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等</p>
+<h3 id="命令用法："><a href="#命令用法：" class="headerlink" title="命令用法："></a>命令用法：</h3><ul>
+<li>-i设定监测的网卡，如：# iftop -i eth1</li>
+<li>-B 以bytes为单位显示流量(默认是bits)，如：# iftop -B</li>
+<li>-n使host信息默认直接都显示IP，如：# iftop -n</li>
+<li>-N使端口信息默认直接都显示端口号，如: # iftop -N</li>
+</ul>
+<h3 id="交互命令："><a href="#交互命令：" class="headerlink" title="交互命令："></a>交互命令：</h3><ul>
+<li>按n切换显示本机的IP或主机名;</li>
+<li>按s切换是否显示本机的host信息;</li>
+<li>按d切换是否显示远端目标主机的host信息;</li>
+<li>按t切换显示格式为2行&#x2F;1行&#x2F;只显示发送流量&#x2F;只显示接收流- 量;</li>
+<li>按N切换显示端口号或端口服务名称;</li>
+<li>按S切换是否显示本机的端口信息;</li>
+<li>按D切换是否显示远端目标主机的端口信息;</li>
+<li>按p切换是否显示端口信息;</li>
+</ul>
+<h2 id="nethogs"><a href="#nethogs" class="headerlink" title="nethogs"></a>nethogs</h2><blockquote>
+<p>按进程实时统计网络带宽利用率(推荐)</p>
+</blockquote>
+<h3 id="命令用法：-1"><a href="#命令用法：-1" class="headerlink" title="命令用法："></a>命令用法：</h3><ul>
+<li>设置5秒钟刷新一次，通过-d来指定刷新频率：nethogs -d 5</li>
+<li>监视eth0网络带宽 :nethogs eth0</li>
+<li>同时监视eth0和eth1接口 : nethogs eth0 eth1</li>
+</ul>
+<h3 id="交互命令：-1"><a href="#交互命令：-1" class="headerlink" title="交互命令："></a>交互命令：</h3><p>以下是NetHogs的一些交互命令(键盘快捷键)</p>
+<ul>
+<li>m : 修改单位</li>
+<li>r : 按流量排序</li>
+<li>s : 按发送流量排序</li>
+<li>q : 退出命令提示符</li>
+</ul>
+<h3 id="匹配进程名结束进程"><a href="#匹配进程名结束进程" class="headerlink" title="匹配进程名结束进程"></a>匹配进程名结束进程</h3><p>ps -ef | grep 进程名 | awk ‘{ print $2 }’ | xargs kill -9</p>
+<h3 id="expect"><a href="#expect" class="headerlink" title="expect"></a>expect</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/expect</span></span><br><span class="line">set user &quot;git账号&quot;</span><br><span class="line">set pass &quot;密码&quot;</span><br><span class="line">set timeout 10</span><br><span class="line"></span><br><span class="line">spawn git pull # spawn启动新的进程</span><br><span class="line">expect &quot;Username*&quot; # 匹配username*</span><br><span class="line">send &quot;$user\n&quot; #发送账号到进程内</span><br><span class="line">expect &quot;Password*&quot; # 匹配password</span><br><span class="line">send &quot;$pass\n&quot; #发送密码到进程内</span><br><span class="line">expect eof</span><br><span class="line"></span><br><span class="line">expect -f pull.sh #运行脚本</span><br></pre></td></tr></table></figure>
 
+<h2 id="查看公网ip"><a href="#查看公网ip" class="headerlink" title="查看公网ip"></a>查看公网ip</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl ifconfig.me</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-05T14:18:35.000Z" title="2021/11/5 下午10:18:35">2021-11-05</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">2 分钟读完 (大约255个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/05/WSL2%20%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">WSL2 使用笔记</a></h1><div class="content"><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><blockquote>
+<p>官方文档</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/wsl/install-manual">https://docs.microsoft.com/zh-cn/windows/wsl/install-manual</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/wsl/install">https://docs.microsoft.com/zh-cn/windows/wsl/install</a></p>
+<h1 id="登录相关"><a href="#登录相关" class="headerlink" title="登录相关"></a>登录相关</h1><h2 id="停止wsl2"><a href="#停止wsl2" class="headerlink" title="停止wsl2"></a>停止wsl2</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --shutdown</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>wsl切换用户需要输入密码</p>
+</blockquote>
+<p>可以根据下面文档去掉密码：<br><a target="_blank" rel="noopener" href="https://www.1kmb.com/note/232.html">https://www.1kmb.com/note/232.html</a></p>
+<h1 id="默认使用root用户"><a href="#默认使用root用户" class="headerlink" title="默认使用root用户"></a>默认使用root用户</h1><p>运行cmd&#x2F;powershell, 运行下面的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ubuntu1804 config --default-user root</span><br><span class="line">wsl --shutdown</span><br><span class="line">ubuntu1804</span><br></pre></td></tr></table></figure>
+<p>如果你的发行版是其他版本，修改ubuntu1804 即可</p>
+<h1 id="ip相关"><a href="#ip相关" class="headerlink" title="ip相关"></a>ip相关</h1><p>WSL2 每次重启后ip会变，网上提供了响应教程可以固定，实际上使用localhost就可以。如果你的子系统安装了nginx，建立虚拟机，绑定域名后在windows的hosts中将域名指向127.0.0.1</p>
+<h1 id="IO问题"><a href="#IO问题" class="headerlink" title="IO问题"></a>IO问题</h1><p>wsl2 和 windows之间的io速度很慢，所以可以安装俩子系统发行版，一个使用wsl1， 一个使用wsl2</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --set-version Ubuntu-18.04 1   # 将Ubuntu-18.04设置为wsl1</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl -l -v  # 查看所有版本</span><br></pre></td></tr></table></figure>
 
+<h1 id="windows访问wsl"><a href="#windows访问wsl" class="headerlink" title="windows访问wsl"></a>windows访问wsl</h1><p>在文件资源管理器输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\wsl$</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-02T14:12:33.000Z" title="2021/11/2 下午10:12:33">2021-11-02</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">7 分钟读完 (大约1047个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/02/%E4%BB%80%E4%B9%88%E6%98%AFPOP3%E3%80%81SMTP%E5%92%8CIMAP%EF%80%BF/">什么是POP3、SMTP和IMAP?</a></h1><div class="content"><h1 id="POP3"><a href="#POP3" class="headerlink" title="POP3"></a>POP3</h1><p><strong>POP3</strong>是Post Office Protocol 3的简称，即邮局协议的第3个版本,它规定怎样将个人计算机连接到Internet的邮件服务器和下载电子邮件的电子协议。它是因特网电子邮件的第一个离线协议标准,POP3允许用户从服务器上把邮件存储到本地主机（即自己的计算机）上,同时删除保存在邮件服务器上的邮件，而POP3服务器则是遵循POP3协议的接收邮件服务器，用来接收电子邮件的。(<a target="_blank" rel="noopener" href="http://help.163.com/10/0203/13/5UJONJ4I00753VB8.html?servCode=6010237">与IMAP有什么区别？</a>)</p>
+<p>**<a target="_blank" rel="noopener" href="http://help.163.com/09/1223/14/5R7P6CJ600753VB8.html?servCode=6010376">POP3</a>**协议允许电子邮件客户端下载服务器上的邮件，但是在客户端的操作（如移动邮件、标记已读等），不会反馈到服务器上，比如通过客户端收取了邮箱中的3封邮件并移动到其他文件夹，邮箱服务器上的这些邮件是没有同时被移动的 。</p>
+<p>而**<a target="_blank" rel="noopener" href="http://help.163.com/09/1223/14/5R7P6CJ600753VB8.html?servCode=6010376">IMAP</a>**提供webmail 与电子邮件客户端之间的双向通信，客户端的操作都会反馈到服务器上，对邮件进行的操作，服务器上的邮件也会做相应的动作。</p>
+<p>同时，<strong>IMAP</strong>像<strong>POP3</strong>那样提供了方便的邮件下载服务，让用户能进行离线阅读。<strong>IMAP</strong>提供的摘要浏览功能可以让你在阅读完所有的邮件到达时间、主题、发件人、大小等信息后才作出是否下载的决定。此外，<strong>IMAP</strong> 更好地支持了从多个不同设备中随时访问新邮件。</p>
+<p><img src="http://img4.cache.netease.com/help/2011/1/11/2011011118014265ebf.gif" alt="IMAP及POP3有什么区别?"></p>
+<p>总之，<strong>IMAP</strong> 整体上为用户带来更为便捷和可靠的体验。<strong>POP3</strong> 更易丢失邮件或多次下载相同的邮件，但 <strong>IMAP</strong> 通过邮件客户端与webmail 之间的双向同步功能很好地避免了这些问题。</p>
+<p><img src="http://img4.cache.netease.com/help/2010/12/29/201012291025107be5f.gif" alt="提供汇款凭证的扫描件格式要求及实例"> <strong>注：</strong>若在web邮箱中设置了“保存到已发送”，使用客户端POP服务发信时，已发邮件也会自动同步到网页端“已发送”文件夹内。</p>
+<h1 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h1><p><strong>SMTP</strong> 的全称是“Simple Mail Transfer Protocol”，即简单邮件传输协议。它是一组用于从源地址到目的地址传输邮件的规范，通过它来控制邮件的中转方式。SMTP 协议属于 TCP&#x2F;IP 协议簇，它帮助每台计算机在发送或中转信件时找到下一个目的地。SMTP 服务器就是遵循 SMTP 协议的发送邮件服务器。<br>　　SMTP 认证，简单地说就是要求必须在提供了账户名和密码之后才可以登录 SMTP 服务器，这就使得那些垃圾邮件的散播者无可乘之机。<br>　　增加 SMTP 认证的目的是为了使用户避免受到垃圾邮件的侵扰。</p>
+<p>使用smtp发送邮件：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sdgwc/p/3324368.html">https://www.cnblogs.com/sdgwc/p/3324368.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35644234/article/details/68961603">https://blog.csdn.net/qq_35644234/article/details/68961603</a></p>
+<h1 id="IMAP"><a href="#IMAP" class="headerlink" title="IMAP"></a>IMAP</h1><p><strong>IMAP</strong>全称是Internet Mail Access Protocol，即交互式邮件存取协议，它是跟POP3类似邮件访问标准协议之一。不同的是，开启了IMAP后，您在电子邮件客户端收取的邮件仍然保留在服务器上，同时在客户端上的操作都会反馈到服务器上，如：删除邮件，标记已读等，服务器上的邮件也会做相应的动作。所以无论从浏览器登录邮箱或者客户端软件登录邮箱，看到的邮件以及状态都是一致的。（<a target="_blank" rel="noopener" href="http://help.163.com/10/0203/13/5UJONJ4I00753VB8.html?servCode=6010237">与POP3有什么区别？</a>）</p>
+<p>文章来源： <a target="_blank" rel="noopener" href="http://help.163.com/09/1223/14/5R7P6CJ600753VB8.html">http://help.163.com/09/1223/14/5R7P6CJ600753VB8.html</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-02T14:07:42.000Z" title="2021/11/2 下午10:07:42">2021-11-02</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">3 分钟读完 (大约477个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/02/PHP%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8E%E5%BC%95%E7%94%A8%E8%BF%94%E5%9B%9E/">PHP箭头函数与引用返回</a></h1><div class="content"><h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><p>文档来自PHP手册： <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/functions.arrow.php">https://www.php.net/manual/zh/functions.arrow.php</a></p>
+<blockquote>
+<p>箭头函数是 PHP 7.4 的新语法，是一种更简洁的 匿名函数 写法。</p>
+</blockquote>
+<p>匿名函数和箭头函数都是 <code>Closure</code> 类的实现。</p>
+<p>箭头函数的基本语法为 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fn (argument_list) =&gt; expr</span><br></pre></td></tr></table></figure>
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<p>箭头函数支持与 匿名函数 相同的功能，只是其父作用域的变量总是自动的。</p>
+<p>当表达式中使用的变量是在父作用域中定义的，它将被隐式地按值捕获。在下面的例子中，函数 <code>$fn1</code> 和 <code>$fn2</code> 的行为是一样的。</p>
+<blockquote>
+<p>示例 箭头函数自动捕捉变量的值</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$y = 1;</span><br><span class="line"></span><br><span class="line">$fn1 = fn($x) =&gt; $x + $y;</span><br><span class="line">// 相当于 using $y by value:</span><br><span class="line">$fn2 = function ($x) use ($y) &#123;</span><br><span class="line">    return $x + $y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var_export($fn1(3));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>示例 箭头函数自动捕捉变量的值，即使在嵌套的情况下</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$z = 1;</span><br><span class="line">$fn = fn($x) =&gt; fn($y) =&gt; $x * $y + $z;</span><br><span class="line">// 输出 51</span><br><span class="line">var_export($fn(5)(10));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-  
+<blockquote>
+<p>以下均为有效箭头函数例子</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">fn(array $x) =&gt; $x;</span><br><span class="line">static fn(): int =&gt; $x;</span><br><span class="line">fn($x = 42) =&gt; $x;</span><br><span class="line">fn(&amp;$x) =&gt; $x;</span><br><span class="line">fn&amp;($x) =&gt; $x;</span><br><span class="line">fn($x, ...$rest) =&gt; $rest;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>箭头函数会自动绑定上下文变量，这相当于对箭头函数内部使用的每一个变量 $x 执行了一个 use($x)。这意味着不可能修改外部作用域的任何值，若要实现对值的修改，可以使用 匿名函数 来替代。</p>
+<blockquote>
+<p>示例 来自外部范围的值不能在箭头函数内修改</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$x = 1;</span><br><span class="line">$fn = fn() =&gt; $x++; // 不会影响 x 的值</span><br><span class="line">$fn();</span><br><span class="line">var_export($x);  // 输出 1</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+<h1 id="引用返回"><a href="#引用返回" class="headerlink" title="引用返回"></a>引用返回</h1><blockquote>
+<p>字面意思就是函数返回一个引用</p>
+</blockquote>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Test &#123;</span><br><span class="line">    public function &amp;test () &#123;</span><br><span class="line">        $a = 1;</span><br><span class="line">		return $a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function &amp;test()</span><br><span class="line">&#123;</span><br><span class="line">    $a = 1;</span><br><span class="line">    return $a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$a = function &amp;() &#123;</span><br><span class="line">    $b = 1;</span><br><span class="line">    return $b;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="箭头函数-1"><a href="#箭头函数-1" class="headerlink" title="箭头函数"></a>箭头函数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$a = fn &amp;($b) =&gt; $b;</span><br></pre></td></tr></table></figure>
+
+<p>关于引用返回的介绍可以参考官方文档：<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/language.references.return.php">https://www.php.net/manual/zh/language.references.return.php</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-30T03:43:09.000Z" title="2021/10/30 上午11:43:09">2021-10-30</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">3 分钟读完 (大约503个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/30/Supervisor%20%E4%BD%BF%E7%94%A8%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0%20%E3%80%90%E9%85%8D%E7%BD%AEsyncd%E3%80%91/">Supervisor 使用踩坑笔记 【配置syncd】</a></h1><div class="content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>之前有使用hyperf这样的框架开发过，但是线上部署没有实操，也不清楚进程监控怎么配置，所以学习了一下，记录一篇笔记。</p>
+</blockquote>
+<p>我主要是看了这篇文章的讲解：<a target="_blank" rel="noopener" href="https://www.1kmb.com/note/284.html">https://www.1kmb.com/note/284.html</a><br>内容很不错，推荐在这里。</p>
+<h1 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h1><p>根据教程配置了syncd的监控配置如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[program:syncd]</span><br><span class="line">directory=/root/syncd-deploy</span><br><span class="line">command=/root/syncd-deploy/bin/syncd</span><br><span class="line">autostart=true</span><br><span class="line">autorestart=true</span><br><span class="line">startsecs=1</span><br><span class="line">;user=root</span><br><span class="line">stderr_logfile=/data/logs/syncd.log</span><br><span class="line">stdout_logfile=/data/logs/syncd.log</span><br><span class="line">redirect_stderr=true</span><br><span class="line">stdout_logfile_maxbytes=30MB</span><br><span class="line">strout_logfile_backups=20</span><br></pre></td></tr></table></figure>
+
+<p>注意这个配置文件的后缀是ini，之前不小心建成conf文件，导致使用<code>supervisorctl start syncd</code> 的时候出现了下面的报错</p>
+<blockquote>
+<p>更正：系统不同配置后缀不同</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syncd: ERROR (no such process)</span><br></pre></td></tr></table></figure>
+
+<p>查看<code>/etc/supervisord.conf</code> 里面会有[include]一节，files就是其他进程的配置文件</p>
+<p>更改后使用<code>supervisorctl update</code> 命令更新配置提示错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: &lt;class &#x27;xmlrpclib.Fault&#x27;&gt;, &lt;Fault 92: &quot;CANT_REREAD: The directory named as part of the path /data/logs/syncd.log does not exist in section &#x27;program:syncd&#x27; (file: &#x27;/etc/supervisord.d/syncd.ini&#x27;)&quot;&gt;: file: /usr/lib64/python2.7/xmlrpclib.py line: 794</span><br></pre></td></tr></table></figure>
+<p>原来是日志目录不存在，新建目录后再次执行提示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syncd: added process group</span><br></pre></td></tr></table></figure>
+
+<p>再次执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">supervisorctl start syncd</span><br></pre></td></tr></table></figure>
+<p>提示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syncd: ERROR (spawn error)</span><br></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">supervisorctl status</span><br></pre></td></tr></table></figure>
+<p>提示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syncd                            FATAL     Exited too quickly (process log may have details)</span><br></pre></td></tr></table></figure>
+<p>查看日志</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less /data/logs/syncd.log</span><br></pre></td></tr></table></figure>
+
+<p>一堆</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/root/syncd-deploy/bin/syncd: /root/syncd-deploy/bin/syncd: cannot execute binary file</span><br></pre></td></tr></table></figure>
+
+<p>原来是因为之前启动不了。以为要加什么解释器，于是配置文件里面就出现了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">command=bash /root/syncd-deploy/bin/syncd</span><br></pre></td></tr></table></figure>
+
+<p>但是这个syncd是go编译后的二进制文件，所以报错了。。。 在上面的配置中已经去掉了。</p>
+<p>更改上面的bug后执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">supervisorctl update</span><br></pre></td></tr></table></figure>
+
+<p>提示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">syncd: stopped</span><br><span class="line">syncd: updated process group</span><br></pre></td></tr></table></figure>
+
+<p>查看下状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@VM-0-10-centos ~]# supervisorctl status</span><br><span class="line">syncd                            RUNNING   pid 20999, uptime 0:00:04</span><br></pre></td></tr></table></figure>
+
+<p>然后根据syncd配置的端口访问下，正常。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>配置文件不要搞错， 涉及日志目录的要确保目录存在，命令怎么执行要写完整。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-28T05:44:57.000Z" title="2021/10/28 下午1:44:57">2021-10-28</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">12 分钟读完 (大约1756个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/28/%E6%B6%88%E6%81%AF%E5%A4%B4%E5%AD%97%E6%AE%B5%E4%B9%8BCache-Control/">消息头字段之Cache-Control</a></h1><div class="content"><h1 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h1><p><code>Cache-Control</code> 通用消息头字段，被用于在http请求和响应中，通过指定指令来实现缓存机制。缓存指令是单向的，这意味着在请求中设置的指令，不一定被包含在响应中。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Header type</th>
+<th><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/General_header">General header</a></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Forbidden_header_name">Forbidden header name</a></td>
+<td>no</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Glossary/Simple_response_header">CORS-safelisted response-header</a></td>
+<td>yes</td>
+</tr>
+</tbody></table>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E8%AF%AD%E6%B3%95">语法</a></h2><p>指令格式具有以下有效规则：</p>
+<ul>
+<li>不区分大小写，但建议使用小写。</li>
+<li>多个指令以逗号分隔。</li>
+<li>具有可选参数，可以用令牌或者带引号的字符串语法。</li>
+</ul>
+<h3 id="缓存请求指令"><a href="#缓存请求指令" class="headerlink" title="缓存请求指令"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E7%BC%93%E5%AD%98%E8%AF%B7%E6%B1%82%E6%8C%87%E4%BB%A4">缓存请求指令</a></h3><p>客户端可以在HTTP请求中使用的标准 Cache-Control 指令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: max-age=&amp;lt;seconds&amp;gt;</span><br><span class="line">Cache-Control: max-stale[=&amp;lt;seconds&amp;gt;]</span><br><span class="line">Cache-Control: min-fresh=&amp;lt;seconds&amp;gt;</span><br><span class="line">Cache-control: no-cache</span><br><span class="line">Cache-control: no-store</span><br><span class="line">Cache-control: no-transform</span><br><span class="line">Cache-control: only-if-cached</span><br></pre></td></tr></table></figure>
+
+<h3 id="缓存响应指令"><a href="#缓存响应指令" class="headerlink" title="缓存响应指令"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E7%BC%93%E5%AD%98%E5%93%8D%E5%BA%94%E6%8C%87%E4%BB%A4">缓存响应指令</a></h3><p>服务器可以在响应中使用的标准 Cache-Control 指令。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Cache-control: must-revalidate</span><br><span class="line">Cache-control: no-cache</span><br><span class="line">Cache-control: no-store</span><br><span class="line">Cache-control: no-transform</span><br><span class="line">Cache-control: public</span><br><span class="line">Cache-control: private</span><br><span class="line">Cache-control: proxy-revalidate</span><br><span class="line">Cache-Control: max-age=&amp;lt;seconds&amp;gt;</span><br><span class="line">Cache-control: s-maxage=&amp;lt;seconds&amp;gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展Cache-Control指令"><a href="#扩展Cache-Control指令" class="headerlink" title=" 扩展Cache-Control指令"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E6%89%A9%E5%B1%95cache-control%E6%8C%87%E4%BB%A4"> 扩展<code>Cache-Control</code>指令</a></h3><p>拓展缓存指令不是核心HTTP缓存标准文档的一部分，使用前请注意检查<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7">兼容性</a>！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Cache-control: immutable</span><br><span class="line">Cache-control: stale-while-revalidate=&amp;lt;seconds&amp;gt;</span><br><span class="line">Cache-control: stale-if-error=&amp;lt;seconds&amp;gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E6%8C%87%E4%BB%A4">指令</a></h2><h3 id="可缓存性"><a href="#可缓存性" class="headerlink" title="可缓存性"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E5%8F%AF%E7%BC%93%E5%AD%98%E6%80%A7">可缓存性</a></h3><ul>
+<li><p><code>public</code></p>
+<p>表明响应可以被任何对象（包括：发送请求的客户端，代理服务器，等等）缓存，即使是通常不可缓存的内容。（例如：1.该响应没有<code>max-age</code>指令或<code>Expires</code>消息头；2. 该响应对应的请求方法是 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/POST">POST</a> 。）</p>
+</li>
+<li><p><code>private</code></p>
+<p>表明响应只能被单个用户缓存，不能作为共享缓存（即代理服务器不能缓存它）。私有缓存可以缓存响应内容，比如：对应用户的本地浏览器。</p>
+</li>
+<li><p><code>no-cache</code></p>
+<p>在发布缓存副本之前，强制要求缓存把请求提交给原始服务器进行验证(协商缓存验证)。</p>
+</li>
+<li><p><code>no-store</code></p>
+<p>缓存不应存储有关客户端请求或服务器响应的任何内容，即不使用任何缓存。</p>
+</li>
+</ul>
+<h3 id="到期"><a href="#到期" class="headerlink" title="到期"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E5%88%B0%E6%9C%9F">到期</a></h3><ul>
+<li><p><code>max-age=&amp;lt;seconds&amp;gt;</code></p>
+<p>设置缓存存储的最大周期，超过这个时间缓存被认为过期(单位秒)。与<code>Expires</code>相反，时间是相对于请求的时间。</p>
+</li>
+<li><p><code>s-maxage=&amp;lt;seconds&amp;gt;</code></p>
+<p>覆盖<code>max-age</code>或者<code>Expires</code>头，但是仅适用于共享缓存(比如各个代理)，私有缓存会忽略它。</p>
+</li>
+<li><p><code>max-stale[=&amp;lt;seconds&amp;gt;]</code></p>
+<p>表明客户端愿意接收一个已经过期的资源。可以设置一个可选的秒数，表示响应不能已经过时超过该给定的时间。</p>
+</li>
+<li><p><code>min-fresh=&amp;lt;seconds&amp;gt;</code></p>
+<p>表示客户端希望获取一个能在指定的秒数内保持其最新状态的响应。</p>
+</li>
+<li><p><code>stale-while-revalidate=&amp;lt;seconds&amp;gt;</code> </p>
+<p>表明客户端愿意接受陈旧的响应，同时在后台异步检查新的响应。秒值指示客户愿意接受陈旧响应的时间长度。</p>
+</li>
+<li><p><code>stale-if-error=&amp;lt;seconds&amp;gt;</code> </p>
+<p>表示如果新的检查失败，则客户愿意接受陈旧的响应。秒数值表示客户在初始到期后愿意接受陈旧响应的时间。</p>
+</li>
+</ul>
+<h3 id="重新验证和重新加载"><a href="#重新验证和重新加载" class="headerlink" title="重新验证和重新加载"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E9%87%8D%E6%96%B0%E9%AA%8C%E8%AF%81%E5%92%8C%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BD">重新验证和重新加载</a></h3><ul>
+<li><p><code>must-revalidate</code></p>
+<p>一旦资源过期（比如已经超过<code>max-age</code>），在成功向原始服务器验证之前，缓存不能用该资源响应后续请求。</p>
+</li>
+<li><p><code>proxy-revalidate</code></p>
+<p>与must-revalidate作用相同，但它仅适用于共享缓存（例如代理），并被私有缓存忽略。</p>
+</li>
+<li><p><code>immutable</code> </p>
+<p>表示响应正文不会随时间而改变。资源（如果未过期）在服务器上不发生改变，因此客户端不应发送重新验证请求头（例如<code>If-None-Match</code>或I<code>f-Modified-Since</code>）来检查更新，即使用户显式地刷新页面。在Firefox中，immutable只能被用在 <code>https://</code> transactions. 有关更多信息，请参阅<a target="_blank" rel="noopener" href="http://bitsup.blogspot.de/2016/05/cache-control-immutable.html">这里</a>。</p>
+</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E5%85%B6%E4%BB%96">其他</a></h3><ul>
+<li><p><code>no-transform</code></p>
+<p>不得对资源进行转换或转变。<code>Content-Encoding</code>、<code>Content-Range</code>、<code>Content-Type</code>等HTTP头不能由代理修改。例如，非透明代理或者如<a target="_blank" rel="noopener" href="https://support.google.com/webmasters/answer/6211428?hl=en">Google&amp;#039;s Light Mode</a>可能对图像格式进行转换，以便节省缓存空间或者减少缓慢链路上的流量。<code>no-transform</code>指令不允许这样做。</p>
+</li>
+<li><p><code>only-if-cached</code></p>
+<p>表明客户端只接受已缓存的响应，并且不要向原始服务器检查是否有更新的拷贝。</p>
+</li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E7%A4%BA%E4%BE%8B">示例</a></h2><h3 id="禁止缓存"><a href="#禁止缓存" class="headerlink" title="禁止缓存"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E7%A6%81%E6%AD%A2%E7%BC%93%E5%AD%98">禁止缓存</a></h3><p>发送如下响应头可以关闭缓存。此外，可以参考<code>Expires</code>和<code>Pragma</code>消息头。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: no-store</span><br></pre></td></tr></table></figure>
+
+<h3 id="缓存静态资源"><a href="#缓存静态资源" class="headerlink" title="缓存静态资源"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E7%BC%93%E5%AD%98%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90">缓存静态资源</a></h3><p>对于应用程序中不会改变的文件，你通常可以在发送响应头前添加积极缓存。这包括例如由应用程序提供的静态文件，例如图像，CSS文件和JavaScript文件。另请参阅Expires标题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control:public, max-age=31536000</span><br></pre></td></tr></table></figure>
+
+<h3 id="需要重新验证"><a href="#需要重新验证" class="headerlink" title="需要重新验证"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E9%AA%8C%E8%AF%81">需要重新验证</a></h3><p>指定 <code>no-cache</code> 或 <code>max-age=0, must-revalidate</code> 表示客户端可以缓存资源，每次使用缓存资源前都必须重新验证其有效性。这意味着每次都会发起 HTTP 请求，但当缓存内容仍有效时可以跳过 HTTP 响应体的下载。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: no-cache</span><br></pre></td></tr></table></figure>
+
+<p>Copy to Clipboard</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: max-age=0, must-revalidate</span><br></pre></td></tr></table></figure>
+
+<p>Copy to Clipboard</p>
+<p><strong>注意</strong>: 如果服务器关闭或失去连接，下面的指令可能会造成使用缓存。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: max-age=0</span><br></pre></td></tr></table></figure>
+
+<p>原文地址：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control</a></p>
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/7/">上一页</a></div><div class="pagination-next"><a href="/page/9/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/7/">7</a></li><li><a class="pagination-link is-current" href="/page/8/">8</a></li><li><a class="pagination-link" href="/page/9/">9</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/17/">17</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果也！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">170</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-01T06:56:20.000Z">2022-10-01</time></p><p class="title"><a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-18T05:06:34.000Z">2022-09-18</time></p><p class="title"><a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-04T13:30:39.000Z">2022-09-04</time></p><p class="title"><a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-21T02:56:27.000Z">2022-08-21</time></p><p class="title"><a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-19T12:54:39.000Z">2022-08-19</time></p><p class="title"><a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown基本语法</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">五月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

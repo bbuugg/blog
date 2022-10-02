@@ -1,678 +1,428 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="CY">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="笔记">
-<meta property="og:url" content="https://www.chengyao.xyz/page/13/index.html">
-<meta property="og:site_name" content="笔记">
-<meta property="og:description" content="笔记">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="CY">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>笔记</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 100vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
-          
-        </div>
-
-        
-      </div>
-
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          style="margin-top: 0">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/03/PHP%E7%9A%84%E9%97%AD%E5%8C%85/" target="_self">
-          PHP的闭包
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/03/PHP%E7%9A%84%E9%97%AD%E5%8C%85/" target="_self">
-        <div>
-          #减少foreach的循环的代码 123456789101112131415161718192021222324252627282930313233343536373839404142434445&amp;lt;?php&#x2F;&#x2F; 一个基本的购物车，包括一些已经添加的商品和每种商品的数量。&#x2F;&#x2F; 其中有一个方法用来计算购物车中所有商品的总价格。该方法使用了一个closure作为回调函数。class Car
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-03 22:00" pubdate>
-              2021-04-03
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/03/PHP%E4%B8%AD%E7%9A%84Session/" target="_self">
-          PHP中的Session
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/03/PHP%E4%B8%AD%E7%9A%84Session/" target="_self">
-        <div>
-          一、session预定义常量个人感觉PHP 最大的特点就是功能的实现都靠提供的函数扩展，函数扩展都是根据功能分大类的，session只是其中的一个扩展。 该扩展中定义了一些常量，可在PHP 编译或运行时动态载入时可用： 1、SID(string)包含着会话名及会话ID 的常量，格式为&quot;name&#x3D;ID&quot;，如果会话ID 已经在恰当的会话cookie 中设定时则为空字符串。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-03 21:58" pubdate>
-              2021-04-03
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/03/FastCGI/" target="_self">
-          FastCGI
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/03/FastCGI/" target="_self">
-        <div>
-          #什么是CGI CGI全称&quot;通用网关接口&quot;（Common Gateway Interface），用于HTTP服务器与其它机器上的程序服务通信交流的一种工具，CGI程序须运行在网络服务器上。 传统CGI接口方式的主要缺点是性能较差，因为每次HTTP服务器遇到动态程序时都需要重启解析器来执行解析，然后结果被返回给HTTP服务器。这在处理高并发访问几乎是不可用的，因此就诞生了Fast
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-03 21:57" pubdate>
-              2021-04-03
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/03/URI%E5%92%8CURL%E7%9A%84%E5%8C%BA%E5%88%AB%E6%AF%94%E8%BE%83%E4%B8%8E%E7%90%86%E8%A7%A3/" target="_self">
-          URI和URL的区别比较与理解
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/03/URI%E5%92%8CURL%E7%9A%84%E5%8C%BA%E5%88%AB%E6%AF%94%E8%BE%83%E4%B8%8E%E7%90%86%E8%A7%A3/" target="_self">
-        <div>
-          #什么是URI URI，通一资源标志符(Uniform Resource Identifier， URI)，表示的是web上每一种可用的资源，如 HTML文档、图像、视频片段、程序等都由一个URI进行标识的。 #URI的结构组成 URI通常由三部分组成： ①资源的命名机制； ②存放资源的主机名； ③资源自身的名称。 （注意：这只是一般URI资源的命名方式，只要是可以唯一标识资源的都被称为URI，上
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-03 21:49" pubdate>
-              2021-04-03
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/03/SQL%E6%B3%A8%E5%85%A5%E3%80%81XSS%E4%BB%A5%E5%8F%8ACSRF%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" target="_self">
-          SQL注入、XSS以及CSRF分别是什么？
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/03/SQL%E6%B3%A8%E5%85%A5%E3%80%81XSS%E4%BB%A5%E5%8F%8ACSRF%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" target="_self">
-        <div>
-          #SQL注入 SQL注入是属于注入式攻击，这种攻击是因为在项目中没有将代码与数据（比如用户敏感数据）隔离，在读取数据的时候，错误的将数据作为代码的一部分执行而导致的。 典型的例子就是当对SQL语句进行字符串拼接的时候，直接使用未转义的用户输入内容作为变量。这时，只要在sql语句的中间做修改，比如加上drop、delete等关键字，执行之后后果不堪设想。 说到这里，那么该怎么处理这种情况呢？三个方面
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-03 21:25" pubdate>
-              2021-04-03
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/02/ajax%E8%AF%B7%E6%B1%82/" target="_self">
-          ajax请求
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/02/ajax%E8%AF%B7%E6%B1%82/" target="_self">
-        <div>
-          javascriptXMLHttpRequest 对象　　XMLHttpRequest对象是ajax的基础,XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。目前所有浏览器都支持XMLHttpRequest    方  法 描  述    abort() 停止当前请求   getAllResponseHeaders() 把H
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-02 18:49" pubdate>
-              2021-04-02
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/02/PostgreSQL%20Copy%20%E5%91%BD%E4%BB%A4/" target="_self">
-          PostgreSQL Copy 命令
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/02/PostgreSQL%20Copy%20%E5%91%BD%E4%BB%A4/" target="_self">
-        <div>
-          COPY –  在表和文件之间拷贝数据 SynopsisCOPY tablename [ ( column [, …] ) ] FROM { ‘filename’ | STDIN } [ [ WITH ] [ BINARY ] [ OIDS ] [ DELIMITER [ AS ] ‘delimiter’ ] [ NULL [ AS ] ‘null string’ ] [ CSV [ QUOTE
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-02 18:46" pubdate>
-              2021-04-02
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/02/Perl%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
-          Perl学习笔记
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/02/Perl%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
-        <div>
-          scalar(@_)； 可以取数组长度  $a &#x3D; @a; 数组大小 local 给全局变量分配临时值在局部使用 state 关键字需要使用use feture &quot;state&quot;; 使用时间转换函数需要引入 use POSIX fw(strftime); strftime &quot;%a&quot; ,localtime; ref可以用来判断变量的类型 使用\$,\@
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-02 18:42" pubdate>
-              2021-04-02
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/02/Oracle/" target="_self">
-          Oracle
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/02/Oracle/" target="_self">
-        <div>
-          查询建表语句 ：select dbms_metadata.get_ddl(‘TABLE’,’name’) from dual; 查看存储过程： select dbms_metadata.get_ddl(‘PROCEDURE’,’BSA_PROC_FTP_MGMT’,’CLARO’) from dual; trunc()下面日期操作有误，仅做参考 1.select trunc(sysdate) fr
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-02 18:40" pubdate>
-              2021-04-02
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/30/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Vim%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" target="_self">
-          Linux下使用Vim常用的一些命令
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/03/30/Linux%E4%B8%8B%E4%BD%BF%E7%94%A8Vim%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4/" target="_self">
-        <div>
-          方法一 ：块选择模式批量注释： Ctrl + v 进入块选择模式，然后移动光标选中你要注释的行，再按大写的I进入行首插入模式输入注释符号如 &#x2F;&#x2F; 或 #，输入完毕之后，按两下ESC，Vim会自动将你选中的所有行首都加上注释，保存退出完成注释。 取消注释： Ctrl + v 进入块选择模式，选中你要删除的行首的注释符号，注意&#x2F;&#x2F; 要选中两个，选好之后按d即可删
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-30 10:21" pubdate>
-              2021-03-30
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/12/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#board">11</a><a class="page-number" href="/page/12/#board">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/#board">14</a><a class="page-number" href="/page/15/#board">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/14/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="笔记"><meta property="og:type" content="blog"><meta property="og:title" content="笔记"><meta property="og:url" content="https://www.chengyao.xyz/"><meta property="og:site_name" content="笔记"><meta property="og:description" content="笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz"},"headline":"笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"笔记"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-04T07:19:36.000Z" title="2021/4/4 下午3:19:36">2021-04-04</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">2 分钟读完 (大约360个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/04/Linux%E4%B8%8B%E7%99%BB%E5%BD%95Oracle%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%97%B6%E5%88%A0%E9%99%A4%E9%94%AE%5EH%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">Linux下登录Oracle命令行时删除键^H解决方法</a></h1><div class="content"><p>在linux服务器下登录oracle的控制台，如果输入错误，想用删除键删除时却不能删除，打出的是^H的字符。</p>
+<h4 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a><strong>方法1：</strong></h4><p>用如下的命令可以使删除键生效：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ stty erase ^H1</span><br></pre></td></tr></table></figure>
 
+<p>恢复以前的设置的命令是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ stty erase ^？1</span><br></pre></td></tr></table></figure>
 
+<h4 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a><strong>方法2：</strong></h4><p>利用rlwrap工具解决：</p>
+<p>1、安装rlwrap和readline库</p>
+<p>CentOS下可以用EPEL的yum源直接安装，步骤如下：</p>
+<p>（1）RHEL&#x2F;CentOS&#x2F;SL Linux 6.x 下安装 EPEL6 yum源：</p>
+<p>32位系统选择：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm1</span><br></pre></td></tr></table></figure>
 
+<p>64位系统选择：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm1</span><br></pre></td></tr></table></figure>
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<p>导入key：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-61</span><br></pre></td></tr></table></figure>
 
+<p>默认会在&#x2F;etc&#x2F;yum.repos.d&#x2F;下创建epel.repo和epel-testing.repo两个配置文件。</p>
+<p>（2）安装rlwrap和readline：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># yum install rlwrap readline readline-devel1</span><br></pre></td></tr></table></figure>
 
+<p>其他Linux发行版如果源里没有rlwrap和readline的（如SUSE企业版默认没有这两个包），要分别下载这两个源码包编译安装一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># wget ftp://ftp.gnu.org/gnu/readline/readline-6.2.tar.gz</span><br><span class="line"># tar zxvf readline-6.2.tar.gz</span><br><span class="line"># cd readline-6.2/</span><br><span class="line"># ./configure</span><br><span class="line"># make</span><br><span class="line"># make install</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># wget http://utopia.knoware.nl/~hlub/rlwrap/rlwrap-0.37.tar.gz</span><br><span class="line"># tar zxvf rlwrap-0.37.tar.gz</span><br><span class="line"># cd rlwrap-0.37/</span><br><span class="line"># ./configure</span><br><span class="line"># make</span><br><span class="line"># make install1234567891011121314</span><br></pre></td></tr></table></figure>
 
+<p>（3）设置sqlplus的系统别名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim /home/oracle/.bash_profile1</span><br></pre></td></tr></table></figure>
 
-  <script  src="/js/local-search.js" ></script>
+<p>在头部或尾部添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alias sqlplus=&#x27;rlwrap sqlplus&#x27;</span><br><span class="line">alias rman=&#x27;rlwrap rman&#x27;12</span><br></pre></td></tr></table></figure>
 
+<p>退出oracle用户再重新登录就ok了。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-03T14:00:14.000Z" title="2021/4/3 下午10:00:14">2021-04-03</time>发表</span><span class="level-item"><time dateTime="2022-10-01T01:30:31.179Z" title="2022/10/1 上午9:30:31">2022-10-01</time>更新</span><span class="level-item">4 分钟读完 (大约580个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/03/PHP%E7%9A%84%E9%97%AD%E5%8C%85/">PHP的闭包</a></h1><div class="content"><p>#减少foreach的循环的代码</p>
+<p>Class synopsis</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Closure</span> </span>&#123;</span><br><span class="line">    <span class="comment">/* Methods */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_ invoke__">__construct</span>()</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="title function_ invoke__">bind</span>(<span class="built_in">Closure</span> <span class="variable">$closure</span>, ?<span class="keyword">object</span> <span class="variable">$newThis</span>, <span class="keyword">object</span>|<span class="keyword">string</span>|<span class="literal">null</span> <span class="variable">$newScope</span> = <span class="string">&quot;static&quot;</span>): ?<span class="built_in">Closure</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_ invoke__">bindTo</span>(?<span class="keyword">object</span> <span class="variable">$newThis</span>, <span class="keyword">object</span>|<span class="keyword">string</span>|<span class="literal">null</span> <span class="variable">$newScope</span> = <span class="string">&quot;static&quot;</span>): ?<span class="built_in">Closure</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_ invoke__">call</span>(<span class="keyword">object</span> <span class="variable">$newThis</span>, <span class="keyword">mixed</span> ...<span class="variable">$args</span>): <span class="keyword">mixed</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="title function_ invoke__">fromCallable</span>(<span class="keyword">callable</span> <span class="variable">$callback</span>): <span class="built_in">Closure</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个基本的购物车，包括一些已经添加的商品和每种商品的数量。</span></span><br><span class="line"><span class="comment">// 其中有一个方法用来计算购物车中所有商品的总价格。该方法使用了一个closure作为回调函数。</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cart</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="variable constant_">PRICE_BUTTER</span> = <span class="number">1.00</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="variable constant_">PRICE_MILK</span>   = <span class="number">3.00</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="variable constant_">PRICE_EGGS</span>   = <span class="number">6.95</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$products</span> = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"><span class="variable">$product</span>, <span class="variable">$quantity</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;products[<span class="variable">$product</span>] = <span class="variable">$quantity</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getQuantity</span>(<span class="params"><span class="variable">$product</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;products[<span class="variable">$product</span>]) ? <span class="variable language_">$this</span>-&gt;products[<span class="variable">$product</span>] : <span class="literal">FALSE</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getTotal</span>(<span class="params"><span class="variable">$tax</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable">$total</span> = <span class="number">0.00</span>;</span><br><span class="line"></span><br><span class="line">        <span class="variable">$callback</span> =</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params"><span class="variable">$quantity</span>, <span class="variable">$product</span></span>) <span class="keyword">use</span> (<span class="params"><span class="variable">$tax</span>, &amp;<span class="variable">$total</span></span>) </span>&#123;</span><br><span class="line">            <span class="variable">$pricePerItem</span> = <span class="title function_ invoke__">constant</span>(<span class="keyword">__CLASS__</span> . <span class="string">&quot;::PRICE_&quot;</span> .</span><br><span class="line">                <span class="title function_ invoke__">strtoupper</span>(<span class="variable">$product</span>));</span><br><span class="line">            <span class="variable">$total</span> += (<span class="variable">$pricePerItem</span> * <span class="variable">$quantity</span>) * (<span class="variable">$tax</span> + <span class="number">1.0</span>);</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="title function_ invoke__">array_walk</span>(<span class="variable">$this</span>-&gt;products, <span class="variable">$callback</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">round</span>(<span class="variable">$total</span>, <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$my_cart</span> = <span class="keyword">new</span> <span class="title class_">Cart</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 往购物车里添加条目</span></span><br><span class="line"><span class="variable">$my_cart</span>-&gt;<span class="title function_ invoke__">add</span>(<span class="string">&#x27;butter&#x27;</span>, <span class="number">1</span>);</span><br><span class="line"><span class="variable">$my_cart</span>-&gt;<span class="title function_ invoke__">add</span>(<span class="string">&#x27;milk&#x27;</span>, <span class="number">3</span>);</span><br><span class="line"><span class="variable">$my_cart</span>-&gt;<span class="title function_ invoke__">add</span>(<span class="string">&#x27;eggs&#x27;</span>, <span class="number">6</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打出出总价格，其中有 5% 的销售税.</span></span><br><span class="line"><span class="keyword">print</span> <span class="variable">$my_cart</span>-&gt;<span class="title function_ invoke__">getTotal</span>(<span class="number">0.05</span>) . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="comment">// The result is 54.29</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
+<p> 这里如果我们改造getTotal函数必然要使用到foreach</p>
+<h1 id="减少函数的参数"><a href="#减少函数的参数" class="headerlink" title="减少函数的参数"></a>减少函数的参数</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">html</span>(<span class="params"><span class="variable">$code</span>, <span class="variable">$id</span> = <span class="string">&quot;&quot;</span>, <span class="variable">$class</span> = <span class="string">&quot;&quot;</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$id</span> !== <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        <span class="variable">$id</span> = <span class="string">&quot; id = \&quot;<span class="subst">$id</span>\&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$class</span> = (<span class="variable">$class</span> !== <span class="string">&quot;&quot;</span>) ? <span class="string">&quot; class =\&quot;<span class="subst">$class</span>\&quot;&quot;</span> : <span class="string">&quot;&gt;&quot;</span>;</span><br><span class="line">    <span class="variable">$open</span> = <span class="string">&quot;&lt;<span class="subst">$code</span><span class="subst">$id</span><span class="subst">$class</span>&quot;</span>;</span><br><span class="line">    <span class="variable">$close</span> = <span class="string">&quot;&lt;/<span class="subst">$code</span>&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"><span class="variable">$inner</span> = <span class="string">&quot;&quot;</span></span>) <span class="keyword">use</span> (<span class="params"><span class="variable">$open</span>, <span class="variable">$close</span></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;<span class="subst">$open</span><span class="subst">$inner</span><span class="subst">$close</span>&quot;</span>;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
+<p>  如果是使用平时的方法，我们会把inner放到html函数参数中，这样不管是代码阅读还是使用都不如使用闭包</p>
+<h1 id="解除递归函数"><a href="#解除递归函数" class="headerlink" title="解除递归函数"></a>解除递归函数</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$fib</span> = <span class="function"><span class="keyword">function</span> (<span class="params"><span class="variable">$n</span></span>) <span class="keyword">use</span> (<span class="params">&amp;<span class="variable">$fib</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$n</span> == <span class="number">0</span> || <span class="variable">$n</span> == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$fib</span>(<span class="variable">$n</span> - <span class="number">1</span>) + <span class="variable">$fib</span>(<span class="variable">$n</span> - <span class="number">2</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$fib</span>(<span class="number">2</span>) . <span class="string">&quot;\n&quot;</span>; <span class="comment">// 2</span></span><br><span class="line"><span class="variable">$lie</span> = <span class="variable">$fib</span>;</span><br><span class="line"><span class="variable">$fib</span> = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="keyword">die</span>(<span class="string">&#x27;error&#x27;</span>);&#125;; <span class="comment">//rewrite $fib variable</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$lie</span>(<span class="number">5</span>); <span class="comment">// error because $fib is referenced by closure</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<p>  注意上题中的use使用了&amp;，这里不使用&amp;会出现错误fib(fib(n-1)是找不到function的（前面没有定义fib的类型）</p>
+<p>  所以想使用闭包解除循环函数的时候就需要使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$recursive = function () use (&amp;$recursive) &#123;</span><br><span class="line">// The function is now available as $recursive</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
+<h1 id="关于延迟绑定"><a href="#关于延迟绑定" class="headerlink" title="关于延迟绑定"></a>关于延迟绑定</h1><p>  如果你需要延迟绑定use里面的变量，你就需要使用引用(&amp;)，否则在定义的时候就会做一份拷贝放到use中 &#x2F;&#x2F;理解use(&amp;$var)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$result</span> = <span class="number">0</span>;</span><br><span class="line"><span class="variable">$one</span> = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="variable">$result</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable">$two</span> = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) <span class="keyword">use</span> (<span class="params"><span class="variable">$result</span></span>) </span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="variable">$result</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable">$three</span> = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) <span class="keyword">use</span> (<span class="params">&amp;<span class="variable">$result</span></span>) </span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">var_dump</span>(<span class="variable">$result</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable">$result</span>++;</span><br><span class="line"><span class="variable">$one</span>(); <span class="comment">// outputs NULL: $result is not in scope</span></span><br><span class="line"><span class="variable">$two</span>(); <span class="comment">// outputs int(0): $result was copied</span></span><br><span class="line"><span class="variable">$three</span>(); <span class="comment">// outputs int(1)</span></span><br></pre></td></tr></table></figure>
 
-  
+<p>  使用引用和不使用引用就代表了是调用时赋值，还是申明时候赋值</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-03T13:58:51.000Z" title="2021/4/3 下午9:58:51">2021-04-03</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">11 分钟读完 (大约1690个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/03/PHP%E4%B8%AD%E7%9A%84Session/">PHP中的Session</a></h1><div class="content"><h1 id="一、session预定义常量"><a href="#一、session预定义常量" class="headerlink" title="一、session预定义常量"></a>一、session预定义常量</h1><p>个人感觉PHP 最大的特点就是功能的实现都靠提供的函数扩展，函数扩展都是根据功能分大类的，session只是其中的一个扩展。</p>
+<p>该扩展中定义了一些常量，可在PHP 编译或运行时动态载入时可用：</p>
+<h2 id="1、SID-string"><a href="#1、SID-string" class="headerlink" title="1、SID(string)"></a><strong>1、SID(string)</strong></h2><p>包含着会话名及会话ID 的常量，格式为&quot;name&#x3D;ID&quot;，如果会话ID 已经在恰当的会话cookie 中设定时则为空字符串。和session_id() 返回的是同一个ID。</p>
+<h2 id="2、PHP-SESSION-DISABLED-int"><a href="#2、PHP-SESSION-DISABLED-int" class="headerlink" title="2、PHP_SESSION_DISABLED(int)"></a><strong>2、PHP_SESSION_DISABLED(int)</strong></h2><p>自PHP 5.4.0起可用。如果会话已禁用，则返回session_status（）的值。</p>
+<h2 id="3、PHP-SESSION-NONE-int"><a href="#3、PHP-SESSION-NONE-int" class="headerlink" title="3、PHP_SESSION_NONE(int)"></a><strong>3、PHP_SESSION_NONE(int)</strong></h2><p>自PHP 5.4.0起可用。在会话已启用，但还没有会话时返回session_status（）的值。</p>
+<h2 id="4、PHP-SESSION-ACTIVE-int"><a href="#4、PHP-SESSION-ACTIVE-int" class="headerlink" title="4、PHP_SESSION_ACTIVE(int)"></a><strong>4、PHP_SESSION_ACTIVE(int)</strong></h2><p>自PHP 5.4.0起可用。在会话已启用，并存在会话时返回session_status（）的值。</p>
+<p>注：会话在PHP中默认为激活（启用）。</p>
+<p>session常量动态定义的，网友：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var_dump(<span class="keyword">defined</span>(<span class="string">&#x27;SID&#x27;</span>));  <span class="regexp">//</span> bool(<span class="literal">false</span>) - Not <span class="keyword">defined</span>...</span><br><span class="line">session_start();</span><br><span class="line">var_dump(<span class="keyword">defined</span>(<span class="string">&#x27;SID&#x27;</span>));  <span class="regexp">//</span> bool(<span class="literal">true</span>) - Defined now!</span><br></pre></td></tr></table></figure>
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+<p><strong>自己测试了下，结果两个都是bool(true)，应该是自己的问题。之后随后重新建一个php文档，执行：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;?php</span><br><span class="line"><span class="keyword">echo</span> SID;          <span class="comment">//提示使用了未定义常量</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"><span class="keyword">echo</span> SID;          <span class="comment">//显示&amp;quot;name=UID&amp;quot;样式字符串。说明确实是动态定义，因为没有会话就没有会话的UID.</span></span><br><span class="line">?&amp;gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、基本用法"><a href="#二、基本用法" class="headerlink" title="二、基本用法"></a><strong>二、基本用法</strong></h1><p>通过为每个独立用户分配唯一的会话 ID，可以实现针对不同用户分别存储数据的功能。 会话通常被用来在多个页面请求之间保存及共享信息。  一般来说，会话 ID 通过 cookie 的方式发送到浏览器，并且在服务器端也是通过会话 ID 来取回会话中的数据。 如果请求中不包含会话 ID 信息，那么 PHP 就会创建一个新的会话，并为新创建的会话分配新的 ID。</p>
+<p>会话的工作流程很简单。当开始一个会话时，PHP 会尝试从请求中查找会话 ID （通常通过会话 cookie）， 如果请求中不包含会话 ID 信息，PHP 就会创建一个新的会话。 会话开始之后，PHP 就会将会话中的数据设置到 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/reserved.variables.session.php">$_SESSION</a> 变量中。 当 PHP 停止的时候，它会自动读取 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/reserved.variables.session.php">$_SESSION</a> 中的内容，并将其进行序列化， 然后发送给会话保存管理器器来进行保存。</p>
+<p>默认情况下，PHP 使用内置的文件会话保存管理器（<code>files</code>）来完成会话的保存。 也可以通过配置项<a target="_blank" rel="noopener" href="http://php.net/manual/zh/session.configuration.php#ini.session.save-handler">session.save_handler</a> 来修改所要采用的会话保存管理器。 对于文件会话保存管理器，会将会话数据保存到配置项<a target="_blank" rel="noopener" href="http://php.net/manual/zh/session.configuration.php#ini.session.save-path">session.save_path</a> 所指定的位置。</p>
+<p>可以通过调用函数 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.session-start.php">session_start()</a> 来手动开始一个会话。 如果配置项 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/session.configuration.php#ini.session.auto-start">session.auto_start</a> 设置为<code>1</code>， 那么请求开始的时候，会话会自动开始。</p>
+<p>PHP 脚本执行完毕之后，会话会自动关闭。 同时，也可以通过调用函数 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.session-write-close.php">session_write_close()</a> 来手动关闭会话。</p>
+<p>Example #1 在 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/reserved.variables.session.php">$_SESSION</a> 中注册变量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;?php session_start(); if (!isset($_SESSION[&#x27;count&#x27;])) &#123;  $_SESSION[&#x27;count&#x27;] = 0; &#125; else &#123;  $_SESSION[&#x27;count&#x27;]++; &#125;?&amp;gt;</span><br></pre></td></tr></table></figure>
+
+<p>Example #2 从 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/reserved.variables.session.php">$_SESSION</a> 中反注册变量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;?php session_start(); unset($_SESSION[&#x27;count&#x27;]);?&amp;gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Caution</strong></p>
+<p>千万不要使用 unset($_SESSION) 来复位超级变量 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/reserved.variables.session.php">$_SESSION</a>， 因为这样会导致无法继续在 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/reserved.variables.session.php">$_SESSION</a>中注册会话变量。</p>
+<p><strong>Warning</strong></p>
+<p>由于无法将一个引用恢复到另外一个变量， 所以不可以将引用保存到会话变量中。</p>
+<p><strong>Warning</strong></p>
+<p>如果会话中存在和全局变量同名的变量，那么 register_globals 会导致全局变量被会话变量覆盖。 更多信息请参考 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/security.globals.php">注册全局变量</a>。</p>
+<p>&gt; Note:<br>&gt;<br>&gt; 无论是通过调用函数 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.session-start.php">session_start()</a> 手动开启会话， 还是使用配置项 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/session.configuration.php#ini.session.auto-start">session.auto_start</a> 自动开启会话， 对于基于文件的会话数据保存（PHP 的默认行为）而言， 在会话开始的时候都会给会话数据文件加锁， 直到 PHP 脚本执行完毕或者显式调用 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.session-write-close.php">session_write_close()</a> 来保存会话数据。 在此期间，其他脚本不可以访问同一个会话数据文件。<br>&gt;<br>&gt; 对于大量使用 Ajax 或者并发请求的网站而言，这可能是一个严重的问题。 解决这个问题最简单的做法是如果修改了会话中的变量， 那么应该尽快调用 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.session-write-close.php">session_write_close()</a> 来保存会话数据并释放文件锁。 还有一种选择就是使用支持并发操作的会话保存管理器来替代文件会话保存管理器。</p>
+<p>理解：由于HTTP 的不可维持性（执行一段php脚本，实际上进行了一次http  通信），每段php脚本执行完时，会话会自动自动关闭。即同一时刻，只有一个php脚本访问到该session及其数据文件。为了保证每个php脚本访问到的session及其数据文件都是最新的，每次对该session的数据修改都应该及时保存进数据文件中，这在大量Ajax  应用中非常重要。</p>
+<p><strong>总结session：</strong></p>
+<p>1、session_destroy()：常用方法。</p>
+<p>2、unset($_SESSION)：终结必杀，使用后无法继续使用$_SESSION 注册会话变量，所以一般不能用，算不上真正的方法。</p>
+<p>网上的另一种方法，思路和删除cookie一样，没有具体实践，不知可行否：</p>
+<p> 3、setcookie(session_name(),session_id(),time() -8000000,..);</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-03T13:57:23.000Z" title="2021/4/3 下午9:57:23">2021-04-03</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">6 分钟读完 (大约950个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/03/FastCGI/">FastCGI</a></h1><div class="content"><p>#什么是CGI</p>
+<p>CGI全称&quot;通用网关接口&quot;（Common Gateway Interface），用于HTTP服务器与其它机器上的程序服务通信交流的一种工具，CGI程序须运行在网络服务器上。</p>
+<p>传统CGI接口方式的主要缺点是性能较差，因为每次HTTP服务器遇到动态程序时都需要重启解析器来执行解析，然后结果被返回给HTTP服务器。这在处理高并发访问几乎是不可用的，因此就诞生了FastCGI。另外传统的CGI接口方式安全性也很差。</p>
+<h1 id="什么是FastCGI"><a href="#什么是FastCGI" class="headerlink" title="什么是FastCGI"></a>什么是FastCGI</h1><p>FastCGI是一个可伸缩地、高速地在HTTP服务器和动态脚本语言间通信的接口（FastCGI接口在Linux下是socket（可以是文件socket，也可以是ip  socket）），主要优点是把动态语言和HTTP服务器分离开来。多数流行的HTTP服务器都支持FastCGI，包括Apache、Nginx和lightpd。</p>
+<p>同时，FastCGI也被许多脚本语言所支持，比较流行的脚本语言之一为PHP。FastCGI接口方式采用C&#x2F;S架构，可以将HTTP服务器和脚本解析服务器分开，同时在脚本解析服务器上启动一个或多个脚本解析守护进程。当HTTP服务器每次遇到动态程序时，可以将其直接交付给FastCGI进程执行，然后将得到的结构返回给浏览器。这种方式可以让HTTP服务器专一地处理静态请求或者将动态脚本服务器的结果返回给客户端，这在很大程度上提高了整个应用系统的性能。</p>
+<p>FastCGI的重要特点：</p>
+<ul>
+<li>1、FastCGI是HTTP服务器和动态脚本语言间通信的接口或者工具。</li>
+<li>2、FastCGI优点是把动态语言解析和HTTP服务器分离开来。</li>
+<li>3、Nginx、Apache、Lighttpd以及多数动态语言都支持FastCGI。</li>
+<li>4、FastCGI接口方式采用C&#x2F;S架构，分为客户端（HTTP服务器）和服务端（动态语言解析服务器）。</li>
+<li>5、PHP动态语言服务端可以启动多个FastCGI的守护进程。</li>
+<li>6、HTTP服务器通过FastCGI客户端和动态语言FastCGI服务端通信。</li>
+</ul>
+<h1 id="Nginx-FastCGI的运行原理"><a href="#Nginx-FastCGI的运行原理" class="headerlink" title="Nginx FastCGI的运行原理"></a>Nginx FastCGI的运行原理</h1><p>Nginx不支持对外部动态程序的直接调用或者解析，所有的外部程序（包括PHP）必须通过FastCGI接口来调用。FastCGI接口在Linux下是socket（可以是文件socket，也可以是ip  socket）。为了调用CGI程序，还需要一个FastCGI的wrapper，这个wrapper绑定在某个固定socket(套接字)上，如端口或者文件socket。当Nginx将CGI请求发送给这个socket的时候，通过FastCGI接口，wrapper接收到请求，然后派生出一个新的线程，这个线程调用解释器或者外部程序处理脚本并读取返回数据；接着，wrapper再将返回的数据通过FastCGI接口，沿着固定的socket传递给Nginx；最后，Nginx将返回的数据发送给客户端，这就是Nginx+FastCGI的整个运作过程。</p>
+<p><img src="/upload/9dbd80f8c27ed29c5f4a56bef49928df.jpg"></p>
+<p>Nginx+FastCGI运作过程</p>
+<p>FastCGI的主要优点是把动态语言和HTTP服务器分离开来，是Nginx专一处理静态请求和向后转发动态请求，而PHP&#x2F;PHP-FPM服务器专一解析PHP动态请求。</p>
+<h1 id="附："><a href="#附：" class="headerlink" title="附："></a>附：</h1><p><img src="/upload/ebf1720484cb52564bc499a7d0927c29.jpg"></p>
+<p>ngnix配置解释</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-03T13:49:25.000Z" title="2021/4/3 下午9:49:25">2021-04-03</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">6 分钟读完 (大约918个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/03/URI%E5%92%8CURL%E7%9A%84%E5%8C%BA%E5%88%AB%E6%AF%94%E8%BE%83%E4%B8%8E%E7%90%86%E8%A7%A3/">URI和URL的区别比较与理解</a></h1><div class="content"><p>#什么是URI</p>
+<p>URI，通一资源标志符(Uniform Resource Identifier， URI)，表示的是web上每一种可用的资源，如 HTML文档、图像、视频片段、程序等都由一个URI进行标识的。</p>
+<p>#URI的结构组成</p>
+<p>URI通常由三部分组成：</p>
+<p>①资源的命名机制；</p>
+<p>②存放资源的主机名；</p>
+<p>③资源自身的名称。</p>
+<p>（注意：这只是一般URI资源的命名方式，只要是可以唯一标识资源的都被称为URI，上面三条合在一起是URI的充分不必要条件）</p>
+<p>#URI举例</p>
+<p>如：<a href="https://www.chengyao.xyz/notes/edit/152">https://www.chengyao.xyz/notes/edit/152</a></p>
+<p>我们可以这样解释它：</p>
+<p>①这是一个可以通过https协议访问的资源，</p>
+<p>②位于主机 <a target="_blank" rel="noopener" href="http://www.chengyao.xyz上,/">www.chengyao.xyz上，</a></p>
+<p>③通过“&#x2F;notes&#x2F;edit&#x2F;152”可以对该资源进行唯一标识（注意，这个不一定是完整的路径）</p>
+<p>注意：以上三点只不过是对实例的解释，以上三点并不是URI的必要条件，URI只是一种概念，怎样实现无所谓，只要它唯一标识一个资源就可以了。</p>
+<h1 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h1><p>URL是URI的一个子集。它是Uniform Resource Locator的缩写，译为“统一资源定位 符”。</p>
+<p>通俗地说，URL是Internet上描述信息资源的字符串，主要用在各种WWW客户程序和服务器程序上。</p>
+<p>采用URL可以用一种统一的格式来描述各种信息资源，包括文件、服务器的地址和目录等。URL是URI概念的一种实现方式。</p>
+<p>URL的一般格式为(带方括号[]的为可选项)：</p>
+<p>protocol :&#x2F;&#x2F; hostname[:port] &#x2F; path &#x2F; [;parameters][?query]#fragment</p>
+<p>URL的格式由三部分组成： </p>
+<p>①第一部分是协议(或称为服务方式)。</p>
+<p>②第二部分是存有该资源的主机IP地址(有时也包括端口号)。</p>
+<p>③第三部分是主机资源的具体地址，如目录和文件名等。</p>
+<p>第一部分和第二部分用“:&#x2F;&#x2F;”符号隔开，</p>
+<p>第二部分和第三部分用“&#x2F;”符号隔开。</p>
+<p>第一部分和第二部分是不可缺少的，第三部分有时可以省略。 </p>
+<h1 id="URI和URL之间的区别"><a href="#URI和URL之间的区别" class="headerlink" title="URI和URL之间的区别"></a>URI和URL之间的区别</h1><p>从上面的例子来看，你可能觉得URI和URL可能是相同的概念，其实并不是，URI和URL都定义了资源是什么，但URL还定义了该如何访问资源。URL是一种具体的URI，它是URI的一个子集，它不仅唯一标识资源，而且还提供了定位该资源的信息。URI 是一种语义上的抽象概念，可以是绝对的，也可以是相对的，而URL则必须提供足够的信息来定位，是绝对的。</p>
+<p>更新:看了一下大家的疑问,其实大家对uri可以认为只是唯一识别的编号,类似于大家的身份证号,而url就是身份证住址+姓名,这样是不是就很明显了~~</p>
+<p>更新2:针对大部分同学的疑问，其实纠结的就是URI到底是什么，怎么它就是URI不是URL了，其实文章中都已交代，只要能唯一标识资源的就是URI，在URI的基础上给出其资源的访问方式的就是URL，这是最简单的总结了，希望对大家有所帮助，祝好~~</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-03T13:25:35.000Z" title="2021/4/3 下午9:25:35">2021-04-03</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">13 分钟读完 (大约1979个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/03/SQL%E6%B3%A8%E5%85%A5%E3%80%81XSS%E4%BB%A5%E5%8F%8ACSRF%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">SQL注入、XSS以及CSRF分别是什么？</a></h1><div class="content"><p>#SQL注入</p>
+<p>SQL注入是属于注入式攻击，这种攻击是因为在项目中没有将代码与数据（比如用户敏感数据）隔离，在读取数据的时候，错误的将数据作为代码的一部分执行而导致的。</p>
+<p>典型的例子就是当对SQL语句进行字符串拼接的时候，直接使用未转义的用户输入内容作为变量。这时，只要在sql语句的中间做修改，比如加上drop、delete等关键字，执行之后后果不堪设想。</p>
+<p>说到这里，那么该怎么处理这种情况呢？三个方面：</p>
+<p>1、过滤用户输入参数中的特殊字符，降低风险。</p>
+<p>2、禁止通过字符串拼接sql语句，要严格使用参数绑定来传入参数。</p>
+<p>3、合理使用数据库框架提供的机制。就比如Mybatis提供的传入参数的方式 #{}，禁止使用${}，后者相当于是字符串拼接sql，要使用参数化的语句。</p>
+<p>总结下，就是要正确使用参数化绑定sql变量。</p>
+<p>#XSS</p>
+<p>XSS：跨站脚本攻击，Cross-Site Scripting，为了和前端的css避免重名，简称为XSS，是指通过技术手段，向正常用户请求的HTML页面中插入恶意脚本，执行。</p>
+<p>这种攻击主要是用于信息窃取和破坏等目的。比如2011年的微博XSS攻击事件，攻击者利用了微博发布功能中未对action-data漏洞做有效的过滤，在发布微博信息的时候带上了包含攻击脚本的URL，用户访问就会加载恶意脚本，导致大量用户被攻击。</p>
+<p>关于防范XSS上，主要就是通过对用户输入的数据做过滤或者是转义，可以使用框架提供的工具类HtmlUtil。另外前端在浏览器展示数据的时候，要使用安全的API展示数据。比如使用innerText而不是innerHTML。</p>
+<p>#CSRF</p>
+<p>跨站请求伪造，在用户并不知情的情况下，冒充用户发送请求，在当前已经登录的web网站上执行恶意操作，比如恶意发帖，修改密码等。</p>
+<p>大致来看，与XSS有重合的地方，前者是黑客盗用用户浏览器中的登录信息，冒充用户去执行操作。后者是在正常用户请求的HTML中放入恶意代码，XSS问题出在用户数据没有转义，过滤；CSRF问题出现在HTTP接口没有防范不守信用的调用。</p>
+<p>#防范CSRF的漏洞方式</p>
+<p>1、CSRF Token验证，利用浏览器的同源限制，在HTTP接口执行前验证Cookie中的Token，验证通过才会继续执行请求。</p>
+<p>2、人机交互，例如短信验证码、界面的滑块。</p>
+<p>以上就是什么是SQL注入、XSS和CSRF？的详细内容，更多请关注php中文网其它相关文章！</p>
+<p>#PHP如何防止XSS攻击</p>
+<p>PHP防止XSS跨站脚本攻击的方法:<strong>是针对非法的HTML代码包括单双引号等，使用htmlspecialchars()函数</strong> 。</p>
+<p>在使用htmlspecialchars()函数的时候注意第二个参数, 直接用htmlspecialchars($string) 的话,第二个参数默认是ENT_COMPAT,函数默认只是转化双引号(“), 不对单引号(‘)做转义.</p>
+<p>所以,htmlspecialchars函数更多的时候要加上第二个参数, 应该这样用: htmlspecialchars($string,ENT_QUOTES).当然,如果需要不转化任何引号,用htmlspecialchars($string,ENT_NOQUOTES).</p>
+<p>另外, 尽量少用htmlentities, 在全部英文的时候htmlentities和htmlspecialchars没有区别,都可以达到目的.但是,中文情况下, htmlentities却会转化所有的html代码，连同里面的它无法识别的中文字符也给转化了。</p>
+<p>htmlentities和htmlspecialchars这两个函数对 ‘之类的字符串支持不好,都不能转化, 所以用htmlentities和htmlspecialchars转化的字符串只能防止XSS攻击,不能防止SQL注入攻击.</p>
+<p>所有有打印的语句如echo，print等 在打印前都要使用htmlentities() 进行过滤，这样可以防止Xss，注意中文要写出htmlentities($name,ENT_NOQUOTES,GB2312) 。</p>
+<p> (1).网页不停地刷新 <code>&amp;lt;meta http-equiv=&amp;quot;refresh&amp;quot; content=&amp;quot;0&amp;quot;&amp;gt;</code></p>
+<p> (2).嵌入其它网站的链接 &lt;iframe src&#x3D;<a target="_blank" rel="noopener" href="http://xxxx/">http://xxxx</a> width&#x3D;250 height&#x3D;250&gt;&lt;&#x2F;iframe&gt;  除了通过正常途径输入XSS攻击字符外，还可以绕过JavaScript校验，通过修改请求达到XSS攻击的目的.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;?php</span><br><span class="line">//php防注入和XSS攻击通用过滤</span><br><span class="line">$_GET     &amp;amp;&amp;amp; SafeFilter($_GET);</span><br><span class="line">$_POST    &amp;amp;&amp;amp; SafeFilter($_POST);</span><br><span class="line">$_COOKIE  &amp;amp;&amp;amp; SafeFilter($_COOKIE);</span><br><span class="line">  </span><br><span class="line">function SafeFilter (&amp;amp;$arr) </span><br><span class="line">&#123;</span><br><span class="line">   $ra=Array(&#x27;/([\x00-\x08,\x0b-\x0c,\x0e-\x19])/&#x27;,&#x27;/script/&#x27;,&#x27;/javascript/&#x27;,&#x27;/vbscript/&#x27;,&#x27;/expression/&#x27;,&#x27;/applet/&#x27;</span><br><span class="line">   ,&#x27;/meta/&#x27;,&#x27;/xml/&#x27;,&#x27;/blink/&#x27;,&#x27;/link/&#x27;,&#x27;/style/&#x27;,&#x27;/embed/&#x27;,&#x27;/object/&#x27;,&#x27;/frame/&#x27;,&#x27;/layer/&#x27;,&#x27;/title/&#x27;,&#x27;/bgsound/&#x27;</span><br><span class="line">   ,&#x27;/base/&#x27;,&#x27;/onload/&#x27;,&#x27;/onunload/&#x27;,&#x27;/onchange/&#x27;,&#x27;/onsubmit/&#x27;,&#x27;/onreset/&#x27;,&#x27;/onselect/&#x27;,&#x27;/onblur/&#x27;,&#x27;/onfocus/&#x27;,</span><br><span class="line">   &#x27;/onabort/&#x27;,&#x27;/onkeydown/&#x27;,&#x27;/onkeypress/&#x27;,&#x27;/onkeyup/&#x27;,&#x27;/onclick/&#x27;,&#x27;/ondblclick/&#x27;,&#x27;/onmousedown/&#x27;,&#x27;/onmousemove/&#x27;</span><br><span class="line">   ,&#x27;/onmouseout/&#x27;,&#x27;/onmouseover/&#x27;,&#x27;/onmouseup/&#x27;,&#x27;/onunload/&#x27;);</span><br><span class="line">     </span><br><span class="line">   if (is_array($arr))</span><br><span class="line">   &#123;</span><br><span class="line">     foreach ($arr as $key =&amp;gt; $value) </span><br><span class="line">     &#123;</span><br><span class="line">        if (!is_array($value))</span><br><span class="line">        &#123;</span><br><span class="line">          if (!get_magic_quotes_gpc())  //不对magic_quotes_gpc转义过的字符使用addslashes(),避免双重转义。</span><br><span class="line">          &#123;</span><br><span class="line">             $value  = addslashes($value); //给单引号（&#x27;）、双引号（&amp;quot;）、反斜线（\）与 NUL（NULL 字符）</span><br><span class="line">             #加上反斜线转义</span><br><span class="line">          &#125;</span><br><span class="line">          $value       = preg_replace($ra,&#x27;&#x27;,$value);     //删除非打印字符，粗暴式过滤xss可疑字符串</span><br><span class="line">          $arr[$key]     = htmlentities(strip_tags($value)); //去除 HTML 和 PHP 标记并转换为 HTML 实体</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">          SafeFilter($arr[$key]);</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&amp;gt;</span><br><span class="line">$str = &#x27;www.90boke.com&amp;lt;meta http-equiv=&amp;quot;refresh&amp;quot; content=&amp;quot;0;&amp;quot;&amp;gt;&#x27;;</span><br><span class="line">SafeFilter ($str); //如果你把这个注释掉，提交之后就会无休止刷新</span><br><span class="line">echo $str;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">//------------------------------php防注入和XSS攻击通用过滤-----Start--------------------------------------------//</span><br><span class="line">function string_remove_xss($html) &#123;</span><br><span class="line">    preg_match_all(&amp;quot;/\&amp;lt;([^\&amp;lt;]+)\&amp;gt;/is&amp;quot;, $html, $ms);</span><br><span class="line"> </span><br><span class="line">    $searchs[] = &#x27;&amp;lt;&#x27;;</span><br><span class="line">    $replaces[] = &#x27;&amp;amp;lt;&#x27;;</span><br><span class="line">    $searchs[] = &#x27;&amp;gt;&#x27;;</span><br><span class="line">    $replaces[] = &#x27;&amp;amp;gt;&#x27;;</span><br><span class="line"> </span><br><span class="line">    if ($ms[1]) &#123;</span><br><span class="line">        $allowtags = &#x27;img|a|font|div|table|tbody|caption|tr|td|th|br|p|b|strong|i|u|em|span|ol|ul|li|blockquote&#x27;;</span><br><span class="line">        $ms[1] = array_unique($ms[1]);</span><br><span class="line">        foreach ($ms[1] as $value) &#123;</span><br><span class="line">            $searchs[] = &amp;quot;&amp;amp;lt;&amp;quot;.$value.&amp;quot;&amp;amp;gt;&amp;quot;;</span><br><span class="line"> </span><br><span class="line">            $value = str_replace(&#x27;&amp;amp;amp;&#x27;, &#x27;_uch_tmp_str_&#x27;, $value);</span><br><span class="line">            $value = string_htmlspecialchars($value);</span><br><span class="line">            $value = str_replace(&#x27;_uch_tmp_str_&#x27;, &#x27;&amp;amp;amp;&#x27;, $value);</span><br><span class="line"> </span><br><span class="line">            $value = str_replace(array(&#x27;\\&#x27;, &#x27;/*&#x27;), array(&#x27;.&#x27;, &#x27;/.&#x27;), $value);</span><br><span class="line">            $skipkeys = array(&#x27;onabort&#x27;,&#x27;onactivate&#x27;,&#x27;onafterprint&#x27;,&#x27;onafterupdate&#x27;,&#x27;onbeforeactivate&#x27;,&#x27;onbeforecopy&#x27;,&#x27;onbeforecut&#x27;,&#x27;onbeforedeactivate&#x27;,</span><br><span class="line">                    &#x27;onbeforeeditfocus&#x27;,&#x27;onbeforepaste&#x27;,&#x27;onbeforeprint&#x27;,&#x27;onbeforeunload&#x27;,&#x27;onbeforeupdate&#x27;,&#x27;onblur&#x27;,&#x27;onbounce&#x27;,&#x27;oncellchange&#x27;,&#x27;onchange&#x27;,</span><br><span class="line">                    &#x27;onclick&#x27;,&#x27;oncontextmenu&#x27;,&#x27;oncontrolselect&#x27;,&#x27;oncopy&#x27;,&#x27;oncut&#x27;,&#x27;ondataavailable&#x27;,&#x27;ondatasetchanged&#x27;,&#x27;ondatasetcomplete&#x27;,&#x27;ondblclick&#x27;,</span><br><span class="line">                    &#x27;ondeactivate&#x27;,&#x27;ondrag&#x27;,&#x27;ondragend&#x27;,&#x27;ondragenter&#x27;,&#x27;ondragleave&#x27;,&#x27;ondragover&#x27;,&#x27;ondragstart&#x27;,&#x27;ondrop&#x27;,&#x27;onerror&#x27;,&#x27;onerrorupdate&#x27;,</span><br><span class="line">                    &#x27;onfilterchange&#x27;,&#x27;onfinish&#x27;,&#x27;onfocus&#x27;,&#x27;onfocusin&#x27;,&#x27;onfocusout&#x27;,&#x27;onhelp&#x27;,&#x27;onkeydown&#x27;,&#x27;onkeypress&#x27;,&#x27;onkeyup&#x27;,&#x27;onlayoutcomplete&#x27;,</span><br><span class="line">                    &#x27;onload&#x27;,&#x27;onlosecapture&#x27;,&#x27;onmousedown&#x27;,&#x27;onmouseenter&#x27;,&#x27;onmouseleave&#x27;,&#x27;onmousemove&#x27;,&#x27;onmouseout&#x27;,&#x27;onmouseover&#x27;,&#x27;onmouseup&#x27;,&#x27;onmousewheel&#x27;,</span><br><span class="line">                    &#x27;onmove&#x27;,&#x27;onmoveend&#x27;,&#x27;onmovestart&#x27;,&#x27;onpaste&#x27;,&#x27;onpropertychange&#x27;,&#x27;onreadystatechange&#x27;,&#x27;onreset&#x27;,&#x27;onresize&#x27;,&#x27;onresizeend&#x27;,&#x27;onresizestart&#x27;,</span><br><span class="line">                    &#x27;onrowenter&#x27;,&#x27;onrowexit&#x27;,&#x27;onrowsdelete&#x27;,&#x27;onrowsinserted&#x27;,&#x27;onscroll&#x27;,&#x27;onselect&#x27;,&#x27;onselectionchange&#x27;,&#x27;onselectstart&#x27;,&#x27;onstart&#x27;,&#x27;onstop&#x27;,</span><br><span class="line">                    &#x27;onsubmit&#x27;,&#x27;onunload&#x27;,&#x27;javascript&#x27;,&#x27;script&#x27;,&#x27;eval&#x27;,&#x27;behaviour&#x27;,&#x27;expression&#x27;,&#x27;style&#x27;,&#x27;class&#x27;);</span><br><span class="line">            $skipstr = implode(&#x27;|&#x27;, $skipkeys);</span><br><span class="line">            $value = preg_replace(array(&amp;quot;/($skipstr)/i&amp;quot;), &#x27;.&#x27;, $value);</span><br><span class="line">            if (!preg_match(&amp;quot;/^[\/|\s]?($allowtags)(\s+|$)/is&amp;quot;, $value)) &#123;</span><br><span class="line">                $value = &#x27;&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">            $replaces[] = empty($value) ? &#x27;&#x27; : &amp;quot;&amp;lt;&amp;quot; . str_replace(&#x27;&amp;amp;quot;&#x27;, &#x27;&amp;quot;&#x27;, $value) . &amp;quot;&amp;gt;&amp;quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    $html = str_replace($searchs, $replaces, $html);</span><br><span class="line"> </span><br><span class="line">    return $html;</span><br><span class="line">&#125;</span><br><span class="line">//php防注入和XSS攻击通用过滤 </span><br><span class="line">function string_htmlspecialchars($string, $flags = null) &#123;</span><br><span class="line">    if (is_array($string)) &#123;</span><br><span class="line">        foreach ($string as $key =&amp;gt; $val) &#123;</span><br><span class="line">            $string[$key] = string_htmlspecialchars($val, $flags);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        if ($flags === null) &#123;</span><br><span class="line">            $string = str_replace(array(&#x27;&amp;amp;&#x27;, &#x27;&amp;quot;&#x27;, &#x27;&amp;lt;&#x27;, &#x27;&amp;gt;&#x27;), array(&#x27;&amp;amp;amp;&#x27;, &#x27;&amp;amp;quot;&#x27;, &#x27;&amp;amp;lt;&#x27;, &#x27;&amp;amp;gt;&#x27;), $string);</span><br><span class="line">            if (strpos($string, &#x27;&amp;amp;amp;#&#x27;) !== false) &#123;</span><br><span class="line">                $string = preg_replace(&#x27;/&amp;amp;amp;((#(\d&#123;3,5&#125;|x[a-fA-F0-9]&#123;4&#125;));)/&#x27;, &#x27;&amp;amp;\\1&#x27;, $string);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if (PHP_VERSION &amp;lt; &#x27;5.4.0&#x27;) &#123;</span><br><span class="line">                $string = htmlspecialchars($string, $flags);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                if (!defined(&#x27;CHARSET&#x27;) || (strtolower(CHARSET) == &#x27;utf-8&#x27;)) &#123;</span><br><span class="line">                    $charset = &#x27;UTF-8&#x27;;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    $charset = &#x27;ISO-8859-1&#x27;;</span><br><span class="line">                &#125;</span><br><span class="line">                $string = htmlspecialchars($string, $flags, $charset);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    return $string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//------------------php防注入和XSS攻击通用过滤-----End--------------------------------------------//</span><br></pre></td></tr></table></figure>
+
+<h1 id="PHP中的设置"><a href="#PHP中的设置" class="headerlink" title="PHP中的设置"></a>PHP中的设置</h1><p>PHP5.2以上版本已支持HttpOnly参数的设置，同样也支持全局的HttpOnly的设置，在php.ini中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------------------------- </span><br><span class="line"> session.cookie_httponly = </span><br><span class="line">-----------------------------------------------------</span><br></pre></td></tr></table></figure>
+
+<p>设置其值为1或者TRUE，来开启全局的Cookie的HttpOnly属性，当然也支持在代码中来开启： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;?php ini_set(&amp;quot;session.cookie_httponly&amp;quot;, 1);   </span><br><span class="line">// or session_set_cookie_params(0, NULL, NULL, NULL, TRUE);   </span><br><span class="line">?&amp;gt;</span><br></pre></td></tr></table></figure>
+
+<p>Cookie操作函数setcookie函数和setrawcookie函数也专门添加了第7个参数来做为HttpOnly的选项，开启方法为： </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;?php  </span><br><span class="line"><span class="title function_ invoke__">setcookie</span>(&amp;quot;abc&amp;quot;, &amp;quot;test&amp;quot;, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">TRUE</span>);   </span><br><span class="line"><span class="title function_ invoke__">setrawcookie</span>(&amp;quot;abc&amp;quot;, &amp;quot;test&amp;quot;, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">TRUE</span>);  </span><br><span class="line">?&amp;gt;</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-02T10:49:14.000Z" title="2021/4/2 下午6:49:14">2021-04-02</time>发表</span><span class="level-item"><time dateTime="2022-09-10T15:37:33.316Z" title="2022/9/10 下午11:37:33">2022-09-10</time>更新</span><span class="level-item">9 分钟读完 (大约1411个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/02/ajax%E8%AF%B7%E6%B1%82/">ajax请求</a></h1><div class="content"><h1 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h1><h2 id="XMLHttpRequest-对象"><a href="#XMLHttpRequest-对象" class="headerlink" title="XMLHttpRequest 对象"></a><strong>XMLHttpRequest 对象</strong></h2><p>　　XMLHttpRequest对象是ajax的基础,XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。目前所有浏览器都支持XMLHttpRequest</p>
+<table>
+<thead>
+<tr>
+<th>方  法</th>
+<th>描  述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>abort()</td>
+<td>停止当前请求</td>
+</tr>
+<tr>
+<td>getAllResponseHeaders()</td>
+<td>把HTTP请求的所有响应首部作为键&#x2F;值对返回</td>
+</tr>
+<tr>
+<td>getResponseHeader(“header”)</td>
+<td>返回指定首部的串值</td>
+</tr>
+<tr>
+<td>open(“method”,”URL”,[asyncFlag],[“userName”],[“password”])</td>
+<td>建立对服务器的调用。method参数可以是GET、POST或PUT。url参数可以是相对URL或绝对URL。这个方法还包括3个可选的参数，是否异步，用户名，密码</td>
+</tr>
+<tr>
+<td>send(content)</td>
+<td>向服务器发送请求</td>
+</tr>
+<tr>
+<td>setRequestHeader(“header”, “value”)</td>
+<td>把指定首部设置为所提供的值。在设置任何首部之前必须先调用open()。设置header并和请求一起发送 (‘post’方法一定要 )</td>
+</tr>
+</tbody></table>
+<p>post 需要在open后设置header ，需要发送数据直接传递给xhr.send的第一个参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.setRequestHeader(&#x27;Content-Type&#x27;,&#x27;application/x-www-form-urlencoded&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>关键字：<code>responseText,</code> <code>readyState</code>, <code>onreadystatechange</code></p>
+<h2 id="Jq的ajax方法"><a href="#Jq的ajax方法" class="headerlink" title="Jq的ajax方法"></a>Jq的ajax方法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.get(&#x27;http://www.aaa.com&#x27;,data,function(data,status)&#123;</span><br><span class="line">		if(&#x27;success&#x27; === status)&#123;</span><br><span class="line">			console.log(data);	</span><br><span class="line">		&#125;</span><br><span class="line">&#125;,&#x27;json&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><code>dataType</code> 可以是<code>text</code>,<code>html</code>,<code>xml</code>,<code>script</code>,<code>json</code>,<code>jsonp</code> 将添加一个 “?callback&#x3D;?” 到 URL 来规定回调,POST方式类似使用$.post</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">	<span class="attr">url</span>:<span class="string">&#x27;http://www.aaa.com&#x27;</span>,</span><br><span class="line">	<span class="attr">type</span>:<span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">	<span class="attr">dataType</span>:<span class="string">&#x27;json&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>:&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;bbb&#x27;</span>&#125;,</span><br><span class="line">    <span class="attr">traditional</span>:<span class="literal">true</span>, <span class="comment">//如果你想要用传统的方式来序列化数据，那么就设置为 true。请参考工具分类下面的 jQuery.param 方法。</span></span><br><span class="line">    <span class="attr">timeout</span>:<span class="string">&#x27;int&#x27;</span>, <span class="comment">//设置请求超时时间（毫秒）。此设置将覆盖全局设置。</span></span><br><span class="line">    <span class="attr">scriptCharset</span>:<span class="string">&#x27;string&#x27;</span>,<span class="comment">//只有当请求时 dataType 为 &quot;jsonp&quot; 或 &quot;script&quot;，并且 type 是 &quot;GET&quot; 才会用于强制修改 charset。通常只在本地和远程的内容编码不同时使用。</span></span><br><span class="line">	<span class="attr">async</span>:<span class="literal">true</span>, <span class="comment">//true为异步</span></span><br><span class="line">    <span class="attr">processData</span>:<span class="literal">true</span>, <span class="comment">//默认值: true。默认情况下，通过data选项传递进来的数据，如果是一个对象(技术上讲只要不是字符串)，都会处理转化成一个查询字符串，以配合默认内容类型 &quot;application/x-www-form-urlencoded&quot;。如果要发送 DOM 树信息或其它不希望转换的信息，请设置为 false。</span></span><br><span class="line">    <span class="attr">ifModified</span>:<span class="literal">false</span>,<span class="comment">//仅在服务器数据改变时获取新数据。默认值: false。使用 HTTP 包 Last-Modified 头信息判断。在 jQuery 1.4 中，它也会检查服务器指定的 &#x27;etag&#x27; 来确定数据没有被修改过。</span></span><br><span class="line">    <span class="attr">global</span>:<span class="literal">true</span>, <span class="comment">//是否触发全局 AJAX 事件。默认值: true。设置为 false 将不会触发全局 AJAX 事件，如 ajaxStart 或 ajaxStop 可用于控制不同的 Ajax 事件。</span></span><br><span class="line">    <span class="attr">cache</span>:<span class="literal">true</span>, <span class="comment">//默认值: true，dataType 为 script 和 jsonp 时默认为 false。设置为 false 将不缓存此页面。</span></span><br><span class="line">    <span class="attr">contentType</span>:<span class="string">&#x27;applicate/x-www-form-urlencoded&#x27;</span>, <span class="comment">//默认值</span></span><br><span class="line">    <span class="attr">context</span>:<span class="variable language_">document</span>.<span class="property">body</span>, <span class="comment">//这个对象用于设置 Ajax 相关回调函数的上下文。也就是说，让回调函数内 this 指向这个对象（如果不设定这个参数，那么 this 就指向调用本次 AJAX 请求时传递的 options 参数）。比如指定一个 DOM 元素作为 context 参数，这样就设置了 success 回调函数的上下文为这个 DOM 元素。</span></span><br><span class="line">    <span class="attr">xhr</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="comment">//需要返回一个 XMLHttpRequest 对象。默认在 IE 下是 ActiveXObject 而其他情况下是 XMLHttpRequest 。用于重写或者提供一个增强的 XMLHttpRequest 对象。这个参数在 jQuery 1.3 以前不可用。</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attr">dataFilter</span>:<span class="keyword">function</span>(<span class="params">data,Type</span>)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">beforeSend</span>:<span class="keyword">function</span>(<span class="params">XHR</span>)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">	<span class="attr">success</span>:<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;,</span><br><span class="line">    <span class="attr">error</span>:<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">complete</span>:<span class="keyword">function</span>(<span class="params">XHR, TS</span>)&#123;</span><br><span class="line">        <span class="comment">//请求完成后回调函数 (请求成功或失败之后均调用)。</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">jsonpCallback</span>:<span class="string">&#x27;string&#x27;</span>, <span class="comment">//为 jsonp 请求指定一个回调函数名。这个值将用来取代 jQuery 自动生成的随机函数名。这主要用来让 jQuery 生成度独特的函数名，这样管理请求更容易，也能方便地提供回调函数和错误处理。你也可以在想让浏览器缓存 GET 请求的时候，指定这个回调函数名。</span></span><br><span class="line">    <span class="attr">password</span>:<span class="string">&#x27;string&#x27;</span>, <span class="comment">//用于响应 HTTP 访问认证请求的密码</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="getScript"><a href="#getScript" class="headerlink" title="getScript"></a>getScript</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(selector).getScript(url,success(response,status))</span><br></pre></td></tr></table></figure>
+
+<p>getScript() 方法使用 AJAX 的 HTTP GET 请求获取和执行 JavaScript。 </p>
+<ul>
+<li><em>status</em> - 包含请求的状态（”success”、”notmodified”、”error”、”timeout”、”parsererror”）</li>
+</ul>
+<p>fetch</p>
+<p>es6新语法fetch().then()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//GET请求</span></span><br><span class="line"><span class="keyword">var</span> httpGet = <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">getUrl</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> opts = &#123;</span><br><span class="line">        <span class="attr">method</span>: <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">        <span class="attr">credentials</span>: <span class="string">&#x27;include&#x27;</span> <span class="comment">// 强制加入凭据头</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">fetch</span>(getUrl, opts).<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> response.<span class="title function_">text</span>();</span><br><span class="line">    &#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">responseText</span>) =&gt;</span> &#123;</span><br><span class="line">        result = responseText;</span><br><span class="line">    &#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下载</span></span><br><span class="line"><span class="keyword">var</span> httpDownLoadFile = <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params">getUrl, fileName</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> opts = &#123;</span><br><span class="line">        <span class="attr">method</span>: <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">        <span class="attr">credentials</span>: <span class="string">&#x27;include&#x27;</span> <span class="comment">// 强制加入凭据头</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">fetch</span>(getUrl, opts).<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> response.<span class="title function_">blob</span>();</span><br><span class="line">    &#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">blob</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> url = <span class="variable language_">window</span>.<span class="property">URL</span>.<span class="title function_">createObjectURL</span>(blob);</span><br><span class="line">        <span class="keyword">var</span> a = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">        a.<span class="property">href</span> = url;</span><br><span class="line">        a.<span class="property">download</span> = fileName;</span><br><span class="line">        a.<span class="title function_">click</span>();</span><br><span class="line">        <span class="variable language_">window</span>.<span class="property">URL</span>.<span class="title function_">revokeObjectURL</span>(url);</span><br><span class="line">    &#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="一些发送请求后可以执行的方法"><a href="#一些发送请求后可以执行的方法" class="headerlink" title="一些发送请求后可以执行的方法:"></a>一些发送请求后可以执行的方法:</h2><ul>
+<li>always():一定会执行</li>
+<li>catch():执行出错时执行(本体 object)</li>
+<li>done():执行成功时执行</li>
+<li>failed():执行出错时执行(服务器拒绝)</li>
+<li>pipe():过滤方法</li>
+<li>progress():当对象生成进度通知时，调用添加处理程序。</li>
+<li>Promise():返回Object(延迟)的Promise（承诺）对象。</li>
+<li>state():确定一个Object（延迟）对象的当前状态。</li>
+<li>then():当（延迟）对象解决，拒绝或仍在进行中时，调用添加处理程序。</li>
+</ul>
+<blockquote>
+<p>es6 新增fetch().then()</p>
+</blockquote>
+<h2 id="formData"><a href="#formData" class="headerlink" title="formData"></a>formData</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;#file_upload&#x27;).on(&#x27;change&#x27;,function()&#123;</span><br><span class="line">      var that = this;</span><br><span class="line">      var files = this.files[0];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var form = new FormData();</span><br><span class="line">form.append(&#x27;file&#x27;,files);</span><br></pre></td></tr></table></figure>
+
+<p>onclick&#x3D;”return function(){}” 当function返回true执行默认行为为false不执行</p>
+<h1 id="fetch"><a href="#fetch" class="headerlink" title="fetch"></a>fetch</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#x27;https://...&#x27;, &#123;</span><br><span class="line">    method: &#x27;post&#x27;,</span><br><span class="line">    body: JSON.stringify(base),</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;Content-Type&#x27;: &#x27;application/json&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;).then(function(data) &#123;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-02T10:46:48.000Z" title="2021/4/2 下午6:46:48">2021-04-02</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">32 分钟读完 (大约4735个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/02/PostgreSQL%20Copy%20%E5%91%BD%E4%BB%A4/">PostgreSQL Copy 命令</a></h1><div class="content"><p>COPY –  在表和文件之间拷贝数据</p>
+<p>Synopsis<br>COPY tablename [ ( column [, …] ) ] FROM { ‘filename’ | STDIN } [ [ WITH ] [ BINARY ] [ OIDS ] [ DELIMITER [ AS ] ‘delimiter’ ] [ NULL [ AS ] ‘null string’ ] [ CSV [ QUOTE [ AS ] ‘quote’ ] [ ESCAPE [ AS ] ‘escape’ ] [ FORCE NOT NULL column [, …] ] COPY tablename [ ( column [, …] ) ] TO { ‘filename’ | STDOUT } [ [ WITH ] [ BINARY ] [ OIDS ] [ DELIMITER [ AS ] ‘delimiter’ ] [ NULL [ AS ] ‘null string’ ] [ CSV [ QUOTE [ AS ] ‘quote’ ] [ ESCAPE [ AS ] ‘escape’ ] [ FORCE QUOTEcolumn [, …] ]</p>
+<p>描述<br>COPY 在 PostgreSQL表和标准文件系统文件之间交换数据。 COPY TO 把一个表的所有内容都拷贝到一个文件， 而 COPY FROM 从一个文件里拷贝数据到一个表里（把数据附加到表中已经存在的内容里）。</p>
+<p>如果声明了一个字段列表，COPY 将只在文件和表之间拷贝声明的字段的数据。 如果表中有任何不在字段列表里的字段，那么 COPY FROM 将为那些字段插入缺省值。</p>
+<p>带文件名的 COPY 指示 PostgreSQL 服务器直接从文件中读写数据。 如果声明了文件名，那么该文件必须为服务器可见，而且文件名必须从服务器的角度声明。如果声明的是STDIN 或 STDOUT，数据通过连接在客户前端和服务器之间流动。</p>
+<p>参数<br>tablename<br>现存表的名字（可以有模式修饰）。</p>
+<p>column<br>可选的待拷贝字段列表。如果没有声明字段列表，那么将使用所有字段。</p>
+<p>filename<br>输入或输出文件的绝对路径名。</p>
+<p>STDIN<br>声明输入是来自客户端应用。</p>
+<p>STDOUT<br>声明输入前往客户端应用。</p>
+<p>BINARY<br>使用二进制格式存储和读取，而不是以文本的方式。 在二进制模式下，不能声明 DELIMITERS，NULL 或者 CSV选项。</p>
+<p>OIDS<br>声明为每行拷贝内部对象标识（OID）。 （如果给那些没有 OID 的表声明了 OIDS 选项，则抛出一个错误。）</p>
+<p>delimiter<br>用于在文件中每行中分隔各个字段的单个字符。 在文本模式下，缺省是水平制表符（tab），在 CSV 模式下是一个逗号。</p>
+<p>null string<br>个代表 NULL 值的字串。在文本模式下缺省是 \N （反斜杠-N）， 在 CSV 模式下是一个没有引号的空值。 如果你不想区分空值和空字串，那么即使在文本模式下可能你也会用一个空字串。</p>
+<p>注意: 在使用 COPY FROM 的时候，任何匹配这个字串的字串将被存储为 NULL 值， 所以你应该确保你用的字串和COPY TO相同。</p>
+<p>CSV<br>打开逗号分隔变量（CSV）模式。</p>
+<p>quote<br>声明 CSV 模式里的引号字符。缺省是双引号。</p>
+<p>escape<br>声明在 CSV 模式下应该出现在数据里 QUOTE 字符值前面的字符。 缺省是 QUOTE 值（通常是双引号）。</p>
+<p>FORCE QUOTE<br>在 CSV COPY TO 模式下，强制在每个声明的字段周围对所有非 NULL 值都使用引号包围。 NULL 从不会被引号包围。</p>
+<p>FORCE NOT NULL<br>在 CSV COPY FROM 模式下，把声明的每个字段都当作它们有引号包围来处理， 因此就没有 NULL 值。对于在CSV 模式下的缺省空字串（’’）， 这样导致一个缺失的数值当作一个零长字串输入。</p>
+<p>注意<br>COPY 只能用于表，不能用于视图。</p>
+<p>BINARY 关键字将强制使用二进制对象而不是文本存储&#x2F;读取所有数据。 这样做在一定程度上比传统的拷贝命令快，但二进制拷贝文件在不同机器体系间的植性不是很好。</p>
+<p>你对任何要COPY TO 出来的数据必须有选取数据的权限，对任何要 COPY FROM 入数据的表必须有插入权限。</p>
+<p>COPY 命令里面的文件必须是由服务器直接读或写的文件，而不是由客户端应用读写。 因此，它们必须位于数据库服务器上或者可以为数据库服务器所访问，而不是由客户端做这些事情。 它们必须是PostgreSQL用户（服务器运行的用户 ID）可以访问到并且可读或者可写，而不是客户端。 COPY 到一个命名文件是只允许数据库超级用户进行的，因为它允许读写任意服务器有权限访问的文件。</p>
+<p>不要混淆 COPY 和 psql 指令 \copy。 \copy 调用 COPY FROM STDIN 或者 COPY TO STDOUT， 然后把数据抓取&#x2F;存储到一个 psql 客户端可以访问的文件中。 因此，使用 \copy 的时候，文件访问权限是由客户端而不是服务器端决定的。</p>
+<p>我们建议在 COPY 里的文件名字总是使用绝对路径。 在 COPY TO 的时候是由服务器强制进行的， 但是对于COPY FROM，你的确有从一个声明为相对路径的文件里读取的选择。 该路径将解释为相对于服务器的工作目录（在数据目录里的什么地方），而不是客户端的工作目录。</p>
+<p>COPY FROM 会激活所有触发器和检查约束。不过，不会激活规则。</p>
+<p>COPY 输入和输出是被 DateStyle 影响的。 为了和其它 PostgreSQL 安装移植，（它们可能用的不是缺省DateStyle 设置）， 我们应该在使用 COPY 前把 DateStyle 设置为ISO。</p>
+<p>COPY 在第一个错误处停下来。这些在 COPY TO中不应该导致问题， 但在 COPY FROM 时目的表会已经接收到早先的行， 这些行将不可见或不可访问，但是仍然会占据磁盘空间。 如果你碰巧是拷贝很大一块数据文件的话， 积累起来，这些东西可能会占据相当大的一部分磁盘空间。你可以调用 VACUUM 来恢复那些磁盘空间。</p>
+<p>文件格式</p>
+<p>文本格式<br>当不带 BINARY 或者 CSV 选项使用 COPY 时， 读写的文件是一个文本文件，每行代表表中一个行。 行中的列（字段）用分隔符分开。 字段值本身是由与每个字段类型相关的输出函数生成的字符串， 或者是输入函数可接受的字串。 数据中使用特定的空值字串表示那些为 NULL 的字段。 如果输入文件的任意行包含比预期多或者少的字段，那么 COPY FROM将抛出一个错误。 如果声明了 OIDS，那么 OID 将作为第一个字段读写， 放在所有用户字段前面。</p>
+<p>数据的结束可以用一个只包含反斜杠和句点（.）的行表示。 如果从文件中读取数据，那么数据结束的标记是不必要的， 因为文件结束起的作用就很好了；但是在 3.0 之前的客户端协议里，如果在客户端应用之间拷贝数据， 那么必须要有结束标记。</p>
+<p>反斜杠字符（\）可以用在 COPY 里给那些会有歧义的字符进行逃逸（否则那些字符会被当做行或者字段分隔符处理）。 特别是下面的字符如果是字段值的一部分时，必须前缀一个反斜杠：反斜杠本身，换行符，回车，以及当前分隔符。</p>
+<p>声明的空字串被 COPY TO 不加任何反斜杠发送；与之相对，COPY FROM 在删除反斜杠之前拿它的输入与空字串比较。因此，像 \N 这样的空字串不会和实际数据值 \N 之间混淆（因为后者会表现成 \N）。</p>
+<p>COPY FROM 识别下列特殊反斜杠序列：</p>
+<p>序列<br>代表物</p>
+<p>\b<br>反斜杠 (ASCII 8)</p>
+<p>\f<br>进纸 (ASCII 12)</p>
+<p>\n<br>换行符 (ASCII 10)</p>
+<p>\r<br>回车 (ASCII 13)</p>
+<p>\t<br>Tab (ASCII 9)</p>
+<p>\v<br>垂直制表符 (ASCII 11)</p>
+<p>\digits<br>反斜杠后面跟着一到三个八进制数，表示ASCII值为该数的字符</p>
+<p>目前，COPY TO 将绝不会发出一个八进制反斜杠序列， 但是它的确使用了上面列出的其它字符用于控制字符。</p>
+<p>绝对不要把反斜杠放在一个数据字符N或者句点（.）前面。 这样的组合将分别被误认为是空字串或者数据结束标记。 另外一个没有在上面的表中列出的反斜杠字符就是它自己。</p>
+<p>我们强烈建议生成 COPY 数据的应用把换行符和回车分别转换成 \n 和 \r 序列。 目前我们可以用一个反斜杠和一个回车表示一个数据回车，以及用一个反斜杠和一个换行符表示一个数据换行符。 不过，这样的表示在将来的版本中缺省时可能不会被接受。 并且，如果在不同机器之间传递 COPY 文件，也是非常容易出错的 （比如在 Unix 和 Windows 之间）。</p>
+<p>COPY TO 将再每行的结尾是用一个 Unix 风格的换行符(&quot;\n&quot;)， 或者是在 Microsoft Windows 上运行的服务器上用（&quot;\r\n&quot;）标记一行终止，但只是用于COPY到服务器文件里； 为了在不同平台之间一致，COPY TO STDOUT总是发送 &quot;\n&quot;，不管服务器平台是什么。 COPY FROM 可以处理那些以回车符，或者换行符，或者回车换行符作为行结束的数据。 为了减少在数据中出现的未逃逸的新行或者回车导致的错误，如果输入的行结尾不像上面这些符号， COPY FROM 会发出警告。</p>
+<p>CSV 格式<br>这个格式用于输入和输出逗号分隔数值（CSV）文件格式， 许多其它程序都用这个文件格式，比如电子报表。这个模式下生成并识别逗号分隔的 CSV 逃逸机制， 而不是使用PostgreSQL 标准文本模式的逃逸。</p>
+<p>每条记录的值都是用 DELIMITER 字符分隔的。 如果数值本身包含分隔字符，QUOTE 字符，NULL 字串， 一个回车，或者进行字符，那么整个数值用 QUOTE 字符前缀和后缀（包围）， 并且数值里任何 QUOTE 字符或者ESCAPE 字符都前导逃逸字符。 你也可以使用 FORCE QUOTE 在输出非 NULL 的指定字段值时强制引号包围。</p>
+<p>CSV 格式没有标准的办法区分一个 NULL 值和一个空字串。 PostgreSQL 的 COPY 通过引号包围来处理这些。 一个当作 NULL 输出的 NULL 值是没有引号包围的， 而匹配 NULL字串的数据值是用引号包围的。 因此，使用缺省设置时，一个 NULL 是写做一个无引号包围的空字串， 而一个空字串写做双引号包围（&quot;&quot;）。读取数值也遵循类似的规则。 你可以使用 FORCE NOT NULL 来避免为特定字段进行 NULL 比较。</p>
+<p>注意: CSV 模式可以识别和生成带有引号包围的回车和进行（hang）的 CVS 文件。 因此这些文件并不像文本模式的文件那样严格地每个数据行一行。 不过，如果任何字段本身包含并不匹配 CVS 文件本身的换行符序列， 那么 PostgreSQL 会拒绝 COPY 输入。通常，输入包含行结束符的数据的时候，用文本或者二进制格式比 CSV 更安全。</p>
+<p>注意: 许多程序生成奇怪的并且有时候不正确的 CVS 文件， 所以这个文件格式更像一种惯用格式，而不是一种标准。 因此你可能碰到一些不能使用这个机制输入的文件，而 COPY 也可能生成一些其它程序不能处理的文件。</p>
+<p>二进制格式<br>在PostgreSQL 7.4 中的 COPY BINARY 的文件格式做了变化。新格式由一个文件头，零或多条元组， 以及文件尾组成。文件头和数据现在是网络字节序。</p>
+<p>文件头<br>文件头由 15 个字节的固定域组成，后面跟着一个变长的头扩展区。 固定域是：</p>
+<p>签名<br>11-字节的序列 &quot;PGBCOPY\n\377\r\n\0&quot; — 请注意字节零是签名是要求的一部分。 （使用这个签名是为了让我们能够很容易看出文件是否已经被一个非 8 位安全的转换器给糟蹋了。 这个签名会被行结尾转换过滤器，删除字节零，删除高位，或者奇偶的改变而改变。）</p>
+<p>标志域<br>32 位整数掩码表示该文件格式的重要方面。 位是从 0（LSB）到 31 （MSB）编码的 — 请注意这个域是以网络字节序存储的（高位在前）， 后继的整数都是如此。位 16 - 31 是保留用做关键文件格式信息的； 如果读者发现一个不认识的位出现在这个范围内，那么它应该退出。 位 0-15 都保留为标志向后兼容的格式使用；读者可以忽略这个范围内的不认识的位。目前只定义了一个标志位，而其它的必须是零：</p>
+<p>Bit 16<br>如果为 1，那么在数据中包括了 OID；如果为 0，则没有</p>
+<p>头扩展范围长度<br>32 位整数，以字节计的头剩余长度，不包括自身。目前，它是零， 后面紧跟第一条元组。对该格式的更多的修改都将允许额外的数据出现在头中。 读者应该忽略任何它不知道该如何处理的头扩展数据。</p>
+<p>头扩展数据是一个用来保留一个自定义的数据序列块用的。这个标志域无意告诉读者扩展区的内容是什么。头扩展的具体设计内容留给以后的版本用。</p>
+<p>这样设计就允许向下兼容头附加（增加头扩展块，或者设置低位序标志位）以及非向下兼容修改（设置高位标志位以标识这样的修改， 并且根据需要向扩展区域增加支持数据）。</p>
+<p>元组<br>每条元组都以一个 16 位整数计数开头，该计数是元组中字段的数目。 （目前，在一个表里的每条元组都有相同的计数，但可能不会永远这样。） 然后后面不断出现元组中的各个字段，字段先是一个 32 位的长度字，后面跟着那么长的字段数据。 （长度字并不包括自己，并且可以为零。）一个特例是：-1 表示一个 NULL 字段值。 在 NULL 情况下，后面不会跟着数值字节。</p>
+<p>在数据域之间没有对奇填充或者任何其它额外的数据。</p>
+<p>目前，一个 COPY BINARY 文件里的所有数据值都假设是二进制格式的（格式代码为一）。 预计将来的扩展可能增加一个头域，允许为每个字段声明格式代码。</p>
+<p>为了判断实际元组数据的正确的二进制格式，你应该阅读 PostgreSQL 源代码， 特别是该字段数据类型的*send 和 *recv 函数（典型的函数可以在源代码的src&#x2F;backend&#x2F;utils&#x2F;adt&#x2F; 目录找到）。</p>
+<p>如果在文件中包括了 OID，那么该 OID 域立即跟在字段计数字后面。 它是一个普通的字段，只不过它没有包括在字段计数。但它包括长度字 — 这样就允许我们不用花太多的劲就可以处理 4 字节和 8 字节的 OID，并且如果某个家伙允许 OID 是可选的话，那么还可以把 OID 显示成空。</p>
+<p>文件尾<br>文件尾包括保存着 -1 的一个 16 位整数字。这样就很容易与一条元组的域计数字相区分。</p>
+<p>如果一个域计数字既不是 -1 也不是预期的字段的数目，那么读者应该报错。 这样就提供了对丢失与数据的同步的额外的检查。</p>
+<p>例子<br>下面的例子把一个表拷贝到客户端， 使用竖直条（|）作为域分隔符：</p>
+<p>COPY country TO STDOUT WITH DELIMITER ‘|’;<br>从一个 Unix 文件中拷贝数据到一个country表中：</p>
+<p>COPY country FROM ‘&#x2F;usr1&#x2F;proj&#x2F;bray&#x2F;sql&#x2F;country_data’;<br>下面是一个可以从 STDIN 中拷贝数据到表中的例子：</p>
+<p>AF AFGHANISTAN AL ALBANIA DZ ALGERIA ZM ZAMBIA ZW ZIMBABWE<br>请注意在这里每行里的空白实际上是一个水平制表符 tab。</p>
+<p>下面的是同样的数据，在一台 Linux&#x2F;i586 机器上以二进制形式输出。 这些数据是用 Unix 工具 od -c 过滤之后输出的。 该表有三个字段；第一个是 char(2)， 第二个是text， 第三个是integer。所有的行在第三个域都是一个 null 值。</p>
+<p>0000000 P G C O P Y \n 377 \r \n \0 \0 \0 \0 \0 \0 0000020 \0 \0 \0 \0 003 \0 \0 \0 002 A F \0 \0 \0 013 A 0000040 F G H A N I S T A N 377 377 377 377 \0 003 0000060 \0 \0 \0 002 A L \0 \0 \0 007 A L B A N I 0000100 A 377 377 377 377 \0 003 \0 \0 \0 002 D Z \0 \0 \0 0000120 007 A L G E R I A 377 377 377 377 \0 003 \0 \0 0000140 \0 002 Z M \0 \0 \0 006 Z A M B I A 377 377 0000160 377 377 \0 003 \0 \0 \0 002 Z W \0 \0 \0 \b Z I 0000200 M B A B W E 377 377 377 377 377 377</p>
+<p>兼容性<br>在 SQL 标准里没有 COPY 语句。</p>
+<p>PostgreSQL 7.3 以前使用下面的语法，现在仍然支持：</p>
+<p>COPY [ BINARY ] tablename [ WITH OIDS ] FROM { ‘filename’ | STDIN } [ [USING] DELIMITERS ‘delimiter’ ] [ WITH NULL AS ‘null string’ ] COPY [ BINARY ] tablename [ WITH OIDS ] TO { ‘filename’ | STDOUT } [ [USING] DELIMITERS ‘delimiter’ ] [ WITH NULL AS ‘null string’ ]<br>————————————————<br>版权声明：本文为CSDN博主「DemonHunter211」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/kwame211/article/details/75968013">https://blog.csdn.net/kwame211/article/details/75968013</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-02T10:42:35.000Z" title="2021/4/2 下午6:42:35">2021-04-02</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">1 分钟读完 (大约157个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/02/Perl%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Perl学习笔记</a></h1><div class="content"><p>scalar(@_)； 可以取数组长度  $a &#x3D; @a; 数组大小</p>
+<p>local 给全局变量分配临时值在局部使用</p>
+<p>state 关键字需要使用use feture &quot;state&quot;;</p>
+<p>使用时间转换函数需要引入</p>
+<p>use POSIX fw(strftime);</p>
+<p>strftime &quot;%a&quot; ,localtime;</p>
+<p>ref可以用来判断变量的类型</p>
+<p>使用\$,\@,\%,\*,\&amp; 来引用，使用$, @ 或 % 来去掉引用，类似于c中的指针，引用函数只需要\&amp;函数名即可（$cref &#x3D; \&amp;function_name），再使用引用调用函数&amp;$cref()</p>
+<p>uc &#x2F; lc 转换大小写</p>
+<p>$param &#x3D;~ s&#x2F;^ <em>(.</em>?) *$&#x2F;$1&#x2F; 使用正则替换，可以使用后向引用</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-02T10:40:16.000Z" title="2021/4/2 下午6:40:16">2021-04-02</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">3 分钟读完 (大约494个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/02/Oracle/">Oracle</a></h1><div class="content"><p>查询建表语句 ：select dbms_metadata.get_ddl(‘TABLE’,’name’) from dual;</p>
+<p>查看存储过程： select dbms_metadata.get_ddl(‘PROCEDURE’,’BSA_PROC_FTP_MGMT’,’CLARO’) from dual;</p>
+<h4 id="trunc"><a href="#trunc" class="headerlink" title="trunc()"></a>trunc()</h4><p>下面日期操作有误，仅做参考</p>
+<p>1.select trunc(sysdate) from dual –2013-01-06 今天的日期为2013-01-06<br>2.select trunc(sysdate, ‘mm’) from dual –2013-01-01 返回当月第一天.<br>3.select trunc(sysdate,’yy’) from dual –2013-01-01 返回当年第一天<br>4.select trunc(sysdate,’dd’) from dual –2013-01-06 返回当前年月日<br>5.select trunc(sysdate,’yyyy’) from dual –2013-01-01 返回当年第一天<br>6.select trunc(sysdate,’d’) from dual –2013-01-06 (星期天)返回当前星期的第一天<br>7.select trunc(sysdate, ‘hh’) from dual –2013-01-06 17:00:00 当前时间为17:35<br>8.select trunc(sysdate, ‘mi’) from dual –2013-01-06 17:35:00 TRUNC()函数没有秒的精确</p>
+<p>&#x2F;*<br>TRUNC（number,num_digits）<br>Number 需要截尾取整的数字。<br>Num_digits 用于指定取整精度的数字。Num_digits 的默认值为 0。<br>TRUNC()函数截取时不进行四舍五入<br>*&#x2F;<br>9.select trunc(123.458) from dual –123<br>10.select trunc(123.458,0) from dual –123<br>11.select trunc(123.458,1) from dual –123.4<br>12.select trunc(123.458,-1) from dual –120<br>13.select trunc(123.458,-4) from dual –0<br>14.select trunc(123.458,4) from dual –123.458<br>15.select trunc(123) from dual –123<br>16.select trunc(123,1) from dual –123<br>17.select trunc(123,-1) from dual –120</p>
+<p>oracle数据库控制台的删除变成^H的解决办法</p>
+<p>在linux服务器下登录oracle的控制台，如果输入错误，想用删除键删除时却不能删除，打出的是^H的字符。</p>
+<p>用如下的命令可以使删除键生效：</p>
+<p>$ stty erase ^H</p>
+<p>恢复以前的设置的命令是：</p>
+<p>$  stty erase ^？</p>
+<p>select table_name from all_tables; 查看所有表</p>
+<p>select table_name from user_tables; 查看用户表</p>
+<p>desc table_name; 查看表结构</p>
+<p>select * from table_name where rownum &lt; 10; 查看前rownum 小于10的数据</p>
+<p>ROWNUM是一个序列，bai是oracle数据库du从数据文件或缓冲区中读取数据的顺序。它取得第一条记录则rownum值为1，第二条为2，依次类推。ROWNUM是一个序列，是oracle数据库从数据文件或缓冲区中读取数据的顺序。它取得第一条记录则rownum值为1，第二条为2，依次类推。</p>
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/12/">上一页</a></div><div class="pagination-next"><a href="/page/14/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/12/">12</a></li><li><a class="pagination-link is-current" href="/page/13/">13</a></li><li><a class="pagination-link" href="/page/14/">14</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/17/">17</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果也！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">170</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-01T06:56:20.000Z">2022-10-01</time></p><p class="title"><a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-18T05:06:34.000Z">2022-09-18</time></p><p class="title"><a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-04T13:30:39.000Z">2022-09-04</time></p><p class="title"><a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-21T02:56:27.000Z">2022-08-21</time></p><p class="title"><a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-19T12:54:39.000Z">2022-08-19</time></p><p class="title"><a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown基本语法</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">五月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

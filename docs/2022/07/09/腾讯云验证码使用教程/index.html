@@ -1,592 +1,83 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>腾讯云验证码使用教程 - 笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="注意： 以下内容来自互联网，与本站无关，包括使用在内的所有责任和本站无关  前端 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang&amp;#x3D;&amp;quot;zh&amp;quot;&amp;gt;"><meta property="og:type" content="blog"><meta property="og:title" content="腾讯云验证码使用教程"><meta property="og:url" content="https://www.chengyao.xyz/2022/07/09/%E8%85%BE%E8%AE%AF%E4%BA%91%E9%AA%8C%E8%AF%81%E7%A0%81%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"><meta property="og:site_name" content="笔记"><meta property="og:description" content="注意： 以下内容来自互联网，与本站无关，包括使用在内的所有责任和本站无关  前端 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang&amp;#x3D;&amp;quot;zh&amp;quot;&amp;gt;"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:published_time" content="2022-07-09T05:36:01.000Z"><meta property="article:modified_time" content="2022-08-28T02:23:10.683Z"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz/2022/07/09/%E8%85%BE%E8%AE%AF%E4%BA%91%E9%AA%8C%E8%AF%81%E7%A0%81%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"},"headline":"腾讯云验证码使用教程","image":["https://www.chengyao.xyz/img/og_image.png"],"datePublished":"2022-07-09T05:36:01.000Z","dateModified":"2022-08-28T02:23:10.683Z","author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"注意： 以下内容来自互联网，与本站无关，包括使用在内的所有责任和本站无关  前端 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;zh&quot;&gt;"}</script><link rel="canonical" href="https://www.chengyao.xyz/2022/07/09/%E8%85%BE%E8%AE%AF%E4%BA%91%E9%AA%8C%E8%AF%81%E7%A0%81%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="CY">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="注意： 以下内容来自互联网，与本站无关，包括使用在内的所有责任和本站无关  前端 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;zh&quot;&gt;">
-<meta property="og:type" content="article">
-<meta property="og:title" content="腾讯云验证码使用教程">
-<meta property="og:url" content="https://www.chengyao.xyz/2022/07/09/%E8%85%BE%E8%AE%AF%E4%BA%91%E9%AA%8C%E8%AF%81%E7%A0%81%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
-<meta property="og:site_name" content="笔记">
-<meta property="og:description" content="注意： 以下内容来自互联网，与本站无关，包括使用在内的所有责任和本站无关  前端 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;zh&quot;&gt;">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-09T05:36:01.000Z">
-<meta property="article:modified_time" content="2022-09-14T12:56:05.010Z">
-<meta property="article:author" content="CY">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>腾讯云验证码使用教程 - 笔记</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="腾讯云验证码使用教程"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-09 13:36" pubdate>
-          2022年7月9日 下午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          4.4k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          37 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">腾讯云验证码使用教程</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <blockquote>
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-07-09T05:36:01.000Z" title="2022/7/9 下午1:36:01">2022-07-09</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.683Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">4 分钟读完 (大约601个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">腾讯云验证码使用教程</h1><div class="content"><blockquote>
 <p>注意： 以下内容来自互联网，与本站无关，包括使用在内的所有责任和本站无关</p>
 </blockquote>
 <p>前端</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;zh&quot;</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>腾讯验证码接入示例<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-tag">body</span>&#123;<span class="hljs-attribute">margin</span>:<span class="hljs-number">50px</span> <span class="hljs-number">0</span>;<span class="hljs-attribute">text-align</span>:center;<span class="hljs-attribute">font-family</span>:PingFangSC-Regular,<span class="hljs-string">&quot;Open Sans&quot;</span>,Arial,<span class="hljs-string">&quot;Hiragino Sans GB&quot;</span>,<span class="hljs-string">&quot;Microsoft YaHei&quot;</span>,STHeiti,<span class="hljs-string">&quot;WenQuanYi Micro Hei&quot;</span>,SimSun,sans-serif&#125;</span><br><span class="language-css"><span class="hljs-selector-class">.btn</span>&#123;<span class="hljs-attribute">display</span>:inline-block;<span class="hljs-attribute">box-sizing</span>:border-box;<span class="hljs-attribute">border</span>:<span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;<span class="hljs-attribute">border-radius</span>:<span class="hljs-number">2px</span>;<span class="hljs-attribute">width</span>:<span class="hljs-number">100px</span>;<span class="hljs-attribute">height</span>:<span class="hljs-number">40px</span>;<span class="hljs-attribute">line-height</span>:<span class="hljs-number">40px</span>;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">16px</span>;<span class="hljs-attribute">color</span>:<span class="hljs-number">#666</span>;<span class="hljs-attribute">cursor</span>:pointer;<span class="hljs-attribute">background</span>:<span class="hljs-number">#fff</span> <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">180deg</span>,<span class="hljs-number">#fff</span> <span class="hljs-number">0</span>,<span class="hljs-number">#f3f3f3</span> <span class="hljs-number">100%</span>)&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 验证码程序依赖(必须)。请勿修改以下程序依赖，如使用本地缓存，或通过其他手段规避加载，会影响程序的正常使用。 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://ssl.captcha.qq.com/TCaptcha.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;TencentCaptcha&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span>&gt;</span>验证<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./jquery.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">var</span> tcaptchaCallback = <span class="hljs-keyword">function</span>(<span class="hljs-params">res</span>)&#123;</span><br><span class="language-javascript">	<span class="hljs-comment">// 返回结果</span></span><br><span class="language-javascript">	<span class="hljs-comment">// ret         Int       验证结果，0：验证成功。2：用户主动关闭验证码。</span></span><br><span class="language-javascript">	<span class="hljs-comment">// ticket      String    验证成功的票据，当且仅当 ret = 0 时 ticket 有值。</span></span><br><span class="language-javascript">	<span class="hljs-comment">// CaptchaAppId       String    验证码应用ID。</span></span><br><span class="language-javascript">	<span class="hljs-comment">// bizState    Any       自定义透传参数。</span></span><br><span class="language-javascript">	<span class="hljs-comment">// randstr     String    本次验证的随机串，请求后台接口时需带上。</span></span><br><span class="language-javascript">	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;callback:&#x27;</span>, res);</span><br><span class="language-javascript">	<span class="hljs-comment">// res（用户主动关闭验证码）= &#123;ret: 2, ticket: null&#125;</span></span><br><span class="language-javascript">	<span class="hljs-comment">// res（验证成功） = &#123;ret: 0, ticket: &quot;String&quot;, randstr: &quot;String&quot;&#125;</span></span><br><span class="language-javascript">	<span class="hljs-comment">// res（客户端出现异常错误 仍返回可用票据） = &#123;ret: 0, ticket: &quot;String&quot;, randstr: &quot;String&quot;,  errorCode: Number, errorMessage: &quot;String&quot;&#125;</span></span><br><span class="language-javascript">	<span class="hljs-keyword">if</span> (res.<span class="hljs-property">ret</span> === <span class="hljs-number">0</span>) &#123;</span><br><span class="language-javascript">		$.<span class="hljs-title function_">ajax</span>(&#123;</span><br><span class="language-javascript">			<span class="hljs-attr">type</span>: <span class="hljs-string">&quot;POST&quot;</span>,</span><br><span class="language-javascript">			<span class="hljs-attr">dataType</span>: <span class="hljs-string">&quot;html&quot;</span>,</span><br><span class="language-javascript">			<span class="hljs-attr">data</span>: &#123;<span class="hljs-attr">ticket</span>: res.<span class="hljs-property">ticket</span>, <span class="hljs-attr">randstr</span>: res.<span class="hljs-property">randstr</span>&#125;,</span><br><span class="language-javascript">			<span class="hljs-attr">url</span>: <span class="hljs-string">&quot;api.php&quot;</span>,</span><br><span class="language-javascript">			<span class="hljs-attr">success</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;</span><br><span class="language-javascript">				<span class="hljs-title function_">alert</span>(data);</span><br><span class="language-javascript">			&#125;,</span><br><span class="language-javascript">			<span class="hljs-attr">error</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;</span><br><span class="language-javascript">				<span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;服务器错误&#x27;</span>);</span><br><span class="language-javascript">			&#125;</span><br><span class="language-javascript">		&#125;);</span><br><span class="language-javascript">	&#125;</span><br><span class="language-javascript">&#125;</span><br><span class="language-javascript">$(<span class="hljs-variable language_">document</span>).<span class="hljs-title function_">ready</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;</span><br><span class="language-javascript">	<span class="hljs-keyword">var</span> captcha1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TencentCaptcha</span>(<span class="hljs-string">&#x27;2046626881&#x27;</span>, tcaptchaCallback);</span><br><span class="language-javascript">	$(<span class="hljs-string">&quot;#TencentCaptcha&quot;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;</span><br><span class="language-javascript">		captcha1.<span class="hljs-title function_">show</span>();</span><br><span class="language-javascript">	&#125;)</span><br><span class="language-javascript">&#125;)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;zh&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;腾讯验证码接入示例&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">body&#123;margin:50px 0;text-align:center;font-family:PingFangSC-Regular,&quot;Open Sans&quot;,Arial,&quot;Hiragino Sans GB&quot;,&quot;Microsoft YaHei&quot;,STHeiti,&quot;WenQuanYi Micro Hei&quot;,SimSun,sans-serif&#125;</span><br><span class="line">.btn&#123;display:inline-block;box-sizing:border-box;border:1px solid #ccc;border-radius:2px;width:100px;height:40px;line-height:40px;font-size:16px;color:#666;cursor:pointer;background:#fff linear-gradient(180deg,#fff 0,#f3f3f3 100%)&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">    &lt;!-- 验证码程序依赖(必须)。请勿修改以下程序依赖，如使用本地缓存，或通过其他手段规避加载，会影响程序的正常使用。 --&gt;</span><br><span class="line">    &lt;script src=&quot;https://ssl.captcha.qq.com/TCaptcha.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;button id=&quot;TencentCaptcha&quot; class=&quot;btn&quot; type=&quot;button&quot;&gt;验证&lt;/button&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;./jquery.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var tcaptchaCallback = function(res)&#123;</span><br><span class="line">	// 返回结果</span><br><span class="line">	// ret         Int       验证结果，0：验证成功。2：用户主动关闭验证码。</span><br><span class="line">	// ticket      String    验证成功的票据，当且仅当 ret = 0 时 ticket 有值。</span><br><span class="line">	// CaptchaAppId       String    验证码应用ID。</span><br><span class="line">	// bizState    Any       自定义透传参数。</span><br><span class="line">	// randstr     String    本次验证的随机串，请求后台接口时需带上。</span><br><span class="line">	console.log(&#x27;callback:&#x27;, res);</span><br><span class="line">	// res（用户主动关闭验证码）= &#123;ret: 2, ticket: null&#125;</span><br><span class="line">	// res（验证成功） = &#123;ret: 0, ticket: &quot;String&quot;, randstr: &quot;String&quot;&#125;</span><br><span class="line">	// res（客户端出现异常错误 仍返回可用票据） = &#123;ret: 0, ticket: &quot;String&quot;, randstr: &quot;String&quot;,  errorCode: Number, errorMessage: &quot;String&quot;&#125;</span><br><span class="line">	if (res.ret === 0) &#123;</span><br><span class="line">		$.ajax(&#123;</span><br><span class="line">			type: &quot;POST&quot;,</span><br><span class="line">			dataType: &quot;html&quot;,</span><br><span class="line">			data: &#123;ticket: res.ticket, randstr: res.randstr&#125;,</span><br><span class="line">			url: &quot;api.php&quot;,</span><br><span class="line">			success: function (data) &#123;</span><br><span class="line">				alert(data);</span><br><span class="line">			&#125;,</span><br><span class="line">			error: function (data) &#123;</span><br><span class="line">				alert(&#x27;服务器错误&#x27;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">$(document).ready(function()&#123;</span><br><span class="line">	var captcha1 = new TencentCaptcha(&#x27;2046626881&#x27;, tcaptchaCallback);</span><br><span class="line">	$(&quot;#TencentCaptcha&quot;).click(function()&#123;</span><br><span class="line">		captcha1.show();</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
 <p>后端</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs awk">&lt;?php<br><br>@header(<span class="hljs-string">&#x27;Content-Type: text/html; charset=UTF-8&#x27;</span>);<br><br><span class="hljs-variable">$ticket</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;ticket&#x27;</span>];<br><span class="hljs-variable">$randstr</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;randstr&#x27;</span>];<br><br><span class="hljs-keyword">if</span>(!<span class="hljs-variable">$ticket</span> || !<span class="hljs-variable">$randstr</span>) <span class="hljs-keyword">exit</span>(<span class="hljs-string">&#x27;参数不能为空&#x27;</span>);<br><br><span class="hljs-variable">$result</span> = check_ticket(<span class="hljs-variable">$ticket</span>, <span class="hljs-variable">$randstr</span>);<br><span class="hljs-keyword">if</span>(<span class="hljs-variable">$result</span> === <span class="hljs-number">1</span>)&#123;<br>	<span class="hljs-keyword">exit</span>(<span class="hljs-string">&#x27;验证通过&#x27;</span>);<br>&#125;elseif(<span class="hljs-variable">$result</span> === -<span class="hljs-number">1</span>)&#123;<br>	<span class="hljs-keyword">exit</span>(<span class="hljs-string">&#x27;接口已失效&#x27;</span>);<br>&#125;elseif(<span class="hljs-variable">$result</span> === <span class="hljs-number">0</span>)&#123;<br>	<span class="hljs-keyword">exit</span>(<span class="hljs-string">&#x27;验证不通过&#x27;</span>);<br>&#125;<br><br><br><span class="hljs-keyword">function</span> check_ticket(<span class="hljs-variable">$ticket</span>, <span class="hljs-variable">$randstr</span>)<br>&#123;<br>	<span class="hljs-variable">$url</span> = <span class="hljs-string">&#x27;https://cgi.urlsec.qq.com/index.php?m=check&amp;a=gw_check&amp;callback=url_query&amp;url=https%3A%2F%2Fwww.qq.com%2F&#x27;</span>.rand(<span class="hljs-number">111111</span>,<span class="hljs-number">999999</span>).<span class="hljs-string">&#x27;&amp;ticket=&#x27;</span>.urlencode(<span class="hljs-variable">$ticket</span>).<span class="hljs-string">&#x27;&amp;randstr=&#x27;</span>.urlencode(<span class="hljs-variable">$randstr</span>);<br>    <span class="hljs-variable">$ch</span> = curl_init();<br>    curl_setopt(<span class="hljs-variable">$ch</span>, CURLOPT_URL, <span class="hljs-variable">$url</span>);<br>	curl_setopt(<span class="hljs-variable">$ch</span>, CURLOPT_SSL_VERIFYPEER, false);<br>	curl_setopt(<span class="hljs-variable">$ch</span>, CURLOPT_SSL_VERIFYHOST, false);<br>	<span class="hljs-variable">$httpheader</span>[] = <span class="hljs-string">&quot;Accept: application/json&quot;</span>;<br>	<span class="hljs-variable">$httpheader</span>[] = <span class="hljs-string">&quot;Accept-Language: zh-CN,zh;q=0.8&quot;</span>;<br>	<span class="hljs-variable">$httpheader</span>[] = <span class="hljs-string">&quot;Connection: close&quot;</span>;<br>	curl_setopt(<span class="hljs-variable">$ch</span>, CURLOPT_HTTPHEADER, <span class="hljs-variable">$httpheader</span>);<br>	curl_setopt(<span class="hljs-variable">$ch</span>, CURLOPT_REFERER, <span class="hljs-string">&#x27;https://urlsec.qq.com/check.html&#x27;</span>);<br>    curl_setopt(<span class="hljs-variable">$ch</span>, CURLOPT_USERAGENT, <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36&#x27;</span>);<br>    curl_setopt(<span class="hljs-variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="hljs-number">1</span>);<br>    <span class="hljs-variable">$ret</span> = curl_exec(<span class="hljs-variable">$ch</span>);<br>    curl_close(<span class="hljs-variable">$ch</span>);<br><br>	<span class="hljs-variable">$arr</span> = jsonp_decode(<span class="hljs-variable">$ret</span>, true);<br>	<span class="hljs-keyword">if</span>(isset(<span class="hljs-variable">$arr</span>[<span class="hljs-string">&#x27;reCode&#x27;</span>]) &amp;&amp; <span class="hljs-variable">$arr</span>[<span class="hljs-string">&#x27;reCode&#x27;</span>] == <span class="hljs-number">0</span>)&#123; <span class="hljs-regexp">//</span>验证通过<br>		return <span class="hljs-number">1</span>;<br>	&#125;elseif(<span class="hljs-variable">$arr</span>[<span class="hljs-string">&#x27;reCode&#x27;</span>] == -<span class="hljs-number">109</span>)&#123; <span class="hljs-regexp">//</span>验证码错误<br>		return <span class="hljs-number">0</span>;<br>	&#125;<span class="hljs-keyword">else</span>&#123; <span class="hljs-regexp">//</span>接口已失效<br>		return -<span class="hljs-number">1</span>;<br>	&#125;<br>&#125;<br><span class="hljs-keyword">function</span> jsonp_decode(<span class="hljs-variable">$jsonp</span>, <span class="hljs-variable">$assoc</span> = false)<br>&#123;<br>	<span class="hljs-variable">$jsonp</span> = trim(<span class="hljs-variable">$jsonp</span>);<br>	<span class="hljs-keyword">if</span>(isset(<span class="hljs-variable">$jsonp</span>[<span class="hljs-number">0</span>]) &amp;&amp; <span class="hljs-variable">$jsonp</span>[<span class="hljs-number">0</span>] !== <span class="hljs-string">&#x27;[&#x27;</span> &amp;&amp; <span class="hljs-variable">$jsonp</span>[<span class="hljs-number">0</span>] !== <span class="hljs-string">&#x27;&#123;&#x27;</span>) &#123;<br>		<span class="hljs-variable">$begin</span> = strpos(<span class="hljs-variable">$jsonp</span>, <span class="hljs-string">&#x27;(&#x27;</span>);<br>		<span class="hljs-keyword">if</span>(false !== <span class="hljs-variable">$begin</span>)<br>		&#123;<br>			<span class="hljs-variable">$end</span> = strrpos(<span class="hljs-variable">$jsonp</span>, <span class="hljs-string">&#x27;)&#x27;</span>);<br>			<span class="hljs-keyword">if</span>(false !== <span class="hljs-variable">$end</span>)<br>			&#123;<br>				<span class="hljs-variable">$jsonp</span> = substr(<span class="hljs-variable">$jsonp</span>, <span class="hljs-variable">$begin</span> + <span class="hljs-number">1</span>, <span class="hljs-variable">$end</span> - <span class="hljs-variable">$begin</span> - <span class="hljs-number">1</span>);<br>			&#125;<br>		&#125;<br>	&#125;<br>	return json_decode(<span class="hljs-variable">$jsonp</span>, <span class="hljs-variable">$assoc</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>腾讯云验证码使用教程</div>
-      <div>https://www.chengyao.xyz/2022/07/09/腾讯云验证码使用教程/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>CY</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年7月9日</div>
-        </div>
-      
-      
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
-            
-            
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/07/10/Springboot%E5%AE%9E%E8%B7%B5/" title="Springboot实践">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Springboot实践</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/07/04/GDB%E7%AE%80%E5%8D%95%E8%B0%83%E8%AF%95/" title="GDB简单调试">
-                        <span class="hidden-mobile">GDB简单调试</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
-      scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">@header(&#x27;Content-Type: text/html; charset=UTF-8&#x27;);</span><br><span class="line"></span><br><span class="line">$ticket = $_POST[&#x27;ticket&#x27;];</span><br><span class="line">$randstr = $_POST[&#x27;randstr&#x27;];</span><br><span class="line"></span><br><span class="line">if(!$ticket || !$randstr) exit(&#x27;参数不能为空&#x27;);</span><br><span class="line"></span><br><span class="line">$result = check_ticket($ticket, $randstr);</span><br><span class="line">if($result === 1)&#123;</span><br><span class="line">	exit(&#x27;验证通过&#x27;);</span><br><span class="line">&#125;elseif($result === -1)&#123;</span><br><span class="line">	exit(&#x27;接口已失效&#x27;);</span><br><span class="line">&#125;elseif($result === 0)&#123;</span><br><span class="line">	exit(&#x27;验证不通过&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function check_ticket($ticket, $randstr)</span><br><span class="line">&#123;</span><br><span class="line">	$url = &#x27;https://cgi.urlsec.qq.com/index.php?m=check&amp;a=gw_check&amp;callback=url_query&amp;url=https%3A%2F%2Fwww.qq.com%2F&#x27;.rand(111111,999999).&#x27;&amp;ticket=&#x27;.urlencode($ticket).&#x27;&amp;randstr=&#x27;.urlencode($randstr);</span><br><span class="line">    $ch = curl_init();</span><br><span class="line">    curl_setopt($ch, CURLOPT_URL, $url);</span><br><span class="line">	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);</span><br><span class="line">	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);</span><br><span class="line">	$httpheader[] = &quot;Accept: application/json&quot;;</span><br><span class="line">	$httpheader[] = &quot;Accept-Language: zh-CN,zh;q=0.8&quot;;</span><br><span class="line">	$httpheader[] = &quot;Connection: close&quot;;</span><br><span class="line">	curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader);</span><br><span class="line">	curl_setopt($ch, CURLOPT_REFERER, &#x27;https://urlsec.qq.com/check.html&#x27;);</span><br><span class="line">    curl_setopt($ch, CURLOPT_USERAGENT, &#x27;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36&#x27;);</span><br><span class="line">    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);</span><br><span class="line">    $ret = curl_exec($ch);</span><br><span class="line">    curl_close($ch);</span><br><span class="line"></span><br><span class="line">	$arr = jsonp_decode($ret, true);</span><br><span class="line">	if(isset($arr[&#x27;reCode&#x27;]) &amp;&amp; $arr[&#x27;reCode&#x27;] == 0)&#123; //验证通过</span><br><span class="line">		return 1;</span><br><span class="line">	&#125;elseif($arr[&#x27;reCode&#x27;] == -109)&#123; //验证码错误</span><br><span class="line">		return 0;</span><br><span class="line">	&#125;else&#123; //接口已失效</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">function jsonp_decode($jsonp, $assoc = false)</span><br><span class="line">&#123;</span><br><span class="line">	$jsonp = trim($jsonp);</span><br><span class="line">	if(isset($jsonp[0]) &amp;&amp; $jsonp[0] !== &#x27;[&#x27; &amp;&amp; $jsonp[0] !== &#x27;&#123;&#x27;) &#123;</span><br><span class="line">		$begin = strpos($jsonp, &#x27;(&#x27;);</span><br><span class="line">		if(false !== $begin)</span><br><span class="line">		&#123;</span><br><span class="line">			$end = strrpos($jsonp, &#x27;)&#x27;);</span><br><span class="line">			if(false !== $end)</span><br><span class="line">			&#123;</span><br><span class="line">				$jsonp = substr($jsonp, $begin + 1, $end - $begin - 1);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return json_decode($jsonp, $assoc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div><div class="article-licensing box"><div class="licensing-title"><p>腾讯云验证码使用教程</p><p><a href="https://www.chengyao.xyz/2022/07/09/腾讯云验证码使用教程/">https://www.chengyao.xyz/2022/07/09/腾讯云验证码使用教程/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>CY</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2022-07-09</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2022-08-28</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2022/07/10/Springboot%E5%AE%9E%E8%B7%B5/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Springboot实践</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2022/07/04/GDB%E7%AE%80%E5%8D%95%E8%B0%83%E8%AF%95/"><span class="level-item">GDB简单调试</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果也！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">170</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-01T06:56:20.000Z">2022-10-01</time></p><p class="title"><a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-18T05:06:34.000Z">2022-09-18</time></p><p class="title"><a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-04T13:30:39.000Z">2022-09-04</time></p><p class="title"><a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-21T02:56:27.000Z">2022-08-21</time></p><p class="title"><a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-19T12:54:39.000Z">2022-08-19</time></p><p class="title"><a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown基本语法</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">五月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

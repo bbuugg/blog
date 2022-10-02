@@ -18,6 +18,8 @@ for(var i = 0; i < name.length; i++) {
 }
 ```
 
+<!-- more -->
+
 ### **1.2 for 优化版遍历**
 
 ```js

@@ -1,284 +1,40 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>mysql导出csv文件 - 笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="CSV格式，其要点包括：  字段之间以逗号分隔，数据行之间以\r\n分隔； 字符串以半角双引号包围，字符串本身的双引号用两个双引号表示。  准备首先需要查看下一个变量 1SHOW VARIABLES LIKE &amp;quot;secure_file_priv&amp;quot;;  可以看到，本地value的值为NULL。解释如下 （1）NULL，表示禁止。 （2）如果value值有文件夹目录，则表示只允许该"><meta property="og:type" content="blog"><meta property="og:title" content="mysql导出csv文件"><meta property="og:url" content="https://www.chengyao.xyz/2022/06/18/mysql%E5%AF%BC%E5%87%BAcsv%E6%96%87%E4%BB%B6/"><meta property="og:site_name" content="笔记"><meta property="og:description" content="CSV格式，其要点包括：  字段之间以逗号分隔，数据行之间以\r\n分隔； 字符串以半角双引号包围，字符串本身的双引号用两个双引号表示。  准备首先需要查看下一个变量 1SHOW VARIABLES LIKE &amp;quot;secure_file_priv&amp;quot;;  可以看到，本地value的值为NULL。解释如下 （1）NULL，表示禁止。 （2）如果value值有文件夹目录，则表示只允许该"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:published_time" content="2022-06-18T08:04:16.000Z"><meta property="article:modified_time" content="2022-08-28T02:23:10.683Z"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz/2022/06/18/mysql%E5%AF%BC%E5%87%BAcsv%E6%96%87%E4%BB%B6/"},"headline":"mysql导出csv文件","image":["https://www.chengyao.xyz/img/og_image.png"],"datePublished":"2022-06-18T08:04:16.000Z","dateModified":"2022-08-28T02:23:10.683Z","author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"CSV格式，其要点包括：  字段之间以逗号分隔，数据行之间以\\r\\n分隔； 字符串以半角双引号包围，字符串本身的双引号用两个双引号表示。  准备首先需要查看下一个变量 1SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;  可以看到，本地value的值为NULL。解释如下 （1）NULL，表示禁止。 （2）如果value值有文件夹目录，则表示只允许该"}</script><link rel="canonical" href="https://www.chengyao.xyz/2022/06/18/mysql%E5%AF%BC%E5%87%BAcsv%E6%96%87%E4%BB%B6/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="CY">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="CSV格式，其要点包括：  字段之间以逗号分隔，数据行之间以\r\n分隔； 字符串以半角双引号包围，字符串本身的双引号用两个双引号表示。  准备首先需要查看下一个变量 1SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;  可以看到，本地value的值为NULL。解释如下 （1）NULL，表示禁止。 （2）如果value值有文件夹目录，则表示只允许该">
-<meta property="og:type" content="article">
-<meta property="og:title" content="mysql导出csv文件">
-<meta property="og:url" content="https://www.chengyao.xyz/2022/06/18/mysql%E5%AF%BC%E5%87%BAcsv%E6%96%87%E4%BB%B6/index.html">
-<meta property="og:site_name" content="笔记">
-<meta property="og:description" content="CSV格式，其要点包括：  字段之间以逗号分隔，数据行之间以\r\n分隔； 字符串以半角双引号包围，字符串本身的双引号用两个双引号表示。  准备首先需要查看下一个变量 1SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;  可以看到，本地value的值为NULL。解释如下 （1）NULL，表示禁止。 （2）如果value值有文件夹目录，则表示只允许该">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-18T08:04:16.000Z">
-<meta property="article:modified_time" content="2022-09-14T12:56:04.978Z">
-<meta property="article:author" content="CY">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>mysql导出csv文件 - 笔记</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="mysql导出csv文件"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-18 16:04" pubdate>
-          2022年6月18日 下午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          4k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          34 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">mysql导出csv文件</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <p>CSV格式，其要点包括：</p>
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-06-18T08:04:16.000Z" title="2022/6/18 下午4:04:16">2022-06-18</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.683Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">11 分钟读完 (大约1608个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">mysql导出csv文件</h1><div class="content"><p>CSV格式，其要点包括：</p>
 <ul>
 <li>字段之间以逗号分隔，数据行之间以\r\n分隔；</li>
 <li>字符串以半角双引号包围，字符串本身的双引号用两个双引号表示。</li>
 </ul>
 <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>首先需要查看下一个变量</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams">SHOW <span class="hljs-keyword">VARIABLES</span> LIKE <span class="hljs-comment">&quot;secure_file_priv&quot;</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW VARIABLES LIKE &quot;secure_file_priv&quot;;</span><br></pre></td></tr></table></figure>
 
 <p>可以看到，本地value的值为NULL。解释如下</p>
 <p>（1）NULL，表示禁止。</p>
@@ -292,10 +48,10 @@
 </ol>
 <p>修改完配置文件后，重启mysql生效。</p>
 <p>重启后：</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">service mysqld <span class="hljs-literal">stop</span><br>service mysqld <span class="hljs-literal">start</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service mysqld stop</span><br><span class="line">service mysqld start</span><br></pre></td></tr></table></figure>
 
 <p>如果不修改可能会有如下报错</p>
-<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs smali">The MySQL server is running with the --secure-file-priv option so it cannot<span class="hljs-built_in"> execute </span>this statement.<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The MySQL server is running with the --secure-file-priv option so it cannot execute this statement.</span><br></pre></td></tr></table></figure>
 
 <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>CSV代表逗号分隔值。 您经常使用CSV文件格式在<em>Microsoft Excel</em>，<em>Open Office</em>，<em>Google Docs</em>等应用程序之间交换数据。</p>
 <p>以CSV文件格式从MySQL数据库中获取数据将非常有用，因为您可以按照所需的方式分析和格式化数据。</p>
@@ -306,17 +62,17 @@
 <li>要导出的目标CSV文件不能存在。</li>
 </ul>
 <p>以下查询从<code>orders</code>表中查询选择已取消的订单：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <br>    orderNumber, status, orderDate, requiredDate, comments<br><span class="hljs-keyword">FROM</span><br>    orders<br><span class="hljs-keyword">WHERE</span><br>    status <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Cancelled&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    orderNumber, status, orderDate, requiredDate, comments</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    orders</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    status <span class="operator">=</span> <span class="string">&#x27;Cancelled&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>要将此结果集导出为CSV文件，请按如下方式向上述查询添加一些子句：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <br>    orderNumber, status, orderDate, requiredDate, comments<br><span class="hljs-keyword">FROM</span><br>    orders<br><span class="hljs-keyword">WHERE</span><br>    status <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Cancelled&#x27;</span> <br><span class="hljs-keyword">INTO</span> OUTFILE <span class="hljs-string">&#x27;F:/worksp/mysql/cancelled_orders.csv&#x27;</span> <br>FIELDS ENCLOSED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;&quot;&#x27;</span> <br>TERMINATED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;;&#x27;</span> <br>ESCAPED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;&quot;&#x27;</span> <br>LINES TERMINATED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;\r\n&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    orderNumber, status, orderDate, requiredDate, comments</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    orders</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    status <span class="operator">=</span> <span class="string">&#x27;Cancelled&#x27;</span> </span><br><span class="line"><span class="keyword">INTO</span> OUTFILE <span class="string">&#x27;F:/worksp/mysql/cancelled_orders.csv&#x27;</span> </span><br><span class="line">FIELDS ENCLOSED <span class="keyword">BY</span> <span class="string">&#x27;&quot;&#x27;</span> </span><br><span class="line">TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;;&#x27;</span> </span><br><span class="line">ESCAPED <span class="keyword">BY</span> <span class="string">&#x27;&quot;&#x27;</span> </span><br><span class="line">LINES TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;\r\n&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>该语句在<code>F:/worksp/mysql/</code>目录下创建一个包含结果集，名称为<code>cancelled_orders.csv</code>的CSV文件。</p>
 <p>CSV文件包含结果集中的行集合。每行由一个回车序列和由<code>LINES TERMINATED BY &#39;\r\n&#39;</code>子句指定的换行字符终止。文件中的每行包含表的结果集的每一行记录。</p>
 <p>每个值由<code>FIELDS ENCLOSED BY &#39;&quot;&#39;</code>子句指示的双引号括起来。 这样可以防止可能包含逗号(<code>，</code>)的值被解释为字段分隔符。 当用双引号括住这些值时，该值中的逗号不会被识别为字段分隔符。</p>
 <h2 id="将数据导出到文件名包含时间戳的CSV文件"><a href="#将数据导出到文件名包含时间戳的CSV文件" class="headerlink" title="将数据导出到文件名包含时间戳的CSV文件"></a>将数据导出到文件名包含时间戳的CSV文件</h2><p>我们经常需要将数据导出到CSV文件中，该文件的名称包含创建文件的时间戳。 为此，您需要使用<a target="_blank" rel="noopener" href="http://www.yiibai.com/mysql/prepared-statement.html">MySQL准备语句</a>。</p>
 <p>以下命令将整个<code>orders</code>表导出为将时间戳作为文件名的一部分的CSV文件。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SET</span> <span class="hljs-variable">@TS</span> <span class="hljs-operator">=</span> DATE_FORMAT(NOW(),<span class="hljs-string">&#x27;_%Y%m%d_%H%i%s&#x27;</span>);<br><br><span class="hljs-keyword">SET</span> <span class="hljs-variable">@FOLDER</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;F:/worksp/mysql/&#x27;</span>;<br><span class="hljs-keyword">SET</span> <span class="hljs-variable">@PREFIX</span> <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;orders&#x27;</span>;<br><span class="hljs-keyword">SET</span> <span class="hljs-variable">@EXT</span>    <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;.csv&#x27;</span>;<br><br><span class="hljs-keyword">SET</span> <span class="hljs-variable">@CMD</span> <span class="hljs-operator">=</span> CONCAT(&quot;SELECT * FROM orders INTO OUTFILE &#x27;&quot;,<span class="hljs-variable">@FOLDER</span>,<span class="hljs-variable">@PREFIX</span>,<span class="hljs-variable">@TS</span>,<span class="hljs-variable">@EXT</span>,<br>    &quot;&#x27; FIELDS ENCLOSED BY &#x27;\&quot;<span class="hljs-string">&#x27; TERMINATED BY &#x27;</span>;<span class="hljs-string">&#x27; ESCAPED BY &#x27;</span>\&quot;&#x27;&quot;,<br>    &quot;  LINES TERMINATED BY &#x27;\r\n&#x27;;&quot;);<br><br><span class="hljs-keyword">PREPARE</span> statement <span class="hljs-keyword">FROM</span> <span class="hljs-variable">@CMD</span>;<br><br><span class="hljs-keyword">EXECUTE</span> statement;<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> <span class="variable">@TS</span> <span class="operator">=</span> DATE_FORMAT(NOW(),<span class="string">&#x27;_%Y%m%d_%H%i%s&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> <span class="variable">@FOLDER</span> <span class="operator">=</span> <span class="string">&#x27;F:/worksp/mysql/&#x27;</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="variable">@PREFIX</span> <span class="operator">=</span> <span class="string">&#x27;orders&#x27;</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="variable">@EXT</span>    <span class="operator">=</span> <span class="string">&#x27;.csv&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> <span class="variable">@CMD</span> <span class="operator">=</span> CONCAT(&quot;SELECT * FROM orders INTO OUTFILE &#x27;&quot;,<span class="variable">@FOLDER</span>,<span class="variable">@PREFIX</span>,<span class="variable">@TS</span>,<span class="variable">@EXT</span>,</span><br><span class="line">    &quot;&#x27; FIELDS ENCLOSED BY &#x27;\&quot;<span class="string">&#x27; TERMINATED BY &#x27;</span>;<span class="string">&#x27; ESCAPED BY &#x27;</span>\&quot;&#x27;&quot;,</span><br><span class="line">    &quot;  LINES TERMINATED BY &#x27;\r\n&#x27;;&quot;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">PREPARE</span> statement <span class="keyword">FROM</span> <span class="variable">@CMD</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">EXECUTE</span> statement;</span><br></pre></td></tr></table></figure>
 
 <p>下面，让我们来详细讲解上面的命令。</p>
 <ul>
@@ -327,15 +83,15 @@
 <p>可以通过<a target="_blank" rel="noopener" href="http://www.yiibai.com/mysql/triggers/working-mysql-scheduled-event.html">事件</a>包装命令，并根据需要定期安排事件的运行。</p>
 <h2 id="使用列标题导出数据"><a href="#使用列标题导出数据" class="headerlink" title="使用列标题导出数据"></a>使用列标题导出数据</h2><p>如果CSV文件包含第一行作为列标题，那么该文件更容易理解，这是非常方便的。</p>
 <p>要添加列标题，需要使用<a target="_blank" rel="noopener" href="http://www.yiibai.com/sql-union-mysql.html">UNION</a>语句如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql">(<span class="hljs-keyword">SELECT</span> <span class="hljs-string">&#x27;Order Number&#x27;</span>,<span class="hljs-string">&#x27;Order Date&#x27;</span>,<span class="hljs-string">&#x27;Status&#x27;</span>)<br><span class="hljs-keyword">UNION</span> <br>(<span class="hljs-keyword">SELECT</span> orderNumber,orderDate, status<br><span class="hljs-keyword">FROM</span> orders<br><span class="hljs-keyword">INTO</span> OUTFILE <span class="hljs-string">&#x27;F:/worksp/mysql/orders_union_title.csv&#x27;</span><br>FIELDS ENCLOSED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;&quot;&#x27;</span> TERMINATED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;;&#x27;</span> ESCAPED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;&quot;&#x27;</span><br>LINES TERMINATED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;\r\n&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">SELECT</span> <span class="string">&#x27;Order Number&#x27;</span>,<span class="string">&#x27;Order Date&#x27;</span>,<span class="string">&#x27;Status&#x27;</span>)</span><br><span class="line"><span class="keyword">UNION</span> </span><br><span class="line">(<span class="keyword">SELECT</span> orderNumber,orderDate, status</span><br><span class="line"><span class="keyword">FROM</span> orders</span><br><span class="line"><span class="keyword">INTO</span> OUTFILE <span class="string">&#x27;F:/worksp/mysql/orders_union_title.csv&#x27;</span></span><br><span class="line">FIELDS ENCLOSED <span class="keyword">BY</span> <span class="string">&#x27;&quot;&#x27;</span> TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;;&#x27;</span> ESCAPED <span class="keyword">BY</span> <span class="string">&#x27;&quot;&#x27;</span></span><br><span class="line">LINES TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;\r\n&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>如查询所示，需要包括每列的列标题。</p>
 <h2 id="处理NULL值"><a href="#处理NULL值" class="headerlink" title="处理NULL值"></a>处理NULL值</h2><p>如果结果集中的值包含<a target="_blank" rel="noopener" href="http://www.yiibai.com/mysql/null.html">NULL</a>值，则目标文件将使用“<code>N/A</code>”来代替数据中的<code>NULL</code>值。要解决此问题，您需要将<code>NULL</code>值替换为另一个值，例如不适用(<code>N/A</code>)，方法是使用<a target="_blank" rel="noopener" href="http://www.yiibai.com/mysql/ifnull.html">IFNULL函数</a>，如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <br>    orderNumber, orderDate, IFNULL(shippedDate, <span class="hljs-string">&#x27;N/A&#x27;</span>)<br><span class="hljs-keyword">FROM</span><br>    orders <span class="hljs-keyword">INTO</span> OUTFILE <span class="hljs-string">&#x27;F:/worksp/mysql/orders_null2na.csv&#x27;</span> <br>    FIELDS ENCLOSED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;&quot;&#x27;</span> <br>    TERMINATED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;;&#x27;</span> <br>    ESCAPED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;&quot;&#x27;</span> LINES <br>    TERMINATED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;\r\n&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">    orderNumber, orderDate, IFNULL(shippedDate, <span class="string">&#x27;N/A&#x27;</span>)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    orders <span class="keyword">INTO</span> OUTFILE <span class="string">&#x27;F:/worksp/mysql/orders_null2na.csv&#x27;</span> </span><br><span class="line">    FIELDS ENCLOSED <span class="keyword">BY</span> <span class="string">&#x27;&quot;&#x27;</span> </span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;;&#x27;</span> </span><br><span class="line">    ESCAPED <span class="keyword">BY</span> <span class="string">&#x27;&quot;&#x27;</span> LINES </span><br><span class="line">    TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;\r\n&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <p>我们用<code>N/A</code>字符串替换了<code>shippingDate</code>列中的<code>NULL</code>值。 CSV文件将显示<code>N/A</code>而不是<code>NULL</code>值。</p>
 <p>给导出文件添加列名</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">into</span> outfile <span class="hljs-string">&#x27;/tmp/test1.csv&#x27;</span> fields terminated <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;,&#x27;</span> escaped <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;&#x27;</span> optionally enclosed  <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;&#x27;</span> lisnes terminated <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;\n&#x27;</span> <span class="hljs-keyword">from</span> (<span class="hljs-keyword">select</span> <span class="hljs-string">&#x27;col1&#x27;</span>,<span class="hljs-string">&#x27;col2&#x27;</span>,<span class="hljs-string">&#x27;col3&#x27;</span>,<span class="hljs-string">&#x27;col4&#x27;</span>,<span class="hljs-string">&#x27;col5&#x27;</span> <span class="hljs-keyword">union</span> <span class="hljs-keyword">select</span> id,<span class="hljs-keyword">user</span>,url,<span class="hljs-type">name</span>,age  <span class="hljs-keyword">from</span> test) b;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * into outfile &#x27;/tmp/test1.csv&#x27; fields terminated by &#x27;,&#x27; escaped by &#x27;&#x27; optionally enclosed  by &#x27;&#x27; lisnes terminated by &#x27;\n&#x27; from (select &#x27;col1&#x27;,&#x27;col2&#x27;,&#x27;col3&#x27;,&#x27;col4&#x27;,&#x27;col5&#x27; union select id,user,url,name,age  from test) b;</span><br></pre></td></tr></table></figure>
 
 <p>使用MySQL命令结合sed的方法</p>
 <ul>
@@ -343,321 +99,56 @@
 <li>利用sed将字段之间的tab换成，并且将NULL替换成空字符</li>
 <li>如果不想要标题行，可以使用-N参数</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql <span class="hljs-operator">-</span>uroot  <span class="hljs-operator">-</span>p密码  test <span class="hljs-operator">-</span>e &quot;select * from test where id &gt; 1&quot; <span class="hljs-operator">-</span>s <span class="hljs-operator">|</span>sed <span class="hljs-operator">-</span>e  &quot;s/\t/,/g&quot; <span class="hljs-operator">-</span>e &quot;s/NULL/  /g&quot; <span class="hljs-operator">-</span>e &quot;s/\n/\r\n/g&quot;  <span class="hljs-operator">&gt;</span> <span class="hljs-operator">/</span>tmp<span class="hljs-operator">/</span>test2.csv<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="operator">-</span>uroot  <span class="operator">-</span>p密码  test <span class="operator">-</span>e &quot;select * from test where id &gt; 1&quot; <span class="operator">-</span>s <span class="operator">|</span>sed <span class="operator">-</span>e  &quot;s/\t/,/g&quot; <span class="operator">-</span>e &quot;s/NULL/  /g&quot; <span class="operator">-</span>e &quot;s/\n/\r\n/g&quot;  <span class="operator">&gt;</span> <span class="operator">/</span>tmp<span class="operator">/</span>test2.csv</span><br></pre></td></tr></table></figure>
 
 <p>使用mysqldump导出</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysqldump <span class="hljs-operator">-</span>uroot  <span class="hljs-operator">-</span>p密码  <span class="hljs-operator">-</span>t <span class="hljs-operator">-</span>T<span class="hljs-operator">/</span>tmp<span class="hljs-operator">/</span> test  test <span class="hljs-comment">--fields-terminated-by=&#x27;,&#x27; --fields-escaped-by=&#x27;&#x27; --fields-optionally-enclosed-by=&#x27;&#x27; </span><br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump <span class="operator">-</span>uroot  <span class="operator">-</span>p密码  <span class="operator">-</span>t <span class="operator">-</span>T<span class="operator">/</span>tmp<span class="operator">/</span> test  test <span class="comment">--fields-terminated-by=&#x27;,&#x27; --fields-escaped-by=&#x27;&#x27; --fields-optionally-enclosed-by=&#x27;&#x27; </span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">test</span>（第一个<span class="hljs-keyword">test</span>） ：导出的数据库；<br><span class="hljs-keyword">test</span>（第二个<span class="hljs-keyword">test</span>）：导出的数据表；<br>-t ：不导出create 语句，只要数据；<br>-T 指定到处的位置，注意目录权限，注意这里只到目录，默认名字是table_name.txt；<br>–fields-terminated-<span class="hljs-keyword">by</span>=’,’：字段分割符；<br>–fields-enclosed-<span class="hljs-keyword">by</span>=’’ ：字段引号；<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">test（第一个test） ：导出的数据库；</span><br><span class="line">test（第二个test）：导出的数据表；</span><br><span class="line">-t ：不导出create 语句，只要数据；</span><br><span class="line">-T 指定到处的位置，注意目录权限，注意这里只到目录，默认名字是table_name.txt；</span><br><span class="line">–fields-terminated-by=’,’：字段分割符；</span><br><span class="line">–fields-enclosed-by=’’ ：字段引号；</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>&#x2F;&#x2F;更多请阅读：<a target="_blank" rel="noopener" href="https://www.yiibai.com/mysql/export-table-to-csv.html">https://www.yiibai.com/mysql/export-table-to-csv.html</a> </p>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>mysql导出csv文件</div>
-      <div>https://www.chengyao.xyz/2022/06/18/mysql导出csv文件/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>CY</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2022年6月18日</div>
-        </div>
-      
-      
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
-            
-            
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2022/06/26/Golang%20%E9%80%9A%E9%81%93(channel)/" title="Golang 通道(channel)">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Golang 通道(channel)</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2022/06/15/PHP8%E9%85%8D%E7%BD%AEopcache%E5%B9%B6%E5%BC%80%E5%90%AFjit/" title="PHP8配置opcache并开启jit">
-                        <span class="hidden-mobile">PHP8配置opcache并开启jit</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
-      scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+</div><div class="article-licensing box"><div class="licensing-title"><p>mysql导出csv文件</p><p><a href="https://www.chengyao.xyz/2022/06/18/mysql导出csv文件/">https://www.chengyao.xyz/2022/06/18/mysql导出csv文件/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>CY</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2022-06-18</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2022-08-28</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2022/06/26/Golang%20%E9%80%9A%E9%81%93(channel)/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Golang 通道(channel)</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2022/06/15/PHP8%E9%85%8D%E7%BD%AEopcache%E5%B9%B6%E5%BC%80%E5%90%AFjit/"><span class="level-item">PHP8配置opcache并开启jit</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果也！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">170</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-01T06:56:20.000Z">2022-10-01</time></p><p class="title"><a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-18T05:06:34.000Z">2022-09-18</time></p><p class="title"><a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-04T13:30:39.000Z">2022-09-04</time></p><p class="title"><a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-21T02:56:27.000Z">2022-08-21</time></p><p class="title"><a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-19T12:54:39.000Z">2022-08-19</time></p><p class="title"><a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown基本语法</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">五月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

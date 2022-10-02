@@ -1,678 +1,703 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="CY">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="笔记">
-<meta property="og:url" content="https://www.chengyao.xyz/page/7/index.html">
-<meta property="og:site_name" content="笔记">
-<meta property="og:description" content="笔记">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="CY">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>笔记</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 100vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
-          
-        </div>
-
-        
-      </div>
-
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          style="margin-top: 0">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/25/19%E4%B8%AA%E4%BE%8B%E5%AD%90%E5%AD%A6%E4%B9%A0Oracle/" target="_self">
-          19个例子学习Oracle
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/25/19%E4%B8%AA%E4%BE%8B%E5%AD%90%E5%AD%A6%E4%B9%A0Oracle/" target="_self">
-        <div>
-          12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-25 23:10" pubdate>
-              2021-11-25
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/25/%E5%A0%86%E6%A0%88%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BF%9B%E5%87%BA%E5%8E%9F%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88/" target="_self">
-          堆栈数据的进出原则是什么
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/25/%E5%A0%86%E6%A0%88%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BF%9B%E5%87%BA%E5%8E%9F%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88/" target="_self">
-        <div>
-          堆栈数据的进出原则是什么？堆栈数据的进出原则是先进后出。 栈堆的原理栈区（stack）由操作系统自动分配释放 ，存放函数的参数值，局部变量的某值等等。其操作方式类似于数据结构中的栈。 堆区（heap）一般由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收 。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表 栈的特点：栈是一种数据结构，它按照先进后出的原则存储数据，先进入的数据被压入
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-25 22:50" pubdate>
-              2021-11-25
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" target="_self">
-          正则表达式高级用法
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" target="_self">
-        <div>
-          引子上一章分享了正式表达式的入门知识，以及单字符、多字符常用的匹配方法，对于工作维护过程中已经够用，但是有时候只使用基础知识来实现就会比较麻烦，如果使用高级用法就会比较方便很多。 例如：匹配一个HTML文件中两个&lt;B&gt;标签中的文件。 文本内容： 1This offer is not available to customers living in &lt;B&gt;AK&lt;&#x2F;B&amp;g
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-25 22:46" pubdate>
-              2021-11-25
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/21/PHP%20%20fsockopen/" target="_self">
-          PHP  fsockopen
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/21/PHP%20%20fsockopen/" target="_self">
-        <div>
-          1234567fsockopen(    string $hostname,    int $port &#x3D; -1,    int &amp;amp;$errno &#x3D; ?,    string &amp;amp;$errstr &#x3D; ?,    float $timeout &#x3D; ini_get(&amp;quot;default_socket_timeout&amp;quot;)): resource
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-21 15:39" pubdate>
-              2021-11-21
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Telnet/" target="_self">
-          如何使用Telnet
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Telnet/" target="_self">
-        <div>
-          退出telnet使用ctrl + ] 再 ctrl + d  发送HTTP请求打开连接1telnet chengyao.xyz 80  发送数据123GET &#x2F; HTTP&#x2F;1.1Host: localhost\r\n   这里的Host是必须的，否则会400  发送Content-Length 头后服务端会等待输入相应长度的内容后才返回POST 提交的时候需要添加Content-Type 结果1
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-21 15:07" pubdate>
-              2021-11-21
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/20/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D%E6%AC%A1%E6%95%B0/" target="_self">
-          正则表达式匹配次数
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/20/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D%E6%AC%A1%E6%95%B0/" target="_self">
-        <div>
-          正则表达式里匹配次数的元字符有：（一） &amp;#123;0,1&amp;#125;、&amp;#123;0,&amp;#125;、&amp;#123;1,&amp;#125;、&amp;#123;3&amp;#125; 逗号前面次数到逗号后面次数（二） ?、?? 0次或1次（三） * 0次以上，即0n（四） + 1次以上，即1n 下面深入讲解下这几个元字符的意义： &amp;#123;0,1&amp;#125;、&amp;#123;0,&amp;#125;、&amp;#123;1,&amp;#125;、
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-20 18:09" pubdate>
-              2021-11-20
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/20/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AC%94%E8%AE%B0/" target="_self">
-          负载均衡笔记
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/20/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AC%94%E8%AE%B0/" target="_self">
-        <div>
-          常用负载均衡HTTP 重定向对于HTTP 重定向，你一定不陌生，它可以将 HTTP 请求进行转移，在 Web 开发中我们经常会用它来完成自动跳转，比如用户登录成功后跳转到相应的管理页面。 这种重定向完全由HTTP 定义，并且由HTTP 代理和Web 服务器共同实现。很简单，当HTTP 代理（比如浏览器）向Web服务器请求某个URL后，Web 服务器可以通过HTTP 响应头信息中的Location
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-20 11:39" pubdate>
-              2021-11-20
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/19/Golang%E6%A0%87%E5%87%86%E5%BA%93%E4%B9%8Bstrings/" target="_self">
-          Golang标准库之strings
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/19/Golang%E6%A0%87%E5%87%86%E5%BA%93%E4%B9%8Bstrings/" target="_self">
-        <div>
-          &gt; package strings 1import &amp;quot;strings&amp;quot;  strings包实现了用于操作字符的简单函数。 func EqualFold 1func EqualFold(s, t string) bool  判断两个utf-8编码字符串（将unicode大写、小写、标题三种格式字符视为相同）是否相同。 Example func HasPref
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-19 18:53" pubdate>
-              2021-11-19
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/17/PHP%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E6%A8%A1%E5%BC%8F%E4%BF%AE%E6%AD%A3%E7%AC%A6%20(Pattern%20Modifiers)/" target="_self">
-          PHP正则表达式中模式修正符 (Pattern Modifiers)
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/17/PHP%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E6%A8%A1%E5%BC%8F%E4%BF%AE%E6%AD%A3%E7%AC%A6%20(Pattern%20Modifiers)/" target="_self">
-        <div>
-          The current possible PCRE modifiers are listed below. The names in parentheses refer to internal PCRE names for these modifiers. Spaces and newlines are ignored in modifiers, other characters cause er
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-17 20:29" pubdate>
-              2021-11-17
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/14/Centos7.x%20%E9%98%B2%E7%81%AB%E5%A2%99/" target="_self">
-          Centos7.x 防火墙
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/14/Centos7.x%20%E9%98%B2%E7%81%AB%E5%A2%99/" target="_self">
-        <div>
-          &gt; CentOS 7.x 默认使用的是firewall作为防火墙，取代6.x的iptables 1. 查看防火墙状态 命令如下 1firewall-cmd --state  该命令有两种结果：running、not running；前者代表是开启状态，后者代表是关闭状态 在 vmware 上安装的centos7最小化镜像防火墙默认是开机自启的  2. 修改防火墙状态的相关命令（后缀 .ser
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-14 22:34" pubdate>
-              2021-11-14
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/6/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#board">8</a><a class="page-number" href="/page/9/#board">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/8/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="笔记"><meta property="og:type" content="blog"><meta property="og:title" content="笔记"><meta property="og:url" content="https://www.chengyao.xyz/"><meta property="og:site_name" content="笔记"><meta property="og:description" content="笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz"},"headline":"笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"笔记"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-27T10:20:02.000Z" title="2021/11/27 下午6:20:02">2021-11-27</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">2 分钟读完 (大约236个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/27/PHP%E5%AE%9E%E7%8E%B0Basic%E8%AE%A4%E8%AF%81/">PHP实现Basic认证</a></h1><div class="content"><h2 id="如何认证"><a href="#如何认证" class="headerlink" title="如何认证"></a>如何认证</h2><p>对于需要basic认证的页面，我们可以让服务端响应一个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WWW-Authenticate: Basic</span><br></pre></td></tr></table></figure>
+<p>的header头，并且返回响应码401，浏览器会自动弹出认证的窗口。</p>
+<h2 id="客户端要做什么"><a href="#客户端要做什么" class="headerlink" title="客户端要做什么"></a>客户端要做什么</h2><blockquote>
+<p>当你输入用户名和密码后，后面的请求都会添加下面这样的头部</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authorization: Basic dXNlcjpwYXNz</span><br></pre></td></tr></table></figure>
 
+<p>其中basic后面的是base64编码的字符串，解码之后的内容是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user:pass</span><br></pre></td></tr></table></figure>
 
+<p>上面这样以用户名:密码组成的字符串</p>
+<h2 id="服务端怎么实现"><a href="#服务端怎么实现" class="headerlink" title="服务端怎么实现"></a>服务端怎么实现</h2><p>看下面伪代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">process</span>(<span class="params">ServerRequestInterface <span class="variable">$request</span>, RequestHandlerInterface <span class="variable">$handler</span></span>): <span class="title">ResponseInterface</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(有Authorization头部) &#123;</span><br><span class="line">        解析头部</span><br><span class="line">        <span class="keyword">if</span> (匹配到用户) &#123;</span><br><span class="line">            继续响应</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            响应WWW-Authenticate: Basic和<span class="number">401</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    响应WWW-Authenticate: Basic和<span class="number">401</span>*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>如果你使用的是Apache,那么需要在配置文件中加入</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0</span><br></pre></td></tr></table></figure>
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<p>还可以查看官方提供的方案：<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/features.http-auth.php">https://www.php.net/manual/zh/features.http-auth.php</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-25T15:10:27.000Z" title="2021/11/25 下午11:10:27">2021-11-25</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">7 分钟读完 (大约993个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/25/19%E4%B8%AA%E4%BE%8B%E5%AD%90%E5%AD%A6%E4%B9%A0Oracle/">19个例子学习Oracle</a></h1><div class="content"><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--p1</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">dbms_output.put_line(<span class="string">&#x27;你好 世界&#x27;</span>);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--p2 引入变量</span></span><br><span class="line"><span class="keyword">declare</span></span><br><span class="line">    age number <span class="keyword">default</span> <span class="number">90</span>;</span><br><span class="line">    height number :<span class="operator">=</span> <span class="number">175</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    dbms_output.put_line(<span class="string">&#x27;年龄&#x27;</span><span class="operator">||</span>age<span class="operator">||</span><span class="string">&#x27;身高&#x27;</span><span class="operator">||</span>height);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--p3 变量开始运算</span></span><br><span class="line"><span class="keyword">declare</span></span><br><span class="line">    age number <span class="keyword">default</span> <span class="number">90</span>;</span><br><span class="line">    height number :<span class="operator">=</span> <span class="number">175</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    dbms_output.put_line(<span class="string">&#x27;年龄&#x27;</span><span class="operator">||</span>age<span class="operator">||</span><span class="string">&#x27;身高&#x27;</span><span class="operator">||</span>height);</span><br><span class="line">    age :<span class="operator">=</span> age <span class="operator">+</span> <span class="number">20</span>;</span><br><span class="line">    dbms_output.put_line(<span class="string">&#x27;20年后年龄&#x27;</span><span class="operator">||</span>age<span class="operator">||</span><span class="string">&#x27;岁&#x27;</span>);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--p4 引入表达式</span></span><br><span class="line"><span class="keyword">declare</span></span><br><span class="line">    age number <span class="keyword">default</span> <span class="number">90</span>;</span><br><span class="line">    height number :<span class="operator">=</span> <span class="number">175</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    if age<span class="operator">&gt;</span><span class="number">70</span> <span class="keyword">then</span></span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;古稀之年&#x27;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;风华正茂&#x27;</span>);</span><br><span class="line">    <span class="keyword">end</span> if;</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--p5 流程控制</span></span><br><span class="line"><span class="keyword">declare</span></span><br><span class="line">    age number <span class="keyword">default</span> <span class="number">90</span>;</span><br><span class="line">    height number :<span class="operator">=</span> <span class="number">175</span>;</span><br><span class="line">    gender <span class="type">char</span>(<span class="number">2</span>) :<span class="operator">=</span> <span class="string">&#x27;男&#x27;</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    if gender<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">then</span></span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;你可以和女性结婚&#x27;</span>);</span><br><span class="line">    <span class="keyword">end</span> if;</span><br><span class="line"></span><br><span class="line">    if height<span class="operator">&gt;</span><span class="number">170</span> <span class="keyword">then</span></span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;可以打篮球&#x27;</span>);</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;可以踢足球&#x27;</span>);</span><br><span class="line">    <span class="keyword">end</span> if;</span><br><span class="line"></span><br><span class="line">    if age<span class="operator">&lt;</span><span class="number">20</span> <span class="keyword">then</span></span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;年轻小伙&#x27;</span>);</span><br><span class="line">    elsif age <span class="operator">&lt;=</span> <span class="number">50</span> <span class="keyword">then</span></span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;年轻有为&#x27;</span>);</span><br><span class="line">    elsif age <span class="operator">&lt;=</span><span class="number">70</span> <span class="keyword">then</span></span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;安享天伦&#x27;</span>);</span><br><span class="line">    <span class="keyword">else</span>  </span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;佩服佩服&#x27;</span>);</span><br><span class="line">    <span class="keyword">end</span> if;</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--p6 计算1-100的和</span></span><br><span class="line"><span class="keyword">declare</span></span><br><span class="line">    i number :<span class="operator">=</span><span class="number">0</span>;</span><br><span class="line">    total number :<span class="operator">=</span><span class="number">0</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    loop</span><br><span class="line">        i :<span class="operator">=</span> i<span class="operator">+</span><span class="number">1</span>;</span><br><span class="line">        total :<span class="operator">=</span> total <span class="operator">+</span> i;</span><br><span class="line"></span><br><span class="line">        if i<span class="operator">=</span><span class="number">100</span> <span class="keyword">then</span></span><br><span class="line">            exit;</span><br><span class="line">        <span class="keyword">end</span> if;</span><br><span class="line">    <span class="keyword">end</span> loop;</span><br><span class="line"></span><br><span class="line">    dbms_output.put_line(<span class="string">&#x27;总和&#x27;</span><span class="operator">||</span>total);</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- p7: 跳出loop的方法</span></span><br><span class="line"><span class="keyword">declare</span></span><br><span class="line">    i number :<span class="operator">=</span><span class="number">0</span>;</span><br><span class="line">    total number :<span class="operator">=</span><span class="number">0</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    loop</span><br><span class="line">        i :<span class="operator">=</span> i<span class="operator">+</span><span class="number">1</span>;</span><br><span class="line">        total :<span class="operator">=</span> total <span class="operator">+</span> i;</span><br><span class="line"></span><br><span class="line">        exit <span class="keyword">when</span> i<span class="operator">&gt;=</span><span class="number">100</span>;</span><br><span class="line">    <span class="keyword">end</span> loop;</span><br><span class="line"></span><br><span class="line">    dbms_output.put_line(<span class="string">&#x27;总和&#x27;</span><span class="operator">||</span>total);</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--p8 whlie循环</span></span><br><span class="line"><span class="keyword">declare</span></span><br><span class="line">    i number :<span class="operator">=</span><span class="number">0</span>;</span><br><span class="line">    total number :<span class="operator">=</span><span class="number">0</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">    while i<span class="operator">&lt;</span><span class="number">100</span> loop</span><br><span class="line">        </span><br><span class="line">        i :<span class="operator">=</span> i<span class="operator">+</span><span class="number">1</span>;</span><br><span class="line">        total :<span class="operator">=</span> total <span class="operator">+</span> i;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">end</span> loop;</span><br><span class="line"></span><br><span class="line">    dbms_output.put_line(<span class="string">&#x27;总和&#x27;</span><span class="operator">||</span>total);</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--p9 for 循环</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">--for 循环变量 in 起始值..结束值 loop</span></span><br><span class="line">    <span class="comment">--xxxxx</span></span><br><span class="line">    <span class="comment">--end loop;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.9</span> loop</span><br><span class="line">    </span><br><span class="line">        dbms_output.put_line(i);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">end</span> loop;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> reverse <span class="number">1.</span><span class="number">.9</span> loop</span><br><span class="line">    </span><br><span class="line">        dbms_output.put_line(i);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">end</span> loop;</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--p10 没有返回值的&quot;函数&quot;</span></span><br><span class="line"><span class="comment">--做一个求面积的过程</span></span><br><span class="line"><span class="comment">--declare</span></span><br><span class="line"><span class="comment">--    area number;</span></span><br><span class="line"><span class="comment">--    procedure 过程名(参数名 类型,...) is</span></span><br><span class="line"><span class="comment">--    begin</span></span><br><span class="line"><span class="comment">--        主体</span></span><br><span class="line"><span class="comment">--    end;</span></span><br><span class="line"><span class="comment">--begin</span></span><br><span class="line"><span class="comment">--end;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> </span><br><span class="line">    area number;</span><br><span class="line">    <span class="keyword">procedure</span> mian(a number,b number) <span class="keyword">is</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">    </span><br><span class="line">        area :<span class="operator">=</span> a <span class="operator">*</span> b;</span><br><span class="line">        dbms_output.put_line(a<span class="operator">||</span><span class="string">&#x27;乘&#x27;</span><span class="operator">||</span>b<span class="operator">||</span><span class="string">&#x27;的面积是&#x27;</span><span class="operator">||</span>area);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">    mian(<span class="number">5</span>,<span class="number">4</span>);</span><br><span class="line">    mian(<span class="number">6</span>,<span class="number">7</span>);</span><br><span class="line">    mian(<span class="number">3</span>,<span class="number">7</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--p11 做一个求面积的函数</span></span><br><span class="line"><span class="comment">--declare</span></span><br><span class="line"><span class="comment">--    area number;</span></span><br><span class="line"><span class="comment">--    function 过程名(参数名 类型,...) return 类型 is</span></span><br><span class="line"><span class="comment">--    begin</span></span><br><span class="line"><span class="comment">--        主体</span></span><br><span class="line"><span class="comment">--    end;</span></span><br><span class="line"><span class="comment">--begin</span></span><br><span class="line"><span class="comment">--end;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> </span><br><span class="line">    area number;</span><br><span class="line">    <span class="keyword">function</span> mian(a number,b number) <span class="keyword">return</span> number <span class="keyword">is</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">    </span><br><span class="line">        area :<span class="operator">=</span> a <span class="operator">*</span> b;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> area;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">    dbms_output.put_line(mian(<span class="number">5</span>,<span class="number">4</span>));</span><br><span class="line">    dbms_output.put_line(mian(<span class="number">3</span>,<span class="number">7</span>));</span><br><span class="line">    dbms_output.put_line(mian(<span class="number">6</span>,<span class="number">9</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--p12 自定义变量类型 之记录类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span></span><br><span class="line">    </span><br><span class="line">    type student <span class="keyword">is</span> record</span><br><span class="line">    (</span><br><span class="line">        sno <span class="type">char</span>(<span class="number">5</span>),</span><br><span class="line">        name varchar2(<span class="number">10</span>),</span><br><span class="line">        age number</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    lisi student;</span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">    lisi.sno :<span class="operator">=</span> <span class="string">&#x27;s1008&#x27;</span>;</span><br><span class="line">    lisi.name :<span class="operator">=</span> <span class="string">&#x27;李四&#x27;</span>;</span><br><span class="line">    lisi.age :<span class="operator">=</span> <span class="number">19</span>;</span><br><span class="line"></span><br><span class="line">    dbms_output.put_line(<span class="string">&#x27;我叫&#x27;</span><span class="operator">||</span>lisi.name<span class="operator">||</span><span class="string">&#x27;,我&#x27;</span><span class="operator">||</span>lisi.age<span class="operator">||</span><span class="string">&#x27;岁,学号是&#x27;</span><span class="operator">||</span>lisi.sno);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--p13 自定义类型之集合类型</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> </span><br><span class="line"> type answer <span class="keyword">is</span> <span class="keyword">table</span> <span class="keyword">of</span> <span class="type">char</span>(<span class="number">2</span>);</span><br><span class="line"> ans answer :<span class="operator">=</span> answer(<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">    dbms_output.put_line(<span class="string">&#x27;共有&#x27;</span><span class="operator">||</span>ans.<span class="built_in">count</span>()<span class="operator">||</span><span class="string">&#x27;答案,分别是:&#x27;</span>);</span><br><span class="line">    dbms_output.put_line(ans(<span class="number">1</span>));</span><br><span class="line">    dbms_output.put_line(ans(<span class="number">2</span>));</span><br><span class="line">    dbms_output.put_line(ans(<span class="number">3</span>));</span><br><span class="line">    dbms_output.put_line(ans(<span class="number">4</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--p14 声明数据类型的第3个方法</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span></span><br><span class="line">    age number;</span><br><span class="line">    变量名 另一个变量<span class="operator">%</span>type;</span><br><span class="line"></span><br><span class="line">    age 表名.列名<span class="operator">%</span>type; <span class="comment">--声明和列一样的类型</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">--简化声明record类型</span></span><br><span class="line">    变量名 表名<span class="operator">%</span>rowtype;</span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--p15 测试一下rowtype</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span></span><br><span class="line">    xg student<span class="operator">%</span>rowtype;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">    xg.sno :<span class="operator">=</span> <span class="number">123</span>;</span><br><span class="line">    xg.name :<span class="operator">=</span> <span class="string">&#x27;小刚&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    dbms_output.put_line(xg.sno<span class="operator">||</span>xg.name);</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--p16 pl/sql操作数据库中的数据</span></span><br><span class="line"><span class="comment">--查询部门的名称及地区，及部门的总薪水与奖金</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> </span><br><span class="line"></span><br><span class="line">    depart dept<span class="operator">%</span>rowtype;</span><br><span class="line">    total_sal number;</span><br><span class="line">    total_comm number;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">procedure</span> deptinfo(dno number)</span><br><span class="line">    <span class="keyword">is</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">select</span> dname,loc <span class="keyword">into</span> depart.dname,depart.loc <span class="keyword">from</span> dept <span class="keyword">where</span> deptno<span class="operator">=</span>dno;</span><br><span class="line">        <span class="keyword">select</span> <span class="built_in">sum</span>(sal),<span class="built_in">sum</span>(comm) <span class="keyword">into</span> total_sal,total_comm <span class="keyword">from</span> emp <span class="keyword">where</span> deptno<span class="operator">=</span>dno;</span><br><span class="line"></span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;部门名称：&#x27;</span><span class="operator">||</span>depart.dname<span class="operator">||</span><span class="string">&#x27;在&#x27;</span><span class="operator">||</span>depart.loc);</span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;这个部门每月工资及奖金各是&#x27;</span><span class="operator">||</span>total_sal<span class="operator">||</span><span class="string">&#x27;和&#x27;</span><span class="operator">||</span>total_comm);</span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">    deptinfo(<span class="number">80</span>);</span><br><span class="line">    deptinfo(<span class="number">30</span>); </span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--p17 引入异常处理</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> </span><br><span class="line"></span><br><span class="line">    depart dept<span class="operator">%</span>rowtype;</span><br><span class="line">    total_sal number;</span><br><span class="line">    total_comm number;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">procedure</span> deptinfo(dno number)</span><br><span class="line">    <span class="keyword">is</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">select</span> dname,loc <span class="keyword">into</span> depart.dname,depart.loc <span class="keyword">from</span> dept <span class="keyword">where</span> deptno<span class="operator">=</span>dno;</span><br><span class="line">        <span class="keyword">select</span> <span class="built_in">sum</span>(sal),<span class="built_in">sum</span>(comm) <span class="keyword">into</span> total_sal,total_comm <span class="keyword">from</span> emp <span class="keyword">where</span> deptno<span class="operator">=</span>dno;</span><br><span class="line"></span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;部门名称：&#x27;</span><span class="operator">||</span>depart.dname<span class="operator">||</span><span class="string">&#x27;在&#x27;</span><span class="operator">||</span>depart.loc);</span><br><span class="line">        dbms_output.put_line(<span class="string">&#x27;这个部门每月工资及奖金各是&#x27;</span><span class="operator">||</span>total_sal<span class="operator">||</span><span class="string">&#x27;和&#x27;</span><span class="operator">||</span>total_comm);</span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    deptinfo(<span class="number">80</span>);</span><br><span class="line">    deptinfo(<span class="number">30</span>);</span><br><span class="line">exception</span><br><span class="line">    <span class="keyword">when</span> NO_DATA_FOUND <span class="keyword">then</span></span><br><span class="line">       dbms_output.put_line(<span class="string">&#x27;没有数据&#x27;</span>);</span><br><span class="line">    <span class="keyword">when</span> others <span class="keyword">then</span></span><br><span class="line">       dbms_output.put_line(<span class="string">&#x27;其他错误&#x27;</span>);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">--p18:递归过程或函数</span></span><br><span class="line"><span class="comment">--求1-&gt;N的和,N允许输入</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span></span><br><span class="line">    m number;</span><br><span class="line">    total number;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> qiuhe(n number) <span class="keyword">return</span> number</span><br><span class="line">    <span class="keyword">is</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">        if n<span class="operator">&gt;</span><span class="number">1</span> <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">return</span> n <span class="operator">+</span> qiuhe(n<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span> if;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">    dbms_output.put_line(qiuhe(<span class="number">10</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--p19 存储过程/存储函数</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">function</span> qiuhe(n number) <span class="keyword">return</span> number</span><br><span class="line"><span class="keyword">is</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">    if n<span class="operator">&gt;</span><span class="number">1</span> <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">return</span> n <span class="operator">+</span> qiuhe(n<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span> if;</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-25T14:50:38.000Z" title="2021/11/25 下午10:50:38">2021-11-25</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">3 分钟读完 (大约416个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/25/%E5%A0%86%E6%A0%88%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BF%9B%E5%87%BA%E5%8E%9F%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88/">堆栈数据的进出原则是什么</a></h1><div class="content"><h1 id="堆栈数据的进出原则是什么？"><a href="#堆栈数据的进出原则是什么？" class="headerlink" title="堆栈数据的进出原则是什么？"></a>堆栈数据的进出原则是什么？</h1><p>堆栈数据的进出原则是先进后出。</p>
+<h1 id="栈堆的原理"><a href="#栈堆的原理" class="headerlink" title="栈堆的原理"></a>栈堆的原理</h1><p>栈区（stack）由操作系统自动分配释放 ，存放函数的参数值，局部变量的某值等等。其操作方式类似于数据结构中的栈。</p>
+<p>堆区（heap）一般由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收 。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表</p>
+<p>栈的特点：栈是一种数据结构，它按照先进后出的原则存储数据，先进入的数据被压入栈底，最后的数据在栈顶，需要读数据的时候从栈顶开始弹出数据（最后一个数据被第一个读出来）。</p>
+<p>栈是只能在某一端插入和删除的特殊线性表。用桶堆积物品，先堆进来的压在底下，随后一件一件往堆。取走时，只能从上面一件一件取。堆和取都在顶部进行，底部一般是不动的。</p>
+<p>栈就是一种类似桶堆积物品的数据结构，进行删除和插入的一端称栈顶，另一堆称栈底。插入一般称为进栈（PUSH），删除则称为退栈（POP）。 栈也称为后进先出表（LIFO表）</p>
+<p><img src="https://img.php.cn/upload/image/465/199/886/1634539512830561.png"></p>
+<p>原文地址：<a target="_blank" rel="noopener" href="https://www.php.cn/faq/483124.html">https://www.php.cn/faq/483124.html</a></p>
+<p>更多推荐：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mysticCoder/p/4921724.html">https://www.cnblogs.com/mysticCoder/p/4921724.html</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-25T14:46:25.000Z" title="2021/11/25 下午10:46:25">2021-11-25</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">13 分钟读完 (大约1988个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/">正则表达式高级用法</a></h1><div class="content"><h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>上一章分享了正式表达式的入门知识，以及单字符、多字符常用的匹配方法，对于工作维护过程中已经够用，但是有时候只使用基础知识来实现就会比较麻烦，如果使用高级用法就会比较方便很多。<br> 例如：匹配一个HTML文件中两个<code>&lt;B&gt;</code>标签中的文件。<br> 文本内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This offer is not available to customers living in <span class="tag">&lt;<span class="name">B</span>&gt;</span>AK<span class="tag">&lt;/<span class="name">B</span>&gt;</span> and <span class="tag">&lt;<span class="name">B</span>&gt;</span>HI<span class="tag">&lt;/<span class="name">B</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<p>从上一章内容的知识可以想到的表达式可能如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;[Bb]&gt;.*&lt;/[Bb]&gt;</span><br></pre></td></tr></table></figure>
 
+<p>但是这个表达式配置的结果是<code>AK&lt;/B&gt; and &lt;B&gt;HI</code>，而不是我们想要的<code>AK</code>和<code>HI</code>。</p>
+<h1 id="懒惰型匹配"><a href="#懒惰型匹配" class="headerlink" title="懒惰型匹配"></a>懒惰型匹配</h1><blockquote>
+<p>引子中的例子中的匹配方式是属于贪婪行为，就是尽可能多的匹配内容，像例子中第一个<B>和最后一个</B>中间都被匹配到了，而不管匹配内容中是否存在</B>。<br> 上一章中讲到的*和+、{m,}都是所谓的“贪婪型”的。在这一节中讲一下与“贪婪型”相反的“懒惰型”，就是匹配尽可能少的内容。</p>
+</blockquote>
+<p>实现很简单，就是在原有“贪婪型”元字符后面加上一个<code>?</code> 号，如下表格</p>
+<table>
+<thead>
+<tr>
+<th>贪婪型元字符</th>
+<th>懒惰型元字符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>*？</td>
+</tr>
+<tr>
+<td>+</td>
+<td>+？</td>
+</tr>
+<tr>
+<td>{m,}</td>
+<td>{m,}?</td>
+</tr>
+</tbody></table>
+<h1 id="位置匹配"><a href="#位置匹配" class="headerlink" title="位置匹配"></a>位置匹配</h1><blockquote>
+<p>在现实的系统中一般表达位置的地方就是一个单词的开头以及结尾或者一个字符串的开头或者结尾。<br> 注意这个边界只是一个位置，例如单词边界匹配的是<code>\w</code>和<code>\W</code>之间的一个位置</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\b</td>
+<td>单词边界，单词的开头或者单词的结尾</td>
+<td>回退键的元字符是<code>[\b]</code></td>
+</tr>
+<tr>
+<td>\B</td>
+<td>表示非单词边界</td>
+<td></td>
+</tr>
+<tr>
+<td>^</td>
+<td>字符串的开头位置</td>
+<td>放在<code>[]</code>中表示取非操作</td>
+</tr>
+<tr>
+<td>$</td>
+<td>字符串结尾位置</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="扩展："><a href="#扩展：" class="headerlink" title="扩展："></a>扩展：</h2><ul>
+<li>像egrep中也支持使用<code>\&lt;</code>匹配单词开头位置，使用<code>\&gt;</code>匹配单词结尾位置，但是支持这种元字符的编辑器比较少。</li>
+<li>(?m)是一个分行匹配模式的记号，放在一个表达式的最前面，会改变字符串位置匹配的行为。<code>^</code>不仅匹配正常的字符串开头还匹配行分隔符（换行符）后面的开始位置；同样<code>$</code>不仅匹配正常的字符串结尾还匹配行分隔符（换行符）后面的结束位置；此用法只有部分正则表达式会支持</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+<th>支持平台</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(?d)</td>
+<td>Unix中的行</td>
+<td>java</td>
+</tr>
+<tr>
+<td>(?i)</td>
+<td>不区分大小写</td>
+<td>PCRE  Perl  java</td>
+</tr>
+<tr>
+<td>(?J)</td>
+<td>允许重复的名字</td>
+<td>PCRE*</td>
+</tr>
+<tr>
+<td>(?m)</td>
+<td>多行</td>
+<td>PCRE  Perl  java</td>
+</tr>
+<tr>
+<td>(?s)</td>
+<td>单行</td>
+<td>PCRE  Perl  java</td>
+</tr>
+<tr>
+<td>(?u)</td>
+<td>Unicode</td>
+<td>java</td>
+</tr>
+<tr>
+<td>(?U)</td>
+<td>默认最短匹配，与懒惰型匹配类似</td>
+<td>PCRE</td>
+</tr>
+<tr>
+<td>(?x)</td>
+<td>忽略空格和注释</td>
+<td>PCRE Perl Java</td>
+</tr>
+<tr>
+<td>(?-…)</td>
+<td>复原或关闭选项</td>
+<td>PCRE</td>
+</tr>
+</tbody></table>
+<h1 id="捕获分组与后向引用"><a href="#捕获分组与后向引用" class="headerlink" title="捕获分组与后向引用"></a>捕获分组与后向引用</h1><p>前面的元字符都是对紧挨着前面的一个字符有效，例如表达式<code>the&#123;3&#125;</code>匹配<code>theee</code>字符串，假如我们想匹配连续三个<code>the</code>字符串怎么办呢，这就涉及到子表达式的概念。</p>
+<h2 id="子表达式"><a href="#子表达式" class="headerlink" title="子表达式"></a>子表达式</h2><p>把一个表达式匹配的内容做为一个单独的元素嵌入到另外一个表达式中，那这个做为独立元素的表达式就是子表达式，需要使用<code>()</code>括起来。这个跟数学的表达式概念很类似。<br> 并且子表达与数学表达式还有一个类似的地方就是，正则表达式的子表达式也可以嵌套使用</p>
+<blockquote>
+<p>本节开头说的那个问题就可以使用子表达式来实现，<code>(the)&#123;3&#125;</code>就会匹配<code>thethethe</code>这个字符串。</p>
+</blockquote>
+<p>假如我们再加个条件：我们想匹配连续三个<code>the</code>或者连续三个<code>you</code>，怎么实现？这就是正则表达式的选择操作符，也叫或操作符了</p>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&#96;</td>
+<td>&#96;</td>
+</tr>
+</tbody></table>
+<p>上面的问题就可以使用正则表达式<code>(the|you)&#123;3&#125;</code>来表示</p>
+<h2 id="捕获分组与后向引用-1"><a href="#捕获分组与后向引用-1" class="headerlink" title="捕获分组与后向引用"></a>捕获分组与后向引用</h2><p>当一个模式的全部或者部分内容由<strong>一对括号括起来</strong>时，就对表达式进行了分组（其实就是放在<code>()</code>中的子表达式），并且把分组匹配到内容捕获并且临时存放在内存中。这就是捕获分组，可以在后面表达式中使用就叫后向引用，或者叫回溯引用。<br> 默认情况下，分组是从左到右依次排序从1编号，第一个分组就是1，第二个分组就是2等等。</p>
+<blockquote>
+<p>最开始的时候支持的编号范围是1到9，现在应该已经没有这种限制了。</p>
+</blockquote>
+<p>后向引用很简单就是一个<code>\</code>或者<code>$</code>后面跟相应编号即可。例如<code>\1</code>或者<code>$1</code>就表示引用第一个捕获分组。</p>
+<h2 id="命名分组"><a href="#命名分组" class="headerlink" title="命名分组"></a>命名分组</h2><p>前面讲捕获分组都是通过位置编号来访问，在perl和python、.NET等语言中还支持对捕获分组命名。这样就比较容易理解</p>
+<table>
+<thead>
+<tr>
+<th>命名语法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>(?&lt;name&gt;分组)</code></td>
+<td>命名分组</td>
+</tr>
+<tr>
+<td><code>(?P&lt;name&gt;分组)</code></td>
+<td>python中的命名分组</td>
+</tr>
+<tr>
+<td><code>\k&lt;name&gt;</code></td>
+<td>Perl中引用命名分组</td>
+</tr>
+<tr>
+<td><code>\k&#39;name&#39;</code></td>
+<td>Perl中引用命名分组</td>
+</tr>
+<tr>
+<td><code>\g&#123;name&#125;</code></td>
+<td>Perl中引用命名分组</td>
+</tr>
+<tr>
+<td><code>\k&#123;name&#125;</code></td>
+<td>.NET中引用命名分组</td>
+</tr>
+<tr>
+<td><code>(?P=name)</code></td>
+<td>Python中引用命名分组</td>
+</tr>
+</tbody></table>
+<p>例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preg_match(&#x27;/(?P&lt;name&gt;\d+)/&#x27;, $string, $matched)</span><br></pre></td></tr></table></figure>
+<p>如果匹配到，那么name的值就是\d+匹配到的值</p>
+<h2 id="非捕获分组"><a href="#非捕获分组" class="headerlink" title="非捕获分组"></a>非捕获分组</h2><p>顾名思义，与捕获分组相反，就是不会将分组匹配的内容放在内存中。主要是为了提高性能。<br> 使用方法：在分组的开头加上<code>?:</code>，例如<code>(?:the)</code></p>
+<blockquote>
+<p>当把非捕获分组语法中的<code>:</code>换成<code>&gt;</code>时，就变成了原子分组（另一种非捕获分组），可以进一步提升性能。因为原子分组会将分组内部的回溯操作关闭。</p>
+</blockquote>
+<h2 id="环视"><a href="#环视" class="headerlink" title="环视"></a>环视</h2><p>环视是一种非捕获分组，它根据某个模式之前或者之后的内容要求匹配其他模式。环视也称为零宽度断言。</p>
+<table>
+<thead>
+<tr>
+<th>环视分类</th>
+<th>说明</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(?&#x3D;分组)</td>
+<td>正前瞻，匹配且要求紧随其后内容为分组匹配的内容</td>
+<td><code>a(?=b)</code>,匹配<code>a</code>并且后面坚接着是<code>b</code>的字符串，可以匹配<code>abc</code>但是不匹配<code>acb</code></td>
+</tr>
+<tr>
+<td>(?!分组)</td>
+<td>反前瞻，即对正前瞻含义取反，匹配且要求紧随其后内容不为分组匹配的内容</td>
+<td><code>a(?!b)</code>,匹配<code>a</code>并且后面坚接着不是<code>b</code>的字符串，可以匹配<code>acb</code>但是不匹配<code>abc</code></td>
+</tr>
+<tr>
+<td>(?&lt;&#x3D;分组)</td>
+<td>正后顾，即对正前瞻方向取反，匹配且要求紧挨着之前的内容为分组匹配的内容</td>
+<td><code>(?&lt;=a)b)</code>,匹配<code>b</code>并且前面紧挨着是<code>a</code>的字符串，可以匹配<code>abc</code>但是不匹配<code>cbc</code></td>
+</tr>
+<tr>
+<td>(?&lt;!分组)</td>
+<td>反后顾，即对正后顾含义取反，匹配且要求紧挨着之前的内容不为分组匹配的内容</td>
+<td><code>(?&lt;!a)b)</code>,匹配<code>b</code>并且前面紧挨着不是<code>a</code>的字符串，可以匹配<code>cbc</code>但是不匹配<code>abc</code></td>
+</tr>
+</tbody></table>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>《学习正则表达式》<br> 《正则表达式必知必会》</p>
+<p>作者：itsenlin<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c39e761860bb">https://www.jianshu.com/p/c39e761860bb</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-21T07:39:06.000Z" title="2021/11/21 下午3:39:06">2021-11-21</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">6 分钟读完 (大约901个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/21/PHP%20%20fsockopen/">PHP  fsockopen</a></h1><div class="content"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fsockopen(</span><br><span class="line">    string $hostname,</span><br><span class="line">    int $port = -1,</span><br><span class="line">    int &amp;amp;$errno = ?,</span><br><span class="line">    string &amp;amp;$errstr = ?,</span><br><span class="line">    float $timeout = ini_get(&amp;quot;default_socket_timeout&amp;quot;)</span><br><span class="line">): resource</span><br></pre></td></tr></table></figure>
 
+<p>初始化一个套接字连接到指定主机（<code>hostname</code>）。</p>
+<p>PHP支持以下的套接字传输器类型列表 <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/transports.php">所支持的套接字传输器（Socket Transports）列表</a>。也可以通过<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.stream-get-transports.php">stream_get_transports()</a>来获取套接字传输器支持类型。</p>
+<p>默认情况下将以阻塞模式开启套接字连接。当然你可以通过<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.stream-set-blocking.php">stream_set_blocking()</a>将它转换到非阻塞模式。</p>
+<p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.stream-socket-client.php">stream_socket_client()</a>与之非常相似，而且提供了更加丰富的参数设置，包括非阻塞模式和提供上下文的的设置。</p>
+<h3 id="参数-¶"><a href="#参数-¶" class="headerlink" title="参数 ¶"></a>参数<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fsockopen.php#refsect1-function.fsockopen-parameters"> ¶</a></h3><ul>
+<li><p><code>hostname</code></p>
+<p>如果安装了<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/openssl.installation.php">OpenSSL</a>，那么你也许应该在你的主机名地址前面添加访问协议<code>ssl://</code>或者是<code>tls://</code>，从而可以使用基于TCP&#x2F;IP协议的SSL或者TLS的客户端连接到远程主机。</p>
+</li>
+<li><p><code>port</code></p>
+<p>端口号。如果对该参数传一个-1，则表示不使用端口，例如<code>unix://</code>。</p>
+</li>
+<li><p><code>errno</code></p>
+<p>如果传入了该参数，holds the system level error number that occurred in the system-level <code>connect()</code> call。如果<code>errno</code>的返回值为<code>0</code>，而且这个函数的返回值为**<code>false</code>**，那么这表明该错误发生在套接字连接（<code>connect()</code>）调用之前，导致连接失败的原因最大的可能是初始化套接字的时候发生了错误。</p>
+</li>
+<li><p><code>errstr</code></p>
+<p>错误信息将以字符串的信息返回。</p>
+</li>
+<li><p><code>timeout</code></p>
+<p>设置连接的时限，单位为秒。<strong>注意</strong>:注意：如果你要对建立在套接字基础上的读写操作设置操作时间设置连接时限，请使用<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.stream-set-timeout.php">stream_set_timeout()</a>，**fsockopen()**的连接时限（<code>timeout</code>）的参数仅仅在套接字连接的时候生效。</p>
+</li>
+</ul>
+<h3 id="返回值-¶"><a href="#返回值-¶" class="headerlink" title="返回值 ¶"></a>返回值<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fsockopen.php#refsect1-function.fsockopen-returnvalues"> ¶</a></h3><p>**fsockopen()<strong>将返回一个文件句柄，之后可以被其他文件类函数调用（例如：<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fgets.php">fgets()</a>，<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fgetss.php">fgetss()</a>，<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fwrite.php">fwrite()</a>，<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fclose.php">fclose()</a>还有<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.feof.php">feof()</a>）。如果调用失败，将返回</strong><code>false</code>**。</p>
+<h3 id="错误／异常-¶"><a href="#错误／异常-¶" class="headerlink" title="错误／异常 ¶"></a>错误／异常<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fsockopen.php#refsect1-function.fsockopen-errors"> ¶</a></h3><p>如果主机（<code>hostname</code>）不可访问，将会抛出一个警告级别（**<code>E_WARNING</code>**）的错误提示。</p>
+<p>**示例 #1 *<em>fsockopen()*<em>的例子</em></em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;?php</span><br><span class="line">$fp = fsockopen(&amp;quot;www.example.com&amp;quot;, 80, $errno, $errstr, 30);</span><br><span class="line">if (!$fp) &#123;</span><br><span class="line">    echo &amp;quot;$errstr ($errno)&amp;lt;br /&amp;gt;\n&amp;quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    $out = &amp;quot;GET / HTTP/1.1\r\n&amp;quot;;</span><br><span class="line">    $out .= &amp;quot;Host: www.example.com\r\n&amp;quot;;</span><br><span class="line">    $out .= &amp;quot;Connection: Close\r\n\r\n&amp;quot;;</span><br><span class="line">    fwrite($fp, $out);</span><br><span class="line">    while (!feof($fp)) &#123;</span><br><span class="line">        echo fgets($fp, 128);</span><br><span class="line">    &#125;</span><br><span class="line">    fclose($fp);</span><br><span class="line">&#125;</span><br><span class="line">?&amp;gt;</span><br></pre></td></tr></table></figure>
 
-  <script  src="/js/local-search.js" ></script>
+<p><strong>示例 #2 使用UDP连接</strong></p>
+<p>下面这个例子展示了怎么样在自己的机器上通过UDP套接字连接（端口号13）来检索日期和时间。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;?php</span><br><span class="line">$fp = fsockopen(&amp;quot;www.example.com&amp;quot;, 80, $errno, $errstr, 30);</span><br><span class="line">if (!$fp) &#123;</span><br><span class="line">    echo &amp;quot;$errstr ($errno)&amp;lt;br /&amp;gt;\n&amp;quot;;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    $out = &amp;quot;GET / HTTP/1.1\r\n&amp;quot;;</span><br><span class="line">    $out .= &amp;quot;Host: www.example.com\r\n&amp;quot;;</span><br><span class="line">    $out .= &amp;quot;Connection: Close\r\n\r\n&amp;quot;;</span><br><span class="line">    fwrite($fp, $out);</span><br><span class="line">    while (!feof($fp)) &#123;</span><br><span class="line">        echo fgets($fp, 128);</span><br><span class="line">    &#125;</span><br><span class="line">    fclose($fp);</span><br><span class="line">&#125;</span><br><span class="line">?&amp;gt;</span><br></pre></td></tr></table></figure>
 
+<p>原文地址： <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.fsockopen.php">https://www.php.net/manual/zh/function.fsockopen.php</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-21T07:07:42.000Z" title="2021/11/21 下午3:07:42">2021-11-21</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">2 分钟读完 (大约287个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Telnet/">如何使用Telnet</a></h1><div class="content"><blockquote>
+<p>退出telnet使用ctrl + ] 再 ctrl + d</p>
+</blockquote>
+<h1 id="发送HTTP请求"><a href="#发送HTTP请求" class="headerlink" title="发送HTTP请求"></a>发送HTTP请求</h1><h2 id="打开连接"><a href="#打开连接" class="headerlink" title="打开连接"></a>打开连接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet chengyao.xyz 80</span><br></pre></td></tr></table></figure>
 
+<h2 id="发送数据"><a href="#发送数据" class="headerlink" title="发送数据"></a>发送数据</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: localhost</span><br><span class="line">\r\n</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>这里的Host是必须的，否则会400</p>
+</blockquote>
+<p>发送<code>Content-Length</code> 头后服务端会等待输入相应长度的内容后才返回<br><code>POST</code> 提交的时候需要添加<code>Content-Type</code></p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">cheng@DESKTOP-845LJ9G:/mnt/c/Users/ChengYao$ telnet chengyao.xyz 80</span><br><span class="line">Trying 1.14.70.42...</span><br><span class="line">Connected to chengyao.xyz.</span><br><span class="line">Escape character is &#x27;^]&#x27;.</span><br><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: localhost</span><br><span class="line"></span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: nginx</span><br><span class="line">Date: Sun, 21 Nov 2021 07:04:56 GMT</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Content-Length: 1326</span><br><span class="line">Last-Modified: Wed, 26 Apr 2017 08:03:47 GMT</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Vary: Accept-Encoding</span><br><span class="line">ETag: &quot;59005463-52e&quot;</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line"></span><br><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br></pre></td></tr></table></figure>
 
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>请求头</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">If-Modified-Since</span><br><span class="line">If-None-Mathch</span><br><span class="line">````</span><br><span class="line"></span><br><span class="line">服务端响应</span><br></pre></td></tr></table></figure>
+<p>ETag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果客户端没有过期，服务端不在发送，返回304，而是从本地取</span><br><span class="line"></span><br><span class="line">使用307重定向可以保持数据，例如post提交到a.php， a.php重定向到b.php，则可以用307重定向</span><br><span class="line"></span><br><span class="line"># 连接SMTP服务器</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line">telnet smtp.qq.com 25</span><br><span class="line">Trying 14.18.175.202...</span><br><span class="line">Connected to smtp.qq.com.</span><br><span class="line">Escape character is &#x27;^]&#x27;.</span><br><span class="line">220 newxmesmtplogicsvrsza9.qq.com XMail Esmtp QQ Mail Server.</span><br><span class="line">HELO localhost</span><br><span class="line">250-newxmesmtplogicsvrsza5.qq.com-9.22.14.83-79972670</span><br><span class="line">250-SIZE 73400320</span><br><span class="line">250 OK</span><br><span class="line">AUTH LOGIN</span><br><span class="line">334 VXNlcm5hbWU6</span><br><span class="line">OTg3ODYxNDY4QHFxLmNvb1==</span><br><span class="line">334 UGFzc3dvcmQ6</span><br><span class="line">Y2xqYXB5aWJlRTd1mRiaA==</span><br><span class="line">235 Authentication successful</span><br><span class="line">MAIL FROM: &lt;987861463@qq.com&gt;</span><br><span class="line">250 OK</span><br><span class="line">RCPT TO: &lt;bigyao@139.com&gt;</span><br><span class="line">250 OK</span><br><span class="line">DATA</span><br><span class="line">354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;.</span><br><span class="line">Dear, hello, thank you.</span><br><span class="line">.</span><br><span class="line">250 OK: queued as.</span><br></pre></td></tr></table></figure>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-20T10:09:12.000Z" title="2021/11/20 下午6:09:12">2021-11-20</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">7 分钟读完 (大约1018个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/20/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D%E6%AC%A1%E6%95%B0/">正则表达式匹配次数</a></h1><div class="content"><p>正则表达式里匹配次数的元字符有：<br>（一） <code>&#123;0,1&#125;</code>、<code>&#123;0,&#125;</code>、<code>&#123;1,&#125;</code>、<code>&#123;3&#125;</code> 逗号前面次数到逗号后面次数<br>（二） <code>?</code>、<code>??</code> 0次或1次<br>（三） <code>*</code> 0次以上，即0<del>n<br>（四） <code>+</code> 1次以上，即1</del>n</p>
+<p>下面深入讲解下这几个元字符的意义：</p>
+<h2 id="0-1-、-0-、-1-、-3-逗号前面次数到逗号后面次数"><a href="#0-1-、-0-、-1-、-3-逗号前面次数到逗号后面次数" class="headerlink" title="{0,1}、{0,}、{1,}、{3} 逗号前面次数到逗号后面次数"></a><code>&#123;0,1&#125;</code>、<code>&#123;0,&#125;</code>、<code>&#123;1,&#125;</code>、<code>&#123;3&#125;</code> 逗号前面次数到逗号后面次数</h2><p>上面列了几种都是<code>&#123;&#125;</code>用于表示次数时常见的写法。 </p>
+<ul>
+<li><code>&#123;0,1&#125;</code> 匹配0次或1次 </li>
+<li><code>&#123;0,&#125;</code> 匹配0次以上，逗号后面为空表示无限次的意思 </li>
+<li><code>&#123;1,&#125;</code> 匹配1次以上 </li>
+<li><code>&#123;3&#125;</code> 匹配3次，它是<code>&#123;3,3&#125;</code>的简写形式</li>
+</ul>
+<p>需要注意的是，前面数字大于后面数字是会报错的</p>
+<p>有时候会看到<code>[0-9]&#123;1&#125;</code>这样的写法，其实这样写也算是多余的，它等价<code>[0-9]</code>，正则里没有添加量词修饰的匹配都是按1次算。</p>
+<h2 id="、-0次或1次"><a href="#、-0次或1次" class="headerlink" title="?、?? 0次或1次"></a><code>?</code>、<code>??</code> 0次或1次</h2><p><code>?</code> 匹配0次或1次，可以理解为<code>&#123;0,1&#125;</code>的简写，常见用法有： </p>
+<ul>
+<li><code>https?</code> 用于匹配<code>http</code>或<code>https</code> </li>
+<li><code>(https?://)?</code> 用于匹配域名前缀<code>https?://</code>可有可无的情况。</li>
+</ul>
+<p>另外，需要了解的是，<code>?</code>是匹配优先的，这是什么意思呢？<br>所谓匹配优先，就是字面意思，能匹配我就先匹配。<br>下面举例说明一下：<br>源码：<code>www.zjmainstay.cn</code><br>正则：<code>^(www\.)?(.+)$</code><br>匹配结果是：分组1得到了<code>www.</code>，分组2得到了<code>zjmainstay.cn</code><br>从这里可以看出，对于<code>(www\.)?</code>部分的正则，它先进行了匹配，然后<code>.+</code>部分再匹配。<br>那么，如果我们想要把<code>www.</code>留给后面的<code>.+</code>去匹配怎么办？<br>我们需要找到一个非匹配优先的方法，对于非匹配优先，接触过<a target="_blank" rel="noopener" href="http://www.zjmainstay.cn/deep-regexp#%E6%A6%82%E5%BF%B5%E4%B8%89%E8%B4%AA%E5%A9%AA%E6%A8%A1%E5%BC%8F%E4%B8%8E%E9%9D%9E%E8%B4%AA%E5%A9%AA%E6%A8%A1%E5%BC%8F">非贪婪模式</a>的读者可能马上想到非贪婪模式，不错，利用非贪婪模式可以解决这个问题：<br>正则：<code>^(www\.)*?(.+)$</code><br>当然，使用正则：<code>^(www\.)&#123;0,1&#125;?(.+)$</code>也是可以的，而且这个更接近原本的意思。<br>另外，很多人可能没见过，其实我们还能用：<code>^(www\.)??(.+)$</code>实现。这里的<code>??</code>是<code>?</code>的非匹配优先版本。</p>
+<h2 id="0次以上，即0-n"><a href="#0次以上，即0-n" class="headerlink" title="* 0次以上，即0~n"></a><code>*</code> 0次以上，即0~n</h2><p><code>*</code> 0次或任意次，可以理解为<code>&#123;0,&#125;</code>的简写，常见用法有： </p>
+<ul>
+<li><code>.*</code> 贪婪模式，匹配优先，匹配除换行外的任意字符0次以上 </li>
+<li><code>.*?</code> 非贪婪模式，非匹配优先，匹配除换行外的任意字符0次以上 </li>
+<li><code>&amp;lt;a href=&amp;quot;/[^&amp;quot;]*&amp;quot;</code> 在<code>href=&amp;quot;/&amp;quot;</code>的双引号中间，匹配非<code>&amp;quot;</code>的字符0次以上</li>
+</ul>
+<p>大家可能发现，<code>.*?</code> 这里也有<code>?</code>，但是它已经脱离了前面对<code>?</code>介绍的0次或1次的范围，没错，只是为了让大家不至于混淆，我没有把它归入上面的<code>?</code>当中。<br>我们可以理解为，<code>?</code>只要跟本文所说的几个计次量词结合，就形成非贪婪模式。甚至，连<code>??</code>你都可以认为是结合后的0次或1次的非贪婪模式，反正也能解释通不是？</p>
+<h2 id="1次以上，即1-n"><a href="#1次以上，即1-n" class="headerlink" title="+ 1次以上，即1~n"></a><code>+</code> 1次以上，即1~n</h2><p><code>+</code> 与 <code>*</code> 除了匹配次数意义上有所差别，常见用法都类似，它强调的是至少匹配1次以上，可以理解为<code>&#123;1,&#125;</code>的简写。 </p>
+<ul>
+<li><code>.+</code> 贪婪模式，匹配优先，匹配除换行外的任意字符1次以上 </li>
+<li><code>.+?</code> 非贪婪模式，非匹配优先，匹配除换行外的任意字符1次以上 </li>
+<li><code>&amp;lt;a href=&amp;quot;/[^&amp;quot;]+&amp;quot;</code> 在<code>href=&amp;quot;/&amp;quot;</code>的双引号中间，匹配非<code>&amp;quot;</code>的字符1次以上</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>量词本身使用时，都是贪婪模式匹配，而量词和<code>?</code>能结合成非贪婪模式匹配。<br>贪婪模式匹配就是尽可能多地匹配，非贪婪模式匹配就是尽可能少地匹配。</p>
+<p>&gt; 原文地址： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/tsql/p/6386210.html">https://www.cnblogs.com/tsql/p/6386210.html</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-20T03:39:21.000Z" title="2021/11/20 上午11:39:21">2021-11-20</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">23 分钟读完 (大约3497个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/20/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AC%94%E8%AE%B0/">负载均衡笔记</a></h1><div class="content"><h1 id="常用负载均衡"><a href="#常用负载均衡" class="headerlink" title="常用负载均衡"></a>常用负载均衡</h1><h2 id="HTTP-重定向"><a href="#HTTP-重定向" class="headerlink" title="HTTP 重定向"></a><strong>HTTP</strong> <strong>重定向</strong></h2><p>对于HTTP 重定向，你一定不陌生，它可以将 HTTP 请求进行转移，在 Web 开发中我们经常会用它来完成自动跳转，比如用户登录成功后跳转到相应的管理页面。 这种重定向完全由HTTP 定义，并且由HTTP 代理和Web 服务器共同实现。很简单，当HTTP 代理（比如浏览器）向Web服务器请求某个URL后，Web 服务器可以通过HTTP 响应头信息中的Location 标记来返回一个新的URL，这意味着HTTP代理需要继续请求这个新的URL ，这便完成了自动跳转。当然，如果你自己写了一个 HTTP 代理，也可以不支持重定向，也就是对于Web 服务器返回的Location 标记视而不见，虽然这可能不符合HTTP 标准，但这完全取决于你的应用需要。 也正是因为HTTP 重定向具备了请求转移和自动跳转的本领，所以除了满足应用程序需要的各种自动跳转之外，它还可以用于实现负载均衡，以达到Web 扩展的目的。</p>
+<h2 id="DNS-负载均衡"><a href="#DNS-负载均衡" class="headerlink" title="DNS 负载均衡"></a><strong>DNS</strong> <strong>负载均衡</strong></h2><p>我们知道，DNS负责提供域名解析服务，当我们访问某个站点时，实际上首先需要通过该站点域名的DNS服务器来获取域名指向的IP 地址，在这一过程中，DNS服务器完成了域名到IP 地址的映射，同样，这种映射也可以是一对多的，这时候，DNS 服务器便充当了负载均衡调度器（也称均衡器），它就像前面提到的重定向转移策略一样，将用户的请求分散到多台服务器上，但是它的实现机制完全不同。</p>
+<h2 id="反向代理负载均衡"><a href="#反向代理负载均衡" class="headerlink" title="反向代理负载均衡"></a><strong>反向代理负载均衡</strong></h2><p>反向代理服务器的核心工作便是转发 HTTP 请求，因此它工作在 HTTP 层面，也就是 TCP 七层结构中的应用层（第七层），所以基于反向代理的负载均衡也称为七层负载均衡，实现它并不困难，目前几乎所有主流的 Web 服务器都热衷于支持基于反向代理的负载均衡，随后我们将进行Nginx反向代理负载均衡的实验</p>
+<h2 id="IP-负载均衡"><a href="#IP-负载均衡" class="headerlink" title="IP 负载均衡"></a><strong>IP</strong> <strong>负载均衡</strong></h2><p>事实上，在数据链路层（第二层）、网络层（第三层）以及传输层（四层）都可以实现不同机制的负载均衡，但有所不同的是，这些负载均衡调度器的工作必须由Linux 内核来完成，因为我们希望网络数据包在从内核缓冲区进入进程用户地址空间之前，尽早地被转发到其他实际服务器上，没错，Linux 内核当然可以办得到，位于内核的Netfilter和IPVS可以解决问题，而用户空间的应用程序对此却束手无策。 另一方面，也正是因为可以将调度器工作在应用层以下，这些负载均衡系统可以支持更多的网络服务协议，比如FTP 、SMTP 、DNS ，以及流媒体和Vo I P 等应用。 </p>
+<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><p>&gt; 计算机集群简称集群是一种计算机系统， 它通过一组松散集成的计算机软件和&#x2F;或硬件连接起来高度紧密地协作完成计算工作。在某种意义上，他们可以被看作是一台计算机。集群系统中的单个计算机通常称为节点，通常通过局域网连接，但也有其它的可能连接方式。集群计算机通常用来改进单个计算机的计算速度和&#x2F;或可靠性。一般情况下集群计算机比单个计算机，比如工作站或超级计算机性能价格比要高得多。</p>
+<h2 id="集群分类"><a href="#集群分类" class="headerlink" title="集群分类"></a>集群分类</h2><p>集群分为同构与异构两种，它们的区别在于：组成集群系统的计算机之间的体系结构是否相同。集群计算机按功能和结构可以分成以下几类: </p>
+<h3 id="高可用性集群-High-availability-HA-clusters"><a href="#高可用性集群-High-availability-HA-clusters" class="headerlink" title="高可用性集群 (High-availability (HA) clusters)"></a><strong>高可用性集群</strong> (High-availability (HA) clusters)</h3><p>当集群中有某个节点失效的情况下，其上的任务会自动转移到其他正常的节点上。可以将集群中的某节点进行离线维护再上线，该过程并不影响整个集群的运行。</p>
+<h3 id="负载均衡集群-Load-balancing-clusters"><a href="#负载均衡集群-Load-balancing-clusters" class="headerlink" title="负载均衡集群 (Load balancing clusters)"></a><strong>负载均衡集群</strong> (Load balancing clusters)</h3><p>负载均衡集群运行时，一般通过一个或者多个前端负载均衡器，将工作负载分发到后端的一组服务器上，从而达到整个系统的高性能和高可用性。这样的计算机集群有时也被称为服务器群（Server Farm）。 一般高可用性集群和负载均衡集群会使用类似的技术，或同时具有高可用性与负载均衡的特点。</p>
+<p>Linux虚拟服务器（LVS）项目在Linux操作系统上提供了最常用的负载均衡软件。</p>
+<h3 id="高性能计算集群-High-performance-HPC-clusters"><a href="#高性能计算集群-High-performance-HPC-clusters" class="headerlink" title="高性能计算集群 ( High-performance (HPC) clusters)"></a><strong>高性能计算集群</strong> ( High-performance (HPC) clusters)</h3><p>高性能计算集群采用将计算任务分配到集群的不同计算节点而提高计算能力，因而主要应用在科学计算领域。比较流行的HPC采用Linux操作系统和其它一些免费软件来完成并行运算。这一集群配置通常被称为Beowulf集群。这类集群通常运行特定的程序以发挥HPC cluster的并行能力。这类程序一般应用特定的运行库, 比如专为科学计算设计的MPI库。</p>
+<p>HPC集群特别适合于在计算中各计算节点之间发生大量数据通讯的计算作业，比如一个节点的中间结果或影响到其它节点计算结果的情况。</p>
+<h3 id="网格计算-Grid-computing"><a href="#网格计算-Grid-computing" class="headerlink" title="网格计算 (Grid computing)"></a><strong>网格计算</strong> (Grid computing)</h3><p>网格计算或网格集群是一种与集群计算非常相关的技术。网格与传统集群的主要差别是网格是连接一组相关并不信任的计算机，它的运作更像一个计算公共设施而不是一个独立的计算机。还有，网格通常比集群支持更多不同类型的计算机集合。</p>
+<p>网格计算是针对有许多独立作业的工作任务作优化，在计算过程中作业间无需共享数据。网格主要服务于管理在独立执行工作的计算机间的作业分配。资源如存储可以被所有结点共享，但作业的中间结果不会影响在其他网格结点上作业的进展。</p>
+<h2 id="基于LVS的负载均衡集群"><a href="#基于LVS的负载均衡集群" class="headerlink" title="基于LVS的负载均衡集群"></a>基于LVS的负载均衡集群</h2><h3 id="三种网络-x2F-工作模式"><a href="#三种网络-x2F-工作模式" class="headerlink" title="三种网络&#x2F;工作模式"></a>三种网络&#x2F;工作模式</h3><p>NAT、DR、TUN</p>
+<h3 id="十个调度算法"><a href="#十个调度算法" class="headerlink" title="十个调度算法"></a>十个调度算法</h3><p>rr、wrr、lc、wlc、lblc、lblcr、dh、sh、sed、 nq</p>
+<h3 id="集群系统的角色、结构"><a href="#集群系统的角色、结构" class="headerlink" title="集群系统的角色、结构"></a>集群系统的角色、结构</h3><p>Client: CIP</p>
+<p>Router:GWIP</p>
+<p>VirtualServer(VS): VIP</p>
+<p>Director&#x2F;LoadBalancer(LB): DIP</p>
+<p>RealServer(RS): RIP</p>
+<h3 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h3><p>1.<strong>轮叫调度</strong>（Round Robin）(简称rr)</p>
+<p>调度器通过“轮叫”调度算法将外部请求按顺序轮流分配到集群中的真实服务器上，它均等地对待每一台服务器，而不管服务器上实际的连接数和系统负载。</p>
+<p>2.<strong>加权轮叫</strong>（Weighted Round Robin）（简称wrr)</p>
+<p>调度器通过“加权轮叫”调度算法根据真实服务器的不同处理能力来调度访问请求。这样可以保证处理能力强的服务器能处理更多的访问流量。调度器可以自动问询真实服务器的负载情况，并动态地调整其权值。</p>
+<p>3.<strong>最少链接</strong>（Least Connections）(LC)</p>
+<p>调度器通过“最少连接”调度算法动态地将网络请求调度到已建立的链接数最少的服务器上。如果集群系统的真实服务器具有相近的系统性能，采用“最小连接”调度算法可以较好地均衡负载。</p>
+<p>4.<strong>加权最少链接</strong>（Weighted Least Connections）(WLC)</p>
+<p>在集群系统中的服务器性能差异较大的情况下，调度器采用“加权最少链接”调度算法优化负载均衡性能，具有较高权值的服务器将承受较大比例的活动连接负载。调度器可以自动问询真实服务器的负载情况，并动态地调整其权值。</p>
+<p>5.<strong>基于局部性的最少链接</strong>（Locality-Based Least Connections）(LBLC)</p>
+<p>“基于局部性的最少链接”调度算法是针对目标IP地址的负载均衡，目前主要用于Cache集群系统。该算法根据请求的目标IP地址找出该目标IP地址最近使用的服务器，若该服务器是可用的且没有超载，将请求发送到该服务器；若服务器不存在，或者该服务器超载且有服务器处于一半的工作负载，则用“最少链接” 的原则选出一个可用的服务器，将请求发送到该服务器。</p>
+<p>6.<strong>带复制的基于局部性最少链接</strong>（Locality-Based Least Connections with Replication）(LBLCR)</p>
+<p>“带复制的基于局部性最少链接”调度算法也是针对目标IP地址的负载均衡，目前主要用于Cache集群系统。它与LBLC算法的不同之处是它要维护从一个目标 IP地址到一组服务器的映射，而LBLC算法维护从一个目标IP地址到一台服务器的映射。该算法根据请求的目标IP地址找出该目标IP地址对应的服务器组，按“最小连接”原则从服务器组中选出一台服务器，若服务器没有超载，将请求发送到该服务器；若服务器超载，则按“最小连接”原则从这个集群中选出一台服务器，将该服务器加入到服务器组中，将请求发送到该服务器。同时，当该服务器组有一段时间没有被修改，将最忙的服务器从服务器组中删除，以降低复制的程度。</p>
+<p>7.<strong>目标地址散列</strong>（Destination Hashing）(DH)</p>
+<p>“目标地址散列”调度算法根据请求的目标IP地址，作为散列键（Hash Key）从静态分配的散列表找出对应的服务器，若该服务器是可用的且未超载，将请求发送到该服务器，否则返回空。</p>
+<p>8.<strong>源地址散列</strong>（Source Hashing）(SH)</p>
+<p>“源地址散列”调度算法根据请求的源IP地址，作为散列键（Hash Key）从静态分配的散列表找出对应的服务器，若该服务器是可用的且未超载，将请求发送到该服务器，否则返回空。</p>
+<ol start="9">
+<li><strong>最短的期望的延迟</strong>（Shortest Expected Delay Scheduling SED）(SED)</li>
+</ol>
+<p>基于wlc算法。这个必须举例来说了</p>
+<p>ABC三台机器分别权重123 ，连接数也分别是123。那么如果使用WLC算法的话一个新请求进入时它可能会分给ABC中的任意一个。使用sed算法后会进行这样一个运算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A(1+1)/1</span><br><span class="line"></span><br><span class="line">B(1+2)/2</span><br><span class="line"></span><br><span class="line">C(1+3)/3</span><br></pre></td></tr></table></figure>
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<p>根据运算结果，把连接交给C 。</p>
+<p>10.<strong>最少队列调度</strong>（Never Queue Scheduling NQ）(NQ)</p>
+<p>无需队列。如果有台 realserver的连接数＝0就直接分配过去，不需要在进行sed运算</p>
+<h3 id="LVS配置流程框架"><a href="#LVS配置流程框架" class="headerlink" title="LVS配置流程框架"></a>LVS配置流程框架</h3><p>拓扑信息收集</p>
+<p>Director端配置过程</p>
+<p>RealServer端配置过程</p>
+<p>测试过程</p>
+<h3 id="LVS集群拓扑信息表"><a href="#LVS集群拓扑信息表" class="headerlink" title="LVS集群拓扑信息表"></a>LVS集群拓扑信息表</h3><p>角色：Client, Router, VS, RS</p>
+<p>拓扑信息：CIP, GWIP, DIP, VIP, RIP,……</p>
+<h3 id="IP规划："><a href="#IP规划：" class="headerlink" title="IP规划："></a>IP规划：</h3><p>Hostname       ip</p>
+<p>VIP             192.168.1.250</p>
+<p>MASTER        192.168.1.202</p>
+<p>BACKUP        192.168.1.204</p>
+<p>REALSERVER1     192.168.1.201</p>
+<p>REALSERVER2     192.168.1.203</p>
+<h3 id="配置LVS集群的过程"><a href="#配置LVS集群的过程" class="headerlink" title="配置LVS集群的过程"></a>配置LVS集群的过程</h3><p>确认内核支持ipvs</p>
+<p>执行命令：modprobe -l | grep ipvs</p>
+<p>确定集群架构、类型、角色&#x2F;成员、拓扑，确定各成员的网络配置参数。</p>
+<p>网络环境的配置</p>
+<p>专用网络设备：路由器&#x2F;防火墙&#x2F;交换机</p>
+<p>集群各成员主机配置信息</p>
+<p>使用ifconfig或者ip命令配置网络接口</p>
+<p>在各个角色主机上跑tcpdump抓包，分析报文通径。这一方法通常用于分析LVS配置中的故障。</p>
+<p>前端(FrontEnd)调度器Director的配置</p>
+<p>NAT:</p>
+<p>外网VIP配置，将作为对外公开的可访问接口</p>
+<p>内网DIP配置，将作为后端RealServer的GWIP</p>
+<p>内核IP转发参数设置</p>
+<p>负载均衡服务、服务器及规则配置</p>
+<p>基于ipvsadm脚本的方法</p>
+<p>基于keepalived配置文件的方法</p>
+<p>DR:</p>
+<p>先在对外公开的可访问接口上配置DIP，然后在该接口上创建子接口配置VIP</p>
+<p>内核参数设置</p>
+<p>负载均衡服务、服务器及规则配置</p>
+<p>基于ipvsadm脚本的方法</p>
+<p>基于keepalived配置文件的方法</p>
+<p>TUN:同DR，但要注意配置重点在隧道设备。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-19T10:53:19.000Z" title="2021/11/19 下午6:53:19">2021-11-19</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">21 分钟读完 (大约3135个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/19/Golang%E6%A0%87%E5%87%86%E5%BA%93%E4%B9%8Bstrings/">Golang标准库之strings</a></h1><div class="content"><p>&gt; package strings</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &amp;quot;strings&amp;quot;</span><br></pre></td></tr></table></figure>
 
+<p>strings包实现了用于操作字符的简单函数。</p>
+<p>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#674">EqualFold</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func EqualFold(s, t string) bool</span><br></pre></td></tr></table></figure>
 
-  
+<p>判断两个utf-8编码字符串（将unicode大写、小写、标题三种格式字符视为相同）是否相同。</p>
+<p>Example</p>
+<h1 id="func-HasPrefix"><a href="#func-HasPrefix" class="headerlink" title="func HasPrefix"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#371">HasPrefix</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func HasPrefix(s, prefix string) bool</span><br></pre></td></tr></table></figure>
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+<p>判断s是否有前缀字符串prefix。</p>
+<h1 id="func-HasSuffix"><a href="#func-HasSuffix" class="headerlink" title="func HasSuffix"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#376">HasSuffix</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func HasSuffix(s, suffix string) bool</span><br></pre></td></tr></table></figure>
+
+<p>判断s是否有后缀字符串suffix。</p>
+<h1 id="func-Contains"><a href="#func-Contains" class="headerlink" title="func Contains"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#112">Contains</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func Contains(s, substr string) bool</span><br></pre></td></tr></table></figure>
+
+<p>判断字符串s是否包含子串substr。</p>
+<p>Example</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="func-ContainsRune"><a href="#func-ContainsRune" class="headerlink" title="func ContainsRune"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#122">ContainsRune</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func ContainsRune(s string, r rune) bool</span><br></pre></td></tr></table></figure>
+
+<p>判断字符串s是否包含utf-8码值r。</p>
+<h1 id="func-ContainsAny"><a href="#func-ContainsAny" class="headerlink" title="func ContainsAny"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#117">ContainsAny</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func ContainsAny(s, chars string) bool</span><br></pre></td></tr></table></figure>
+
+<p>判断字符串s是否包含字符串chars中的任一字符。</p>
+<p>Example</p>
+<h1 id="func-Count"><a href="#func-Count" class="headerlink" title="func Count"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#65">Count</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func Count(s, sep string) int</span><br></pre></td></tr></table></figure>
+
+<p>返回字符串s中有几个不重复的sep子串。</p>
+<p>Example</p>
+<h1 id="func-Index"><a href="#func-Index" class="headerlink" title="func Index"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#127">Index</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func Index(s, sep string) int</span><br></pre></td></tr></table></figure>
+
+<p>子串sep在字符串s中第一次出现的位置，不存在则返回-1。</p>
+<p>Example</p>
+<h1 id="func-IndexByte"><a href="#func-IndexByte" class="headerlink" title="func IndexByte"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings_decl.go?name=release#8">IndexByte</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func IndexByte(s string, c byte) int</span><br></pre></td></tr></table></figure>
+
+<p>字符c在s中第一次出现的位置，不存在则返回-1。</p>
+<h1 id="func-IndexRune"><a href="#func-IndexRune" class="headerlink" title="func IndexRune"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#190">IndexRune</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func IndexRune(s string, r rune) int</span><br></pre></td></tr></table></figure>
+
+<p>unicode码值r在s中第一次出现的位置，不存在则返回-1。</p>
+<p>Example</p>
+<h1 id="func-IndexAny"><a href="#func-IndexAny" class="headerlink" title="func IndexAny"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#211">IndexAny</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func IndexAny(s, chars string) int</span><br></pre></td></tr></table></figure>
+
+<p>字符串chars中的任一utf-8码值在s中第一次出现的位置，如果不存在或者chars为空字符串则返回-1。</p>
+<p>Example</p>
+<h1 id="func-IndexFunc"><a href="#func-IndexFunc" class="headerlink" title="func IndexFunc"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#537">IndexFunc</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func IndexFunc(s string, f func(rune) bool) int</span><br></pre></td></tr></table></figure>
+
+<p>s中第一个满足函数f的位置i（该处的utf-8码值r满足f(r)&#x3D;&#x3D;true），不存在则返回-1。</p>
+<p>Example</p>
+<h1 id="func-LastIndex"><a href="#func-LastIndex" class="headerlink" title="func LastIndex"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#164">LastIndex</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func LastIndex(s, sep string) int</span><br></pre></td></tr></table></figure>
+
+<p>子串sep在字符串s中最后一次出现的位置，不存在则返回-1。</p>
+<p>Example</p>
+<h1 id="func-LastIndexAny"><a href="#func-LastIndexAny" class="headerlink" title="func LastIndexAny"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#227">LastIndexAny</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func LastIndexAny(s, chars string) int</span><br></pre></td></tr></table></figure>
+
+<p>字符串chars中的任一utf-8码值在s中最后一次出现的位置，如不存在或者chars为空字符串则返回-1。</p>
+<h1 id="func-LastIndexFunc"><a href="#func-LastIndexFunc" class="headerlink" title="func LastIndexFunc"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#543">LastIndexFunc</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func LastIndexFunc(s string, f func(rune) bool) int</span><br></pre></td></tr></table></figure>
+
+<p>s中最后一个满足函数f的unicode码值的位置i，不存在则返回-1。</p>
+<h1 id="func-Title"><a href="#func-Title" class="headerlink" title="func Title"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#489">Title</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func Title(s string) string</span><br></pre></td></tr></table></figure>
+
+<p>返回s中每个单词的首字母都改为标题格式的字符串拷贝。</p>
+<p>BUG: Title用于划分单词的规则不能很好的处理Unicode标点符号。</p>
+<p>Example</p>
+<h1 id="func-ToLower"><a href="#func-ToLower" class="headerlink" title="func ToLower"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#437">ToLower</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func ToLower(s string) string</span><br></pre></td></tr></table></figure>
+
+<p>返回将所有字母都转为对应的小写版本的拷贝。</p>
+<p>Example</p>
+<h1 id="func-ToLowerSpecial"><a href="#func-ToLowerSpecial" class="headerlink" title="func ToLowerSpecial"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#450">ToLowerSpecial</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func ToLowerSpecial(_case unicode.SpecialCase, s string) string</span><br></pre></td></tr></table></figure>
+
+<p>使用_case规定的字符映射，返回将所有字母都转为对应的小写版本的拷贝。</p>
+<h1 id="func-ToUpper"><a href="#func-ToUpper" class="headerlink" title="func ToUpper"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#434">ToUpper</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func ToUpper(s string) string</span><br></pre></td></tr></table></figure>
+
+<p>返回将所有字母都转为对应的大写版本的拷贝。</p>
+<p>Example</p>
+<h1 id="func-ToUpperSpecial"><a href="#func-ToUpperSpecial" class="headerlink" title="func ToUpperSpecial"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#444">ToUpperSpecial</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func ToUpperSpecial(_case unicode.SpecialCase, s string) string</span><br></pre></td></tr></table></figure>
+
+<p>使用_case规定的字符映射，返回将所有字母都转为对应的大写版本的拷贝。</p>
+<h1 id="func-ToTitle"><a href="#func-ToTitle" class="headerlink" title="func ToTitle"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#440">ToTitle</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func ToTitle(s string) string</span><br></pre></td></tr></table></figure>
+
+<p>返回将所有字母都转为对应的标题版本的拷贝。</p>
+<p>Example</p>
+<h1 id="func-ToTitleSpecial"><a href="#func-ToTitleSpecial" class="headerlink" title="func ToTitleSpecial"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#456">ToTitleSpecial</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func ToTitleSpecial(_case unicode.SpecialCase, s string) string</span><br></pre></td></tr></table></figure>
+
+<p>使用_case规定的字符映射，返回将所有字母都转为对应的标题版本的拷贝。</p>
+<h1 id="func-Repeat"><a href="#func-Repeat" class="headerlink" title="func Repeat"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#424">Repeat</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func Repeat(s string, count int) string</span><br></pre></td></tr></table></figure>
+
+<p>返回count个s串联的字符串。</p>
+<p>Example</p>
+<h1 id="func-Replace"><a href="#func-Replace" class="headerlink" title="func Replace"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#638">Replace</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func Replace(s, old, new string, n int) string</span><br></pre></td></tr></table></figure>
+
+<p>返回将s中前n个不重叠old子串都替换为new的新字符串，如果n&lt;0会替换所有old子串。</p>
+<p>Example</p>
+<h1 id="func-Map"><a href="#func-Map" class="headerlink" title="func Map"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#383">Map</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func Map(mapping func(rune) rune, s string) string</span><br></pre></td></tr></table></figure>
+
+<p>将s的每一个unicode码值r都替换为mapping(r)，返回这些新码值组成的字符串拷贝。如果mapping返回一个负值，将会丢弃该码值而不会被替换。（返回值中对应位置将没有码值）</p>
+<p>Example</p>
+<h1 id="func-Trim"><a href="#func-Trim" class="headerlink" title="func Trim"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#586">Trim</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func Trim(s string, cutset string) string</span><br></pre></td></tr></table></figure>
+
+<p>返回将s前后端所有cutset包含的utf-8码值都去掉的字符串。</p>
+<p>Example</p>
+<h1 id="func-TrimSpace"><a href="#func-TrimSpace" class="headerlink" title="func TrimSpace"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#613">TrimSpace</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func TrimSpace(s string) string</span><br></pre></td></tr></table></figure>
+
+<p>返回将s前后端所有空白（unicode.IsSpace指定）都去掉的字符串。</p>
+<p>Example</p>
+<h1 id="func-TrimFunc"><a href="#func-TrimFunc" class="headerlink" title="func TrimFunc"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#531">TrimFunc</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func TrimFunc(s string, f func(rune) bool) string</span><br></pre></td></tr></table></figure>
+
+<p>返回将s前后端所有满足f的unicode码值都去掉的字符串。</p>
+<h1 id="func-TrimLeft"><a href="#func-TrimLeft" class="headerlink" title="func TrimLeft"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#595">TrimLeft</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func TrimLeft(s string, cutset string) string</span><br></pre></td></tr></table></figure>
+
+<p>返回将s前端所有cutset包含的utf-8码值都去掉的字符串。</p>
+<h1 id="func-TrimLeftFunc"><a href="#func-TrimLeftFunc" class="headerlink" title="func TrimLeftFunc"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#508">TrimLeftFunc</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func TrimLeftFunc(s string, f func(rune) bool) string</span><br></pre></td></tr></table></figure>
+
+<p>返回将s前端所有满足f的unicode码值都去掉的字符串。</p>
+<h1 id="func-TrimPrefix"><a href="#func-TrimPrefix" class="headerlink" title="func TrimPrefix"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#619">TrimPrefix</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func TrimPrefix(s, prefix string) string</span><br></pre></td></tr></table></figure>
+
+<p>返回去除s可能的前缀prefix的字符串。</p>
+<p>Example</p>
+<h1 id="func-TrimRight"><a href="#func-TrimRight" class="headerlink" title="func TrimRight"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#604">TrimRight</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func TrimRight(s string, cutset string) string</span><br></pre></td></tr></table></figure>
+
+<p>返回将s后端所有cutset包含的utf-8码值都去掉的字符串。</p>
+<h1 id="func-TrimRightFunc"><a href="#func-TrimRightFunc" class="headerlink" title="func TrimRightFunc"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#518">TrimRightFunc</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func TrimRightFunc(s string, f func(rune) bool) string</span><br></pre></td></tr></table></figure>
+
+<p>返回将s后端所有满足f的unicode码值都去掉的字符串。</p>
+<h1 id="func-TrimSuffix"><a href="#func-TrimSuffix" class="headerlink" title="func TrimSuffix"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#628">TrimSuffix</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func TrimSuffix(s, suffix string) string</span><br></pre></td></tr></table></figure>
+
+<p>返回去除s可能的后缀suffix的字符串。</p>
+<p>Example</p>
+<h1 id="func-Fields"><a href="#func-Fields" class="headerlink" title="func Fields"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#307">Fields</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func Fields(s string) []string</span><br></pre></td></tr></table></figure>
+
+<p>返回将字符串按照空白（unicode.IsSpace确定，可以是一到多个连续的空白字符）分割的多个字符串。如果字符串全部是空白或者是空字符串的话，会返回空切片。</p>
+<p>Example</p>
+<h1 id="func-FieldsFunc"><a href="#func-FieldsFunc" class="headerlink" title="func FieldsFunc"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#314">FieldsFunc</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func FieldsFunc(s string, f func(rune) bool) []string</span><br></pre></td></tr></table></figure>
+
+<p>类似Fields，但使用函数f来确定分割符（满足f的unicode码值）。如果字符串全部是分隔符或者是空字符串的话，会返回空切片。</p>
+<p>Example</p>
+<h1 id="func-Split"><a href="#func-Split" class="headerlink" title="func Split"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#294">Split</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func Split(s, sep string) []string</span><br></pre></td></tr></table></figure>
+
+<p>用去掉s中出现的sep的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个sep都会进行一次切割，即使两个sep相邻，也会进行两次切割）。如果sep为空字符，Split会将s切分成每一个unicode码值一个字符串。</p>
+<p>Example</p>
+<h1 id="func-SplitN"><a href="#func-SplitN" class="headerlink" title="func SplitN"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#277">SplitN</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func SplitN(s, sep string, n int) []string</span><br></pre></td></tr></table></figure>
+
+<p>用去掉s中出现的sep的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个sep都会进行一次切割，即使两个sep相邻，也会进行两次切割）。如果sep为空字符，Split会将s切分成每一个unicode码值一个字符串。参数n决定返回的切片的数目：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">n &amp;gt; 0 : 返回的切片最多n个子字符串；最后一个子字符串包含未进行切割的部分。</span><br><span class="line">n == 0: 返回nil</span><br><span class="line">n &amp;lt; 0 : 返回所有的子字符串组成的切片</span><br></pre></td></tr></table></figure>
+
+<p>Example</p>
+<h1 id="func-SplitAfter"><a href="#func-SplitAfter" class="headerlink" title="func SplitAfter"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#300">SplitAfter</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func SplitAfter(s, sep string) []string</span><br></pre></td></tr></table></figure>
+
+<p>用从s中出现的sep后面切断的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个sep都会进行一次切割，即使两个sep相邻，也会进行两次切割）。如果sep为空字符，Split会将s切分成每一个unicode码值一个字符串。</p>
+<p>Example</p>
+<h1 id="func-SplitAfterN"><a href="#func-SplitAfterN" class="headerlink" title="func SplitAfterN"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#286">SplitAfterN</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func SplitAfterN(s, sep string, n int) []string</span><br></pre></td></tr></table></figure>
+
+<p>用从s中出现的sep后面切断的方式进行分割，会分割到结尾，并返回生成的所有片段组成的切片（每一个sep都会进行一次切割，即使两个sep相邻，也会进行两次切割）。如果sep为空字符，Split会将s切分成每一个unicode码值一个字符串。参数n决定返回的切片的数目：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">n &amp;gt; 0 : 返回的切片最多n个子字符串；最后一个子字符串包含未进行切割的部分。</span><br><span class="line">n == 0: 返回nil</span><br><span class="line">n &amp;lt; 0 : 返回所有的子字符串组成的切</span><br></pre></td></tr></table></figure>
+
+<p>Example</p>
+<h1 id="func-Join"><a href="#func-Join" class="headerlink" title="func Join"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/strings.go?name=release#349">Join</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func Join(a []string, sep string) string</span><br></pre></td></tr></table></figure>
+
+<p>将一系列字符串连接为一个字符串，之间用sep来分隔。</p>
+<p>Example</p>
+<h1 id="type-Reader"><a href="#type-Reader" class="headerlink" title="type Reader"></a>type <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#16">Reader</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Reader struct &#123;</span><br><span class="line">    // 内含隐藏或非导出字段</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Reader类型通过从一个字符串读取数据，实现了io.Reader、io.Seeker、io.ReaderAt、io.WriterTo、io.ByteScanner、io.RuneScanner接口。</p>
+<h2 id="func-NewReader"><a href="#func-NewReader" class="headerlink" title="func NewReader"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#144">NewReader</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func NewReader(s string) *Reader</span><br></pre></td></tr></table></figure>
+
+<p>NewReader创建一个从s读取数据的Reader。本函数类似bytes.NewBufferString，但是更有效率，且为只读的。</p>
+<h2 id="func-Reader-Len"><a href="#func-Reader-Len" class="headerlink" title="func (*Reader) Len"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#24">Len</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (r *Reader) Len() int</span><br></pre></td></tr></table></figure>
+
+<p>Len返回r包含的字符串还没有被读取的部分。</p>
+<h2 id="func-Reader-Read"><a href="#func-Reader-Read" class="headerlink" title="func (*Reader) Read"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#31">Read</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (r *Reader) Read(b []byte) (n int, err error)</span><br></pre></td></tr></table></figure>
+
+<h2 id="func-Reader-ReadByte"><a href="#func-Reader-ReadByte" class="headerlink" title="func (*Reader) ReadByte"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#59">ReadByte</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (r *Reader) ReadByte() (b byte, err error)</span><br></pre></td></tr></table></figure>
+
+<h2 id="func-Reader-UnreadByte"><a href="#func-Reader-UnreadByte" class="headerlink" title="func (*Reader) UnreadByte"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#69">UnreadByte</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (r *Reader) UnreadByte() error</span><br></pre></td></tr></table></figure>
+
+<h2 id="func-Reader-ReadRune"><a href="#func-Reader-ReadRune" class="headerlink" title="func (*Reader) ReadRune"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#78">ReadRune</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (r *Reader) ReadRune() (ch rune, size int, err error)</span><br></pre></td></tr></table></figure>
+
+<h2 id="func-Reader-UnreadRune"><a href="#func-Reader-UnreadRune" class="headerlink" title="func (*Reader) UnreadRune"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#93">UnreadRune</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (r *Reader) UnreadRune() error</span><br></pre></td></tr></table></figure>
+
+<h2 id="func-Reader-Seek"><a href="#func-Reader-Seek" class="headerlink" title="func (*Reader) Seek"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#103">Seek</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (r *Reader) Seek(offset int64, whence int) (int64, error)</span><br></pre></td></tr></table></figure>
+
+<p>Seek实现了io.Seeker接口。</p>
+<h2 id="func-Reader-ReadAt"><a href="#func-Reader-ReadAt" class="headerlink" title="func (*Reader) ReadAt"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#44">ReadAt</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (r *Reader) ReadAt(b []byte, off int64) (n int, err error)</span><br></pre></td></tr></table></figure>
+
+<h2 id="func-Reader-WriteTo"><a href="#func-Reader-WriteTo" class="headerlink" title="func (*Reader) WriteTo"></a>func (*Reader) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/reader.go?name=release#124">WriteTo</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (r *Reader) WriteTo(w io.Writer) (n int64, err error)</span><br></pre></td></tr></table></figure>
+
+<p>WriteTo实现了io.WriterTo接口。</p>
+<h1 id="type-Replacer"><a href="#type-Replacer" class="headerlink" title="type Replacer"></a>type <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/replace.go?name=release#10">Replacer</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Replacer struct &#123;</span><br><span class="line">    // 内含隐藏或非导出字段</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Replacer类型进行一系列字符串的替换。</p>
+<h2 id="func-NewReplacer"><a href="#func-NewReplacer" class="headerlink" title="func NewReplacer"></a>func <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/replace.go?name=release#31">NewReplacer</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func NewReplacer(oldnew ...string) *Replacer</span><br></pre></td></tr></table></figure>
+
+<p>使用提供的多组old、new字符串对创建并返回一个*Replacer。替换是依次进行的，匹配时不会重叠。</p>
+<p>Example</p>
+<h2 id="func-Replacer-Replace"><a href="#func-Replacer-Replace" class="headerlink" title="func (*Replacer) Replace"></a>func (*Replacer) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/replace.go?name=release#78">Replace</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (r *Replacer) Replace(s string) string</span><br></pre></td></tr></table></figure>
+
+<p>Replace返回s的所有替换进行完后的拷贝。</p>
+<h2 id="func-Replacer-WriteString"><a href="#func-Replacer-WriteString" class="headerlink" title="func (*Replacer) WriteString"></a>func (*Replacer) <a target="_blank" rel="noopener" href="https://github.com/golang/go/blob/master/src/strings/replace.go?name=release#83">WriteString</a></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (r *Replacer) WriteString(w io.Writer, s string) (n int, err error)</span><br></pre></td></tr></table></figure>
+
+<p>WriteString向w中写入s的所有替换进行完后的拷贝。</p>
+<p>来源： <a target="_blank" rel="noopener" href="https://studygolang.com/pkgdoc">Go语言标准库文档中文版 | Go语言中文网 | Golang中文社区 | Golang中国 (studygolang.com)</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-17T12:29:48.000Z" title="2021/11/17 下午8:29:48">2021-11-17</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">5 分钟读完 (大约802个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/17/PHP%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD%E6%A8%A1%E5%BC%8F%E4%BF%AE%E6%AD%A3%E7%AC%A6%20(Pattern%20Modifiers)/">PHP正则表达式中模式修正符 (Pattern Modifiers)</a></h1><div class="content"><p>The current possible PCRE modifiers are listed below. The names in parentheses refer to internal PCRE names for these modifiers. Spaces and newlines are ignored in modifiers, other characters cause error.</p>
+<h2 id="i-PCRE-CASELESS"><a href="#i-PCRE-CASELESS" class="headerlink" title="i (PCRE_CASELESS)"></a>i (PCRE_CASELESS)</h2><p>  If this modifier is set, letters in the pattern match both upper and lower case letters.</p>
+<h2 id="m-PCRE-MULTILINE"><a href="#m-PCRE-MULTILINE" class="headerlink" title="m (PCRE_MULTILINE)"></a>m (PCRE_MULTILINE)</h2><p>  By default, PCRE treats the subject string as consisting of a single &quot;line&quot; of characters (even if it actually contains several newlines). The &quot;start of line&quot; metacharacter (^) matches only at the start of the string, while the &quot;end of line&quot; metacharacter ($) matches only at the end of the string, or before a terminating newline (unless <em>D</em> modifier is set). This is the same as Perl. When this modifier is set, the &quot;start of line&quot; and &quot;end of line&quot; constructs match immediately following or immediately before any newline in the subject string, respectively, as well as at the very start and end. This is equivalent to Perl&amp;#039;s &#x2F;m modifier. If there are no &quot;\n&quot; characters in a subject string, or no occurrences of ^ or $ in a pattern, setting this modifier has no effect.</p>
+<h2 id="s-PCRE-DOTALL"><a href="#s-PCRE-DOTALL" class="headerlink" title="s (PCRE_DOTALL)"></a>s (PCRE_DOTALL)</h2><p>  If this modifier is set, a dot metacharacter in the pattern matches all characters, including newlines. Without it, newlines are excluded. This modifier is equivalent to Perl&amp;#039;s &#x2F;s modifier. A negative class such as [^a] always matches a newline character, independent of the setting of this modifier.</p>
+<h2 id="x-PCRE-EXTENDED"><a href="#x-PCRE-EXTENDED" class="headerlink" title="x (PCRE_EXTENDED)"></a>x (PCRE_EXTENDED)</h2><p>  If this modifier is set, whitespace data characters in the pattern are totally ignored except when escaped or inside a character class, and characters between an unescaped # outside a character class and the next newline character, inclusive, are also ignored. This is equivalent to Perl&amp;#039;s &#x2F;x modifier, and makes it possible to include commentary inside complicated patterns. Note, however, that this applies only to data characters. Whitespace characters may never appear within special character sequences in a pattern, for example within the sequence (?( which introduces a conditional subpattern.</p>
+<h2 id="A-PCRE-ANCHORED"><a href="#A-PCRE-ANCHORED" class="headerlink" title="A (PCRE_ANCHORED)"></a>A (PCRE_ANCHORED)</h2><p>  If this modifier is set, the pattern is forced to be &quot;anchored&quot;, that is, it is constrained to match only at the start of the string which is being searched (the &quot;subject string&quot;). This effect can also be achieved by appropriate constructs in the pattern itself, which is the only way to do it in Perl.</p>
+<h2 id="D-PCRE-DOLLAR-ENDONLY"><a href="#D-PCRE-DOLLAR-ENDONLY" class="headerlink" title="D (PCRE_DOLLAR_ENDONLY)"></a>D (PCRE_DOLLAR_ENDONLY)</h2><p>  If this modifier is set, a dollar metacharacter in the pattern matches only at the end of the subject string. Without this modifier, a dollar also matches immediately before the final character if it is a newline (but not before any other newlines). This modifier is ignored if <em>m</em> modifier is set. There is no equivalent to this modifier in Perl.</p>
+<h2 id="S"><a href="#S" class="headerlink" title="S"></a>S</h2><p>  When a pattern is going to be used several times, it is worth spending more time analyzing it in order to speed up the time taken for matching. If this modifier is set, then this extra analysis is performed. At present, studying a pattern is useful only for non-anchored patterns that do not have a single fixed starting character.</p>
+<h2 id="U-PCRE-UNGREEDY"><a href="#U-PCRE-UNGREEDY" class="headerlink" title="U (PCRE_UNGREEDY)"></a>U (PCRE_UNGREEDY)</h2><p>  This modifier inverts the &quot;greediness&quot; of the quantifiers so that they are not greedy by default, but become greedy if followed by <code>?</code>. It is not compatible with Perl. It can also be set by a (<code>?U</code>) <a target="_blank" rel="noopener" href="https://www.php.net/manual/en/regexp.reference.internal-options.php">modifier setting within the pattern</a> or by a question mark behind a quantifier (e.g. <code>.*?</code>).<strong>Note</strong>:It is usually not possible to match more than <a target="_blank" rel="noopener" href="https://www.php.net/manual/en/pcre.configuration.php#ini.pcre.backtrack-limit">pcre.backtrack_limit</a> characters in ungreedy mode.</p>
+<h2 id="X-PCRE-EXTRA"><a href="#X-PCRE-EXTRA" class="headerlink" title="X (PCRE_EXTRA)"></a>X (PCRE_EXTRA)</h2><p>  This modifier turns on additional functionality of PCRE that is incompatible with Perl. Any backslash in a pattern that is followed by a letter that has no special meaning causes an error, thus reserving these combinations for future expansion. By default, as in Perl, a backslash followed by a letter with no special meaning is treated as a literal. There are at present no other features controlled by this modifier.</p>
+<h2 id="J-PCRE-INFO-JCHANGED"><a href="#J-PCRE-INFO-JCHANGED" class="headerlink" title="J (PCRE_INFO_JCHANGED)"></a>J (PCRE_INFO_JCHANGED)</h2><p>  The (?J) internal option setting changes the local <code>PCRE_DUPNAMES</code> option. Allow duplicate names for subpatterns. As of PHP 7.2.0 <code>J</code> is supported as modifier as well.</p>
+<h2 id="u-PCRE-UTF8"><a href="#u-PCRE-UTF8" class="headerlink" title="u (PCRE_UTF8)"></a>u (PCRE_UTF8)</h2><p>  This modifier turns on additional functionality of PCRE that is incompatible with Perl. Pattern and subject strings are treated as UTF-8. An invalid subject will cause the preg_* function to match nothing; an invalid pattern will trigger an error of level E_WARNING. Five and six octet UTF-8 sequences are regarded as invalid.</p>
+<p>参考文档：<a target="_blank" rel="noopener" href="https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php">https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php</a></p>
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/6/">上一页</a></div><div class="pagination-next"><a href="/page/8/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/6/">6</a></li><li><a class="pagination-link is-current" href="/page/7/">7</a></li><li><a class="pagination-link" href="/page/8/">8</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/17/">17</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果也！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">170</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-01T06:56:20.000Z">2022-10-01</time></p><p class="title"><a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-18T05:06:34.000Z">2022-09-18</time></p><p class="title"><a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-04T13:30:39.000Z">2022-09-04</time></p><p class="title"><a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-21T02:56:27.000Z">2022-08-21</time></p><p class="title"><a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-19T12:54:39.000Z">2022-08-19</time></p><p class="title"><a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown基本语法</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">五月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

@@ -1,703 +1,194 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Linux sed 命令 - 笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Linux sed 命令是利用脚本来处理文本文件。 sed 可依照脚本的指令来处理、编辑文本文件。 Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。 语法1sed [-hnV][-e&amp;lt;script&amp;gt;][-f&amp;lt;script文件&amp;gt;][文本文件]  参数说明： 12345-e&amp;lt;script&amp;gt;或--expression&amp;#x3D;&amp;lt;script"><meta property="og:type" content="blog"><meta property="og:title" content="Linux sed 命令"><meta property="og:url" content="https://www.chengyao.xyz/2021/05/01/Linux%20sed%20%E5%91%BD%E4%BB%A4/"><meta property="og:site_name" content="笔记"><meta property="og:description" content="Linux sed 命令是利用脚本来处理文本文件。 sed 可依照脚本的指令来处理、编辑文本文件。 Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。 语法1sed [-hnV][-e&amp;lt;script&amp;gt;][-f&amp;lt;script文件&amp;gt;][文本文件]  参数说明： 12345-e&amp;lt;script&amp;gt;或--expression&amp;#x3D;&amp;lt;script"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:published_time" content="2021-05-01T12:50:08.000Z"><meta property="article:modified_time" content="2022-08-28T02:23:10.673Z"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz/2021/05/01/Linux%20sed%20%E5%91%BD%E4%BB%A4/"},"headline":"Linux sed 命令","image":["https://www.chengyao.xyz/img/og_image.png"],"datePublished":"2021-05-01T12:50:08.000Z","dateModified":"2022-08-28T02:23:10.673Z","author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"Linux sed 命令是利用脚本来处理文本文件。 sed 可依照脚本的指令来处理、编辑文本文件。 Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。 语法1sed [-hnV][-e&lt;script&gt;][-f&lt;script文件&gt;][文本文件]  参数说明： 12345-e&lt;script&gt;或--expression&#x3D;&lt;script"}</script><link rel="canonical" href="https://www.chengyao.xyz/2021/05/01/Linux%20sed%20%E5%91%BD%E4%BB%A4/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="CY">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="Linux sed 命令是利用脚本来处理文本文件。 sed 可依照脚本的指令来处理、编辑文本文件。 Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。 语法1sed [-hnV][-e&lt;script&gt;][-f&lt;script文件&gt;][文本文件]  参数说明： 12345-e&lt;script&gt;或--expression&#x3D;&lt;script">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Linux sed 命令">
-<meta property="og:url" content="https://www.chengyao.xyz/2021/05/01/Linux%20sed%20%E5%91%BD%E4%BB%A4/index.html">
-<meta property="og:site_name" content="笔记">
-<meta property="og:description" content="Linux sed 命令是利用脚本来处理文本文件。 sed 可依照脚本的指令来处理、编辑文本文件。 Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。 语法1sed [-hnV][-e&lt;script&gt;][-f&lt;script文件&gt;][文本文件]  参数说明： 12345-e&lt;script&gt;或--expression&#x3D;&lt;script">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-01T12:50:08.000Z">
-<meta property="article:modified_time" content="2022-09-14T12:56:04.907Z">
-<meta property="article:author" content="CY">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>Linux sed 命令 - 笔记</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="Linux sed 命令"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-05-01 20:50" pubdate>
-          2021年5月1日 晚上
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          5.8k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          49 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Linux sed 命令</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <p>Linux sed 命令是利用脚本来处理文本文件。</p>
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-05-01T12:50:08.000Z" title="2021/5/1 下午8:50:08">2021-05-01</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">15 分钟读完 (大约2317个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Linux sed 命令</h1><div class="content"><p>Linux sed 命令是利用脚本来处理文本文件。</p>
 <p>sed 可依照脚本的指令来处理、编辑文本文件。</p>
 <p>Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。</p>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">sed <span class="hljs-selector-attr">[-hnV]</span><span class="hljs-selector-attr">[-e&lt;script&gt;]</span><span class="hljs-selector-attr">[-f&lt;script文件&gt;]</span><span class="hljs-selector-attr">[文本文件]</span><br></code></pre></td></tr></table></figure>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed [-hnV][-e&lt;script&gt;][-f&lt;script文件&gt;][文本文件]</span><br></pre></td></tr></table></figure>
 
 <p><strong>参数说明</strong>：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs applescript">-e&lt;<span class="hljs-keyword">script</span>&gt;或<span class="hljs-comment">--expression=&lt;script&gt; 以选项中指定的script来处理输入的文本文件。</span><br>-f&lt;<span class="hljs-keyword">script</span>文件&gt;或<span class="hljs-comment">--file=&lt;script文件&gt; 以选项中指定的script文件来处理输入的文本文件。</span><br>-h或<span class="hljs-comment">--help 显示帮助。</span><br>-n或<span class="hljs-comment">--quiet或--silent 仅显示script处理后的结果。</span><br>-V或<span class="hljs-comment">--version 显示版本信息。</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-e&lt;script&gt;或--expression=&lt;script&gt; 以选项中指定的script来处理输入的文本文件。</span><br><span class="line">-f&lt;script文件&gt;或--file=&lt;script文件&gt; 以选项中指定的script文件来处理输入的文本文件。</span><br><span class="line">-h或--help 显示帮助。</span><br><span class="line">-n或--quiet或--silent 仅显示script处理后的结果。</span><br><span class="line">-V或--version 显示版本信息。</span><br></pre></td></tr></table></figure>
 <p><strong>动作说明</strong>：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">a</span> ：新增， <span class="hljs-selector-tag">a</span> 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～<br>c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！<br>d ：删除，因为是删除啊，所以 d 后面通常不接任何东西；<br><span class="hljs-selector-tag">i</span> ：插入， <span class="hljs-selector-tag">i</span> 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；<br><span class="hljs-selector-tag">p</span> ：打印，亦即将某个选择的数据印出。通常 <span class="hljs-selector-tag">p</span> 会与参数 sed -n 一起运行～<br>s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！例如 <span class="hljs-number">1</span>,<span class="hljs-number">20s</span>/old/new/g 就是啦！<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～</span><br><span class="line">c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！</span><br><span class="line">d ：删除，因为是删除啊，所以 d 后面通常不接任何东西；</span><br><span class="line">i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；</span><br><span class="line">p ：打印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～</span><br><span class="line">s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！例如 1,20s/old/new/g 就是啦！</span><br></pre></td></tr></table></figure>
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>在testfile文件的第四行后添加一行，并将结果输出到标准输出，在命令行提示符下输入如下命令：</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe">sed -e <span class="hljs-number">4</span>a\<span class="hljs-keyword">new</span><span class="hljs-type">Line</span> testfile <br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e 4a\newLine testfile </span><br></pre></td></tr></table></figure>
 
 <p>首先查看testfile中的内容如下：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vim">$ <span class="hljs-keyword">cat</span> testfile #查看testfile 中的内容  <br>HELLO LINUX!  <br>Linux <span class="hljs-keyword">is</span> <span class="hljs-keyword">a</span> free unix-<span class="hljs-built_in">type</span> opterating <span class="hljs-built_in">system</span>.  <br>This <span class="hljs-keyword">is</span> <span class="hljs-keyword">a</span> linux testfile!  <br>Linux test <br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cat testfile #查看testfile 中的内容  </span><br><span class="line">HELLO LINUX!  </span><br><span class="line">Linux is a free unix-type opterating system.  </span><br><span class="line">This is a linux testfile!  </span><br><span class="line">Linux test </span><br></pre></td></tr></table></figure>
 
 <p>使用sed命令后，输出结果如下：</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs haxe">$ sed -e <span class="hljs-number">4</span>a\<span class="hljs-keyword">new</span><span class="hljs-type">line</span> testfile <span class="hljs-meta">#使用sed 在第四行后添加新字符串  </span><br>HELLO LINUX! <span class="hljs-meta">#testfile文件原有的内容  </span><br>Linux is a free unix-type opterating system.  <br>This is a linux testfile!  <br>Linux test  <br><span class="hljs-keyword">new</span><span class="hljs-type">line</span> <br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ sed -e 4a\newline testfile #使用sed 在第四行后添加新字符串  </span><br><span class="line">HELLO LINUX! #testfile文件原有的内容  </span><br><span class="line">Linux is a free unix-type opterating system.  </span><br><span class="line">This is a linux testfile!  </span><br><span class="line">Linux test  </span><br><span class="line">newline </span><br></pre></td></tr></table></figure>
 
 <h3 id="以行为单位的新增-x2F-删除"><a href="#以行为单位的新增-x2F-删除" class="headerlink" title="以行为单位的新增&#x2F;删除"></a>以行为单位的新增&#x2F;删除</h3><p>将 &#x2F;etc&#x2F;passwd 的内容列出并且列印行号，同时，请将第 2~5 行删除！</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs elixir">[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># nl /etc/passwd | sed &#x27;2,5d&#x27;</span><br><span class="hljs-number">1</span> <span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/bash</span><br><span class="hljs-number">6</span> <span class="hljs-symbol">sync:</span><span class="hljs-symbol">x:</span><span class="hljs-number">5</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:sync</span><span class="hljs-symbol">:/sbin</span><span class="hljs-symbol">:/bin/sync</span><br><span class="hljs-number">7</span> <span class="hljs-symbol">shutdown:</span><span class="hljs-symbol">x:</span><span class="hljs-number">6</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:shutdown</span><span class="hljs-symbol">:/sbin</span><span class="hljs-symbol">:/sbin/shutdown</span><br>.....(后面省略).....<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# nl /etc/passwd | sed &#x27;2,5d&#x27;</span><br><span class="line">1 root:x:0:0:root:/root:/bin/bash</span><br><span class="line">6 sync:x:5:0:sync:/sbin:/bin/sync</span><br><span class="line">7 shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown</span><br><span class="line">.....(后面省略).....</span><br></pre></td></tr></table></figure>
 
 <p>sed 的动作为 ‘2,5d’ ，那个 d 就是删除！因为 2-5 行给他删除了，所以显示的数据就没有 2-5 行罗～ 另外，注意一下，原本应该是要下达 sed -e 才对，没有 -e 也行啦！同时也要注意的是， sed 后面接的动作，请务必以 ‘’ 两个单引号括住喔！</p>
 <p>只要删除第 2 行</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">nl <span class="hljs-regexp">/etc/</span>passwd | sed <span class="hljs-string">&#x27;2d&#x27;</span> <br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed &#x27;2d&#x27; </span><br></pre></td></tr></table></figure>
 
 <p>要删除第 3 到最后一行</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">nl <span class="hljs-regexp">/etc/</span>passwd | sed <span class="hljs-string">&#x27;3,$d&#x27;</span> <br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed &#x27;3,$d&#x27; </span><br></pre></td></tr></table></figure>
 
 <p>在第二行后(亦即是加在第三行)加上『drink tea?』字样！</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs elixir">[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># nl /etc/passwd | sed &#x27;2a drink tea&#x27;</span><br><span class="hljs-number">1</span> <span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/bash</span><br><span class="hljs-number">2</span> <span class="hljs-symbol">bin:</span><span class="hljs-symbol">x:</span><span class="hljs-number">1</span><span class="hljs-symbol">:</span><span class="hljs-number">1</span><span class="hljs-symbol">:bin</span><span class="hljs-symbol">:/bin</span><span class="hljs-symbol">:/sbin/nologin</span><br>drink tea<br><span class="hljs-number">3</span> <span class="hljs-symbol">daemon:</span><span class="hljs-symbol">x:</span><span class="hljs-number">2</span><span class="hljs-symbol">:</span><span class="hljs-number">2</span><span class="hljs-symbol">:daemon</span><span class="hljs-symbol">:/sbin</span><span class="hljs-symbol">:/sbin/nologin</span><br>.....(后面省略).....<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# nl /etc/passwd | sed &#x27;2a drink tea&#x27;</span><br><span class="line">1 root:x:0:0:root:/root:/bin/bash</span><br><span class="line">2 bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">drink tea</span><br><span class="line">3 daemon:x:2:2:daemon:/sbin:/sbin/nologin</span><br><span class="line">.....(后面省略).....</span><br></pre></td></tr></table></figure>
 
 <p>那如果是要在第二行前</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">nl <span class="hljs-regexp">/etc/</span>passwd | sed <span class="hljs-string">&#x27;2i drink tea&#x27;</span> <br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed &#x27;2i drink tea&#x27; </span><br></pre></td></tr></table></figure>
 
 <p>如果是要增加两行以上，在第二行后面加入两行字，例如 <strong>Drink tea or …..</strong> 与 <strong>drink beer?</strong></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ruby">[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># nl /etc/passwd | sed &#x27;2a Drink tea or ......\</span><br>&gt; drink beer <span class="hljs-string">?&#x27;</span><br><span class="hljs-number">1</span> <span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/bash</span><br><span class="hljs-number">2</span> <span class="hljs-symbol">bin:</span><span class="hljs-symbol">x:</span><span class="hljs-number">1</span><span class="hljs-symbol">:</span><span class="hljs-number">1</span><span class="hljs-symbol">:bin</span><span class="hljs-symbol">:/bin</span><span class="hljs-symbol">:/sbin/nologin</span><br>Drink tea <span class="hljs-keyword">or</span> ......<br>drink beer ?<br><span class="hljs-number">3</span> <span class="hljs-symbol">daemon:</span><span class="hljs-symbol">x:</span><span class="hljs-number">2</span><span class="hljs-symbol">:</span><span class="hljs-number">2</span><span class="hljs-symbol">:daemon</span><span class="hljs-symbol">:/sbin</span><span class="hljs-symbol">:/sbin/nologin</span><br>.....(后面省略).....<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# nl /etc/passwd | sed &#x27;2a Drink tea or ......\</span><br><span class="line">&gt; drink beer ?&#x27;</span><br><span class="line">1 root:x:0:0:root:/root:/bin/bash</span><br><span class="line">2 bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">Drink tea or ......</span><br><span class="line">drink beer ?</span><br><span class="line">3 daemon:x:2:2:daemon:/sbin:/sbin/nologin</span><br><span class="line">.....(后面省略).....</span><br></pre></td></tr></table></figure>
 
 <p>每一行之间都必须要以反斜杠<code>\</code>来进行新行的添加喔！所以，上面的例子中，我们可以发现在第一行的最后面就有 <code>\</code>存在。</p>
 <h3 id="以行为单位的替换与显示"><a href="#以行为单位的替换与显示" class="headerlink" title="以行为单位的替换与显示"></a>以行为单位的替换与显示</h3><p>将第2-5行的内容取代成为『No 2-5 number』呢？</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs elixir">[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># nl /etc/passwd | sed &#x27;2,5c No 2-5 number&#x27;</span><br><span class="hljs-number">1</span> <span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/bash</span><br><span class="hljs-title class_">No</span> <span class="hljs-number">2</span><span class="hljs-number">-5</span> number<br><span class="hljs-number">6</span> <span class="hljs-symbol">sync:</span><span class="hljs-symbol">x:</span><span class="hljs-number">5</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:sync</span><span class="hljs-symbol">:/sbin</span><span class="hljs-symbol">:/bin/sync</span><br>.....(后面省略).....<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# nl /etc/passwd | sed &#x27;2,5c No 2-5 number&#x27;</span><br><span class="line">1 root:x:0:0:root:/root:/bin/bash</span><br><span class="line">No 2-5 number</span><br><span class="line">6 sync:x:5:0:sync:/sbin:/bin/sync</span><br><span class="line">.....(后面省略).....</span><br></pre></td></tr></table></figure>
 
 <p>透过这个方法我们就能够将数据整行取代了！</p>
 <p>仅列出 &#x2F;etc&#x2F;passwd 文件内的第 5-7 行</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs elixir">[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># nl /etc/passwd | sed -n &#x27;5,7p&#x27;</span><br><span class="hljs-number">5</span> <span class="hljs-symbol">lp:</span><span class="hljs-symbol">x:</span><span class="hljs-number">4</span><span class="hljs-symbol">:</span><span class="hljs-number">7</span><span class="hljs-symbol">:lp</span><span class="hljs-symbol">:/var/spool/lpd</span><span class="hljs-symbol">:/sbin/nologin</span><br><span class="hljs-number">6</span> <span class="hljs-symbol">sync:</span><span class="hljs-symbol">x:</span><span class="hljs-number">5</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:sync</span><span class="hljs-symbol">:/sbin</span><span class="hljs-symbol">:/bin/sync</span><br><span class="hljs-number">7</span> <span class="hljs-symbol">shutdown:</span><span class="hljs-symbol">x:</span><span class="hljs-number">6</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:shutdown</span><span class="hljs-symbol">:/sbin</span><span class="hljs-symbol">:/sbin/shutdown</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# nl /etc/passwd | sed -n &#x27;5,7p&#x27;</span><br><span class="line">5 lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin</span><br><span class="line">6 sync:x:5:0:sync:/sbin:/bin/sync</span><br><span class="line">7 shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown</span><br></pre></td></tr></table></figure>
 
 <p>可以透过这个 sed 的以行为单位的显示功能， 就能够将某一个文件内的某些行号选择出来显示。</p>
 <h3 id="数据的搜寻并显示"><a href="#数据的搜寻并显示" class="headerlink" title="数据的搜寻并显示"></a>数据的搜寻并显示</h3><p>搜索 &#x2F;etc&#x2F;passwd有root关键字的行</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs elixir">nl /etc/passwd | sed <span class="hljs-string">&#x27;/root/p&#x27;</span><br><span class="hljs-number">1</span>  <span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/bash</span><br><span class="hljs-number">1</span>  <span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/bash</span><br><span class="hljs-number">2</span>  <span class="hljs-symbol">daemon:</span><span class="hljs-symbol">x:</span><span class="hljs-number">1</span><span class="hljs-symbol">:</span><span class="hljs-number">1</span><span class="hljs-symbol">:daemon</span><span class="hljs-symbol">:/usr/sbin</span><span class="hljs-symbol">:/bin/sh</span><br><span class="hljs-number">3</span>  <span class="hljs-symbol">bin:</span><span class="hljs-symbol">x:</span><span class="hljs-number">2</span><span class="hljs-symbol">:</span><span class="hljs-number">2</span><span class="hljs-symbol">:bin</span><span class="hljs-symbol">:/bin</span><span class="hljs-symbol">:/bin/sh</span><br><span class="hljs-number">4</span>  <span class="hljs-symbol">sys:</span><span class="hljs-symbol">x:</span><span class="hljs-number">3</span><span class="hljs-symbol">:</span><span class="hljs-number">3</span><span class="hljs-symbol">:sys</span><span class="hljs-symbol">:/dev</span><span class="hljs-symbol">:/bin/sh</span><br><span class="hljs-number">5</span>  <span class="hljs-symbol">sync:</span><span class="hljs-symbol">x:</span><span class="hljs-number">4</span><span class="hljs-symbol">:</span><span class="hljs-number">65534</span><span class="hljs-symbol">:sync</span><span class="hljs-symbol">:/bin</span><span class="hljs-symbol">:/bin/sync</span><br>....下面忽略 <br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed &#x27;/root/p&#x27;</span><br><span class="line">1  root:x:0:0:root:/root:/bin/bash</span><br><span class="line">1  root:x:0:0:root:/root:/bin/bash</span><br><span class="line">2  daemon:x:1:1:daemon:/usr/sbin:/bin/sh</span><br><span class="line">3  bin:x:2:2:bin:/bin:/bin/sh</span><br><span class="line">4  sys:x:3:3:sys:/dev:/bin/sh</span><br><span class="line">5  sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line">....下面忽略 </span><br></pre></td></tr></table></figure>
 
 <p>如果root找到，除了输出所有行，还会输出匹配行。</p>
 <p>使用-n的时候将只打印包含模板的行。</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir">nl /etc/passwd | sed -n <span class="hljs-string">&#x27;/root/p&#x27;</span><br><span class="hljs-number">1</span>  <span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/bash</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed -n &#x27;/root/p&#x27;</span><br><span class="line">1  root:x:0:0:root:/root:/bin/bash</span><br></pre></td></tr></table></figure>
 
 <h3 id="数据的搜寻并删除"><a href="#数据的搜寻并删除" class="headerlink" title="数据的搜寻并删除"></a>数据的搜寻并删除</h3><p>删除&#x2F;etc&#x2F;passwd所有包含root的行，其他行输出</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs elixir">nl /etc/passwd | sed  <span class="hljs-string">&#x27;/root/d&#x27;</span><br><span class="hljs-number">2</span>  <span class="hljs-symbol">daemon:</span><span class="hljs-symbol">x:</span><span class="hljs-number">1</span><span class="hljs-symbol">:</span><span class="hljs-number">1</span><span class="hljs-symbol">:daemon</span><span class="hljs-symbol">:/usr/sbin</span><span class="hljs-symbol">:/bin/sh</span><br><span class="hljs-number">3</span>  <span class="hljs-symbol">bin:</span><span class="hljs-symbol">x:</span><span class="hljs-number">2</span><span class="hljs-symbol">:</span><span class="hljs-number">2</span><span class="hljs-symbol">:bin</span><span class="hljs-symbol">:/bin</span><span class="hljs-symbol">:/bin/sh</span><br>....下面忽略<br><span class="hljs-comment">#第一行的匹配root已经删除了</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed  &#x27;/root/d&#x27;</span><br><span class="line">2  daemon:x:1:1:daemon:/usr/sbin:/bin/sh</span><br><span class="line">3  bin:x:2:2:bin:/bin:/bin/sh</span><br><span class="line">....下面忽略</span><br><span class="line">#第一行的匹配root已经删除了</span><br></pre></td></tr></table></figure>
 
 <h3 id="数据的搜寻并执行命令"><a href="#数据的搜寻并执行命令" class="headerlink" title="数据的搜寻并执行命令"></a>数据的搜寻并执行命令</h3><p>搜索&#x2F;etc&#x2F;passwd,找到root对应的行，执行后面花括号中的一组命令，每个命令之间用分号分隔，这里把bash替换为blueshell，再输出这行：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir">nl /etc/passwd | sed -n <span class="hljs-string">&#x27;/root/&#123;s/bash/blueshell/;p;q&#125;&#x27;</span>    <br><span class="hljs-number">1</span>  <span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/blueshell</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed -n &#x27;/root/&#123;s/bash/blueshell/;p;q&#125;&#x27;    </span><br><span class="line">1  root:x:0:0:root:/root:/bin/blueshell</span><br></pre></td></tr></table></figure>
 
 <p>最后的q是退出。</p>
 <h3 id="数据的搜寻并替换"><a href="#数据的搜寻并替换" class="headerlink" title="数据的搜寻并替换"></a>数据的搜寻并替换</h3><p>除了整行的处理模式之外， sed 还可以用行为单位进行部分数据的搜寻并取代。基本上 sed 的搜寻与替代的与 vi 相当的类似！他有点像这样：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">sed</span> <span class="hljs-string">&#x27;s/要被取代的字串/新的字串/g&#x27;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;s/要被取代的字串/新的字串/g&#x27;</span><br></pre></td></tr></table></figure>
 
 <p>先观察原始信息，利用 &#x2F;sbin&#x2F;ifconfig 查询 IP</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs elixir">[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># /sbin/ifconfig eth0</span><br>eth0 <span class="hljs-title class_">Link</span> <span class="hljs-symbol">encap:</span><span class="hljs-title class_">Ethernet</span> <span class="hljs-title class_">HWaddr</span> <span class="hljs-number">00</span><span class="hljs-symbol">:</span><span class="hljs-number">90</span><span class="hljs-symbol">:CC</span><span class="hljs-symbol">:A6</span><span class="hljs-symbol">:</span><span class="hljs-number">34</span><span class="hljs-symbol">:</span><span class="hljs-number">84</span><br>inet <span class="hljs-symbol">addr:</span><span class="hljs-number">192.168</span>.<span class="hljs-number">1.100</span> <span class="hljs-symbol">Bcast:</span><span class="hljs-number">192.168</span>.<span class="hljs-number">1.255</span> <span class="hljs-symbol">Mask:</span><span class="hljs-number">255.255</span>.<span class="hljs-number">255.0</span><br>inet6 <span class="hljs-symbol">addr:</span> fe80::<span class="hljs-number">290</span><span class="hljs-symbol">:ccff</span><span class="hljs-symbol">:fea6</span><span class="hljs-symbol">:</span><span class="hljs-number">3484</span>/<span class="hljs-number">64</span> <span class="hljs-symbol">Scope:</span><span class="hljs-title class_">Link</span><br><span class="hljs-title class_">UP</span> <span class="hljs-title class_">BROADCAST</span> <span class="hljs-title class_">RUNNING</span> <span class="hljs-title class_">MULTICAST</span> <span class="hljs-symbol">MTU:</span><span class="hljs-number">1500</span> <span class="hljs-symbol">Metric:</span><span class="hljs-number">1</span><br>.....(以下省略).....<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# /sbin/ifconfig eth0</span><br><span class="line">eth0 Link encap:Ethernet HWaddr 00:90:CC:A6:34:84</span><br><span class="line">inet addr:192.168.1.100 Bcast:192.168.1.255 Mask:255.255.255.0</span><br><span class="line">inet6 addr: fe80::290:ccff:fea6:3484/64 Scope:Link</span><br><span class="line">UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1</span><br><span class="line">.....(以下省略).....</span><br></pre></td></tr></table></figure>
 
 <p>本机的ip是192.168.1.100。</p>
 <p>将 IP 前面的部分予以删除</p>
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs accesslog"><span class="hljs-string">[root@www ~]</span># /sbin/ifconfig eth0 | grep &#x27;inet addr&#x27; | sed &#x27;s/^.*addr://g&#x27;<br><span class="hljs-number">192.168.1.100</span> Bcast:<span class="hljs-number">192</span>.<span class="hljs-number">168</span>.<span class="hljs-number">1</span>.<span class="hljs-number">255</span> Mask:<span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">255</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# /sbin/ifconfig eth0 | grep &#x27;inet addr&#x27; | sed &#x27;s/^.*addr://g&#x27;</span><br><span class="line">192.168.1.100 Bcast:192.168.1.255 Mask:255.255.255.0</span><br></pre></td></tr></table></figure>
 
 <p>接下来则是删除后续的部分，亦即： 192.168.1.100 Bcast:192.168.1.255 Mask:255.255.255.0</p>
 <p>将 IP 后面的部分予以删除</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gradle">[root@www ~]# <span class="hljs-regexp">/sbin/i</span>fconfig eth0 | <span class="hljs-keyword">grep</span> <span class="hljs-string">&#x27;inet addr&#x27;</span> | sed <span class="hljs-string">&#x27;s/^.*addr://g&#x27;</span> | sed <span class="hljs-string">&#x27;s/Bcast.*$//g&#x27;</span><br><span class="hljs-number">192.168</span>.<span class="hljs-number">1.100</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# /sbin/ifconfig eth0 | grep &#x27;inet addr&#x27; | sed &#x27;s/^.*addr://g&#x27; | sed &#x27;s/Bcast.*$//g&#x27;</span><br><span class="line">192.168.1.100</span><br></pre></td></tr></table></figure>
 
 <h3 id="多点编辑"><a href="#多点编辑" class="headerlink" title="多点编辑"></a>多点编辑</h3><p>一条sed命令，删除&#x2F;etc&#x2F;passwd第三行到末尾的数据，并把bash替换为blueshell</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs elixir">nl /etc/passwd | sed -e <span class="hljs-string">&#x27;3,$d&#x27;</span> -e <span class="hljs-string">&#x27;s/bash/blueshell/&#x27;</span><br><span class="hljs-number">1</span>  <span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/blueshell</span><br><span class="hljs-number">2</span>  <span class="hljs-symbol">daemon:</span><span class="hljs-symbol">x:</span><span class="hljs-number">1</span><span class="hljs-symbol">:</span><span class="hljs-number">1</span><span class="hljs-symbol">:daemon</span><span class="hljs-symbol">:/usr/sbin</span><span class="hljs-symbol">:/bin/sh</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed -e &#x27;3,$d&#x27; -e &#x27;s/bash/blueshell/&#x27;</span><br><span class="line">1  root:x:0:0:root:/root:/bin/blueshell</span><br><span class="line">2  daemon:x:1:1:daemon:/usr/sbin:/bin/sh</span><br></pre></td></tr></table></figure>
 
 <p>-e表示多点编辑，第一个编辑命令删除&#x2F;etc&#x2F;passwd第三行到末尾的数据，第二条命令搜索bash替换为blueshell。</p>
 <h3 id="直接修改文件内容-危险动作"><a href="#直接修改文件内容-危险动作" class="headerlink" title="直接修改文件内容(危险动作)"></a>直接修改文件内容(危险动作)</h3><p>sed 可以直接修改文件的内容，不必使用管道命令或数据流重导向！ 不过，由於这个动作会直接修改到原始的文件，所以请你千万不要随便拿系统配置来测试！ 我们还是使用文件 regular_express.txt 文件来测试看看吧！</p>
 <p>regular_express.txt 文件内容如下：</p>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs prolog">[root@www ~]# cat regular_express.txt <br>runoob.<br>google.<br>taobao.<br>facebook.<br>zhihu-<br>weibo-<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# cat regular_express.txt </span><br><span class="line">runoob.</span><br><span class="line">google.</span><br><span class="line">taobao.</span><br><span class="line">facebook.</span><br><span class="line">zhihu-</span><br><span class="line">weibo-</span><br></pre></td></tr></table></figure>
 
 <p>利用 sed 将 regular_express.txt 内每一行结尾若为 . 则换成 !</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs autoit">[root<span class="hljs-symbol">@www</span> ~]<span class="hljs-meta"># sed -i <span class="hljs-string">&#x27;s/\.$/\!/g&#x27;</span> regular_express.txt</span><br>[root<span class="hljs-symbol">@www</span> ~]<span class="hljs-meta"># cat regular_express.txt </span><br>runoob!<br>google!<br>taobao!<br>facebook!<br>zhihu-<br>weibo-<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# sed -i &#x27;s/\.$/\!/g&#x27; regular_express.txt</span><br><span class="line">[root@www ~]# cat regular_express.txt </span><br><span class="line">runoob!</span><br><span class="line">google!</span><br><span class="line">taobao!</span><br><span class="line">facebook!</span><br><span class="line">zhihu-</span><br><span class="line">weibo-</span><br></pre></td></tr></table></figure>
 
 <p>:q:q</p>
 <p>利用 sed 直接在 regular_express.txt 最后一行加入 <strong># This is a test</strong>:</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">[root@www ~]<span class="hljs-comment"># sed -i &#x27;$a # This is a test&#x27; regular_express.txt</span><br>[root@www ~]<span class="hljs-comment"># cat regular_express.txt </span><br>runoob!<br>google!<br>taobao!<br>facebook!<br>zhihu-<br>weibo-<br><span class="hljs-comment"># This is a test</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# sed -i &#x27;$a # This is a test&#x27; regular_express.txt</span><br><span class="line">[root@www ~]# cat regular_express.txt </span><br><span class="line">runoob!</span><br><span class="line">google!</span><br><span class="line">taobao!</span><br><span class="line">facebook!</span><br><span class="line">zhihu-</span><br><span class="line">weibo-</span><br><span class="line"># This is a test</span><br></pre></td></tr></table></figure>
 
 <p>由于$ 代表的是最后一行，而 a 的动作是新增，因此该文件最后新增 <strong># This is a test</strong>！</p>
 <p>sed 的 <strong>-i</strong> 选项可以直接修改文件内容，这功能非常有帮助！举例来说，如果你有一个 100 万行的文件，你要在第 100 行加某些文字，此时使用 vim 可能会疯掉！因为文件太大了！那怎办？就利用 sed 啊！透过 sed 直接修改&#x2F;取代的功能，你甚至不需要使用 vim 去修订！</p>
 <p>笔记</p>
 <p>追加行的说明：</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe">sed -e <span class="hljs-number">4</span>a\<span class="hljs-keyword">new</span><span class="hljs-type">line</span> testfile<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e 4a\newline testfile</span><br></pre></td></tr></table></figure>
 
 <p>a 动作是在匹配的行之后追加字符串，追加的字符串中可以包含换行符（实现追加多行的情况）。</p>
 <p>追加一行的话前后都不需要添加换行符 <strong>\n</strong>，只有追加多行时在行与行之间才需要添加换行符(最后一行最后也无需添加，添加的话会多出一个空行)。</p>
 <p>man sed 信息：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">Append <span class="hljs-keyword">text</span>, which has <span class="hljs-keyword">each</span> embedded newline preceded <span class="hljs-keyword">by</span> <span class="hljs-keyword">a</span> <span class="hljs-literal">backslash</span>.<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Append text, which has each embedded newline preceded by a backslash.</span><br></pre></td></tr></table></figure>
 
 <p>例如：</p>
 <p>4 行之后添加一行：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">sed</span> -e <span class="hljs-string">&#x27;4 a newline&#x27;</span> testfile<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &#x27;4 a newline&#x27; testfile</span><br></pre></td></tr></table></figure>
 
 <p>4 行之后追加 2 行：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">sed</span> -e <span class="hljs-string">&#x27;4 a newline\nnewline2&#x27;</span> testfile<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &#x27;4 a newline\nnewline2&#x27; testfile</span><br></pre></td></tr></table></figure>
 
 <p>4 行之后追加 3 行(2 行文字和 1 行空行)</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">sed</span> -e <span class="hljs-string">&#x27;4 a newline\nnewline2\n&#x27;</span> testfile<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &#x27;4 a newline\nnewline2\n&#x27; testfile</span><br></pre></td></tr></table></figure>
 
 <p>4 行之后追加 1 行空行：</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-meta">#错误：sed -e <span class="hljs-string">&#x27;4 a \n&#x27;</span> testfile</span><br>sed -e <span class="hljs-string">&#x27;4 a \ &#x27;</span> testfile 实际上<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#错误：sed -e &#x27;4 a \n&#x27; testfile</span><br><span class="line">sed -e &#x27;4 a \ &#x27; testfile 实际上</span><br></pre></td></tr></table></figure>
 
 <p>实际上是插入了一个含有一个空格的行，插入一个完全为空的空行没有找到方法（不过应该没有这个需求吧，都要插入行了插入空行干嘛呢？）</p>
 <p>添加空行：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># 可以添加一个完全为空的空行</span><br><span class="hljs-attribute">sed</span> <span class="hljs-string">&#x27;4 a \\&#x27;</span><br><br><span class="hljs-comment"># 可以添加两个完全为空的空行</span><br>sed <span class="hljs-string">&#x27;4 a \\n&#x27;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 可以添加一个完全为空的空行</span><br><span class="line">sed &#x27;4 a \\&#x27;</span><br><span class="line"></span><br><span class="line"># 可以添加两个完全为空的空行</span><br><span class="line">sed &#x27;4 a \\n&#x27;</span><br></pre></td></tr></table></figure>
 
 <h2 id="统计log中某一时间段的数量-没有测试"><a href="#统计log中某一时间段的数量-没有测试" class="headerlink" title="统计log中某一时间段的数量[没有测试]"></a>统计log中某一时间段的数量[没有测试]</h2><p><code>sed -n &#39;/2017-01-04 11:00:00/,/2017-01-04 11:20:55/p&#39;  ejabberd.log</code></p>
 <p>来源：<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-sed.html">https://www.runoob.com/linux/linux-comm-sed.html</a></p>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Linux sed 命令</div>
-      <div>https://www.chengyao.xyz/2021/05/01/Linux sed 命令/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>CY</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2021年5月1日</div>
-        </div>
-      
-      
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
-            
-            
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/05/01/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4grep%20egrep%20fgrep%20zgrep%E7%94%A8%E6%B3%95%E4%BB%A5%E5%8F%8A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="linux基本命令grep egrep fgrep zgrep用法以及正则表达式">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">linux基本命令grep egrep fgrep zgrep用法以及正则表达式</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/05/01/Linux%20find%20%E5%91%BD%E4%BB%A4/" title="Linux find 命令">
-                        <span class="hidden-mobile">Linux find 命令</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
-      scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Linux sed 命令</p><p><a href="https://www.chengyao.xyz/2021/05/01/Linux sed 命令/">https://www.chengyao.xyz/2021/05/01/Linux sed 命令/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>CY</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-05-01</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2022-08-28</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/05/01/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4grep%20egrep%20fgrep%20zgrep%E7%94%A8%E6%B3%95%E4%BB%A5%E5%8F%8A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">linux基本命令grep egrep fgrep zgrep用法以及正则表达式</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/05/01/Linux%20find%20%E5%91%BD%E4%BB%A4/"><span class="level-item">Linux find 命令</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果也！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">170</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-01T06:56:20.000Z">2022-10-01</time></p><p class="title"><a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-18T05:06:34.000Z">2022-09-18</time></p><p class="title"><a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-04T13:30:39.000Z">2022-09-04</time></p><p class="title"><a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-21T02:56:27.000Z">2022-08-21</time></p><p class="title"><a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-19T12:54:39.000Z">2022-08-19</time></p><p class="title"><a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown基本语法</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">五月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

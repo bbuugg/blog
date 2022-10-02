@@ -14,6 +14,8 @@ tags:
 
   [lisi[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]$
 
+<!-- more -->
+
 #### Linux系统基本概念
 
 - Linux系统而言：

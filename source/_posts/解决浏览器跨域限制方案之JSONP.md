@@ -11,6 +11,8 @@ tags:
 JSONP即：JSON with Padding，是一种解决因浏览器跨域限制不允许访问跨域资源的方法。
  JSONP是一个非官方的协议，它允许在[服务器](https://cloud.tencent.com/product/cvm?from=10680)端返回[javascript](https://cloud.tencent.com/product/sms?from=10680)标签到浏览器，在浏览器端通过调用javascript函数的形式实现访问跨域资源或数据。
 
+<!-- more -->
+
 ## 二.JSONP和JSON的关系
 
 JSONP是一种<u>解决因浏览器跨域限制不允许访问跨域资源的方法</u>；而JSON是一种<u>数据格式</u>，与xml类似。

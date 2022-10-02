@@ -1,678 +1,460 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="CY">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="笔记">
-<meta property="og:url" content="https://www.chengyao.xyz/page/11/index.html">
-<meta property="og:site_name" content="笔记">
-<meta property="og:description" content="笔记">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="CY">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>笔记</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 100vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
-          
-        </div>
-
-        
-      </div>
-
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          style="margin-top: 0">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/16/ll%20%E5%91%BD%E4%BB%A4%E6%8E%92%E5%BA%8F%E8%AF%A6%E8%A7%A3/" target="_self">
-          ll 命令排序详解
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/16/ll%20%E5%91%BD%E4%BB%A4%E6%8E%92%E5%BA%8F%E8%AF%A6%E8%A7%A3/" target="_self">
-        <div>
-          1234ll  默认按照文件名字母顺序排序，A在最前ll -SX  按照文件类型排序，扩展名首字母排序，文件夹最前ll -St  按照创建时间排序，最近的最前ll -SS  按照大小排序，最大的最前  选项 123456789101112131415-S按文件大小排序      --sort &#x3D; WORD按WORD而不是名称排序：无（-U），大小（-S），	  		时间（-t），版本（-v），扩展
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-16 21:54" pubdate>
-              2021-05-16
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/04/SSH%E8%AE%BE%E7%BD%AE%E5%85%AC%E9%92%A5%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/" target="_self">
-          SSH设置公钥实现免密登录
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/04/SSH%E8%AE%BE%E7%BD%AE%E5%85%AC%E9%92%A5%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/" target="_self">
-        <div>
-          &gt; 前提准备： 机器A需要使用免密登录连接机器B。测试机器为笔记本一台【wsl2 ubuntu】， centos7.6一台 准备步骤一、首先在机器A上执行下面的命令1ssh-keygen -t rsa 执行结果如下： 123456789101112131415161718192021222324root@DESKTOP-1SDORV4:~&#x2F;.ssh# ssh-keygen -t rsaGen
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-04 16:51" pubdate>
-              2021-05-04
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/03/ssh%20%E4%B8%8E%E8%BF%9C%E7%A8%8B%E6%9C%BA%E5%99%A8%E4%BF%9D%E6%8C%81%E5%BF%83%E8%B7%B3%EF%BC%88linux%EF%BC%89/" target="_self">
-          ssh 与远程机器保持心跳（linux）
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/03/ssh%20%E4%B8%8E%E8%BF%9C%E7%A8%8B%E6%9C%BA%E5%99%A8%E4%BF%9D%E6%8C%81%E5%BF%83%E8%B7%B3%EF%BC%88linux%EF%BC%89/" target="_self">
-        <div>
-          在连接远程SSH服务的时候，经常会发生长时间后的断线，或者无响应（无法再键盘输入）。总体来说有两个方法：一、客户端定时发送心跳1.putty、SecureCRT、XShell都有这个功能，设置请自行搜索 2.此外在Linux下： #修改本机&#x2F;etc&#x2F;ssh&#x2F;ssh_configvim &#x2F;etc&#x2F;ssh&#x2F;ssh_config 添加12Ser
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-03 14:42" pubdate>
-              2021-05-03
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/01/Systemctl%E5%92%8Cservice%E3%80%81chkconfig%E5%91%BD%E4%BB%A4%E7%9A%84%E5%85%B3%E7%B3%BB/" target="_self">
-          Systemctl和service、chkconfig命令的关系
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/01/Systemctl%E5%92%8Cservice%E3%80%81chkconfig%E5%91%BD%E4%BB%A4%E7%9A%84%E5%85%B3%E7%B3%BB/" target="_self">
-        <div>
-          systemctl&gt; systemctl命令：是一个systemd工具，主要负责控制systemd系统和服务管理器。 1234567systemctl list-unitssystemctl start firewalld systemctl restart firewalldsystemctl stop fitrwalldsystemctl disable firewalldsystemc
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-01 21:31" pubdate>
-              2021-05-01
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/01/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4grep%20egrep%20fgrep%20zgrep%E7%94%A8%E6%B3%95%E4%BB%A5%E5%8F%8A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_self">
-          linux基本命令grep egrep fgrep zgrep用法以及正则表达式
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/01/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4grep%20egrep%20fgrep%20zgrep%E7%94%A8%E6%B3%95%E4%BB%A5%E5%8F%8A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_self">
-        <div>
-          一、grep、egrep、fgrep命令 本文中主要介绍了linux系统下grep egrep fgrep命令和正则表达式的基本参数和使用格式、方法。 1.1、基本定义： grep（global search regular RE ) and print out the line,全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它只能使用基本的正则表达式来搜索文本，并把匹配的行打印出来
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-01 21:23" pubdate>
-              2021-05-01
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/01/Linux%20sed%20%E5%91%BD%E4%BB%A4/" target="_self">
-          Linux sed 命令
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/01/Linux%20sed%20%E5%91%BD%E4%BB%A4/" target="_self">
-        <div>
-          Linux sed 命令是利用脚本来处理文本文件。 sed 可依照脚本的指令来处理、编辑文本文件。 Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。 语法1sed [-hnV][-e&lt;script&gt;][-f&lt;script文件&gt;][文本文件]  参数说明： 12345-e&lt;script&gt;或--expression&#x3D;&lt;script
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-01 20:50" pubdate>
-              2021-05-01
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/01/Linux%20find%20%E5%91%BD%E4%BB%A4/" target="_self">
-          Linux find 命令
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/01/Linux%20find%20%E5%91%BD%E4%BB%A4/" target="_self">
-        <div>
-          Linux find 命令用来在指定目录下查找文件。任何位于参数之前的字符串都将被视为欲查找的目录名。如果使用该命令时，不设置任何参数，则 find 命令将在当前目录下查找子目录与文件。并且将查找到的子目录和文件全部进行显示。 语法1find   path   -option   [   -print ]   [ -exec   -ok   command ]   &amp;#123;&amp;#125; \;
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-01 20:38" pubdate>
-              2021-05-01
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/21/Ubuntu%E7%9A%84messages%20Log%E5%BC%80%E5%90%AF/" target="_self">
-          Ubuntu的messages Log开启
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/21/Ubuntu%E7%9A%84messages%20Log%E5%BC%80%E5%90%AF/" target="_self">
-        <div>
-          ubuntu开启messages logless &#x2F;etc&#x2F;rsyslog.d&#x2F;50-default.conf  1234#*.&#x3D;info;*.&#x3D;notice;*.&#x3D;warn;\#       auth,authpriv.none;\#       cron,daemon.none;\#       mail,news.none          -&#x2F;var&#x2F;log&#x2F;messages  删掉以上部
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-21 22:49" pubdate>
-              2021-04-21
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/19/CURL%E5%91%BD%E4%BB%A4%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/" target="_self">
-          CURL命令用法介绍
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/19/CURL%E5%91%BD%E4%BB%A4%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/" target="_self">
-        <div>
-          输出状态码1curl -I -m 10 -o &#x2F;dev&#x2F;null -s -w %&amp;#123;http_code&amp;#125; www.baidu.com   -I 仅测试HTTP头 -m 10 最多查询10s -o &#x2F;dev&#x2F;null 屏蔽原有输出信息 -s silent 模式，不输出任何东西 -w %{http_code} 控制额外输出  -w 参数如下  url_effect
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-19 18:18" pubdate>
-              2021-04-19
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/04/18/echo%20-e%20%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" target="_self">
-          echo -e 命令详解
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/18/echo%20-e%20%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" target="_self">
-        <div>
-          echo在php中是输入那么在linux中是不是也是输入呢，当然echo在linux也是输入不过它的用法比php强大多了可以带参数及一些东西，下面我们来看一篇关于linux echo命令介绍及-n、-e参数详解吧，具体如下所示。 echo命令用于在shell中打印shell变量的值，或者直接输出指定的字符串。linux的echo命令，在shell编程中极为常用, 在终端下打印变量value的时候也
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-18 19:40" pubdate>
-              2021-04-18
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/10/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/#board">9</a><a class="page-number" href="/page/10/#board">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/#board">12</a><a class="page-number" href="/page/13/#board">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/12/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="笔记"><meta property="og:type" content="blog"><meta property="og:title" content="笔记"><meta property="og:url" content="https://www.chengyao.xyz/"><meta property="og:site_name" content="笔记"><meta property="og:description" content="笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz"},"headline":"笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"笔记"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-05-16T14:30:25.000Z" title="2021/5/16 下午10:30:25">2021-05-16</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">4 分钟读完 (大约621个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/05/16/%E5%87%A0%E5%A5%97%E5%A5%BD%E7%9C%8B%E7%9A%84%E7%BE%8E%E5%8C%96%E6%A1%86CSS/">几套好看的美化框CSS</a></h1><div class="content"><p>&gt; 新技能GET感谢zmki小伙伴</p>
+<p><img src="/upload/79af1c468b846726c87cc1afeada45a3.jpg"><br><strong>CSS代码</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*WordPress宇宙超级无敌美化框 by:zmki  www.zmki.cn/5458.html*/</span></span><br><span class="line"><span class="selector-id">#zm_mhz</span>,<span class="selector-id">#zm_xgh</span>,<span class="selector-id">#zm_tkzj</span>,<span class="selector-id">#zm_xyz</span>,<span class="selector-id">#zm_gll</span> ,<span class="selector-id">#zm_xty</span>,<span class="selector-id">#zm_yyz</span>,<span class="selector-id">#zm_szh</span>,<span class="selector-id">#zm_wbk</span>&#123;</span><br><span class="line">    <span class="comment">/*圆角值,在此定义*/</span></span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*迷幻紫*/</span></span><br><span class="line"><span class="selector-id">#zm_mhz</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#555555</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">15px</span> <span class="number">15px</span> <span class="number">15px</span> <span class="number">35px</span>;</span><br><span class="line">    <span class="comment">/*border-radius: 10px;*/</span></span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">190</span>, <span class="number">196</span>, <span class="number">252</span>), -<span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">189</span>, <span class="number">196</span>, <span class="number">252</span>);</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#8EC5FC</span>;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(<span class="number">62deg</span>,<span class="number">#8EC5FC</span> <span class="number">0%</span>,<span class="number">#E0C3FC</span> <span class="number">100%</span>);</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">-webkit-linear-gradient</span>(<span class="number">62deg</span>,<span class="number">#8EC5FC</span> <span class="number">0%</span>,<span class="number">#E0C3FC</span> <span class="number">100%</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*西瓜红*/</span></span><br><span class="line"><span class="selector-id">#zm_xgh</span>&#123;</span><br><span class="line">        <span class="attribute">color</span>: <span class="number">#555555</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">15px</span> <span class="number">15px</span> <span class="number">15px</span> <span class="number">35px</span>;</span><br><span class="line">    <span class="comment">/*border-radius: 10px;*/</span></span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">255</span>, <span class="number">176</span>, <span class="number">172</span>), -<span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">255</span>, <span class="number">161</span>, <span class="number">174</span>);</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#ff9a8b66</span>;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(<span class="number">220deg</span>,<span class="number">#FF9A8B</span> <span class="number">0%</span>,<span class="number">#ff6a8838</span> <span class="number">55%</span>,<span class="number">#FF99AC</span> <span class="number">100%</span>);</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">-webkit-linear-gradient</span>(<span class="number">220deg</span>,<span class="number">#ff9a8b7a</span> <span class="number">0%</span>,<span class="number">#ff6a88ab</span> <span class="number">55%</span>,<span class="number">#ff99ac82</span> <span class="number">100%</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*华为P30 天空之境*/</span></span><br><span class="line"><span class="selector-id">#zm_tkzj</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#555555</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">15px</span> <span class="number">15px</span> <span class="number">15px</span> <span class="number">35px</span>;</span><br><span class="line">    <span class="comment">/*border-radius: 10px;*/</span></span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">253</span>, <span class="number">223</span>, <span class="number">234</span>), -<span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">215</span>, <span class="number">240</span>, <span class="number">243</span>);</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#FFDEE9</span>;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(<span class="number">0deg</span>,<span class="number">#ffdee9c4</span> <span class="number">0%</span>,<span class="number">#b5fffc8f</span> <span class="number">100%</span>);</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">-webkit-linear-gradient</span>(<span class="number">0deg</span>,<span class="number">#ffdee9c4</span> <span class="number">0%</span>,<span class="number">#b5fffc8f</span> <span class="number">100%</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*小宇宙*/</span></span><br><span class="line"><span class="selector-id">#zm_xyz</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#eeeeee</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">15px</span> <span class="number">15px</span> <span class="number">15px</span> <span class="number">35px</span>;</span><br><span class="line">    <span class="comment">/*border-radius: 10px;*/</span></span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">12</span>, <span class="number">85</span>, <span class="number">141</span>), -<span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgba</span>(<span class="number">10</span>, <span class="number">58</span>, <span class="number">93</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">radial-gradient</span>( circle <span class="number">263px</span> at <span class="number">100.2%</span> <span class="number">3%</span>, <span class="built_in">rgba</span>(<span class="number">12</span>,<span class="number">85</span>,<span class="number">141</span>,<span class="number">1</span>) <span class="number">31.1%</span>, <span class="built_in">rgba</span>(<span class="number">205</span>,<span class="number">181</span>,<span class="number">93</span>,<span class="number">1</span>) <span class="number">36.4%</span>, <span class="built_in">rgba</span>(<span class="number">244</span>,<span class="number">102</span>,<span class="number">90</span>,<span class="number">1</span>) <span class="number">50.9%</span>, <span class="built_in">rgba</span>(<span class="number">199</span>,<span class="number">206</span>,<span class="number">187</span>,<span class="number">1</span>) <span class="number">60.7%</span>, <span class="built_in">rgba</span>(<span class="number">249</span>,<span class="number">140</span>,<span class="number">69</span>,<span class="number">1</span>) <span class="number">72.5%</span>, <span class="built_in">rgba</span>(<span class="number">12</span>,<span class="number">73</span>,<span class="number">116</span>,<span class="number">1</span>) <span class="number">72.6%</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*橄榄绿*/</span></span><br><span class="line"><span class="selector-id">#zm_gll</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#eeeeee</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">15px</span> <span class="number">15px</span> <span class="number">15px</span> <span class="number">35px</span>;</span><br><span class="line">    <span class="comment">/*border-radius: 10px;*/</span></span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">68</span>, <span class="number">110</span>, <span class="number">92</span>), -<span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">204</span>, <span class="number">212</span>, <span class="number">163</span>);</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>( <span class="number">102deg</span>, <span class="built_in">rgba</span>(<span class="number">68</span>,<span class="number">110</span>,<span class="number">92</span>,<span class="number">1</span>) <span class="number">17.4%</span>, <span class="built_in">rgba</span>(<span class="number">107</span>,<span class="number">156</span>,<span class="number">120</span>,<span class="number">1</span>) <span class="number">49.3%</span>, <span class="built_in">rgba</span>(<span class="number">154</span>,<span class="number">183</span>,<span class="number">130</span>,<span class="number">1</span>) <span class="number">83.4%</span>, <span class="built_in">rgba</span>(<span class="number">247</span>,<span class="number">237</span>,<span class="number">191</span>,<span class="number">1</span>) <span class="number">110.3%</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*小太阳*/</span></span><br><span class="line"><span class="selector-id">#zm_xty</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">15px</span> <span class="number">15px</span> <span class="number">15px</span> <span class="number">35px</span>;</span><br><span class="line">     <span class="comment">/*border-radius: 10px; */</span></span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">253</span>, <span class="number">223</span>, <span class="number">234</span>), -<span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">215</span>, <span class="number">240</span>, <span class="number">243</span>);</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">radial-gradient</span>( circle farthest-corner at -<span class="number">8.9%</span> <span class="number">51.2%</span>, <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">124</span>,<span class="number">0</span>,<span class="number">1</span>) <span class="number">0%</span>, <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">124</span>,<span class="number">0</span>,<span class="number">1</span>) <span class="number">15.9%</span>, <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">163</span>,<span class="number">77</span>,<span class="number">1</span>) <span class="number">15.9%</span>, <span class="built_in">rgba</span>(<span class="number">255</span>,<span class="number">163</span>,<span class="number">77</span>,<span class="number">1</span>) <span class="number">24.4%</span>, <span class="built_in">rgba</span>(<span class="number">19</span>,<span class="number">30</span>,<span class="number">37</span>,<span class="number">1</span>) <span class="number">24.5%</span>, <span class="built_in">rgba</span>(<span class="number">19</span>,<span class="number">30</span>,<span class="number">37</span>,<span class="number">1</span>) <span class="number">66%</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*优雅紫*/</span></span><br><span class="line"><span class="selector-id">#zm_yyz</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">15px</span> <span class="number">15px</span> <span class="number">15px</span> <span class="number">35px</span>;</span><br><span class="line">    <span class="comment">/*border-radius: 10px;*/</span></span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">175</span>, <span class="number">160</span>, <span class="number">208</span>), -<span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgba</span>(<span class="number">177</span>, <span class="number">161</span>, <span class="number">207</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">radial-gradient</span>( circle farthest-corner at <span class="number">10%</span> <span class="number">20%</span>, <span class="built_in">rgba</span>(<span class="number">95</span>,<span class="number">117</span>,<span class="number">227</span>,<span class="number">1</span>) <span class="number">0%</span>, <span class="built_in">rgba</span>(<span class="number">188</span>,<span class="number">167</span>,<span class="number">205</span>,<span class="number">1</span>) <span class="number">90%</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*深邃黑*/</span></span><br><span class="line"><span class="selector-id">#zm_szh</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#c7c7c7</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">15px</span> <span class="number">15px</span> <span class="number">15px</span> <span class="number">35px</span>;</span><br><span class="line">    <span class="comment">/*border-radius: 5px;*/</span></span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgb</span>(<span class="number">155</span>, <span class="number">170</span>, <span class="number">185</span>), -<span class="number">6px</span> <span class="number">0</span> <span class="number">12px</span> -<span class="number">5px</span> <span class="built_in">rgba</span>(<span class="number">177</span>, <span class="number">161</span>, <span class="number">207</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">radial-gradient</span>( circle farthest-corner at <span class="number">10%</span> <span class="number">20%</span>, <span class="built_in">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>) <span class="number">0%</span>, <span class="built_in">rgba</span>(<span class="number">64</span>,<span class="number">64</span>,<span class="number">64</span>,<span class="number">1</span>) <span class="number">90.2%</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*无边框*/</span></span><br><span class="line"><span class="selector-id">#zm_wbk</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000000</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">15px</span> <span class="number">15px</span> <span class="number">15px</span> <span class="number">35px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#zm_xyz</span> <span class="selector-tag">a</span> , <span class="selector-id">#zm_gll</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">     <span class="attribute">color</span>: <span class="number">#eeeeee</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#zm_szh</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#c7c7c7</span>;    </span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#zm_xty</span> <span class="selector-tag">a</span>, <span class="selector-id">#zm_yyz</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<p><strong>调用代码</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">&amp;lt;</span>div id=<span class="symbol">&amp;quot;</span>zm_mhz<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span> 迷幻紫<span class="symbol">&amp;lt;</span>/div<span class="symbol">&amp;gt;</span></span><br><span class="line"><span class="symbol">&amp;lt;</span>div id=<span class="symbol">&amp;quot;</span>zm_xgh<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span> 西瓜红<span class="symbol">&amp;lt;</span>/div<span class="symbol">&amp;gt;</span></span><br><span class="line"><span class="symbol">&amp;lt;</span>div id=<span class="symbol">&amp;quot;</span>zm_tkzj<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span>天空之境<span class="symbol">&amp;lt;</span>/div<span class="symbol">&amp;gt;</span></span><br><span class="line"><span class="symbol">&amp;lt;</span>div id=<span class="symbol">&amp;quot;</span>zm_xyz<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span>小宇宙<span class="symbol">&amp;lt;</span>/div<span class="symbol">&amp;gt;</span></span><br><span class="line"><span class="symbol">&amp;lt;</span>div id=<span class="symbol">&amp;quot;</span>zm_gll<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span>撖榄绿<span class="symbol">&amp;lt;</span>/div<span class="symbol">&amp;gt;</span></span><br><span class="line"><span class="symbol">&amp;lt;</span>div id=<span class="symbol">&amp;quot;</span>zm_xty<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span>小太阳<span class="symbol">&amp;lt;</span>/div<span class="symbol">&amp;gt;</span></span><br><span class="line"><span class="symbol">&amp;lt;</span>div id=<span class="symbol">&amp;quot;</span>zm_yyz<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span>优雅紫<span class="symbol">&amp;lt;</span>/div<span class="symbol">&amp;gt;</span></span><br><span class="line"><span class="symbol">&amp;lt;</span>div id=<span class="symbol">&amp;quot;</span>zm_szh<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span>深邃黑<span class="symbol">&amp;lt;</span>/div<span class="symbol">&amp;gt;</span></span><br><span class="line"><span class="symbol">&amp;lt;</span>div id=<span class="symbol">&amp;quot;</span>zm_wbk<span class="symbol">&amp;quot;</span><span class="symbol">&amp;gt;</span>无边框<span class="symbol">&amp;lt;</span>/div<span class="symbol">&amp;gt;</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<p>文章来源于:<a target="_blank" rel="noopener" href="https://www.abcio.cn/C/350.html">https://www.abcio.cn/C/350.html</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-05-16T13:54:36.000Z" title="2021/5/16 下午9:54:36">2021-05-16</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">2 分钟读完 (大约295个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/05/16/ll%20%E5%91%BD%E4%BB%A4%E6%8E%92%E5%BA%8F%E8%AF%A6%E8%A7%A3/">ll 命令排序详解</a></h1><div class="content"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ll  默认按照文件名字母顺序排序，A在最前</span><br><span class="line">ll -SX  按照文件类型排序，扩展名首字母排序，文件夹最前</span><br><span class="line">ll -St  按照创建时间排序，最近的最前</span><br><span class="line">ll -SS  按照大小排序，最大的最前</span><br></pre></td></tr></table></figure>
+
+<p>选项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-S按文件大小排序</span><br><span class="line">      --sort = WORD按WORD而不是名称排序：无（-U），大小（-S），</span><br><span class="line">	  		时间（-t），版本（-v），扩展名（-X）</span><br><span class="line">      --time =带有-l的WORD，将时间显示为WORD而不是默认值</span><br><span class="line">			  修改时间：一次或访问或使用（-u）</span><br><span class="line">			  ctime或状态（-c）；也使用指定的时间</span><br><span class="line">			  作为排序键，如果--sort = time</span><br><span class="line">      --time-style =带有-l的样式，使用样式STYLE显示时间：</span><br><span class="line">			  全ISO，长ISO，ISO，区域设置或+ FORMAT;</span><br><span class="line">			  FORMAT的解释方式类似于&#x27;date&#x27;；如果格式</span><br><span class="line">			  是FORMAT1 &amp;lt;newline&amp;gt; FORMAT2，则FORMAT1适用</span><br><span class="line">			  非最新文件，FORMAT2到最近文件；</span><br><span class="line">			  如果STYLE带有&#x27;posix-&#x27;前缀，则为STYLE</span><br><span class="line">			  仅在POSIX语言环境外生效</span><br><span class="line">  -t按修改时间排序，最新的优先</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-05-04T08:51:01.000Z" title="2021/5/4 下午4:51:01">2021-05-04</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">3 分钟读完 (大约439个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/05/04/SSH%E8%AE%BE%E7%BD%AE%E5%85%AC%E9%92%A5%E5%AE%9E%E7%8E%B0%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95/">SSH设置公钥实现免密登录</a></h1><div class="content"><p>&gt; 前提准备： 机器A需要使用免密登录连接机器B。测试机器为笔记本一台【wsl2 ubuntu】， centos7.6一台</p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><h2 id="步骤一、首先在机器A上执行下面的命令"><a href="#步骤一、首先在机器A上执行下面的命令" class="headerlink" title="步骤一、首先在机器A上执行下面的命令"></a>步骤一、首先在机器A上执行下面的命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">root@DESKTOP-1SDORV4:~/.ssh# ssh-keygen -t rsa</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/root/.ssh/id_rsa):</span><br><span class="line">/root/.ssh/id_rsa already exists.</span><br><span class="line">Overwrite (y/n)? y</span><br><span class="line">Enter passphrase (empty for no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br><span class="line">Your identification has been saved in /root/.ssh/id_rsa</span><br><span class="line">Your public key has been saved in /root/.ssh/id_rsa.pub</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:u5Su/vifiFGxYSj8B6+7kLBAgX1iPrSL0scpPK6E4JM root@DESKTOP-1SDORV4</span><br><span class="line">The key&amp;#039;s randomart image is:</span><br><span class="line">+---[RSA 3072]----+</span><br><span class="line">|.o               |</span><br><span class="line">|. *..  .         |</span><br><span class="line">| = +o o +        |</span><br><span class="line">|. +  o + +       |</span><br><span class="line">|o+.+ .. S        |</span><br><span class="line">|*.Bo+. + o       |</span><br><span class="line">|oE.+o o +        |</span><br><span class="line">|. o  . B o .     |</span><br><span class="line">|..   .B=*.o      |</span><br><span class="line">+----[SHA256]-----+</span><br><span class="line">root@DESKTOP-1SDORV4:~/.ssh#</span><br></pre></td></tr></table></figure>
+<p>然后会在当前用户家目录下的<code>.ssh</code>文件夹下生成一个<code>id_rsa.pub</code>的文件，执行下面的命令复制文本内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤二、登录机器B"><a href="#步骤二、登录机器B" class="headerlink" title="步骤二、登录机器B"></a>步骤二、登录机器B</h2><p>进入用户家目录的<code>.ssh</code>目录，新建或者修改<code>authorized_keys</code> 文件，将准备中的<code>key</code> 粘贴进去，保存。</p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@DESKTOP-1SDORV4:~/.ssh# ssh user@chengyao.xyz</span><br><span class="line">Last failed login: Tue May  4 16:46:04 CST 2021 from 175.190.126.17* on ssh:notty</span><br><span class="line">There were 6 failed login attempts since the last successful login.</span><br><span class="line">Last login: Tue May  4 16:40:39 2021 from 111.19.83.22*</span><br><span class="line"></span><br><span class="line">Welcome to Alibaba Cloud Elastic Compute Service !</span><br><span class="line"></span><br><span class="line">manpath: can&amp;#039;t set the locale; make sure $LC_* and $LANG are correct</span><br><span class="line">[user@iZ2zeir6up2905ofunx6tdZ ~]#</span><br></pre></td></tr></table></figure>
+
+<p>至此说明你的免密登录成功了。</p>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><p>在查看网上相关资料的时候发现很多人出了一些莫名奇妙的问题，有的人给的解决方案是将<code>.ssh</code>目录的权限设置为<code>0700</code>,将下面的文件权限设置为<code>0600</code> ，大家遇到问题可以检查下是不是权限的问题。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-05-03T06:42:35.000Z" title="2021/5/3 下午2:42:35">2021-05-03</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">2 分钟读完 (大约267个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/05/03/ssh%20%E4%B8%8E%E8%BF%9C%E7%A8%8B%E6%9C%BA%E5%99%A8%E4%BF%9D%E6%8C%81%E5%BF%83%E8%B7%B3%EF%BC%88linux%EF%BC%89/">ssh 与远程机器保持心跳（linux）</a></h1><div class="content"><p>在连接远程SSH服务的时候，经常会发生长时间后的断线，或者无响应（无法再键盘输入）。<br>总体来说有两个方法：<br>一、客户端定时发送心跳<br>1.putty、SecureCRT、XShell都有这个功能，设置请自行搜索</p>
+<p>2.此外在Linux下：</p>
+<p>#修改本机&#x2F;etc&#x2F;ssh&#x2F;ssh_config<br>vim &#x2F;etc&#x2F;ssh&#x2F;ssh_config</p>
+<h1 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServerAliveInterval 30</span><br><span class="line">ServerAliveCountMax 100</span><br></pre></td></tr></table></figure>
+<p>即每隔30秒，向服务器发出一次心跳。若超过100次请求，都没有发送成功，则会主动断开与服务器端的连接。</p>
+<p>二、服务器端定时向客户端发送心跳（一劳永逸）</p>
+<h1 id="修改服务器端-ssh配置-x2F-etc-x2F-ssh-x2F-sshd-config"><a href="#修改服务器端-ssh配置-x2F-etc-x2F-ssh-x2F-sshd-config" class="headerlink" title="修改服务器端 ssh配置 &#x2F;etc&#x2F;ssh&#x2F;sshd_config"></a>修改服务器端 ssh配置 &#x2F;etc&#x2F;ssh&#x2F;sshd_config</h1><p>vim &#x2F;etc&#x2F;ssh&#x2F;sshd_config</p>
+<h1 id="添加-1"><a href="#添加-1" class="headerlink" title="添加"></a>添加</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ClientAliveInterval 30</span><br><span class="line">ClientAliveCountMax 6</span><br></pre></td></tr></table></figure>
+<p>ClientAliveInterval表示每隔多少秒，服务器端向客户端发送心跳，是的，你没看错。</p>
+<p>下面的ClientAliveInterval表示上述多少次心跳无响应之后，会认为Client已经断开。</p>
+<p>所以，总共允许无响应的时间是60*3&#x3D;180秒。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-05-01T13:31:09.000Z" title="2021/5/1 下午9:31:09">2021-05-01</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">2 分钟读完 (大约301个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/05/01/Systemctl%E5%92%8Cservice%E3%80%81chkconfig%E5%91%BD%E4%BB%A4%E7%9A%84%E5%85%B3%E7%B3%BB/">Systemctl和service、chkconfig命令的关系</a></h1><div class="content"><h1 id="systemctl"><a href="#systemctl" class="headerlink" title="systemctl"></a>systemctl</h1><p>&gt; systemctl命令：是一个systemd工具，主要负责控制systemd系统和服务管理器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-units</span><br><span class="line">systemctl start firewalld systemctl restart firewalld</span><br><span class="line">systemctl stop fitrwalld</span><br><span class="line">systemctl disable firewalld</span><br><span class="line">systemctl enable firewalld</span><br><span class="line">systemctl is-active firewall</span><br><span class="line">systemctl is-enabled firewalldsystemctl status firewalld</span><br></pre></td></tr></table></figure>
+<h1 id="service"><a href="#service" class="headerlink" title="service"></a>service</h1><p>&gt;service命令：可以启动、停止、重新启动和关闭系统服务，还可以显示所有系统服务的当前状态。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service network restart/start/stop</span><br><span class="line">service network status</span><br><span class="line">service --status-all [补充]</span><br></pre></td></tr></table></figure>
+
+<h1 id="chkconfig"><a href="#chkconfig" class="headerlink" title="chkconfig"></a>chkconfig</h1><p>&gt;chkconfig命令：是管理系统服务(service)的命令行工具。所谓系统服务(service)，就是随系统启动而启动，随系统关闭而关闭的程序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chkconfig ntpd on/off/reset(永久关闭某个服务)</span><br><span class="line"></span><br><span class="line">chkconfig list</span><br></pre></td></tr></table></figure>
+
+<p>systemctl命令是系统服务管理器指令，它实际上将 service 和 chkconfig 这两个命令组合到一起。<br>systemctl是RHEL 7 的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。可以使用它永久性或只在当前会话中启用&#x2F;禁用服务。<br>所以systemctl命令是service命令和chkconfig命令的集合和代替。</p>
+<p>来源：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/hx1998/p/10923993.html">https://www.cnblogs.com/hx1998/p/10923993.html</a> [有补充]</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-05-01T13:23:17.000Z" title="2021/5/1 下午9:23:17">2021-05-01</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">15 分钟读完 (大约2199个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/05/01/linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4grep%20egrep%20fgrep%20zgrep%E7%94%A8%E6%B3%95%E4%BB%A5%E5%8F%8A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">linux基本命令grep egrep fgrep zgrep用法以及正则表达式</a></h1><div class="content"><h1 id="一、grep、egrep、fgrep命令"><a href="#一、grep、egrep、fgrep命令" class="headerlink" title="一、grep、egrep、fgrep命令"></a>一、grep、egrep、fgrep命令</h1><p> 本文中主要介绍了<code>linux</code>系统下<code>grep</code> <code>egrep</code> <code>fgrep</code>命令和正则表达式的基本参数和使用格式、方法。</p>
+<h2 id="1-1、基本定义："><a href="#1-1、基本定义：" class="headerlink" title="1.1、基本定义："></a>1.1、基本定义：</h2><blockquote>
+<p>grep（global search regular RE ) and print out the line,全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它只能使用基本的正则表达式来搜索文本，并把匹配的行打印出来。</p>
+</blockquote>
+<ol>
+<li><p>grep是很常见也很常用的命令，它的主要功能是进行字符串数据的比较，然后符合用户需求的字符串打印出来，但是主意，grep在数据中查找一个字符串时，是以“整行”为单位进行数据筛选的。</p>
+</li>
+<li><p>egrep命令等同于grep -E，利用此命令可以使用扩展的正则表达式对文本进行搜索，并把符合用户需求的字符串打印出来。</p>
+</li>
+<li><p>fgrep命令等同于grep -F，它利用固定的字符串来对文本进行搜索，但不支持正则表达式的引用，所以此命令的执行速度也最快。</p>
+</li>
+</ol>
+<h2 id="1-2、命令基本用法"><a href="#1-2、命令基本用法" class="headerlink" title="1.2、命令基本用法"></a>1.2、命令基本用法</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep [option] &#x27;搜索字符串&#x27; filename</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>grep常用选项：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-a :在二进制文件中，以文本文件的方式搜索数据</span><br><span class="line"></span><br><span class="line">-c :计算找到&#x27;搜索字符串&#x27;的次数</span><br><span class="line"></span><br><span class="line">-i :忽略大小写</span><br><span class="line"></span><br><span class="line">-v :反向查找，即显示没有&#x27;搜索字符串&#x27;内容的那行</span><br><span class="line"></span><br><span class="line">-o :只显示被模式匹配的字符串</span><br><span class="line"></span><br><span class="line">-n :输出行号</span><br><span class="line"></span><br><span class="line">--colour（color）:颜色显示</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-A：显示匹配到字符那行的后面n行</span><br><span class="line"></span><br><span class="line">-B：显示匹配到字符那行的前面n行</span><br><span class="line"></span><br><span class="line">-C：显示匹配到字符那行的前后n行</span><br></pre></td></tr></table></figure>
+<h1 id="二、正则表达式"><a href="#二、正则表达式" class="headerlink" title="二、正则表达式"></a>二、正则表达式</h1><h2 id="2-1、基本定义："><a href="#2-1、基本定义：" class="headerlink" title="2.1、基本定义："></a>2.1、基本定义：</h2><blockquote>
+<p>正则表达使用单个字符串来描述、匹配一系列符合某个句法规则的字符串。在很多文本编辑器里，正则表达式通常被用来检索、替换那些符合某个模式的文本。简而言之，正则表达式就是处理字符串的方法，以行为单位进行字符串的处理，通过一些特殊符号的辅助，可以让用户轻松搜索&#x2F;替换某特定的字符串。</p>
+</blockquote>
+<p>正则表达式分为两类：基本的正则表达式和扩展的正则表达式。</p>
+<h2 id="2-2、正则表达式详细介绍"><a href="#2-2、正则表达式详细介绍" class="headerlink" title="2.2、正则表达式详细介绍"></a>2.2、正则表达式详细介绍</h2><h3 id="2-2-1、基本的正则表达式："><a href="#2-2-1、基本的正则表达式：" class="headerlink" title="2.2.1、基本的正则表达式："></a>2.2.1、基本的正则表达式：</h3><p>   （1）元字符：</p>
+<p>​      . :匹配任意单个字符</p>
+<p>​       fg：查找包含student且student后面带一个字符的行</p>
+<p>​       grep ‘student.’ &#x2F;etc&#x2F;passwd （模式可以用单引号和双引号，如果模式中要做变量替换时则必须用双引）   </p>
+<p>​      [] :匹配指定范围内的任意单个字符,[abc],[a-z],[0-9],[a-zA-Z]</p>
+<p>​        fg：查找带有数字的行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &#x27;[0-9]&#x27; /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>​      [^] :匹配指定范围外的任意单个字符</p>
+<p>​        fg：查找没有小写字母的行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &#x27;[^a-z]&#x27; /etc/inittab</span><br></pre></td></tr></table></figure>
+
+<p><code>[:space:]</code>: 表示空白字符<br><code>[:punct:]</code>: 表示所有标点符号的集合<br><code>[:lower:]</code>: 表示所有的小写字母<br><code>[:upper:]</code>: 表示所有的大写字母<br><code>[:alpha:]</code>: 表示大小写字母<br><code>[:digit:]</code>: 表示数子<br><code>[:alnum:]</code>: 表示数字和大小写字母—–使用格式:alnum:等</p>
+<p>   （2）次数匹配：</p>
+<p>​      *  :匹配其前面的字符任意次</p>
+<p>​        fg：查找root出现0次或0次以上的行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &#x27;root*&#x27; /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>​      .* :任意字符 </p>
+<p>​        fg：查找包含root的行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &#x27;root.*&#x27; /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>​      ?：匹配其前面的字符1次或0次</p>
+<p>​      {m,n} :匹配其前字符最少m，最多n次）</p>
+<p>​    (3) 字符锚定：</p>
+<p>​      ^:锚定行首，此字符后面的任意内容必须出现在行首</p>
+<p>​        fg：查找行首以#开头的行</p>
+<p>​        grep ‘^#’ &#x2F;etc&#x2F;inittab</p>
+<p>​      $:锚定行尾，此字符前面的任意内容必须出现在行尾</p>
+<p>​        fg：查找行首以root结尾的行</p>
+<p>​        grep ‘root$’ &#x2F;etc&#x2F;inittab  </p>
+<p>​      ^$:锚定空白行，可以统计空白行</p>
+<p>​      &lt;或者\b:锚定词首，其后面的任意字符必须做为单词首部出现</p>
+<p>​        fg:查找root且root前面不包含任何字符的行</p>
+<p>​         grep ‘\</p>
+<p>​      &gt;或者\b:锚定词尾，其前面的任意字符必须做为单词尾部出现             fg：\ 查找root单词  grep “&quot; &#x3D;grep “\broot\b”</p>
+<h3 id="2-2-2、扩展的正则表达式："><a href="#2-2-2、扩展的正则表达式：" class="headerlink" title="2.2.2、扩展的正则表达式："></a>2.2.2、扩展的正则表达式：</h3><p>​     扩展的正则表达只是在基本的正则表达上作出了小小的一点修改，其修改如下：</p>
+<p> 在扩展的正则表达中把( ) 写成()、{ } 写成{ }，另外加入了+：次数匹配，匹配其前面的字符至少出现一次，无上限、|: 或者(二取一），其余的都一样， 基本正则表达式，使用( ) { } . ? |都需要转义,在扩展正则表达中不需要加\，（这里测试了以下|是需要转义的）其详细信息如下：</p>
+<p>​     (1) 字符匹配的命令和用法与基本正则表达式的用法相同，这里不再重复阐述。</p>
+<p>​     (2) 次数匹配：</p>
+<p>​       * :匹配其前面字符的任意次</p>
+<p>​       ？:匹配其前面字符的0此或着1此</p>
+<p>​       + :匹配其前面字符至少1此</p>
+<p>​         fg：至少一个空白符： ‘[[:space:]]+’</p>
+<p>​       {m,n} :匹配其前面字符m到n次</p>
+<p>​     (3) 字符锚定的用法和基本正则表达式的用法相同，在此不再阐述。</p>
+<p>​     （4）特殊字符：</p>
+<p>​        | : 代表或者的意思。</p>
+<p>​          fg：grep -E ‘c|cat’ file：表示在文件file内查找包含c或者cat</p>
+<p>​        .:\表示转义字符，此表示符号.</p>
+<h1 id="三、grep命令利用小实例"><a href="#三、grep命令利用小实例" class="headerlink" title="三、grep命令利用小实例"></a>三、grep命令利用小实例</h1><p>(1)显示&#x2F;etc&#x2F;inittab 中以#开头，且后面跟一个或者多个空白符，而后又跟了任意非空白符的行</p>
+<p>grep ‘#[[:space:]]*[^[:space:]]’ &#x2F;etc&#x2F;inittab</p>
+<p>(2) 输出不是数字开关的行grep ‘^[^0-9]’</p>
+<p>&#x2F;etc&#x2F;passwd</p>
+<p>(3)输出行首是1或2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &#x27;^\(1\|2\)&#x27; /etc/inittab</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E &#x27;^(1|2)&#x27; /etc/inittab</span><br></pre></td></tr></table></figure>
+
+<p>(4)查找前面是rc中间接任意字符而后跟&#x2F;rc</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &#x27;.*\(rc\).*\/\1.*&#x27; /etc/inittab</span><br></pre></td></tr></table></figure>
+
+<p>(5）取出当前电脑上的IP</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig |grep -A 1 &quot;^eth0&quot; |grep &quot;\&lt;[0-9.]\&#123;1,\&#125; |cut -d: -f2</span><br></pre></td></tr></table></figure>
+
+<p>(6)查找当前系统上名字为student（必须出现在行首）的用户账户的相关信息，文件为&#x2F;etc&#x2F;passwd</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;^student&quot; /etc/passwd</span><br></pre></td></tr></table></figure>
 
 
 
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
 
+<h1 id="zgrep"><a href="#zgrep" class="headerlink" title="zgrep"></a>zgrep</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40720226/article/details/90609293">http://einverne.github.io/post/2017/11/zgrep-grep-gz-file.html</a></p>
+<p>Linux 下按照正则过滤文本的命令 <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=grep&spm=1001.2101.3001.7020">grep</a> 非常强大，grep 能够把正则匹配的行打印出来。而 zgrep 则能够对压缩包内容进行正则匹配。zgrep 全称是 search compressed files for a regular expression</p>
+<p>grep 的命令格式是</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="selector-attr">[option]</span> pattern files</span><br></pre></td></tr></table></figure>
 
+<p>他的工作方式是，在一个或者多个文件中根据正则搜索匹配内容，将搜索的结果输出到标准输出，不更改源文件内容。</p>
+<h2 id="grep-常用的一些选项"><a href="#grep-常用的一些选项" class="headerlink" title="grep 常用的一些选项"></a>grep 常用的一些选项</h2><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-i   忽略字符大小写区别-v   显示不包含正则的所有行</span></span><br></pre></td></tr></table></figure>
 
+<p> 关于更多的 grep 的内容可以参考另外一篇文章，zgrep 和 grep 用法类似，不过操作的对象是压缩的内容。支持 bzip2，gzip，lzip， xz 等等。</p>
+<h2 id="zgrep-使用"><a href="#zgrep-使用" class="headerlink" title="zgrep 使用"></a>zgrep 使用</h2><p>但如果想要过滤 Nginx 的 access_log.gz 的压缩文件的内容，如果先解压，然后过滤出有用的文本，再把文件压缩回去，这就变的非常不方便。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunzip access_log.gzgrep <span class="string">&quot;/api&quot;</span> access_loggzip access_log</span><br></pre></td></tr></table></figure>
 
-  <script  src="/js/local-search.js" ></script>
+<p>需要使用三个命令来实现文件的过滤，其实 Linux 下可以使用 <code>zgrep</code> 来一步完成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zgrep <span class="string">&quot;/api&quot;</span> access_log.<span class="property">gz</span></span><br></pre></td></tr></table></figure>
 
+<p>和 grep 类似， <code>zgrep</code> 也可以指定多个文件同时进行搜索过滤</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zgrep <span class="string">&quot;/api&quot;</span> access_log.<span class="property">gz</span> access_log_1.<span class="property">gz</span></span><br></pre></td></tr></table></figure>
 
+<h2 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h2><p>既然提到了不解压搜索压缩包内容，<code>.gz</code> 的文件可以使用 <code>zgrep</code> ，而对于 <code>.tar.gz</code> 文件</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zcat access.tar.gz | <span class="keyword">grep</span> -a <span class="string">&#x27;/api&#x27;</span>zgrep -a <span class="string">&quot;/api&quot;</span> access.tar.gz</span><br></pre></td></tr></table></figure>
 
+<p>其实这些带 <code>z</code> 的命令都包含在 Zutils 这个工具包中，这个工具包还提供了</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zcat  解压文件并将内容输出到标准输出zcmp  解压文件并且 <span class="type">byte</span> <span class="keyword">by</span> <span class="type">byte</span> 比较两个文件zdiff 解压文件并且 line <span class="keyword">by</span> line 比较两个文件zgrep 解压文件并且根据正则搜索文件内容ztest - Tests integrity <span class="keyword">of</span> compressed files.zupdate - Recompresses files <span class="keyword">to</span> lzip format.</span><br></pre></td></tr></table></figure>
 
+<p>这些命令支持 bzip2, gzip, lzip and xz 格式。</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-05-01T12:50:08.000Z" title="2021/5/1 下午8:50:08">2021-05-01</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">15 分钟读完 (大约2317个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/05/01/Linux%20sed%20%E5%91%BD%E4%BB%A4/">Linux sed 命令</a></h1><div class="content"><p>Linux sed 命令是利用脚本来处理文本文件。</p>
+<p>sed 可依照脚本的指令来处理、编辑文本文件。</p>
+<p>Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等。</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed [-hnV][-e&lt;script&gt;][-f&lt;script文件&gt;][文本文件]</span><br></pre></td></tr></table></figure>
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<p><strong>参数说明</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-e&lt;script&gt;或--expression=&lt;script&gt; 以选项中指定的script来处理输入的文本文件。</span><br><span class="line">-f&lt;script文件&gt;或--file=&lt;script文件&gt; 以选项中指定的script文件来处理输入的文本文件。</span><br><span class="line">-h或--help 显示帮助。</span><br><span class="line">-n或--quiet或--silent 仅显示script处理后的结果。</span><br><span class="line">-V或--version 显示版本信息。</span><br></pre></td></tr></table></figure>
+<p><strong>动作说明</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～</span><br><span class="line">c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！</span><br><span class="line">d ：删除，因为是删除啊，所以 d 后面通常不接任何东西；</span><br><span class="line">i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；</span><br><span class="line">p ：打印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～</span><br><span class="line">s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！例如 1,20s/old/new/g 就是啦！</span><br></pre></td></tr></table></figure>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>在testfile文件的第四行后添加一行，并将结果输出到标准输出，在命令行提示符下输入如下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e 4a\newLine testfile </span><br></pre></td></tr></table></figure>
 
+<p>首先查看testfile中的内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cat testfile #查看testfile 中的内容  </span><br><span class="line">HELLO LINUX!  </span><br><span class="line">Linux is a free unix-type opterating system.  </span><br><span class="line">This is a linux testfile!  </span><br><span class="line">Linux test </span><br></pre></td></tr></table></figure>
 
-  
+<p>使用sed命令后，输出结果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ sed -e 4a\newline testfile #使用sed 在第四行后添加新字符串  </span><br><span class="line">HELLO LINUX! #testfile文件原有的内容  </span><br><span class="line">Linux is a free unix-type opterating system.  </span><br><span class="line">This is a linux testfile!  </span><br><span class="line">Linux test  </span><br><span class="line">newline </span><br></pre></td></tr></table></figure>
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+<h3 id="以行为单位的新增-x2F-删除"><a href="#以行为单位的新增-x2F-删除" class="headerlink" title="以行为单位的新增&#x2F;删除"></a>以行为单位的新增&#x2F;删除</h3><p>将 &#x2F;etc&#x2F;passwd 的内容列出并且列印行号，同时，请将第 2~5 行删除！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# nl /etc/passwd | sed &#x27;2,5d&#x27;</span><br><span class="line">1 root:x:0:0:root:/root:/bin/bash</span><br><span class="line">6 sync:x:5:0:sync:/sbin:/bin/sync</span><br><span class="line">7 shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown</span><br><span class="line">.....(后面省略).....</span><br></pre></td></tr></table></figure>
+
+<p>sed 的动作为 ‘2,5d’ ，那个 d 就是删除！因为 2-5 行给他删除了，所以显示的数据就没有 2-5 行罗～ 另外，注意一下，原本应该是要下达 sed -e 才对，没有 -e 也行啦！同时也要注意的是， sed 后面接的动作，请务必以 ‘’ 两个单引号括住喔！</p>
+<p>只要删除第 2 行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed &#x27;2d&#x27; </span><br></pre></td></tr></table></figure>
+
+<p>要删除第 3 到最后一行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed &#x27;3,$d&#x27; </span><br></pre></td></tr></table></figure>
+
+<p>在第二行后(亦即是加在第三行)加上『drink tea?』字样！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# nl /etc/passwd | sed &#x27;2a drink tea&#x27;</span><br><span class="line">1 root:x:0:0:root:/root:/bin/bash</span><br><span class="line">2 bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">drink tea</span><br><span class="line">3 daemon:x:2:2:daemon:/sbin:/sbin/nologin</span><br><span class="line">.....(后面省略).....</span><br></pre></td></tr></table></figure>
+
+<p>那如果是要在第二行前</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed &#x27;2i drink tea&#x27; </span><br></pre></td></tr></table></figure>
+
+<p>如果是要增加两行以上，在第二行后面加入两行字，例如 <strong>Drink tea or …..</strong> 与 <strong>drink beer?</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# nl /etc/passwd | sed &#x27;2a Drink tea or ......\</span><br><span class="line">&gt; drink beer ?&#x27;</span><br><span class="line">1 root:x:0:0:root:/root:/bin/bash</span><br><span class="line">2 bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">Drink tea or ......</span><br><span class="line">drink beer ?</span><br><span class="line">3 daemon:x:2:2:daemon:/sbin:/sbin/nologin</span><br><span class="line">.....(后面省略).....</span><br></pre></td></tr></table></figure>
+
+<p>每一行之间都必须要以反斜杠<code>\</code>来进行新行的添加喔！所以，上面的例子中，我们可以发现在第一行的最后面就有 <code>\</code>存在。</p>
+<h3 id="以行为单位的替换与显示"><a href="#以行为单位的替换与显示" class="headerlink" title="以行为单位的替换与显示"></a>以行为单位的替换与显示</h3><p>将第2-5行的内容取代成为『No 2-5 number』呢？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# nl /etc/passwd | sed &#x27;2,5c No 2-5 number&#x27;</span><br><span class="line">1 root:x:0:0:root:/root:/bin/bash</span><br><span class="line">No 2-5 number</span><br><span class="line">6 sync:x:5:0:sync:/sbin:/bin/sync</span><br><span class="line">.....(后面省略).....</span><br></pre></td></tr></table></figure>
+
+<p>透过这个方法我们就能够将数据整行取代了！</p>
+<p>仅列出 &#x2F;etc&#x2F;passwd 文件内的第 5-7 行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# nl /etc/passwd | sed -n &#x27;5,7p&#x27;</span><br><span class="line">5 lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin</span><br><span class="line">6 sync:x:5:0:sync:/sbin:/bin/sync</span><br><span class="line">7 shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown</span><br></pre></td></tr></table></figure>
+
+<p>可以透过这个 sed 的以行为单位的显示功能， 就能够将某一个文件内的某些行号选择出来显示。</p>
+<h3 id="数据的搜寻并显示"><a href="#数据的搜寻并显示" class="headerlink" title="数据的搜寻并显示"></a>数据的搜寻并显示</h3><p>搜索 &#x2F;etc&#x2F;passwd有root关键字的行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed &#x27;/root/p&#x27;</span><br><span class="line">1  root:x:0:0:root:/root:/bin/bash</span><br><span class="line">1  root:x:0:0:root:/root:/bin/bash</span><br><span class="line">2  daemon:x:1:1:daemon:/usr/sbin:/bin/sh</span><br><span class="line">3  bin:x:2:2:bin:/bin:/bin/sh</span><br><span class="line">4  sys:x:3:3:sys:/dev:/bin/sh</span><br><span class="line">5  sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line">....下面忽略 </span><br></pre></td></tr></table></figure>
+
+<p>如果root找到，除了输出所有行，还会输出匹配行。</p>
+<p>使用-n的时候将只打印包含模板的行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed -n &#x27;/root/p&#x27;</span><br><span class="line">1  root:x:0:0:root:/root:/bin/bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据的搜寻并删除"><a href="#数据的搜寻并删除" class="headerlink" title="数据的搜寻并删除"></a>数据的搜寻并删除</h3><p>删除&#x2F;etc&#x2F;passwd所有包含root的行，其他行输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed  &#x27;/root/d&#x27;</span><br><span class="line">2  daemon:x:1:1:daemon:/usr/sbin:/bin/sh</span><br><span class="line">3  bin:x:2:2:bin:/bin:/bin/sh</span><br><span class="line">....下面忽略</span><br><span class="line">#第一行的匹配root已经删除了</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据的搜寻并执行命令"><a href="#数据的搜寻并执行命令" class="headerlink" title="数据的搜寻并执行命令"></a>数据的搜寻并执行命令</h3><p>搜索&#x2F;etc&#x2F;passwd,找到root对应的行，执行后面花括号中的一组命令，每个命令之间用分号分隔，这里把bash替换为blueshell，再输出这行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed -n &#x27;/root/&#123;s/bash/blueshell/;p;q&#125;&#x27;    </span><br><span class="line">1  root:x:0:0:root:/root:/bin/blueshell</span><br></pre></td></tr></table></figure>
+
+<p>最后的q是退出。</p>
+<h3 id="数据的搜寻并替换"><a href="#数据的搜寻并替换" class="headerlink" title="数据的搜寻并替换"></a>数据的搜寻并替换</h3><p>除了整行的处理模式之外， sed 还可以用行为单位进行部分数据的搜寻并取代。基本上 sed 的搜寻与替代的与 vi 相当的类似！他有点像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed &#x27;s/要被取代的字串/新的字串/g&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>先观察原始信息，利用 &#x2F;sbin&#x2F;ifconfig 查询 IP</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# /sbin/ifconfig eth0</span><br><span class="line">eth0 Link encap:Ethernet HWaddr 00:90:CC:A6:34:84</span><br><span class="line">inet addr:192.168.1.100 Bcast:192.168.1.255 Mask:255.255.255.0</span><br><span class="line">inet6 addr: fe80::290:ccff:fea6:3484/64 Scope:Link</span><br><span class="line">UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1</span><br><span class="line">.....(以下省略).....</span><br></pre></td></tr></table></figure>
+
+<p>本机的ip是192.168.1.100。</p>
+<p>将 IP 前面的部分予以删除</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# /sbin/ifconfig eth0 | grep &#x27;inet addr&#x27; | sed &#x27;s/^.*addr://g&#x27;</span><br><span class="line">192.168.1.100 Bcast:192.168.1.255 Mask:255.255.255.0</span><br></pre></td></tr></table></figure>
+
+<p>接下来则是删除后续的部分，亦即： 192.168.1.100 Bcast:192.168.1.255 Mask:255.255.255.0</p>
+<p>将 IP 后面的部分予以删除</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# /sbin/ifconfig eth0 | grep &#x27;inet addr&#x27; | sed &#x27;s/^.*addr://g&#x27; | sed &#x27;s/Bcast.*$//g&#x27;</span><br><span class="line">192.168.1.100</span><br></pre></td></tr></table></figure>
+
+<h3 id="多点编辑"><a href="#多点编辑" class="headerlink" title="多点编辑"></a>多点编辑</h3><p>一条sed命令，删除&#x2F;etc&#x2F;passwd第三行到末尾的数据，并把bash替换为blueshell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nl /etc/passwd | sed -e &#x27;3,$d&#x27; -e &#x27;s/bash/blueshell/&#x27;</span><br><span class="line">1  root:x:0:0:root:/root:/bin/blueshell</span><br><span class="line">2  daemon:x:1:1:daemon:/usr/sbin:/bin/sh</span><br></pre></td></tr></table></figure>
+
+<p>-e表示多点编辑，第一个编辑命令删除&#x2F;etc&#x2F;passwd第三行到末尾的数据，第二条命令搜索bash替换为blueshell。</p>
+<h3 id="直接修改文件内容-危险动作"><a href="#直接修改文件内容-危险动作" class="headerlink" title="直接修改文件内容(危险动作)"></a>直接修改文件内容(危险动作)</h3><p>sed 可以直接修改文件的内容，不必使用管道命令或数据流重导向！ 不过，由於这个动作会直接修改到原始的文件，所以请你千万不要随便拿系统配置来测试！ 我们还是使用文件 regular_express.txt 文件来测试看看吧！</p>
+<p>regular_express.txt 文件内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# cat regular_express.txt </span><br><span class="line">runoob.</span><br><span class="line">google.</span><br><span class="line">taobao.</span><br><span class="line">facebook.</span><br><span class="line">zhihu-</span><br><span class="line">weibo-</span><br></pre></td></tr></table></figure>
+
+<p>利用 sed 将 regular_express.txt 内每一行结尾若为 . 则换成 !</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# sed -i &#x27;s/\.$/\!/g&#x27; regular_express.txt</span><br><span class="line">[root@www ~]# cat regular_express.txt </span><br><span class="line">runoob!</span><br><span class="line">google!</span><br><span class="line">taobao!</span><br><span class="line">facebook!</span><br><span class="line">zhihu-</span><br><span class="line">weibo-</span><br></pre></td></tr></table></figure>
+
+<p>:q:q</p>
+<p>利用 sed 直接在 regular_express.txt 最后一行加入 <strong># This is a test</strong>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]# sed -i &#x27;$a # This is a test&#x27; regular_express.txt</span><br><span class="line">[root@www ~]# cat regular_express.txt </span><br><span class="line">runoob!</span><br><span class="line">google!</span><br><span class="line">taobao!</span><br><span class="line">facebook!</span><br><span class="line">zhihu-</span><br><span class="line">weibo-</span><br><span class="line"># This is a test</span><br></pre></td></tr></table></figure>
+
+<p>由于$ 代表的是最后一行，而 a 的动作是新增，因此该文件最后新增 <strong># This is a test</strong>！</p>
+<p>sed 的 <strong>-i</strong> 选项可以直接修改文件内容，这功能非常有帮助！举例来说，如果你有一个 100 万行的文件，你要在第 100 行加某些文字，此时使用 vim 可能会疯掉！因为文件太大了！那怎办？就利用 sed 啊！透过 sed 直接修改&#x2F;取代的功能，你甚至不需要使用 vim 去修订！</p>
+<p>笔记</p>
+<p>追加行的说明：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e 4a\newline testfile</span><br></pre></td></tr></table></figure>
+
+<p>a 动作是在匹配的行之后追加字符串，追加的字符串中可以包含换行符（实现追加多行的情况）。</p>
+<p>追加一行的话前后都不需要添加换行符 <strong>\n</strong>，只有追加多行时在行与行之间才需要添加换行符(最后一行最后也无需添加，添加的话会多出一个空行)。</p>
+<p>man sed 信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Append text, which has each embedded newline preceded by a backslash.</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<p>4 行之后添加一行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &#x27;4 a newline&#x27; testfile</span><br></pre></td></tr></table></figure>
+
+<p>4 行之后追加 2 行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &#x27;4 a newline\nnewline2&#x27; testfile</span><br></pre></td></tr></table></figure>
+
+<p>4 行之后追加 3 行(2 行文字和 1 行空行)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -e &#x27;4 a newline\nnewline2\n&#x27; testfile</span><br></pre></td></tr></table></figure>
+
+<p>4 行之后追加 1 行空行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#错误：sed -e &#x27;4 a \n&#x27; testfile</span><br><span class="line">sed -e &#x27;4 a \ &#x27; testfile 实际上</span><br></pre></td></tr></table></figure>
+
+<p>实际上是插入了一个含有一个空格的行，插入一个完全为空的空行没有找到方法（不过应该没有这个需求吧，都要插入行了插入空行干嘛呢？）</p>
+<p>添加空行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 可以添加一个完全为空的空行</span><br><span class="line">sed &#x27;4 a \\&#x27;</span><br><span class="line"></span><br><span class="line"># 可以添加两个完全为空的空行</span><br><span class="line">sed &#x27;4 a \\n&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="统计log中某一时间段的数量-没有测试"><a href="#统计log中某一时间段的数量-没有测试" class="headerlink" title="统计log中某一时间段的数量[没有测试]"></a>统计log中某一时间段的数量[没有测试]</h2><p><code>sed -n &#39;/2017-01-04 11:00:00/,/2017-01-04 11:20:55/p&#39;  ejabberd.log</code></p>
+<p>来源：<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-sed.html">https://www.runoob.com/linux/linux-comm-sed.html</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-05-01T12:38:00.000Z" title="2021/5/1 下午8:38:00">2021-05-01</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">5 分钟读完 (大约735个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/05/01/Linux%20find%20%E5%91%BD%E4%BB%A4/">Linux find 命令</a></h1><div class="content"><p>Linux find 命令用来在指定目录下查找文件。任何位于参数之前的字符串都将被视为欲查找的目录名。如果使用该命令时，不设置任何参数，则 find 命令将在当前目录下查找子目录与文件。并且将查找到的子目录和文件全部进行显示。</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find   path   -option   [   -print ]   [ -exec   -ok   command ]   &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明</strong> :</p>
+<p>find 根据下列规则判断 path 和 expression，在命令列上第一个 - ( ) , ! 之前的部份为 path，之后的是 expression。如果 path 是空字串则使用目前路径，如果 expression 是空字串则使用 -print 为预设 expression。</p>
+<p>expression 中可使用的选项有二三十个之多，在此只介绍最常用的部份。</p>
+<p>-mount, -xdev : 只检查和指定目录在同一个文件系统下的文件，避免列出其它文件系统中的文件</p>
+<p>-amin n : 在过去 n 分钟内被读取过</p>
+<p>-anewer file : 比文件 file 更晚被读取过的文件</p>
+<p>-atime n : 在过去n天内被读取过的文件</p>
+<p>-cmin n : 在过去 n 分钟内被修改过</p>
+<p>-cnewer file :比文件 file 更新的文件</p>
+<p>-ctime n : 在过去n天内被修改过的文件</p>
+<p>-empty : 空的文件-gid n or -group name : gid 是 n 或是 group 名称是 name</p>
+<p>-ipath p, -path p : 路径名称符合 p 的文件，ipath 会忽略大小写</p>
+<p>-name name, -iname name : 文件名称符合 name 的文件。iname 会忽略大小写</p>
+<p>-size n : 文件大小 是 n 单位，b 代表 512 位元组的区块，c 表示字元数，k 表示 kilo bytes，w 是二个位元组。</p>
+<p>-type c : 文件类型是 c 的文件。</p>
+<p>d: 目录</p>
+<p>c: 字型装置文件</p>
+<p>b: 区块装置文件</p>
+<p>p: 具名贮列</p>
+<p>f: 一般文件</p>
+<p>l: 符号连结</p>
+<p>s: socket</p>
+<p>-pid n : process id 是 n 的文件</p>
+<p>你可以使用 ( ) 将运算式分隔，并使用下列运算。</p>
+<p>exp1 -and exp2</p>
+<p>! expr</p>
+<p>-not expr</p>
+<p>exp1 -or exp2</p>
+<p>exp1, exp2</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>将当前目录及其子目录下所有文件后缀为 <strong>.c</strong> 的文件列出来:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find . -name &quot;*.c&quot;</span><br></pre></td></tr></table></figure>
+
+<p>将目前目录其其下子目录中所有一般文件列出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find . -type f</span><br></pre></td></tr></table></figure>
+
+<p>将当前目录及其子目录下所有最近 20 天内更新过的文件列出:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find . -ctime -20</span><br></pre></td></tr></table></figure>
+
+<p>查找 &#x2F;var&#x2F;log 目录中更改时间在 7 日以前的普通文件，并在删除之前询问它们：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find /var/log -type f -mtime +7 -ok rm &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<p>查找当前目录中文件属主具有读、写权限，并且文件所属组的用户和其他用户具有读权限的文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find . -type f -perm 644 -exec ls -l &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<p>查找系统中所有文件长度为 0 的普通文件，并列出它们的完整路径：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># find / -type f -size 0 -exec ls -l &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<p>来源：<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-find.html">https://www.runoob.com/linux/linux-comm-find.html</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-21T14:49:08.000Z" title="2021/4/21 下午10:49:08">2021-04-21</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">几秒读完 (大约62个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/21/Ubuntu%E7%9A%84messages%20Log%E5%BC%80%E5%90%AF/">Ubuntu的messages Log开启</a></h1><div class="content"><h1 id="ubuntu开启messages-log"><a href="#ubuntu开启messages-log" class="headerlink" title="ubuntu开启messages log"></a>ubuntu开启messages log</h1><p><code>less /etc/rsyslog.d/50-default.conf </code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#*.=info;*.=notice;*.=warn;\</span><br><span class="line">#       auth,authpriv.none;\</span><br><span class="line">#       cron,daemon.none;\</span><br><span class="line">#       mail,news.none          -/var/log/messages</span><br></pre></td></tr></table></figure>
+
+<p>删掉以上部分的注释，重启<code>rsyslog</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service rsyslog restart</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用以下命令查看log文件"><a href="#使用以下命令查看log文件" class="headerlink" title="使用以下命令查看log文件"></a>使用以下命令查看<code>log</code>文件</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f /var/log/messages</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -10 /var/log/messages</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-19T10:18:54.000Z" title="2021/4/19 下午6:18:54">2021-04-19</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">7 分钟读完 (大约1080个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/19/CURL%E5%91%BD%E4%BB%A4%E7%94%A8%E6%B3%95%E4%BB%8B%E7%BB%8D/">CURL命令用法介绍</a></h1><div class="content"><h1 id="输出状态码"><a href="#输出状态码" class="headerlink" title="输出状态码"></a>输出状态码</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -I -m 10 -o /dev/null -s -w %&#123;http_code&#125; www.baidu.com</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>-I 仅测试HTTP头</li>
+<li>-m 10 最多查询10s</li>
+<li>-o &#x2F;dev&#x2F;null 屏蔽原有输出信息</li>
+<li>-s silent 模式，不输出任何东西</li>
+<li>-w %{http_code} 控制额外输出</li>
+</ul>
+<p>-w 参数如下</p>
+<ul>
+<li>url_effective 最终获取的url地址，尤其是当你指定给curl的地址存在301跳转，且通过-L继续追踪的情形。</li>
+<li>http_code http状态码，如200成功,301转向,404未找到,500服务器错误等。(The numerical response code that was found in the last retrieved HTTP(S) or FTP(s) transfer. In 7.18.2 the alias response_code was added to show the same info.)</li>
+<li>http_connect The numerical code that was found in the last response (from a proxy) to a curl CONNECT request. (Added in 7.12.4)</li>
+<li>time_total 总时间，按秒计。精确到小数点后三位。 （The total time, in seconds, that the full operation lasted. The time will be displayed with millisecond resolution.）</li>
+<li>time_namelookup DNS解析时间,从请求开始到DNS解析完毕所用时间。(The time, in seconds, it took from the start until the name resolving was completed.)</li>
+<li>time_connect 连接时间,从开始到建立TCP连接完成所用时间,包括前边DNS解析时间，如果需要单纯的得到连接时间，用这个time_connect时间减去前边time_namelookup时间。以下同理，不再赘述。(The time, in seconds, it took from the start until the TCP connect to the remote host (or proxy) was completed.)</li>
+<li>time_appconnect 连接建立完成时间，如SSL&#x2F;SSH等建立连接或者完成三次握手时间。(The time, in seconds, it took from the start until the SSL&#x2F;SSH&#x2F;etc connect&#x2F;handshake to the remote host was completed. (Added in 7.19.0))</li>
+<li>time_pretransfer 从开始到准备传输的时间。(The time, in seconds, it took from the start until the file transfer was just about to begin. This includes all pre-transfer commands and negotiations that are specific to the particular protocol(s) involved.)</li>
+<li>time_redirect 重定向时间，包括到最后一次传输前的几次重定向的DNS解析，连接，预传输，传输时间。(The time, in seconds, it took for all redirection steps include name lookup, connect, pretransfer and transfer before the final transaction was started. time_redirect shows the complete execution time for multiple redirections. (Added in 7.12.3))</li>
+<li>time_starttransfer 开始传输时间。在发出请求之后，Web 服务器返回数据的第一个字节所用的时间(The time, in seconds, it took from the start until the first byte was just about to be transferred. This includes time_pretransfer and also the time the server needed to calculate the result.)</li>
+<li>size_download 下载大小。(The total amount of bytes that were downloaded.)</li>
+<li>size_upload 上传大小。(The total amount of bytes that were uploaded.)</li>
+<li>size_header 下载的header的大小(The total amount of bytes of the downloaded headers.)</li>
+<li>size_request 请求的大小。(The total amount of bytes that were sent in the HTTP request.)</li>
+<li>speed_download 下载速度，单位-字节每秒。(The average download speed that curl measured for the complete download. Bytes per second.)</li>
+<li>speed_upload 上传速度,单位-字节每秒。(The average upload speed that curl measured for the complete upload. Bytes per second.)</li>
+<li>content_type 就是content-Type，不用多说了，这是一个访问我博客首页返回的结果示例(text&#x2F;html; charset&#x3D;UTF-8)；(The Content-Type of the requested document, if there was any.)</li>
+<li>num_connects 最近的的一次传输中创建的连接数目。Number of new connects made in the recent transfer. (Added in 7.12.3)</li>
+<li>num_redirects 在请求中跳转的次数。Number of redirects that were followed in the request. (Added in 7.12.3)</li>
+<li>redirect_url When a HTTP request was made without -L to follow redirects, this variable will show the actual URL a redirect would take you to. (Added in 7.18.2)</li>
+<li>ftp_entry_path 当连接到远程的ftp服务器时的初始路径。The initial path libcurl ended up in when logging on to the remote FTP server. (Added in 7.15.4)</li>
+<li>ssl_verify_result ssl认证结果，返回0表示认证成功。( The result of the SSL peer certificate verification that was requested. 0 means the verification was successful. (Added in 7.19.0))</li>
+</ul>
+<h2 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h2><p>以下是使用curl诊断服务器到微信api服务器的网络访问情况</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o /dev/null -s -w &quot;time_connect: %&#123;time_connect&#125;\ntime_starttransfer: %&#123;time_starttransfer&#125;\ntime_nslookup:%&#123;time_namelookup&#125;\ntime_total: %&#123;time_total&#125;\n&quot; &quot;https://api.weixin.qq.com&quot;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">time_connect: 0.154</span><br><span class="line">time_starttransfer: 0.243</span><br><span class="line">time_nslookup:0.150</span><br><span class="line">time_total: 0.243</span><br></pre></td></tr></table></figure>
+<p>说明: 以上显示网络连接时间为0.154秒（其中DNS解析为0.150秒），总体请求0.243秒。DNS解析出现故障的概率在正式环境中比较高，所以在诊断时候千万别漏了time_namelookup这个参数。</p>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://curl.haxx.se/docs/manpage.html">https://curl.haxx.se/docs/manpage.html</a><br><a target="_blank" rel="noopener" href="http://digdeeply.org/archives/05102012.html">http://digdeeply.org/archives/05102012.html</a></p>
+</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/10/">上一页</a></div><div class="pagination-next"><a href="/page/12/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/10/">10</a></li><li><a class="pagination-link is-current" href="/page/11/">11</a></li><li><a class="pagination-link" href="/page/12/">12</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/17/">17</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果也！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">170</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-01T06:56:20.000Z">2022-10-01</time></p><p class="title"><a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-18T05:06:34.000Z">2022-09-18</time></p><p class="title"><a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-04T13:30:39.000Z">2022-09-04</time></p><p class="title"><a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-21T02:56:27.000Z">2022-08-21</time></p><p class="title"><a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-19T12:54:39.000Z">2022-08-19</time></p><p class="title"><a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown基本语法</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">五月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

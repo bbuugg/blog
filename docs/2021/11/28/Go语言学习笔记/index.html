@@ -1,279 +1,35 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Go语言学习笔记 - 笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="内置Go 语言拥有一些不需要进行导入操作就可以使用的内置函数。它们有时可以针对不同的类型进行操作，例如：len、cap 和 append，或必须用于系统级的操作，例如：panic。因此，它们需要直接获得编译器的支持。 12345678910111213append          -- 用来追加元素到数组、slice中,返回修改后的数组、sliceclose           -- 主要用来关"><meta property="og:type" content="blog"><meta property="og:title" content="Go语言学习笔记"><meta property="og:url" content="https://www.chengyao.xyz/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><meta property="og:site_name" content="笔记"><meta property="og:description" content="内置Go 语言拥有一些不需要进行导入操作就可以使用的内置函数。它们有时可以针对不同的类型进行操作，例如：len、cap 和 append，或必须用于系统级的操作，例如：panic。因此，它们需要直接获得编译器的支持。 12345678910111213append          -- 用来追加元素到数组、slice中,返回修改后的数组、sliceclose           -- 主要用来关"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:published_time" content="2021-11-28T04:28:58.000Z"><meta property="article:modified_time" content="2022-08-28T02:23:10.673Z"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"},"headline":"Go语言学习笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"datePublished":"2021-11-28T04:28:58.000Z","dateModified":"2022-08-28T02:23:10.673Z","author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"内置Go 语言拥有一些不需要进行导入操作就可以使用的内置函数。它们有时可以针对不同的类型进行操作，例如：len、cap 和 append，或必须用于系统级的操作，例如：panic。因此，它们需要直接获得编译器的支持。 12345678910111213append          -- 用来追加元素到数组、slice中,返回修改后的数组、sliceclose           -- 主要用来关"}</script><link rel="canonical" href="https://www.chengyao.xyz/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="CY">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="内置Go 语言拥有一些不需要进行导入操作就可以使用的内置函数。它们有时可以针对不同的类型进行操作，例如：len、cap 和 append，或必须用于系统级的操作，例如：panic。因此，它们需要直接获得编译器的支持。 12345678910111213append          -- 用来追加元素到数组、slice中,返回修改后的数组、sliceclose           -- 主要用来关">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Go语言学习笔记">
-<meta property="og:url" content="https://www.chengyao.xyz/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
-<meta property="og:site_name" content="笔记">
-<meta property="og:description" content="内置Go 语言拥有一些不需要进行导入操作就可以使用的内置函数。它们有时可以针对不同的类型进行操作，例如：len、cap 和 append，或必须用于系统级的操作，例如：panic。因此，它们需要直接获得编译器的支持。 12345678910111213append          -- 用来追加元素到数组、slice中,返回修改后的数组、sliceclose           -- 主要用来关">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-11-28T04:28:58.000Z">
-<meta property="article:modified_time" content="2022-09-14T12:56:04.902Z">
-<meta property="article:author" content="CY">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>Go语言学习笔记 - 笔记</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="Go语言学习笔记"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-11-28 12:28" pubdate>
-          2021年11月28日 中午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          7.5k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          63 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Go语言学习笔记</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h1 id="内置"><a href="#内置" class="headerlink" title="内置"></a>内置</h1><p>Go 语言拥有一些不需要进行导入操作就可以使用的内置函数。它们有时可以针对不同的类型进行操作，例如：len、cap 和 append，或必须用于系统级的操作，例如：panic。因此，它们需要直接获得编译器的支持。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-built_in">append</span>          -- 用来追加元素到数组、slice中,返回修改后的数组、slice<br><span class="hljs-built_in">close</span>           -- 主要用来关闭channel<br><span class="hljs-built_in">delete</span>            -- 从<span class="hljs-keyword">map</span>中删除key对应的value<br><span class="hljs-built_in">panic</span>            -- 停止常规的goroutine  （<span class="hljs-built_in">panic</span>和<span class="hljs-built_in">recover</span>：用来做错误处理）<br><span class="hljs-built_in">recover</span>         -- 允许程序定义goroutine的<span class="hljs-built_in">panic</span>动作<br><span class="hljs-built_in">real</span>            -- 返回<span class="hljs-built_in">complex</span>的实部   （<span class="hljs-built_in">complex</span>、<span class="hljs-built_in">real</span> <span class="hljs-built_in">imag</span>：用于创建和操作复数）<br><span class="hljs-built_in">imag</span>            -- 返回<span class="hljs-built_in">complex</span>的虚部<br><span class="hljs-built_in">make</span>            -- 用来分配内存，返回Type本身(只能应用于slice, <span class="hljs-keyword">map</span>, channel)<br><span class="hljs-built_in">new</span>                -- 用来分配内存，主要用来分配值类型，比如<span class="hljs-type">int</span>、<span class="hljs-keyword">struct</span>。返回指向Type的指针<br><span class="hljs-built_in">cap</span>                -- capacity是容量的意思，用于返回某个类型的最大容量（只能用于切片和 <span class="hljs-keyword">map</span>）<br><span class="hljs-built_in">copy</span>            -- 用于复制和连接slice，返回复制的数目<br><span class="hljs-built_in">len</span>                -- 来求长度，比如<span class="hljs-type">string</span>、array、slice、<span class="hljs-keyword">map</span>、channel ，返回长度<br><span class="hljs-built_in">print</span>、<span class="hljs-built_in">println</span>     -- 底层打印函数，在部署环境中建议使用 fmt 包<br></code></pre></td></tr></table></figure>
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-28T04:28:58.000Z" title="2021/11/28 下午12:28:58">2021-11-28</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">23 分钟读完 (大约3449个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Go语言学习笔记</h1><div class="content"><h1 id="内置"><a href="#内置" class="headerlink" title="内置"></a>内置</h1><p>Go 语言拥有一些不需要进行导入操作就可以使用的内置函数。它们有时可以针对不同的类型进行操作，例如：len、cap 和 append，或必须用于系统级的操作，例如：panic。因此，它们需要直接获得编译器的支持。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">append          -- 用来追加元素到数组、slice中,返回修改后的数组、slice</span><br><span class="line">close           -- 主要用来关闭channel</span><br><span class="line">delete            -- 从map中删除key对应的value</span><br><span class="line">panic            -- 停止常规的goroutine  （panic和recover：用来做错误处理）</span><br><span class="line">recover         -- 允许程序定义goroutine的panic动作</span><br><span class="line">real            -- 返回complex的实部   （complex、real imag：用于创建和操作复数）</span><br><span class="line">imag            -- 返回complex的虚部</span><br><span class="line">make            -- 用来分配内存，返回Type本身(只能应用于slice, map, channel)</span><br><span class="line">new                -- 用来分配内存，主要用来分配值类型，比如int、struct。返回指向Type的指针</span><br><span class="line">cap                -- capacity是容量的意思，用于返回某个类型的最大容量（只能用于切片和 map）</span><br><span class="line">copy            -- 用于复制和连接slice，返回复制的数目</span><br><span class="line">len                -- 来求长度，比如string、array、slice、map、channel ，返回长度</span><br><span class="line">print、println     -- 底层打印函数，在部署环境中建议使用 fmt 包</span><br></pre></td></tr></table></figure>
 
 <h1 id="go-mod"><a href="#go-mod" class="headerlink" title="go mod"></a>go mod</h1><ul>
 <li>go mod help 查看帮助</li>
@@ -284,18 +40,18 @@
 <li>go mod download 下载依赖。参数是非必写的，path 是包的路径，version 是包的版本。</li>
 </ul>
 <h1 id="数组切片"><a href="#数组切片" class="headerlink" title="数组切片"></a>数组切片</h1><p>初始化数组的初始化有多种形式,</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go">[<span class="hljs-number">5</span>] <span class="hljs-type">int</span> &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;    <span class="hljs-comment">//长度为5的数组，其元素值依次为：1，2，3，4，5</span><br>[<span class="hljs-number">5</span>] <span class="hljs-type">int</span> &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>&#125;          <span class="hljs-comment">//长度为5的数组，其元素值依次为：1，2，0，0，0 。在初始化时没有指定初值的元素将会赋值为其元素类型int的默认值0,string的默认值是&quot;&quot; </span><br>[...] <span class="hljs-type">int</span> &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;  <span class="hljs-comment">//长度为5的数组，其长度是根据初始化时指定的元素个数决定的 </span><br>[<span class="hljs-number">5</span>] <span class="hljs-type">int</span> &#123; <span class="hljs-number">2</span>:<span class="hljs-number">1</span>,<span class="hljs-number">3</span>:<span class="hljs-number">2</span>,<span class="hljs-number">4</span>:<span class="hljs-number">3</span>&#125; <span class="hljs-comment">//长度为5的数组，key:value,其元素值依次为：0，0，1，2，3。在初始化时指定了2，3，4索引中对应的值：1，2，3 </span><br>[...] <span class="hljs-type">int</span> &#123;<span class="hljs-number">2</span>:<span class="hljs-number">1</span>,<span class="hljs-number">4</span>:<span class="hljs-number">3</span>&#125;    <span class="hljs-comment">//长度为5的数组，起元素值依次为：0，0，1，0，3。由于指定了最大索引4对应的值3，根据初始化的元素个数确定其长度为5赋值与使用</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">5</span>] <span class="type">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;    <span class="comment">//长度为5的数组，其元素值依次为：1，2，3，4，5</span></span><br><span class="line">[<span class="number">5</span>] <span class="type">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>&#125;          <span class="comment">//长度为5的数组，其元素值依次为：1，2，0，0，0 。在初始化时没有指定初值的元素将会赋值为其元素类型int的默认值0,string的默认值是&quot;&quot; </span></span><br><span class="line">[...] <span class="type">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;  <span class="comment">//长度为5的数组，其长度是根据初始化时指定的元素个数决定的 </span></span><br><span class="line">[<span class="number">5</span>] <span class="type">int</span> &#123; <span class="number">2</span>:<span class="number">1</span>,<span class="number">3</span>:<span class="number">2</span>,<span class="number">4</span>:<span class="number">3</span>&#125; <span class="comment">//长度为5的数组，key:value,其元素值依次为：0，0，1，2，3。在初始化时指定了2，3，4索引中对应的值：1，2，3 </span></span><br><span class="line">[...] <span class="type">int</span> &#123;<span class="number">2</span>:<span class="number">1</span>,<span class="number">4</span>:<span class="number">3</span>&#125;    <span class="comment">//长度为5的数组，起元素值依次为：0，0，1，0，3。由于指定了最大索引4对应的值3，根据初始化的元素个数确定其长度为5赋值与使用</span></span><br></pre></td></tr></table></figure>
 
 <p>数组的长度不可改变，在特定场景中这样的集合就不太适用，Go中提供了一种灵活，功能强悍的内置类型Slices切片(“动态数组”),与数组相比切片的长度是不固定的，可以追加元素，在追加时可能使切片的容量增大。切片中有两个概念：一是len长度，二是cap容量，长度是指已经被赋过值的最大下标+1，可通过内置函数len()获得。容量是指切片目前可容纳的最多元素个数，可通过内置函数cap()获得。切片是引用类型，因此在当传递切片时将引用同一指针，修改值将会影响其他的对象。</p>
 <p>切片可以通过数组来初始化，也可以通过内置函数make()初始化 .初始化时len&#x3D;cap,在追加元素时如果容量cap不足时将按len的2倍扩容</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs go">s :=[] <span class="hljs-type">int</span> &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span> &#125;           <span class="hljs-comment">//直接初始化切片，[]表示是切片类型，&#123;1,2,3&#125;初始化值依次是1,2,3.其cap=len=3</span><br>s := arr[:]                   <span class="hljs-comment">//初始化切片s,是数组arr的引用</span><br>s := arr[startIndex:endIndex] <span class="hljs-comment">//将arr中从下标startIndex到endIndex-1 下的元素创建为一个新的切片</span><br>s := arr[startIndex:]         <span class="hljs-comment">//缺省endIndex时将表示一直到arr的最后一个元素</span><br>s := arr[:endIndex]           <span class="hljs-comment">//缺省startIndex时将表示从arr的第一个元素开始</span><br>s1 := s[startIndex:endIndex]  <span class="hljs-comment">//通过切片s初始化切片s1</span><br>s :=<span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>,<span class="hljs-built_in">len</span>,<span class="hljs-built_in">cap</span>)       <span class="hljs-comment">//通过内置函数make()初始化切片s,[]int 标识为其元素类型为int的切片</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">s :=[] <span class="type">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span> &#125;           <span class="comment">//直接初始化切片，[]表示是切片类型，&#123;1,2,3&#125;初始化值依次是1,2,3.其cap=len=3</span></span><br><span class="line">s := arr[:]                   <span class="comment">//初始化切片s,是数组arr的引用</span></span><br><span class="line">s := arr[startIndex:endIndex] <span class="comment">//将arr中从下标startIndex到endIndex-1 下的元素创建为一个新的切片</span></span><br><span class="line">s := arr[startIndex:]         <span class="comment">//缺省endIndex时将表示一直到arr的最后一个元素</span></span><br><span class="line">s := arr[:endIndex]           <span class="comment">//缺省startIndex时将表示从arr的第一个元素开始</span></span><br><span class="line">s1 := s[startIndex:endIndex]  <span class="comment">//通过切片s初始化切片s1</span></span><br><span class="line">s :=<span class="built_in">make</span>([]<span class="type">int</span>,<span class="built_in">len</span>,<span class="built_in">cap</span>)       <span class="comment">//通过内置函数make()初始化切片s,[]int 标识为其元素类型为int的切片</span></span><br></pre></td></tr></table></figure>
 
 <p><code>slice</code>可以从一个数组或一个已经存在的<code>slice</code>中再次声明。<code>slice</code>通过<code>array[i:j]</code>来获取，其中<code>i</code>是数组的开始位置，<code>j</code>是结束位置，但不包含<code>array[j]</code>，它的长度是<code>j-i</code>。</p>
 <p>注意<code>slice</code>和数组在声明时的区别：声明数组时，方括号内写明了数组的长度或使用<code>...</code>自动计算长度，而声明<code>slice</code>时，方括号内没有任何字符</p>
 <p>切片是引用类型，在使用时需要注意其操作：</p>
 <ul>
 <li><p>切片可以通过内置函数append(slice []Type,elems …Type)追加元素，elems可以是一排type类型的数据，也可以是slice,因为追加的一个一个的元素，因此如果将一个slice追加到另一个slice中需要带上”…”，这样才能表示是将slice中的元素依次追加到另一个slice中。另外在通过下标访问元素时下标不能超过len大小，如同数组的下标不能超出len范围一样。</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">s</span> :=append(s,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>)<br><span class="hljs-attribute">s</span> :=append(s,s1...)<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s :=append(s,1,2,3,4)</span><br><span class="line">s :=append(s,s1...)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>slice</code>的默认开始位置是0，<code>ar[:n]</code>等价于<code>ar[0:n]</code></p>
 </li>
@@ -306,30 +62,30 @@
 </ul>
 <p><code>slice</code>是引用类型，所以当引用改变其中元素的值时，其它的所有引用都会改变该值，例如上面的<code>aSlice</code>和<code>bSlice</code>，如果修改了<code>aSlice</code>中元素的值，那么<code>bSlice</code>相对应的值也会改变。</p>
 <h3 id="go-get-和-go-get-u-的区别"><a href="#go-get-和-go-get-u-的区别" class="headerlink" title="go get 和 go get -u 的区别"></a>go get 和 go get -u 的区别</h3><p>如题，区别如下：<br>加上它可以利用网络来更新已有的代码包及其依赖包。如果已经下载过一个代码包，但是这个代码包又有更新了，那么这时候可以直接用 -u 标记来更新本地的对应的代码包。如果不加这个 -u 标记，执行 go get 一个已有的代码包，会发现命令什么都不执行。只有加了 -u 标记，命令会去执行 git pull 命令拉取最新的代码包的最新版本，下载并安装。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br> x := <span class="hljs-number">0x12345678</span><br> p := unsafe.Pointer(&amp;x) <span class="hljs-comment">// *int -&gt; Pointer</span><br> n := (*[<span class="hljs-number">4</span>]<span class="hljs-type">byte</span>)(p) <span class="hljs-comment">// Pointer -&gt; *[4]byte</span><br> <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(n); i++ &#123;<br> fmt.Printf(<span class="hljs-string">&quot;%X &quot;</span>, n[i])<br> &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line"> x := 0x12345678</span><br><span class="line"> p := unsafe.Pointer(&amp;x) // *int -&gt; Pointer</span><br><span class="line"> n := (*[4]byte)(p) // Pointer -&gt; *[4]byte</span><br><span class="line"> for i := 0; i &lt; len(n); i++ &#123;</span><br><span class="line"> fmt.Printf(&quot;%X &quot;, n[i])</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>输出</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">78 </span><span class="hljs-number">56</span> <span class="hljs-number">34</span> <span class="hljs-number">12</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">78 56 34 12</span><br></pre></td></tr></table></figure>
 
 <p>IEEE754 NAN  f!&#x3D;f</p>
 <p>单引号字符常量表⽰ Unicode Code Point，⽀持 \uFFFF、\U7FFFFFFF、\xFF 格式。<br>对应 rune 类型，用for遍历是逐字节的for range遍历是字符</p>
 <p>返回局部变量指针是安全的，编译器会根据需要将其分配在 GC Heap 上。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span> *<span class="hljs-type">int</span> &#123;<br> x := <span class="hljs-number">100</span><br> <span class="hljs-keyword">return</span> &amp;x <span class="hljs-comment">// 在堆上分配 x 内存。但在内联时，也可能直接分配在⺫标栈。</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func test() *int &#123;</span><br><span class="line"> x := 100</span><br><span class="line"> return &amp;x // 在堆上分配 x 内存。但在内联时，也可能直接分配在⺫标栈。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 <p>将 Pointer 转换成 uintptr，可变相实现指针运算。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br> d := <span class="hljs-keyword">struct</span> &#123;<br> s <span class="hljs-type">string</span><br> x <span class="hljs-type">int</span><br> &#125;&#123;<span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-number">100</span>&#125;<br>p := <span class="hljs-type">uintptr</span>(unsafe.Pointer(&amp;d)) <span class="hljs-comment">// *struct -&gt; Pointer -&gt; uintptr</span><br> p += unsafe.Offsetof(d.x) <span class="hljs-comment">// uintptr + offset</span><br>  p2 := unsafe.Pointer(p) <span class="hljs-comment">// uintptr -&gt; Pointer</span><br> px := (*<span class="hljs-type">int</span>)(p2) <span class="hljs-comment">// Pointer -&gt; *int</span><br> *px = <span class="hljs-number">200</span> <span class="hljs-comment">// d.x = 200</span><br> fmt.Printf(<span class="hljs-string">&quot;%#v\n&quot;</span>, d)<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line"> d := struct &#123;</span><br><span class="line"> s string</span><br><span class="line"> x int</span><br><span class="line"> &#125;&#123;&quot;abc&quot;, 100&#125;</span><br><span class="line">p := uintptr(unsafe.Pointer(&amp;d)) // *struct -&gt; Pointer -&gt; uintptr</span><br><span class="line"> p += unsafe.Offsetof(d.x) // uintptr + offset</span><br><span class="line">  p2 := unsafe.Pointer(p) // uintptr -&gt; Pointer</span><br><span class="line"> px := (*int)(p2) // Pointer -&gt; *int</span><br><span class="line"> *px = 200 // d.x = 200</span><br><span class="line"> fmt.Printf(&quot;%#v\n&quot;, d)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>输出：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">struct &#123; s <span class="hljs-keyword">string</span>; x <span class="hljs-keyword">int</span> &#125;&#123;s:<span class="hljs-string">&quot;abc&quot;</span>, x:<span class="hljs-number">200</span>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">struct &#123; s <span class="keyword">string</span>; x <span class="keyword">int</span> &#125;&#123;s:<span class="string">&quot;abc&quot;</span>, x:<span class="number">200</span>&#125;</span><br></pre></td></tr></table></figure>
 
 <p>注意：GC 把 uintptr 当成普通整数对象，它⽆法阻⽌ “关联” 对象被回收。</p>
 <p>自定义类型</p>
 <p>命名类型：bool、int、string<br>未命名类型： array、slice、map<br>目标类型是未命名类型会发生隐式转换否则必须显式转换，例如</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus">type bigInt int64<br><span class="hljs-selector-tag">var</span> <span class="hljs-selector-tag">a</span> bigInt = <span class="hljs-number">12</span><br><span class="hljs-selector-tag">var</span> <span class="hljs-selector-tag">b</span> int64 = <span class="hljs-selector-tag">a</span> <span class="hljs-comment">//报错 var b int64 = int64(a) </span><br><br>type FooSlice <span class="hljs-selector-attr">[]</span>uint<br><span class="hljs-selector-tag">var</span> <span class="hljs-selector-tag">a</span> FooSlice = FooSlice&#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>&#125;<br><span class="hljs-selector-tag">var</span> <span class="hljs-selector-tag">b</span> <span class="hljs-selector-attr">[]</span>uint = <span class="hljs-selector-tag">a</span>  <span class="hljs-comment">// 正常运行</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">type bigInt int64</span><br><span class="line">var a bigInt = 12</span><br><span class="line">var b int64 = a //报错 var b int64 = int64(a) </span><br><span class="line"></span><br><span class="line">type FooSlice []uint</span><br><span class="line">var a FooSlice = FooSlice&#123;1, 2, 3&#125;</span><br><span class="line">var b []uint = a  // 正常运行</span><br></pre></td></tr></table></figure>
 
 <p>运算符  ^取反</p>
-<h3 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs stylus">func <span class="hljs-selector-tag">main</span>() &#123;<br>   <span class="hljs-selector-tag">var</span> v int64 = <span class="hljs-number">12</span>              <span class="hljs-comment">//默认10进制</span><br>   s2 := strconv<span class="hljs-selector-class">.FormatInt</span>(v, <span class="hljs-number">2</span>) <span class="hljs-comment">//10 转2进制</span><br>   fmt<span class="hljs-selector-class">.Printf</span>(<span class="hljs-string">&quot;%v\n&quot;</span>, s2)<br> <br>   s8 := strconv<span class="hljs-selector-class">.FormatInt</span>(v, <span class="hljs-number">8</span>)<br>   fmt<span class="hljs-selector-class">.Printf</span>(<span class="hljs-string">&quot;%v\n&quot;</span>, s8)<br> <br>   s10 := strconv<span class="hljs-selector-class">.FormatInt</span>(v, <span class="hljs-number">10</span>)<br>   fmt<span class="hljs-selector-class">.Printf</span>(<span class="hljs-string">&quot;%v\n&quot;</span>, s10)<br> <br>   s16 := strconv<span class="hljs-selector-class">.FormatInt</span>(v, <span class="hljs-number">16</span>) <span class="hljs-comment">//10 yo 16</span><br>   fmt<span class="hljs-selector-class">.Printf</span>(<span class="hljs-string">&quot;%v\n&quot;</span>, s16)<br> <br>   <span class="hljs-selector-tag">var</span> sv = <span class="hljs-string">&quot;11&quot;</span><br>   fmt<span class="hljs-selector-class">.Println</span>(strconv<span class="hljs-selector-class">.ParseInt</span>(sv, <span class="hljs-number">16</span>, <span class="hljs-number">32</span>)) <span class="hljs-comment">// 16 to 10</span><br>   fmt<span class="hljs-selector-class">.Println</span>(strconv<span class="hljs-selector-class">.ParseInt</span>(sv, <span class="hljs-number">10</span>, <span class="hljs-number">32</span>)) <span class="hljs-comment">// 10 to 10</span><br>   fmt<span class="hljs-selector-class">.Println</span>(strconv<span class="hljs-selector-class">.ParseInt</span>(sv, <span class="hljs-number">8</span>, <span class="hljs-number">32</span>))  <span class="hljs-comment">// 8 to 10</span><br>   fmt<span class="hljs-selector-class">.Println</span>(strconv<span class="hljs-selector-class">.ParseInt</span>(sv, <span class="hljs-number">2</span>, <span class="hljs-number">32</span>))  <span class="hljs-comment">// 2 to 10</span><br> <br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">func main() &#123;</span><br><span class="line">   var v int64 = 12              //默认10进制</span><br><span class="line">   s2 := strconv.FormatInt(v, 2) //10 转2进制</span><br><span class="line">   fmt.Printf(&quot;%v\n&quot;, s2)</span><br><span class="line"> </span><br><span class="line">   s8 := strconv.FormatInt(v, 8)</span><br><span class="line">   fmt.Printf(&quot;%v\n&quot;, s8)</span><br><span class="line"> </span><br><span class="line">   s10 := strconv.FormatInt(v, 10)</span><br><span class="line">   fmt.Printf(&quot;%v\n&quot;, s10)</span><br><span class="line"> </span><br><span class="line">   s16 := strconv.FormatInt(v, 16) //10 yo 16</span><br><span class="line">   fmt.Printf(&quot;%v\n&quot;, s16)</span><br><span class="line"> </span><br><span class="line">   var sv = &quot;11&quot;</span><br><span class="line">   fmt.Println(strconv.ParseInt(sv, 16, 32)) // 16 to 10</span><br><span class="line">   fmt.Println(strconv.ParseInt(sv, 10, 32)) // 10 to 10</span><br><span class="line">   fmt.Println(strconv.ParseInt(sv, 8, 32))  // 8 to 10</span><br><span class="line">   fmt.Println(strconv.ParseInt(sv, 2, 32))  // 2 to 10</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="编码url"><a href="#编码url" class="headerlink" title="编码url"></a>编码url</h1><h2 id="为什么需要编码和解码"><a href="#为什么需要编码和解码" class="headerlink" title="为什么需要编码和解码"></a>为什么需要编码和解码</h2><p>1.是因为当字符串数据以url的形式传递给web服务器时,字符串中是不允许出现空格和特殊字符的；<br>2.因为 url 对字符有限制，比如把一个邮箱放入 url，就需要使用 urlencode 函数，因为 url 中不能包含 @ 字符；<br>3.url转义其实也只是为了符合url的规范而已。因为在标准的url规范中中文和很多的字符是不允许出现在url中的。</p>
 <h2 id="哪些字符是需要转化的呢？"><a href="#哪些字符是需要转化的呢？" class="headerlink" title="哪些字符是需要转化的呢？"></a>哪些字符是需要转化的呢？</h2><h3 id="1-ASCII-的控制字符"><a href="#1-ASCII-的控制字符" class="headerlink" title="1. ASCII 的控制字符"></a>1. ASCII 的控制字符</h3><p>这些字符都是不可打印的，自然需要进行转化。</p>
@@ -338,7 +94,7 @@
 <h3 id="4-就是一些不安全的字符了。"><a href="#4-就是一些不安全的字符了。" class="headerlink" title="4. 就是一些不安全的字符了。"></a>4. 就是一些不安全的字符了。</h3><p>例如：空格。为了防止引起歧义，需要被转化为“+”。<br>明白了这些，也就知道了为什么需要转化了，而转化的规则也是很简单的。</p>
 <p>按照每个字符对应的字符编码，不是符合我们范围的，统统的转化为%的形式也就是了。自然也是16进制的形式。</p>
 <h3 id="5-和字符编码无关"><a href="#5-和字符编码无关" class="headerlink" title="5.和字符编码无关"></a>5.和字符编码无关</h3><p>通过urlencode的转化规则和目的，我们也很容易的看出，urleocode是基于字符编码的。同样的一个汉字，不同的编码类型，肯定对应不同的urleocode的串。gbk编码的有gbk的encode结果。<br>apache等服务器，接受到字符串后，可以进行decode，但是还是无法解决编码的问题。编码问题，还是需要靠约定或者字符编码的判断解决。<br>因此，urleocode只是为了url中一些非ascii字符，可以正确无误的被传输，至于使用哪种编码，就不是encode所关心和解决的问题了。<br>编码问题，不是urlencode所要解决的。</p>
-<h2 id="golang之UrlEncode编码-x2F-UrlDecode解码"><a href="#golang之UrlEncode编码-x2F-UrlDecode解码" class="headerlink" title="golang之UrlEncode编码&#x2F;UrlDecode解码"></a>golang之UrlEncode编码&#x2F;UrlDecode解码</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span>(<br>    <span class="hljs-string">&quot;fmt&quot;</span><br>    <span class="hljs-string">&quot;net/url&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>  &#123;<br>    <span class="hljs-keyword">var</span> urlStr <span class="hljs-type">string</span> = <span class="hljs-string">&quot;傻了吧:%:%@163&amp; .html.html&quot;</span><br>    escapeUrl := url.QueryEscape(urlStr)<br>    fmt.Println(<span class="hljs-string">&quot;编码:&quot;</span>,escapeUrl)<br><br>    enEscapeUrl, _ := url.QueryUnescape(escapeUrl)<br>    fmt.Println(<span class="hljs-string">&quot;解码:&quot;</span>,enEscapeUrl)<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="golang之UrlEncode编码-x2F-UrlDecode解码"><a href="#golang之UrlEncode编码-x2F-UrlDecode解码" class="headerlink" title="golang之UrlEncode编码&#x2F;UrlDecode解码"></a>golang之UrlEncode编码&#x2F;UrlDecode解码</h2><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span>(</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;net/url&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>  &#123;</span><br><span class="line">    <span class="keyword">var</span> urlStr <span class="type">string</span> = <span class="string">&quot;傻了吧:%:%@163&amp; .html.html&quot;</span></span><br><span class="line">    escapeUrl := url.QueryEscape(urlStr)</span><br><span class="line">    fmt.Println(<span class="string">&quot;编码:&quot;</span>,escapeUrl)</span><br><span class="line"></span><br><span class="line">    enEscapeUrl, _ := url.QueryUnescape(escapeUrl)</span><br><span class="line">    fmt.Println(<span class="string">&quot;解码:&quot;</span>,enEscapeUrl)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>编码: %E5%82%BB%E4%BA%86%E5%90%A7%3A%25%3A%25%40163%26+.html.html<br>解码: 傻了吧:%:%@163&amp; .html.html</p>
 <p>原文地址： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/haima/p/13442194.html">golang之UrlEncode编码&#x2F;UrlDecode解码</a></p>
@@ -346,12 +102,12 @@
 <p>关键字 return 不是一个原子操作，实际上 return 只代理汇编指令 ret，即将跳转程序执行。比如语句 return i，实际上分两步进行，即将 i 值存入栈中作为返回值，然后执行跳转，而 defer 的执行时机正是跳转前，所以说 defer 执行时还是有机会操作返回值的。</p>
 <p>defer函数在return前执行</p>
 <p>匿名返回值，返回字面量，不会被影响</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span> <span class="hljs-type">int</span> &#123;<br>	i := <span class="hljs-number">0</span><br>	<span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>		i++<br>	&#125;()<br>	<span class="hljs-keyword">return</span> i  <span class="hljs-comment">// 0 匿名返回值</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">gee</span><span class="hljs-params">()</span></span> <span class="hljs-type">int</span> &#123;<br>	i := <span class="hljs-number">0</span><br>	<span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>		i++<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span> <span class="hljs-comment">// 0 字面量</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func foo() int &#123;</span><br><span class="line">	i := 0</span><br><span class="line">	defer func() &#123;</span><br><span class="line">		i++</span><br><span class="line">	&#125;()</span><br><span class="line">	return i  // 0 匿名返回值</span><br><span class="line">&#125;</span><br><span class="line">func gee() int &#123;</span><br><span class="line">	i := 0</span><br><span class="line">	defer func() &#123;</span><br><span class="line">		i++</span><br><span class="line">	&#125;</span><br><span class="line">	return 0 // 0 字面量</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>具名返回值，会被影响</p>
-<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs nim"><span class="hljs-keyword">func</span> bar() (<span class="hljs-built_in">result</span> <span class="hljs-type">int</span>) &#123;<br>	defer <span class="hljs-keyword">func</span>() &#123;<br>		<span class="hljs-built_in">result</span>++<br>	&#125;()<br>	<span class="hljs-keyword">return</span> <span class="hljs-built_in">result</span> // <span class="hljs-number">1</span> 这里<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>或者<span class="hljs-built_in">result</span>都会返回<span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func bar() (result int) &#123;</span><br><span class="line">	defer func() &#123;</span><br><span class="line">		result++</span><br><span class="line">	&#125;()</span><br><span class="line">	return result // 1 这里return 0或者result都会返回1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="判断文件是否存在"><a href="#判断文件是否存在" class="headerlink" title="判断文件是否存在"></a>判断文件是否存在</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">FileExist</span><span class="hljs-params">(path <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">bool</span> &#123;<br>  _, err := os.Lstat(path)  <span class="hljs-comment">// Stat</span><br>  <span class="hljs-keyword">return</span> !os.IsNotExist(err)<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="判断文件是否存在"><a href="#判断文件是否存在" class="headerlink" title="判断文件是否存在"></a>判断文件是否存在</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func FileExist(path string) bool &#123;</span><br><span class="line">  _, err := os.Lstat(path)  // Stat</span><br><span class="line">  return !os.IsNotExist(err)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h2><ul>
 <li>(re)           numbered capturing group</li>
@@ -371,331 +127,66 @@
 <li>U              ungreedy: swap meaning of x* and x*?, x+ and x+?, etc (default false)</li>
 </ul>
 <p>例如不区分大小写</p>
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">r := regexp.MustCompile(`(?i)CaSe`)<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r := regexp.MustCompile(`(?i)CaSe`)</span><br></pre></td></tr></table></figure>
 
-<h1 id="交换顺序"><a href="#交换顺序" class="headerlink" title="交换顺序"></a>交换顺序</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-tag">a</span> := <span class="hljs-number">1</span><br><span class="hljs-selector-tag">b</span> := <span class="hljs-number">2</span><br><span class="hljs-selector-tag">a</span> ^= <span class="hljs-selector-tag">b</span><br><span class="hljs-selector-tag">b</span> ^= <span class="hljs-selector-tag">a</span><br><span class="hljs-selector-tag">a</span> ^= b<br></code></pre></td></tr></table></figure>
+<h1 id="交换顺序"><a href="#交换顺序" class="headerlink" title="交换顺序"></a>交换顺序</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a := 1</span><br><span class="line">b := 2</span><br><span class="line">a ^= b</span><br><span class="line">b ^= a</span><br><span class="line">a ^= b</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-tag">a</span> := <span class="hljs-number">1</span><br><span class="hljs-selector-tag">b</span> := <span class="hljs-number">2</span><br><span class="hljs-selector-tag">a</span>, <span class="hljs-selector-tag">b</span> = <span class="hljs-selector-tag">b</span>, a<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a := 1</span><br><span class="line">b := 2</span><br><span class="line">a, b = b, a</span><br></pre></td></tr></table></figure>
 
-<h1 id="获取正在运行的函数名"><a href="#获取正在运行的函数名" class="headerlink" title="获取正在运行的函数名"></a>获取正在运行的函数名</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vim">func getFuncName() <span class="hljs-built_in">string</span> &#123;<br>	<span class="hljs-keyword">pc</span>, _, _, _ := <span class="hljs-keyword">runtime</span>.Caller(<span class="hljs-number">1</span>)<br>	<span class="hljs-keyword">return</span> <span class="hljs-keyword">runtime</span>.FuncForPC(<span class="hljs-keyword">pc</span>).Name()<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="获取正在运行的函数名"><a href="#获取正在运行的函数名" class="headerlink" title="获取正在运行的函数名"></a>获取正在运行的函数名</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func getFuncName() string &#123;</span><br><span class="line">	pc, _, _, _ := runtime.Caller(1)</span><br><span class="line">	return runtime.FuncForPC(pc).Name()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getFuncName</span><span class="hljs-params">()</span></span><span class="hljs-type">string</span>&#123;<br>    pc := <span class="hljs-built_in">make</span>([]<span class="hljs-type">uintptr</span>,<span class="hljs-number">1</span>)<br>    runtime.Callers(<span class="hljs-number">2</span>,pc)<br>    f := runtime.FuncForPC(pc[<span class="hljs-number">0</span>])<br>    <span class="hljs-keyword">return</span> f.Name()<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func getFuncName()string&#123;</span><br><span class="line">    pc := make([]uintptr,1)</span><br><span class="line">    runtime.Callers(2,pc)</span><br><span class="line">    f := runtime.FuncForPC(pc[0])</span><br><span class="line">    return f.Name()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><blockquote>
 <p>go &gt;&#x3D; 1.18</p>
 </blockquote>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Number <span class="hljs-keyword">interface</span> &#123;<br>	<span class="hljs-type">uint</span> | <span class="hljs-type">uint8</span> | <span class="hljs-type">uint16</span> | <span class="hljs-type">uint32</span> | <span class="hljs-type">uint64</span>  # 联合类型<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">sum</span>[<span class="hljs-title">K</span> <span class="hljs-title">comparable</span>, <span class="hljs-title">V</span> <span class="hljs-title">Number</span>]<span class="hljs-params">(s <span class="hljs-keyword">map</span>[K]V)</span></span> (sum <span class="hljs-type">uint64</span>) &#123;<br>	<span class="hljs-keyword">for</span> _, value := <span class="hljs-keyword">range</span> s &#123;<br>		sum += <span class="hljs-type">uint64</span>(value)<br>	&#125;<br>	<span class="hljs-keyword">return</span><br>&#125;<br><br>fmt.Println(sum[<span class="hljs-type">int</span>, <span class="hljs-type">uint64</span>](<span class="hljs-keyword">map</span>[<span class="hljs-type">int</span>]<span class="hljs-type">uint64</span>&#123;<span class="hljs-number">1</span>: <span class="hljs-number">1</span>, <span class="hljs-number">2</span>: <span class="hljs-number">3</span>&#125;))<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">type Number interface &#123;</span><br><span class="line">	uint | uint8 | uint16 | uint32 | uint64  # 联合类型</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func sum[K comparable, V Number](s map[K]V) (sum uint64) &#123;</span><br><span class="line">	for _, value := range s &#123;</span><br><span class="line">		sum += uint64(value)</span><br><span class="line">	&#125;</span><br><span class="line">	return</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fmt.Println(sum[int, uint64](map[int]uint64&#123;1: 1, 2: 3&#125;))</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>为 K 类型参数指定类型约束 comparable。专门针对此类情况，comparable 在 Go 中预先声明了约束。它允许任何类型的值可以用作比较运算符 &#x3D;&#x3D; 和的操作数 !&#x3D;。Go 要求 map keys 具有可比性。所以声明 K as comparable 是必要的，这样你就可以 K 在 map 变量中用作键。它还确保调用代码对 map keys 使用允许的类型。</p>
 </blockquote>
-
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Go语言学习笔记</div>
-      <div>https://www.chengyao.xyz/2021/11/28/Go语言学习笔记/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>CY</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2021年11月28日</div>
-        </div>
-      
-      
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
-            
-            
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
-        </div>
-      </div>
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/11/28/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="MongoDB学习笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MongoDB学习笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/" title="Go语言学习相关文档">
-                        <span class="hidden-mobile">Go语言学习相关文档</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
-      scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Go语言学习笔记</p><p><a href="https://www.chengyao.xyz/2021/11/28/Go语言学习笔记/">https://www.chengyao.xyz/2021/11/28/Go语言学习笔记/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>CY</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-11-28</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2022-08-28</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/11/28/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">MongoDB学习笔记</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/"><span class="level-item">Go语言学习相关文档</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果也！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">170</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-01T06:56:20.000Z">2022-10-01</time></p><p class="title"><a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-18T05:06:34.000Z">2022-09-18</time></p><p class="title"><a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-04T13:30:39.000Z">2022-09-04</time></p><p class="title"><a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-21T02:56:27.000Z">2022-08-21</time></p><p class="title"><a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-19T12:54:39.000Z">2022-08-19</time></p><p class="title"><a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown基本语法</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">五月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

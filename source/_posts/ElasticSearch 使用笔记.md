@@ -12,6 +12,8 @@ tags:
 docker pull elasticsearch
 ```
 
+<!-- more -->
+
 ## 启动容器
 
 ```shell
@@ -67,9 +69,67 @@ xpack.security.enabled: false
 
 [1] posting list 和 doc value 都是 Lucene 的压缩技术，原理是保存后一个文档和前一个文档的差异，而不是完整的文档。
 
+# 数据类型
+
+> ElasticSearch“真正用于分隔数据的结构“只有index，而没有type，type实际上作为了一个元数据（类似SQL中的id，作为额外的标识数据）来实现逻辑划分。
+
+ES常用的数据类型可分为3大类：核⼼数据类型、复杂数据类型、专⽤数据类型
+
+## 核心数据类型 text, keyword
+
+### text
+
+支持分词，全文索引，模糊查询，不支持聚合，排序。 特点是最大长度无限制，可以用来存储邮箱，地址，代码块，博客内容等，默认结合standard analyzer对文本分词，倒排索引，进行词命中，词频相关度打分
+
+### keyword
+
+不分词，直接u偶姻，支持模糊、精确匹配，支持聚合、排序。最大长度32766个utf-8编码的字符，可以通过设置ignore_above指定自持字符长度，超过长度的数据不被索引，无法通过term精确匹配，可以存储邮箱、手机、主机名、标签、年龄等。直接将完整的文本数据保存到倒排索引中
+
+ - 数字类型：long, integer, short, byte, double, float, half_float, scaled_float
+ - 日期：date
+ - 日期 纳秒：date_nanos
+ - 布尔型：boolean
+ - Binary：binary
+ - Range: integer_range, float_range, long_range, double_range, date_range
+
+
 # RestApi
 
-> 请求须指定文档的索引名称，唯一的文档 ID，以及请求体中一个或多个键值对
+> 请求须指定文档的索引名称，唯一的文档 ID，以及请求体中一个或多个键值对, 带用户名密码查询需要加参数 --user user:passwd
+
+## 列出所有 _cat命令
+
+> GET _cat/
+
+## 显示左右索引并按照存储大小排序
+
+> GET _cat/indices?v&s=store.size:desc
+
+# 获取集群状态
+
+> GET _cat/health
+
+# 当使用v参数是 会显示列名的详细信息
+
+> GET _cat/health?v
+
+# 显示所有的node信息
+
+> GET _cat/nodes?v
+
+# 只显示ip和load_5m这两列
+
+> GET _cat/nodes?v&h=ip,load_5m
+
+# 通过json格式显示输出
+
+> GET _cat/indices?v&format=json&pretty
+
+## 修改密码
+
+```shell
+curl -H "Content-Type:application/json" -XPOST -u elastic 'http://127.0.0.1:9200/_xpack/security/user/elastic/_password' -d '{ "password" : "123456" }'
+```
 
 ## 创建索引
 
@@ -78,6 +138,8 @@ PUT /user
 ```
 
 ## 查看映射
+
+
 
 > GET /user/_mapping
 
@@ -231,6 +293,18 @@ text类型不能转为long类型
 }
 ```
 
+### 删除索引下的数据
+
+> POST /index/_delete_by_query
+
+```json
+{
+    "query": {
+        "match_all": {}
+    }
+}
+```
+
 ## 搜索
 
 > 默认情况返回前10个符合查询的文档
@@ -238,6 +312,8 @@ text类型不能转为long类型
 > GET /user/_search
 
 ### 简单查询
+
+分词检索match/match_all 
 
 > 按照age正序，查询前10个
 
@@ -268,7 +344,12 @@ text类型不能转为long类型
 
 ### 复杂查询
 
-> 使用布尔查询组合多个查询条件，must match、should match、must not match
+> 使用布尔查询组合多个查询条件，must、should、must_not , filter
+
+- must 返回文档必须满足must子句条件，并参与计算分值
+- filter 返回文档必须满足filter子句的条件，不计算分值，可以缓存使用
+
+> 如果需要计算分值用must，否则用filter
 
 ```json
 {
@@ -301,6 +382,56 @@ text类型不能转为long类型
 must 或者 should 查询子句中的条件都会影响文档的相关得分。得分越高，文档跟搜索条件匹配得越好。默认情况下，Elasticsearch 返回的文档会根据相关性算分倒序排列，must_not 子句中认为是过滤条件。它会过滤返回结果，但不会影响文档的相关性算分
 
 > 你还可以明确指定任意过滤条件去筛选结构化数据文档，如上查询中的filter
+
+### filter
+
+```json
+{
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "terms": {
+                        "age": [
+                            1,2
+                        ]
+                    }
+                    "term": {
+                        "id": 120
+                    }
+                },
+                {
+                    "range": {
+                        "age": {
+                            "gte": 110,
+                            "lte": 120,
+                            "boost": 2.0 // 设置得分的权重值（提升值），默认是1.0
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
+```
+
+> 其中的range有：gte,gt,lte,lt分别表示大于或等于，大于，小于或等于，小于
+
+精确查找
+
+```json
+{
+    "query" : {
+        "term": {
+            "id": {
+              "value": 120
+            }
+        }
+    }
+}
+```
+
+> filter也可以使用单个
 
 ## 删除索引
 
@@ -348,9 +479,36 @@ action.destructive_requires_name: true
 ```
 其中size为0，所以只返回聚合数据，请求使用 terms 聚合 索引中对所有国家进行分组，使用组合聚合，查询分组内所有age字段平均数，还可以使用聚合字段进行排序
 
+# 分词器
+
+## 中文分词
+
+standard/simple/whitespace
+
+https://github.com/medcl/elasticsearch-analysis-ik
+
+## 测试分词
+
+```
+POST /_analyze
+```
+
+请求体
+
+```json
+{
+    "analyzer": "standard",
+    "text": "I bought a computer."
+}
+```
+
+> analyzer是分词器，默认是standard，支持中文按字分词
 
 # 常见报错
 
 - Text fields are not optimised for operations that require per-document field data like aggregations and sorting, so these operations are disabled by default. Please use a keyword field instead. Alternatively, set fielddata=true on [interests] in order to load field data by uninverting the inverted index. Note that this can use significant memory.
 
         因为interests的类型type是text，text或annotated_text字段doc_values默认为false，也就是说，text字段作为整体，默认没有索引
+- no [query] registered for [filtered]
+
+        过滤查询ES5.0已经废弃，应当使用bool / must / filter查询

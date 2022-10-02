@@ -1,678 +1,742 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="CY">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="笔记">
-<meta property="og:url" content="https://www.chengyao.xyz/page/16/index.html">
-<meta property="og:site_name" content="笔记">
-<meta property="og:description" content="笔记">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="CY">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>笔记</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 100vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
-          
-        </div>
-
-        
-      </div>
-
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-x-md">
-        <div id="board"
-          style="margin-top: 0">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/09/28/postgresql/" target="_self">
-          postgresql
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/09/28/postgresql/" target="_self">
-        <div>
-          sudo -i -u postgres 登录\l列出所有数据库\c 数据库名 选择数据库\d 列出数据表\d 表名 列出数据表的结构create database chengyao; 创建数据库drop database chengyao;删除数据库psql -h localhost -p 5432 -U cheng postgres登录select pg_roles.rolname from p
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-28 20:31" pubdate>
-              2020-09-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/09/26/js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
-          js学习笔记
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/09/26/js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
-        <div>
-          自定义函数in_array123456789function in_array(stringToSearch, arrayToSearch) &amp;#123;	for (s &#x3D; 0; s &lt; arrayToSearch.length; s++) &amp;#123;		thisEntry &#x3D; arrayToSearch[s].toString();		if (thisEntry &#x3D;&#x3D; stringToS
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-26 22:53" pubdate>
-              2020-09-26
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/15/%E7%AC%94%E8%AE%B0%EF%BC%9Aes6%E5%9F%BA%E7%A1%80/" target="_self">
-          笔记：es6基础
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/15/%E7%AC%94%E8%AE%B0%EF%BC%9Aes6%E5%9F%BA%E7%A1%80/" target="_self">
-        <div>
-          ECMAScript 与 javascript&gt;ECMAScript 可以说是 javascript 的国际标准。 letlet 用来声明变量，用法类似 var 但由 let 声明的变量，只能在 let 命令所在的代码块内有效。 var 声明的变量在全局范围内都有效 var 命令会发生“变量提升”现象，即变量会在声明前可使用，而 let 做了语法处理，限制了这种情况 暂时性死区若区块中存在l
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-15 07:21" pubdate>
-              2020-08-15
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/15/redis%E5%9F%BA%E7%A1%80/" target="_self">
-          redis基础
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/15/redis%E5%9F%BA%E7%A1%80/" target="_self">
-        <div>
-          Redis的优势和特点Redis的特点： 内存数据库，速度快，也支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。 Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。 Redis支持数据的备份，即master-slave模式的数据备份。 支持事务  Redis的优势： 性能极高 – Redis能读
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-15 07:20" pubdate>
-              2020-08-15
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/15/php%E6%9D%82%E8%AE%B0/" target="_self">
-          php杂记
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/15/php%E6%9D%82%E8%AE%B0/" target="_self">
-        <div>
-          查看端口12netstat -tunlp | grep 端口号&#96;&#96;lsof -i:端口号  重启nginx12nginx -s reload&#96;&#96;service nginx restart  查找文件1find &#x2F; -name filename  解压1tar zxvf filename  过滤查找1cmd |grep findname  重命名文件夹1mv old_filename new_fil
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-15 07:19" pubdate>
-              2020-08-15
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/15/php%E7%AC%94%E8%AF%95%E3%80%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%94%B6%E5%BD%95%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" target="_self">
-          php笔试、面试题收录（持续更新）
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/15/php%E7%AC%94%E8%AF%95%E3%80%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%94%B6%E5%BD%95%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/" target="_self">
-        <div>
-          php中isset,empty,is_null,?:,??is_nullbool is_null ( mixed $var )  当参数满足下面三种情况时，is_null()将返回TRUE，其它的情况就是FALSE1、它被赋值为NULL2、它还没有赋值3、它未定义，相当于unset()处理过的变量issetbool isset ( mixed $var [, mixed $… ] )，参数是一个
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-15 07:19" pubdate>
-              2020-08-15
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/15/%E5%85%B3%E4%BA%8Ehttp%E5%93%8D%E5%BA%94%E5%92%8C%E8%BF%9E%E6%8E%A5/" target="_self">
-          关于http响应和连接
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/15/%E5%85%B3%E4%BA%8Ehttp%E5%93%8D%E5%BA%94%E5%92%8C%E8%BF%9E%E6%8E%A5/" target="_self">
-        <div>
-          HTTP 响应头信息&gt;HTTP请求头提供了关于请求，响应或者其他的发送实体的信息。 Allow	服务器支持哪些请求方法（如GET、POST等）。 Content-Encoding	文档的编码（Encode）方法。只有在解码之后才可以得到Content-Type头指定的内容类型。利用gzip压缩文档能够显著地减少HTML文档的下载时间。Java的GZIPOutputStream可以很方便地进行
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-15 07:13" pubdate>
-              2020-08-15
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/14/%E5%85%B3%E4%BA%8Eapt-get%20remove%20%E4%B8%8E%20apt-get%20purge/" target="_self">
-          关于apt-get remove 与 apt-get purge
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/14/%E5%85%B3%E4%BA%8Eapt-get%20remove%20%E4%B8%8E%20apt-get%20purge/" target="_self">
-        <div>
-          今天在Ubuntu服务器上安装supervisor，部署没成功想卸载重来，sudo apt-get remove supervisor 后发现配置文件还在，便手动删除了配置文件。再次安装，提示配置文件不存在，WTF！配置文件不该你软件给我创建吗？我想。 查阅资料才知，还有 apt-get purge 这一选项，purge 清除。 划重点：apt-get remove 会删除软件包而保留软件的配置文
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-14 16:35" pubdate>
-              2020-08-14
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/14/mysql%EF%BC%88mariadb%EF%BC%89%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" target="_self">
-          mysql（mariadb）常用命令
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/14/mysql%EF%BC%88mariadb%EF%BC%89%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" target="_self">
-        <div>
-          首先了解一下SQL的注释  单行语句进行注释 1SELECT * FROM USERS; --查询所有用户信息 多行注释 123456&#x2F;*切换到USER数据库查询所有表信息*&#x2F;USE USER;SHOW TABLES; 注释快捷键  选中需要注释的语句先Ctrl+k，再Ctrl+c注释成功取消注释先Crtrl+k，在Ctrl+u  查看支持的表引擎12SHOW ENGINES;SHOW VARI
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-14 11:09" pubdate>
-              2020-08-14
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/08/13/php%E7%9A%84%E4%B8%89%E7%A7%8DCLI%E5%B8%B8%E9%87%8F%EF%BC%9ASTDIN,STDOUT,STDERR/" target="_self">
-          php的三种CLI常量：STDIN,STDOUT,STDERR
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2020/08/13/php%E7%9A%84%E4%B8%89%E7%A7%8DCLI%E5%B8%B8%E9%87%8F%EF%BC%9ASTDIN,STDOUT,STDERR/" target="_self">
-        <div>
-          &gt;PHP CLI(command line interface)中，有三个系统常量，分别是STDIN、STDOUT、STDERR，代表文件句柄。 应用一： 12345&amp;lt;?phpwhile($line &#x3D; fopen(&amp;#x27;php:&#x2F;&#x2F;stdin&amp;#x27;,&amp;#x27;r&amp;#x27;))&amp;#123;    echo fgets($line);&amp;#125;?&amp;gt;
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-08-13 13:22" pubdate>
-              2020-08-13
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/15/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/#board">14</a><a class="page-number" href="/page/15/#board">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/17/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="笔记"><meta property="og:type" content="blog"><meta property="og:title" content="笔记"><meta property="og:url" content="https://www.chengyao.xyz/"><meta property="og:site_name" content="笔记"><meta property="og:description" content="笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz"},"headline":"笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"笔记"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
       }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-10-06T03:26:54.000Z" title="2020/10/6 上午11:26:54">2020-10-06</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">8 分钟读完 (大约1149个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/10/06/datatables%20%E4%BD%BF%E7%94%A8/">datatables 使用</a></h1><div class="content"><p>来源：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/showcase/p/11130463.html">https://www.cnblogs.com/showcase/p/11130463.html</a></p>
+<h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><blockquote>
+<p>官网：<a target="_blank" rel="noopener" href="https://datatables.net/">https://datatables.net/</a><br>中文官网：<a target="_blank" rel="noopener" href="http://datatables.club/">http://datatables.club/</a></p>
+</blockquote>
+<p>Datatables是一款<code>jquery</code>表格插件。它是一个高度灵活的工具，可以将任何HTML表格添加高级的交互功能。</p>
+<ul>
+<li>分页，即时搜索和排序</li>
+<li>几乎支持任何数据源：DOM， javascript， Ajax 和 服务器处理</li>
+<li>支持不同主题 DataTables, jQuery UI, Bootstrap, Foundation</li>
+<li>各式各样的扩展: Editor, TableTools, FixedColumns ……</li>
+<li>丰富多样的option和强大的API</li>
+<li>支持国际化</li>
+<li>超过2900+个单元测试</li>
+<li>免费开源</li>
+</ul>
+<h2 id="二、使用"><a href="#二、使用" class="headerlink" title="二、使用"></a>二、使用</h2><h3 id="1、引入相关js和css文件"><a href="#1、引入相关js和css文件" class="headerlink" title="1、引入相关js和css文件"></a>1、引入相关js和css文件</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- DataTables CSS --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- jQuery --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf8&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://code.jquery.com/jquery-1.10.2.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- DataTables --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf8&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、添加HTML代码"><a href="#2、添加HTML代码" class="headerlink" title="2、添加HTML代码"></a>2、添加HTML代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">id</span>=<span class="string">&quot;table_id_example&quot;</span> <span class="attr">class</span>=<span class="string">&quot;display&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>Column 1<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">th</span>&gt;</span>Column 2<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>Row 1 Data 1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>Row 1 Data 2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>Row 2 Data 1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>Row 2 Data 2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3、初始化Datatables"><a href="#3、初始化Datatables" class="headerlink" title="3、初始化Datatables"></a>3、初始化Datatables</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">ready</span>( <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    $(<span class="string">&#x27;#table_id_example&#x27;</span>).<span class="title class_">DataTable</span>();</span><br><span class="line">&#125; );</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、效果"><a href="#4、效果" class="headerlink" title="4、效果"></a>4、效果</h3><h2 id="三、常用选项"><a href="#三、常用选项" class="headerlink" title="三、常用选项"></a>三、常用选项</h2><h3 id="order"><a href="#order" class="headerlink" title="order"></a>order</h3><blockquote>
+<p>应用于表的初始顺序（排序） </p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 参数<span class="number">1</span> 列索引按顺序排列 从<span class="number">0</span>开始 </span><br><span class="line"># 参数<span class="number">2</span> 排序的规则</span><br><span class="line"><span class="string">&quot;order&quot;</span>: [[ <span class="number">1</span>, <span class="string">&quot;asc/desc&quot;</span> ],...]</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="stateSave"><a href="#stateSave" class="headerlink" title="stateSave"></a>stateSave</h3><blockquote>
+<p>状态保存 - 页面重新加载时恢复表状态<br>启用或禁用状态保存。启用后，DataTables将存储状态信息，例如分页位置，显示长度，过滤和排序。当最终用户重新加载页面时，表的状态将被更改以匹配他们之前设置的状态。 </p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 默认值 <span class="literal">false</span></span><br><span class="line"><span class="attr">stateSave</span>: <span class="literal">true</span>/<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="columnDefs"><a href="#columnDefs" class="headerlink" title="columnDefs"></a>columnDefs</h3><blockquote>
+<p>设置列定义初始化属性<br>此参数允许您为表中的列指定特定选项，但在这种情况下，定义的列选项可应用于一个或多个列 </p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">columnDefs</span>:[</span><br><span class="line">    # 索引<span class="number">0</span>列和第<span class="number">8</span>列，不进行排序</span><br><span class="line">    &#123;<span class="attr">targets</span>:[<span class="number">0</span>,<span class="number">8</span>],<span class="attr">orderable</span>:<span class="literal">false</span>&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h3 id="lengthMenu"><a href="#lengthMenu" class="headerlink" title="lengthMenu"></a>lengthMenu</h3><blockquote>
+<p>定义在每页显示记录数的select中显示的选项</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#example&#x27;</span>).<span class="title class_">DataTable</span>(&#123;</span><br><span class="line">  <span class="string">&quot;lengthMenu&quot;</span>: [ <span class="number">10</span>, <span class="number">25</span>, <span class="number">50</span>, <span class="number">75</span>, <span class="number">100</span> ]</span><br><span class="line">&#125;);</span><br><span class="line"># 或</span><br><span class="line">$(<span class="string">&#x27;#example&#x27;</span>).<span class="title class_">DataTable</span>(&#123;</span><br><span class="line">  <span class="string">&quot;lengthMenu&quot;</span>: [ [<span class="number">10</span>, <span class="number">25</span>, <span class="number">50</span>, -<span class="number">1</span>], [<span class="number">10</span>, <span class="number">25</span>, <span class="number">50</span>, <span class="string">&quot;所有&quot;</span>] ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="paging"><a href="#paging" class="headerlink" title="paging"></a>paging</h3><blockquote>
+<p>是否允许表格分页  true&#x2F;false</p>
+<p>默认：true</p>
+</blockquote>
+<h3 id="info"><a href="#info" class="headerlink" title="info"></a>info</h3><blockquote>
+<p>控制是否显示表格的信息   true&#x2F;false</p>
+<p>默认：true</p>
+</blockquote>
+<h3 id="searching"><a href="#searching" class="headerlink" title="searching"></a>searching</h3><blockquote>
+<p>是否允许Datatables开启本地搜索 true&#x2F;false</p>
+<p>默认：true</p>
+</blockquote>
+<h3 id="ordering"><a href="#ordering" class="headerlink" title="ordering"></a>ordering</h3><blockquote>
+<p>是否允许Datatables开启排序 true&#x2F;false</p>
+<p>默认：true</p>
+</blockquote>
+<h3 id="processing"><a href="#processing" class="headerlink" title="processing"></a>processing</h3><blockquote>
+<p>是否显示正在处理的状态 true&#x2F;false</p>
+<p>默认：false</p>
+</blockquote>
+<h2 id="四、Ajax使用远程数据"><a href="#四、Ajax使用远程数据" class="headerlink" title="四、Ajax使用远程数据"></a>四、Ajax使用远程数据</h2><blockquote>
+<p>有时从DOM读取数据太慢或太笨重，特别是在处理数千或数百万个数据行时。为了解决这个问题，DataTables的服务器端处理功能提供了一种方法，可以让服务器端的数据库引擎完成所有“繁重的工作” 。</p>
+<p>当使用服务器端处理时，DataTables将在页面上每次绘制信息时向服务器发出Ajax请求（即，在分页，排序，搜索等时）。DataTables将向服务器发送许多变量，以允许它执行所需的处理，然后以DataTables所需的格式返回数据。 </p>
+</blockquote>
+<h3 id="1、客户端"><a href="#1、客户端" class="headerlink" title="1、客户端"></a>1、客户端</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#example&#x27;</span>).<span class="title class_">DataTable</span>( &#123;</span><br><span class="line">    <span class="comment">// 开启服务器模式</span></span><br><span class="line">    <span class="attr">serverSide</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// ajax发起请求</span></span><br><span class="line">    <span class="attr">ajax</span>: &#123;</span><br><span class="line">            <span class="comment">// 请求地址</span></span><br><span class="line">            <span class="attr">url</span>: <span class="string">&#x27;/data-source&#x27;</span>,</span><br><span class="line">            <span class="comment">// 请求方式 get/post</span></span><br><span class="line">            <span class="attr">type</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">            <span class="comment">// 头信信息 laravel post请求时 csrf</span></span><br><span class="line">            <span class="attr">headers</span>: &#123; <span class="string">&#x27;X-CSRF-TOKEN&#x27;</span> : <span class="string">&#x27;&#123;&#123; csrf_token() &#125;&#125;&#x27;</span> &#125;,</span><br><span class="line">            <span class="comment">// 请求的参数</span></span><br><span class="line">            <span class="attr">data</span>: &#123;</span><br><span class="line">                <span class="string">&quot;user_id&quot;</span>: <span class="number">451</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            // 两者写法效果一致  但是它用于搜索</span></span><br><span class="line"><span class="comment">            data: function ( d ) &#123;</span></span><br><span class="line"><span class="comment">                d.user_id = $(&#x27;#user_id&#x27;).val();</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// columns要对tr中的td单元格中的内容进行数据填充</span></span><br><span class="line">        <span class="comment">// 注意：如果data接收类似a或b的信息，实际服务器没有返回该信息，那么一定要同时设置defaultContent属性，否则报错</span></span><br><span class="line">        <span class="attr">columns</span>: [</span><br><span class="line">            <span class="comment">// 总的数量与表格的列的数量一致，不多也不少</span></span><br><span class="line">            <span class="comment">// 字段名称与sql查询出来的字段时要保持一致，就是服务器返回数据对应的字段名称</span></span><br><span class="line">            <span class="comment">// defaultContent 和 className 可选参数</span></span><br><span class="line">            &#123;<span class="string">&#x27;data&#x27;</span>:<span class="string">&#x27;字段名称1&#x27;</span>,<span class="string">&quot;defaultContent&quot;</span>: <span class="string">&quot;默认值&quot;</span>,<span class="string">&#x27;className&#x27;</span>:<span class="string">&#x27;类名&#x27;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&#x27;data&#x27;</span>:<span class="string">&#x27;字段名称n&#x27;</span>,<span class="string">&quot;defaultContent&quot;</span>: <span class="string">&quot;默认值&quot;</span>,<span class="string">&#x27;className&#x27;</span>:<span class="string">&#x27;类名&#x27;</span>&#125;</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        创建tr/td时的回调函数，可以继续修改、优化tr/td的显示，里边有遍历效果，会依次扫描生成的每个tr</span></span><br><span class="line"><span class="comment">        row:创建好的tr的dom对象</span></span><br><span class="line"><span class="comment">        data:数据源，代表服务器端返回的每条记录的实体信息</span></span><br><span class="line"><span class="comment">        dataIndex:数据源的索引号码</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="attr">createdRow</span>:<span class="keyword">function</span>(<span class="params">row,data,dataIndex</span>)&#123;&#125;</span><br><span class="line">    </span><br><span class="line">&#125; );</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、服务端"><a href="#2、服务端" class="headerlink" title="2、服务端"></a>2、服务端</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">draw: 客户端调用服务器端次数标识</span></span><br><span class="line"><span class="comment">recordsTotal: 获取数据记录总条数</span></span><br><span class="line"><span class="comment">recordsFiltered: 数据过滤后的总数量</span></span><br><span class="line"><span class="comment">data: 获得的具体数据</span></span><br><span class="line"><span class="comment">注意：recordsTotal和recordsFiltered都设置为记录的总条数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="variable">$result</span> = [</span><br><span class="line">   <span class="string">&#x27;draw&#x27;</span> 		 	 =&gt; <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;draw&#x27;</span>),</span><br><span class="line">   <span class="string">&#x27;recordsTotal&#x27;</span> 	 =&gt; <span class="variable">$count</span>,</span><br><span class="line">   <span class="string">&#x27;recordsFiltered&#x27;</span> =&gt; <span class="variable">$count</span>,</span><br><span class="line">   <span class="string">&#x27;data&#x27;</span>			=&gt; <span class="variable">$data</span></span><br><span class="line">];</span><br><span class="line"><span class="keyword">return</span> <span class="title function_ invoke__">json_encode</span>(<span class="variable">$result</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、搜索"><a href="#3、搜索" class="headerlink" title="3、搜索"></a>3、搜索</h3><blockquote>
+<p>datatable对象.api().ajax.reload()</p>
+<p>重新加载数据 </p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> table = $(<span class="string">&#x27;#example&#x27;</span>).<span class="title function_ invoke__">DataTable</span>( &#123;</span><br><span class="line">    <span class="attr">ajax</span>: <span class="string">&quot;data.json&quot;</span></span><br><span class="line">&#125; );</span><br><span class="line"> </span><br><span class="line">$(<span class="string">&#x27;#search&#x27;</span>).<span class="title function_ invoke__">on</span>(<span class="string">&#x27;click&#x27;</span>,function()&#123;</span><br><span class="line">    table.ajax.<span class="title function_ invoke__">reload</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-09-28T12:31:11.000Z" title="2020/9/28 下午8:31:11">2020-09-28</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">18 分钟读完 (大约2640个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/09/28/postgresql/">postgresql</a></h1><div class="content"><p>sudo -i -u postgres 登录<br>\l列出所有数据库<br>\c 数据库名 选择数据库<br>\d 列出数据表<br>\d 表名 列出数据表的结构<br>create database chengyao; 创建数据库<br>drop database chengyao;删除数据库<br>psql -h localhost -p 5432 -U cheng postgres登录<br>select pg_roles.rolname from pg_roles; 查看角色<br>grant role_name to username; 赋予角色<br>修改一个字段为非null ： alter table users alter username set not null;</p>
+<p>\x切换到竖排显示<br>select * from ps_proc;查询存储过程</p>
+<h2 id="一、建立数据库连接"><a href="#一、建立数据库连接" class="headerlink" title="一、建立数据库连接"></a>一、建立数据库连接</h2><p>接入PostgreSQL数据库: psql -h IP地址 -p 端口 -U 数据库名</p>
+<p>之后会要求输入数据库密码</p>
+<p>二、访问数据库</p>
+<p>1、列举数据库：\l<br>2、选择数据库：\c 数据库名<br>3、查看该某个库中的所有表：\dt<br>4、切换数据库：\c interface<br>5、查看某个库中的某个表结构：\d 表名<br>6、查看某个库中某个表的记录：select * from apps limit 1;<br>7、显示字符集：\encoding<br>8、退出psgl：\q</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>列出当前数据库所有表<br>\dt</p>
+<p>列出表名<br>SELECT tablename FROM pg_tables;<br>WHERE tablename NOT LIKE ‘pg%’<br>AND tablename NOT LIKE ‘sql_%’<br>ORDER BY tablename;</p>
+<p>列出数据库名<br>\l<br>或<br>SELECT datname FROM pg_database;</p>
+<p>切换数据库<br>\c 数据库名</p>
+<p>1、通过命令行查询<br>\d 数据库 —— 得到所有表的名字<br>\d 表名 —— 得到表结构<br>2、通过SQL语句查询<br>&quot;select * from pg_tables&quot; —— 得到当前db中所有表的信息（这里pg_tables是系统视图）<br>&quot;select tablename from pg_tables where schemaname&#x3D;’public’&quot; —— 得到所有用户自定义表的名字（这里&quot;tablename&quot;字段是表的名字，&quot;schemaname&quot;是schema的名字。用户自定义的表，如果未经特殊处理，默认都是放在名为public的schema下）</p>
+<p> View Code</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>postgresql数据管理系统使用命令方式有两种:</p>
+<ol>
+<li>内部命令,以反斜线开始 \ ,如: \l 显示所有数据库</li>
+<li>标准SQL命令,以分号 ; 或 \g 结束,可以使用多行</li>
+</ol>
+<p>数据库的关键操作:</p>
+<ol>
+<li>启动服务  2. 登录  3. 建立数据库  4. 建立表  5. 插入记录到表中 </li>
+<li>更新&#x2F;删除&#x2F;查询&#x2F;修改操作           7. 退出    8. 停止服务</li>
+</ol>
+<p>在windows7中安装的postgresql默认使用GBK字符集,经常不能使用显示中文的数据表,解决办法:<br>注意:在windows 7下的postgresql中写操作时要使用GBK,读操作时要用UTF8;</p>
+<p>设置字符集为 utf-8 就可以了.<br>postgres&#x3D;# \encoding utf-8       &#x2F;&#x2F; 设置客户端的字元集<br>postgres&#x3D;# \encoding                  &#x2F;&#x2F; 显示客户端的字元集<br>postgres&#x3D;# show client_encoding;      &#x2F;&#x2F; 显示客户端的字元集<br>postgres&#x3D;# show server_encoding;      &#x2F;&#x2F; 显示服务器的字元集</p>
+<p>启动服务:<br>net start postgresql-9.5<br>停止服务:<br>net stop postgresql-9.5</p>
+<p>获取命令帮助:<br>c:&amp;gt; psql –help</p>
+<p>登录( 注意: postgres 是默认用户即管理员 ):<br>路径 psql -h 服务器 -U 用户名  -d 数据库 -p 端口地址  &#x2F;&#x2F; -U 是大写<br>C:&amp;gt; psql -h localhost -U postgres -p 5432            &#x2F;&#x2F; 默认打开postgres数据库<br>C:&amp;gt; psql -h 127.0.0.1 -U postgres -d fengdos -p 5432 &#x2F;&#x2F; 打开fengdos数据库<br>C:&amp;gt; psql -U postgres                                 &#x2F;&#x2F; 快速登录(全部使用默认设置)<br>&#x2F;&#x2F; 使用某些有密码的用户的情况下, 会提示输入密码.<br>用户 postgres 的口令: ILoveYou         &#x2F;&#x2F; 输入时不会显示任何字符<br>&#x2F;&#x2F; 成功后显示:<br>psql (9.5.3)<br>输入 &quot;help&quot; 来获取帮助信息.<br>&#x2F;&#x2F; 进入postgresql数据库系统提示符状态, ******&#x3D;# 中&#x3D;#前面为当前使用的数据库<br>postgres&#x3D;# help          &#x2F;&#x2F; 获取系统帮助,显示如下:</p>
+<hr>
+<p>您正在使用psql, 这是一种用于访问PostgreSQL的命令行界面<br>键入：\copyright 显示发行条款<br>      \h 显示 SQL 命令的说明<br>      ? 显示 pgsql 命令的说明 (pgsql内部命令)<br>      \g 或者以分号(;)结尾以执行查询<br>      \q 退出注: 数据库名称区分大小写的。</p>
+<hr>
+<p>postgres&#x3D;# \help         &#x2F;&#x2F; 获取SQL命令的帮助,同 \h<br>postgres&#x3D;# \quit         &#x2F;&#x2F; 退出,同 \q<br>postgres&#x3D;# \password dlf &#x2F;&#x2F; 重新设置用户dlf的密码,然后需要 \q退出后才生效<br>c:&amp;gt;psql exampledb &lt; user.sql  &#x2F;&#x2F; 将user.sql文件导入到exampled数据库中<br>postgres&#x3D;# \h select   &#x2F;&#x2F; 精细显示SQL命令中的select命令的使用方法<br>postgres&#x3D;# \l          &#x2F;&#x2F; 显示所有数据库<br>postgres&#x3D;# \dt         &#x2F;&#x2F; 显示当前数据库中的所有表<br>postgres&#x3D;# \d [table_name]  &#x2F;&#x2F; 显示当前数据库的指定表的表结构<br>postgres&#x3D;# \c [database_name]  &#x2F;&#x2F; 切换到指定数据库,相当于use<br>postgres&#x3D;# \du                 &#x2F;&#x2F; 显示所有用户<br>postgres&#x3D;# \conninfo           &#x2F;&#x2F; 显示当前数据库和连接信息<br>postgres&#x3D;# \e   &#x2F;&#x2F; 进入记事本sql脚本编辑状态(输入批命令后关闭将自动在命令行中执行)<br>postgres&#x3D;# \di  &#x2F;&#x2F; 查看索引(要建立关联)<br>postgres&#x3D;# \prompt [文本] 名称    &#x2F;&#x2F; 提示用户设定内部变数<br>postgres&#x3D;# \encoding [字元编码名称]  &#x2F;&#x2F; 显示或设定用户端字元编码<br>*可以将存储过程写在文本文件中aaa.sql,然后在psql状态下:<br>postgres&#x3D;# \i aaa.sql    &#x2F;&#x2F; 将aaa.sql导入(到当前数据库)<br>postgres&#x3D;# \df           &#x2F;&#x2F; 查看所有存储过程（函数）<br>postgres&#x3D;# \df+ name     &#x2F;&#x2F; 查看某一存储过程<br>postgres&#x3D;# select version();            &#x2F;&#x2F; 获取版本信息<br>postgres&#x3D;# select usename from pg_user; &#x2F;&#x2F; 获取系统用户信息<br>postgres&#x3D;# drop User 用户名             &#x2F;&#x2F; 删除用户</p>
+<p>其它SQL命令通用如(标准化SQL语句):<br>*创建数据库：<br>create database [数据库名];</p>
+<p>*删除数据库：<br>drop database [数据库名]; </p>
+<p>*创建表：<br>create table ([字段名1] [类型1] ;,[字段名2] [类型2],……&lt;,primary key (字段名m,字段名n,…)&gt;;);</p>
+<p>*在表中插入数据：<br>insert into 表名 ([字段名m],[字段名n],……) values ([列m的值],[列n的值],……);</p>
+<p>*显示表内容:<br>select * from student;</p>
+<p>*重命名一个表：<br>alter table [表名A] rename to [表名B];</p>
+<p>*删除一个表：<br>drop table [表名]; </p>
+<p>*在已有的表里添加字段：<br>alter table [表名] add column [字段名] [类型];</p>
+<p>*删除表中的字段：<br>alter table [表名] drop column [字段名];</p>
+<p>*重命名一个字段：<br>alter table [表名] rename column [字段名A] to [字段名B];</p>
+<p>*给一个字段设置缺省值：<br>alter table [表名] alter column [字段名] set default [新的默认值];</p>
+<p>*去除缺省值：<br>alter table [表名] alter column [字段名] drop default;</p>
+<p>*修改表中的某行某列的数据：<br>update [表名] set [目标字段名]&#x3D;[目标值] where [该行特征];</p>
+<p>*删除表中某行数据：<br>delete from [表名] where [该行特征];<br>delete from [表名];    &#x2F;&#x2F; 删空整个表</p>
+<p>*可以使用pg_dump和pg_dumpall来完成。比如备份sales数据库：<br>pg_dump drupal&gt;&#x2F;opt&#x2F;Postgresql&#x2F;backup&#x2F;1.bak</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>1.列出所有表名的查询语句<br>SELECT tablename FROM pg_tables<br>WHERE tablename NOT LIKE ‘pg%’<br>AND tablename NOT LIKE ‘sql_%’<br>ORDER BY tablename;</p>
+<p>2.列出表中所有的数据</p>
+<p>SELECT * FROM someTable;</p>
+<p>3.执行外部脚本<br>#&#x2F;opt&#x2F;PostgreSQL&#x2F;8. 3&#x2F;bin&#x2F;psql - Upostgres ;登陆到数据库的控制台界面<br>postgres&#x3D; # \i &#x2F;root&#x2F;db. sql<br>     \i 命令用于执行一个外部的sql脚本文件。</p>
+<p>4.导出数据库为外部的脚本<br>#&#x2F;opt&#x2F;PostgreSQL&#x2F;8. 3&#x2F;bin&#x2F; pg_dump - Upostgres - C - fdb. sql database</p>
+<p>-C create    -f 是导出后的文件名</p>
+<p>5.postgresql 插入16进制数<br>INSERT INTO tableAAA VALUES( x’0001f’ : : integer, ‘鉴权’ , ‘Authority’ )</p>
+<p>6.使用 TG_RELNAME 报错ERROR:  syntax error at or near &quot;$1&quot; at character</p>
+<p>[引]<a target="_blank" rel="noopener" href="http://www.dbmonster.com/Uwe/Forum.aspx/postgresql/2051/TG-RELNAME-problem">http://www.dbmonster.com/Uwe/Forum.aspx/postgresql/2051/TG-RELNAME-problem</a></p>
+<p>Perhaps you will get some idea if you read the document:<br>37. 6. 4. Executing Dynamic Commands</p>
+<p>改：执行动态语句</p>
+<p> EXECUTE ‘INSERT INTO TG_RELNAME VALUES (NEW.start_time , NEW.id , NEW.end_time)’;</p>
+<ol start="7">
+<li>psql 常用命令<br>a. \c tesdb1 - - 将当前连接的testdb数据库改变成 testdb1 。<br>b . \q - - 断开与Postgres服务器的连接<br>c . \l 列出所有数据库的名字<br> \l+ 列出所有数据库的名字以及字符集编码<br>d. \d [ 名字] 描述表, 索引, 序列, 或者视图<br>          列出表&#x2F;索引&#x2F;序列&#x2F;视图&#x2F;系统表<br>\d{t| i| s| v| S} [ 模式] ( 加 &quot;+&quot; 获取更多信息)<br>          - - 列出表&#x2F;索引&#x2F;序列&#x2F;视图&#x2F;系统表<br>\d tablename - - 查看表的结构<br>\dt - - 列出数据库中所有表</li>
+</ol>
+<p>8.在PostgreSQL中如何删除重复记录</p>
+<p>【转】http: &#x2F; &#x2F; hi. baidu. com&#x2F;cicon&#x2F;blog&#x2F;item&#x2F;e14f217f4eeee20429388a0c. html</p>
+<p>在PostgreSQL中删除重复记录其实很简单，不论有多少行重复，只要在要删除重复记录的表中table加一列rownum字段( id为table表中的主键) ，类型设置为serial类型即可，然后执行sql<br>delete from deltest where rownum not in(<br>select max(rownum) from deltest<br>);<br>最后删除列rownum即可</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>正文：</p>
+<p>连接数据库操作：</p>
+<p>psql是postgresql数据库提供的连接数据库shell命令，格式 psql 【option】 dbname</p>
+<p>在终端输入psql 会使用默认的方式连接本地数据库，使用的用户名是登陆linux系统使用的用户名，</p>
+<p>psql -U username -W pass 以及psql -U username -W pass databasenaem都可以实现连接数据库的功能，第一种方式是使用用户名username密码pass连接默认数据库（具体链接那个数据库还没搞清 楚），第二种方式使用用户名username密码pass连接username数据库。如果登录成功之后将显示类似信息</p>
+<p>Welcome to psql 8.0.6, the PostgreSQL interactive terminal.</p>
+<p>Type:  \copyright for distribution terms<br>       \h for help with SQL commands<br>       ? for help with psql commands<br>       \g or terminate with semicolon to execute query<br>       \q to quit</p>
+<p>连接成功之后所有的命令都是使用”\“+ 字符或者word完成相应的功能。现将常用的几个列车</p>
+<p>\l      列出所有数据库</p>
+<p>\dt   列出连接数据库中所有表</p>
+<p>\di   列出连接数据库中所有index</p>
+<p>\dv  列出连接数据库中所有view</p>
+<p>\h    sql命令帮助</p>
+<p>?    \ 所有命令帮助</p>
+<p>\q   退出连接</p>
+<p>\d tablename  列出指定tablename的表结构</p>
+<p>可以尝试执行下面两句sql</p>
+<p>SELECT current_date</p>
+<p>SELECT version()</p>
+<p>是不是nothing happened，这是因为postgresql数据库要求必须使用；结尾否则不予执行，加上；之后就能看到结果了。</p>
+<p>如果我们想创建数据库怎么办呢？</p>
+<p>我们知道createdb和dropdb可以创建和删除数据库，但是如果我们这个时候执行出现什么问题呢？可以试一试，提示是个错误。</p>
+<p>为什么呢？</p>
+<p>createdb和dropdb是shell脚本，所以现在又两种方式执行</p>
+<p>（1）.退出连接进入终端，输入createdb test —U user -W pass 稍等提示创建数据库成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dropdb test —U user -W pass    提示drop成功</span><br></pre></td></tr></table></figure>
+
+
+<p>（2）.在未退出连接中使用 ! createdb test —U user -W pass 稍等提示创建数据库成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\! dropdb test —U user -W pass  提示drop成功</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-09-26T14:53:26.000Z" title="2020/9/26 下午10:53:26">2020-09-26</time>发表</span><span class="level-item"><time dateTime="2022-09-18T01:31:51.621Z" title="2022/9/18 上午9:31:51">2022-09-18</time>更新</span><span class="level-item">6 分钟读完 (大约910个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/09/26/js%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">js学习笔记</a></h1><div class="content"><h1 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h1><h2 id="in-array"><a href="#in-array" class="headerlink" title="in_array"></a>in_array</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">in_array</span>(<span class="params">stringToSearch, arrayToSearch</span>) &#123;</span><br><span class="line">	<span class="keyword">for</span> (s = <span class="number">0</span>; s &lt; arrayToSearch.<span class="property">length</span>; s++) &#123;</span><br><span class="line">		thisEntry = arrayToSearch[s].<span class="title function_">toString</span>();</span><br><span class="line">		<span class="keyword">if</span> (thisEntry == stringToSearch) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##判断文件后缀</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> location=$(<span class="string">&quot;input[name=&#x27;file&#x27;]&quot;</span>).<span class="title function_">val</span>();  </span><br><span class="line">     <span class="keyword">var</span> point = location.<span class="title function_">lastIndexOf</span>(<span class="string">&quot;.&quot;</span>);  </span><br><span class="line">      </span><br><span class="line">     <span class="keyword">var</span> type = location.<span class="title function_">substr</span>(point);  </span><br><span class="line">     <span class="keyword">if</span>(type==<span class="string">&quot;.jpg&quot;</span>||type==<span class="string">&quot;.gif&quot;</span>||type==<span class="string">&quot;.JPG&quot;</span>||type==<span class="string">&quot;.GIF&quot;</span>)&#123;  </span><br><span class="line">               </span><br><span class="line">     &#125; </span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>其他方法</p>
+</blockquote>
+<ol>
+<li>jquery:validate &#x2F;datatable  </li>
+<li>document.forms[formName][inputName]</li>
+<li>datatable.api.ajax.reload()</li>
+<li>window.location.reload()</li>
+<li>$(‘.row’).find(‘td:eq(1)’).html()</li>
+<li>trim函数可以去掉空格</li>
+<li>事件委托：$(‘父节点’).on(‘触发方法’,’子节点’,function(){})  对应off去掉拥有的事件</li>
+<li>evt.preventDefault() &#x2F;return false; 取消默认事件</li>
+<li>JQ对象.bind(‘事件[多个可以使用空格分割]’).triggle(‘select’) 触发选中事件</li>
+<li>获取checkbox的选中项：$(‘input:checkbox[name&#x3D;”box”]:checked’)</li>
+<li>var arr &#x3D; $(‘’).split(‘\n’) 将字符串使用\n分割为数组<br>12.stop方法，停止当前运行的动画<br>13.is方法</li>
+</ol>
+<h1 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;refresh&quot;</span> <span class="attr">content</span>=<span class="string">&quot;3&quot;</span> ; <span class="attr">url</span>=<span class="string">&quot;index.html&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span>=<span class="string">&quot;index.html&quot;</span></span><br><span class="line">$(<span class="string">&#x27;location&#x27;</span>).<span class="title function_">attr</span>(<span class="string">&#x27;href&#x27;</span>,<span class="string">&#x27;index.html&#x27;</span>)</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">referrer</span>  <span class="comment">//获取referer</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="string">&quot;javascrpt:location.href=&#x27;index.html&#x27;&quot;</span>,<span class="number">5000</span>) <span class="comment">//定时跳转</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">search</span>  <span class="comment">//可以获取地址栏的query_string</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">go</span>(-<span class="number">1</span>) / <span class="title function_">back</span>(-<span class="number">1</span>)  <span class="comment">//返回上一页</span></span><br><span class="line">&lt;a onclick=<span class="string">&quot;javascript:history.go(-1)&quot;</span>&gt;</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">navigate</span>(<span class="string">&#x27;http://www.1kmb.com&#x27;</span>) <span class="comment">//使用navigate方式跳转</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">open</span>(<span class="string">&#x27;http://www.1kmb.com&#x27;</span>) <span class="comment">//打开新网页</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span>=<span class="string">&quot;http://www.1kmb.com/index.php?ref=&quot;</span>+<span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span></span><br><span class="line">location.<span class="title function_">reload</span>([bForceGet]) <span class="comment">//bForceGet可选，默认FALSE，用HTTP头If-Modified-Since来检测服务器上的文档是否已经改变，如果改变会重新下载文档，否则从客户端缓存里取当前页,TRUE则以get方式从服务器获取最新页面，相当于F5刷新</span></span><br><span class="line">location.<span class="title function_">replace</span>(<span class="variable constant_">URL</span>)</span><br><span class="line">location.<span class="title function_">assign</span>(<span class="variable constant_">LOCATION</span>)</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">execCommand</span>(<span class="string">&#x27;Refresh&#x27;</span>)</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">URL</span>=location.<span class="property">href</span></span><br><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">attr</span>(<span class="string">&#x27;location&#x27;</span>,<span class="variable language_">document</span>.<span class="property">referer</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><p><code>dblclick()</code> jquery双击事件</p>
+<p>.bind()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绑定多个选择器</span></span><br><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>,<span class="string">&#x27;#header a,#sidebar a&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//绑定多个事件</span></span><br><span class="line">$(<span class="string">&#x27;table tr&#x27;</span>).<span class="title function_">on</span>(&#123;</span><br><span class="line">    <span class="attr">mouseenter</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">mouseleave</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">click</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;,<span class="string">&#x27;td&#x27;</span>)</span><br><span class="line"><span class="comment">//同时绑定多个选择器和多个事件</span></span><br><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">on</span>(&#123;</span><br><span class="line">     <span class="attr">mouseenter</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">mouseleave</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">click</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">&#125;,<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">$( <span class="variable language_">document</span> ) .<span class="property">ready</span> ( <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">$( <span class="string">&#x27;.comments .active &#x27;</span> ).<span class="title function_">css</span>( <span class="string">&quot;point</span></span><br><span class="line"><span class="string">er-events &quot;</span> , <span class="string">&quot; none&quot;</span> )</span><br><span class="line">&#125;）;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
 
 
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<p>layer.js</p>
+<p>#js-监听页面滚动</p>
+<p>##一、原生js通过window.onscroll监听</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onscroll</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//为了保证兼容性，这里取两个值，哪个有值取哪一个</span></span><br><span class="line">  <span class="comment">//scrollTop就是触发滚轮事件时滚轮的高度</span></span><br><span class="line">  <span class="keyword">var</span> scrollTop = <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollTop</span> || <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;滚动距离&quot;</span> + scrollTop);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##二、Jquery通过$(window).scroll()监听</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="variable language_">window</span>).<span class="title function_">scroll</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//为了保证兼容性，这里取两个值，哪个有值取哪一个</span></span><br><span class="line">  <span class="comment">//scrollTop就是触发滚轮事件时滚轮的高度</span></span><br><span class="line">  <span class="keyword">var</span> scrollTop = <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollTop</span> || <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;滚动距离&quot;</span> + scrollTop);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>##Javascript获取一个盒子的宽和高；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> width = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;box2&quot;</span>).<span class="property">offsetWidth</span>;<span class="comment">//宽度</span></span><br><span class="line"><span class="keyword">var</span> height = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;box2&quot;</span>).<span class="property">offsetHeight</span>;<span class="comment">//</span></span><br></pre></td></tr></table></figure>
 
+<p>##jq判断元素是否存在于数组中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">inArray</span>(element,array);</span><br></pre></td></tr></table></figure>
+<p>存在返回元素下标，否则返回-1，可以使用<code>arr.splice($.inArray(&#39;test&#39;,arr),1);</code> 删除某一个元素，删除前需要判断元素是否存在否则当数组中只有一个值的时候会删除该值【未测试】。</p>
+<h2 id="jq点击复制"><a href="#jq点击复制" class="headerlink" title="jq点击复制"></a>jq点击复制</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;http://libs.baidu.com/jquery/1.9.0/jquery.js&quot;&gt;&lt;/script&gt;  </span><br><span class="line">    &lt;script src=&quot;https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js&quot;&gt;&lt;/script&gt;  </span><br><span class="line">微信号：&lt;span id=&quot;target&quot;&gt;xyz2018&lt;/span&gt;</span><br><span class="line">&lt;button class=&quot;btn&quot; data-clipboard-action=&quot;copy&quot; data-clipboard-target=&quot;#target&quot; id=&quot;copy_btn&quot;&gt;    </span><br><span class="line">    点击复制    </span><br><span class="line">&lt;/button&gt;   </span><br><span class="line">	</span><br><span class="line">&lt;script&gt;    </span><br><span class="line">    $(document).ready(function()&#123;      </span><br><span class="line">        var clipboard = new Clipboard(&#x27;#copy_btn&#x27;);    </span><br><span class="line">        clipboard.on(&#x27;success&#x27;, function(e) &#123;    </span><br><span class="line">            alert(&quot;微信号复制成功&quot;,1500);</span><br><span class="line">            e.clearSelection();    </span><br><span class="line">            console.log(e.clearSelection);    </span><br><span class="line">        &#125;);    </span><br><span class="line">    &#125;);    </span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
+<h2 id="void-0-相关"><a href="#void-0-相关" class="headerlink" title="void 0 相关"></a>void 0 相关</h2><p>void其实是javascript中的一个函数，接受一个参数，返回值永远是undefined。可以说，使用void目的就是为了得到javascript中的undefined</p>
+<p>为什么不直接使用undefined呢？ 使用void 0比使用undefined能够减少3个字节。虽然这是个优势，个人但感觉意义不大，牺牲了可读性和简单性，undefined并不是javascript中的保留字，我们可以使用undefined作为变量名字，然后给它赋值,, 但在chrome 中打印出来的是 undefined</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">undefined</span> === <span class="keyword">void</span> <span class="number">0</span>  <span class="comment">// true</span></span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-08-14T23:21:59.000Z" title="2020/8/15 上午7:21:59">2020-08-15</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">11 分钟读完 (大约1691个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/08/15/%E7%AC%94%E8%AE%B0%EF%BC%9Aes6%E5%9F%BA%E7%A1%80/">笔记：es6基础</a></h1><div class="content"><h1 id="ECMAScript-与-javascript"><a href="#ECMAScript-与-javascript" class="headerlink" title="ECMAScript 与 javascript"></a>ECMAScript 与 javascript</h1><p>&gt;ECMAScript 可以说是 javascript 的国际标准。</p>
+<h2 id="let"><a href="#let" class="headerlink" title="let"></a>let</h2><p>let 用来声明变量，用法类似 var 但由 let 声明的变量，只能在 let 命令所在的代码块内有效。</p>
+<p>var 声明的变量在全局范围内都有效</p>
+<p>var 命令会发生“变量提升”现象，即变量会在声明前可使用，而 let 做了语法处理，限制了这种情况</p>
+<p>暂时性死区<br>若区块中存在let 和 const 命令，这个区块对这些命令声明的变量从一开始就有了封闭作用域。凡是声明前使用这些变量，就会报错。在语法上，称为“暂时性死区”。</p>
+<p>不允许重复声明<br>let 不允许在同作用域内，重复声明同一个变量。</p>
+<p>const命令<br>const 声明一个只读常亮，一旦声明，不可再修改，即为声明变量需要立即初始化</p>
+<p>作用域与 let 相同</p>
+<h1 id="ES6声明变量"><a href="#ES6声明变量" class="headerlink" title="ES6声明变量"></a>ES6声明变量</h1><p>共六种：var function let const import class</p>
+<p>变量的解构赋值<br>数组解构<br>类似 let [a,b,c,] &#x3D; [1,2,3];</p>
+<p>若解构失败，变量的值就等于 undefined</p>
+<p>解构赋值允许指定默认值</p>
+<p>对象解构赋值<br>元素按次序排列，变量的取值由位置决定，而对象的属性无次序，变量必须与属性同名，才能取得正确的值</p>
+<p>函数扩充<br>ES6中函数参数可带有默认值</p>
+<p>参数变量是默认声明的，所以不能用 let 或 const 再次声明</p>
+<p>使用参数默认值时，函数不能有同名参数</p>
+<p>定义了默认值的参数，应该是函数的尾参数</p>
+<p>rest参数<br>ES6引入 rest 参数（形式为 . . .变量名 ），用于获取函数的多余参数。</p>
+<p>rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。</p>
+<p>rest 参数后不能再有参数</p>
+<p>函数的 length 参数，不包括 rest 参数</p>
+<p>name属性<br>返回函数的函数名</p>
+<p>若将匿名函数赋值给一个变量，将返回变量名</p>
+<p>Function 构造函数返回的函数实例，name 属性的值为 anonymous</p>
+<p>bind返回的函数，name 属性值会加上 bound 前缀</p>
+<p>箭头函数<br>ES6允许使用“箭头” (&#x3D;&gt;)定义函数</p>
+<p>var f &#x3D; v &#x3D;&gt; v;<br>等同于<br>var f &#x3D; function (v) {<br>    return v;<br>}<br>如果箭头函数不需要参数或者需要多个参数，可以使用一个圆括号代表参数</p>
+<p>var f &#x3D; () &#x3D;&gt; 5;<br>等同于<br>var f &#x3D; function ( ) { return 5; }<br>var sum &#x3D; ( num1, num2) &#x3D;&gt; num1 + num2;<br>等同于<br>var sum &#x3D; function ( num1, num2) {<br>    return num1 + num2;<br>}<br>如果箭头函数代码块部分多余一条语句，就要使用大括号将他们括起来，并使用 return 语句返回。</p>
+<p>var sum &#x3D; ( num1, num2) &#x3D;&gt; { return num1 + num2; }<br>由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上大括号。</p>
+<p>let getTempItem &#x3D; id &#x3D;&gt; ( { id : id ,name : &quot; Temp&quot;} ) ;<br>箭头函数使得表达式更为简洁</p>
+<p>const isEven &#x3D; n &#x3D;&gt; n % 2 &#x3D;&#x3D; 0 ;<br>const square &#x3D; n &#x3D;&gt; n * n ;<br>箭头函数可以简化回调函数</p>
+<p>[ 1, 2, 3] .map( function (x) ){<br>    return x * x ;<br>}<br>箭头函数<br>[1, 2, 3].map( x &#x3D;&gt; x * x ) ;<br>箭头函数与 rest 参数结合</p>
+<p>const numbres &#x3D; ( …nums) &#x3D;&gt; nums ;<br>numbers (1, 2, 3, 4, 5)<br>&#x2F;&#x2F; [ 1, 2, 3, 4, 5]<br>const headAndTail &#x3D; ( head , …tail ) &#x3D;&gt; [head, tail] ;<br>handAndTail (1, 2, 3, 4, 5)<br>&#x2F;&#x2F; [1, [2, 3, 4, 5] ]<br>箭头函数使用注意<br>函数内的 this 对象，就是定义时所在的对象，而不是使用时所在的对象</p>
+<p>不可以当作构造函数，也就是说，不可使用 new 命令</p>
+<p>不可使用 arguments 对象，该对象在函数体内不存在。若要用，可使用 rest 参数代替</p>
+<p>不可以使用 yield 命令</p>
+<p>嵌套的箭头函数<br>箭头函数的内部，还可以使用箭头函数</p>
+<p> const plus1 &#x3D; a &#x3D;&gt; a+1;<br> const mult2 &#x3D; a &#x3D;&gt; a * 2;<br> mult2 ( plus1(5) )<br>双冒号运算符<br>函数绑定运算符，取代 call，apply，bind；</p>
+<p>双冒号左边是一个对象，右边是一个函数。自动将左边的对象，作为上下文环境（即this对象）绑定到右边函数上。</p>
+<p>foo :: bar<br>等同于<br>bar.bind( foo ) ;<br>foo :: bar( ..arguments ) ;<br>等同于<br>bar.apply( foo, arguments ) ;<br>如果双冒号左边为空，右边是一个对象的方法，等于将该方法绑定在该对象上</p>
+<p>var method &#x3D; obj :: obj.foo ;<br>var method &#x3D; :: obj.foo ;<br>let log &#x3D; :: console.log ;<br>var log &#x3D; console.log.bind(console) ;<br>如果双冒号运算符的晕眩结果，还是一个对象，可以使用链式写法</p>
+<p>import { map , takeWhile, foreach } from &quot;iterlib&quot; ;<br>getPlayers()<br>:: map( x &#x3D;&gt; x.character ( ) )<br>:: takeWhile ( x &#x3D;&gt; x.strength &gt; 100)<br>:: foreach ( x &#x3D;&gt; console.log( x ) );<br>尾调用优化<br>尾调用（tail call）是函数式编程的一个概念，指某个函数的最后一步是调用另一个函数</p>
+<p>function f ( x ) {<br>    return g ( x ) ;<br>}<br>尾调用之所以与其他调用不同，就在于它的特殊的调用位置。我们知道，函数调用会在内存形成一个“调用记录”，又称“调用帧”（call frame），保存调用位置和内部变量等信息。如果在函数A的内部调用函数B，那么在A的调用帧上方，还会形成一个B的调用帧。等到B运行结束，将结果返回到A，B的调用帧才会消失。如果函数B内部还调用函数C，那就还有一个C的调用帧，以此类推。所有的调用帧，就形成一个“调用栈”（call stack）。</p>
+<p>尾调用由于是函数的最后一步操作，所以不需要保留外层函数的调用帧，因为调用位置、内部变量等信息都不会再用到了，只要直接用内层函数的调用帧，取代外层函数的调用帧就可以了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f</span> ( ) &#123;</span><br><span class="line">    <span class="keyword">let</span> m = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> n =<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">g</span>( m + n ) ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">f</span>( );</span><br></pre></td></tr></table></figure>
+<p>等同于</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"> </span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">g</span>( <span class="number">3</span> ); </span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">f</span>( );</span><br></pre></td></tr></table></figure>
+<p>等同于</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">g</span>( <span class="number">3</span> );</span><br></pre></td></tr></table></figure>
+<p>尾调用优化就是只保留内层函数的调用帧。</p>
+<p>递归非常耗费内存，很容易发生“栈溢出”。对于尾递归来说，只存在一个调用帧，所以不会发生“栈溢出”</p>
+<p>递归函数的改写<br>函数式编程有个概念，叫柯里化，意思是将多参数转换成但参数形式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//采用es6</span></span><br><span class="line"><span class="keyword">function</span>  <span class="title function_">factorial</span>(<span class="params"> n, total = <span class="number">1</span> </span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>( n == <span class="number">1</span> ) <span class="keyword">return</span> total;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">factorial</span>( n-<span class="number">1</span>, n * total ) ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">factorial</span>( <span class="number">5</span> ); <span class="comment">//120</span></span><br></pre></td></tr></table></figure>
 
+<p>原文地址 : [es6基础](<a target="_blank" rel="noopener" href="http://yuque.com/oswind/es6">http://yuque.com/oswind/es6</a> &quot;跳转&quot;)</p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-08-14T23:20:37.000Z" title="2020/8/15 上午7:20:37">2020-08-15</time>发表</span><span class="level-item"><time dateTime="2022-09-27T01:44:56.207Z" title="2022/9/27 上午9:44:56">2022-09-27</time>更新</span><span class="level-item">35 分钟读完 (大约5285个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/08/15/redis%E5%9F%BA%E7%A1%80/">redis基础</a></h1><div class="content"><h1 id="Redis的优势和特点"><a href="#Redis的优势和特点" class="headerlink" title="Redis的优势和特点"></a>Redis的优势和特点</h1><h2 id="Redis的特点："><a href="#Redis的特点：" class="headerlink" title="Redis的特点："></a>Redis的特点：</h2><ul>
+<li>内存数据库，速度快，也支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
+<li>Redis不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。</li>
+<li>Redis支持数据的备份，即master-slave模式的数据备份。</li>
+<li>支持事务</li>
+</ul>
+<h2 id="Redis的优势："><a href="#Redis的优势：" class="headerlink" title="Redis的优势："></a>Redis的优势：</h2><ul>
+<li>性能极高 – Redis能读的速度是110000次&#x2F;s,写的速度是81000次&#x2F;s 。</li>
+<li>丰富的数据类型 – Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。</li>
+<li>原子 – Redis的所有操作都是原子性的，同时Redis还支持对几个操作合并后的原子性执行。（事务）</li>
+<li>丰富的特性 – Redis还支持 publish&#x2F;subscribe, 通知, key 过期等等特性。</li>
+</ul>
+<h2 id="Redis与其他key-value存储有什么不同？"><a href="#Redis与其他key-value存储有什么不同？" class="headerlink" title="Redis与其他key-value存储有什么不同？"></a>Redis与其他key-value存储有什么不同？</h2><ul>
+<li>Redis有着更为复杂的数据结构并且提供对他们的原子性操作，这是一个不同于其他数据库的进化路径。Redis的数据类型都是基于基本数据结构的同时对程序员透明，无需进行额外的抽象。</li>
+<li>Redis运行在内存中但是可以持久化到磁盘，所以在对不同数据集进行高速读写时需要权衡内存，因为数据量不能大于硬件内存。在内存数据库方面的另一个优点是，相比在磁盘上相同的复杂的数据结构，在内存中操作起来非常简单，这样Redis可以做很多内部复杂性很强的事情。同时，在磁盘格式方面他们是紧凑的以追加的方式产生的，因为他们并不需要进行随机访问。</li>
+</ul>
+<h1 id="Redis的过期策略和内存淘汰机制"><a href="#Redis的过期策略和内存淘汰机制" class="headerlink" title="Redis的过期策略和内存淘汰机制"></a>Redis的过期策略和内存淘汰机制</h1><h2 id="Redis-的-key-有两种过期淘汰的方式：被动方式、主动方式。"><a href="#Redis-的-key-有两种过期淘汰的方式：被动方式、主动方式。" class="headerlink" title="Redis 的 key 有两种过期淘汰的方式：被动方式、主动方式。"></a>Redis 的 key 有两种过期淘汰的方式：被动方式、主动方式。</h2><p>被动过期：用户访问某个 key 的时候，key 被发现过期。</p>
+<p>当然，被动方式过期对于那些永远也不会再次被访问的 key 并没有效果。不管怎么，这些 key 都应被过期淘汰，所以 Redis 周期性主动随机检查一部分被设置生存时间的 key，那些已经过期的 key 会被从 key 空间中删除。</p>
+<p>Redis每秒执行10次下面的操作：</p>
+<p>从带有生存时间的 key 的集合中随机选 20 进行检查。<br>删除所有过期的key。<br>如20里面有超过25%的key过期，立刻继续执行步骤1。<br>这是一个狭义概率算法，我们假设我们选出来的样本 key 代表整个 key 空间，我们继续过期检查直到过期 key 的比例降到 25% 以下。</p>
+<p>这意味着在任意时刻已经过期但还占用内存的 key 的数量，最多等于每秒最多写操作的四分之一。</p>
+<h2 id="过期策略"><a href="#过期策略" class="headerlink" title="过期策略"></a>过期策略</h2><p>我们set key的时候，都可以给一个expire time，就是过期时间，指定这个key比如说只能存活1个小时，我们自己可以指定缓存到期就失效。</p>
+<p>如果假设你设置一个一批key只能存活1个小时，那么接下来1小时后，redis是怎么对这批key进行删除的？</p>
+<p>答案是：定期删除+惰性删除</p>
+<p>所谓定期删除，指的是redis默认是每隔100ms就随机抽取一些设置了过期时间的key，检查其是否过期，如果过期就删除。</p>
+<p>注意，这里可不是每隔100ms就遍历所有的设置过期时间的key，那样就是一场性能上的灾难。</p>
+<p>实际上redis是每隔100ms随机抽取一些key来检查和删除的。</p>
+<p>但是，定期删除可能会导致很多过期key到了时间并没有被删除掉，所以就得靠惰性删除了。</p>
+<p>这就是说，在你获取某个key的时候，redis会检查一下 ，这个key如果设置了过期时间那么是否过期了？如果过期了此时就会删除，不会给你返回任何东西。</p>
+<p>并不是key到时间就被删除掉，而是你查询这个key的时候，redis再懒惰的检查一下</p>
+<p>通过上述两种手段结合起来，保证过期的key一定会被干掉。</p>
+<p>但是实际上这还是有问题的，如果定期删除漏掉了很多过期key，然后你也没及时去查，也就没走惰性删除，此时会怎么样？</p>
+<p>如果大量过期key堆积在内存里，导致redis内存块耗尽了，怎么办？</p>
+<p>答案是：走内存淘汰机制。</p>
+<h2 id="内存淘汰机制"><a href="#内存淘汰机制" class="headerlink" title="内存淘汰机制"></a>内存淘汰机制</h2><p>如果redis的内存占用过多的时候，此时会进行内存淘汰，有如下一些策略：</p>
+<p>noeviction：当内存不足以容纳新写入数据时，新写入操作会报错，这个一般没人用吧</p>
+<p>allkeys-lru：当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的key（这个是最常用的）</p>
+<p>allkeys-random：当内存不足以容纳新写入数据时，在键空间中，随机移除某个key，这个一般没人用吧</p>
+<p>volatile-lru：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，移除最近最少使用的key（这个一般不太合适）</p>
+<p>volatile-random：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，随机移除某个key</p>
+<p>volatile-ttl：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，有更早过期时间的key优先移除</p>
+<h1 id="Redis配置文件全解"><a href="#Redis配置文件全解" class="headerlink" title="Redis配置文件全解"></a>Redis配置文件全解</h1><p>&#x3D;&#x3D;基本配置<br>daemonize no 是否以后台进程启动<br>databases 16 创建database的数量(默认选中的是database 0)</p>
+<p>save 900 1    #刷新快照到硬盘中，必须满足两者要求才会触发，即900秒之后至少1个关键字发生变化。<br>save 300 10  #必须是300秒之后至少10个关键字发生变化。<br>save 60 10000 #必须是60秒之后至少10000个关键字发生变化。<br>stop-writes-on-bgsave-error yes    #后台存储错误停止写。<br>rdbcompression yes    #使用LZF压缩rdb文件。<br>rdbchecksum yes    #存储和加载rdb文件时校验。<br>dbfilename dump.rdb    #设置rdb文件名。<br>dir .&#x2F;    #设置工作目录，rdb文件会写入该目录。</p>
+<p>&#x3D;&#x3D;主从配置<br>slaveof <masterip> <masterport> 设为某台机器的从服务器<br>masterauth <master-password>   连接主服务器的密码<br>slave-serve-stale-data yes  # 当主从断开或正在复制中,从服务器是否应答<br>slave-read-only yes #从服务器只读<br>repl-ping-slave-period 10 #从ping主的时间间隔,秒为单位<br>repl-timeout 60 #主从超时时间(超时认为断线了),要比period大<br>slave-priority 100    #如果master不能再正常工作，那么会在多个slave中，选择优先值最小的一个slave提升为master，优先值为0表示不能提升为master。</p>
+<p>repl-disable-tcp-nodelay no #主端是否合并数据,大块发送给slave<br>slave-priority 100 从服务器的优先级,当主服挂了,会自动挑slave priority最小的为主服</p>
+<p>&#x3D;&#x3D;&#x3D;安全<br>requirepass foobared # 需要密码<br>rename-command CONFIG b840fc02d524045429941cc15f59e41cb7be6c52 #如果公共环境,可以重命名部分敏感命令 如config</p>
+<p>&#x3D;&#x3D;&#x3D;限制<br>maxclients 10000 #最大连接数<br>maxmemory <bytes> #最大使用内存</p>
+<p>maxmemory-policy volatile-lru #内存到极限后的处理<br>volatile-lru -&gt; LRU算法删除过期key<br>allkeys-lru -&gt; LRU算法删除key(不区分过不过期)<br>volatile-random -&gt; 随机删除过期key<br>allkeys-random -&gt; 随机删除key(不区分过不过期)<br>volatile-ttl -&gt; 删除快过期的key<br>noeviction -&gt; 不删除,返回错误信息</p>
+<p>#解释 LRU ttl都是近似算法,可以选N个,再比较最适宜T踢出的数据<br>maxmemory-samples 3</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;日志模式<br>appendonly no #是否仅要日志<br>appendfsync no # 系统缓冲,统一写,速度快<br>appendfsync always # 系统不缓冲,直接写,慢,丢失数据少<br>appendfsync everysec #折衷,每秒写1次</p>
+<p>no-appendfsync-on-rewrite no #为yes,则其他线程的数据放内存里,合并写入(速度快,容易丢失的多)<br>auto-AOF-rewrite-percentage 100 当前aof文件是上次重写是大N%时重写<br>auto-AOF-rewrite-min-size 64mb aof重写至少要达到的大小</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;慢查询<br>slowlog-log-slower-than 10000 #记录响应时间大于10000微秒的慢查询<br>slowlog-max-len 128   # 最多记录128条</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;服务端命令<br>time  返回时间戳+微秒<br>dbsize 返回key的数量<br>bgrewriteaof 重写aof<br>bgsave 后台开启子进程dump数据<br>save 阻塞进程dump数据<br>lastsave </p>
+<p>slaveof host port 做host port的从服务器(数据清空,复制新主内容)<br>slaveof no one 变成主服务器(原数据不丢失,一般用于主服失败后)</p>
+<p>flushdb  清空当前数据库的所有数据<br>flushall 清空所有数据库的所有数据(误用了怎么办?)</p>
+<p>shutdown [save&#x2F;nosave] 关闭服务器,保存数据,修改AOF(如果设置)</p>
+<p>slowlog get 获取慢查询日志<br>slowlog len 获取慢查询日志条数<br>slowlog reset 清空慢查询</p>
+<p>info []</p>
+<p>config get 选项(支持*通配)<br>config set 选项 值<br>config rewrite 把值写到配置文件<br>config restart 更新info命令的信息</p>
+<p>debug object key #调试选项,看一个key的情况<br>debug segfault #模拟段错误,让服务器崩溃<br>object key (refcount|encoding|idletime)<br>monitor #打开控制台,观察命令(调试用)<br>client list #列出所有连接<br>client kill #杀死某个连接  CLIENT KILL 127.0.0.1:43501<br>client getname #获取连接的名称 默认nil<br>client setname “名称” #设置连接名称,便于调试</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;连接命令&#x3D;&#x3D;&#x3D;<br>auth 密码 #密码登陆(如果有密码)<br>ping #测试服务器是否可用<br>echo “some content” #测试服务器是否正常交互<br>select 0&#x2F;1&#x2F;2… #选择数据库<br>quit #退出连接</p>
+<h1 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h1><p>启动redis时直接 redis-server就可以启动服务端了，也可以指定加载的配置文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server .<span class="comment">/***/</span>redis.conf</span><br></pre></td></tr></table></figure>
 
-  <script  src="/js/local-search.js" ></script>
+<p>默认情况下 redis-server会以非守护进程（简单理解就是后台运行）的形式启动，指定配置文件后就可以实现以守护进程运行。</p>
+<h1 id="redis数据类型"><a href="#redis数据类型" class="headerlink" title="redis数据类型"></a>redis数据类型</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type key</span><br></pre></td></tr></table></figure>
 
+<p>使用<code>object encoding key</code>可以判断数据类型，字符串长度大于39,底层数据结构蜕变为<code>raw</code><br>redis是一种高级的key:redis存储系统，redis的value共支持五种数据类型</p>
+<p>字符串(strings)，列表(lists)，哈希散列(hashes)，集合(sets)，有序集合(sorted sets)</p>
+<h2 id="strings"><a href="#strings" class="headerlink" title="strings"></a>strings</h2><p>字符串累行是二进制安全（可以存储用二进制表示的文件）。</p>
+<p>再遇到数值操作时，redis会将字符串类型转换成数值。</p>
+<p>由于INCR等指令本省就具有原子操作的特性，所以我们可以利用redis的INCR、INCRBY、DECR、DECRBY等指令来实现原子计数的效果。</p>
+<h2 id="lists"><a href="#lists" class="headerlink" title="lists"></a>lists</h2><p>redis的lists在底层实现上并不是数组，而是链表，也就是说，lists具有链表所具有的优势，也具有链表所具有的劣势。</p>
+<p>lists的常用操作包括 LPUSH、RPUSH、LRANGE等。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lrange key start end </span><br><span class="line">lrem key count element</span><br><span class="line">lpush key element [element...]</span><br><span class="line">lpop key [count]</span><br></pre></td></tr></table></figure>
 
+<h2 id="sets"><a href="#sets" class="headerlink" title="sets"></a>sets</h2><p>集合，是一种无序集合，元素没有先后顺序，但元素唯一</p>
+<p>集合操作，诸如添加新元素、删除已有元素、交集、并集、差集等</p>
+<h2 id="sorted-sets"><a href="#sorted-sets" class="headerlink" title="sorted sets"></a>sorted sets</h2><p>有序集合每个元素都关联一个序号（score）,是排序的依据</p>
+<p>有时，也将redis的有序集合成为 zsets，因为在redis中，有序集合的操作都是z开头的，如 zrange、zadd、zrevrange、zrangebyscore等</p>
+<h2 id="hashes"><a href="#hashes" class="headerlink" title="hashes"></a>hashes</h2><p>hashes存储的是字符串和字符串值之间的映射。比如存储一个用户的姓名、年龄、联系方式等。</p>
+<h1 id="redis持久化"><a href="#redis持久化" class="headerlink" title="redis持久化"></a>redis持久化</h1><p>redis长时间挂载在内存上，但有时我们需要其将内容及时拷贝，这时，我们就需要redis的持久化功能</p>
+<p>redis提供两种持久化方式，分别是RDB(redis database)和AOF(append only file)</p>
+<h2 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h2><p>就是在不同的时间点，将redis存储的数据生成快照并存储到磁盘等介质上</p>
+<p>这是一种类似快照的持久化方法<br>redis在进行数据持久化的过程中，会将数据先写入到一个临时文件中，等到持久化过程都结束了，才会用该临时文件替换上次持久化的文件。</p>
+<p>对于RDB方式，redis会单独创建（fork）一个子进程来进行持久化任务，而此时主进程是不会进行任何IO操作的，保证服务的正常高性能进行</p>
+<p>如果需要进行大规模数据的恢复，切对于数据恢复的完整性不是非常敏感，那RDB方式比AOF方式更加高效</p>
+<p>当数据完整性要求较好高时，redis发生故障，会有一段时间的数据没来得及进行快照，进而导致丢失</p>
+<h2 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h2><p>将redis执行过的所有指令记录下来，在下次启动时，只要将指令读入再执行一遍，数据就恢复了</p>
+<p>默认的AOF持久化策略是没秒 fsync（fsync指把缓存中的写指令记录到磁盘中）,因为在这种情况下，redis仍可以保持很好的性能，即使redis故障，也只丢失了最近1秒的数据</p>
+<p>AOF方式的一个好处就是可以进行“情景再现”,若我们不小心清空了redis，当AOF文件还没被重写时，我们就可以修改AOF文件，重启redis在恢复数据</p>
+<p>在同样数据规模的情况下，AOF文件比RDB文件大得多，且AOF恢复速度要慢于RDB方式</p>
+<h3 id="AOF重写"><a href="#AOF重写" class="headerlink" title="AOF重写"></a>AOF重写</h3><p>在重写即将开始前，redis会创建（fork）一个重写子进程，该子进程会先读取现有的AOF文件，并将其包含的指令进行分析压缩并写入到一个临时文件中。</p>
+<p>与此同时，主进程会将新接收到的写指令一边积累到内存缓冲区中，一边继续写入到原有的AOF文件中。这样做保证原有的AOF文件的可用性，避免在重写过程中出现意外。</p>
+<p>当重写子进程完成重写任务后，他会给主进程发一个信号，主进程收到信号后就会将内存中缓存的写指令追加到新AOF文件中。</p>
+<p>当追加结束后，redis就会用心AOF文件来代替旧AOF文件，之后再有新的写指令，就会都追加到新的AOF文件中。</p>
+<h1 id="主从用法"><a href="#主从用法" class="headerlink" title="主从用法"></a>主从用法</h1><p>像mysql一样，redis是支持主从同步的，也支持一主多从及多从结构</p>
+<p>主从结构，一是为了纯粹的冗余备份，二是为了提升读性能，如很消耗性能的操作可由从服务器承担</p>
+<p>redis的主从同步是异步进行的，意味着主从同步不会影响主逻辑，也不会降低redis的处理性能</p>
+<p>主从架构中，可以考虑关闭主服务器的数据持久化功能，只让从服务器进行持久化，可以进一步提高主服务器的处理性能</p>
+<p>主从架构中，从服务器通常被设置为只读模式，可以避免从服务器的数据被误改。但从服务器还是可以接受到config等指令，所以还是应该避免将从服务器直接暴露到不安全的网络环境中。</p>
+<h2 id="主从同步原理"><a href="#主从同步原理" class="headerlink" title="主从同步原理"></a>主从同步原理</h2><p>从服务器会向主服务器发出sync（异步）指令，当主服务器接收到此指令后，就会调用BGSAVE指令来创建一个子进程专门进行数据持久化工作，也就是将主服务器的数据写入RDB文件中。在数据持久化期间，主服务器将执行的写指令都缓存在内存中</p>
+<p>在BGSAVE指令执行完成后，主服务器会将持久化好的RDB文件发送给从服务器，从服务器接收到此文件后会将其存储到磁盘上，然后再将棋读取到内存中。这个动作完成后，主服务器会将这段时间缓存的写指令再以redis协议的格式发送给从服务器</p>
+<p>即使有多个从服务器同时发来sync指令，主服务器也只会执行一次BGSAVE，然后把持久化好的RDB文件发给多个下游。</p>
+<p>主服务器会在内存中维护一个缓冲区，缓冲区中存储着将要发给从服务器的内容。从服务器在与主服务器出线网络瞬断之后，从服务器会尝试再次与主服务器连接，一点连接成功，从服务器就会把“希望同步的主服务器ID”和“希望请求的数据偏移位置”发送出去。主服务器接收到这样的同步请求后，首先会验证主服务器ID是否和自己的ID匹配，其次会检查“请求的偏移位置”是否存在于自己的缓冲区中，如果两者都满足的haul，主服务器就会向从服务器发送增量内容</p>
+<h1 id="redis的事务处理"><a href="#redis的事务处理" class="headerlink" title="redis的事务处理"></a>redis的事务处理</h1><p>事务是指“一个完整的动作，要么全部执行，要么全部不执行”<br>redis事务处理：</p>
+<p>MULTI 用来组装一个事务<br>EXEC 用来执行一个事务<br>DISCARD 用来取消一个事务<br>WATCH 用来监视一些key，一旦这些key在事务执行之前被改变，则取消事务的执行<br>在用 MULTI 组装驶入时，每一个命令都会进入到内存队列中缓存起来，如果出现 QUEUED 则表示我们这个命令成功插入到缓存队列，在将来执行 EXEC 时，这些被 QUEUED 的命令会被组装成一个事务来执行</p>
+<p>有关事务，常见的两类错误：</p>
+<p>调用EXEC之前错误<br>调用EXEC之后错误<br>“调用EXEC之前错误”，有可能是由于语法有错误导致，也可能由于内存不足导致。只要出现某个命令无法成功写入缓冲队列的情况，redis都会进行记录，在客户端调用EXEC时，redis会拒绝执行这一事务。</p>
+<p>“调用EXEC之后错误”，redsi采取了不同的策略，即redis不会理睬这些错误，而是继续向下执行事务中的其他命令。因为，对于应用层的错误，并不是redis自身需要考虑处理的问题，故，一个事务中某一条命令执行失败，并不影响接下来的其他命令的执行。</p>
+<h2 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h2><p>作用是“监视key是否被改动过”，且支持同时监视多个key，只要还没真正触发事务，WATCH 都会尽职尽责的监视，一旦发现某个key被修改了，在执行EXEC时就会返回 nil ，表示事务无法触发。</p>
+<h2 id="redis配置文件"><a href="#redis配置文件" class="headerlink" title="redis配置文件"></a>redis配置文件</h2><p>redis配置文件分为几大区域：</p>
+<ul>
+<li>通用（general）</li>
+<li>快照（snapshotting）</li>
+<li>复制（replication）</li>
+<li>安全（security）</li>
+<li>限制（limit）</li>
+<li>追加模式（append only mode）</li>
+<li>LUA脚本（lua scripting）</li>
+<li>慢日志（slow log）</li>
+<li>事件通知（event notification）</li>
+</ul>
+<h2 id="PHP秒杀示例"><a href="#PHP秒杀示例" class="headerlink" title="PHP秒杀示例"></a>PHP秒杀示例</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">watch</span>(<span class="string">&#x27;lucky&#x27;</span>);        <span class="comment">// 监听lucky，lucky的值可以是0</span></span><br><span class="line"><span class="variable">$value</span> = <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">get</span>(<span class="string">&#x27;lucky&#x27;</span>); <span class="comment">// 获取lucky的值 </span></span><br><span class="line"><span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">multi</span>();               <span class="comment">// 开启事务</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$value</span> &lt; <span class="number">20</span>) &#123;             <span class="comment">// 如果库存足够，则幸运数量加一</span></span><br><span class="line">    <span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">incr</span>(<span class="string">&#x27;lucky&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$redis</span>-&gt;<span class="title function_ invoke__">exec</span>()) &#123;          <span class="comment">// 如果有其它线程改变了lucky的值，则秒杀失败，否则提交事务，秒杀成功，幸运数量加一</span></span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&#x27;秒杀成功&#x27;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">dump</span>(<span class="string">&#x27;秒杀失败&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-08-14T23:19:58.000Z" title="2020/8/15 上午7:19:58">2020-08-15</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">7 分钟读完 (大约1027个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/08/15/php%E6%9D%82%E8%AE%B0/">php杂记</a></h1><div class="content"><h4 id="查看端口"><a href="#查看端口" class="headerlink" title="查看端口"></a>查看端口</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netstat -tunlp | grep 端口号`</span><br><span class="line">`lsof -i:端口号</span><br></pre></td></tr></table></figure>
 
+<h4 id="重启nginx"><a href="#重启nginx" class="headerlink" title="重启nginx"></a>重启nginx</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload`</span><br><span class="line">`service nginx restart</span><br></pre></td></tr></table></figure>
 
+<h4 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name filename</span><br></pre></td></tr></table></figure>
 
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<h4 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf filename</span><br></pre></td></tr></table></figure>
 
+<h4 id="过滤查找"><a href="#过滤查找" class="headerlink" title="过滤查找"></a>过滤查找</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd |grep findname</span><br></pre></td></tr></table></figure>
 
-  
+<h4 id="重命名文件夹"><a href="#重命名文件夹" class="headerlink" title="重命名文件夹"></a>重命名文件夹</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv old_filename new_filename</span><br></pre></td></tr></table></figure>
 
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-</body>
-</html>
+<h4 id="查找程序"><a href="#查找程序" class="headerlink" title="查找程序"></a>查找程序</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep name</span><br></pre></td></tr></table></figure>
+
+<h4 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service servicename restart</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改文件权限"><a href="#修改文件权限" class="headerlink" title="修改文件权限"></a>修改文件权限</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 filename</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加新用户"><a href="#添加新用户" class="headerlink" title="添加新用户"></a>添加新用户</h4><p><code>adduser username</code><br><code>-d path</code>绑定当前用户的访问目录<br><code>passwd username</code>给用户更新或添加密码</p>
+<h4 id="vsftpd新增用户"><a href="#vsftpd新增用户" class="headerlink" title="vsftpd新增用户"></a>vsftpd新增用户</h4><p>先同上新增一个访问受限用户，再去vsftpd安装目录下修改数个配置文件，有用户文件，有访问权限文件，以及一个用户配置文件，还需要在指定目录处建立一个同名目录。</p>
+<h4 id="git操作"><a href="#git操作" class="headerlink" title="git操作"></a>git操作</h4><p>初始化仓库：<br>先添加用户 <code>adduser git</code><br>创建证书登录 <code>/home/git/.ssh/authorized_keys</code><br>创建仓库 <code>git init --bare name.git</code></p>
+<h3 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h3><p>swoole提供网络服务时需要单独占用一个端口来提供服务</p>
+<h3 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h3><p><code>doker pull imagename</code>下载一个镜像<br><code>docker run imagename</code>运行容器<br><code>-p 主机端口：容器端口</code> 运行参数之绑定端口<br><code>-i</code>交互式运行 <code>-t</code>终端式运行 <code>-d</code>后台式运行<br><code>-name</code>给容器命名，方便后续使用<br><code>docker ps</code>查看运行中的容器<br><code>docker kill containername</code>停掉运行中的容器</p>
+<h3 id="php添加新扩展"><a href="#php添加新扩展" class="headerlink" title="php添加新扩展"></a>php添加新扩展</h3><p>先使用wget下载文件<br>使用phpize生成配置文件<br>使用.&#x2F;configure生成编译文件<br>make &amp;&amp; make install<br>之后在php.ini中添加扩展，再在conf.d中加入指向so文件的地址</p>
+<h3 id="一次thinkphp源码修改"><a href="#一次thinkphp源码修改" class="headerlink" title="一次thinkphp源码修改"></a>一次thinkphp源码修改</h3><p>原因 php7.3后 strpos 返回值做了修改<br>原：<br><code>if (strpos($url , $bind)===0)</code> Url.php下<br>修改后：<br><code>if ($bind &amp;&amp; strpos($url , $bind ) ===0 )</code></p>
+<h4 id="php7-4"><a href="#php7-4" class="headerlink" title="php7.4"></a>php7.4</h4><p>implode 参数修改为分隔符在前，数组在后</p>
+<h3 id="原生js的关联数据"><a href="#原生js的关联数据" class="headerlink" title="原生js的关联数据"></a>原生js的关联数据</h3><p>使用 hash 传递关联数据，使用<code>JSON.stringify( )</code>将 hash 对象转为 json 字符串</p>
+<p>后端 php 拿到数据后 使用 <code>json_decode()</code>进行 json 解码，但得到的仍为对象</p>
+<h4 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h4><p>ps 用于查看当前运行的进程。</p>
+<p>ps aux 和 ps -ef</p>
+<p>两者的输出结果差别不大，但展示风格不同。aux是BSD风格，-ef是System V风格。</p>
+<p>主要区别是，aux会截断command列，而-ef不会，当结合grep时这种区别会影响到结果</p>
+<h4 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h4><p>用于打印网络连接、路由表、连接的数据统计、伪装连接以及广播域成员</p>
+<p>常见用法 netstat -tulp</p>
+<h4 id="top"><a href="#top" class="headerlink" title="top"></a>top</h4><p>用于实时查看服务器进程等信息</p>
+<h4 id="char与varchar"><a href="#char与varchar" class="headerlink" title="char与varchar"></a>char与varchar</h4><p>char : 定长，效率高，一般用于固定商都的表单提交数据存储<br>varchar : 不定长，效率偏低<br>使用 Innodb 引擎的话，使用varchar代替char</p>
+<h4 id="sort-uniq命令排序-去重"><a href="#sort-uniq命令排序-去重" class="headerlink" title="sort uniq命令排序 去重"></a>sort uniq命令排序 去重</h4><p>uniq 命令可以显示文件中行重复的次数，或只显示出现一次的行，或仅仅显示重复出现的行；但uniq 的去重针对的只是连续的两行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort filename | uniq -c</span><br></pre></td></tr></table></figure>
+
+<p>-c 用来在每一行最前面加上该行出现的次数</p>
+<p>-u 只显示出现一次的行</p>
+<p>-d 只显示重复出现的行</p>
+<h4 id="error-reporting"><a href="#error-reporting" class="headerlink" title="error_reporting"></a>error_reporting</h4><p>设置应该报告何种PHP错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error_reporting ( [ int $level ] ) : int</span><br></pre></td></tr></table></figure>
+
+<h4 id="类中调用同一类中的其他静态资源，可使用static-name来代替classname-name"><a href="#类中调用同一类中的其他静态资源，可使用static-name来代替classname-name" class="headerlink" title="类中调用同一类中的其他静态资源，可使用static::name来代替classname::name"></a>类中调用同一类中的其他静态资源，可使用<code>static::name</code>来代替<code>classname::name</code></h4><h4 id="self-static"><a href="#self-static" class="headerlink" title="self static"></a>self static</h4><p>self调用静态方法或属性，可能会升级为父类中的数据</p>
+<p>static调用只会涉及当前之类中数据，不会发生升级现象</p>
+<h4 id="self、this、parent"><a href="#self、this、parent" class="headerlink" title="self、this、parent"></a>self、this、parent</h4><p>this指向当前对象的指针</p>
+<p>self指向当前类的指针</p>
+<p>parent指向父类的指针</p>
+<h4 id="php的初始化方法只有构造方法，其他的都为包装过的构造方法"><a href="#php的初始化方法只有构造方法，其他的都为包装过的构造方法" class="headerlink" title="php的初始化方法只有构造方法，其他的都为包装过的构造方法"></a>php的初始化方法只有构造方法，其他的都为包装过的构造方法</h4><hr>
+<h4 id="数组相关"><a href="#数组相关" class="headerlink" title="数组相关"></a>数组相关</h4><p><code>array_merge</code> 合并数组，返回值为合并后数组<br><code>array_diff</code> 求数组差集，只比较键值，返回值为差集数组<br><code>array_intersect</code> 求数组并集，只比较键值，返回值为并集数组<br><a target="_blank" rel="noopener" href="http://blog.kaiot.xyz/read/56.html">http://blog.kaiot.xyz/read/56.html</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-08-14T23:19:23.000Z" title="2020/8/15 上午7:19:23">2020-08-15</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">21 分钟读完 (大约3218个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/08/15/php%E7%AC%94%E8%AF%95%E3%80%81%E9%9D%A2%E8%AF%95%E9%A2%98%E6%94%B6%E5%BD%95%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">php笔试、面试题收录（持续更新）</a></h1><div class="content"><ol>
+<li>php中isset,empty,is_null,?:,??<br>is_null<br>bool is_null ( mixed $var )</li>
+</ol>
+<p>当参数满足下面三种情况时，is_null()将返回TRUE，其它的情况就是FALSE<br>1、它被赋值为NULL<br>2、它还没有赋值<br>3、它未定义，相当于unset()处理过的变量<br>isset<br>bool isset ( mixed $var [, mixed $… ] )，参数是一个变量</p>
+<p>检测参数已设定，并且不是NULL。如果没有设置变量，变量未赋值，或变量被设为NULL，isset()函数就返回NULL。<br>正好和is_null()函数相反，is_null()为TRUE的情况在isset()中就为FALSE。<br>如果传递多个参数，将取交集。即所有参数全部符合 isset() 时才返回 TRUE。<br>empty<br>bool empty ( mixed $var )</p>
+<p>判读变量是否为空。<br>empty()为TRUE的情况，若变量不存在，或者变量存在且其值为&quot;&quot;、0、&quot;0&quot;、NULL、FALSE、array()、var $var; 以及没有任何属性的对象，则返回 TURE。<br>?:<br>$b &#x3D; $a?:1等于 $b &#x3D; !empty($a)?$a:1 ,若$a为空，则赋值为1，否则取$a的值</p>
+<p>??<br>$b &#x3D; $a??$c等于$b &#x3D; isset($a)?$a:$c,若$a未设定，返回$c,否则返回$a</p>
+<ol start="2">
+<li>date类问题<br>strtotime()函数的作用是将日期时间描述解析为 Unix 时间戳</li>
+</ol>
+<p>int strtotime ( string time [, int now] )</p>
+<p>示例：</p>
+<p>echo &quot;今天:&quot;.date(&quot;Y-m-d&quot;);<br>echo &quot;昨天:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;-1 day&quot;));<br>echo &quot;明天:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;+1 day&quot;));<br>echo &quot;一周后:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;+1 week&quot;));<br>echo &quot;一周零两天四小时两秒后:&quot;.date(&quot;Y-m-d G:H:s&quot;,strtotime(&quot;+1 week 2 days 4 hours 2 seconds&quot;));<br>echo &quot;下个星期四:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;next Thursday&quot;));<br>echo &quot;上个周一:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;last Monday&quot;));<br>echo &quot;一个月前:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;last month&quot;));<br>echo &quot;一个月后:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;+1 month&quot;));<br>echo &quot;十年后:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;+10 year&quot;));<br>主要考虑date()函数和strtotime()函数</p>
+<ol start="3">
+<li><p>require 和 include<br> require是无条件包含也就是如果一个流程里加入require,无论条件成立与否都会先执行require<br> include有返回值，而require没有(可能因为如此require的速度比include快)<br> 包含文件不存在或者语法错误的时候require是致命的错误终止执行,include不是<br>原文地址：<a target="_blank" rel="noopener" href="https://learnku.com/articles/28758">https://learnku.com/articles/28758</a></p>
+</li>
+<li><p>数据库主从复制、读写分离<br>什么是主从复制<br>主从复制，是用来建立一个和主数据库完全一样的数据库环境，称为从数据库；<br>主从复制的原理：<br>1.数据库有个bin-log二进制文件，记录了所有的sql语句。<br>2.只需要把主数据库的bin-log文件中的sql语句复制。<br>3.让其从数据的relay-log重做日志文件中在执行一次这些sql语句即可。<br>主从复制的作用<br>1.做数据的热备份，作为后备数据库，主数据库服务器故障后，可切换到从数据库继续工作，避免数据丢失。<br>2.架构的扩展。业务量越来越大，I&#x2F;O访问频率过高，单机无法满足，此时做多库的存储，降低磁盘I&#x2F;O访问频率，提高单机的I&#x2F;O性能<br>3.主从复制是读写分离的基础，使数据库能制成更大 的并发。例如子报表中，由于部署报表的sql语句十分慢，导致锁表，影响前台的服务。如果前台服务使用master，报表使用slave，那么报表sql将不会造成前台所，保证了前台的访问速度。<br>主从复制的几种方式：<br>1.同步复制：所谓的同步复制，意思是master的变化，必须等待slave-1,slave-2,…,slave-n完成后才能返回。<br>2.异步复制：如同AJAX请求一样。master只需要完成自己的数据库操作即可。至于slaves是否收到二进制日志，是否完成操作，不用关心。MYSQL的默认设置。<br>3.半同步复制：master只保证slaves中的一个操作成功，就返回，其他slave不管。<br>这个功能，是由google为MYSQL引入的。<br>关于读写分离<br>在完成主从复制时，由于slave是需要同步master的。所以对于insert&#x2F;delete&#x2F;update这些更新数据库的操作，应该在master中完成。而select的查询操作，则落下到slave中。<br>原文地址：<a target="_blank" rel="noopener" href="https://learnku.com/articles/28758">https://learnku.com/articles/28758</a></p>
+</li>
+<li><p>数据库索引<br><strong>什么是索引</strong><br>索引是对数据库表中一列或多列的值进行排序的一种结构，使用索引可快速访问数据库表中的特定信息。（摘自百度百科）<br><strong>索引类型</strong><br>1.FULLTEXT 全文索引<br> 全文索引，仅MyISAM引擎支持。其可以在CREATE TABLE ，ALTER TABLE ，CREATE INDEX 使用，不过目前只有 CHAR、VARCHAR ，TEXT 列上可以创建全文索引。<br>2.HASH 哈希索引<br> HASH索引的唯一性及类似键值对的形式十分适合作为索引，HASH索引可以一次定位，不需要像树形索引那样逐层参照，因此具有极高的效率。但是这种高效是有条件的。即只在“&#x3D;”和“in”条件下高效，对于范围查询，排序及组合索引仍然效率不高。<br>3.BTREE 树形索引<br> BTREE所以是一种将索引按一定算法，存入一个树形的数据结构中（二叉树），每次查询都是从树的入口root开始，一次遍历node，获取leaf。这是MySQL中默认也是最常用的索引类型。<br>4.RTREE<br> RTREE在MySQL中很少使用，仅支持geometry数据类型，支持该存储引擎只有MyISAM、BDb、InnoDb、NDb、Archive几种。相对于BTREE，RTREE的优势在于范围查找。<br><strong>索引种类</strong><br>普通索引：仅加速查询<br>唯一索引：加速查询+列值唯一（可以有null）<br>主键索引：加速查询+列值唯一（不可以有null）+表中只有一个<br>组合索引：多列值组成一个索引，专门用于组合搜索，其效率大于索引合并<br>全文索引：对文本内容进行分词，进行搜索<br>外键索引：与主键索引形成联系，保证数据的完整性。<br><strong>索引使用的注意事项</strong><br>1.符合索引遵循前缀原则<br>2.like查询%不能再前，否则索引失效。如有需要，使用全文索引<br>3.column is null可以使用索引<br>4.如果MySQL估计使用索引比全表扫描慢，则放弃使用索引<br>5.如果or前的条件中列有索引，后面的没有，索引不会生效。<br>6.列类型是字符串，查询时，一定要给值加引号，否则索引失效。<br>7.确定order by 和 group by 中只有一个表的列，这样才能使用索引<br>原文地址：<a target="_blank" rel="noopener" href="https://learnku.com/articles/28758">https://learnku.com/articles/28758</a></p>
+</li>
+<li><p>高并发的解决方案<br>web服务器优化 ：负载均衡<br>流量优化：防盗链处理 将恶意请求屏蔽，<br>前端优化：减少http请求、添加异步请求、启用浏览器缓存和文件压缩、cdn加速、建立独立的图片服务器、<br>服务端优化：  页面静态化、并发处理、队列处理、<br>数据库优化： 数据库缓存、分库分表、分区操作 、读写分离、负载均衡<br>原文地址：<a target="_blank" rel="noopener" href="https://learnku.com/articles/28758">https://learnku.com/articles/28758</a></p>
+</li>
+<li><p>接口与抽象类的区别</p>
+</li>
+<li><p>接口<br>（1）对接口的使用是通过关键字implements<br>（2）接口不能定义成员变量（包括类静态变量），能定义常量<br>（3）子类必须实现接口定义的所有方法<br>（4）接口只能定义不能实现该方法<br>（5）接口没有构造函数<br>（6）接口中的方法和实现它的类默认都是public类型的</p>
+</li>
+<li><p>抽象类<br>（1）对抽象类的使用是通过关键字extends<br>（2）不能被实例化，可以定义子类必须实现的方法<br>（3）子类必须定义父类中的所有抽象方法，这些方法的访问控制必须和父类中一样（或者更为宽松）<br>（4）如一个类中有一个抽象方法，则该类必须定义为抽象类<br>（5）抽象类可以有构造函数<br>（6）抽象类中的方法可以使用private,protected,public来修饰。<br>（7）一个类可以同时实现多个接口，但一个类只能继承于一个抽象类。</p>
+</li>
+<li><p>Final类&#x2F;方法<br>（1）final类不能被继承<br>（2）final方法不能被重写</p>
+</li>
+<li><p>Static类&#x2F;方法<br>(1)可以不实例化类而直接访问<br>(2)静态属性不可以由对象通过-&gt;操作符来访问,用::方式调用<br>原文地址：<a target="_blank" rel="noopener" href="https://learnku.com/articles/28758">https://learnku.com/articles/28758</a></p>
+</li>
+<li><p>php获取上级文件目录<br>echo <strong>FILE</strong> ; &#x2F;&#x2F; 获取当前所在文件的绝对路径及地址，结果：D:\aaa\my.php<br>echo dirname(<strong>FILE</strong>); &#x2F;&#x2F; 取得当前文件所在的绝对目录，结果：D:\aaa\<br>echo dirname(dirname(<strong>FILE</strong>)); &#x2F;&#x2F;取得当前文件的上一层目录名，结果：D:\<br>原文：<a target="_blank" rel="noopener" href="https://blog.csdn.net/viqecel/article/details/80765275">https://blog.csdn.net/viqecel/article/details/80765275</a></p>
+</li>
+<li><p>HTTP状态码<br>1**<br>信息，服务器收到请求，需要请求者继续执行操作<br>2**<br>成功，操作被成功接收并处理<br>3**<br>重定向，需要进一步的操作以完成请求<br>4**<br>客户端错误，请求包含语法错误或无法完成请求<br>5**<br>服务器错误，服务器在处理请求的过程中发生了错误<br>详细参照：<a target="_blank" rel="noopener" href="https://www.runoob.com/http/http-status-codes.html">https://www.runoob.com/http/http-status-codes.html</a></p>
+</li>
+<li><p>设计模式<br>简单工厂模式：根据产品接口，创建多个产品类，由一个工厂类返回多种产品对象<br>工厂模式：根据产品接口，创建多个产品类，并创建多个工厂类，由一个工厂使用类调用多个工厂对象来制造多种产品对象<br>单例模式：保证一个类有且只有一个实例，且提供一个访问它的全局控制点<br>策略模式：一个策略接口，多个具体策略类，一个策略使用类</p>
+</li>
+<li><p>三大范式<br>第一范式：确保每列保持原子性<br>第二范式：确保表中每列都和主键相关<br>第三范式：确保每列都和主键列直接相关，而不是间接相关</p>
+</li>
+<li><p>面向对象<br>面向过程是具体化的，流程化的，解决一个问题，你需要一步一步的分析，一步一步的实现。<br>面向对象是模型化的，你只需抽象出一个类，这是一个封闭的盒子，在这里你拥有数据也拥有解决问题的方法。<br>需要什么功能直接使用就可以了，不必去一步一步的实现，至于这个功能是如何实现的，管我们什么事？我们会用就可以了。<br>面向对象的底层其实还是面向过程，把面向过程抽象成类，然后封装，方便我们使用的就是面向对象了。<br>面向对象的三大特征和五大基本原则<br>面向对象的三大特征：封装、继承、多态<br>五大基本原则：<br>单一职责原则：类的功能要单一<br>开放封闭原则：模块对于拓展是开放的，修改是封闭的<br>里式替换原则：子类可以代替父类出现在父类可以出现的任何地方<br>依赖倒置原则：高层次的模块不应该依赖于低层次模块，他们都应该依赖于抽象。抽象不应该依赖于具体实现，具体实现应该依赖于抽象。就如同在国外，‘我是中国人’，而不是‘我是**村的人’<br>接口分离原则：接口的功能也具有单一性，需要尽可能的拆分</p>
+</li>
+</ol>
+<p>转载 <a target="_blank" rel="noopener" href="http://blog.kaiot.xyz/read/55.html">http://blog.kaiot.xyz/read/55.html</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-08-14T23:13:57.000Z" title="2020/8/15 上午7:13:57">2020-08-15</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">40 分钟读完 (大约5943个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/08/15/%E5%85%B3%E4%BA%8Ehttp%E5%93%8D%E5%BA%94%E5%92%8C%E8%BF%9E%E6%8E%A5/">关于http响应和连接</a></h1><div class="content"><h1 id="HTTP-响应头信息"><a href="#HTTP-响应头信息" class="headerlink" title="HTTP 响应头信息"></a>HTTP 响应头信息</h1><p>&gt;HTTP请求头提供了关于请求，响应或者其他的发送实体的信息。</p>
+<p>Allow	<br>服务器支持哪些请求方法（如GET、POST等）。</p>
+<p>Content-Encoding	<br>文档的编码（Encode）方法。只有在解码之后才可以得到Content-Type头指定的内容类型。利用gzip压缩文档能够显著地减少HTML文档的下载时间。Java的GZIPOutputStream可以很方便地进行gzip压缩，但只有Unix上的Netscape和Windows上的IE 4、IE 5才支持它。因此，Servlet应该通过查看Accept-Encoding头（即request.getHeader(&quot;Accept-Encoding&quot;)）检查浏览器是否支持gzip，为支持gzip的浏览器返回经gzip压缩的HTML页面，为其他浏览器返回普通页面。</p>
+<p>Content-Length	<br>表示内容长度。只有当浏览器使用持久HTTP连接时才需要这个数据。如果你想要利用持久连接的优势，可以把输出文档写入 ByteArrayOutputStream，完成后查看其大小，然后把该值放入Content-Length头，最后通过byteArrayStream.writeTo(response.getOutputStream()发送内容。</p>
+<p>Content-Type	<br>表示后面的文档属于什么MIME类型。Servlet默认为text&#x2F;plain，但通常需要显式地指定为text&#x2F;html。由于经常要设置Content-Type，因此HttpServletResponse提供了一个专用的方法setContentType。</p>
+<p>Date	<br>当前的GMT时间。你可以用setDateHeader来设置这个头以避免转换时间格式的麻烦。</p>
+<p>Expires	<br>应该在什么时候认为文档已经过期，从而不再缓存它？</p>
+<p>Last-Modified	<br>文档的最后改动时间。客户可以通过If-Modified-Since请求头提供一个日期，该请求将被视为一个条件GET，只有改动时间迟于指定时间的文档才会返回，否则返回一个304（Not Modified）状态。Last-Modified也可用setDateHeader方法来设置。</p>
+<p>Location	<br>表示客户应当到哪里去提取文档。Location通常不是直接设置的，而是通过HttpServletResponse的sendRedirect方法，该方法同时设置状态代码为302。</p>
+<p>Refresh	<br>表示浏览器应该在多少时间之后刷新文档，以秒计。除了刷新当前文档之外，你还可以通过setHeader(&quot;Refresh&quot;, &quot;5; URL&#x3D;<a target="_blank" rel="noopener" href="http://host/path&quot;)%E8%AE%A9%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%BB%E5%8F%96%E6%8C%87%E5%AE%9A%E7%9A%84%E9%A1%B5%E9%9D%A2%E3%80%82">http://host/path&quot;)让浏览器读取指定的页面。</a><br>注意这种功能通常是通过设置HTML页面HEAD区的＜META HTTP-EQUIV&#x3D;&quot;Refresh&quot; CONTENT&#x3D;&quot;5;URL&#x3D;<a target="_blank" rel="noopener" href="http://host/path&quot;%EF%BC%9E">http://host/path&quot;＞</a><br>实现，这是因为，自动刷新或重定向对于那些不能使用CGI或Servlet的HTML编写者十分重要。但是，对于Servlet来说，直接设置Refresh头更加方便。</p>
+<p>注意Refresh的意义是&quot;N秒之后刷新本页面或访问指定页面&quot;，而不是&quot;每隔N秒刷新本页面或访问指定页面&quot;。因此，连续刷新要求每次都发送一个Refresh头，而发送204状态代码则可以阻止浏览器继续刷新，不管是使用Refresh头还是＜META HTTP-EQUIV&#x3D;&quot;Refresh&quot; …＞。</p>
+<p>注意Refresh头不属于HTTP 1.1正式规范的一部分，而是一个扩展，但Netscape和IE都支持它。</p>
+<p>Server	<br>服务器名字。Servlet一般不设置这个值，而是由Web服务器自己设置。</p>
+<p>Set-Cookie	<br>设置和页面关联的Cookie。Servlet不应使用response.setHeader(&quot;Set-Cookie&quot;, …)，而是应使用HttpServletResponse提供的专用方法addCookie。参见下文有关Cookie设置的讨论。</p>
+<p>WWW-Authenticate	<br>客户应该在Authorization头中提供什么类型的授权信息？在包含401（Unauthorized）状态行的应答中这个头是必需的。例如，response.setHeader(&quot;WWW-Authenticate&quot;, &quot;BASIC realm&#x3D;＼&quot;executives＼&quot;&quot;)。<br>注意Servlet一般不进行这方面的处理，而是让Web服务器的专门机制来控制受密码保护页面的访问（例如.htaccess）。</p>
+<h1 id="HTTP持久连接"><a href="#HTTP持久连接" class="headerlink" title="HTTP持久连接"></a>HTTP持久连接</h1><p>&gt;HTTP持久连接（HTTP persistent connection，也称作HTTP keep-alive或HTTP connection reuse）是使用同一个TCP连接来发送和接收多个HTTP请求&#x2F;应答，而不是为每一个新的请求&#x2F;应答打开新的连接的方法。</p>
+<p>在 HTTP 1.0 中, 没有官方的 keepalive 的操作。通常是在现有协议上添加一个指数。如果浏览器支持 keep-alive，它会在请求的包头中添加：<br>1<br>Connection: Keep-Alive<br>然后当服务器收到请求，作出回应的时候，它也添加一个头在响应中：<br>1<br>Connection: Keep-Alive<br>这样做，连接就不会中断，而是保持连接。当客户端发送另一个请求时，它会使用同一个连接。这一直继续到客户端或服务器端认为会话已经结束，其中一方中断连接。<br>在 HTTP 1.1 中所有的连接默认都是持续连接，除非特殊声明不支持。HTTP 持久连接不使用独立的 keepalive 信息，而是仅仅允许多个请求使用单个连接。然而， Apache 2.0 httpd 的默认连接过期时间是仅仅15秒，对于 Apache 2.2 只有5秒。短的过期时间的优点是能够快速的传输多个web页组件，而不会绑定多个服务器进程或线程太长时间。</p>
+<ol>
+<li>较少的CPU和内存的使用（由于同时打开的连接的减少了）</li>
+<li>允许请求和应答的HTTP管线化</li>
+<li>降低拥塞控制（TCP连接减少了）</li>
+<li>减少了后续请求的延迟（无需再进行握手）</li>
+<li>报告错误无需关闭TCP连接</li>
+</ol>
+<p>根据RFC 2616 （47页），用户客户端与任何服务器和代理服务器之间不应该维持超过2个链接。代理服务器应该最多使用2&amp;times;N个持久连接到其他服务器或代理服务器，其中N是同时活跃的用户数。这个指引旨在提高HTTP响应时间并避免阻塞。</p>
+<p>对于广泛普及的宽带连接来说，Keep-Alive也许并不像以前一样有用。web服务器会保持连接若干秒(Apache中默认15秒)，这与提高的性能相比也许会影响性能。<br>对于单个文件被不断请求的服务(例如图片存放网站)，Keep-Alive可能会极大的影响性能，因为它在文件被请求之后还保持了不必要的连接很长时间。 </p>
+<h1 id="关于HTTP的持久连接特性"><a href="#关于HTTP的持久连接特性" class="headerlink" title="关于HTTP的持久连接特性"></a>关于HTTP的持久连接特性</h1><p>HTTP协议是位于传输层之上的应用层协议，其网络层基础通常是TCP协议。TCP协议是面向连接和流的，因此连接的状态和控制对于HTTP协议而言相当重要。同时，HTTP是基于报文的，因此如何确定报文长度也是协议中比较重要的一点。<br>Persistent Connections持久连接<br>目的<br>在使用持久连接前，HTTP协议规定为获取每个URL资源都需要使用单独的一个TCP连接，这增加了HTTP服务端的负载，引起互联网拥塞。例如内嵌图片以及其他类似数据的使用要求一个客户端在很短时间内向同一个服务端发起多个请求。<br>使用持久连接的优点:<br>减少TCP连接数量<br>在一个连接上实现HTTP请求和应答的流水，即允许客户端发出多个请求，而不必在接收到前一请求的应答后才发出下一请求，极大减少时间消耗<br>后续请求延迟减少，无需再在TCP握手上耗时<br>可以更加优雅地实现HTTP协议，由于持续连接的存在无需报告错误后无需关闭连接，因此客户端可使用最新的协议特性发出请求，如果接收到表示错误的应答，则换用更旧的语义。</p>
+<p>总体描述<br>HTTP&#x2F;1.1和之前版本的显著区别是HTTP&#x2F;1.1默认使用持久连接。即，除非服务端在应答中明确指出，客户端应当假定服务端会维持一个持久连接，即使从服务端收到的应答是报告错误。<br>持久连接对关闭TCP连接的行为提供信号量机制支持。这个信号量是在HTTP头中的Connection域设置，注意Client向Proxy发出请求时该域可能被Proxy-Connection域替换。一旦close信号被表明，客户端绝不能再通过该连接发送更多的请求。</p>
+<p>协商(Negotiation)<br>HTTP&#x2F;1.1 服务端可以假定HTTP&#x2F;1.1客户端会维持持久连接，除非请求中Connection域的值是&quot;close&quot;.同样的，如果服务端打算在送出应答后立即关闭连接，它应当在应答中包含同样的Connection域。(TCP连接关闭是双向的,此时TCP进入半关闭状态)<br>同样的，HTTP&#x2F;1.1客户端可以期望连接是持久的，除非如前所述收到表示连接关闭的应答。当然，也可以主动发出一个包含Connection:close的请求以表明终止连接。<br>无论客户端还是服务端发出的报文包含Connection:close，则该请求均为连接上的最后一个请求(服务端发出此应答后关闭，因此不可能接收更多的请求)<br>报文传输长度<br>为保证持久性，连接上的报文都必须有一个自定义的报文传输长度(否则必须通过连接的关闭表示报文结束，因为TCP连接是面向流的)，确定的规则按优先级由高到低排列如下：<br>报文传输长度指报文中出现的报文体的长度(即，不包括头长度，因为报文头的结束可通过连续两个CRLF确定）<br>1.任何绝不能包含报文体(如1xx,204,304)的应答消息总是以头域后的第一个空行结束,无视头中所有的entity类型域的设置，包括Content-Length域。<br>2.Transfer-Encoding域出现，其值为除&quot;identify&quot;以外的其他值，则用&quot;chunked&quot;传输编码方式确定传输长度，具体方式留待下篇分析。<br>3.Content -Length域出现，且Transfer-Encoding域未出现(出现则忽略Content-Length域)。Content-Length域的值为十进制数的字节序，如Content-Length：1234，则1、2、3、4是分别作为一个octet传输的，因此需要atoi转换成数值。<br>4.如果报文使用了&quot;multipart&#x2F;byteranges&quot;的媒体类型，且没对传输长度做前面的指明，则这种自分割的媒体类型定义了传输长度。具体参见Range头域的说明。<br>5.服务端关闭连接(此方法不可用于客户端发出的请求报文，因为客户端关闭连接则使得服务端无法发送应答).<br>为保持和HTTP&#x2F;1.0的兼容性, 包含报文体的HTTP&#x2F;1.1请求必须包含合法的Content-Length头域,除非明确知道服务端是HTTP&#x2F;1.1兼容的.如果请求包含消息体, 而没有Content-Length域,那么如果服务端无法确定消息长度时,它会返回400(无效请求),或者坚持获取合法Content-Length 而返回411(要求包含长度).</p>
+<p>所有接收实体的HTTP&#x2F;1.1应用程序必须接受&quot;chunked&quot;传输编码, 这样允许当报文长度无法预先确定时可以运用此机制获取报文长度.<br>报文不能同时包含Content-Length头域和非&quot;identity&quot; Transfer-Encoding.如果出现了, Content-Length域必须被忽略.<br>当Content-Length域在允许报文体的报文中存在时, 其域值必须严格等于消息体中的8比特字节.HTTP&#x2F;1.1 user agent 必须在接收并检测到一个错误的长度时提醒用户.<br>以上方法中，最常见的还是使用Content-Length域表示报文体长度，Transfer-Encoding需要按格式解码才能还原出发送编码前的报文。</p>
+<p>流水<br>支持持久连接的客户端可以流水发送请求，服务端必须按发送的顺序发送应答。<br>假定持久连接和连接后即可流水的客户端应当做好在第一次流水失败后重新尝试此连接。在这样的尝试中，在确定连接是持久的之前，客户端不能再流水。<br>客户端同样必须准备好在服务端送回所有相关应答前就关闭连接时重发请求。<br>不应流水non-idempotent方法</p>
+<p>Proxy Servers<br>对于代理服务端而言，正确实现Connection头域指定的属性尤为重要。<br>代理服务端必须分立通告它的客户端和连接的原始服务端持久连接的属性，每个持久连接设置仅针对一个传输连接。</p>
+<p>实践考量<br>超时值，服务端通常会为每个连接维护一个定时器，一旦某个连接不活跃超过一定时间值，服务端会关闭此连接。考虑到一个客户端可能通过代理服务端发出更多连接，代理服务端通常会将超时值设置得更高。<br>还有一些关于从异步关闭中恢复的讨论。</p>
+<p>报文传输要求<br>使用TCP流控制来解决服务端临时负载过高问题，而不是简单的依赖客户端重连而关闭连接。<br>监视连接情况以获取错误状态消息<br>关于使用100(继续)状态码<br>100状态码用于客户端发送请求体之前测试是否可以发送该请求，对于Proxy，有以下要求：<br>1.如果代理服务端接收到包含Expect头域值为&quot;100-continue&quot;的请求, 而不明确知道下一跳服务不支持HTTP&#x2F;1.1以上版本, 则它必须转发这个请求, 包括Expect头域.<br>2.如果代理知道下一跳服务端为HTTP&#x2F;1.0或者更低版本, 则它不能转发此请求, 且必须以407应答客户端.<br>3.如果明确知道发出请求的客户端版本为HTTP&#x2F;1.0或者更低，则代理服务端绝不能转发100应答,这条规则凌驾于转发1xx应答的一般准则.</p>
+<p>Connection头域说明<br>BNF文法：<br>Connection &#x3D; &quot;Connection&quot; &quot;:&quot; 1#(connection-token)<br>connection-token &#x3D; token<br>Connection头域中的token用于指定对于特定连接有意义的选项，因此proxy在转发前要扫描此域，从头中去除和token同名的域。例如Connection:Range,则要去掉Range域。<br>HTTP&#x2F;1.1定义了close这个token，发送者用此token表示在完成这个报文所属请求&#x2F;应答的收发后连接将关闭。</p>
+<h2 id="HTTP的持久连接对Web服务性能的影响"><a href="#HTTP的持久连接对Web服务性能的影响" class="headerlink" title="HTTP的持久连接对Web服务性能的影响"></a>HTTP的持久连接对Web服务性能的影响</h2><p>我们的 Web 页面通常有很多对像(Object)组成。如：jss 样式表、图片、scripts、文档等。所以用户浏览一个网页文件时候，要向 Web 服务器发送多次请求(要从服务器上获取一个Object就要向服务器发送一个请求)，浏览器根据 jss 样式表把从服务器获取的这些html页面对象合成一个完整的html页面展示给用户。<br>        最早我们的浏览器是单线程的，意味着一次只能向浏览器发送一个Object请求，等到该Object传输完成了，再向服务发送第二个Object的请求。我们把它称为串行事务处理。串行事务处理，使得我们的连接时延会叠加，用户的体验效果差。如，页面有多幅图片，页面正在加载一幅图片时，页面上其它地方都没有动静，也会让人门觉得很慢。后来出现了多线程的浏览器，当用户点击打开一个页面时，会同时向服务器同时发起多个用户请求(也就是并行处理方式)，减少了连接时延叠加，同时加速了一个web页面对象的加载速度，让用户有更好的体验效果。<br>        虽然采用多线程的浏览器加速了页面的加载速度，但是如果我们只对连接进行简单的管理(如不使用 keep alive)，浏览器每获得一个Web对像都要使用一个新的TCP连接。<br>意思是说我们加载的html页面有多少个页面对象，浏览器与服务器要建立多少条TCP连接。大家都知道使用TCP传输数据之前，要先经过三次握手，三次握手成功以后，双方才能够进行数据的传输。<br>所以说，我们使用TCP&#x2F;IP进行数据网络传输必定会造成延迟的。双方完成数据的传输以后还要经过TCP的四次断开的过程。一个TCP的连接要经过：建立连接 、传输数据、拆除连接。</p>
+<pre><code>    TCP的建立连接和拆除连接是很费时的，有时候甚至比数据传输的时间还长。所以，虽然浏览器采用了并发处理方式，加速了页面的加载速度。但是请求一个页面对像就需要与服务器建立一条TCP连接。如果用户浏览的页面文件有1000个object的话，从服务器请求数据到展示给用户，
+
+    最基本延迟时间 = 1000*(平均每个TCP连接建立时间 + 平均每个TCP连接拆除时间)。
+</code></pre>
+<p>随着我们的页面对像的增加，这个延迟时间是不断增长的。客户端每请求一个object，就要与服务器建立一条TCP连接，服务器每维护一条TCP连接是要消耗一定的资源(如内存)。所以，也加速了服务器的负担。对服务器的并发用户数也造成很大影响。所以后来 HTTP&#x2F;1.1 使用了重用TCP连接功能来消除连接及关闭时延。允许HTTP设备在事务处理结束之后将TCP连接保持在打开状态，<br>以便为后续的HTTP请求重用现存的TCP连接。在事务处理结束之后仍然保持在打开状态的TCP连接被称为持久连接。也称为 TCP 重用。</p>
+<pre><code>  是如何重用TCP连接的呢？
+  假如，浏览的网页文件有400个object.我们的浏览器是4线程的，浏览器会并行向 Web 服务器发送4个 TCP连接请求。当这4个TCP请求与服务器建立连接完成数据传输以后，并不是
+</code></pre>
+<p>把它拆除掉。浏览器与web服务器协定使用 keep-alive 功能时。HTTP设备就会在事务处理结束之后将该4条TCP连接保持在打开状态。浏览器就使用这4条TCP连接完成后续的396个object的数据转输。<br>        持久连接降低了时延和连接建立的开销，将连接保持在已调谐状态，而且减少了打开连接的潜在数量。但是，管理 持久连接时要特别小心，不然就会累积出大量的空闲连接，耗费客户端和服务器上的资源。下面是 Apache web 服务器管理持久连接的一些配置：</p>
+<p>[root@node2 ~]# vim &#x2F;etc&#x2F;httpd&#x2F;extra&#x2F;httpd-default.conf<br>…<br>#KeepAlive On<br>KeepAlive On<br>#</p>
+<h1 id="MaxKeepAliveRequests-The-maximum-number-of-requests-to-allow"><a href="#MaxKeepAliveRequests-The-maximum-number-of-requests-to-allow" class="headerlink" title="MaxKeepAliveRequests: The maximum number of requests to allow"></a>MaxKeepAliveRequests: The maximum number of requests to allow</h1><h1 id="during-a-persistent-connection-Set-to-0-to-allow-an-unlimited-amount"><a href="#during-a-persistent-connection-Set-to-0-to-allow-an-unlimited-amount" class="headerlink" title="during a persistent connection. Set to 0 to allow an unlimited amount."></a>during a persistent connection. Set to 0 to allow an unlimited amount.</h1><h1 id="We-recommend-you-leave-this-number-high-for-maximum-performance"><a href="#We-recommend-you-leave-this-number-high-for-maximum-performance" class="headerlink" title="We recommend you leave this number high, for maximum performance."></a>We recommend you leave this number high, for maximum performance.</h1><h1 id="保持连接允许传输的最大请求数"><a href="#保持连接允许传输的最大请求数" class="headerlink" title="保持连接允许传输的最大请求数"></a>保持连接允许传输的最大请求数</h1><p>MaxKeepAliveRequests 100</p>
+<h1 id="KeepAliveTimeout-Number-of-seconds-to-wait-for-the-next-request-from-the"><a href="#KeepAliveTimeout-Number-of-seconds-to-wait-for-the-next-request-from-the" class="headerlink" title="KeepAliveTimeout: Number of seconds to wait for the next request from the"></a>KeepAliveTimeout: Number of seconds to wait for the next request from the</h1><h1 id="same-client-on-the-same-connection"><a href="#same-client-on-the-same-connection" class="headerlink" title="same client on the same connection."></a>same client on the same connection.</h1><h1 id="在同一个客户端的连接，等待下一个请求的超时时间"><a href="#在同一个客户端的连接，等待下一个请求的超时时间" class="headerlink" title="在同一个客户端的连接，等待下一个请求的超时时间"></a>在同一个客户端的连接，等待下一个请求的超时时间</h1><p>KeepAliveTimeout 5<br>…<br>说明：</p>
+<p>这些就是 Keep-Alive选项。<br>注意，Keep-Alive 首部只是请求将连接保持在活跃状态。发出 keep-alive 请求之后，客户端和服务器并不一定会同意进行 keep-alive 会话。<br>它们可以在任意时刻关半空闲的 keep-alive 连接，并可随意限制 keep-alive 连接所处理事务的数量。</p>
+<p>下面来看看，客户端与服务器怎样商量它们是否使用HTTP协议的持久连接功能的呢？<br>实现 HTTP&#x2F;1.0 keep-alive 连接的客户端可以通过包含 Connection: Keep-Alive 首部请求将一条连接保持在打开状态。</p>
+<p>通过 Google Chrome 浏览器的开发者工具来查看，访问 <a target="_blank" rel="noopener" href="http://192.168.203.99/index.html">http://192.168.203.99/index.html</a> 的请求头信息。</p>
+<p>Request Header<br>Accept:text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,p_w_picpath&#x2F;webp,<em>&#x2F;</em>;q&#x3D;0.8<br>Accept-Encoding:gzip,deflate,sdch<br>Accept-Language:zh-CN,zh;q&#x3D;0.8<br>Cache-Control:no-cache<br>Connection:keep-alive     —–&gt; 请求将一条连接保持在打开状态。<br>Cookie:2c407_ol_offset&#x3D;97; 2c407_ipstate&#x3D;1402781651; 2c407_jobpop&#x3D;0; 2c407_winduser&#x3D;BD4OUFQKBQkLVgReBgsAAFsDVlMKB1MGUQ4LAwcFUlgBBms; 2c407_ck_info&#x3D;%2F%09; 2c407_lastpos&#x3D;index; 2c407_lastvisit&#x3D;49%091402713397%09%2Findex.php<br>Host:192.168.203.99<br>Pragma:no-cache<br>User-Agent:Mozilla&#x2F;5.0 (Windows NT 6.2; WOW64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;34.0.1847.137 Safari&#x2F;537.36<br>通过工具 crul 获得的响应头信息。</p>
+<p>[root@node2 ~]# curl -I <a target="_blank" rel="noopener" href="http://192.168.203.99/index.html">http://192.168.203.99/index.html</a><br>HTTP&#x2F;1.1 200 OK<br>Server: nginx&#x2F;1.0.11<br>Date: Sat, 14 Jun 2014 09:17:15 GMT<br>Content-Type: text&#x2F;html<br>Content-Length: 151<br>Last-Modified: Thu, 01 May 2014 04:21:03 GMT<br>Connection: keep-alive<br>Accept-Ranges: bytes<br>说明：<br>    如果服务器愿意为下一条请求将连接保持在打开状态(意思是说下一次请求数据时，可以通过该TCP连接传输数据，不需要建立新的TCP连接了)，<br>    就在响应中包含相同的首部 Connection: keep-alive。<br>    如果响应中没有 Connection: keep-alive 首部，客户端就认为服务器不支持 keep-alive,会在发回响应报文之后关闭连接@。<br>    从上在请求首部和响应首部分析，我们使用了HTTP 持久连接的功能。</p>
+<p>总结：<br>   Keep-Alive 连接的限制和规则：<br>   1、在 HTTP&#x2F;1.0 中，keep-alive 并不是默认使用的，客户端必须发送一个 Connection: Keep-Alive</p>
+<pre><code>     请求首部来激活 keep-alive 连接。
+</code></pre>
+<p>   2、Connection: Keep-Alive 首部必须随所有希望保持持久连接的报文一起发送。如果客户端没有发</p>
+<pre><code>     送 Connection: Keep-Alive 首部，服务器就会在那条请求之后关闭连接。
+</code></pre>
+<p>   3、客户端探明响应中没有 Connection: Keep-Alive 响应首部，就可以知道服务器发出响应之后是否</p>
+<pre><code>      会关闭连接了。
+</code></pre>
+<p>   4、为了避免出现大量的空闲的TCP连接，要定义持久连接的超时时间 timeout.  限制操持连接的TCP</p>
+<pre><code>     连接最多能完成多少个事务 MaxKeepAliveRequests
+</code></pre>
+<p>转载于:<a target="_blank" rel="noopener" href="https://blog.51cto.com/9528du/1426695">https://blog.51cto.com/9528du/1426695</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-08-14T08:35:58.000Z" title="2020/8/14 下午4:35:58">2020-08-14</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">3 分钟读完 (大约442个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/08/14/%E5%85%B3%E4%BA%8Eapt-get%20remove%20%E4%B8%8E%20apt-get%20purge/">关于apt-get remove 与 apt-get purge</a></h1><div class="content"><p>今天在Ubuntu服务器上安装supervisor，部署没成功想卸载重来，sudo apt-get remove supervisor 后发现配置文件还在，便手动删除了配置文件。再次安装，提示配置文件不存在，WTF！配置文件不该你软件给我创建吗？我想。</p>
+<p>查阅资料才知，还有 apt-get purge 这一选项，purge 清除。</p>
+<p>划重点：<br>apt-get remove 会删除软件包而保留软件的配置文件<br>apt-get purge 会同时清除软件包和软件的配置文件</p>
+<p>但是为什么重新安装会失败呢？<br>系统中存在dpkg这么一个工具，会记录软件包的状态，不只是安装和未安装两种状态，会记录以下这些状态：</p>
+<p>not-installed - The package is not installed on this system<br>config-files - Only the configuration files are deployed to this system<br>half-installed - The installation of the package has been started, but not completed<br>unpacked - The package is unpacked, but not configured<br>half-configured - The package is unpacked and configuration has started but not completed<br>triggers-awaited - The package awaits trigger processing by another package<br>triggers-pending - The package has been triggered<br>installed - The packaged is unpacked and configured OK</p>
+<p>当执行apt-get install时，apt软件包管理工具会先检查要安装的软件的状态，向我这种情况下，手动删除了软件配置后，并不会引起dpkg中记录的状态的改变，即仍为 config-files 状态，所以安装过程会直接跳过创建配置文件这一过程。于是当软件想要启动进程的时候，才发现找不到文件。</p>
+<p>所以当你想彻底地删除软件包的时候，用 apt-get purge 吧</p>
+<p>原文：<a target="_blank" rel="noopener" href="http://bencane.com/2014/08/18/removing-packages-and-configurations-with-apt-get/">http://bencane.com/2014/08/18/removing-packages-and-configurations-with-apt-get/</a></p>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-08-14T03:09:26.000Z" title="2020/8/14 上午11:09:26">2020-08-14</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.663Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">9 分钟读完 (大约1414个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/08/14/mysql%EF%BC%88mariadb%EF%BC%89%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">mysql（mariadb）常用命令</a></h1><div class="content"><blockquote>
+<p>首先了解一下<code>SQL</code>的注释</p>
+</blockquote>
+<p>单行语句进行注释</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> USERS; <span class="comment">--查询所有用户信息</span></span><br></pre></td></tr></table></figure>
+<p>多行注释</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">切换到USER数据库</span></span><br><span class="line"><span class="comment">查询所有表信息</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">USE <span class="keyword">USER</span>;</span><br><span class="line"><span class="keyword">SHOW</span> TABLES;</span><br></pre></td></tr></table></figure>
+<p>注释快捷键</p>
+<blockquote>
+<p>选中需要注释的语句<br>先Ctrl+k，再Ctrl+c<br>注释成功<br>取消注释<br>先Crtrl+k，在Ctrl+u</p>
+</blockquote>
+<h2 id="查看支持的表引擎"><a href="#查看支持的表引擎" class="headerlink" title="查看支持的表引擎"></a>查看支持的表引擎</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> ENGINES;</span><br><span class="line"><span class="keyword">SHOW</span> VARIABLES <span class="keyword">LIKE</span> &quot;%STORAGE_ENGINE%&quot;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看创建表语句"><a href="#查看创建表语句" class="headerlink" title="查看创建表语句"></a>查看创建表语句</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `TBALE`</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看表status"><a href="#查看表status" class="headerlink" title="查看表status"></a>查看表status</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">TABLE</span> STATUS <span class="keyword">FROM</span> `DATABASE` <span class="keyword">WHERE</span> NAME<span class="operator">=</span>`<span class="keyword">TABLE</span>` \G</span><br></pre></td></tr></table></figure>
+<h2 id="修改表引擎"><a href="#修改表引擎" class="headerlink" title="修改表引擎"></a>修改表引擎</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> `TBALE` ENGINE<span class="operator">=</span>MEMORY</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看mysql的数据文件存放位置"><a href="#查看mysql的数据文件存放位置" class="headerlink" title="查看mysql的数据文件存放位置"></a>查看mysql的数据文件存放位置</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> VARIABLES <span class="keyword">LIKE</span> &quot;%DIR%&quot;;</span><br></pre></td></tr></table></figure>
+<p>数据库文件默认在：<code>cd /usr/share/mysql</code><br>配置文件默认在：<code>/etc/my.cnf</code></p>
+<p>———————————–</p>
+<p>数据库目录：<code>/var/lib/mysql/</code><br>配置文件：<code>/usr/share/mysql</code>(mysql.server命令及配置文件)<br>相关命令：&#x2F;usr&#x2F;bin(mysqladmin、mysqldump等命令)(*mysql的一种安全启动方式：&#x2F;usr&#x2F;bin&#x2F;mysqld_safe –user&#x3D;root &amp;)<br>启动脚本：&#x2F;etc&#x2F;rc.d&#x2F;init.d&#x2F;</p>
+<p>首先你可以使用以下的命令来寻找MySQL</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@stuhome /]# find / -name “mysql” -print</span><br></pre></td></tr></table></figure>
+<p>一般来说mysql是放在&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;下的。<br>然后在其bin目录下有个mysql_config文件，vi之，你会看见这么一句：<br>ldata&#x3D;’&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;var’<br>rpm安装默认目录：<br>数据文件：&#x2F;var&#x2F;lib&#x2F;mysql&#x2F;<br>配置文件模板：&#x2F;usr&#x2F;share&#x2F;mysql<br>mysql客户端工具目录：&#x2F;usr&#x2F;bin<br>日志目录：&#x2F;var&#x2F;log&#x2F;<br>pid，sock文件目录：&#x2F;tmp&#x2F;</p>
+<h2 id="设置组合主键索引"><a href="#设置组合主键索引" class="headerlink" title="设置组合主键索引"></a>设置组合主键索引</h2><p>使用baiprimary key(字段1, 字段2, …)的语句进行设置。<br>一个表中最du多只能有一个主键，zhi也可以没有。一个主键既可dao以是单一的字段构成，也可以是多个字段联合构成，如果是单一字段，只需在该字段后面标记primary key即可，如果是多个字段联合构成，则需要采用最开始介绍的那种方式设置。<br>在部分数据库的图形化工具中（如Access、SQL Server等），在表设计的界面上，可以按住Ctrl键，然后选择要设置为联合主键的字段，都选好之后再按右键选择“设置为主键”。<br>alter table Table_1 add constraint pk_name primary key (id,name)设置Table_1表的id,name为主键</p>
+<h2 id="更改表名"><a href="#更改表名" class="headerlink" title="更改表名"></a>更改表名</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE table_name RENAME [TO] new_name;</span><br></pre></td></tr></table></figure>
+
+<p>##创建索引</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create index `id_name` on categories (`id`, `name`);</span><br></pre></td></tr></table></figure>
+
+<h2 id="更改字段信息"><a href="#更改字段信息" class="headerlink" title="更改字段信息"></a>更改字段信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table categories modify column id mediumint auto_increment primary key ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop index id_name on categories;</span><br></pre></td></tr></table></figure>
+
+<p>#其他</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> DATABASES                                <span class="operator">/</span><span class="operator">/</span>列出 MySQL Server 数据库。</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> TABLES [<span class="keyword">FROM</span> db_name]                    <span class="operator">/</span><span class="operator">/</span>列出数据库数据表。</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">TABLE</span> STATUS [<span class="keyword">FROM</span> db_name]              <span class="operator">/</span><span class="operator">/</span>列出数据表及表状态信息。</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> COLUMNS <span class="keyword">FROM</span> tbl_name [<span class="keyword">FROM</span> db_name]     <span class="operator">/</span><span class="operator">/</span>列出资料表字段</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> FIELDS <span class="keyword">FROM</span> tbl_name [<span class="keyword">FROM</span> db_name]，<span class="keyword">DESCRIBE</span> tbl_name [col_name]。</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">FULL</span> COLUMNS <span class="keyword">FROM</span> tbl_name [<span class="keyword">FROM</span> db_name]<span class="operator">/</span><span class="operator">/</span>列出字段及详情</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">FULL</span> FIELDS <span class="keyword">FROM</span> tbl_name [<span class="keyword">FROM</span> db_name] <span class="operator">/</span><span class="operator">/</span>列出字段完整属性</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> tbl_name [<span class="keyword">FROM</span> db_name]       <span class="operator">/</span><span class="operator">/</span>列出表索引。</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> STATUS                                  <span class="operator">/</span><span class="operator">/</span>列出 DB Server 状态。</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> VARIABLES                               <span class="operator">/</span><span class="operator">/</span>列出 MySQL 系统环境变量。</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> PROCESSLIST                             <span class="operator">/</span><span class="operator">/</span>列出执行命令。</span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> GRANTS <span class="keyword">FOR</span> <span class="keyword">user</span>                         <span class="operator">/</span><span class="operator">/</span>列出某用户权限</span><br></pre></td></tr></table></figure>
+
+<p>#建表语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> files(</span><br><span class="line"> username <span class="type">varchar</span>(<span class="number">50</span>),</span><br><span class="line"> file <span class="type">varchar</span>(<span class="number">200</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line"> create_time <span class="type">timestamp</span> <span class="keyword">not</span> <span class="keyword">null</span> <span class="keyword">default</span> <span class="built_in">CURRENT_TIMESTAMP</span>,</span><br><span class="line"> filename <span class="type">varchar</span>(<span class="number">100</span>) <span class="keyword">default</span> <span class="keyword">null</span>,</span><br><span class="line"> md5 <span class="type">char</span>(<span class="number">32</span>) <span class="keyword">not</span> <span class="keyword">null</span> <span class="keyword">default</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line"> id <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">not</span> <span class="keyword">null</span> auto_increment <span class="keyword">primary</span> key) engine<span class="operator">=</span>myisam <span class="keyword">default</span> charset<span class="operator">=</span>utf8mb4 <span class="keyword">collate</span><span class="operator">=</span>utf8mb4_unicode_ci;</span><br></pre></td></tr></table></figure>
+
+<p>#MySQL(Unix时间戳、日期)转换函数</p>
+<blockquote>
+<p>unix_timestamp()</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select unix_timestamp();</span><br><span class="line">+``------------------+</span><br><span class="line">| unix_timestamp()   |</span><br><span class="line">+``------------------+</span><br><span class="line">|    1464590043      |</span><br><span class="line">+``------------------+</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>unix_timestamp(date)</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select unix_timestamp(&#x27;2016-05-30&#x27;);</span><br><span class="line">+------------------------------+</span><br><span class="line">| unix_timestamp(&#x27;2016-05-30&#x27;) |</span><br><span class="line">+------------------------------+</span><br><span class="line">|                   1464537600 |</span><br><span class="line">+------------------------------+</span><br><span class="line"> </span><br><span class="line">mysql&gt; select unix_timestamp(&#x27;2016-05-30 14:35:21&#x27;);</span><br><span class="line">+---------------------------------------+</span><br><span class="line">| unix_timestamp(&#x27;2016-05-30 14:35:21&#x27;) |</span><br><span class="line">+---------------------------------------+</span><br><span class="line">|                            1464590121 |</span><br><span class="line">+---------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>from_unixtime(unix_timestamp)</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select from_unixtime(1464590043);</span><br><span class="line">+---------------------------+</span><br><span class="line">| from_unixtime(1464590043) |</span><br><span class="line">+---------------------------+</span><br><span class="line">| 2016-05-30 14:34:03       |</span><br><span class="line">+---------------------------+</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>from_unixtime(unix_timestamp,format)</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select from_unixtime(1464590043, &#x27;%Y %D %M %h:%i:%s %x&#x27;);</span><br><span class="line">+---------------------------------------------------+</span><br><span class="line">| from_unixtime(1464590043, &#x27;%Y %D %M %h:%i:%s %x&#x27;) |</span><br><span class="line">+---------------------------------------------------+</span><br><span class="line">| 2016 30th May 02:34:03 2016                       |</span><br><span class="line">+---------------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<p>修改密码ALTER USER ‘root‘@’localhost’ IDENTIFIED WITH mysql_native_password BY ‘123456’;</p>
+<h1 id="如何删除mysql-主键索引"><a href="#如何删除mysql-主键索引" class="headerlink" title="如何删除mysql 主键索引"></a>如何删除mysql 主键索引</h1><p>如果一个主键是自增长的，不能直接删除该列的主键索引，<br>应当先取消自增长，再删除主键特性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table 表名 drop primary key; --【如果这个主键是自增的，先取消自增长.】</span><br></pre></td></tr></table></figure>
+
+<p>具体方法如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alter table articles modify id int ; --【重新定义列类型】</span><br><span class="line"></span><br><span class="line">alter table articles drop primary key;</span><br></pre></td></tr></table></figure>
+
+<h1 id="添加主键索引"><a href="#添加主键索引" class="headerlink" title="添加主键索引"></a>添加主键索引</h1><p>innodb逐渐使聚簇索引，myisam不是[待考究]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE users ADD PRIMARY KEY (id);</span><br></pre></td></tr></table></figure>
+
+<p>删除</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE users DROP primary key; --删除前要将auto_increment去掉</span><br></pre></td></tr></table></figure>
+
+<h1 id="添加其他索引"><a href="#添加其他索引" class="headerlink" title="添加其他索引"></a>添加其他索引</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE INDEX index_name ON users(username);</span><br></pre></td></tr></table></figure>
+
+<h1 id="MySQL-查看执行计划"><a href="#MySQL-查看执行计划" class="headerlink" title="MySQL 查看执行计划"></a>MySQL 查看执行计划</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN SELECT * FROM users WHERE id &gt; 1;</span><br></pre></td></tr></table></figure>
+
+<p>Mysql8.0新增<code>EXPLAIN ANALYZE</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN ANALYZE SELECT * FROM users WHERE id &gt; 0;</span><br></pre></td></tr></table></figure>
+
+<h1 id="执行计划中extra的描述"><a href="#执行计划中extra的描述" class="headerlink" title="执行计划中extra的描述"></a>执行计划中<code>extra</code>的描述</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Using where：表示优化器需要通过索引回表查询数据；</span><br><span class="line">Using index：表示直接访问索引就足够获取到所需要的数据，不需要通过索引回表；</span><br><span class="line">Using index condition：在5.6版本后加入的新特性（Index Condition Pushdown）;</span><br><span class="line">Using index condition 会先条件过滤索引，过滤完索引后找到所有符合索引条件的数据行，随后用 WHERE 子句中的其他条件去过滤这些数据行；</span><br><span class="line">Using where &amp;&amp; Using index</span><br></pre></td></tr></table></figure>
+
+<h1 id="更改表的引擎"><a href="#更改表的引擎" class="headerlink" title="更改表的引擎"></a>更改表的引擎</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE users ENGINE = myisam;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Innodb的count效率在mysql8测试已经不再低于myisam了"><a href="#Innodb的count效率在mysql8测试已经不再低于myisam了" class="headerlink" title="Innodb的count效率在mysql8测试已经不再低于myisam了"></a>Innodb的count效率在mysql8测试已经不再低于myisam了</h1><h1 id="蠕虫复制"><a href="#蠕虫复制" class="headerlink" title="蠕虫复制"></a>蠕虫复制</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users_1;</span><br></pre></td></tr></table></figure>
+<p>下面的SQL可以指定列，用于解决唯一约束的问题</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> users(username,password) <span class="keyword">SELECT</span> username,password <span class="keyword">FROM</span> users_d;</span><br></pre></td></tr></table></figure>
+
+<h1 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> status</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">table</span> status</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以通过<code>Comment</code>字段查看表是不是视图</p>
+</blockquote>
+<h1 id="查看触发器"><a href="#查看触发器" class="headerlink" title="查看触发器"></a>查看触发器</h1><p><code>show triggers</code></p>
+<h1 id="权限相关"><a href="#权限相关" class="headerlink" title="权限相关"></a>权限相关</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> grants <span class="keyword">for</span> `username`</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">on</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">to</span> `username`@`<span class="operator">%</span>`</span><br><span class="line"><span class="keyword">revoke</span> <span class="keyword">all</span> <span class="keyword">on</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">from</span> `username`@`<span class="operator">%</span>`</span><br><span class="line">flush privileges</span><br></pre></td></tr></table></figure></div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/15/">上一页</a></div><div class="pagination-next"><a href="/page/17/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/15/">15</a></li><li><a class="pagination-link is-current" href="/page/16/">16</a></li><li><a class="pagination-link" href="/page/17/">17</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果也！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">170</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-01T06:56:20.000Z">2022-10-01</time></p><p class="title"><a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-18T05:06:34.000Z">2022-09-18</time></p><p class="title"><a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-09-04T13:30:39.000Z">2022-09-04</time></p><p class="title"><a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-21T02:56:27.000Z">2022-08-21</time></p><p class="title"><a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-08-19T12:54:39.000Z">2022-08-19</time></p><p class="title"><a href="/2022/08/19/Markdown%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown基本语法</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/10/"><span class="level-start"><span class="level-item">十月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/09/"><span class="level-start"><span class="level-item">九月 2022</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/08/"><span class="level-start"><span class="level-item">八月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/07/"><span class="level-start"><span class="level-item">七月 2022</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/06/"><span class="level-start"><span class="level-item">六月 2022</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/05/"><span class="level-start"><span class="level-item">五月 2022</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">四月 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">三月 2022</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/02/"><span class="level-start"><span class="level-item">二月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/01/"><span class="level-start"><span class="level-item">一月 2022</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/12/"><span class="level-start"><span class="level-item">十二月 2021</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/11/"><span class="level-start"><span class="level-item">十一月 2021</span></span><span class="level-end"><span class="level-item tag">21</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/10/"><span class="level-start"><span class="level-item">十月 2021</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/08/"><span class="level-start"><span class="level-item">八月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/07/"><span class="level-start"><span class="level-item">七月 2021</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/04/"><span class="level-start"><span class="level-item">四月 2021</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/02/"><span class="level-start"><span class="level-item">二月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/10/"><span class="level-start"><span class="level-item">十月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
