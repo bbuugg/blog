@@ -86,28 +86,28 @@ comment:
     type: disqus
     shortname: ''
 donates:
-    -
-        type: afdian
-        url: ''
+    # -
+    #     type: afdian
+    #     url: ''
     -
         type: alipay
-        qrcode: ''
-    -
-        type: buymeacoffee
-        url: ''
-    -
-        type: patreon
-        url: ''
-    -
-        type: paypal
-        business: ''
-        currency_code: USD
+        qrcode: '/images/alipay.jpg'
+    # -
+    #     type: buymeacoffee
+    #     url: ''
+    # -
+    #     type: patreon
+    #     url: ''
+    # -
+        # type: paypal
+        # business: ''
+        # currency_code: USD
     -
         type: wechat
-        qrcode: ''
+        qrcode: '/images/wechat.png'
 share:
     type: sharethis
-    install_url: ''
+    install_url: 'https://www.chengyao.xyz'
 sidebar:
     left:
         sticky: false
@@ -167,22 +167,22 @@ widgets:
         order_by: name
         amount: 
         show_count: true
-    -
-        position: left
-        type: subscribe_email
-        description: 
-        feedburner_id: ''
-    -
-        position: left
-        type: adsense
-        client_id: ''
-        slot_id: ''
-    -
-        position: left
-        type: followit
-        description: 
-        action_url: ''
-        verification_code: ''
+    # -
+    #     position: left
+    #     type: subscribe_email
+    #     description: 
+    #     feedburner_id: ''
+    # -
+    #     position: left
+    #     type: adsense
+    #     client_id: ''
+    #     slot_id: ''
+    # -
+    #     position: left
+    #     type: followit
+    #     description: 
+    #     action_url: ''
+    #     verification_code: ''
 plugins:
     animejs: true
     back_to_top: true
