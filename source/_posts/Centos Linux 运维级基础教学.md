@@ -6,13 +6,13 @@ tags:
 
 #### 命令终端字段含义介绍
 
-- [root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]#
+- [root@localhost ~]#
 
-- 解释：当前用户名为root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[主机名为localhost](https://hu60.cn/q.php/user.info.0.html) 当前所在目录为 ~ 家目录 # 当前用户身份是超级管理员，root超级管理员家目录：/root
+- 解释：当前用户名为root@主机名为localhost 当前所在目录为 ~ 家目录 # 当前用户身份是超级管理员，root超级管理员家目录：/root
 
 - 普通用户提示符为 $，普通用户的家目录：/homt/用户名同名，lisi用户的家目录：/home/lisi
 
-  [lisi[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]$
+  [lisi@localhost ~]$
 
 <!-- more -->
 
@@ -1016,7 +1016,7 @@ ln: 无法创建硬链接"/boot/hello.soft" => "/root/hello.soft": 无效的跨�
 - 什么是命令：用来实现某一种功能的指令或程序
 - 命令的执行依赖于解释器（例如：/bin/bash），/etc/shells文件存放系统可用的shell
   - 用户——解释器（shell外壳）——内核
-- [root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# shell 终端 交互接口 用户接口
+- [[root@localhost]# shell 终端 交互接口 用户接口
 
 ```shell
 #搜索命令所在的绝对路径
@@ -1369,8 +1369,6 @@ init 6
   - 多核心，一颗CPU里边有两个以上的运算单元
 
 - 计算机什么最重要？想要让计算机运行起来，足够的电力
-
-  ![1616909159062](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxNjkwOTE1OTA2Mi5wbmc.)
 
 #### Linux系统目录介绍
 
@@ -3157,9 +3155,9 @@ test1:x:6666:6666:test1@163.com:/home/test1:/sbin/nologin
 
 2.创建名为stugrp组，将test1用户加入到stugrp组
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# groupadd stugrp
+[[root@localhost]# groupadd stugrp
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# gpasswd -a test1 stugrp
+[[root@localhost]# gpasswd -a test1 stugrp
 
 3.请写出/etc/passwd文件中每个字段含义
 
@@ -3167,12 +3165,12 @@ test1:x:6666:6666:test1@163.com:/home/test1:/sbin/nologin
 
 4.创建test2用户，并设置密码为123456
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# useradd test2
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# passwd test2
+[[root@localhost]# useradd test2
+[[root@localhost]# passwd test2
 
 5.修改root用户密码为123456
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# passwd
+[[root@localhost]# passwd
 
 6.请写出Linux系统下存放用户密码信息文件
 
@@ -3180,7 +3178,7 @@ test1:x:6666:6666:test1@163.com:/home/test1:/sbin/nologin
 
 7.设置test2用户首次登录系统需要修改密码
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# chage -d 0 test2
+[[root@localhost]# chage -d 0 test2
 
 8.使用root切换为test1用户身份
 
@@ -3188,50 +3186,50 @@ su - 用户名
 
 9.将test2用户添加至stugrp组，并锁定用户密码
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# gpasswd -a test2 stugrp
+[[root@localhost]# gpasswd -a test2 stugrp
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# passwd -l test2
+[[root@localhost]# passwd -l test2
 
 10.删除test1用户，连同用户家目录一并删除
 
-root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# userdel -r test1
+[root@localhost]# userdel -r test1
 
 11.请写出Linux系统存放组信息文件，与组密码信息文件
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# ls /etc/group
+[[root@localhost]# ls /etc/group
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# ls /etc/gshadow
+[[root@localhost]# ls /etc/gshadow
 
 12.将test2用户从stugrp组中删除
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# gpasswd -d test2 stugrp
+[[root@localhost]# gpasswd -d test2 stugrp
 
 13.在根下创建upload目录，并修改目录所有者为test2用户，所属组为stugrp组，并将lisi用户加入到stugrp组，修改所有者权限rwx，修改所属组权限为rwx，设置其他人没有任何权限
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# mkdir /upload
+[[root@localhost]# mkdir /upload
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# chown test2:stugrp /upload/
+[[root@localhost]# chown test2:stugrp /upload/
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# gpasswd -a lisi stugrp
+[[root@localhost]# gpasswd -a lisi stugrp
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# chmod 770 /upload/
+[[root@localhost]# chmod 770 /upload/
 
 14.创建test3用户，非交互式设置用户密码为123456，并设置test3用户可以对upload目录拥有rx权限
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# useradd test3
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# echo 123456 | passwd --stdin test3
+[[root@localhost]# useradd test3
+[[root@localhost]# echo 123456 | passwd --stdin test3
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# setfacl -m u:test3:rx /upload/
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# getfacl /upload/
+[[root@localhost]# setfacl -m u:test3:rx /upload/
+[[root@localhost]# getfacl /upload/
 
 15.在根下创建shared目录，并同时设置所有人都有完全权限（至少两种方法设置），要求所有普通用户在该目录下只能修改自己创建的文件
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# mkdir /shared
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# chmod ugo=rwx /shared/
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# chmod 777 /shared/
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# ll -d /shared/
+[[root@localhost]# mkdir /shared
+[[root@localhost]# chmod ugo=rwx /shared/
+[[root@localhost]# chmod 777 /shared/
+[[root@localhost]# ll -d /shared/
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# chmod o+t /shared/
+[[root@localhost]# chmod o+t /shared/
 
 #### 常用特殊符号的使用
 
@@ -3441,11 +3439,11 @@ root@localhost ~]# find /var/log -mtime -30 -type f
 
 - 查找/etc/目录下以.conf结尾的文件（只能在/etc这一层目录去查找）
 
-  [root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# ls /etc/*.conf
+  [[root@localhost]# ls /etc/*.conf
 
 - 查找/etc/目录下以.conf结尾的文件（包含所有的子目录）
 
-  [root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# find /etc/ -name '*.conf' -type f
+  [[root@localhost]# find /etc/ -name '*.conf' -type f
 
 #### 压缩与解压缩
 
@@ -3557,8 +3555,6 @@ etc/hostname
 ```
 
 #### 磁盘介绍
-
-![1619020721408](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxOTAyMDcyMTQwOC5wbmc.)
 
 #### 分区过程
 
@@ -4045,8 +4041,6 @@ UUID=ae55ec6b-973b-498e-a366-f35e14b3d153 /boot                   xfs     defaul
 - 逻辑卷可以实现将底层的物理分区整合成一个大的虚拟硬盘
 - 逻辑卷技术是通过Linux系统内核dm（device mapper）设备映射组件
 
-![1618737987640](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODczNzk4NzY0MC5wbmc.)
-
 #### 创建卷组
 
 - 创建卷组思路：将创建好的物理卷组成卷组（或者直接创建卷组）
@@ -4201,40 +4195,40 @@ UUID=ae55ec6b-973b-498e-a366-f35e14b3d153 /boot                   xfs     defaul
 
 1.查看/var/log目录下以包含log的文件
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# ls /var/log/*log*
+[[root@localhost]# ls /var/log/*log*
 
 2.查看/var/log目录下以数字结尾的文件
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# ls /var/log/*[0-9]
+[[root@localhost]# ls /var/log/*[0-9]
 
 3.查看/var/log目录下以字母结尾的文件（包括大写）
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# ls /var/log/*[a-Z]
+[[root@localhost]# ls /var/log/*[a-Z]
 
 4.过滤/etc/sudoers文件以root开头的行
 
-root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# grep ^root /etc/sudoers
+[root@localhost]# grep ^root /etc/sudoers
 root ALL=(ALL) ALL
 
 5.看/etc/sudoers文件有效的配置
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# grep -v '^#' /etc/sudoers | grep -v '^$' -n
+[[root@localhost]# grep -v '^#' /etc/sudoers | grep -v '^$' -n
 
 6.查找/etc/目录下crontab文件存放位置，并查看文件内容
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# find /etc/ -name crontab -type f
+[[root@localhost]# find /etc/ -name crontab -type f
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# cat /etc/crontab
+[[root@localhost]# cat /etc/crontab
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# find /etc/ -name crontab -type f -exec cat {} \;
+[[root@localhost]# find /etc/ -name crontab -type f -exec cat {} \;
 
 7.查找10分钟内被修改的文件
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# find / -cmin -10 -type f
+[[root@localhost]# find / -cmin -10 -type f
 
 8.查找/var/log目录下30天之前被修改且大于1M的文件，清空文件内容
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# find /var/log -mtime +30 -type f -size +10k -exec cp /dev/null {} \;
+[[root@localhost]# find /var/log -mtime +30 -type f -size +10k -exec cp /dev/null {} \;
 
 9.Linux下你常熟悉的压缩格式有哪些？
 
@@ -4242,11 +4236,11 @@ gzip bzip2 xz
 
 10.对/home目录打包并压缩，打包后名为home.tar.gz
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# tar -czf home.tar.gz /home
+[[root@localhost]# tar -czf home.tar.gz /home
 
 11.将home.tar.gz压缩包内容解压至/homebak目录下
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# tar -xvf home.tar.gz -C /homebak/
+[[root@localhost]# tar -xvf home.tar.gz -C /homebak/
 
 12.MBR分区格式可以划分多少个主分区？支持多大容量磁盘？
 
@@ -4262,13 +4256,13 @@ xfs
 
 15.如何查看一块磁盘的分区格式？及扩展分区大小？
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# fdisk -l /dev/sdc
+[[root@localhost]# fdisk -l /dev/sdc
 
 磁盘标签类型：gpt
 
 16如何查看一块磁盘剩余容量？
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# lsblk /dev/sdc
+[[root@localhost]# lsblk /dev/sdc
 
 17.linux下开机自动挂载文件是哪个？
 
@@ -4276,7 +4270,7 @@ xfs
 
 18.如何查看一个分区文件系统类型？及使用情况？
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# df -hT
+[[root@localhost]# df -hT
 
 19.为根分区扩容40G空间
 
@@ -4355,41 +4349,21 @@ Do you really want to remove active logical volume systemvg/mylv? [y/n]: y
 
 RAID0：等量存储，至少由2块磁盘组成，同一个文档等量存放在不同的磁盘并行写入数据来提高效率，但只是单纯的提高效率，并没有冗余功能，如果其中一块盘故障，数据会丢失，不适合存放重要数据
 
-![1618897853478](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODg5Nzg1MzQ3OC5wbmc.)
-
 RAID1：完整备份，至少由两块磁组成，同一个文档复制成多份存储到不同磁盘提高可靠性，读写速度没有提升，适合存储重要的数据
-
-![1618899100153](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODg5OTEwMDE1My5wbmc.)
 
 RAID2：至少由3块磁盘组成，数据分散存储在不同磁盘，在读写数据时需要对数据时时校验，由于采用的校验算法复杂，数据量比原有数据增大，而且导致硬件开销较大
 
-![1618900912522](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODkwMDkxMjUyMi5wbmc.)
-
 RAID3：至少由三块磁盘组成，同一份文档分散写入不同的磁盘，校验数据单独存放在另外一块磁盘，由于每次读写操作都会访问校验盘，容易导致校验盘长时间高负荷工作而挂掉，如果校验盘损坏数据将无法恢复
-
-![1618901200523](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODkwMTIwMDUyMy5wbmc.)
 
 RAID4：与RAID3类似，至少由3块磁盘组成，同一份文档分散存写入不同磁盘，校验数据单独存放在另外一块磁盘，由于每次读写操作都会访问校验盘，容易导致校验盘长时间高负荷工作而挂掉，如果校验盘损坏数据将无法恢复，与RAID3的区别是数据分割方式不一样
 
-![1618901653596](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODkwMTY1MzU5Ni5wbmc.)
-
 RAID5：至少由3块磁盘组成，同一份文档分散写入不同磁盘，每个硬盘都有校验数据，其中校验数据会占用磁盘三分之一的空间，三分之二的空间存放原始数据，允许同时坏一块磁盘，当一块磁盘损坏，其他磁盘里的数据配合校验信息可将数据恢复回来
 
-![1618902056141](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODkwMjA1NjE0MS5wbmc.)
-
-![1618904086682](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODkwNDA4NjY4Mi5wbmc.)
-
 RAID6：至少由4块磁盘组成，同一份文档分散写入不同磁盘，每个磁盘都有校验数据，由于采用双校验算法，所以校验数据量是RAID5的两倍，需要占用2块磁盘空间存放校验数据，两块盘存放原始数据，由于数据校验的算法计算量偏大，所以在速写速度上没有RAID5快，允许同时坏2块磁盘
-
-![1618904332017](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODkwNDMzMjAxNy5wbmc.)
-
-![1618904036923](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODkwNDAzNjkyMy5wbmc.)
 
 RAID7：美国SCC公司专利，花钱
 
 RAID10：RAID10=RAID1+RAID0合二为一，最少需要4块磁盘，先将4块硬盘组成两组RAID1，在将两组RAID1组成一个RAID0，既提高数据读写速度，又能保障数据安全性，缺点是可用容量是总容量的一半
-
-![1618907637359](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODkwNzYzNzM1OS5wbmc.)
 
 #### 实现RAID方式
 
@@ -4397,17 +4371,7 @@ RAID10：RAID10=RAID1+RAID0合二为一，最少需要4块磁盘，先将4块硬
 - 外接式磁盘阵列柜，被常用在大型服务器上，不过这类产品价格昂贵
 - RAID磁盘阵列卡，分为服务器自带和额外安装，硬RAID比软RAID更安全稳定，RAID卡带有缓存功能可实现数据自动恢复，RAID卡有电池
 
-![1618909597594](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODkwOTU5NzU5NC5wbmc.)
-
-![1618857273424](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODg1NzI3MzQyNC5wbmc.)
-
 - 配置硬RAID方式
-
-![1618988695705](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODk4ODY5NTcwNS5wbmc.)
-
-![1618988740634](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODk4ODc0MDYzNC5wbmc.)
-
-![1618988754045](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYxODk4ODc1NDA0NS5wbmc.)
 
 #### 进程管理
 
@@ -5156,8 +5120,8 @@ mount: /dev/sr0 写保护，将以只读方式挂载
 ```
 
 - 网络yum源配置（网络软件仓库，配置阿里开源软件仓库）
-- [https://developer.aliyun.com/special/mirrors/notice](https://hu60.cn/q.php/link.url.html?url64=aHR0cHM6Ly9kZXZlbG9wZXIuYWxpeXVuLmNvbS9zcGVjaWFsL21pcnJvcnMvbm90aWNl) 阿里云官方镜象站（软件仓库）
-- [https://mirrors.tuna.tsinghua.edu.cn/centos/7/os/x86_64/](https://hu60.cn/q.php/link.url.html?url64=aHR0cHM6Ly9taXJyb3JzLnR1bmEudHNpbmdodWEuZWR1LmNuL2NlbnRvcy83L29zL3g4Nl82NC8.) 清华大学官方镜象站
+- [https://developer.aliyun.com/special/mirrors/notice](https://developer.aliyun.com/special/mirrors/notice) 阿里云官方镜象站（软件仓库）
+- [https://mirrors.tuna.tsinghua.edu.cn/centos/7/os/x86_64/](https://mirrors.tuna.tsinghua.edu.cn/centos/7/os/x86_64/) 清华大学官方镜象站
 
 ```shell
 #下载wget工具
@@ -5399,9 +5363,9 @@ rpm -ql 软件包名
 
 12.如何查询ifconfig命令是由哪个软件包产生？
 
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# which ifconfig
+[[root@localhost]# which ifconfig
 /usr/sbin/ifconfig
-[root[@](https://hu60.cn/q.php/bbs.topic.100995.html#)[localhost](https://hu60.cn/q.php/user.info.0.html) ~]# rpm -qf /usr/sbin/ifconfig
+[[root@localhost]# rpm -qf /usr/sbin/ifconfig
 net-tools-2.0-0.24.20131004git.el7.x86_64
 
 13.如何查看一个软件包是否被安装在系统中？
@@ -5462,8 +5426,6 @@ systemctl stop vsftpd
 
 - shell是一个程序，它连接了用户和Linux内核，它可以解释用户输入的命令传递给内核，让用户可以更加方便的使用Linux系统
 - shell 本身并不是内核的一部分，它只是站在内核的基础上编写的一个应用程序
-
-![1620489299709](https://hu60.cn/q.php/link.img.html?url64=QzpcVXNlcnNcemhpeV9cQXBwRGF0YVxSb2FtaW5nXFR5cG9yYVx0eXBvcmEtdXNlci1pbWFnZXNcMTYyMDQ4OTI5OTcwOS5wbmc.)
 
 - shell具备编程的能力，shell也是一种语言，C,C++,java,Python,Go等
 - 语言分为编译型语言，C,C++,Go，需要提前编译，编译语言都有编译器
