@@ -59,9 +59,6 @@ footer:
         Attribution 4.0 International:
             icon: fab fa-creative-commons-by
             url: https://creativecommons.org/licenses/by/4.0/
-        Download on GitHub:
-            icon: fab fa-github
-            url: https://github.com/ppoffice/hexo-theme-icarus
 article:
     highlight:
         theme: atom-one-light
@@ -185,8 +182,8 @@ widgets:
 plugins:
     animejs: true
     back_to_top: true
-    baidu_analytics:
-        tracking_id: 
+    baidu_analytics: 
+        tracking_id: d0884aeebfcd3ca98ed3033285d6d03a
     bing_webmaster:
         tracking_id: 
     busuanzi: false

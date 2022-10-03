@@ -102,7 +102,7 @@ ES常用的数据类型可分为3大类：核⼼数据类型、复杂数据类�
 
 > GET _cat/
 
-## 显示左右索引并按照存储大小排序
+## 显示所有索引并按照存储大小排序
 
 > GET _cat/indices?v&s=store.size:desc
 
@@ -138,9 +138,35 @@ curl -H "Content-Type:application/json" -XPOST -u elastic 'http://127.0.0.1:9200
 PUT /user
 ```
 
+```json
+{
+	"settings": {
+		"number_of_shards": 3,
+		"number_of_replicas": 2
+	},
+    "mappings": {
+        "properties": {
+            "name": {
+                "type": "keyword"
+            }
+        }
+    }
+}
+```
+
+> 可以设置分片数量和副本数量，定义mappings
+
+## 修改索引设置
+
+> PUT /index/_settings
+
+```json
+{
+	"number_of_replicas": 3
+}
+```
+
 ## 查看映射
-
-
 
 > GET /user/_mapping
 
@@ -345,7 +371,7 @@ text类型不能转为long类型
 
 ### 复杂查询
 
-> 使用布尔查询组合多个查询条件，must、should、must_not , filter
+> 使用布尔查询组合多个查询条件，must、should、must_not , filter， 检索结果会根据luence的评分机制(TF/IDF)来评分
 
 - must 返回文档必须满足must子句条件，并参与计算分值
 - filter 返回文档必须满足filter子句的条件，不计算分值，可以缓存使用
@@ -384,6 +410,32 @@ must 或者 should 查询子句中的条件都会影响文档的相关得分。�
 
 > 你还可以明确指定任意过滤条件去筛选结构化数据文档，如上查询中的filter
 
+### match_phrase
+
+```json
+{
+    "query": {
+        "match_phrase": {
+            "content": {
+                "query": "宝马多少钱",
+                "slop": 1
+            }
+        }
+    }
+}
+```
+
+> 其中slop是一个可调节因子，表示少匹配1个也满足
+
+### multi_match
+
+https://www.elastic.co/guide/en/elasticsearch/reference/7.14/query-dsl-multi-match-query.html
+
+Type: 
+- 我们希望完全匹配的文档占的评分比较高，则需要使用best_fields
+- 我们希望越多字段匹配的文档评分越高，就要使用most_fields
+- 我们会希望这个词条的分词词汇是分配到不同字段中的，那么就使用cross_fields
+
 ### filter
 
 ```json
@@ -416,7 +468,7 @@ must 或者 should 查询子句中的条件都会影响文档的相关得分。�
 }
 ```
 
-> 其中的range有：gte,gt,lte,lt分别表示大于或等于，大于，小于或等于，小于
+> 其中的range有：gte,gt,lte,lt分别表示大于或等于，大于，小于或等于，小于。term不进行分词，完全匹配，文档中必须包含整个搜索的词汇
 
 精确查找
 
