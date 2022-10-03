@@ -1,6 +1,7 @@
 ---
 title: Centos Linux 运维级基础教学
 date: 2022-07-12 21:10:44
+cover: https://www.linuxidc.com/upload/2017_10/17100409209718.png
 tags:
 ---
 

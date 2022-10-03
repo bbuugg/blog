@@ -1,6 +1,7 @@
 ---
 title: Markdown基本语法
 date: 2022-08-19 20:54:39
+cover: https://pic1.zhimg.com/v2-c93ae95786e7e4f0240ea31de4020083_r.jpg?source=172ae18b
 tags:
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: Ubuntu20.04 中文显示不正确的解决方案
 date: 2021-06-15 20:07:17
+cover: https://ts1.cn.mm.bing.net/th/id/R-C.713ed360603e1e9fe654f0645405e624?rik=lPjb9FI48Vh5iw&riu=http%3a%2f%2fwww.linuxidc.com%2fupload%2f2007_12%2f07122213397704.jpg&ehk=frc7BChUYoWJlpKuapnRrGSVP82UIURmYj3R4XhGNgo%3d&risl=&pid=ImgRaw&r=0
 tags:
 ---
 

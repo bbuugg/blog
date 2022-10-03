@@ -1,6 +1,7 @@
 ---
 title: PHPstorm代码提示优化
 date: 2022-07-10 19:34:27
+cover: https://tse4-mm.cn.bing.net/th/id/OIP-C.mShgN678InLvSIQ5x-4AzgHaDy?pid=ImgDet&rs=1
 tags:
 ---
 

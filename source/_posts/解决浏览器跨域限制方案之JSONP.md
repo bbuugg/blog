@@ -1,12 +1,11 @@
 ---
 title: 解决浏览器跨域限制方案之JSONP
 date: 2022-08-10 13:51:17
+cover: https://www.leixue.com/uploads/2019/06/Jsonp.png!760
 tags:
 ---
 
 ## 一.什么是JSONP
-
-![](https://ask.qcloudimg.com/http-save/yehe-2832581/twqcwh2u5x.gif)
 
 JSONP即：JSON with Padding，是一种解决因浏览器跨域限制不允许访问跨域资源的方法。
  JSONP是一个非官方的协议，它允许在[服务器](https://cloud.tencent.com/product/cvm?from=10680)端返回[javascript](https://cloud.tencent.com/product/sms?from=10680)标签到浏览器，在浏览器端通过调用javascript函数的形式实现访问跨域资源或数据。
