@@ -430,6 +430,18 @@ text类型不能转为long类型
 
 > 其中slop是一个可调节因子，表示少匹配1个也满足
 
+### match_phrase_prefix
+
+```json
+{
+  "query": {
+    "match_phrase_prefix": {"name": "张伟"}
+  },
+  "size": 10,
+  "from": 0
+}
+```
+
 ### multi_match
 
 https://www.elastic.co/guide/en/elasticsearch/reference/7.14/query-dsl-multi-match-query.html
@@ -438,6 +450,51 @@ Type:
 - 我们希望完全匹配的文档占的评分比较高，则需要使用best_fields
 - 我们希望越多字段匹配的文档评分越高，就要使用most_fields
 - 我们会希望这个词条的分词词汇是分配到不同字段中的，那么就使用cross_fields
+
+```json
+{
+  "_source": ["title","desc"], 
+  "query": {
+     "multi_match": {
+       "query": "高端婚礼邀请函",
+       "fields": ["title","desc"],
+       "operator": "and"
+     }
+  }
+}
+```
+
+其匹配逻辑为：
+(title:高端 + title:婚礼 + title:邀请函) || (desc:高端 + desc:婚礼 + desc:邀请函)
+
+### 多条查询
+
+```json
+{
+    "query": {
+        "bool": {
+            "should": [
+                {
+                    "match": {
+                        "字段1": "待查询句子"
+                    }
+                },
+                {
+                    "match": {
+                        "字段3": "待查询句子"
+                    }
+                },
+                {
+                    "match": {
+                        "字段3": "待查询句子"
+                    }
+                }
+            ]
+        }
+    }
+}
+
+```
 
 ### filter
 
@@ -464,6 +521,16 @@ Type:
                             "boost": 2.0 // 设置得分的权重值（提升值），默认是1.0
                         }
                     }
+                },
+                {
+                    "exists": {
+                        "field": "email"
+                    }
+                },
+                {
+                    "ids": {
+                        "values": ["1", "2"]
+                    }
                 }
             ]
         }
@@ -471,7 +538,28 @@ Type:
 }
 ```
 
-> 其中的range有：gte,gt,lte,lt分别表示大于或等于，大于，小于或等于，小于。term不进行分词，完全匹配，文档中必须包含整个搜索的词汇
+> 布尔过滤
+
+
+```json
+{
+  "query": {
+    "bool": {
+      "filter": {
+        "bool": {
+          "must": {
+            "match": {
+              "hobby": "k8s运维大佬"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+> 其中的range有：gte,gt,lte,lt分别表示大于或等于，大于，小于或等于，小于。term不进行分词，完全匹配，文档中必须包含整个搜索的词汇，exists过滤指定字段不为空的
 
 精确查找
 
