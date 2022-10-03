@@ -1,7 +1,7 @@
 ---
 title: Nginx-基础总结
 date: 2021-06-16 23:43:03
-cover: /images/20221002/63cdcd1e7be57527e26bf368f4e665f7.jpg
+cover: https://images.xiaozhuanlan.com/photo/2019/a7541d73fc14821573df7d3974317e4c.png
 tags:
 ---
 

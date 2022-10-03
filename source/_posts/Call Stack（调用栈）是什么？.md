@@ -1,11 +1,13 @@
 ---
 title: Call Stack（调用栈）是什么？
 date: 2020-07-05 11:34:07
-cover: /images/20221002/498445518809f2f7aad04e7fb7dc66c5.jpg
+cover: https://tse4-mm.cn.bing.net/th/id/OIP-C.Phk-WjYUM8eZ7fqap8vKRgHaDP?pid=ImgDet&rs=1
 tags:
 ---
 
 今天我们来讲一下 call stack 是什么。相信有了上一篇文章对 virtual memory 的介绍之后，同学们理解起 call stack 来会相对容易一些。
+
+<!-- more -->
 
 回顾：Virtual Memory（虚拟内存）是什么？
 

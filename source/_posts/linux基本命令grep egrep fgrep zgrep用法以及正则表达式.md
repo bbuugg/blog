@@ -8,6 +8,8 @@ tags:
 
  本文中主要介绍了`linux`系统下`grep` `egrep` `fgrep`命令和正则表达式的基本参数和使用格式、方法。
 
+<!-- more -->
+
 ## 1.1、基本定义：
 
 > grep（global search regular RE ) and print out the line,全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它只能使用基本的正则表达式来搜索文本，并把匹配的行打印出来。

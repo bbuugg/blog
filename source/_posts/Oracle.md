@@ -8,6 +8,7 @@ tags:
 
 查看存储过程： select dbms_metadata.get_ddl('PROCEDURE','BSA_PROC_FTP_MGMT','CLARO') from dual;
 
+<!-- more -->
 #### trunc() 
 
 下面日期操作有误，仅做参考

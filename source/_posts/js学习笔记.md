@@ -17,7 +17,8 @@ function in_array(stringToSearch, arrayToSearch) {
 	return false;
 }
 ```
-	
+
+<!-- more -->
 
 ##判断文件后缀
 ```javascript

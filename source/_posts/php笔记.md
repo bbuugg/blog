@@ -12,6 +12,8 @@ tags:
 
 3. set_exception_handler()
 
+<!-- more -->
+
 4. ord() 返回字符串首个字符的ACSCII
 
 5. array_fill() 填充数组，range() 生成一个范围的数组

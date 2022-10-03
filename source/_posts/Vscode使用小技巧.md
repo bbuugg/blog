@@ -29,6 +29,9 @@ Transform:Sort Lines //排序
 输入`\s$`
 选择使用正则表达式
 
+
+<!-- more -->
+
 # VScode多行编辑的设置
 VScode对多行编辑有两种模式。
 

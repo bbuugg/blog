@@ -6,6 +6,8 @@ tags:
 
 The current possible PCRE modifiers are listed below. The names in parentheses refer to internal PCRE names for these modifiers. Spaces and newlines are ignored in modifiers, other characters cause error.
 
+<!-- more -->
+
 ##  i (PCRE_CASELESS)
 
   If this modifier is set, letters in the pattern match both upper and lower case letters.

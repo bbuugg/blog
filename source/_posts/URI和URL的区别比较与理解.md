@@ -8,6 +8,8 @@ tags:
 
 URI，通一资源标志符(Uniform Resource Identifier， URI)，表示的是web上每一种可用的资源，如 HTML文档、图像、视频片段、程序等都由一个URI进行标识的。
 
+<!-- more -->
+
 #URI的结构组成
 
 URI通常由三部分组成：

@@ -14,6 +14,8 @@ tags:
 
 Datatables是一款`jquery`表格插件。它是一个高度灵活的工具，可以将任何HTML表格添加高级的交互功能。
 
+<!-- more -->
+
 - 分页，即时搜索和排序
 - 几乎支持任何数据源：DOM， javascript， Ajax 和 服务器处理
 - 支持不同主题 DataTables, jQuery UI, Bootstrap, Foundation

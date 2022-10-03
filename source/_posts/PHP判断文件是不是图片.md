@@ -4,14 +4,16 @@ date: 2021-03-07 22:52:13
 tags:
 ---
 
-&gt; php判断文件是不是图片的方法：1、利用getimagesize函数获取图片信息，然后进行判断；2、读取图片的前2个字节，然后进行判断；3、利用exif_imagetype函数实现判断。
+> php判断文件是不是图片的方法：1、利用getimagesize函数获取图片信息，然后进行判断；2、读取图片的前2个字节，然后进行判断；3、利用exif_imagetype函数实现判断。
+
+<!-- more -->
 
 # 方法一
 
 利用 `getimagesize` 函数获取图片信息，然后进行判断：
 
 ```php
-&lt;?php
+<?php
 
 /* Author @ Huoty
 * Date @ 2015-11-24 16:59:26
@@ -38,7 +40,7 @@ if (isImage('isimg.txt') !== false) {
 } else {
     echo '不是图片';
 }
-?&gt;
+?>
 ```
 
 # 方法二
@@ -46,7 +48,7 @@ if (isImage('isimg.txt') !== false) {
 读取图片的前 2 个字节，然后判断是不是图片：
 
 ```php
-&lt;?php
+<?php
 
 /* Author @ Huoty
 * Date @ 2015-11-25 16:42:38
@@ -56,27 +58,27 @@ if (isImage('isimg.txt') !== false) {
 //判断上传的是不是图片
 function isImg($fileName)
 {
-    $file = fopen($fileName, &quot;rb&quot;);
+    $file = fopen($fileName, "rb");
     $bin = fread($file, 2); // 只读2字节
     fclose($file);
-    $strInfo = @unpack(&quot;C2chars&quot;, $bin);
+    $strInfo = @unpack("C2chars", $bin);
     $typeCode = intval($strInfo['chars1'] . $strInfo['chars2']);
     $fileType = '';
     if ($typeCode == 255216 /*jpg*/ || $typeCode == 7173 /*gif*/ || $typeCode == 13780 /*png*/) {
         return $typeCode;
     } else {
-// echo '&quot;仅允许上传jpg/jpeg/gif/png格式的图片！';
+// echo '"仅允许上传jpg/jpeg/gif/png格式的图片！';
         return false;
     }
 }
 
-if (isImg(&quot;1.jpg&quot;)) {
-    echo &quot;是图片&quot;;
+if (isImg("1.jpg")) {
+    echo "是图片";
 } else {
-    echo &quot;不是图片&quot;;
+    echo "不是图片";
 }
 
-?&gt;
+?>
 ```
 
 # 方法三
@@ -105,19 +107,19 @@ if (isImg(&quot;1.jpg&quot;)) {
 示例：
 
 ```php
-&lt;?php
+<?php
 
 /* Author @ Huoty
 * Date @ 2015-11-25 16:53:04
 * Brief @
 */
 
-$mimetype = exif_imagetype(&quot;1.jpg&quot;);
+$mimetype = exif_imagetype("1.jpg");
 if ($mimetype == IMAGETYPE_GIF || $mimetype == IMAGETYPE_JPEG || $mimetype == IMAGETYPE_PNG || $mimetype == IMAGETYPE_BMP) {
-    echo &quot;是图片&quot;;
+    echo "是图片";
 }
 
-?&gt;
+?>
 ```
 
-[原文地址](https://www.php.cn/php-ask-460801.html &quot;原文地址&quot;)
+[原文地址](https://www.php.cn/php-ask-460801.html "原文地址")

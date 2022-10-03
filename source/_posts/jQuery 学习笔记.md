@@ -12,6 +12,8 @@ $("input", "#submForm").each(function(){
 })
 ```
 
+<!-- more -->
+
 或者
 
 ```

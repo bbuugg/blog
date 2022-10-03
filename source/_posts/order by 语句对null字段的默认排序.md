@@ -11,6 +11,8 @@ tags:
 - nulls first 时，强制null放在最前，不为null的按声明顺序[asc|desc]进行排序
 - nulls last 时，强制null放在最后，不为null的按声明顺序[asc|desc]进行排序 
 
+<!-- more -->
+
 2.mysql,sql server 结论 (null 最小)
 order by colum asc 时，null默认被放在最前
 order by colum desc 时，null默认被放在最后

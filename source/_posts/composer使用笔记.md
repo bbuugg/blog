@@ -11,6 +11,9 @@ wget https://mirrors.cloud.tencent.com/composer/composer.phar
 mv composer.phar  /usr/local/bin/composer
 ```
 
+<!-- more -->
+
+
 #更换源
 >首先要分清楚是局部换源还是全局换源
 
@@ -41,8 +44,6 @@ mv composer.phar  /usr/local/bin/composer
 ```
 
 寻找包的过程是先从第一个源中寻找，如果找不到就从第二个源中寻找，这里可以配置多个composer资源库
-
-<!-- more -->
 
 ## 2、全局换源
 

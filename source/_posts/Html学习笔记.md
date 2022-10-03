@@ -8,6 +8,8 @@ tags:
 ## li标签居中
 把要居中的li设置成 display: inline-block;
 然后在li加上 text-align: center; 让li居中。
+
+<!-- more -->
 ## img标签属性
 alt属性是当图片无法正常加载时显示的提示文字，而在ie中会被作为鼠标指向的文字提示。更好兼容的的鼠标指向文字提示应该使用title属性。
 ## 块级元素或者行内元素在设置float属性之后是否改变元素的性质？

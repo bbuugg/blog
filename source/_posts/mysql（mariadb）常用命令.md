@@ -10,7 +10,12 @@ tags:
 ```sql
 SELECT * FROM USERS; --查询所有用户信息
 ```
+
+<!-- more -->
+
+
 多行注释
+
 ```sql
 /*
 切换到USER数据库

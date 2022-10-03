@@ -16,6 +16,8 @@ tar -zxvf filename
 - v 显示执行过程
 - f 指定备份文件
 
+<!-- more -->
+
 压缩tar.gz
 
 ```shell
@@ -29,8 +31,6 @@ tar -zcvf  back.tar.gz .[!.]* *
 ```
 
 > tar czvf test.tar.gz * 压缩当前文件夹下非[隐藏文件]的文件; tar czvf test.tar.gz .[!.]* 压缩当前文件夹下[隐藏文件]排除两个[隐藏文件]夹"."和“..”
-
-<!-- more -->
 
 先创建tar包最后删除
 

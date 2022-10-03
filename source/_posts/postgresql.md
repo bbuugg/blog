@@ -16,6 +16,8 @@ select pg_roles.rolname from pg_roles; 查看角色
 grant role_name to username; 赋予角色
 修改一个字段为非null ： alter table users alter username set not null;
 
+<!-- more -->
+
 \x切换到竖排显示
 select * from ps_proc;查询存储过程
 

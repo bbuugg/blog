@@ -11,6 +11,8 @@ netstat -tunlp | grep 端口号`
 `lsof -i:端口号
 ```
 
+<!-- more -->
+
 #### 重启nginx
 
 ```

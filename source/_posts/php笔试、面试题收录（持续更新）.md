@@ -8,6 +8,8 @@ tags:
 is_null
 bool is_null ( mixed $var )
 
+<!-- more -->
+
 当参数满足下面三种情况时，is_null()将返回TRUE，其它的情况就是FALSE
 1、它被赋值为NULL
 2、它还没有赋值

@@ -6,7 +6,9 @@ tags:
 
 # ECMAScript 与 javascript 
 
-&gt;ECMAScript 可以说是 javascript 的国际标准。
+>ECMAScript 可以说是 javascript 的国际标准。
+
+<!-- more -->
 
 ## let
 let 用来声明变量，用法类似 var 但由 let 声明的变量，只能在 let 命令所在的代码块内有效。
@@ -68,46 +70,46 @@ Function 构造函数返回的函数实例，name 属性的值为 anonymous
 bind返回的函数，name 属性值会加上 bound 前缀
 
 箭头函数
-ES6允许使用“箭头” (=&gt;)定义函数
+ES6允许使用“箭头” (=>)定义函数
 
-var f = v =&gt; v;
+var f = v => v;
 等同于
 var f = function (v) {
     return v;
 }
 如果箭头函数不需要参数或者需要多个参数，可以使用一个圆括号代表参数
 
-var f = () =&gt; 5;
+var f = () => 5;
 等同于 
 var f = function ( ) { return 5; }
-var sum = ( num1, num2) =&gt; num1 + num2;
+var sum = ( num1, num2) => num1 + num2;
 等同于
 var sum = function ( num1, num2) {
     return num1 + num2;
 }
 如果箭头函数代码块部分多余一条语句，就要使用大括号将他们括起来，并使用 return 语句返回。
 
-var sum = ( num1, num2) =&gt; { return num1 + num2; }
+var sum = ( num1, num2) => { return num1 + num2; }
 由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上大括号。
 
-let getTempItem = id =&gt; ( { id : id ,name : &quot; Temp&quot;} ) ;
+let getTempItem = id => ( { id : id ,name : &quot; Temp&quot;} ) ;
 箭头函数使得表达式更为简洁
 
-const isEven = n =&gt; n % 2 == 0 ;
-const square = n =&gt; n * n ;
+const isEven = n => n % 2 == 0 ;
+const square = n => n * n ;
 箭头函数可以简化回调函数
 
 [ 1, 2, 3] .map( function (x) ){
     return x * x ;
 }
 箭头函数
-[1, 2, 3].map( x =&gt; x * x ) ;
+[1, 2, 3].map( x => x * x ) ;
 箭头函数与 rest 参数结合
 
-const numbres = ( ...nums) =&gt; nums ;
+const numbres = ( ...nums) => nums ;
 numbers (1, 2, 3, 4, 5)
 // [ 1, 2, 3, 4, 5]
-const headAndTail = ( head , ...tail ) =&gt; [head, tail] ;
+const headAndTail = ( head , ...tail ) => [head, tail] ;
 handAndTail (1, 2, 3, 4, 5)
 // [1, [2, 3, 4, 5] ]
 箭头函数使用注意
@@ -122,8 +124,8 @@ handAndTail (1, 2, 3, 4, 5)
 嵌套的箭头函数
 箭头函数的内部，还可以使用箭头函数
 
- const plus1 = a =&gt; a+1;
- const mult2 = a =&gt; a * 2;
+ const plus1 = a => a+1;
+ const mult2 = a => a * 2;
  mult2 ( plus1(5) )
 双冒号运算符
 函数绑定运算符，取代 call，apply，bind；
@@ -146,9 +148,9 @@ var log = console.log.bind(console) ;
 
 import { map , takeWhile, foreach } from &quot;iterlib&quot; ;
 getPlayers()
-:: map( x =&gt; x.character ( ) )
-:: takeWhile ( x =&gt; x.strength &gt; 100)
-:: foreach ( x =&gt; console.log( x ) );
+:: map( x => x.character ( ) )
+:: takeWhile ( x => x.strength > 100)
+:: foreach ( x => console.log( x ) );
 尾调用优化
 尾调用（tail call）是函数式编程的一个概念，指某个函数的最后一步是调用另一个函数
 

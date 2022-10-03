@@ -4,15 +4,17 @@ date: 2021-11-21 15:39:06
 tags:
 ---
 
-```
+```php
 fsockopen(
     string $hostname,
     int $port = -1,
-    int &amp;$errno = ?,
-    string &amp;$errstr = ?,
-    float $timeout = ini_get(&quot;default_socket_timeout&quot;)
+    int &$errno = ?,
+    string &$errstr = ?,
+    float $timeout = ini_get("default_socket_timeout")
 ): resource
 ```
+
+<!-- more -->
 
 初始化一个套接字连接到指定主机（`hostname`）。
 
@@ -55,44 +57,44 @@ PHP支持以下的套接字传输器类型列表 [所支持的套接字传输器
 
 **示例 #1 \**fsockopen()\**的例子**
 
-```
-&lt;?php
-$fp = fsockopen(&quot;www.example.com&quot;, 80, $errno, $errstr, 30);
+```php
+<?php
+$fp = fsockopen("www.example.com", 80, $errno, $errstr, 30);
 if (!$fp) {
-    echo &quot;$errstr ($errno)&lt;br /&gt;\n&quot;;
+    echo "$errstr ($errno)<br />\n";
 } else {
-    $out = &quot;GET / HTTP/1.1\r\n&quot;;
-    $out .= &quot;Host: www.example.com\r\n&quot;;
-    $out .= &quot;Connection: Close\r\n\r\n&quot;;
+    $out = "GET / HTTP/1.1\r\n";
+    $out .= "Host: www.example.com\r\n";
+    $out .= "Connection: Close\r\n\r\n";
     fwrite($fp, $out);
     while (!feof($fp)) {
         echo fgets($fp, 128);
     }
     fclose($fp);
 }
-?&gt;
+?>
 ```
 
 **示例 #2 使用UDP连接**
 
 下面这个例子展示了怎么样在自己的机器上通过UDP套接字连接（端口号13）来检索日期和时间。
 
-```
-&lt;?php
-$fp = fsockopen(&quot;www.example.com&quot;, 80, $errno, $errstr, 30);
+```php
+<?php
+$fp = fsockopen("www.example.com", 80, $errno, $errstr, 30);
 if (!$fp) {
-    echo &quot;$errstr ($errno)&lt;br /&gt;\n&quot;;
+    echo "$errstr ($errno)<br />\n";
 } else {
-    $out = &quot;GET / HTTP/1.1\r\n&quot;;
-    $out .= &quot;Host: www.example.com\r\n&quot;;
-    $out .= &quot;Connection: Close\r\n\r\n&quot;;
+    $out = "GET / HTTP/1.1\r\n";
+    $out .= "Host: www.example.com\r\n";
+    $out .= "Connection: Close\r\n\r\n";
     fwrite($fp, $out);
     while (!feof($fp)) {
         echo fgets($fp, 128);
     }
     fclose($fp);
 }
-?&gt;
+?>
 ```
 
 原文地址： https://www.php.net/manual/zh/function.fsockopen.php

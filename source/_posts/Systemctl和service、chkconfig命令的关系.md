@@ -5,7 +5,9 @@ tags:
 ---
 
 # systemctl
-&gt; systemctl命令：是一个systemd工具，主要负责控制systemd系统和服务管理器。
+> systemctl命令：是一个systemd工具，主要负责控制systemd系统和服务管理器。
+
+<!-- more -->
 
 ```
 systemctl list-units
@@ -17,7 +19,7 @@ systemctl is-active firewall
 systemctl is-enabled firewalldsystemctl status firewalld
 ```
 # service
-&gt;service命令：可以启动、停止、重新启动和关闭系统服务，还可以显示所有系统服务的当前状态。
+>service命令：可以启动、停止、重新启动和关闭系统服务，还可以显示所有系统服务的当前状态。
 
 ```
   service network restart/start/stop
@@ -26,7 +28,7 @@ systemctl is-enabled firewalldsystemctl status firewalld
 ```
 
 # chkconfig
-&gt;chkconfig命令：是管理系统服务(service)的命令行工具。所谓系统服务(service)，就是随系统启动而启动，随系统关闭而关闭的程序。
+>chkconfig命令：是管理系统服务(service)的命令行工具。所谓系统服务(service)，就是随系统启动而启动，随系统关闭而关闭的程序。
 
 ```
 chkconfig ntpd on/off/reset(永久关闭某个服务)

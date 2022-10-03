@@ -21,6 +21,7 @@ text/html
 Substitute s///[iqnf]
 ```
 
+<!-- more -->
 
 ```
 Substitute "s|((?:\<\s*/body\s*\>\s*)\z)|\

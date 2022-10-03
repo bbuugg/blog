@@ -1,7 +1,7 @@
 ---
 title: 如何使用Telnet
 date: 2021-11-21 15:07:42
-cover: /images/20221002/c5696f1aa7d6de580dd929571f3a07fb.webp
+cover: https://ts1.cn.mm.bing.net/th/id/R-C.bb11c4d2f439c1c45fc3236ba3365be2?rik=gibEdV3X%2fRVNFw&riu=http%3a%2f%2fchamados.telnet23.com.br%2fContent%2fimagens%2fTelnet+Telecom.png&ehk=urA5jn6anOKvtuItxscy8X2hXIQ0BrSXMaKyzr6tlIE%3d&risl=&pid=ImgRaw&r=0
 tags:
 ---
 

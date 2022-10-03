@@ -8,6 +8,8 @@ tags:
 
 解决方法：1.在元素上同时绑定oninput和onporpertychanger事件
 
+<!-- more -->
+
 实例：
 
     <script type="text/JavaScript">

@@ -5,7 +5,9 @@ tags:
 ---
 
 # 一、Rewrite规则简介：
-> Rewirte主要的功能就是实现URL的跳转，它的正则表达式是基于 Perl语言。可基于服务器级的(httpd.conf)和目录级的 (.htaccess)两种方式。如果要想用到rewrite模块，必须先安装或加载rewrite模块。方法有两种一种是编译apache的时候就直接 安装rewrite模块，别一种是编译apache时以DSO模式安装apache,然后再利用源码和apxs来安装rewrite模块。
+Rewirte主要的功能就是实现URL的跳转，它的正则表达式是基于 Perl语言。可基于服务器级的(httpd.conf)和目录级的 (.htaccess)两种方式。如果要想用到rewrite模块，必须先安装或加载rewrite模块。方法有两种一种是编译apache的时候就直接 安装rewrite模块，别一种是编译apache时以DSO模式安装apache,然后再利用源码和apxs来安装rewrite模块。
+
+<!-- more -->
 
 # 二、在Apache配置中启用Rewrite
 打开配置文件httpd.conf：

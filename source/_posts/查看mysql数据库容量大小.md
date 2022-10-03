@@ -9,8 +9,8 @@ tags:
 ## 查询所有数据库的总大小，方法如下：
 
 ```sql
-mysql&gt; use information_schema;
-mysql&gt; select concat(round(sum(DATA_LENGTH/1024/1024),2),'MB') as data from TABLES;
+mysql> use information_schema;
+mysql> select concat(round(sum(DATA_LENGTH/1024/1024),2),'MB') as data from TABLES;
 +-----------+
 | data      |
 +-----------+
@@ -18,6 +18,9 @@ mysql&gt; select concat(round(sum(DATA_LENGTH/1024/1024),2),'MB') as data from T
 +-----------+
 1 row in set (0.02 sec)
 ```
+
+<!-- more -->
+
 ## 统计一下所有库数据量 
 每张表数据量`=AVG_ROW_LENGTH*TABLE_ROWS+INDEX_LENGTH`
 ```sql
@@ -30,11 +33,11 @@ SELECT table_schema,SUM(AVG_ROW_LENGTH*TABLE_ROWS+INDEX_LENGTH)/1024/1024 AS tot
 
 # 第二种情况
 
-&gt;查看指定数据库的大小，比如说：数据库test，方法如下：
+>查看指定数据库的大小，比如说：数据库test，方法如下：
 
 ```sql
-mysql&gt; use information_schema;
-mysql&gt; select concat(round(sum(DATA_LENGTH/1024/1024),2),'MB') as data from TABLES where table_schema='test';
+mysql> use information_schema;
+mysql> select concat(round(sum(DATA_LENGTH/1024/1024),2),'MB') as data from TABLES where table_schema='test';
 +----------+
 | data     |
 +----------+
@@ -90,4 +93,4 @@ order by data_length desc, index_length desc;
 ```
 
 
-&gt; 原文地址：https://www.cnblogs.com/--smile/p/11451238.html
+> 原文地址：https://www.cnblogs.com/--smile/p/11451238.html

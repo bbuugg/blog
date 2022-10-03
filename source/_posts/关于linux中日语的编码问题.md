@@ -10,6 +10,8 @@ windows ： Shift-JIS
 
 Linux ： 2.4内核使用EUC编码，2.6内核中使用UTF8编码
 
+<!-- more -->
+
 检查文件编码  nkf -g filename
 
 通常处理字符编码都使用iconv这个命令，但是iconv命令只能用来处理文件名，但对于文本内容的编码就无法处理了，
