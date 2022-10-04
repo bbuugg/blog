@@ -81,7 +81,7 @@ search:
     index_pages: true
 comment:
     type: disqus
-    shortname: ''
+    shortname: chengyao
 donates:
     # -
     #     type: afdian
@@ -118,7 +118,7 @@ widgets:
         author_title: "未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果！"
         location: Earth
         avatar: /images/avatar.jpg
-        avatar_rounded: false
+        avatar_rounded: true
         gravatar: 
         follow_link: https://github.com/tab-engineer
         social_links:
