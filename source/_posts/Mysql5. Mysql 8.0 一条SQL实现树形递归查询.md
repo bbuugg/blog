@@ -2,6 +2,7 @@
 title: Mysql5.* Mysql 8.0* 一条SQL实现树形递归查询
 date: 2021-07-10 19:58:53
 tags:
+categories: mysql
 ---
 
 用户表 user

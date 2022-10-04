@@ -2,6 +2,7 @@
 title: Linux 信号列表
 date: 2022-06-11 14:08:53
 tags:
+categories: linux
 ---
 
 linux 信号列表

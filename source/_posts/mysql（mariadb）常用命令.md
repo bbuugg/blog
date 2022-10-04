@@ -2,6 +2,7 @@
 title: mysql（mariadb）常用命令
 date: 2020-08-14 11:09:26
 tags:
+categories: mysql
 ---
 
 > 首先了解一下`SQL`的注释

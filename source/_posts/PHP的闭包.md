@@ -2,6 +2,7 @@
 title: PHP的闭包
 date: 2021-04-03 22:00:14
 tags:
+categories: php
 ---
 
 #减少foreach的循环的代码

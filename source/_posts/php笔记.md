@@ -2,6 +2,7 @@
 title: PHP笔记
 date: 2021-03-10 21:44:42
 tags:
+categories: php
 ---
 
 # 函数

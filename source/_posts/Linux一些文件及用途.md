@@ -2,6 +2,7 @@
 title: Linux一些文件及用途
 date: 2021-12-07 22:17:18
 tags:
+categories: linux
 ---
 
 # 常用文件

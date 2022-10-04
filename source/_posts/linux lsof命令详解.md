@@ -2,6 +2,7 @@
 title: linux lsof命令详解
 date: 2021-01-28 11:13:01
 tags:
+categories: linux
 ---
 
 #简介

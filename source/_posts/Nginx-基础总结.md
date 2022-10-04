@@ -488,6 +488,13 @@ server {
 }
 ```
 
+PHP的很多框架里面都是通过获取$_SERVER['PATH_INFO']处理路由 , 这个变量是通过nginx传递过来的 , 我们在nginx中经常见到下面两句
+
+fastcgi_split_path_info ^(.+\.php)(/.*)$;
+fastcgi_param PATH_INFO $fastcgi_path_info;
+
+nginx默认获取不到PATH_INFO的值，得通过fastcgi_split_path_info指定定义的正则表达式来获取值。^(.+\.php)(/.*)$; 这个正则表达是有两个小括号 , 也就是有两个捕获。第二个捕获到的值会自动重新赋值给$fastcgi_path_info变量。第一个捕获的值会重新赋值给$fastcgi_script_name变量。如果访问 /index.php/test ,第二个捕获的是/test $fastcgi_path_info就是/test,因此就会把/test传递给php的$_SERVER['PATH_INFO']
+
 ## location 优先级
 
 ```

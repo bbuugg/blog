@@ -3,6 +3,7 @@ title: mysql导出csv文件
 date: 2022-06-18 16:04:16
 cover: https://tse2-mm.cn.bing.net/th/id/OIP-C.gUNsLfFkEFpk_hNfvSe-ZQHaHa?pid=ImgDet&rs=1
 tags:
+categories: mysql
 ---
 
 CSV格式，其要点包括：

@@ -2,6 +2,7 @@
 title: MySQL面试题
 date: 2021-10-06 10:19:15
 tags:
+categories: mysql
 ---
 
 1. 唯一索引比普通索引快吗, 为什么

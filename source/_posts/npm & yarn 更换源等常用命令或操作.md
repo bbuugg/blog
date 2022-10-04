@@ -3,6 +3,7 @@ title: npm & yarn 更换源等常用命令或操作
 date: 2021-01-09 19:36:56
 cover: https://tse1-mm.cn.bing.net/th/id/R-C.64bd21adf0efc47f19a6643516a23426?rik=jTLv1u0Nv3PDHw&riu=http%3a%2f%2fcaibaojian.com%2fnpm%2fimages%2fnpm-lg.jpg&ehk=pNpGBD00BfqHHnZcNTGF2sLMrnJ0vh%2ftidWPrS%2bxEv0%3d&risl=&pid=ImgRaw&r=0
 tags:
+categories: npm
 ---
 
 # npm

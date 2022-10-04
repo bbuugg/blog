@@ -3,6 +3,7 @@ title: tcpdump详细教程
 date: 2022-10-01 14:56:20
 cover: https://ts1.cn.mm.bing.net/th/id/R-C.1b3938e0ec72fcb0e7f783d332d70874?rik=2D8T9Y5bjazkCw&riu=http%3a%2f%2fstatic.bugcode.cn%2fuPic%2fsJ74ph.jpg&ehk=oZWcxvChZIlHr3VS7Y%2bsX0xEmep8J%2bFT%2fJF3TR7Nlag%3d&risl=&pid=ImgRaw&r=0
 tags:
+categories: linux
 ---
 
 # 介绍

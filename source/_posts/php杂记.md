@@ -2,6 +2,7 @@
 title: php杂记
 date: 2020-08-15 07:19:58
 tags:
+categories: php
 ---
 
 #### 查看端口

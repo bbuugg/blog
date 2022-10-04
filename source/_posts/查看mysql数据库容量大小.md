@@ -2,6 +2,7 @@
 title: 查看mysql数据库容量大小
 date: 2021-07-02 11:24:40
 tags:
+categories: mysql
 ---
 
 # 第一种情况

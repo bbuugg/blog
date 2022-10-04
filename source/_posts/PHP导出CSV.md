@@ -3,6 +3,7 @@ title: PHP导出CSV
 date: 2022-04-21 23:32:59
 cover: https://tse2-mm.cn.bing.net/th/id/OIP-C.gUNsLfFkEFpk_hNfvSe-ZQHaHa?pid=ImgDet&rs=1
 tags:
+categories: php
 ---
 
 文档待整理，暂时写这么点

@@ -2,6 +2,7 @@
 title: Mysql基础命令及语法笔记
 date: 2021-07-05 22:49:20
 tags:
+categories: mysql
 ---
 
 # show 命令

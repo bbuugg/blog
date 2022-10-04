@@ -3,6 +3,7 @@ title: Vue中watch用法详解
 date: 2022-05-21 22:42:47
 cover: https://swansoftwaresolutions.com/wp-content/uploads/2020/01/Benefits-of-Using-VUE.JS.jpeg
 tags:
+categories: vue
 ---
 
 ### 基本用法：

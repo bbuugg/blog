@@ -60,18 +60,18 @@ htmlentities和htmlspecialchars这两个函数对 '之类的字符串支持不�
 
 所有有打印的语句如echo，print等 在打印前都要使用htmlentities() 进行过滤，这样可以防止Xss，注意中文要写出htmlentities($name,ENT_NOQUOTES,GB2312) 。
 
- (1).网页不停地刷新 `&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0&quot;&gt;`
+ (1).网页不停地刷新 `<meta http-equiv="refresh" content="0">`
 
- (2).嵌入其它网站的链接 &lt;iframe src=http://xxxx width=250 height=250&gt;&lt;/iframe&gt;  除了通过正常途径输入XSS攻击字符外，还可以绕过JavaScript校验，通过修改请求达到XSS攻击的目的.
+ (2).嵌入其它网站的链接 <iframe src=http://xxxx width=250 height=250></iframe>  除了通过正常途径输入XSS攻击字符外，还可以绕过JavaScript校验，通过修改请求达到XSS攻击的目的.
 
 ```
-&lt;?php
+<?php
 //php防注入和XSS攻击通用过滤
-$_GET     &amp;&amp; SafeFilter($_GET);
-$_POST    &amp;&amp; SafeFilter($_POST);
-$_COOKIE  &amp;&amp; SafeFilter($_COOKIE);
+$_GET     && SafeFilter($_GET);
+$_POST    && SafeFilter($_POST);
+$_COOKIE  && SafeFilter($_COOKIE);
   
-function SafeFilter (&amp;$arr) 
+function SafeFilter (&$arr) 
 {
    $ra=Array('/([\x00-\x08,\x0b-\x0c,\x0e-\x19])/','/script/','/javascript/','/vbscript/','/expression/','/applet/'
    ,'/meta/','/xml/','/blink/','/link/','/style/','/embed/','/object/','/frame/','/layer/','/title/','/bgsound/'
@@ -81,13 +81,13 @@ function SafeFilter (&amp;$arr)
      
    if (is_array($arr))
    {
-     foreach ($arr as $key =&gt; $value) 
+     foreach ($arr as $key => $value) 
      {
         if (!is_array($value))
         {
           if (!get_magic_quotes_gpc())  //不对magic_quotes_gpc转义过的字符使用addslashes(),避免双重转义。
           {
-             $value  = addslashes($value); //给单引号（'）、双引号（&quot;）、反斜线（\）与 NUL（NULL 字符）
+             $value  = addslashes($value); //给单引号（'）、双引号（"）、反斜线（\）与 NUL（NULL 字符）
              #加上反斜线转义
           }
           $value       = preg_replace($ra,'',$value);     //删除非打印字符，粗暴式过滤xss可疑字符串
@@ -100,8 +100,8 @@ function SafeFilter (&amp;$arr)
      }
    }
 }
-?&gt;
-$str = 'www.90boke.com&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;&quot;&gt;';
+?>
+$str = 'www.90boke.com<meta http-equiv="refresh" content="0;">';
 SafeFilter ($str); //如果你把这个注释掉，提交之后就会无休止刷新
 echo $str;
 ```
@@ -109,22 +109,22 @@ echo $str;
 ```
 //------------------------------php防注入和XSS攻击通用过滤-----Start--------------------------------------------//
 function string_remove_xss($html) {
-    preg_match_all(&quot;/\&lt;([^\&lt;]+)\&gt;/is&quot;, $html, $ms);
+    preg_match_all("/\<([^\<]+)\>/is", $html, $ms);
  
-    $searchs[] = '&lt;';
-    $replaces[] = '&amp;lt;';
-    $searchs[] = '&gt;';
-    $replaces[] = '&amp;gt;';
+    $searchs[] = '<';
+    $replaces[] = '&lt;';
+    $searchs[] = '>';
+    $replaces[] = '>';
  
     if ($ms[1]) {
         $allowtags = 'img|a|font|div|table|tbody|caption|tr|td|th|br|p|b|strong|i|u|em|span|ol|ul|li|blockquote';
         $ms[1] = array_unique($ms[1]);
         foreach ($ms[1] as $value) {
-            $searchs[] = &quot;&amp;lt;&quot;.$value.&quot;&amp;gt;&quot;;
+            $searchs[] = "&lt;".$value.">";
  
-            $value = str_replace('&amp;amp;', '_uch_tmp_str_', $value);
+            $value = str_replace('&amp;', '_uch_tmp_str_', $value);
             $value = string_htmlspecialchars($value);
-            $value = str_replace('_uch_tmp_str_', '&amp;amp;', $value);
+            $value = str_replace('_uch_tmp_str_', '&amp;', $value);
  
             $value = str_replace(array('\\', '/*'), array('.', '/.'), $value);
             $skipkeys = array('onabort','onactivate','onafterprint','onafterupdate','onbeforeactivate','onbeforecopy','onbeforecut','onbeforedeactivate',
@@ -137,11 +137,11 @@ function string_remove_xss($html) {
                     'onrowenter','onrowexit','onrowsdelete','onrowsinserted','onscroll','onselect','onselectionchange','onselectstart','onstart','onstop',
                     'onsubmit','onunload','javascript','script','eval','behaviour','expression','style','class');
             $skipstr = implode('|', $skipkeys);
-            $value = preg_replace(array(&quot;/($skipstr)/i&quot;), '.', $value);
-            if (!preg_match(&quot;/^[\/|\s]?($allowtags)(\s+|$)/is&quot;, $value)) {
+            $value = preg_replace(array("/($skipstr)/i"), '.', $value);
+            if (!preg_match("/^[\/|\s]?($allowtags)(\s+|$)/is", $value)) {
                 $value = '';
             }
-            $replaces[] = empty($value) ? '' : &quot;&lt;&quot; . str_replace('&amp;quot;', '&quot;', $value) . &quot;&gt;&quot;;
+            $replaces[] = empty($value) ? '' : "<" . str_replace('"', '"', $value) . ">";
         }
     }
     $html = str_replace($searchs, $replaces, $html);
@@ -151,17 +151,17 @@ function string_remove_xss($html) {
 //php防注入和XSS攻击通用过滤 
 function string_htmlspecialchars($string, $flags = null) {
     if (is_array($string)) {
-        foreach ($string as $key =&gt; $val) {
+        foreach ($string as $key => $val) {
             $string[$key] = string_htmlspecialchars($val, $flags);
         }
     } else {
         if ($flags === null) {
-            $string = str_replace(array('&amp;', '&quot;', '&lt;', '&gt;'), array('&amp;amp;', '&amp;quot;', '&amp;lt;', '&amp;gt;'), $string);
-            if (strpos($string, '&amp;amp;#') !== false) {
-                $string = preg_replace('/&amp;amp;((#(\d{3,5}|x[a-fA-F0-9]{4}));)/', '&amp;\\1', $string);
+            $string = str_replace(array('&', '"', '<', '>'), array('&amp;', '"', '&lt;', '>'), $string);
+            if (strpos($string, '&amp;#') !== false) {
+                $string = preg_replace('/&amp;((#(\d{3,5}|x[a-fA-F0-9]{4}));)/', '&\\1', $string);
             }
         } else {
-            if (PHP_VERSION &lt; '5.4.0') {
+            if (PHP_VERSION < '5.4.0') {
                 $string = htmlspecialchars($string, $flags);
             } else {
                 if (!defined('CHARSET') || (strtolower(CHARSET) == 'utf-8')) {
@@ -193,16 +193,16 @@ PHP5.2以上版本已支持HttpOnly参数的设置，同样也支持全局的Htt
 设置其值为1或者TRUE，来开启全局的Cookie的HttpOnly属性，当然也支持在代码中来开启： 
 
 ```
-&lt;?php ini_set(&quot;session.cookie_httponly&quot;, 1);   
+<?php ini_set("session.cookie_httponly", 1);   
 // or session_set_cookie_params(0, NULL, NULL, NULL, TRUE);   
-?&gt;
+?>
 ```
 
 Cookie操作函数setcookie函数和setrawcookie函数也专门添加了第7个参数来做为HttpOnly的选项，开启方法为： 
 
 ```php
-&lt;?php  
-setcookie(&quot;abc&quot;, &quot;test&quot;, NULL, NULL, NULL, NULL, TRUE);   
-setrawcookie(&quot;abc&quot;, &quot;test&quot;, NULL, NULL, NULL, NULL, TRUE);  
-?&gt;
+<?php  
+setcookie("abc", "test", NULL, NULL, NULL, NULL, TRUE);   
+setrawcookie("abc", "test", NULL, NULL, NULL, NULL, TRUE);  
+?>
 ```

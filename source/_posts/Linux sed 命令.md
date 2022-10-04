@@ -2,6 +2,7 @@
 title: Linux sed 命令
 date: 2021-05-01 20:50:08
 tags:
+categories: linux
 ---
 
 Linux sed 命令是利用脚本来处理文本文件。

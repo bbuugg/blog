@@ -2,6 +2,7 @@
 title: Mysql binlog相关使用笔记
 date: 2021-07-16 12:29:50
 tags:
+categories: mysql
 ---
 
 # 开启bin-log
