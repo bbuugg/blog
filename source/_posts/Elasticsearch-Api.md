@@ -15,6 +15,8 @@ tags:
 
 primary shard 和 replica shard 不能在同一个节点。启动第二个进程，就会在es集群中有2node，replica就会被分配，status就是green
 
+<!-- more -->
+
 ## GET /_ca/indices?v 
 
 查看集群中有哪些索引
