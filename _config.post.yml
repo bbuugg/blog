@@ -1,0 +1,216 @@
+version: 5.1.0
+variant: default
+logo: /images/avatar.jpg
+head:
+    favicon: /img/favicon.svg
+    manifest:
+        name: 
+        short_name: 
+        start_url: 
+        theme_color: 
+        background_color: 
+        display: standalone
+        icons:
+            -
+                src: ''
+                sizes: ''
+                type: 
+    open_graph:
+        title: 
+        type: blog
+        url: 
+        image: 
+        site_name: 
+        author: 
+        description: 
+        twitter_card: 
+        twitter_id: 
+        twitter_site: 
+        google_plus: 
+        fb_admins: 
+        fb_app_id: 
+    structured_data:
+        title: 
+        description: 
+        url: 
+        author: 
+        publisher: 
+        publisher_logo: 
+        image: 
+    meta:
+        - ''
+    rss: 
+navbar:
+    menu:
+        主页: /
+        归档: /archives
+        分类: /categories
+        标签: /tags
+        关于: /about
+    links:
+        Download on GitHub:
+            icon: fab fa-github
+            url: https://github.com/tab-engineer
+footer:
+    links:
+        Creative Commons:
+            icon: fab fa-creative-commons
+            url: https://creativecommons.org/
+        Attribution 4.0 International:
+            icon: fab fa-creative-commons-by
+            url: https://creativecommons.org/licenses/by/4.0/
+article:
+    highlight:
+        theme: atom-one-light
+        clipboard: true
+        fold: unfolded
+    readtime: true
+    update_time: true
+    licenses:
+        Creative Commons:
+            icon: fab fa-creative-commons
+            url: https://creativecommons.org/
+        Attribution:
+            icon: fab fa-creative-commons-by
+            url: https://creativecommons.org/licenses/by/4.0/
+        Noncommercial:
+            icon: fab fa-creative-commons-nc
+            url: https://creativecommons.org/licenses/by-nc/4.0/
+search:
+    type: insight
+    index_pages: true
+comment:
+    type: disqus
+    shortname: chengyao
+donates:
+    # -
+    #     type: afdian
+    #     url: ''
+    -
+        type: alipay
+        qrcode: '/images/alipay.jpg'
+    # -
+    #     type: buymeacoffee
+    #     url: ''
+    # -
+    #     type: patreon
+    #     url: ''
+    # -
+        # type: paypal
+        # business: ''
+        # currency_code: USD
+    -
+        type: wechat
+        qrcode: '/images/wechat.png'
+share:
+    type: sharethis
+    install_url: 'https://www.chengyao.xyz'
+sidebar:
+    left:
+        sticky: true
+    right:
+        sticky: true
+widgets:
+    -
+        position: left
+        type: profile
+        author: 程
+        author_title: "未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果！"
+        location: Earth
+        avatar: /images/avatar.jpg
+        avatar_rounded: true
+        gravatar: 
+        follow_link: https://github.com/tab-engineer
+        social_links:
+            Github:
+                icon: fab fa-github
+                url: https://github.com/tab-engineer
+            # Facebook:
+            #     icon: fab fa-facebook
+            #     url: https://facebook.com
+            # Twitter:
+            #     icon: fab fa-twitter
+            #     url: https://twitter.com
+            # Dribbble:
+            #     icon: fab fa-dribbble
+            #     url: https://dribbble.com
+            # RSS:
+            #     icon: fas fa-rss
+            #     url: /
+    -
+        position: right
+        type: toc
+        index: true
+        collapsed: true
+        depth: 3
+    # -
+    #     position: right
+    #     type: categories
+    # -
+    #     position: right
+    #     type: tags
+    #     order_by: name
+    #     amount: 
+    #     show_count: true
+    # -
+    #     position: right
+    #     type: recent_posts
+    # -
+    #     position: left
+    #     type: links
+    #     links:
+    #         maxphp: https://github.com/marxphp
+    # -
+    #     position: right
+    #     type: archives
+    # -
+    #     position: left
+    #     type: subscribe_email
+    #     description: 
+    #     feedburner_id: ''
+    # -
+    #     position: left
+    #     type: adsense
+    #     client_id: ''
+    #     slot_id: ''
+    # -
+    #     position: left
+    #     type: followit
+    #     description: 
+    #     action_url: ''
+    #     verification_code: ''
+plugins:
+    animejs: true
+    back_to_top: true
+    baidu_analytics: 
+        tracking_id: d0884aeebfcd3ca98ed3033285d6d03a
+    bing_webmaster:
+        tracking_id: 
+    busuanzi: false
+    cnzz:
+        id: 
+        web_id: 
+    cookie_consent:
+        type: info
+        theme: edgeless
+        static: false
+        position: bottom-left
+        policyLink: https://www.cookiesandyou.com/
+    gallery: true
+    google_analytics:
+        tracking_id: 
+    hotjar:
+        site_id: 
+    katex: false
+    mathjax: false
+    outdated_browser: false
+    progressbar: true
+    statcounter:
+        project: 
+        security: 
+    twitter_conversion_tracking:
+        pixel_id: 
+providers:
+    cdn: jsdelivr
+    fontcdn: google
+    iconcdn: fontawesome

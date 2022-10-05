@@ -15,19 +15,13 @@ tags:
 
 包含着会话名及会话ID 的常量，格式为&quot;name=ID&quot;，如果会话ID 已经在恰当的会话cookie 中设定时则为空字符串。和session_id() 返回的是同一个ID。
 
-
-
 ## **2、PHP_SESSION_DISABLED(int)**
 
 自PHP 5.4.0起可用。如果会话已禁用，则返回session_status（）的值。
 
-
-
 ## **3、PHP_SESSION_NONE(int)**
 
 自PHP 5.4.0起可用。在会话已启用，但还没有会话时返回session_status（）的值。
-
-
 
 ## **4、PHP_SESSION_ACTIVE(int)**
 
@@ -35,11 +29,7 @@ tags:
 
 注：会话在PHP中默认为激活（启用）。
 
-
-
 session常量动态定义的，网友：
-
-
 
 ```ruby
 var_dump(defined('SID'));  // bool(false) - Not defined...
@@ -49,14 +39,12 @@ var_dump(defined('SID'));  // bool(true) - Defined now!
 
 **自己测试了下，结果两个都是bool(true)，应该是自己的问题。之后随后重新建一个php文档，执行：**
 
-
-
 ```php
-&lt;?php
+<?php
 echo SID;          //提示使用了未定义常量
 session_start();
 echo SID;          //显示&quot;name=UID&quot;样式字符串。说明确实是动态定义，因为没有会话就没有会话的UID.
-?&gt;
+?>
 ```
 
 # **二、基本用法**
@@ -73,14 +61,24 @@ PHP 脚本执行完毕之后，会话会自动关闭。 同时，也可以通过
 
 Example #1 在 [$_SESSION](http://php.net/manual/zh/reserved.variables.session.php) 中注册变量。
 
-```
-&lt;?php session_start(); if (!isset($_SESSION['count'])) {  $_SESSION['count'] = 0; } else {  $_SESSION['count']++; }?&gt;
+```php
+<?php 
+    session_start(); 
+    if (!isset($_SESSION['count'])) {  
+        $_SESSION['count'] = 0; 
+    } else {  
+        $_SESSION['count']++; 
+    }
+?>
 ```
 
 Example #2 从 [$_SESSION](http://php.net/manual/zh/reserved.variables.session.php) 中反注册变量。
 
-```
-&lt;?php session_start(); unset($_SESSION['count']);?&gt;
+```php
+<?php 
+session_start(); 
+unset($_SESSION['count']);
+?>
 ```
 
 **Caution**
@@ -95,11 +93,11 @@ Example #2 从 [$_SESSION](http://php.net/manual/zh/reserved.variables.session.p
 
 如果会话中存在和全局变量同名的变量，那么 register_globals 会导致全局变量被会话变量覆盖。 更多信息请参考 [注册全局变量](http://php.net/manual/zh/security.globals.php)。
 
-&gt; Note:
-&gt;
-&gt; 无论是通过调用函数 [session_start()](http://php.net/manual/zh/function.session-start.php) 手动开启会话， 还是使用配置项 [session.auto_start](http://php.net/manual/zh/session.configuration.php#ini.session.auto-start) 自动开启会话， 对于基于文件的会话数据保存（PHP 的默认行为）而言， 在会话开始的时候都会给会话数据文件加锁， 直到 PHP 脚本执行完毕或者显式调用 [session_write_close()](http://php.net/manual/zh/function.session-write-close.php) 来保存会话数据。 在此期间，其他脚本不可以访问同一个会话数据文件。
-&gt;
-&gt; 对于大量使用 Ajax 或者并发请求的网站而言，这可能是一个严重的问题。 解决这个问题最简单的做法是如果修改了会话中的变量， 那么应该尽快调用 [session_write_close()](http://php.net/manual/zh/function.session-write-close.php) 来保存会话数据并释放文件锁。 还有一种选择就是使用支持并发操作的会话保存管理器来替代文件会话保存管理器。
+> Note:
+>
+> 无论是通过调用函数 [session_start()](http://php.net/manual/zh/function.session-start.php) 手动开启会话， 还是使用配置项 [session.auto_start](http://php.net/manual/zh/session.configuration.php#ini.session.auto-start) 自动开启会话， 对于基于文件的会话数据保存（PHP 的默认行为）而言， 在会话开始的时候都会给会话数据文件加锁， 直到 PHP 脚本执行完毕或者显式调用 [session_write_close()](http://php.net/manual/zh/function.session-write-close.php) 来保存会话数据。 在此期间，其他脚本不可以访问同一个会话数据文件。
+>
+> 对于大量使用 Ajax 或者并发请求的网站而言，这可能是一个严重的问题。 解决这个问题最简单的做法是如果修改了会话中的变量， 那么应该尽快调用 [session_write_close()](http://php.net/manual/zh/function.session-write-close.php) 来保存会话数据并释放文件锁。 还有一种选择就是使用支持并发操作的会话保存管理器来替代文件会话保存管理器。
 
 理解：由于HTTP 的不可维持性（执行一段php脚本，实际上进行了一次http  通信），每段php脚本执行完时，会话会自动自动关闭。即同一时刻，只有一个php脚本访问到该session及其数据文件。为了保证每个php脚本访问到的session及其数据文件都是最新的，每次对该session的数据修改都应该及时保存进数据文件中，这在大量Ajax  应用中非常重要。
 

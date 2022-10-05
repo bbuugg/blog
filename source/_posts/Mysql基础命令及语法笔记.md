@@ -3,6 +3,7 @@ title: Mysql基础命令及语法笔记
 date: 2021-07-05 22:49:20
 tags:
 categories: mysql
+toc: true
 ---
 
 # show 命令
@@ -1778,3 +1779,9 @@ utf8_general_ci是一个遗留的 校对规则，不支持扩展。它仅能够�
 对于一种语言仅当使用utf8_unicode_ci排序做的不好时，才执行与具体语言相关的utf8字符集 校对规则。例如，对于德语和法语，utf8_unicode_ci工作的很好，因此不再需要为这两种语言创建特殊的utf8校对规则。
 
 utf8_general_ci也适用与德语和法语，除了‘ß’等于‘s’，而不是‘ss’之外。如果你的应用能够接受这些，那么应该使用utf8_general_ci，因为它速度快。否则，使用utf8_unicode_ci，因为它比较准确。
+
+# 常见报错
+
+- ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'work_ad.api_community_pic.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+
+        mysql5.7默认没有ONLY_FULL_GROUP_BY的设定，将不允许查询字段包括非聚集列，可以使用select @@GLOBAL.sql_mode; 或者 select @@SESSION.sql_mode;查询sql_mode，结果可能是ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION，only_full_group_by：使用这个就是使用和oracle一样的group 规则, select的列都要在group中,或者本身是聚合列(SUM,AVG,MAX,MIN) 才行，其实这个配置目前个人感觉和distinct差不多的，所以去掉就好

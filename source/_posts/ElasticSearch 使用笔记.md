@@ -31,6 +31,16 @@ docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -
 xpack.security.enabled: false
 ```
 
+## 基本概念
+
+- 近实时（NRT）数据写入到可被搜索有大概1秒小延时
+- Cluster 包含多个节点
+- Node 节点
+- Document 文档，es最小数据单元，每个index的type下都可以存储多个document
+- Index 索引，一个index可以有type，表示逻辑上的分类，一个type下的document都有相同field（字段）
+- Shard (primary shard) 分片：index会被拆分为多个shard，每个shard会存放部分数据，shard会散落在多台服务器 （横向扩展：比如数据由1t增加到4t，则可以重新建立有4个shard的索引，数据分布在多台服务器上，所有的操作会在多台服务器上分布式并行执行。可以提高吞吐量）建立索引时设置，不能修改，默认5个。
+-  replica （replica shard）副本：某一个node宕机，在另外一个节点会有replica，用户依然可以搜索，请求直接打到replica。高可用，提高搜索吞吐量和性能。可以修改，默认1个。
+
 ## index和type区别以及如何选择
 
 对于 ES 的新用户来说，有一个常见的问题：要存储一批新数据时，应该在已有 index 里新建一个 type，还是给它新建一个 index？要想回答这个问题，我们必须先理解这两者是怎么实现的。
