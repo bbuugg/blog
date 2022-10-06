@@ -67,6 +67,13 @@ npm info express
 ```shell
 npm config set registry https://registry.npmjs.org/
 ```
+
+## 查看npm install -g安装位置
+
+```shell
+npm root -g
+```
+
 # yarn
 
 ## yarn add

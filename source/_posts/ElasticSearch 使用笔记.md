@@ -846,6 +846,10 @@ POST /_analyze
 
 > analyzer是分词器，默认是standard，支持中文按字分词
 
+# 备份恢复
+
+工具推荐；elasticdump
+
 # 常见报错
 
 - Text fields are not optimised for operations that require per-document field data like aggregations and sorting, so these operations are disabled by default. Please use a keyword field instead. Alternatively, set fielddata=true on [interests] in order to load field data by uninverting the inverted index. Note that this can use significant memory.
