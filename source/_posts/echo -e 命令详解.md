@@ -36,24 +36,24 @@ echo(选项)(参数)选项
 
 文字色：
 
-echo -e &quot;\e[1;31mThis is red text\e[0m&quot;
+echo -e "\e[1;31mThis is red text\e[0m"
 This is red text•\e[1;31m 将颜色设置为红色
 •\e[0m 将颜色重新置回
 颜色码：重置=0，黑色=30，红色=31，绿色=32，黄色=33，蓝色=34，洋红=35，青色=36，白色=37
 
 背景色：
 
-echo -e &quot;\e[1;42mGreed Background\e[0m&quot;
+echo -e "\e[1;42mGreed Background\e[0m"
 Greed Background颜色码：重置=0，黑色=40，红色=41，绿色=42，黄色=43，蓝色=44，洋红=45，青色=46，白色=47
 
 文字闪动：
 
-echo -e &quot;\033[37;31;5mMySQL Server Stop...\033[39;49;0m&quot;
+echo -e "\033[37;31;5mMySQL Server Stop...\033[39;49;0m"
 红色数字处还有其他数字参数：0 关闭所有属性、1 设置高亮度（加粗）、4 下划线、5 闪烁、7 反显、8 消隐
 
 echo -n 不换行输出
-$echo -n &quot;123&quot;
-$echo &quot;456&quot;
+$echo -n "123"
+$echo "456"
 
 最终输出 
 123456
@@ -78,13 +78,13 @@ echo -e 处理特殊字符
 
 下面举例说明一下：
 
-$echo -e &quot;a\bdddd&quot;  //前面的a会被擦除
+$echo -e "a\bdddd"  //前面的a会被擦除
 dddd
 
-$echo -e &quot;a\adddd&quot; //输出同时会发出报警声音
+$echo -e "a\adddd" //输出同时会发出报警声音
 adddd
 
-$echo -e &quot;a\ndddd&quot; //自动换行
+$echo -e "a\ndddd" //自动换行
 a
 dddd
 
@@ -94,11 +94,11 @@ dddd
 
  
 
-echo -e &quot;\033[背景颜色;字体颜色m字符串\033[0m
-格式: echo -e &quot;\033[字背景颜色;字体颜色m字符串\033[0m&quot; 
+echo -e "\033[背景颜色;字体颜色m字符串\033[0m
+格式: echo -e "\033[字背景颜色;字体颜色m字符串\033[0m" 
 
 例如: 
-echo -e &quot;\033[41;36m something here \033[0m&quot; 
+echo -e "\033[41;36m something here \033[0m" 
 
 其中41的位置代表底色, 36的位置是代表字的颜色 
 

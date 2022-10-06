@@ -112,7 +112,7 @@ function string_remove_xss($html) {
     preg_match_all("/\<([^\<]+)\>/is", $html, $ms);
  
     $searchs[] = '<';
-    $replaces[] = '&lt;';
+    $replaces[] = '<';
     $searchs[] = '>';
     $replaces[] = '>';
  
@@ -120,11 +120,11 @@ function string_remove_xss($html) {
         $allowtags = 'img|a|font|div|table|tbody|caption|tr|td|th|br|p|b|strong|i|u|em|span|ol|ul|li|blockquote';
         $ms[1] = array_unique($ms[1]);
         foreach ($ms[1] as $value) {
-            $searchs[] = "&lt;".$value.">";
+            $searchs[] = "<".$value.">";
  
-            $value = str_replace('&amp;', '_uch_tmp_str_', $value);
+            $value = str_replace('&', '_uch_tmp_str_', $value);
             $value = string_htmlspecialchars($value);
-            $value = str_replace('_uch_tmp_str_', '&amp;', $value);
+            $value = str_replace('_uch_tmp_str_', '&', $value);
  
             $value = str_replace(array('\\', '/*'), array('.', '/.'), $value);
             $skipkeys = array('onabort','onactivate','onafterprint','onafterupdate','onbeforeactivate','onbeforecopy','onbeforecut','onbeforedeactivate',
@@ -156,9 +156,9 @@ function string_htmlspecialchars($string, $flags = null) {
         }
     } else {
         if ($flags === null) {
-            $string = str_replace(array('&', '"', '<', '>'), array('&amp;', '"', '&lt;', '>'), $string);
-            if (strpos($string, '&amp;#') !== false) {
-                $string = preg_replace('/&amp;((#(\d{3,5}|x[a-fA-F0-9]{4}));)/', '&\\1', $string);
+            $string = str_replace(array('&', '"', '<', '>'), array('&', '"', '<', '>'), $string);
+            if (strpos($string, '&#') !== false) {
+                $string = preg_replace('/&((#(\d{3,5}|x[a-fA-F0-9]{4}));)/', '&\\1', $string);
             }
         } else {
             if (PHP_VERSION < '5.4.0') {

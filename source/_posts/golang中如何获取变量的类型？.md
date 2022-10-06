@@ -16,14 +16,14 @@ tags:
 package main
 
 import (
-	&quot;fmt&quot;
+	"fmt"
 )
 
 func main(){
 	var v int = 64
-	fmt.Printf(&quot;v的值为: %v, v的类型为: %T\n&quot;, v, v)
+	fmt.Printf("v的值为: %v, v的类型为: %T\n", v, v)
 	// 如果想要保存类型到字符串中，可以使用
-	typ := fmt.Sprintf(&quot;%T&quot;, v)
+	typ := fmt.Sprintf("%T", v)
 }
 
 ```
@@ -36,8 +36,8 @@ reflect包中提供了相应的手段
 package main
 
 import (
-	&quot;fmt&quot;
-	&quot;reflect&quot;
+	"fmt"
+	"reflect"
 )
 
 func main(){

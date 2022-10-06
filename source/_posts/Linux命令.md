@@ -24,7 +24,7 @@ ls -lp /proc/123/cwd
 
 # cat命令
 
-&gt;连接文件并打印到标准输出设备上，cat经常用来显示文件的内容。
+>连接文件并打印到标准输出设备上，cat经常用来显示文件的内容。
 
 注意：当文件较大时，文本在屏幕上迅速闪过（滚屏），用户往往看不清所显示的内容。因此，一般用more等命令分屏显示。
 
@@ -38,17 +38,17 @@ ls -lp /proc/123/cwd
 
 - -A：显示不可打印字符，行尾显示“$”；
 
-- -e：等价于&quot;-vE&quot;选项；
+- -e：等价于"-vE"选项；
 
-- -t：等价于&quot;-vT&quot;选项；
+- -t：等价于"-vT"选项；
 
 ##从键盘创建一个文件
 
-$ cat &gt; d.txt
+$ cat > d.txt
 
 ##将几个文件合并为一个文件
 
-$ cat c.txt d.txt &gt; e.txt
+$ cat c.txt d.txt > e.txt
 
 ##显示一个文件的内容
 
@@ -76,19 +76,19 @@ $ cat -A e.txt
 
 将一个文件的内容加上行号后输入到另一个文件里（直接覆盖掉这个文件原来的内容）
 
-$ cat -n e.txt &gt; a.txt
+$ cat -n e.txt > a.txt
 
 将一个文件的内容加上行号后输入到另一个文件里（在尾部追加）
 
-$ cat -n e.txt &gt;&gt; a.txt
+$ cat -n e.txt >> a.txt
 
 复制这个文件
 
-$ cat  e.txt &gt; a.txt 
+$ cat  e.txt > a.txt 
 
 合并几个文件，并且test4是已经排好序的
 
-$ cat test test1 test2 test3 | sort &gt; test4
+$ cat test test1 test2 test3 | sort > test4
 
 如果有大量的文件包含不适合在输出端子和屏幕滚动起来非常快，我们可以多和少用参数与cat命令如上表演。
 

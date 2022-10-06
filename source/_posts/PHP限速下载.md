@@ -7,8 +7,8 @@ tags:
 ```php
 <?php
 $arr = [
-    "b798abe6e1b1318ee36b0dcb3fb9e4d3" =&gt; ["./img/img.jpg", "img.jpg"],
-    "4cf350692a4a3bb54d13daacfe8c683b" =&gt; ["./img/小明.chw", "小明.chw"]
+    "b798abe6e1b1318ee36b0dcb3fb9e4d3" => ["./img/img.jpg", "img.jpg"],
+    "4cf350692a4a3bb54d13daacfe8c683b" => ["./img/小明.chw", "小明.chw"]
 ];
 
 header("Content-type:application/octet-stream");

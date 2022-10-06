@@ -13,7 +13,7 @@ tags:
 
 ## **1、SID(string)**
 
-包含着会话名及会话ID 的常量，格式为&quot;name=ID&quot;，如果会话ID 已经在恰当的会话cookie 中设定时则为空字符串。和session_id() 返回的是同一个ID。
+包含着会话名及会话ID 的常量，格式为"name=ID"，如果会话ID 已经在恰当的会话cookie 中设定时则为空字符串。和session_id() 返回的是同一个ID。
 
 ## **2、PHP_SESSION_DISABLED(int)**
 
@@ -43,7 +43,7 @@ var_dump(defined('SID'));  // bool(true) - Defined now!
 <?php
 echo SID;          //提示使用了未定义常量
 session_start();
-echo SID;          //显示&quot;name=UID&quot;样式字符串。说明确实是动态定义，因为没有会话就没有会话的UID.
+echo SID;          //显示"name=UID"样式字符串。说明确实是动态定义，因为没有会话就没有会话的UID.
 ?>
 ```
 

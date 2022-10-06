@@ -17,7 +17,7 @@ css的 word-break 属性用来标明怎么样进行单词内的断句。
 
 white-space:bread-spaces;
 # 文本格式 
-&gt;text-decoration : none || underline || blink || overline || line-through 
+>text-decoration : none || underline || blink || overline || line-through 
 - text-decoration:none 无装饰，通常对html下划线标签去掉下划线样式
 - text-decoration:underline 下划线样式
 - text-decoration:line-through 删除线样式-贯穿线样式
@@ -29,7 +29,7 @@ white-space:bread-spaces;
 - `oblique` : 倾斜的字体
 
 ## initial
-initial 关键字用于设置 CSS 属性为它的默认值。可用于任何 HTML 元素上的任何 CSS 属性。设置 `&lt;div&gt;` 元素内的文本颜色为红色，但是为 `&lt;h1&gt;` 元素保持最初的颜色：
+initial 关键字用于设置 CSS 属性为它的默认值。可用于任何 HTML 元素上的任何 CSS 属性。设置 `<div>` 元素内的文本颜色为红色，但是为 `<h1>` 元素保持最初的颜色：
 ```
 div {color: red; }
 h1 {color: initial; }

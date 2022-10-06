@@ -24,7 +24,7 @@ empty
 bool empty ( mixed $var )
 
 判读变量是否为空。
-empty()为TRUE的情况，若变量不存在，或者变量存在且其值为&quot;&quot;、0、&quot;0&quot;、NULL、FALSE、array()、var $var; 以及没有任何属性的对象，则返回 TURE。
+empty()为TRUE的情况，若变量不存在，或者变量存在且其值为""、0、"0"、NULL、FALSE、array()、var $var; 以及没有任何属性的对象，则返回 TURE。
 ?:
 $b = $a?:1等于 $b = !empty($a)?$a:1 ,若$a为空，则赋值为1，否则取$a的值
 
@@ -38,16 +38,16 @@ int strtotime ( string time [, int now] )
 
 示例：
 
-echo &quot;今天:&quot;.date(&quot;Y-m-d&quot;);
-echo &quot;昨天:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;-1 day&quot;));
-echo &quot;明天:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;+1 day&quot;));
-echo &quot;一周后:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;+1 week&quot;));
-echo &quot;一周零两天四小时两秒后:&quot;.date(&quot;Y-m-d G:H:s&quot;,strtotime(&quot;+1 week 2 days 4 hours 2 seconds&quot;));
-echo &quot;下个星期四:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;next Thursday&quot;));
-echo &quot;上个周一:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;last Monday&quot;));
-echo &quot;一个月前:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;last month&quot;));
-echo &quot;一个月后:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;+1 month&quot;));
-echo &quot;十年后:&quot;.date(&quot;Y-m-d&quot;,strtotime(&quot;+10 year&quot;));
+echo "今天:".date("Y-m-d");
+echo "昨天:".date("Y-m-d",strtotime("-1 day"));
+echo "明天:".date("Y-m-d",strtotime("+1 day"));
+echo "一周后:".date("Y-m-d",strtotime("+1 week"));
+echo "一周零两天四小时两秒后:".date("Y-m-d G:H:s",strtotime("+1 week 2 days 4 hours 2 seconds"));
+echo "下个星期四:".date("Y-m-d",strtotime("next Thursday"));
+echo "上个周一:".date("Y-m-d",strtotime("last Monday"));
+echo "一个月前:".date("Y-m-d",strtotime("last month"));
+echo "一个月后:".date("Y-m-d",strtotime("+1 month"));
+echo "十年后:".date("Y-m-d",strtotime("+10 year"));
 主要考虑date()函数和strtotime()函数
 
 3. require 和 include
@@ -134,7 +134,7 @@ web服务器优化 ：负载均衡
 （2）final方法不能被重写
 4. Static类/方法
 (1)可以不实例化类而直接访问
-(2)静态属性不可以由对象通过-&gt;操作符来访问,用::方式调用
+(2)静态属性不可以由对象通过->操作符来访问,用::方式调用
 原文地址：https://learnku.com/articles/28758
 
 8. php获取上级文件目录

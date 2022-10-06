@@ -64,7 +64,7 @@ categories: mysql
 
 9. 一千万条数据的表, 如何分页查询
 
-数据量过大的情况下, limit offset 分页会由于扫描数据太多而越往后查询越慢. 可以配合当前页最后一条ID进行查询, SELECT * FROM T WHERE id &gt; #{ID} LIMIT #{LIMIT} . 当然, 这种情况下ID必须是有序的, 这也是有序ID的好处之一。
+数据量过大的情况下, limit offset 分页会由于扫描数据太多而越往后查询越慢. 可以配合当前页最后一条ID进行查询, SELECT * FROM T WHERE id > #{ID} LIMIT #{LIMIT} . 当然, 这种情况下ID必须是有序的, 这也是有序ID的好处之一。
 
 10. 订单表数据量越来越大导致查询缓慢, 如何处理
 
@@ -86,7 +86,7 @@ MySQL基础
 HEAP 表存在于内存中，用于临时高速存储。
 
     BLOB 或 TEXT 字段是不允许的
-    只能使用比较运算符=，&lt;，&gt;，=&gt;，= &lt;
+    只能使用比较运算符=，<，>，=>，= <
     HEAP 表不支持 AUTO_INCREMENT
     索引不可为 NULL
 
@@ -113,7 +113,7 @@ CHAR_LENGTH 是字符数，而 LENGTH 是字节数。Latin 字符的这两个数
 8.在 Mysql 中 ENUM 的用法是什么？
 
 ENUM 是一个字符串对象，用于指定一组预定义的值，并可在创建表时使用。
-Create table size(name ENUM(&#039;Smail,&#039;Medium&#039;,&#039;Large&#039;);
+Create table size(name ENUM('Smail,'Medium','Large');
 9.如何定义 REGEXP ？
 
 REGEXP 是模式匹配，其中匹配模式在搜索值的任何位置。
@@ -200,7 +200,7 @@ LAST_INSERT_ID 将返回由 Auto_increment分配的最后一个值，并且不�
 25.你怎么看到为表格定义的所有索引？
 
 索引是通过以下方式为表格定义的：
-sqlqSHOW INDEX FROM &lt;tablename&gt;;
+sqlqSHOW INDEX FROM <tablename>;
 
 26. LIKE 声明中的％和_ 是什么意思？
 
@@ -211,7 +211,7 @@ UNIX_TIMESTAMP 是从 Mysql 时间戳转换为 Unix 时间戳的命令
 FROM_UNIXTIME 是从 Unix 时间戳转换为 Mysql 时间戳的命令
 28.列对比运算符是什么？
 
-在 SELECT 语句的列比较中使用=，&lt;&gt;，&lt;=，&lt;，&gt; =，&gt;，&lt;&lt;，&gt;&gt;，&lt;=&gt;，AND，OR 或LIKE 运算符。
+在 SELECT 语句的列比较中使用=，<>，<=，<，> =，>，<<，>>，<=>，AND，OR 或LIKE 运算符。
 29.我们如何得到受查询影响的行数？
 
 行数可以通过以下代码获得：
@@ -224,8 +224,8 @@ SELECT COUNT(user_id)FROM users;
 31.LIKE 和 REGEXP 操作有什么区别？
 
 LIKE 和 REGEXP 运算符用于表示^和％。
-SELECT * FROM employee WHERE emp_name REGEXP &quot;^b&quot;;
-SELECT * FROM employee WHERE emp_name LIKE &quot;%b&quot;;
+SELECT * FROM employee WHERE emp_name REGEXP "^b";
+SELECT * FROM employee WHERE emp_name LIKE "%b";
 
 32. BLOB 和 和 TEXT 有什么区别？
 
@@ -380,7 +380,7 @@ MyISAM Static 和 MyISAM Dynamic 有什么区别？
 ％ 对应于 0 个或更多字符，只是 LIKE 语句中的一个字符。
 11.列对比运算符是什么？
 
-在 SELECT 语句的列比较中使用=，&lt;&gt;，&lt;=，&lt;，&gt; =，&gt;，&lt;&lt;，&gt;&gt;，&lt;=&gt;，AND， OR 或 LIKE 运算符。
+在 SELECT 语句的列比较中使用=，<>，<=，<，> =，>，<<，>>，<=>，AND， OR 或 LIKE 运算符。
 12.BLOB 和TEXT 有什么区别？
 
 BLOB 是一个二进制对象， 可以容纳可变数量的数据。TEXT 是一个不区分大小写的 BLOB。BLOB 和 TEXT 类型之间的唯一区别在于对 BLOB 值进行排序和比较时区分大小写， 对 TEXT 值不区分大小写。
@@ -556,7 +556,7 @@ B+树，
 
 33.为表中得字段选择合适得数据类型
 
-    字段类型优先级: 整形&gt;date,time&gt;enum,char&gt;varchar&gt;blob,text
+    字段类型优先级: 整形>date,time>enum,char>varchar>blob,text
 
 优先考虑数字类型， 其次是日期或者二进制类型， 最后是字符串类型， 同级别得数据类型， 应该优先选择占用空间小的数据类型。
 34.存储时期(日期)

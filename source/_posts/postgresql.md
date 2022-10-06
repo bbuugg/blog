@@ -66,8 +66,8 @@ SELECT datname FROM pg_database;
 \d 数据库 —— 得到所有表的名字
 \d 表名 —— 得到表结构
 2、通过SQL语句查询
-&quot;select * from pg_tables&quot; —— 得到当前db中所有表的信息（这里pg_tables是系统视图）
-&quot;select tablename from pg_tables where schemaname='public'&quot; —— 得到所有用户自定义表的名字（这里&quot;tablename&quot;字段是表的名字，&quot;schemaname&quot;是schema的名字。用户自定义的表，如果未经特殊处理，默认都是放在名为public的schema下）
+"select * from pg_tables" —— 得到当前db中所有表的信息（这里pg_tables是系统视图）
+"select tablename from pg_tables where schemaname='public'" —— 得到所有用户自定义表的名字（这里"tablename"字段是表的名字，"schemaname"是schema的名字。用户自定义的表，如果未经特殊处理，默认都是放在名为public的schema下）
 
  View Code
  
@@ -97,18 +97,18 @@ net start postgresql-9.5
 net stop postgresql-9.5
 
 获取命令帮助:
-c:\&gt; psql --help
+c:\> psql --help
 
 登录( 注意: postgres 是默认用户即管理员 ):
 路径 psql -h 服务器 -U 用户名  -d 数据库 -p 端口地址  // -U 是大写
-C:\&gt; psql -h localhost -U postgres -p 5432            // 默认打开postgres数据库
-C:\&gt; psql -h 127.0.0.1 -U postgres -d fengdos -p 5432 // 打开fengdos数据库
-C:\&gt; psql -U postgres                                 // 快速登录(全部使用默认设置)
+C:\> psql -h localhost -U postgres -p 5432            // 默认打开postgres数据库
+C:\> psql -h 127.0.0.1 -U postgres -d fengdos -p 5432 // 打开fengdos数据库
+C:\> psql -U postgres                                 // 快速登录(全部使用默认设置)
 // 使用某些有密码的用户的情况下, 会提示输入密码.
 用户 postgres 的口令: ILoveYou         // 输入时不会显示任何字符
 // 成功后显示:
 psql (9.5.3)
-输入 &quot;help&quot; 来获取帮助信息.
+输入 "help" 来获取帮助信息.
 // 进入postgresql数据库系统提示符状态, ******=# 中=#前面为当前使用的数据库
 postgres=# help          // 获取系统帮助,显示如下:
 ---------------------------------------------------------
@@ -122,7 +122,7 @@ postgres=# help          // 获取系统帮助,显示如下:
 postgres=# \help         // 获取SQL命令的帮助,同 \h
 postgres=# \quit         // 退出,同 \q
 postgres=# \password dlf // 重新设置用户dlf的密码,然后需要 \q退出后才生效
-c:\&gt;psql exampledb &lt; user.sql  // 将user.sql文件导入到exampled数据库中
+c:\>psql exampledb < user.sql  // 将user.sql文件导入到exampled数据库中
 postgres=# \h select   // 精细显示SQL命令中的select命令的使用方法
 postgres=# \l          // 显示所有数据库
 postgres=# \dt         // 显示当前数据库中的所有表
@@ -150,7 +150,7 @@ create database [数据库名];
 drop database [数据库名]; 
 
 *创建表：
-create table ([字段名1] [类型1] ;,[字段名2] [类型2],......&lt;,primary key (字段名m,字段名n,...)&gt;;);
+create table ([字段名1] [类型1] ;,[字段名2] [类型2],......<,primary key (字段名m,字段名n,...)>;);
 
 *在表中插入数据：
 insert into 表名 ([字段名m],[字段名n],......) values ([列m的值],[列n的值],......);
@@ -187,7 +187,7 @@ delete from [表名] where [该行特征];
 delete from [表名];    // 删空整个表
 
 *可以使用pg_dump和pg_dumpall来完成。比如备份sales数据库：
-pg_dump drupal&gt;/opt/Postgresql/backup/1.bak
+pg_dump drupal>/opt/Postgresql/backup/1.bak
 
 
 ===================================================================================================
@@ -218,7 +218,7 @@ postgres= # \i /root/db. sql
 5.postgresql 插入16进制数 
 INSERT INTO tableAAA VALUES( x'0001f' : : integer, '鉴权' , 'Authority' )
 
-6.使用 TG_RELNAME 报错ERROR:  syntax error at or near &quot;$1&quot; at character
+6.使用 TG_RELNAME 报错ERROR:  syntax error at or near "$1" at character
 
 [引]http://www.dbmonster.com/Uwe/Forum.aspx/postgresql/2051/TG-RELNAME-problem
 
@@ -237,7 +237,7 @@ c . \l 列出所有数据库的名字
     \l+ 列出所有数据库的名字以及字符集编码
 d. \d [ 名字] 描述表, 索引, 序列, 或者视图
                  列出表/索引/序列/视图/系统表
-   \d{t| i| s| v| S} [ 模式] ( 加 &quot;+&quot; 获取更多信息)
+   \d{t| i| s| v| S} [ 模式] ( 加 "+" 获取更多信息)
                  - - 列出表/索引/序列/视图/系统表
    \d tablename - - 查看表的结构
    \dt - - 列出数据库中所有表

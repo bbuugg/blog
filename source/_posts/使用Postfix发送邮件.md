@@ -30,7 +30,7 @@ service postfix start
 
 # 发送
 ```shell
-mailx -r root@chengyao.xyz -s &quot;Subject&quot; 987861463@qq.com &lt; ./log.txt
+mailx -r root@chengyao.xyz -s "Subject" 987861463@qq.com < ./log.txt
 ```
 
 上面步骤没有测试，可行性未知
@@ -38,7 +38,7 @@ mailx -r root@chengyao.xyz -s &quot;Subject&quot; 987861463@qq.com &lt; ./log.tx
 
 如果有发送附件但发送失败，可以查看`/var/log/mail.log`文件，如果是`message file too big`,可以输入
 ```shell
-postconf -e &quot;message_size_limit=409600000&quot;            //设置400MB
+postconf -e "message_size_limit=409600000"            //设置400MB
 ```
 将允许的大小改大些。
 
@@ -69,7 +69,7 @@ mailx [选项] [名字]
 -H：打印头汇总所有消息并退出。
 -h：调用的sendmail与指定的跃点数。此选项没有在使用SMTP发送邮件的效果。
 -i：TTY忽略中断信号。使用mailx的对噪音的电话线时，这是非常有用的。
--I：显示了“ 新闻组：&#039;或&#039; 文章ID：&#039;在标题汇总字段。只有在与-f结合使用时适用。
+-I：显示了“ 新闻组：'或' 文章ID：'在标题汇总字段。只有在与-f结合使用时适用。
 -n：禁止阅读/etc/mail.rc启动时。这个选项应该适用于对多台计算机调用mailx的脚 本来启动，因为文件的内容，它们之间可能有所不同。
 -N：阅读邮件或编辑邮件文件夹时禁止消息头的初始显示。
 -q：启动与指定的文件的内容的消息。 可仅在发送模式给出。
@@ -77,7 +77,7 @@ mailx [选项] [名字]
 -R：如果打开文件夹的只读打开它们。
 -s：指定主题的命令行（仅后-s标志作为主题的第一个参数，要注意引用包含空格的科目）。
 -S：设置内部选项变量变量的可选值的价值 。
--T：写“ 邮件ID：”和“ 文章ID：&#039;读入文件名 ??的每个消息头字段。暗示我压缩文件的处理所描述的文件夹命令如下。
+-T：写“ 邮件ID：”和“ 文章ID：'读入文件名 ??的每个消息头字段。暗示我压缩文件的处理所描述的文件夹命令如下。
 -t：要发送的消息，预计将包含一个消息头“收件人：”，“抄送”或“密件抄送：”字段给收件人。 在命令行上指定的收件人将被忽略。
 -u：读取用户的用户的邮箱。
 -v：详细模式。 递送的详细信息显示在用户的终端上。
@@ -115,5 +115,5 @@ r 回信
 实例
 
 ```
-mailx -s &quot;test&quot; -a 1.txt &#039;mytest@ywnz.com&#039; &lt; 2.txt　#test为标题,1.txt附 件,2.txt正文,发送给mytest@123.com
+mailx -s "test" -a 1.txt 'mytest@ywnz.com' < 2.txt　#test为标题,1.txt附 件,2.txt正文,发送给mytest@123.com
 ```

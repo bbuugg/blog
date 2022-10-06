@@ -14,19 +14,19 @@ The current possible PCRE modifiers are listed below. The names in parentheses r
 
 ## m (PCRE_MULTILINE)
 
-  By default, PCRE treats the subject string as consisting of a single &quot;line&quot; of characters (even if it actually contains several newlines). The &quot;start of line&quot; metacharacter (^) matches only at the start of the string, while the &quot;end of line&quot; metacharacter ($) matches only at the end of the string, or before a terminating newline (unless *D* modifier is set). This is the same as Perl. When this modifier is set, the &quot;start of line&quot; and &quot;end of line&quot; constructs match immediately following or immediately before any newline in the subject string, respectively, as well as at the very start and end. This is equivalent to Perl&#039;s /m modifier. If there are no &quot;\n&quot; characters in a subject string, or no occurrences of ^ or $ in a pattern, setting this modifier has no effect.
+  By default, PCRE treats the subject string as consisting of a single "line" of characters (even if it actually contains several newlines). The "start of line" metacharacter (^) matches only at the start of the string, while the "end of line" metacharacter ($) matches only at the end of the string, or before a terminating newline (unless *D* modifier is set). This is the same as Perl. When this modifier is set, the "start of line" and "end of line" constructs match immediately following or immediately before any newline in the subject string, respectively, as well as at the very start and end. This is equivalent to Perl's /m modifier. If there are no "\n" characters in a subject string, or no occurrences of ^ or $ in a pattern, setting this modifier has no effect.
 
 ##  s (PCRE_DOTALL)
 
-  If this modifier is set, a dot metacharacter in the pattern matches all characters, including newlines. Without it, newlines are excluded. This modifier is equivalent to Perl&#039;s /s modifier. A negative class such as [^a] always matches a newline character, independent of the setting of this modifier.
+  If this modifier is set, a dot metacharacter in the pattern matches all characters, including newlines. Without it, newlines are excluded. This modifier is equivalent to Perl's /s modifier. A negative class such as [^a] always matches a newline character, independent of the setting of this modifier.
 
 ##  x (PCRE_EXTENDED)
 
-  If this modifier is set, whitespace data characters in the pattern are totally ignored except when escaped or inside a character class, and characters between an unescaped # outside a character class and the next newline character, inclusive, are also ignored. This is equivalent to Perl&#039;s /x modifier, and makes it possible to include commentary inside complicated patterns. Note, however, that this applies only to data characters. Whitespace characters may never appear within special character sequences in a pattern, for example within the sequence (?( which introduces a conditional subpattern.
+  If this modifier is set, whitespace data characters in the pattern are totally ignored except when escaped or inside a character class, and characters between an unescaped # outside a character class and the next newline character, inclusive, are also ignored. This is equivalent to Perl's /x modifier, and makes it possible to include commentary inside complicated patterns. Note, however, that this applies only to data characters. Whitespace characters may never appear within special character sequences in a pattern, for example within the sequence (?( which introduces a conditional subpattern.
 
 ##  A (PCRE_ANCHORED)
 
-  If this modifier is set, the pattern is forced to be &quot;anchored&quot;, that is, it is constrained to match only at the start of the string which is being searched (the &quot;subject string&quot;). This effect can also be achieved by appropriate constructs in the pattern itself, which is the only way to do it in Perl.
+  If this modifier is set, the pattern is forced to be "anchored", that is, it is constrained to match only at the start of the string which is being searched (the "subject string"). This effect can also be achieved by appropriate constructs in the pattern itself, which is the only way to do it in Perl.
 
 ##  D (PCRE_DOLLAR_ENDONLY)
 
@@ -38,7 +38,7 @@ The current possible PCRE modifiers are listed below. The names in parentheses r
 
 ##  U (PCRE_UNGREEDY)
 
-  This modifier inverts the &quot;greediness&quot; of the quantifiers so that they are not greedy by default, but become greedy if followed by `?`. It is not compatible with Perl. It can also be set by a (`?U`) [modifier setting within the pattern](https://www.php.net/manual/en/regexp.reference.internal-options.php) or by a question mark behind a quantifier (e.g. `.*?`).**Note**:It is usually not possible to match more than [pcre.backtrack_limit](https://www.php.net/manual/en/pcre.configuration.php#ini.pcre.backtrack-limit) characters in ungreedy mode.
+  This modifier inverts the "greediness" of the quantifiers so that they are not greedy by default, but become greedy if followed by `?`. It is not compatible with Perl. It can also be set by a (`?U`) [modifier setting within the pattern](https://www.php.net/manual/en/regexp.reference.internal-options.php) or by a question mark behind a quantifier (e.g. `.*?`).**Note**:It is usually not possible to match more than [pcre.backtrack_limit](https://www.php.net/manual/en/pcre.configuration.php#ini.pcre.backtrack-limit) characters in ungreedy mode.
 
 ##  X (PCRE_EXTRA)
 

@@ -16,7 +16,7 @@ tags:
 
 道理我们都懂，可我们就是想匹配非某个字符串呢？比如某一字符串若是含有hello则无匹配，若是不含hello则匹配，写成[^hello]是显然不行的，[^(hello)] 呢？其实不起作用。
 
-这时我们需要用到正则表达式的断言——(?!pattern) 零宽负向先行断言 或者 (?&lt;!pattern) 零宽负向后行断言 均可。
+这时我们需要用到正则表达式的断言——(?!pattern) 零宽负向先行断言 或者 (?<!pattern) 零宽负向后行断言 均可。
 
 这里只介绍一种写法，大家可以都去尝试一下。
 
@@ -38,12 +38,12 @@ str = "hello&nbsp;&test1;test"";
 
 匹配结果：`&nbsp;` 和 `"`
 
-## 匹配不含有`&lt;img&gt;`标签的`&lt;div&gt;&lt;/div&gt;`标签
+## 匹配不含有`<img>`标签的`<div></div>`标签
 
 ```
-str = "&lt;div id='1'&gt;&lt;img class='xx'&gt;&lt;/div&gt;&lt;div id='1'&gt;&lt;input type=''text"&gt;&lt;/div&gt;";
+str = "<div id='1'><img class='xx'></div><div id='1'><input type=''text"></div>";
 ```
 
-正则表达式：` /&lt;div[^&gt;]*&gt;((?!&lt;img[^&gt;]*&gt;).)+&lt;/div&gt;/g`
+正则表达式：` /<div[^>]*>((?!<img[^>]*>).)+</div>/g`
 
-匹配结果：`&lt;div id='1'&gt;&lt;input type=''text"&gt;&lt;/div&gt;`
+匹配结果：`<div id='1'><input type=''text"></div>`

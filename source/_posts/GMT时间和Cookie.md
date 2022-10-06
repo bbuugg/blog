@@ -11,9 +11,9 @@ set-cookie: MAXPHP_SESSION_ID=a9917035968c0e125179b4b949558e64; expires=Wed, 13-
 ```
 我这边明明才23：40， 而Cookie又没有过期，于是
 ```
-php &gt; echo strtotime(&#039;Wed, 13-Oct-2021 16:34:24 GMT&#039;) - time();
+php > echo strtotime('Wed, 13-Oct-2021 16:34:24 GMT') - time();
 3182
-php &gt; 
+php > 
 ```
 
 证明确实时间是正确的，但是时间却是14：34：24秒。于是想起GMT时间和北京时间是不一样的。百度了一下，贴在下面：

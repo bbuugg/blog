@@ -13,22 +13,22 @@ tags:
 \+ 运算符把右边的数组元素附加到左边的数组后面，两个数组中都有的键名，则只用左边数组中的，右边的被忽略。
 
 ```php
-&lt;?php
-$a = array(&quot;a&quot; =&gt; &quot;apple&quot;, &quot;b&quot; =&gt; &quot;banana&quot;);
-$b = array(&quot;a&quot; =&gt; &quot;pear&quot;, &quot;b&quot; =&gt; &quot;strawberry&quot;, &quot;c&quot; =&gt; &quot;cherry&quot;);
+<?php
+$a = array("a" => "apple", "b" => "banana");
+$b = array("a" => "pear", "b" => "strawberry", "c" => "cherry");
 
 $c = $a + $b; // $a 和 $b 的并集
-echo &quot;Union of \$a and \$b: \n&quot;;
+echo "Union of \$a and \$b: \n";
 var_dump($c);
 
 $c = $b + $a; // $b 和 $a 的并集
-echo &quot;Union of \$b and \$a: \n&quot;;
+echo "Union of \$b and \$a: \n";
 var_dump($c);
 
 $a += $b; //  $a += $b 的并集是 $a 和 $b
-echo &quot;Union of \$a += \$b: \n&quot;;
+echo "Union of \$a += \$b: \n";
 var_dump($a);
-?&gt;
+?>
 
 ```
 

@@ -23,7 +23,7 @@ ll -SS  按照大小排序，最大的最前
       --time-style =带有-l的样式，使用样式STYLE显示时间：
 			  全ISO，长ISO，ISO，区域设置或+ FORMAT;
 			  FORMAT的解释方式类似于'date'；如果格式
-			  是FORMAT1 &lt;newline&gt; FORMAT2，则FORMAT1适用
+			  是FORMAT1 <newline> FORMAT2，则FORMAT1适用
 			  非最新文件，FORMAT2到最近文件；
 			  如果STYLE带有'posix-'前缀，则为STYLE
 			  仅在POSIX语言环境外生效

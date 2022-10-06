@@ -51,8 +51,8 @@ convert -sample 25%x25% water.png  water_t.png
 
 系统提示:
 引用
-convert: no decode delegate for this image format `water.jpg&#039;.
-convert: missing an image filename `t_water.jpg&#039;.
+convert: no decode delegate for this image format `water.jpg'.
+convert: missing an image filename `t_water.jpg'.
 
 
 其他：

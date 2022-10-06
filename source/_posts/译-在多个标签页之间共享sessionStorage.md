@@ -55,22 +55,22 @@ Good。我们将token保存在sessionStorage，并在每次请求服务器时将
 (function() {
 
 //这段代码只在当前页面加入，需要跳转到的页面不需要
-//sessionStorage.setItem(&#039;user&#039;,&#039;chengyao&#039;)
+//sessionStorage.setItem('user','chengyao')
 
 
 	if (!sessionStorage.length) {
 		// 这个调用能触发目标事件，从而达到共享数据的目的
-		localStorage.setItem(&#039;getSessionStorage&#039;, Date.now());
+		localStorage.setItem('getSessionStorage', Date.now());
 	};
 
 	// 该事件是核心
-	window.addEventListener(&#039;storage&#039;, function(event) {
-		if (event.key === &#039;getSessionStorage&#039;) {
+	window.addEventListener('storage', function(event) {
+		if (event.key === 'getSessionStorage') {
 			// 已存在的标签页会收到这个事件
-			localStorage.setItem(&#039;sessionStorage&#039;, JSON.stringify(sessionStorage));
-			localStorage.removeItem(&#039;sessionStorage&#039;);
+			localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+			localStorage.removeItem('sessionStorage');
 
-		} else if (event.key === &#039;sessionStorage&#039; &amp;&amp; !sessionStorage.length) {
+		} else if (event.key === 'sessionStorage' && !sessionStorage.length) {
 			// 新开启的标签页会收到这个事件
 			var data = JSON.parse(event.newValue)
 			//,value;
@@ -124,15 +124,15 @@ safari在这个问题上处理是正确的，它并不会恢复sessionStorag（�
 	};
 
 	if (isEmpty(memoryStorage)) {
-		localStorage.setItem(&#039;getSessionStorage&#039;, Date.now());
+		localStorage.setItem('getSessionStorage', Date.now());
 	};
 
-	window.addEventListener(&#039;storage&#039;, function(event) {
-		if (event.key == &#039;getSessionStorage&#039;) {
-			localStorage.setItem(&#039;sessionStorage&#039;, JSON.stringify(memoryStorage));
-			localStorage.removeItem(&#039;sessionStorage&#039;);
+	window.addEventListener('storage', function(event) {
+		if (event.key == 'getSessionStorage') {
+			localStorage.setItem('sessionStorage', JSON.stringify(memoryStorage));
+			localStorage.removeItem('sessionStorage');
 
-		} else if (event.key == &#039;sessionStorage&#039; &amp;&amp; isEmpty(memoryStorage)) {
+		} else if (event.key == 'sessionStorage' && isEmpty(memoryStorage)) {
 			var data = JSON.parse(event.newValue),
 						value;
 

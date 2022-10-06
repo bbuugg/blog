@@ -18,13 +18,13 @@ http://mysql.taobao.org/monthly/2018/11/06/
 原则1：尽量避免在列上做运算，这样会导致索引失败。例如原句为：
 
 ```
-SELECT * FROM t WHERE YEAR(d) &gt;= 2011;
+SELECT * FROM t WHERE YEAR(d) >= 2011;
 ```
 
 优化为：
 
 ```
-SELECT * FROM t WHERE ｄ　&gt;= ‘2011-01-01’;
+SELECT * FROM t WHERE ｄ　>= ‘2011-01-01’;
 ```
 
 原则2：使用join时，应该用小结果集驱动大结果集。同时把复杂的join查询拆分成多个query。因为join多个表时，可能导致更多的锁定和堵塞。例如：
@@ -48,7 +48,7 @@ SELECT * FROM t WHERE name LIKE ‘%de%’
 优化为：
 
 ```
-SELECT * FROM t WHERE name &gt;= ‘de’AND name &lt;= ‘df’
+SELECT * FROM t WHERE name >= ‘de’AND name <= ‘df’
 ```
 
 原则4：仅列出需要查询的字段，这对速度不会有明显的影响，主要考虑节省内存。例如原句为：
@@ -104,7 +104,7 @@ select * from table order by rand() limit 20;
 使用下面的语句代替：
 
 ```sql
-Select * from ‘table’as t1 join(select rand(rand() * ((select max(id) from ‘table’)-(select min(id) from ‘table’))+(select min(id) from ‘table’))as id) as t2 where t1.id &gt;= t2.id order by t1.id limit 1;
+Select * from ‘table’as t1 join(select rand(rand() * ((select max(id) from ‘table’)-(select min(id) from ‘table’))+(select min(id) from ‘table’))as id) as t2 where t1.id >= t2.id order by t1.id limit 1;
 ```
 
 这是获取一条随机记录，这样即使执行20次，也比原来的语句高效。或者先用php产生随机数，把这个字符串传给MySQL，MySQL里用in查询。

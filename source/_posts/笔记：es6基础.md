@@ -92,7 +92,7 @@ var sum = function ( num1, num2) {
 var sum = ( num1, num2) => { return num1 + num2; }
 由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上大括号。
 
-let getTempItem = id => ( { id : id ,name : &quot; Temp&quot;} ) ;
+let getTempItem = id => ( { id : id ,name : " Temp"} ) ;
 箭头函数使得表达式更为简洁
 
 const isEven = n => n % 2 == 0 ;
@@ -146,7 +146,7 @@ let log = :: console.log ;
 var log = console.log.bind(console) ;
 如果双冒号运算符的晕眩结果，还是一个对象，可以使用链式写法
 
-import { map , takeWhile, foreach } from &quot;iterlib&quot; ;
+import { map , takeWhile, foreach } from "iterlib" ;
 getPlayers()
 :: map( x => x.character ( ) )
 :: takeWhile ( x => x.strength > 100)
@@ -196,4 +196,4 @@ function  factorial( n, total = 1 ) {
 factorial( 5 ); //120
 ```
 
-原文地址 : [es6基础](http://yuque.com/oswind/es6 &quot;跳转&quot;)
+原文地址 : [es6基础](http://yuque.com/oswind/es6 "跳转")

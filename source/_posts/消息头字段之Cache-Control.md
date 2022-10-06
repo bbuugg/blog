@@ -28,9 +28,9 @@ tags:
 客户端可以在HTTP请求中使用的标准 Cache-Control 指令。
 
 ```
-Cache-Control: max-age=&lt;seconds&gt;
-Cache-Control: max-stale[=&lt;seconds&gt;]
-Cache-Control: min-fresh=&lt;seconds&gt;
+Cache-Control: max-age=<seconds>
+Cache-Control: max-stale[=<seconds>]
+Cache-Control: min-fresh=<seconds>
 Cache-control: no-cache
 Cache-control: no-store
 Cache-control: no-transform
@@ -49,8 +49,8 @@ Cache-control: no-transform
 Cache-control: public
 Cache-control: private
 Cache-control: proxy-revalidate
-Cache-Control: max-age=&lt;seconds&gt;
-Cache-control: s-maxage=&lt;seconds&gt;
+Cache-Control: max-age=<seconds>
+Cache-control: s-maxage=<seconds>
 ```
 
 ### [ 扩展`Cache-Control`指令](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#扩展cache-control指令)
@@ -59,8 +59,8 @@ Cache-control: s-maxage=&lt;seconds&gt;
 
 ```
 Cache-control: immutable
-Cache-control: stale-while-revalidate=&lt;seconds&gt;
-Cache-control: stale-if-error=&lt;seconds&gt;
+Cache-control: stale-while-revalidate=<seconds>
+Cache-control: stale-if-error=<seconds>
 ```
 
 ## [指令](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#指令)
@@ -85,27 +85,27 @@ Cache-control: stale-if-error=&lt;seconds&gt;
 
 ### [到期](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control#到期)
 
-- `max-age=&lt;seconds&gt;`
+- `max-age=<seconds>`
 
   设置缓存存储的最大周期，超过这个时间缓存被认为过期(单位秒)。与`Expires`相反，时间是相对于请求的时间。
 
-- `s-maxage=&lt;seconds&gt;`
+- `s-maxage=<seconds>`
 
   覆盖`max-age`或者`Expires`头，但是仅适用于共享缓存(比如各个代理)，私有缓存会忽略它。
 
-- `max-stale[=&lt;seconds&gt;]`
+- `max-stale[=<seconds>]`
 
   表明客户端愿意接收一个已经过期的资源。可以设置一个可选的秒数，表示响应不能已经过时超过该给定的时间。
 
-- `min-fresh=&lt;seconds&gt;`
+- `min-fresh=<seconds>`
 
   表示客户端希望获取一个能在指定的秒数内保持其最新状态的响应。
 
-- `stale-while-revalidate=&lt;seconds&gt;` 
+- `stale-while-revalidate=<seconds>` 
 
   表明客户端愿意接受陈旧的响应，同时在后台异步检查新的响应。秒值指示客户愿意接受陈旧响应的时间长度。
 
-- `stale-if-error=&lt;seconds&gt;` 
+- `stale-if-error=<seconds>` 
 
   表示如果新的检查失败，则客户愿意接受陈旧的响应。秒数值表示客户在初始到期后愿意接受陈旧响应的时间。
 
@@ -127,7 +127,7 @@ Cache-control: stale-if-error=&lt;seconds&gt;
 
 - `no-transform`
 
-  不得对资源进行转换或转变。`Content-Encoding`、`Content-Range`、`Content-Type`等HTTP头不能由代理修改。例如，非透明代理或者如[Google&#039;s Light Mode](https://support.google.com/webmasters/answer/6211428?hl=en)可能对图像格式进行转换，以便节省缓存空间或者减少缓慢链路上的流量。`no-transform`指令不允许这样做。
+  不得对资源进行转换或转变。`Content-Encoding`、`Content-Range`、`Content-Type`等HTTP头不能由代理修改。例如，非透明代理或者如[Google's Light Mode](https://support.google.com/webmasters/answer/6211428?hl=en)可能对图像格式进行转换，以便节省缓存空间或者减少缓慢链路上的流量。`no-transform`指令不允许这样做。
 
 - `only-if-cached`
 

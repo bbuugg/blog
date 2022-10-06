@@ -29,7 +29,7 @@ SELECT T2.id, T2.`username` FROM (
  ) AS parent_id,@l := @l + 1 AS lvl
  FROM
   ( SELECT @r := 5, @l := 0 ) vars,user h
- WHERE @r &lt;&gt; 0 )
+ WHERE @r <> 0 )
  T1
  JOIN user T2 ON T1._id = T2.id
 ORDER BY
@@ -103,9 +103,9 @@ SELECT * FROM cte;
  
 ```
 
-定义一个CTE，这个CTE 最终的结果集就是我们想要的 ”递归得到的树结构&quot;，RECURSIVE 代表当前 CTE 是递归的
+定义一个CTE，这个CTE 最终的结果集就是我们想要的 ”递归得到的树结构"，RECURSIVE 代表当前 CTE 是递归的
 第一个SELECT 为 “初始结果集”
-第二个SELECT 为递归部分，利用 &quot;初始结果集/上一次递归返回的结果集&quot; 进行查询得到 “新的结果集”
+第二个SELECT 为递归部分，利用 "初始结果集/上一次递归返回的结果集" 进行查询得到 “新的结果集”
 直到递归部分结果集返回为null，查询结束
 最终UNION ALL 会将上述[步骤](https://huue.cc/index.php/tag/步骤/)中的所有结果集合并（UNION DISTINCT 会进行去重），再通过 SELECT * FROM cte; 拿到所有的结果集
 可以参考下MySQL[开发](https://huue.cc/index.php/tag/开发/)文档：

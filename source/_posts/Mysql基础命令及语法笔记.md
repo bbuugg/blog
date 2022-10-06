@@ -189,7 +189,7 @@ select * from 表名 where to_days(时间字段名) = to_days(now());
 
 --昨天
 
-SELECT * FROM 表名 WHERE TO_DAYS( NOW( ) ) - TO_DAYS( 时间字段名) &lt;= 1
+SELECT * FROM 表名 WHERE TO_DAYS( NOW( ) ) - TO_DAYS( 时间字段名) <= 1
 
 --本周
 
