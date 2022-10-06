@@ -287,6 +287,194 @@ text类型不能转为long类型
 
 > 索引index不存在则自动创建
 
+## bulk
+
+> bulk是es提供的一种批量增删改的操作API。
+
+bulk对JSON串的有着严格的要求。每个JSON串不能换行，只能放在同一行，同时，相邻的JSON串之间必须要有换行（Linux下是\n；Window下是\r\n）。bulk的每个操作必须要一对JSON串（delete语法除外）。
+
+```json
+{ action: { metadata }}
+{ request body        }
+{ action: { metadata }}
+{ request body        }
+
+```
+
+例如：
+
+> POST http://127.0.0.1:9200/_bulk
+```json
+{"create": {"_index": "index", "_type": "doc", "_id": 1}}
+{"name": "张三"}
+{"create": {"_index": "index", "_type": "doc", "_id": 2}}
+{"name": "李四"}
+
+```
+
+上面的请求也可以使用 POST http://127.0.0.1:9200/index/doc/_bulk {"_id": 1}
+
+```json
+{
+    "took": 151,
+    "errors": false,
+    "items": [
+        {
+            "create": {
+                "_index": "index",
+                "_type": "doc",
+                "_id": "1",
+                "_version": 1,
+                "result": "created",
+                "_shards": {
+                    "total": 2,
+                    "successful": 1,
+                    "failed": 0
+                },
+                "_seq_no": 0,
+                "_primary_term": 1,
+                "status": 201
+            }
+        },
+        {
+            "create": {
+                "_index": "index",
+                "_type": "doc",
+                "_id": "2",
+                "_version": 1,
+                "result": "created",
+                "_shards": {
+                    "total": 2,
+                    "successful": 1,
+                    "failed": 0
+                },
+                "_seq_no": 1,
+                "_primary_term": 1,
+                "status": 201
+            }
+        }
+    ]
+}
+```
+
+常用操作
+- create 如果文档不存在就创建，但如果文档存在就返回错误
+- index 如果文档不存在就创建，如果文档存在就更新 [常用]
+- update 更新一个文档，如果文档不存在就返回错误
+- delete 删除一个文档，如果要删除的文档id不存在，就返回错误
+
+> 某一个操作失败，是不会影响其他文档的操作的，它会在返回结果中告诉你失败的详细的原因。
+
+### 更新操作
+
+> POST example/docs/_bulk
+
+```
+{"update": {"_id": 1}}
+{"doc": {"id":1, "name": "admin-02", "counter":"11"}}
+{"update": {"_id": 2}}
+{"script":{"lang":"painless","source":"ctx._source.counter += params.num","params": {"num":2}}}
+{"update":{"_id": 3}}
+{"doc": {"name": "test3333name", "counter": 999}}
+{"update":{"_id": 4}}
+{"doc": {"name": "test444name", "counter": 888},  "doc_as_upsert" : true}
+
+```
+
+返回结果
+
+```json
+{
+  "took": 1,
+  "timed_out": false,
+  "_shards": {
+    "total": 5,
+    "successful": 5,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 4,
+    "max_score": 1,
+    "hits": [
+      {
+        "_index": "example",
+        "_type": "docs",
+        "_id": "2",
+        "_score": 1,
+        "_source": {
+          "id": 2,
+          "name": "张三",
+          "counter": "202",
+          "tags": [
+            "green",
+            "purple"
+          ]
+        }
+      },
+      {
+        "_index": "example",
+        "_type": "docs",
+        "_id": "4",
+        "_score": 1,
+        "_source": {
+          "id": 4,
+          "name": "test444name",
+          "counter": 888,
+          "tags": [
+            "orange"
+          ]
+        }
+      },
+      {
+        "_index": "example",
+        "_type": "docs",
+        "_id": "1",
+        "_score": 1,
+        "_source": {
+          "id": 1,
+          "name": "admin-02",
+          "counter": "11",
+          "tags": [
+            "red",
+            "black"
+          ]
+        }
+      },
+      {
+        "_index": "example",
+        "_type": "docs",
+        "_id": "3",
+        "_score": 1,
+        "_source": {
+          "id": 3,
+          "name": "test3333name",
+          "counter": 999,
+          "tags": [
+            "red",
+            "blue"
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+> 由上面示例我们可以看出，批量更新支持参数选项：doc（部分文档），upsert，doc_as_upsert，脚本，``params（用于脚本），lang（用于脚本）和_source。
+
+### 批量删除
+
+```
+POST example/docs/_bulk
+{"delete": {"_id": 1}}
+{"delete": {"_id": 2}}
+{"delete": {"_id": 3}}
+{"delete": {"_id": 4}}
+```
+
+> 支持混合操作，index + delete 等，但是不推荐
+
 ## 查询文档
 
 > GET /index/_doc/1
