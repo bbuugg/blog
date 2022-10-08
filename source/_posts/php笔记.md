@@ -512,3 +512,22 @@ Sanlitizing过滤器：
 - 始终返回字符串
 
 http://blog.kaiot.xyz/read/52.html
+
+## 进度条
+
+```php
+function showProgress(int $total, int $done)
+{
+    $progress = (int)ceil($done / $total * 100);
+
+    printf("\033[32m%s\033[0m\033[33m%s\033[0m %d%%\r", str_repeat('━', $progress), str_repeat('━', 100 - $progress), $progress);
+}
+
+$total = 100;
+for ($i = 1; $i <= $total; $i++) {
+    usleep(500);
+    showProgress($total,  $i);
+}
+
+echo "\n";
+```

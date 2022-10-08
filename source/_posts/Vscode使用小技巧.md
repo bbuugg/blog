@@ -81,3 +81,10 @@ Ctrl+光标点击 选择多个编辑位点
 
 # 其他
 选中字母后多次按下 ALT + J 选中多个相同的字母
+
+# 解决VSCODE"因为在此系统上禁止运行脚本"报错
+
+1. 以管理员身份运行vscode;
+2. 执行：get-ExecutionPolicy，显示Restricted，表示状态是禁止的;
+3. 执行：set-ExecutionPolicy RemoteSigned;
+4. 这时再执行get-ExecutionPolicy，就显示RemoteSigned;
