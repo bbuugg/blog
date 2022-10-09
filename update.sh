@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo 'Pulling'
+git pull
+
 echo "Generating posts"
 hexo g
 
