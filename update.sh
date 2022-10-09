@@ -12,3 +12,6 @@ echo 'Committed'
 echo 'Pushing'
 git push
 echo 'Finished'
+sleep(2);
+echo "Exit"
+exit(0);
