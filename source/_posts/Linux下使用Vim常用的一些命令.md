@@ -205,7 +205,9 @@ xxd是linux的一个命令，vim可以通过”!”来调用外部命令，其�
 
 ## 执行shell脚本报错/usr/bin/env: ‘bash\r’: No such file or directory
 
-```
+主要原因是*.sh是在windows下编辑然后上传到linux系统里执行的。.sh文件的格式为dos格式。而linux只能执行格式为unix格式的脚本。
+
+```shell
 vim release.sh
 :set ff # 查看fileformat 应该是dos
 :set ff=unix # 设置为unix

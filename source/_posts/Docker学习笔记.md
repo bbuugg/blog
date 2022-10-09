@@ -306,6 +306,7 @@ For more examples and ideas, visit:
     --name 					别名为容器起一个名字
     -d							启动守护式容器（在后台启动容器）
     -p 							映射端口号：原始端口号		 指定端口号启动
+    --rm            这个参数是说容器退出后随之将其删除。默认情况下，为了排障需求，退出的容器并不会立即删除，除非手动 docker rm。我们这里只是随便执行个命令，看看结果，不需要排障和保留结果，因此使用 --rm 可以避免浪费空间。
 
 	例：docker run -it --name myTomcat -p 8888:8080 tomcat
    	 docker run -d --name myTomcat -P tomcat
@@ -1746,3 +1747,11 @@ docker run -d --name nginx05 --cpus="0.5" nginx
 \#docker exec id ls
 进入容器
 docker exec -it id bash
+
+# 其他命令用法
+
+> 查看镜像，容器，数据卷占用的空间
+
+```shell
+docker system df
+```
