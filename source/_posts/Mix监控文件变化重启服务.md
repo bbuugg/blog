@@ -1,5 +1,5 @@
 ---
-title: Mix监控文件变化重启服务
+title: MixPHP监控文件变化重启服务
 toc: true
 date: 2022-10-10 19:05:34
 tags:
