@@ -1393,3 +1393,12 @@ if (!-e $request_filename) {
    break;
 }
 ```
+
+## 反向代理后视频需要全部缓冲后才能播放
+
+可以尝试添加下面的头部
+
+```shell
+proxy_set_header Range $http_range;
+proxy_set_header If-Range $http_if_range;
+```

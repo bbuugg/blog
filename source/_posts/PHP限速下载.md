@@ -13,12 +13,13 @@ $arr = [
 
 header("Content-type:application/octet-stream");
 header("Content-disposition:attachment;filename=" . $arr[$_GET["file"]][1]);
+flush();
 //    readfile($arr[$_GET["file"]][0]);
 $handler = fopen($arr[$_GET["file"]][0], "rb");
 while (!feof($handler)) {
-    $files = fread($handler, 100); //限速下载
-//        flush();
-    print_r($files);
+    $files = fread($handler, 1<<20); //限速下载
+    print($files);
+    flush();
     usleep(20);
 }
 fclose($handler);
