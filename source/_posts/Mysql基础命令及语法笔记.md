@@ -1121,6 +1121,8 @@ alter table <table_name>
 ALTER table Teacher change Tid Tnum int; //修改列名
 ```
 
+修改表结构添加字段还可以使用after和first来指定字段位置
+
 ## create index
 
 ```

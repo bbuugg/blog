@@ -13,6 +13,7 @@ mv composer.phar  /usr/local/bin/composer
 
 <!-- more -->
 
+> 全局安装依赖可以使用composer global require phpunit/phpunit 
 
 #更换源
 >首先要分清楚是局部换源还是全局换源
