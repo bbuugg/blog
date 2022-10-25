@@ -346,7 +346,9 @@ drwxr-xr-x    2 0       0            4096 Oct 02 01:12 testftp
 lftp 192.168.1.8:/pub> 
 ```
 
+# dig
 
+https://www.cnblogs.com/ginvip/p/6365605.html
 
 # 测试端口
 
