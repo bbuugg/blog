@@ -1604,30 +1604,29 @@ hexo-fs@^3.0.1, hexo-fs@^3.1.0:
     graceful-fs "^4.1.11"
     hexo-util "^2.0.0"
 
-hexo-generator-archive@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmmirror.com/hexo-generator-archive/-/hexo-generator-archive-1.0.0.tgz"
-  dependencies:
-    hexo-pagination "1.0.0"
-
-hexo-generator-category@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmmirror.com/hexo-generator-category/-/hexo-generator-category-1.0.0.tgz"
-  dependencies:
-    hexo-pagination "1.0.0"
-
-hexo-generator-index@^2.0.0:
+hexo-generator-archive@^2.0.0:
   version "2.0.0"
-  resolved "https://registry.npmmirror.com/hexo-generator-index/-/hexo-generator-index-2.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/hexo-generator-archive/-/hexo-generator-archive-2.0.0.tgz#bd93f17848843bb5bface81103d81f5be1a8b2c9"
   dependencies:
-    hexo-pagination "1.0.0"
-    timsort "^0.3.0"
+    hexo-pagination "3.0.0"
 
-hexo-generator-tag@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmmirror.com/hexo-generator-tag/-/hexo-generator-tag-1.0.0.tgz"
+hexo-generator-category@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/hexo-generator-category/-/hexo-generator-category-2.0.0.tgz#55473d5fafaec1cab7a5d9c0da7b159c0133d65c"
   dependencies:
-    hexo-pagination "1.0.0"
+    hexo-pagination "3.0.0"
+
+hexo-generator-index@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/hexo-generator-index/-/hexo-generator-index-3.0.0.tgz#4c9233731e027a6af6491886a4aafe08ffdaffe0"
+  dependencies:
+    hexo-pagination "3.0.0"
+
+hexo-generator-tag@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/hexo-generator-tag/-/hexo-generator-tag-2.0.0.tgz#f5a18c92b2f28063a76008b4090a7cea81fbbcc0"
+  dependencies:
+    hexo-pagination "3.0.0"
 
 hexo-i18n@^1.0.0:
   version "1.0.0"
@@ -1647,17 +1646,13 @@ hexo-log@^3.0.0, hexo-log@^3.2.0:
   dependencies:
     picocolors "^1.0.0"
 
-hexo-pagination@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/hexo-pagination/-/hexo-pagination-1.0.0.tgz"
+hexo-pagination@3.0.0, hexo-pagination@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/hexo-pagination/-/hexo-pagination-3.0.0.tgz#b98b050bbddff25ae646e3d00ad607ac6ae77ea7"
 
 hexo-pagination@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/hexo-pagination/-/hexo-pagination-2.0.0.tgz"
-
-hexo-pagination@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/hexo-pagination/-/hexo-pagination-3.0.0.tgz#b98b050bbddff25ae646e3d00ad607ac6ae77ea7"
 
 hexo-renderer-ejs@^2.0.0:
   version "2.0.0"
@@ -2708,10 +2703,6 @@ through2@^4.0.2:
 tildify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmmirror.com/tildify/-/tildify-2.0.0.tgz"
-
-timsort@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmmirror.com/timsort/-/timsort-0.3.0.tgz"
 
 titlecase@^1.1.3:
   version "1.1.3"
