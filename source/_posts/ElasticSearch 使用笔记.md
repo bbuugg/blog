@@ -136,6 +136,8 @@ ES常用的数据类型可分为3大类：核⼼数据类型、复杂数据类�
 
 # 通过json格式显示输出
 
+查看所有索引
+
 > GET _cat/indices?v&format=json&pretty
 
 ## 修改密码
@@ -177,6 +179,12 @@ PUT /user
 	"number_of_replicas": 3
 }
 ```
+
+## 开启索引
+
+> POST /index/_open 
+
+注意请求方式
 
 ## 查看映射
 

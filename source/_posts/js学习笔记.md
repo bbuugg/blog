@@ -4,6 +4,8 @@ date: 2020-09-26 22:53:26
 tags:
 ---
 
+# window.document.location
+
 # 自定义函数
 ## in_array
 ```javascript

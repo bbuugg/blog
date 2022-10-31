@@ -1,5 +1,5 @@
 ---
-title: MixPHP监控文件变化重启服务
+title: MaxPHP监控文件变化重启服务
 toc: true
 date: 2022-10-10 19:05:34
 tags:
@@ -8,7 +8,7 @@ tags:
 ## 安装
 
 ```shell
-composer require max/watcher:dev-master
+composer require max/watcher
 ```
 
 <!-- more -->
@@ -19,7 +19,7 @@ composer require max/watcher:dev-master
 
 ```php
 # 在server启动前任意位置
-file_put_contents(__DIR__ . '/../runtime/server.pid', getmypid());
+file_put_contents(__DIR__ . '/../runtime/master.pid', getmypid());
 ```
 
 ### 添加bin/watch.php文件
@@ -35,7 +35,7 @@ $progress = function () {
 
 $progress();
 
-$driver = new \Max\Watcher\Driver\FindDriver([__DIR__ . '/../src'], function ($a, $m, $d) use ($progress) {
+$driver = new \Max\Watcher\Driver\FindDriver([__DIR__ . '/../src'], function () use ($progress) {
     posix_kill(file_get_contents(__DIR__ . '/../runtime/server.pid'), 15);
 
     $progress();

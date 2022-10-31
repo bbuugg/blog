@@ -945,6 +945,12 @@ http {
 ｝
 ```
 
+## 开启nginx header下划线支持
+
+```
+underscores_in_headers on;
+```
+
 ## 检查 GeoIP
 
 ```
