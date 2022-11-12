@@ -295,6 +295,21 @@ LIMIT 0 , 30
 
 > 不可以使用distinct *, count(*) 包含null，count(字段) 不包含null，；利用标准运算符，所有的聚集函数都可以执行多个列的运算
 
+### count(1), count(字段), count(*) 区别
+
+- COUNT有几种用法？
+- COUNT(字段名)和COUNT(*)的查询结果有什么不同？
+- COUNT(1)和COUNT(*)之间有什么不同？
+- COUNT(1)和COUNT(*)之间的效率哪个更高？
+- 为什么《阿里巴巴Java开发手册》建议使用COUNT(*)
+- MySQL的MyISAM引擎对COUNT(*)做了哪些优化？
+- MySQL的InnoDB引擎对COUNT(*)做了哪些优化？
+- 上面提到的MySQL对COUNT(*)做的优化，有一个关键的前提是什么？
+- SELECT COUNT(*) 的时候，加不加where条件有差别吗？
+- COUNT(*)、COUNT(1)和COUNT(字段名)的执行过程是怎样的？
+
+count(expr) 返回expr值不为null的数量，结果是bigint，但是`count(*)` 会包含null，`count(*)`是SQL92标准语法，所以mysql做了很多优化。myisam中将表的总数单独记录，所以没有where条件时候count(*) 会直接返回总数。myisam是表级锁，不会有并发行操作，所以结果是准确的。innodb支持行级锁，行可能会被修改，所以通过低成本的索引（通常是最小索引）进行扫表，不关注表的具体内容，InnoDB中索引分为聚簇索引（主键索引）和非聚簇索引（非主键索引），聚簇索引的叶子节点中保存的是整行记录，而非聚簇索引的叶子节点中保存的是该行记录的主键的值。MySQL会优先选择最小的非聚簇索引来扫表。优化的前提是查询语句中不包含where条件和group by条件。count(1)和`count(*)` 的优化是一样的，count(字段) 判断指定字段不为null，效率低。
+
 ```sql
 select count(distinct cid) from notes;
 ```

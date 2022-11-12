@@ -360,3 +360,7 @@ if ($redis->exec()) {          // 如果有其它线程改变了lucky的值，�
     dump('秒杀失败');
 }
 ```
+
+## 实时监控
+
+redis-cli monitor

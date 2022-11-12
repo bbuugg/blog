@@ -6,6 +6,10 @@ tags:
 
 sudo -i -u postgres 登录
 \l列出所有数据库
+\password 修改密码
+
+ALTER USER username PASSWORD 'passwordtext'
+
 \c 数据库名 选择数据库
 \d 列出数据表
 \d 表名 列出数据表的结构

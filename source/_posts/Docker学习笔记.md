@@ -1746,7 +1746,7 @@ docker run -d --name nginx05 --cpus="0.5" nginx
 查看容器中的目录
 \#docker exec id ls
 进入容器
-docker exec -it id bash
+docker exec -it [--user root] id bash
 
 # 其他命令用法
 

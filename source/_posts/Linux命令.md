@@ -717,3 +717,7 @@ expect -f pull.sh #运行脚本
 ```shell
 curl ifconfig.me
 ```
+
+## 计算md5
+
+md5sum
