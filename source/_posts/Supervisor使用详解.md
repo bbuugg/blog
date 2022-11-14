@@ -61,8 +61,6 @@ Supervisor是用Python开发的一套通用的进程管理程序，能将一个�
 
 #### supervisor.conf配置文件说明：
 
-
-
 ```cpp
 [unix_http_server]
 file=/tmp/supervisor.sock   ;UNIX socket 文件，supervisorctl 会使用
@@ -85,7 +83,7 @@ minfds=1024                  ;可以打开的文件描述符的最小值，默�
 minprocs=200                 ;可以打开的进程数的最小值，默认 200
  
 [supervisorctl]
-serverurl=unix:///tmp/supervisor.sock ;通过UNIX socket连接supervisord，路径与unix_http_server部分的file一致
+serverurl=unix:///tmp/supervisor.sock; 通过UNIX socket连接supervisord，路径与unix_http_server部分的file一致
 ;serverurl=http://127.0.0.1:9001 ; 通过HTTP的方式连接supervisord
  
 ; [program:xx]是被管理的进程配置参数，xx是进程的名称
@@ -108,6 +106,23 @@ killasgroup=false     ;默认为false，向进程组发送kill信号，包括子
 ;包含其它配置文件
 [include]
 files = relative/directory/*.ini    ;可以指定一个或多个以.ini结束的配置文件
+```
+
+配置文件示例
+
+```
+[program:syncd]
+directory=/root/syncd-deploy
+command=/root/syncd-deploy/bin/syncd
+autostart=true
+autorestart=true
+startsecs=1
+;user=root
+stderr_logfile=/data/logs/syncd.log
+stdout_logfile=/data/logs/syncd.log
+redirect_stderr=true
+stdout_logfile_maxbytes=30MB
+strout_logfile_backups=20
 ```
 
 #### 子进程配置文件说明：
@@ -147,8 +162,6 @@ stdout_logfile_backups = 20
 
 ##### 子进程配置示例：
 
-
-
 ```bash
 #说明同上
 [program:test] 
@@ -164,8 +177,6 @@ stdout_logfile=/tmp/test_stdout.log
 ## 五、supervisor命令说明
 
 ##### 常用命令
-
-
 
 ```cpp
 supervisorctl status        //查看所有进程的状态
@@ -183,8 +194,6 @@ supervisorctl reload        //重新启动配置中的所有程序
 使用supervisor进程管理命令之前先启动supervisord，否则程序报错。
  使用命令`supervisord -c /etc/supervisord.conf`启动。
  若是centos7：
-
-
 
 ```cpp
 systemctl start supervisord.service     //启动supervisor并加载默认配置文件
