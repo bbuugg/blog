@@ -1797,6 +1797,16 @@ utf8_general_ci是一个遗留的 校对规则，不支持扩展。它仅能够�
 
 utf8_general_ci也适用与德语和法语，除了‘ß’等于‘s’，而不是‘ss’之外。如果你的应用能够接受这些，那么应该使用utf8_general_ci，因为它速度快。否则，使用utf8_unicode_ci，因为它比较准确。
 
+# 主从配置
+
+从《高性能mysql》书中讲解主从原理大致有三个步骤：
+
+- 在主库上把数据更改记录到二进制日志中（Binary Log）中，这些记录称为二进制日志事件。
+- 从库通过IO线程将主库上的日志复制到自己的中继日志（Relay Log）中。
+- 从库通过SQL线程读取中继日志中的事件，将其重放到自己数据上。
+
+
+
 # 常见报错
 
 - ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'work_ad.api_community_pic.id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
