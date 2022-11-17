@@ -1,105 +1,665 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>代码笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="代码笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="代码笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="笔记"><meta property="og:type" content="blog"><meta property="og:title" content="代码笔记"><meta property="og:url" content="https://www.chengyao.xyz/"><meta property="og:site_name" content="代码笔记"><meta property="og:description" content="笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz"},"headline":"代码笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"代码笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"笔记"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?d0884aeebfcd3ca98ed3033285d6d03a";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(location.hash);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="代码笔记">
+<meta property="og:url" content="https://www.chengyao.xyz/page/7/index.html">
+<meta property="og:site_name" content="代码笔记">
+<meta property="og:description" content="笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="CY">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>代码笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>代码笔记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/images/wallpaper.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="业精于勤荒于嬉，行成于思毁于随"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/05/%E8%87%AA%E5%8A%A8%E5%8C%96SQL%E6%B3%A8%E5%85%A5%E5%B7%A5%E5%85%B7%20sqlmap%20%E4%B8%AD%E6%96%87%E6%89%8B%E5%86%8C/" target="_self">
+          自动化SQL注入工具 sqlmap 中文手册
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/05/%E8%87%AA%E5%8A%A8%E5%8C%96SQL%E6%B3%A8%E5%85%A5%E5%B7%A5%E5%85%B7%20sqlmap%20%E4%B8%AD%E6%96%87%E6%89%8B%E5%86%8C/" target="_self">
+        <div>
+          简介sqlmap是一个开源的渗透测试工具，它可以自动化检测和利用SQL注入漏洞并接管数据库服务器。它有一个强大的检测引擎，许多适合于终极渗透测试的良好特性和众多的操作选项，从数据库指纹、数据获取到访问底层文件系统、执行操作系统命令。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-05 11:49" pubdate>
+              2021-12-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/28/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+          MongoDB学习笔记
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/28/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          优劣：高性能、易部署、易使用，存储数据非常方便。 不支持连表查询，不支持sql语句，不支持事务存储过程等，所以不适合存储数据间关系比较复杂的数据，一般主要是当做一个数据仓库来使用。 适用于：日志系统，股票数据等。 不适用于：电子商务系统等需要连多表查询的功能。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-28 20:07" pubdate>
+              2021-11-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+          Go语言学习笔记
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          内置Go 语言拥有一些不需要进行导入操作就可以使用的内置函数。它们有时可以针对不同的类型进行操作，例如：len、cap 和 append，或必须用于系统级的操作，例如：panic。因此，它们需要直接获得编译器的支持。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-28 12:28" pubdate>
+              2021-11-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/" target="_self">
+          Go语言学习相关文档
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/" target="_self">
+        <div>
+          官方文档https:&#x2F;&#x2F;golang.google.cn&#x2F;doc&#x2F; TopGoerhttps:&#x2F;&#x2F;topgoer.com&#x2F; GoLang 标准库https:&#x2F;&#x2F;studygolang.com&#x2F;pkgdoc   [中文]https:&#x2F;&#x2F;pkg.go.dev&#x2F;      [官方] Go编程时光https:&#x2F;&#x2F;golang.iswbm.com&#x2F;index.html 跟煎鱼学Gohttps:&#x2F;&#x2F;eddyc
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-28 11:50" pubdate>
+              2021-11-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/27/PHP%E5%AE%9E%E7%8E%B0Basic%E8%AE%A4%E8%AF%81/" target="_self">
+          PHP实现Basic认证
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/27/PHP%E5%AE%9E%E7%8E%B0Basic%E8%AE%A4%E8%AF%81/" target="_self">
+        <div>
+          如何认证对于需要basic认证的页面，我们可以让服务端响应一个 1WWW-Authenticate: Basic 的header头，并且返回响应码401，浏览器会自动弹出认证的窗口。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-27 18:20" pubdate>
+              2021-11-27
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/25/19%E4%B8%AA%E4%BE%8B%E5%AD%90%E5%AD%A6%E4%B9%A0Oracle/" target="_self">
+          19个例子学习Oracle
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/25/19%E4%B8%AA%E4%BE%8B%E5%AD%90%E5%AD%A6%E4%B9%A0Oracle/" target="_self">
+        <div>
+          19个学习Oracle的例子
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-25 23:10" pubdate>
+              2021-11-25
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/25/%E5%A0%86%E6%A0%88%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BF%9B%E5%87%BA%E5%8E%9F%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88/" target="_self">
+          堆栈数据的进出原则是什么
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/25/%E5%A0%86%E6%A0%88%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BF%9B%E5%87%BA%E5%8E%9F%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88/" target="_self">
+        <div>
+          堆栈数据的进出原则是什么？堆栈数据的进出原则是先进后出。 栈堆的原理栈区（stack）由操作系统自动分配释放 ，存放函数的参数值，局部变量的某值等等。其操作方式类似于数据结构中的栈。 堆区（heap）一般由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收 。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表 栈的特点：栈是一种数据结构，它按照先进后出的原则存储数据，先进入的数据被压入
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-25 22:50" pubdate>
+              2021-11-25
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" target="_self">
+          正则表达式高级用法
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" target="_self">
+        <div>
+          引子上一章分享了正式表达式的入门知识，以及单字符、多字符常用的匹配方法，对于工作维护过程中已经够用，但是有时候只使用基础知识来实现就会比较麻烦，如果使用高级用法就会比较方便很多。 例如：匹配一个HTML文件中两个&lt;B&gt;标签中的文件。 文本内容：
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-25 22:46" pubdate>
+              2021-11-25
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/21/PHP%20%20fsockopen/" target="_self">
+          PHP  fsockopen
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/21/PHP%20%20fsockopen/" target="_self">
+        <div>
+          1234567fsockopen(    string $hostname,    int $port &#x3D; -1,    int &amp;$errno &#x3D; ?,    string &amp;$errstr &#x3D; ?,    float $timeout &#x3D; ini_get(&quot;default_socket_timeout&quot;)): resource
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-21 15:39" pubdate>
+              2021-11-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Telnet/" target="_self">
+          如何使用Telnet
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Telnet/" target="_self">
+        <div>
+          退出telnet使用ctrl + ] 再 ctrl + d  发送HTTP请求打开连接1telnet chengyao.xyz 80
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-21 15:07" pubdate>
+              2021-11-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/6/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="page-number" href="/page/6/#board">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#board">8</a><a class="page-number" href="/page/9/#board">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/8/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022013308号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="代码笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/12/05/%E8%87%AA%E5%8A%A8%E5%8C%96SQL%E6%B3%A8%E5%85%A5%E5%B7%A5%E5%85%B7%20sqlmap%20%E4%B8%AD%E6%96%87%E6%89%8B%E5%86%8C/"><img class="fill" src="https://tse4-mm.cn.bing.net/th/id/OIP-C.49OXDwoTEU-4HhgU6yftlwHaFj?pid=ImgDet&amp;rs=1" alt="自动化SQL注入工具 sqlmap 中文手册"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-05T03:49:19.000Z" title="2021/12/5 上午11:49:19">2021-12-05</time>发表</span><span class="level-item"><time dateTime="2022-10-02T13:03:50.192Z" title="2022/10/2 下午9:03:50">2022-10-02</time>更新</span><span class="level-item">9 分钟读完 (大约1288个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/05/%E8%87%AA%E5%8A%A8%E5%8C%96SQL%E6%B3%A8%E5%85%A5%E5%B7%A5%E5%85%B7%20sqlmap%20%E4%B8%AD%E6%96%87%E6%89%8B%E5%86%8C/">自动化SQL注入工具 sqlmap 中文手册</a></h1><div class="content"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>sqlmap是一个开源的渗透测试工具，它可以自动化检测和利用SQL注入漏洞并接管数据库服务器。它有一个强大的检测引擎，许多适合于终极渗透测试的良好特性和众多的操作选项，从数据库指纹、数据获取到访问底层文件系统、执行操作系统命令。</p></div><a class="article-more button is-small is-size-7" href="/2021/12/05/%E8%87%AA%E5%8A%A8%E5%8C%96SQL%E6%B3%A8%E5%85%A5%E5%B7%A5%E5%85%B7%20sqlmap%20%E4%B8%AD%E6%96%87%E6%89%8B%E5%86%8C/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/11/28/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="fill" src="/images/20221002/f54ff79bb8c0e8c060e84b4f87bfb73f.jpg" alt="MongoDB学习笔记"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-28T12:07:11.000Z" title="2021/11/28 下午8:07:11">2021-11-28</time>发表</span><span class="level-item"><time dateTime="2022-10-02T13:04:00.741Z" title="2022/10/2 下午9:04:00">2022-10-02</time>更新</span><span class="level-item">11 分钟读完 (大约1704个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/28/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">MongoDB学习笔记</a></h1><div class="content"><h1 id="优劣："><a href="#优劣：" class="headerlink" title="优劣："></a>优劣：</h1><p>高性能、易部署、易使用，存储数据非常方便。</p>
-<p>不支持连表查询，不支持sql语句，不支持事务存储过程等，所以不适合存储数据间关系比较复杂的数据，一般主要是当做一个<strong>数据仓库</strong>来使用。</p>
-<p><strong>适用于</strong>：日志系统，股票数据等。</p>
-<p><strong>不适用于</strong>：电子商务系统等需要连多表查询的功能。</p></div><a class="article-more button is-small is-size-7" href="/2021/11/28/MongoDB%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="fill" src="/images/20221002/0fd3807eca157687fa50dbdb749a667b.jpg" alt="Go语言学习笔记"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-28T04:28:58.000Z" title="2021/11/28 下午12:28:58">2021-11-28</time>发表</span><span class="level-item"><time dateTime="2022-10-02T13:04:10.859Z" title="2022/10/2 下午9:04:10">2022-10-02</time>更新</span><span class="level-item">23 分钟读完 (大约3450个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Go语言学习笔记</a></h1><div class="content"><h1 id="内置"><a href="#内置" class="headerlink" title="内置"></a>内置</h1><p>Go 语言拥有一些不需要进行导入操作就可以使用的内置函数。它们有时可以针对不同的类型进行操作，例如：len、cap 和 append，或必须用于系统级的操作，例如：panic。因此，它们需要直接获得编译器的支持。</p></div><a class="article-more button is-small is-size-7" href="/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-28T03:50:06.000Z" title="2021/11/28 上午11:50:06">2021-11-28</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">几秒读完 (大约88个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/28/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3/">Go语言学习相关文档</a></h1><div class="content"><h2 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h2><p><a target="_blank" rel="noopener" href="https://golang.google.cn/doc/">https://golang.google.cn/doc/</a></p>
-<h2 id="TopGoer"><a href="#TopGoer" class="headerlink" title="TopGoer"></a>TopGoer</h2><p><a target="_blank" rel="noopener" href="https://topgoer.com/">https://topgoer.com/</a></p>
-<h2 id="GoLang-标准库"><a href="#GoLang-标准库" class="headerlink" title="GoLang 标准库"></a>GoLang 标准库</h2><p><a target="_blank" rel="noopener" href="https://studygolang.com/pkgdoc">https://studygolang.com/pkgdoc</a>   [中文]<br><a target="_blank" rel="noopener" href="https://pkg.go.dev/">https://pkg.go.dev/</a>      [官方]</p>
-<h2 id="Go编程时光"><a href="#Go编程时光" class="headerlink" title="Go编程时光"></a>Go编程时光</h2><p><a target="_blank" rel="noopener" href="https://golang.iswbm.com/index.html">https://golang.iswbm.com/index.html</a></p>
-<h2 id="跟煎鱼学Go"><a href="#跟煎鱼学Go" class="headerlink" title="跟煎鱼学Go"></a>跟煎鱼学Go</h2><p><a target="_blank" rel="noopener" href="https://eddycjy.gitbook.io/golang/">https://eddycjy.gitbook.io/golang/</a></p>
-<h2 id="C语言中文网"><a href="#C语言中文网" class="headerlink" title="C语言中文网"></a>C语言中文网</h2><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/golang/">http://c.biancheng.net/golang/</a></p>
-<h2 id="其他："><a href="#其他：" class="headerlink" title="其他："></a>其他：</h2><p>Go 普通指针类型、unsafe.Pointer、uintptr之间的关系<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/-wenli/p/12682477.html">https://www.cnblogs.com/-wenli/p/12682477.html</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-27T10:20:02.000Z" title="2021/11/27 下午6:20:02">2021-11-27</time>发表</span><span class="level-item"><time dateTime="2022-10-02T13:04:26.289Z" title="2022/10/2 下午9:04:26">2022-10-02</time>更新</span><span class="level-item">2 分钟读完 (大约237个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/27/PHP%E5%AE%9E%E7%8E%B0Basic%E8%AE%A4%E8%AF%81/">PHP实现Basic认证</a></h1><div class="content"><h2 id="如何认证"><a href="#如何认证" class="headerlink" title="如何认证"></a>如何认证</h2><p>对于需要basic认证的页面，我们可以让服务端响应一个</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WWW-Authenticate: Basic</span><br></pre></td></tr></table></figure>
-<p>的header头，并且返回响应码401，浏览器会自动弹出认证的窗口。</p></div><a class="article-more button is-small is-size-7" href="/2021/11/27/PHP%E5%AE%9E%E7%8E%B0Basic%E8%AE%A4%E8%AF%81/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/11/25/19%E4%B8%AA%E4%BE%8B%E5%AD%90%E5%AD%A6%E4%B9%A0Oracle/"><img class="fill" src="/images/20221002/f35873cf8054bdddd09e2c4825ab11f2.jpg" alt="19个例子学习Oracle"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-25T15:10:27.000Z" title="2021/11/25 下午11:10:27">2021-11-25</time>发表</span><span class="level-item"><time dateTime="2022-10-02T12:41:17.355Z" title="2022/10/2 下午8:41:17">2022-10-02</time>更新</span><span class="level-item">7 分钟读完 (大约1001个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/25/19%E4%B8%AA%E4%BE%8B%E5%AD%90%E5%AD%A6%E4%B9%A0Oracle/">19个例子学习Oracle</a></h1><div class="content"><p>19个学习Oracle的例子</p></div><a class="article-more button is-small is-size-7" href="/2021/11/25/19%E4%B8%AA%E4%BE%8B%E5%AD%90%E5%AD%A6%E4%B9%A0Oracle/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-25T14:50:38.000Z" title="2021/11/25 下午10:50:38">2021-11-25</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">3 分钟读完 (大约416个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/25/%E5%A0%86%E6%A0%88%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BF%9B%E5%87%BA%E5%8E%9F%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88/">堆栈数据的进出原则是什么</a></h1><div class="content"><h1 id="堆栈数据的进出原则是什么？"><a href="#堆栈数据的进出原则是什么？" class="headerlink" title="堆栈数据的进出原则是什么？"></a>堆栈数据的进出原则是什么？</h1><p>堆栈数据的进出原则是先进后出。</p>
-<h1 id="栈堆的原理"><a href="#栈堆的原理" class="headerlink" title="栈堆的原理"></a>栈堆的原理</h1><p>栈区（stack）由操作系统自动分配释放 ，存放函数的参数值，局部变量的某值等等。其操作方式类似于数据结构中的栈。</p>
-<p>堆区（heap）一般由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收 。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表</p>
-<p>栈的特点：栈是一种数据结构，它按照先进后出的原则存储数据，先进入的数据被压入栈底，最后的数据在栈顶，需要读数据的时候从栈顶开始弹出数据（最后一个数据被第一个读出来）。</p>
-<p>栈是只能在某一端插入和删除的特殊线性表。用桶堆积物品，先堆进来的压在底下，随后一件一件往堆。取走时，只能从上面一件一件取。堆和取都在顶部进行，底部一般是不动的。</p>
-<p>栈就是一种类似桶堆积物品的数据结构，进行删除和插入的一端称栈顶，另一堆称栈底。插入一般称为进栈（PUSH），删除则称为退栈（POP）。 栈也称为后进先出表（LIFO表）</p>
-<p><img src="https://img.php.cn/upload/image/465/199/886/1634539512830561.png"></p>
-<p>原文地址：<a target="_blank" rel="noopener" href="https://www.php.cn/faq/483124.html">https://www.php.cn/faq/483124.html</a></p>
-<p>更多推荐：<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mysticCoder/p/4921724.html">https://www.cnblogs.com/mysticCoder/p/4921724.html</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-25T14:46:25.000Z" title="2021/11/25 下午10:46:25">2021-11-25</time>发表</span><span class="level-item"><time dateTime="2022-10-02T13:04:43.674Z" title="2022/10/2 下午9:04:43">2022-10-02</time>更新</span><span class="level-item">13 分钟读完 (大约1989个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/">正则表达式高级用法</a></h1><div class="content"><h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>上一章分享了正式表达式的入门知识，以及单字符、多字符常用的匹配方法，对于工作维护过程中已经够用，但是有时候只使用基础知识来实现就会比较麻烦，如果使用高级用法就会比较方便很多。<br> 例如：匹配一个HTML文件中两个<code>&lt;B&gt;</code>标签中的文件。<br> 文本内容：</p></div><a class="article-more button is-small is-size-7" href="/2021/11/25/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-21T07:39:06.000Z" title="2021/11/21 下午3:39:06">2021-11-21</time>发表</span><span class="level-item"><time dateTime="2022-10-03T03:25:30.641Z" title="2022/10/3 上午11:25:30">2022-10-03</time>更新</span><span class="level-item">6 分钟读完 (大约871个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/21/PHP%20%20fsockopen/">PHP  fsockopen</a></h1><div class="content"><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">fsockopen</span>(</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$hostname</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$port</span> = -<span class="number">1</span>,</span><br><span class="line">    <span class="keyword">int</span> &amp;<span class="variable">$errno</span> = ?,</span><br><span class="line">    <span class="keyword">string</span> &amp;<span class="variable">$errstr</span> = ?,</span><br><span class="line">    <span class="keyword">float</span> <span class="variable">$timeout</span> = <span class="title function_ invoke__">ini_get</span>(<span class="string">&quot;default_socket_timeout&quot;</span>)</span><br><span class="line">): resource</span><br></pre></td></tr></table></figure></div><a class="article-more button is-small is-size-7" href="/2021/11/21/PHP%20%20fsockopen/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/11/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Telnet/"><img class="fill" src="https://ts1.cn.mm.bing.net/th/id/R-C.bb11c4d2f439c1c45fc3236ba3365be2?rik=gibEdV3X%2fRVNFw&amp;riu=http%3a%2f%2fchamados.telnet23.com.br%2fContent%2fimagens%2fTelnet+Telecom.png&amp;ehk=urA5jn6anOKvtuItxscy8X2hXIQ0BrSXMaKyzr6tlIE%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="如何使用Telnet"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-21T07:07:42.000Z" title="2021/11/21 下午3:07:42">2021-11-21</time>发表</span><span class="level-item"><time dateTime="2022-10-03T03:26:21.280Z" title="2022/10/3 上午11:26:21">2022-10-03</time>更新</span><span class="level-item">2 分钟读完 (大约288个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Telnet/">如何使用Telnet</a></h1><div class="content"><blockquote>
-<p>退出telnet使用ctrl + ] 再 ctrl + d</p>
-</blockquote>
-<h1 id="发送HTTP请求"><a href="#发送HTTP请求" class="headerlink" title="发送HTTP请求"></a>发送HTTP请求</h1><h2 id="打开连接"><a href="#打开连接" class="headerlink" title="打开连接"></a>打开连接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet chengyao.xyz 80</span><br></pre></td></tr></table></figure></div><a class="article-more button is-small is-size-7" href="/2021/11/21/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Telnet/#more">阅读更多</a></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/6/">上一页</a></div><div class="pagination-next"><a href="/page/8/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/6/">6</a></li><li><a class="pagination-link is-current" href="/page/7/">7</a></li><li><a class="pagination-link" href="/page/8/">8</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/17/">17</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">163</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/marxphp" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">maxphp</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/ElasticSearch/"><span class="level-start"><span class="level-item">ElasticSearch</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/linux/"><span class="level-start"><span class="level-item">linux</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/npm/"><span class="level-start"><span class="level-item">npm</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/php/"><span class="level-start"><span class="level-item">php</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/vue/"><span class="level-start"><span class="level-item">vue</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-15T06:16:51.000Z">2022-11-15</time></p><p class="title"><a href="/2022/11/15/iptables%E4%BD%BF%E7%94%A8/">iptables使用</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-11T05:26:49.000Z">2022-11-11</time></p><p class="title"><a href="/2022/11/11/Zabbix%E5%AE%89%E8%A3%85/">Zabbix安装</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-05T05:49:38.000Z">2022-11-05</time></p><p class="title"><a href="/2022/11/05/Css%E7%AC%94%E8%AE%B0/">Css笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-10T11:05:34.000Z">2022-10-10</time></p><p class="title"><a href="/2022/10/10/Mix%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%8F%98%E5%8C%96%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1/">MaxPHP监控文件变化重启服务</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-05T14:42:05.000Z">2022-10-05</time></p><p class="title"><a href="/2022/10/05/linux%E4%B8%8B%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">linux下查询进程占用的内存方法总结</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="代码笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

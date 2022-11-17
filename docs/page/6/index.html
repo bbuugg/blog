@@ -1,149 +1,686 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>代码笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="代码笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="代码笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="笔记"><meta property="og:type" content="blog"><meta property="og:title" content="代码笔记"><meta property="og:url" content="https://www.chengyao.xyz/"><meta property="og:site_name" content="代码笔记"><meta property="og:description" content="笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz"},"headline":"代码笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"代码笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"笔记"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?d0884aeebfcd3ca98ed3033285d6d03a";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(location.hash);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="代码笔记">
+<meta property="og:url" content="https://www.chengyao.xyz/page/6/index.html">
+<meta property="og:site_name" content="代码笔记">
+<meta property="og:description" content="笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="CY">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>代码笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>代码笔记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/images/wallpaper.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="业精于勤荒于嬉，行成于思毁于随"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/06/%E4%B8%80%E4%BA%9BSEO%E7%9B%B8%E5%85%B3%E6%A0%87%E7%AD%BE/" target="_self">
+          一些SEO相关标签
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/03/06/%E4%B8%80%E4%BA%9BSEO%E7%9B%B8%E5%85%B3%E6%A0%87%E7%AD%BE/" target="_self">
+        <div>
+          Normal1234&lt;link rel&#x3D;&quot;canonical&quot; href&#x3D;&quot;https:&#x2F;&#x2F;music.163.com&#x2F;&quot;&gt;&lt;meta name&#x3D;description content&#x3D;&quot;网易云音乐是一款专注于发现与分享的音乐产品，依托专业音乐人、DJ、好友推荐及社交功能，为用户打造全新的音乐生活。&quot;&gt;&lt;me
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-06 16:55" pubdate>
+              2022-03-06
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/06/Supervisor%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" target="_self">
+          Supervisor使用详解
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/03/06/Supervisor%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" target="_self">
+        <div>
+          一、supervisor简介Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。它是通过fork&#x2F;exec的方式把这些被管理的进程当作supervisor的子进程来启动，这样只要在supervisor的配置文件中，把要管理的进程的可执行文件的路径写进去即可。也实现当子进程挂掉的时候，父进程可
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-06 14:09" pubdate>
+              2022-03-06
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/12/%E5%AE%89%E8%A3%85Ubuntu%E5%90%8E%E5%8F%A6%E5%A4%96%E7%A3%81%E7%9B%98%E5%87%BA%E7%8E%B0%E5%8F%AA%E8%AF%BB%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" target="_self">
+          安装Ubuntu后另外磁盘出现只读的解决办法
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/02/12/%E5%AE%89%E8%A3%85Ubuntu%E5%90%8E%E5%8F%A6%E5%A4%96%E7%A3%81%E7%9B%98%E5%87%BA%E7%8E%B0%E5%8F%AA%E8%AF%BB%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" target="_self">
+        <div>
+          mountblkidsudo ntfsfix &#x2F;dev&#x2F;sdb1mount -a 其他卸载硬盘：chen@ilaptop:&#x2F;$ sudo umount &#x2F;dev&#x2F;sdb1 读写挂载硬盘chen@ilaptop:&#x2F;$ sudo mount -o rw &#x2F;dev&#x2F;sdb1 参考：https:&#x2F;&#x2F;jakting.com&#x2F;ar
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-12 09:55" pubdate>
+              2022-02-12
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/23/RabbitMQ%E5%AE%89%E8%A3%85/" target="_self">
+          RabbitMQ安装
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/23/RabbitMQ%E5%AE%89%E8%A3%85/" target="_self">
+        <div>
+          Docker安装RabbitMQ下载镜像1docker pull rabbitmq:management  #management标签的含义是下载的镜像包含manage模块。包含web管理页面。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-23 15:56" pubdate>
+              2022-01-23
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/05/RBAC%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E3%80%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" target="_self">
+          RBAC权限系统分析、设计与实现
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/01/05/RBAC%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E3%80%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" target="_self">
+        <div>
+          转载请备注来源： 《RBAC权限系统分析、设计与实现》 | shuwoom.com 最近，因为项目上需要设计实现一个权限管理模块，所以专门整理总结了RBAC的一些知识。 目前，使用最普遍的权限管理模型正是RBAC（Role-Based Access Control）模型，这篇文章也主要是介绍基于RBAC的权限管理系统，我会从RBAC是什么、如何设计RBAC两部分来介绍。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-05 21:32" pubdate>
+              2022-01-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/26/PHP%20yield%20%EF%BC%8C%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%8C%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E8%81%9A%E5%90%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E5%8D%8F%E7%A8%8B/" target="_self">
+          PHP yield ，生成器，迭代器，聚合迭代器，协程
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/26/PHP%20yield%20%EF%BC%8C%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%8C%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E8%81%9A%E5%90%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E5%8D%8F%E7%A8%8B/" target="_self">
+        <div>
+          yield语法1$data &#x3D; (yield $express);  yield 的左边是一个赋值语句，右边可以是值（也可是表达式） 。而yield 会先执行右边的表达式，并把值$value送到生成器外面。当生成器收到值后，会执行yield左边的语句，赋值给$data.
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-26 18:41" pubdate>
+              2021-12-26
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/12/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+          Docker学习笔记
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/12/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          Docker 官方文档地址:https:&#x2F;&#x2F;www.docker.com&#x2F;get-started  中文参考手册:https:&#x2F;&#x2F;docker_practice.gitee.io&#x2F;zh-cn&#x2F;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-12 12:38" pubdate>
+              2021-12-12
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/07/Linux%E4%B8%80%E4%BA%9B%E6%96%87%E4%BB%B6%E5%8F%8A%E7%94%A8%E9%80%94/" target="_self">
+          Linux一些文件及用途
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/07/Linux%E4%B8%80%E4%BA%9B%E6%96%87%E4%BB%B6%E5%8F%8A%E7%94%A8%E9%80%94/" target="_self">
+        <div>
+          常用文件&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-eth0 各参数的意思1234567891011121314151617DEVICE&#x3D;eth0     #网卡设备名称ONBOOT&#x3D;yes      #启动时是否激活 yes | noBOOTPROTO&#x3D;static        #协议类型IPADDR&#x3D;192.168.1.9
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-07 22:17" pubdate>
+              2021-12-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/linux/" class="category-chain-item">linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/07/%E7%A1%AC%E7%9B%98%EF%BC%8C%E5%88%86%E5%8C%BA/" target="_self">
+          硬盘，分区
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/07/%E7%A1%AC%E7%9B%98%EF%BC%8C%E5%88%86%E5%8C%BA/" target="_self">
+        <div>
+          专用名词 机械硬盘   主分区（min&#x3D;1，max&#x3D;4）——主分区也叫引导分区，Windows系统一般需要安装在这个主分区中，这样才能保证开机自动进入系统。简单来说，主分区就是可以引导电脑开机读取文件的一个磁盘分区
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-07 21:57" pubdate>
+              2021-12-07
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/05/%E5%87%A0%E4%B8%AA%E4%B9%A6%E7%AD%BE/" target="_self">
+          几个书签
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/05/%E5%87%A0%E4%B8%AA%E4%B9%A6%E7%AD%BE/" target="_self">
+        <div>
+          GoLang内存逃逸 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;linguoguo&#x2F;p&#x2F;10956685.html https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;145468000 https:&#x2F;&#x2F;blog.justwe.site&#x2F;post&#x2F;go-escape-heap&#x2F;  GC https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010649766&#x2F;article&#x2F;details&#x2F;8
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-05 11:59" pubdate>
+              2021-12-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/5/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/7/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022013308号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="代码笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-image"><a class="image is-7by3" href="/2022/03/06/%E4%B8%80%E4%BA%9BSEO%E7%9B%B8%E5%85%B3%E6%A0%87%E7%AD%BE/"><img class="fill" src="https://webdesignerdrops.com/wp-content/uploads/2017/03/WordPress-SEO-Tips-for-Non-Techies.jpg" alt="一些SEO相关标签"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-03-06T08:55:50.000Z" title="2022/3/6 下午4:55:50">2022-03-06</time>发表</span><span class="level-item"><time dateTime="2022-10-02T13:02:43.301Z" title="2022/10/2 下午9:02:43">2022-10-02</time>更新</span><span class="level-item">1 分钟读完 (大约221个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/03/06/%E4%B8%80%E4%BA%9BSEO%E7%9B%B8%E5%85%B3%E6%A0%87%E7%AD%BE/">一些SEO相关标签</a></h1><div class="content"><h1 id="Normal"><a href="#Normal" class="headerlink" title="Normal"></a>Normal</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=&quot;canonical&quot; href=&quot;https://music.163.com/&quot;&gt;</span><br><span class="line">&lt;meta name=description content=&quot;网易云音乐是一款专注于发现与分享的音乐产品，依托专业音乐人、DJ、好友推荐及社交功能，为用户打造全新的音乐生活。&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;keywords&quot; content=&quot;网易云音乐，音乐，播放器，网易，下载，播放，DJ，免费，明星，精选，歌单，识别音乐，收藏，分享音乐，音乐互动，高音质，320K，音乐社交，官网，music.163.com&quot; /&gt;</span><br><span class="line">&lt;meta name=&quot;Author&quot; contect=&quot;CZQ&quot;&gt;</span><br></pre></td></tr></table></figure></div><a class="article-more button is-small is-size-7" href="/2022/03/06/%E4%B8%80%E4%BA%9BSEO%E7%9B%B8%E5%85%B3%E6%A0%87%E7%AD%BE/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2022/03/06/Supervisor%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/"><img class="fill" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.JD8jlC184GfGpX9NNub-RwAAAA?pid=ImgDet&amp;rs=1" alt="Supervisor使用详解"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-03-06T06:09:39.000Z" title="2022/3/6 下午2:09:39">2022-03-06</time>发表</span><span class="level-item"><time dateTime="2022-11-14T07:32:48.973Z" title="2022/11/14 下午3:32:48">2022-11-14</time>更新</span><span class="level-item">13 分钟读完 (大约1981个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/03/06/Supervisor%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">Supervisor使用详解</a></h1><div class="content"><h2 id="一、supervisor简介"><a href="#一、supervisor简介" class="headerlink" title="一、supervisor简介"></a>一、supervisor简介</h2><p>Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。它是通过fork&#x2F;exec的方式把这些被管理的进程当作supervisor的子进程来启动，这样只要在supervisor的配置文件中，把要管理的进程的可执行文件的路径写进去即可。也实现当子进程挂掉的时候，父进程可以准确获取子进程挂掉的信息的，可以选择是否自己启动和报警。supervisor还提供了一个功能，可以为supervisord或者每个子进程，设置一个非root的user，这个user就可以管理它对应的进程。</p></div><a class="article-more button is-small is-size-7" href="/2022/03/06/Supervisor%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-02-12T01:55:38.000Z" title="2022/2/12 上午9:55:38">2022-02-12</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">几秒读完 (大约47个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/02/12/%E5%AE%89%E8%A3%85Ubuntu%E5%90%8E%E5%8F%A6%E5%A4%96%E7%A3%81%E7%9B%98%E5%87%BA%E7%8E%B0%E5%8F%AA%E8%AF%BB%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">安装Ubuntu后另外磁盘出现只读的解决办法</a></h1><div class="content"><p>mount<br>blkid<br>sudo ntfsfix &#x2F;dev&#x2F;sdb1<br>mount -a</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="卸载硬盘："><a href="#卸载硬盘：" class="headerlink" title="卸载硬盘："></a>卸载硬盘：</h3><p>chen@ilaptop:&#x2F;$ sudo umount &#x2F;dev&#x2F;sdb1</p>
-<h3 id="读写挂载硬盘"><a href="#读写挂载硬盘" class="headerlink" title="读写挂载硬盘"></a>读写挂载硬盘</h3><p>chen@ilaptop:&#x2F;$ sudo mount -o rw &#x2F;dev&#x2F;sdb1</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://jakting.com/archives/ubuntu-rw-windows-files.html">https://jakting.com/archives/ubuntu-rw-windows-files.html</a></p>
-</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2022/01/23/RabbitMQ%E5%AE%89%E8%A3%85/"><img class="fill" src="https://pic4.zhimg.com/v2-15a39b65844fd6d1d786dfec6eea34a3_1200x500.jpg" alt="RabbitMQ安装"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-01-23T07:56:30.000Z" title="2022/1/23 下午3:56:30">2022-01-23</time>发表</span><span class="level-item"><time dateTime="2022-10-02T13:02:51.440Z" title="2022/10/2 下午9:02:51">2022-10-02</time>更新</span><span class="level-item">3 分钟读完 (大约512个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/01/23/RabbitMQ%E5%AE%89%E8%A3%85/">RabbitMQ安装</a></h1><div class="content"><h1 id="Docker安装RabbitMQ"><a href="#Docker安装RabbitMQ" class="headerlink" title="Docker安装RabbitMQ"></a>Docker安装RabbitMQ</h1><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull rabbitmq:management  #management标签的含义是下载的镜像包含manage模块。包含web管理页面。</span><br></pre></td></tr></table></figure></div><a class="article-more button is-small is-size-7" href="/2022/01/23/RabbitMQ%E5%AE%89%E8%A3%85/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2022/01/05/RBAC%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E3%80%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/"><img class="fill" src="/images/20221002/0fa564bbfe97a5275de41e6e072f1445.jpg" alt="RBAC权限系统分析、设计与实现"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-01-05T13:32:42.000Z" title="2022/1/5 下午9:32:42">2022-01-05</time>发表</span><span class="level-item"><time dateTime="2022-10-02T13:03:00.359Z" title="2022/10/2 下午9:03:00">2022-10-02</time>更新</span><span class="level-item">14 分钟读完 (大约2117个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/01/05/RBAC%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E3%80%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">RBAC权限系统分析、设计与实现</a></h1><div class="content"><p>转载请备注来源： <a target="_blank" rel="noopener" href="https://shuwoom.com/?p=3041">《RBAC权限系统分析、设计与实现》</a> | <a target="_blank" rel="noopener" href="http://shuwoom.com/">shuwoom.com</a></p>
-<p>最近，因为项目上需要设计实现一个权限管理模块，所以专门整理总结了RBAC的一些知识。</p>
-<p>目前，使用最普遍的权限管理模型正是RBAC（Role-Based Access Control）模型，这篇文章也主要是介绍基于RBAC的权限管理系统，我会从RBAC是什么、如何设计RBAC两部分来介绍。</p></div><a class="article-more button is-small is-size-7" href="/2022/01/05/RBAC%E6%9D%83%E9%99%90%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E3%80%81%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/12/26/PHP%20yield%20%EF%BC%8C%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%8C%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E8%81%9A%E5%90%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E5%8D%8F%E7%A8%8B/"><img class="fill" src="/images/20221002/6605d992c6717e8ce8b191333fde8c58.jpg" alt="PHP yield ，生成器，迭代器，聚合迭代器，协程"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-26T10:41:13.000Z" title="2021/12/26 下午6:41:13">2021-12-26</time>发表</span><span class="level-item"><time dateTime="2022-10-02T13:03:22.516Z" title="2022/10/2 下午9:03:22">2022-10-02</time>更新</span><span class="level-item">3 分钟读完 (大约513个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/26/PHP%20yield%20%EF%BC%8C%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%8C%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E8%81%9A%E5%90%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E5%8D%8F%E7%A8%8B/">PHP yield ，生成器，迭代器，聚合迭代器，协程</a></h1><div class="content"><h1 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$data</span> = (<span class="keyword">yield</span> <span class="variable">$express</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>yield 的左边是一个赋值语句，右边可以是值（也可是表达式） 。而yield 会先执行右边的表达式，并把值$value送到生成器外面。当生成器收到值后，会执行yield左边的语句，赋值给$data.</p>
-</blockquote></div><a class="article-more button is-small is-size-7" href="/2021/12/26/PHP%20yield%20%EF%BC%8C%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%8C%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E8%81%9A%E5%90%88%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%8C%E5%8D%8F%E7%A8%8B/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/12/12/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="fill" src="http://www.x.com/upload/thumb/20211121/284059632911974a54235050016a79e3.png" alt="Docker学习笔记"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-12T04:38:00.000Z" title="2021/12/12 下午12:38:00">2021-12-12</time>发表</span><span class="level-item"><time dateTime="2022-11-11T10:39:17.915Z" title="2022/11/11 下午6:39:17">2022-11-11</time>更新</span><span class="level-item">1 小时读完 (大约12470个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/12/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Docker学习笔记</a></h1><div class="content"><h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><ul>
-<li><p>官方文档地址:<a target="_blank" rel="noopener" href="https://www.docker.com/get-started">https://www.docker.com/get-started</a></p>
-</li>
-<li><p>中文参考手册:<a target="_blank" rel="noopener" href="https://docker_practice.gitee.io/zh-cn/">https://docker_practice.gitee.io/zh-cn/</a></p>
-</li>
-</ul>
-<hr></div><a class="article-more button is-small is-size-7" href="/2021/12/12/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-07T14:17:18.000Z" title="2021/12/7 下午10:17:18">2021-12-07</time>发表</span><span class="level-item"><time dateTime="2022-10-04T03:23:24.228Z" title="2022/10/4 上午11:23:24">2022-10-04</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/linux/">linux</a></span><span class="level-item">3 分钟读完 (大约430个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/07/Linux%E4%B8%80%E4%BA%9B%E6%96%87%E4%BB%B6%E5%8F%8A%E7%94%A8%E9%80%94/">Linux一些文件及用途</a></h1><div class="content"><h1 id="常用文件"><a href="#常用文件" class="headerlink" title="常用文件"></a>常用文件</h1><h2 id="x2F-etc-x2F-sysconfig-x2F-network-scripts-x2F-ifcfg-eth0-各参数的意思"><a href="#x2F-etc-x2F-sysconfig-x2F-network-scripts-x2F-ifcfg-eth0-各参数的意思" class="headerlink" title="&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-eth0 各参数的意思"></a>&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-eth0 各参数的意思</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth0     #网卡设备名称</span><br><span class="line"></span><br><span class="line">ONBOOT=yes      #启动时是否激活 yes | no</span><br><span class="line"></span><br><span class="line">BOOTPROTO=static        #协议类型</span><br><span class="line"></span><br><span class="line">IPADDR=192.168.1.90     #网络IP地址</span><br><span class="line"></span><br><span class="line">NETMASK=255.255.255.0       #网络子网地址</span><br><span class="line"></span><br><span class="line">GATEWAY=192.168.1.1     #网关地址</span><br><span class="line"></span><br><span class="line">BROADCAST=192.168.1.255     #广播地址</span><br><span class="line"></span><br><span class="line">HWADDR=00:0C:29:FE:1A:09        #网卡MAC地址</span><br><span class="line"></span><br><span class="line">TYPE=Ethernet       #网卡类型为以太网</span><br></pre></td></tr></table></figure></div><a class="article-more button is-small is-size-7" href="/2021/12/07/Linux%E4%B8%80%E4%BA%9B%E6%96%87%E4%BB%B6%E5%8F%8A%E7%94%A8%E9%80%94/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-07T13:57:47.000Z" title="2021/12/7 下午9:57:47">2021-12-07</time>发表</span><span class="level-item"><time dateTime="2022-10-03T03:22:46.125Z" title="2022/10/3 上午11:22:46">2022-10-03</time>更新</span><span class="level-item">7 分钟读完 (大约1101个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/07/%E7%A1%AC%E7%9B%98%EF%BC%8C%E5%88%86%E5%8C%BA/">硬盘，分区</a></h1><div class="content"><h1 id="专用名词"><a href="#专用名词" class="headerlink" title="专用名词"></a>专用名词</h1><blockquote>
-<p>机械硬盘</p>
-</blockquote>
-<ul>
-<li><strong>主分区</strong>（min&#x3D;1，max&#x3D;4）——主分区也叫<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E5%BC%95%E5%AF%BC%E5%88%86%E5%8C%BA&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:121575655%7D">引导分区</a>，Windows系统一般需要安装在这个主分区中，这样才能保证开机自动进入系统。简单来说，主分区就是可以引导电脑开机读取文件的一个磁盘分区</li>
-</ul></div><a class="article-more button is-small is-size-7" href="/2021/12/07/%E7%A1%AC%E7%9B%98%EF%BC%8C%E5%88%86%E5%8C%BA/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-12-05T03:59:41.000Z" title="2021/12/5 上午11:59:41">2021-12-05</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">1 分钟读完 (大约224个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/12/05/%E5%87%A0%E4%B8%AA%E4%B9%A6%E7%AD%BE/">几个书签</a></h1><div class="content"><h1 id="GoLang"><a href="#GoLang" class="headerlink" title="GoLang"></a>GoLang</h1><h2 id="内存逃逸"><a href="#内存逃逸" class="headerlink" title="内存逃逸"></a>内存逃逸</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/linguoguo/p/10956685.html">https://www.cnblogs.com/linguoguo/p/10956685.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/145468000">https://zhuanlan.zhihu.com/p/145468000</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.justwe.site/post/go-escape-heap/">https://blog.justwe.site/post/go-escape-heap/</a></li>
-</ul>
-<h2 id="GC"><a href="#GC" class="headerlink" title="GC"></a>GC</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010649766/article/details/80582153">https://blog.csdn.net/u010649766/article/details/80582153</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000010813711">https://segmentfault.com/q/1010000010813711</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000010753702?_ea=2426880">https://segmentfault.com/a/1190000010753702?_ea=2426880</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/65426766">https://www.zhihu.com/question/65426766</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.golangtc.com/t/582be338b09ecc08ce0003b4">https://www.golangtc.com/t/582be338b09ecc08ce0003b4</a></li>
-</ul>
-<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011957758/article/details/82846609">https://blog.csdn.net/u011957758/article/details/82846609</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/raoxiaoya/article/details/111469483">https://blog.csdn.net/raoxiaoya/article/details/111469483</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhounixing/article/details/107334087">https://blog.csdn.net/zhounixing/article/details/107334087</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.modb.pro/db/226546">https://www.modb.pro/db/226546</a></li>
-</ul>
-<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.codercto.com/a/72000.html">https://www.codercto.com/a/72000.html</a></li>
-</ul>
-<h2 id="GORM"><a href="#GORM" class="headerlink" title="GORM"></a>GORM</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/486959472">https://zhuanlan.zhihu.com/p/486959472</a></li>
-</ul>
-<h2 id="image处理"><a href="#image处理" class="headerlink" title="image处理"></a>image处理</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/387753099">https://zhuanlan.zhihu.com/p/387753099</a></li>
-</ul>
-<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45901764/article/details/121020888">https://blog.csdn.net/weixin_45901764/article/details/121020888</a></li>
-</ul>
-<h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/alwaysrun/article/details/107749174">https://blog.csdn.net/alwaysrun/article/details/107749174</a></li>
-</ul>
-<h2 id="runtime"><a href="#runtime" class="headerlink" title="runtime"></a>runtime</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/inthat/article/details/118531656">https://blog.csdn.net/inthat/article/details/118531656</a></li>
-</ul>
-<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/%40font-face">https://developer.mozilla.org/zh-CN/docs/Web/CSS/%40font-face</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.itqaq.com/index/art/272.html">https://www.itqaq.com/index/art/272.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yuyangphpweibo/p/9044374.html">https://www.cnblogs.com/yuyangphpweibo/p/9044374.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/book.dom.php">https://www.php.net/manual/zh/book.dom.php</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/xushiyu1996818/article/details/104298486">https://blog.csdn.net/xushiyu1996818/article/details/104298486</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pureLaw/p/14779725.html">https://www.cnblogs.com/pureLaw/p/14779725.html</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.rbtree.cn/">http://www.rbtree.cn/</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.w3cschool.cn/wkspring/j3181mm3.html">https://www.w3cschool.cn/wkspring/j3181mm3.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/reference/configuration-options/#security.authorization">https://docs.mongodb.com/manual/reference/configuration-options/#security.authorization</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weidu01/article/details/105946606">https://blog.csdn.net/weidu01/article/details/105946606</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1844735" title="Screen命令">Screen命令</a></li>
-</ul>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/5/">上一页</a></div><div class="pagination-next"><a href="/page/7/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/5/">5</a></li><li><a class="pagination-link is-current" href="/page/6/">6</a></li><li><a class="pagination-link" href="/page/7/">7</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/17/">17</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">163</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/marxphp" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">maxphp</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/ElasticSearch/"><span class="level-start"><span class="level-item">ElasticSearch</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/linux/"><span class="level-start"><span class="level-item">linux</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/npm/"><span class="level-start"><span class="level-item">npm</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/php/"><span class="level-start"><span class="level-item">php</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/vue/"><span class="level-start"><span class="level-item">vue</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-15T06:16:51.000Z">2022-11-15</time></p><p class="title"><a href="/2022/11/15/iptables%E4%BD%BF%E7%94%A8/">iptables使用</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-11T05:26:49.000Z">2022-11-11</time></p><p class="title"><a href="/2022/11/11/Zabbix%E5%AE%89%E8%A3%85/">Zabbix安装</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-05T05:49:38.000Z">2022-11-05</time></p><p class="title"><a href="/2022/11/05/Css%E7%AC%94%E8%AE%B0/">Css笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-10T11:05:34.000Z">2022-10-10</time></p><p class="title"><a href="/2022/10/10/Mix%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%8F%98%E5%8C%96%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1/">MaxPHP监控文件变化重启服务</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-05T14:42:05.000Z">2022-10-05</time></p><p class="title"><a href="/2022/10/05/linux%E4%B8%8B%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">linux下查询进程占用的内存方法总结</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="代码笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

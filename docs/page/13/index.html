@@ -1,165 +1,686 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>代码笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="代码笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="代码笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="笔记"><meta property="og:type" content="blog"><meta property="og:title" content="代码笔记"><meta property="og:url" content="https://www.chengyao.xyz/"><meta property="og:site_name" content="代码笔记"><meta property="og:description" content="笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz"},"headline":"代码笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"代码笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"笔记"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?d0884aeebfcd3ca98ed3033285d6d03a";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(location.hash);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="代码笔记">
+<meta property="og:url" content="https://www.chengyao.xyz/page/13/index.html">
+<meta property="og:site_name" content="代码笔记">
+<meta property="og:description" content="笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="CY">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>代码笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>代码笔记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/images/wallpaper.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="业精于勤荒于嬉，行成于思毁于随"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/04/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D&amp;quot;%E9%9D%9E&amp;quot;%EF%BC%8C%E4%BB%A5%E5%8F%8A&amp;quot;%E9%9D%9E&amp;quot;%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8C%B9%E9%85%8D/" target="_self">
+          正则表达式匹配&#34;非&#34;，以及&#34;非&#34;字符串的匹配
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/04/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D&amp;quot;%E9%9D%9E&amp;quot;%EF%BC%8C%E4%BB%A5%E5%8F%8A&amp;quot;%E9%9D%9E&amp;quot;%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8C%B9%E9%85%8D/" target="_self">
+        <div>
+          #写法介绍首先，正则表达式的”非”，代表不想匹配某个字符。比如字符串 helloword123，&#x2F;[^0-9]+&#x2F;g 可以匹配非数字，即匹配结果为 helloword；
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-04 15:20" pubdate>
+              2021-04-04
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/04/Linux%E4%B8%8B%E7%99%BB%E5%BD%95Oracle%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%97%B6%E5%88%A0%E9%99%A4%E9%94%AE%5EH%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" target="_self">
+          Linux下登录Oracle命令行时删除键^H解决方法
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/04/Linux%E4%B8%8B%E7%99%BB%E5%BD%95Oracle%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%97%B6%E5%88%A0%E9%99%A4%E9%94%AE%5EH%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" target="_self">
+        <div>
+          在linux服务器下登录oracle的控制台，如果输入错误，想用删除键删除时却不能删除，打出的是^H的字符。 方法1：用如下的命令可以使删除键生效： 1$ stty erase ^H1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-04 15:19" pubdate>
+              2021-04-04
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/03/PHP%E7%9A%84%E9%97%AD%E5%8C%85/" target="_self">
+          PHP的闭包
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/03/PHP%E7%9A%84%E9%97%AD%E5%8C%85/" target="_self">
+        <div>
+          #减少foreach的循环的代码 Class synopsis 12345678 final class Closure &amp;#123;    &#x2F;* Methods *&#x2F;    private __construct()    public static bind(Closure $closure, ?object $newThis, object|string|null $newScope &#x3D; &amp;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-03 22:00" pubdate>
+              2021-04-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/php/" class="category-chain-item">php</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/03/PHP%E4%B8%AD%E7%9A%84Session/" target="_self">
+          PHP中的Session
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/03/PHP%E4%B8%AD%E7%9A%84Session/" target="_self">
+        <div>
+          一、session预定义常量个人感觉PHP 最大的特点就是功能的实现都靠提供的函数扩展，函数扩展都是根据功能分大类的，session只是其中的一个扩展。该扩展中定义了一些常量，可在PHP 编译或运行时动态载入时可用：
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-03 21:58" pubdate>
+              2021-04-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/03/FastCGI/" target="_self">
+          FastCGI
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/03/FastCGI/" target="_self">
+        <div>
+          #什么是CGI CGI全称”通用网关接口”（Common Gateway Interface），用于HTTP服务器与其它机器上的程序服务通信交流的一种工具，CGI程序须运行在网络服务器上。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-03 21:57" pubdate>
+              2021-04-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/03/URI%E5%92%8CURL%E7%9A%84%E5%8C%BA%E5%88%AB%E6%AF%94%E8%BE%83%E4%B8%8E%E7%90%86%E8%A7%A3/" target="_self">
+          URI和URL的区别比较与理解
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/03/URI%E5%92%8CURL%E7%9A%84%E5%8C%BA%E5%88%AB%E6%AF%94%E8%BE%83%E4%B8%8E%E7%90%86%E8%A7%A3/" target="_self">
+        <div>
+          #什么是URI URI，通一资源标志符(Uniform Resource Identifier， URI)，表示的是web上每一种可用的资源，如 HTML文档、图像、视频片段、程序等都由一个URI进行标识的。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-03 21:49" pubdate>
+              2021-04-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/03/SQL%E6%B3%A8%E5%85%A5%E3%80%81XSS%E4%BB%A5%E5%8F%8ACSRF%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" target="_self">
+          SQL注入、XSS以及CSRF分别是什么？
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/03/SQL%E6%B3%A8%E5%85%A5%E3%80%81XSS%E4%BB%A5%E5%8F%8ACSRF%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" target="_self">
+        <div>
+          #SQL注入 SQL注入是属于注入式攻击，这种攻击是因为在项目中没有将代码与数据（比如用户敏感数据）隔离，在读取数据的时候，错误的将数据作为代码的一部分执行而导致的。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-03 21:25" pubdate>
+              2021-04-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/02/ajax%E8%AF%B7%E6%B1%82/" target="_self">
+          ajax请求
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/02/ajax%E8%AF%B7%E6%B1%82/" target="_self">
+        <div>
+          javascriptXMLHttpRequest 对象　　XMLHttpRequest对象是ajax的基础,XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。目前所有浏览器都支持XMLHttpRequest
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-02 18:49" pubdate>
+              2021-04-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/02/PostgreSQL%20Copy%20%E5%91%BD%E4%BB%A4/" target="_self">
+          PostgreSQL Copy 命令
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/02/PostgreSQL%20Copy%20%E5%91%BD%E4%BB%A4/" target="_self">
+        <div>
+          COPY –  在表和文件之间拷贝数据 SynopsisCOPY tablename [ ( column [, …] ) ] FROM { ‘filename’ | STDIN } [ [ WITH ] [ BINARY ] [ OIDS ] [ DELIMITER [ AS ] ‘delimiter’ ] [ NULL [ AS ] ‘null string’ ] [ CSV [ QUOTE
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-02 18:46" pubdate>
+              2021-04-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/02/Oracle/" target="_self">
+          Oracle
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/04/02/Oracle/" target="_self">
+        <div>
+          查询建表语句 ：select dbms_metadata.get_ddl(‘TABLE’,’name’) from dual; 查看存储过程： select dbms_metadata.get_ddl(‘PROCEDURE’,’BSA_PROC_FTP_MGMT’,’CLARO’) from dual;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-02 18:40" pubdate>
+              2021-04-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/12/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/#board">11</a><a class="page-number" href="/page/12/#board">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/#board">14</a><a class="page-number" href="/page/15/#board">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/14/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022013308号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="代码笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-04T07:20:54.000Z" title="2021/4/4 下午3:20:54">2021-04-04</time>发表</span><span class="level-item"><time dateTime="2022-10-06T04:18:44.730Z" title="2022/10/6 下午12:18:44">2022-10-06</time>更新</span><span class="level-item">3 分钟读完 (大约463个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/04/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D&amp;quot;%E9%9D%9E&amp;quot;%EF%BC%8C%E4%BB%A5%E5%8F%8A&amp;quot;%E9%9D%9E&amp;quot;%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8C%B9%E9%85%8D/">正则表达式匹配&quot;非&quot;，以及&quot;非&quot;字符串的匹配</a></h1><div class="content"><p>#写法介绍<br>首先，正则表达式的”非”，代表不想匹配某个字符。<br>比如字符串 helloword123，&#x2F;[^0-9]+&#x2F;g 可以匹配非数字，即匹配结果为 helloword；</p></div><a class="article-more button is-small is-size-7" href="/2021/04/04/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D&amp;quot;%E9%9D%9E&amp;quot;%EF%BC%8C%E4%BB%A5%E5%8F%8A&amp;quot;%E9%9D%9E&amp;quot;%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%8C%B9%E9%85%8D/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-04T07:19:36.000Z" title="2021/4/4 下午3:19:36">2021-04-04</time>发表</span><span class="level-item"><time dateTime="2022-10-03T03:49:11.051Z" title="2022/10/3 上午11:49:11">2022-10-03</time>更新</span><span class="level-item">2 分钟读完 (大约361个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/04/Linux%E4%B8%8B%E7%99%BB%E5%BD%95Oracle%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%97%B6%E5%88%A0%E9%99%A4%E9%94%AE%5EH%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">Linux下登录Oracle命令行时删除键^H解决方法</a></h1><div class="content"><p>在linux服务器下登录oracle的控制台，如果输入错误，想用删除键删除时却不能删除，打出的是^H的字符。</p>
-<h4 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a><strong>方法1：</strong></h4><p>用如下的命令可以使删除键生效：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ stty erase ^H1</span><br></pre></td></tr></table></figure></div><a class="article-more button is-small is-size-7" href="/2021/04/04/Linux%E4%B8%8B%E7%99%BB%E5%BD%95Oracle%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%97%B6%E5%88%A0%E9%99%A4%E9%94%AE%5EH%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-03T14:00:14.000Z" title="2021/4/3 下午10:00:14">2021-04-03</time>发表</span><span class="level-item"><time dateTime="2022-10-04T03:25:01.886Z" title="2022/10/4 上午11:25:01">2022-10-04</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/php/">php</a></span><span class="level-item">4 分钟读完 (大约581个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/03/PHP%E7%9A%84%E9%97%AD%E5%8C%85/">PHP的闭包</a></h1><div class="content"><p>#减少foreach的循环的代码</p>
-<p>Class synopsis</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Closure</span> </span>&#123;</span><br><span class="line">    <span class="comment">/* Methods */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_ invoke__">__construct</span>()</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="title function_ invoke__">bind</span>(<span class="built_in">Closure</span> <span class="variable">$closure</span>, ?<span class="keyword">object</span> <span class="variable">$newThis</span>, <span class="keyword">object</span>|<span class="keyword">string</span>|<span class="literal">null</span> <span class="variable">$newScope</span> = <span class="string">&quot;static&quot;</span>): ?<span class="built_in">Closure</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_ invoke__">bindTo</span>(?<span class="keyword">object</span> <span class="variable">$newThis</span>, <span class="keyword">object</span>|<span class="keyword">string</span>|<span class="literal">null</span> <span class="variable">$newScope</span> = <span class="string">&quot;static&quot;</span>): ?<span class="built_in">Closure</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_ invoke__">call</span>(<span class="keyword">object</span> <span class="variable">$newThis</span>, <span class="keyword">mixed</span> ...<span class="variable">$args</span>): <span class="keyword">mixed</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="title function_ invoke__">fromCallable</span>(<span class="keyword">callable</span> <span class="variable">$callback</span>): <span class="built_in">Closure</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><a class="article-more button is-small is-size-7" href="/2021/04/03/PHP%E7%9A%84%E9%97%AD%E5%8C%85/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-03T13:58:51.000Z" title="2021/4/3 下午9:58:51">2021-04-03</time>发表</span><span class="level-item"><time dateTime="2022-10-06T04:18:24.401Z" title="2022/10/6 下午12:18:24">2022-10-06</time>更新</span><span class="level-item">11 分钟读完 (大约1678个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/03/PHP%E4%B8%AD%E7%9A%84Session/">PHP中的Session</a></h1><div class="content"><h1 id="一、session预定义常量"><a href="#一、session预定义常量" class="headerlink" title="一、session预定义常量"></a>一、session预定义常量</h1><p>个人感觉PHP 最大的特点就是功能的实现都靠提供的函数扩展，函数扩展都是根据功能分大类的，session只是其中的一个扩展。<br>该扩展中定义了一些常量，可在PHP 编译或运行时动态载入时可用：</p></div><a class="article-more button is-small is-size-7" href="/2021/04/03/PHP%E4%B8%AD%E7%9A%84Session/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-03T13:57:23.000Z" title="2021/4/3 下午9:57:23">2021-04-03</time>发表</span><span class="level-item"><time dateTime="2022-10-03T03:49:51.998Z" title="2022/10/3 上午11:49:51">2022-10-03</time>更新</span><span class="level-item">6 分钟读完 (大约949个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/03/FastCGI/">FastCGI</a></h1><div class="content"><p>#什么是CGI</p>
-<p>CGI全称”通用网关接口”（Common Gateway Interface），用于HTTP服务器与其它机器上的程序服务通信交流的一种工具，CGI程序须运行在网络服务器上。</p></div><a class="article-more button is-small is-size-7" href="/2021/04/03/FastCGI/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-03T13:49:25.000Z" title="2021/4/3 下午9:49:25">2021-04-03</time>发表</span><span class="level-item"><time dateTime="2022-10-03T03:50:02.677Z" title="2022/10/3 上午11:50:02">2022-10-03</time>更新</span><span class="level-item">6 分钟读完 (大约919个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/03/URI%E5%92%8CURL%E7%9A%84%E5%8C%BA%E5%88%AB%E6%AF%94%E8%BE%83%E4%B8%8E%E7%90%86%E8%A7%A3/">URI和URL的区别比较与理解</a></h1><div class="content"><p>#什么是URI</p>
-<p>URI，通一资源标志符(Uniform Resource Identifier， URI)，表示的是web上每一种可用的资源，如 HTML文档、图像、视频片段、程序等都由一个URI进行标识的。</p></div><a class="article-more button is-small is-size-7" href="/2021/04/03/URI%E5%92%8CURL%E7%9A%84%E5%8C%BA%E5%88%AB%E6%AF%94%E8%BE%83%E4%B8%8E%E7%90%86%E8%A7%A3/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-03T13:25:35.000Z" title="2021/4/3 下午9:25:35">2021-04-03</time>发表</span><span class="level-item"><time dateTime="2022-10-06T04:18:53.797Z" title="2022/10/6 下午12:18:53">2022-10-06</time>更新</span><span class="level-item">12 分钟读完 (大约1867个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/03/SQL%E6%B3%A8%E5%85%A5%E3%80%81XSS%E4%BB%A5%E5%8F%8ACSRF%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">SQL注入、XSS以及CSRF分别是什么？</a></h1><div class="content"><p>#SQL注入</p>
-<p>SQL注入是属于注入式攻击，这种攻击是因为在项目中没有将代码与数据（比如用户敏感数据）隔离，在读取数据的时候，错误的将数据作为代码的一部分执行而导致的。</p></div><a class="article-more button is-small is-size-7" href="/2021/04/03/SQL%E6%B3%A8%E5%85%A5%E3%80%81XSS%E4%BB%A5%E5%8F%8ACSRF%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-02T10:49:14.000Z" title="2021/4/2 下午6:49:14">2021-04-02</time>发表</span><span class="level-item"><time dateTime="2022-10-03T03:50:40.553Z" title="2022/10/3 上午11:50:40">2022-10-03</time>更新</span><span class="level-item">9 分钟读完 (大约1412个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/02/ajax%E8%AF%B7%E6%B1%82/">ajax请求</a></h1><div class="content"><h1 id="javascript"><a href="#javascript" class="headerlink" title="javascript"></a>javascript</h1><h2 id="XMLHttpRequest-对象"><a href="#XMLHttpRequest-对象" class="headerlink" title="XMLHttpRequest 对象"></a><strong>XMLHttpRequest 对象</strong></h2><p>　　XMLHttpRequest对象是ajax的基础,XMLHttpRequest 用于在后台与服务器交换数据。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。目前所有浏览器都支持XMLHttpRequest</p></div><a class="article-more button is-small is-size-7" href="/2021/04/02/ajax%E8%AF%B7%E6%B1%82/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-02T10:46:48.000Z" title="2021/4/2 下午6:46:48">2021-04-02</time>发表</span><span class="level-item"><time dateTime="2022-10-06T04:18:24.399Z" title="2022/10/6 下午12:18:24">2022-10-06</time>更新</span><span class="level-item">32 分钟读完 (大约4725个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/02/PostgreSQL%20Copy%20%E5%91%BD%E4%BB%A4/">PostgreSQL Copy 命令</a></h1><div class="content"><p>COPY –  在表和文件之间拷贝数据</p>
-<p>Synopsis<br>COPY tablename [ ( column [, …] ) ] FROM { ‘filename’ | STDIN } [ [ WITH ] [ BINARY ] [ OIDS ] [ DELIMITER [ AS ] ‘delimiter’ ] [ NULL [ AS ] ‘null string’ ] [ CSV [ QUOTE [ AS ] ‘quote’ ] [ ESCAPE [ AS ] ‘escape’ ] [ FORCE NOT NULL column [, …] ] COPY tablename [ ( column [, …] ) ] TO { ‘filename’ | STDOUT } [ [ WITH ] [ BINARY ] [ OIDS ] [ DELIMITER [ AS ] ‘delimiter’ ] [ NULL [ AS ] ‘null string’ ] [ CSV [ QUOTE [ AS ] ‘quote’ ] [ ESCAPE [ AS ] ‘escape’ ] [ FORCE QUOTEcolumn [, …] ]</p>
-<p>描述<br>COPY 在 PostgreSQL表和标准文件系统文件之间交换数据。 COPY TO 把一个表的所有内容都拷贝到一个文件， 而 COPY FROM 从一个文件里拷贝数据到一个表里（把数据附加到表中已经存在的内容里）。</p>
-<p>如果声明了一个字段列表，COPY 将只在文件和表之间拷贝声明的字段的数据。 如果表中有任何不在字段列表里的字段，那么 COPY FROM 将为那些字段插入缺省值。</p>
-<p>带文件名的 COPY 指示 PostgreSQL 服务器直接从文件中读写数据。 如果声明了文件名，那么该文件必须为服务器可见，而且文件名必须从服务器的角度声明。如果声明的是STDIN 或 STDOUT，数据通过连接在客户前端和服务器之间流动。</p>
-<p>参数<br>tablename<br>现存表的名字（可以有模式修饰）。</p>
-<p>column<br>可选的待拷贝字段列表。如果没有声明字段列表，那么将使用所有字段。</p>
-<p>filename<br>输入或输出文件的绝对路径名。</p>
-<p>STDIN<br>声明输入是来自客户端应用。</p>
-<p>STDOUT<br>声明输入前往客户端应用。</p>
-<p>BINARY<br>使用二进制格式存储和读取，而不是以文本的方式。 在二进制模式下，不能声明 DELIMITERS，NULL 或者 CSV选项。</p>
-<p>OIDS<br>声明为每行拷贝内部对象标识（OID）。 （如果给那些没有 OID 的表声明了 OIDS 选项，则抛出一个错误。）</p>
-<p>delimiter<br>用于在文件中每行中分隔各个字段的单个字符。 在文本模式下，缺省是水平制表符（tab），在 CSV 模式下是一个逗号。</p>
-<p>null string<br>个代表 NULL 值的字串。在文本模式下缺省是 \N （反斜杠-N）， 在 CSV 模式下是一个没有引号的空值。 如果你不想区分空值和空字串，那么即使在文本模式下可能你也会用一个空字串。</p>
-<p>注意: 在使用 COPY FROM 的时候，任何匹配这个字串的字串将被存储为 NULL 值， 所以你应该确保你用的字串和COPY TO相同。</p>
-<p>CSV<br>打开逗号分隔变量（CSV）模式。</p>
-<p>quote<br>声明 CSV 模式里的引号字符。缺省是双引号。</p>
-<p>escape<br>声明在 CSV 模式下应该出现在数据里 QUOTE 字符值前面的字符。 缺省是 QUOTE 值（通常是双引号）。</p>
-<p>FORCE QUOTE<br>在 CSV COPY TO 模式下，强制在每个声明的字段周围对所有非 NULL 值都使用引号包围。 NULL 从不会被引号包围。</p>
-<p>FORCE NOT NULL<br>在 CSV COPY FROM 模式下，把声明的每个字段都当作它们有引号包围来处理， 因此就没有 NULL 值。对于在CSV 模式下的缺省空字串（’’）， 这样导致一个缺失的数值当作一个零长字串输入。</p>
-<p>注意<br>COPY 只能用于表，不能用于视图。</p>
-<p>BINARY 关键字将强制使用二进制对象而不是文本存储&#x2F;读取所有数据。 这样做在一定程度上比传统的拷贝命令快，但二进制拷贝文件在不同机器体系间的植性不是很好。</p>
-<p>你对任何要COPY TO 出来的数据必须有选取数据的权限，对任何要 COPY FROM 入数据的表必须有插入权限。</p>
-<p>COPY 命令里面的文件必须是由服务器直接读或写的文件，而不是由客户端应用读写。 因此，它们必须位于数据库服务器上或者可以为数据库服务器所访问，而不是由客户端做这些事情。 它们必须是PostgreSQL用户（服务器运行的用户 ID）可以访问到并且可读或者可写，而不是客户端。 COPY 到一个命名文件是只允许数据库超级用户进行的，因为它允许读写任意服务器有权限访问的文件。</p>
-<p>不要混淆 COPY 和 psql 指令 \copy。 \copy 调用 COPY FROM STDIN 或者 COPY TO STDOUT， 然后把数据抓取&#x2F;存储到一个 psql 客户端可以访问的文件中。 因此，使用 \copy 的时候，文件访问权限是由客户端而不是服务器端决定的。</p>
-<p>我们建议在 COPY 里的文件名字总是使用绝对路径。 在 COPY TO 的时候是由服务器强制进行的， 但是对于COPY FROM，你的确有从一个声明为相对路径的文件里读取的选择。 该路径将解释为相对于服务器的工作目录（在数据目录里的什么地方），而不是客户端的工作目录。</p>
-<p>COPY FROM 会激活所有触发器和检查约束。不过，不会激活规则。</p>
-<p>COPY 输入和输出是被 DateStyle 影响的。 为了和其它 PostgreSQL 安装移植，（它们可能用的不是缺省DateStyle 设置）， 我们应该在使用 COPY 前把 DateStyle 设置为ISO。</p>
-<p>COPY 在第一个错误处停下来。这些在 COPY TO中不应该导致问题， 但在 COPY FROM 时目的表会已经接收到早先的行， 这些行将不可见或不可访问，但是仍然会占据磁盘空间。 如果你碰巧是拷贝很大一块数据文件的话， 积累起来，这些东西可能会占据相当大的一部分磁盘空间。你可以调用 VACUUM 来恢复那些磁盘空间。</p>
-<p>文件格式</p>
-<p>文本格式<br>当不带 BINARY 或者 CSV 选项使用 COPY 时， 读写的文件是一个文本文件，每行代表表中一个行。 行中的列（字段）用分隔符分开。 字段值本身是由与每个字段类型相关的输出函数生成的字符串， 或者是输入函数可接受的字串。 数据中使用特定的空值字串表示那些为 NULL 的字段。 如果输入文件的任意行包含比预期多或者少的字段，那么 COPY FROM将抛出一个错误。 如果声明了 OIDS，那么 OID 将作为第一个字段读写， 放在所有用户字段前面。</p>
-<p>数据的结束可以用一个只包含反斜杠和句点（.）的行表示。 如果从文件中读取数据，那么数据结束的标记是不必要的， 因为文件结束起的作用就很好了；但是在 3.0 之前的客户端协议里，如果在客户端应用之间拷贝数据， 那么必须要有结束标记。</p>
-<p>反斜杠字符（\）可以用在 COPY 里给那些会有歧义的字符进行逃逸（否则那些字符会被当做行或者字段分隔符处理）。 特别是下面的字符如果是字段值的一部分时，必须前缀一个反斜杠：反斜杠本身，换行符，回车，以及当前分隔符。</p>
-<p>声明的空字串被 COPY TO 不加任何反斜杠发送；与之相对，COPY FROM 在删除反斜杠之前拿它的输入与空字串比较。因此，像 \N 这样的空字串不会和实际数据值 \N 之间混淆（因为后者会表现成 \N）。</p>
-<p>COPY FROM 识别下列特殊反斜杠序列：</p>
-<p>序列<br>代表物</p>
-<p>\b<br>反斜杠 (ASCII 8)</p>
-<p>\f<br>进纸 (ASCII 12)</p>
-<p>\n<br>换行符 (ASCII 10)</p>
-<p>\r<br>回车 (ASCII 13)</p>
-<p>\t<br>Tab (ASCII 9)</p>
-<p>\v<br>垂直制表符 (ASCII 11)</p>
-<p>\digits<br>反斜杠后面跟着一到三个八进制数，表示ASCII值为该数的字符</p>
-<p>目前，COPY TO 将绝不会发出一个八进制反斜杠序列， 但是它的确使用了上面列出的其它字符用于控制字符。</p>
-<p>绝对不要把反斜杠放在一个数据字符N或者句点（.）前面。 这样的组合将分别被误认为是空字串或者数据结束标记。 另外一个没有在上面的表中列出的反斜杠字符就是它自己。</p>
-<p>我们强烈建议生成 COPY 数据的应用把换行符和回车分别转换成 \n 和 \r 序列。 目前我们可以用一个反斜杠和一个回车表示一个数据回车，以及用一个反斜杠和一个换行符表示一个数据换行符。 不过，这样的表示在将来的版本中缺省时可能不会被接受。 并且，如果在不同机器之间传递 COPY 文件，也是非常容易出错的 （比如在 Unix 和 Windows 之间）。</p>
-<p>COPY TO 将再每行的结尾是用一个 Unix 风格的换行符(“\n”)， 或者是在 Microsoft Windows 上运行的服务器上用（”\r\n”）标记一行终止，但只是用于COPY到服务器文件里； 为了在不同平台之间一致，COPY TO STDOUT总是发送 “\n”，不管服务器平台是什么。 COPY FROM 可以处理那些以回车符，或者换行符，或者回车换行符作为行结束的数据。 为了减少在数据中出现的未逃逸的新行或者回车导致的错误，如果输入的行结尾不像上面这些符号， COPY FROM 会发出警告。</p>
-<p>CSV 格式<br>这个格式用于输入和输出逗号分隔数值（CSV）文件格式， 许多其它程序都用这个文件格式，比如电子报表。这个模式下生成并识别逗号分隔的 CSV 逃逸机制， 而不是使用PostgreSQL 标准文本模式的逃逸。</p>
-<p>每条记录的值都是用 DELIMITER 字符分隔的。 如果数值本身包含分隔字符，QUOTE 字符，NULL 字串， 一个回车，或者进行字符，那么整个数值用 QUOTE 字符前缀和后缀（包围）， 并且数值里任何 QUOTE 字符或者ESCAPE 字符都前导逃逸字符。 你也可以使用 FORCE QUOTE 在输出非 NULL 的指定字段值时强制引号包围。</p>
-<p>CSV 格式没有标准的办法区分一个 NULL 值和一个空字串。 PostgreSQL 的 COPY 通过引号包围来处理这些。 一个当作 NULL 输出的 NULL 值是没有引号包围的， 而匹配 NULL字串的数据值是用引号包围的。 因此，使用缺省设置时，一个 NULL 是写做一个无引号包围的空字串， 而一个空字串写做双引号包围（””）。读取数值也遵循类似的规则。 你可以使用 FORCE NOT NULL 来避免为特定字段进行 NULL 比较。</p>
-<p>注意: CSV 模式可以识别和生成带有引号包围的回车和进行（hang）的 CVS 文件。 因此这些文件并不像文本模式的文件那样严格地每个数据行一行。 不过，如果任何字段本身包含并不匹配 CVS 文件本身的换行符序列， 那么 PostgreSQL 会拒绝 COPY 输入。通常，输入包含行结束符的数据的时候，用文本或者二进制格式比 CSV 更安全。</p>
-<p>注意: 许多程序生成奇怪的并且有时候不正确的 CVS 文件， 所以这个文件格式更像一种惯用格式，而不是一种标准。 因此你可能碰到一些不能使用这个机制输入的文件，而 COPY 也可能生成一些其它程序不能处理的文件。</p>
-<p>二进制格式<br>在PostgreSQL 7.4 中的 COPY BINARY 的文件格式做了变化。新格式由一个文件头，零或多条元组， 以及文件尾组成。文件头和数据现在是网络字节序。</p>
-<p>文件头<br>文件头由 15 个字节的固定域组成，后面跟着一个变长的头扩展区。 固定域是：</p>
-<p>签名<br>11-字节的序列 “PGBCOPY\n\377\r\n\0” — 请注意字节零是签名是要求的一部分。 （使用这个签名是为了让我们能够很容易看出文件是否已经被一个非 8 位安全的转换器给糟蹋了。 这个签名会被行结尾转换过滤器，删除字节零，删除高位，或者奇偶的改变而改变。）</p>
-<p>标志域<br>32 位整数掩码表示该文件格式的重要方面。 位是从 0（LSB）到 31 （MSB）编码的 — 请注意这个域是以网络字节序存储的（高位在前）， 后继的整数都是如此。位 16 - 31 是保留用做关键文件格式信息的； 如果读者发现一个不认识的位出现在这个范围内，那么它应该退出。 位 0-15 都保留为标志向后兼容的格式使用；读者可以忽略这个范围内的不认识的位。目前只定义了一个标志位，而其它的必须是零：</p>
-<p>Bit 16<br>如果为 1，那么在数据中包括了 OID；如果为 0，则没有</p>
-<p>头扩展范围长度<br>32 位整数，以字节计的头剩余长度，不包括自身。目前，它是零， 后面紧跟第一条元组。对该格式的更多的修改都将允许额外的数据出现在头中。 读者应该忽略任何它不知道该如何处理的头扩展数据。</p>
-<p>头扩展数据是一个用来保留一个自定义的数据序列块用的。这个标志域无意告诉读者扩展区的内容是什么。头扩展的具体设计内容留给以后的版本用。</p>
-<p>这样设计就允许向下兼容头附加（增加头扩展块，或者设置低位序标志位）以及非向下兼容修改（设置高位标志位以标识这样的修改， 并且根据需要向扩展区域增加支持数据）。</p>
-<p>元组<br>每条元组都以一个 16 位整数计数开头，该计数是元组中字段的数目。 （目前，在一个表里的每条元组都有相同的计数，但可能不会永远这样。） 然后后面不断出现元组中的各个字段，字段先是一个 32 位的长度字，后面跟着那么长的字段数据。 （长度字并不包括自己，并且可以为零。）一个特例是：-1 表示一个 NULL 字段值。 在 NULL 情况下，后面不会跟着数值字节。</p>
-<p>在数据域之间没有对奇填充或者任何其它额外的数据。</p>
-<p>目前，一个 COPY BINARY 文件里的所有数据值都假设是二进制格式的（格式代码为一）。 预计将来的扩展可能增加一个头域，允许为每个字段声明格式代码。</p>
-<p>为了判断实际元组数据的正确的二进制格式，你应该阅读 PostgreSQL 源代码， 特别是该字段数据类型的*send 和 *recv 函数（典型的函数可以在源代码的src&#x2F;backend&#x2F;utils&#x2F;adt&#x2F; 目录找到）。</p>
-<p>如果在文件中包括了 OID，那么该 OID 域立即跟在字段计数字后面。 它是一个普通的字段，只不过它没有包括在字段计数。但它包括长度字 — 这样就允许我们不用花太多的劲就可以处理 4 字节和 8 字节的 OID，并且如果某个家伙允许 OID 是可选的话，那么还可以把 OID 显示成空。</p>
-<p>文件尾<br>文件尾包括保存着 -1 的一个 16 位整数字。这样就很容易与一条元组的域计数字相区分。</p>
-<p>如果一个域计数字既不是 -1 也不是预期的字段的数目，那么读者应该报错。 这样就提供了对丢失与数据的同步的额外的检查。</p>
-<p>例子<br>下面的例子把一个表拷贝到客户端， 使用竖直条（|）作为域分隔符：</p>
-<p>COPY country TO STDOUT WITH DELIMITER ‘|’;<br>从一个 Unix 文件中拷贝数据到一个country表中：</p>
-<p>COPY country FROM ‘&#x2F;usr1&#x2F;proj&#x2F;bray&#x2F;sql&#x2F;country_data’;<br>下面是一个可以从 STDIN 中拷贝数据到表中的例子：</p>
-<p>AF AFGHANISTAN AL ALBANIA DZ ALGERIA ZM ZAMBIA ZW ZIMBABWE<br>请注意在这里每行里的空白实际上是一个水平制表符 tab。</p>
-<p>下面的是同样的数据，在一台 Linux&#x2F;i586 机器上以二进制形式输出。 这些数据是用 Unix 工具 od -c 过滤之后输出的。 该表有三个字段；第一个是 char(2)， 第二个是text， 第三个是integer。所有的行在第三个域都是一个 null 值。</p>
-<p>0000000 P G C O P Y \n 377 \r \n \0 \0 \0 \0 \0 \0 0000020 \0 \0 \0 \0 003 \0 \0 \0 002 A F \0 \0 \0 013 A 0000040 F G H A N I S T A N 377 377 377 377 \0 003 0000060 \0 \0 \0 002 A L \0 \0 \0 007 A L B A N I 0000100 A 377 377 377 377 \0 003 \0 \0 \0 002 D Z \0 \0 \0 0000120 007 A L G E R I A 377 377 377 377 \0 003 \0 \0 0000140 \0 002 Z M \0 \0 \0 006 Z A M B I A 377 377 0000160 377 377 \0 003 \0 \0 \0 002 Z W \0 \0 \0 \b Z I 0000200 M B A B W E 377 377 377 377 377 377</p>
-<p>兼容性<br>在 SQL 标准里没有 COPY 语句。</p>
-<p>PostgreSQL 7.3 以前使用下面的语法，现在仍然支持：</p>
-<p>COPY [ BINARY ] tablename [ WITH OIDS ] FROM { ‘filename’ | STDIN } [ [USING] DELIMITERS ‘delimiter’ ] [ WITH NULL AS ‘null string’ ] COPY [ BINARY ] tablename [ WITH OIDS ] TO { ‘filename’ | STDOUT } [ [USING] DELIMITERS ‘delimiter’ ] [ WITH NULL AS ‘null string’ ]<br>————————————————<br>版权声明：本文为CSDN博主「DemonHunter211」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/kwame211/article/details/75968013">https://blog.csdn.net/kwame211/article/details/75968013</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-02T10:40:16.000Z" title="2021/4/2 下午6:40:16">2021-04-02</time>发表</span><span class="level-item"><time dateTime="2022-10-03T03:50:55.619Z" title="2022/10/3 上午11:50:55">2022-10-03</time>更新</span><span class="level-item">3 分钟读完 (大约495个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/04/02/Oracle/">Oracle</a></h1><div class="content"><p>查询建表语句 ：select dbms_metadata.get_ddl(‘TABLE’,’name’) from dual;</p>
-<p>查看存储过程： select dbms_metadata.get_ddl(‘PROCEDURE’,’BSA_PROC_FTP_MGMT’,’CLARO’) from dual;</p></div><a class="article-more button is-small is-size-7" href="/2021/04/02/Oracle/#more">阅读更多</a></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/12/">上一页</a></div><div class="pagination-next"><a href="/page/14/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/12/">12</a></li><li><a class="pagination-link is-current" href="/page/13/">13</a></li><li><a class="pagination-link" href="/page/14/">14</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/17/">17</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">163</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/marxphp" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">maxphp</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/ElasticSearch/"><span class="level-start"><span class="level-item">ElasticSearch</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/linux/"><span class="level-start"><span class="level-item">linux</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/npm/"><span class="level-start"><span class="level-item">npm</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/php/"><span class="level-start"><span class="level-item">php</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/vue/"><span class="level-start"><span class="level-item">vue</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-15T06:16:51.000Z">2022-11-15</time></p><p class="title"><a href="/2022/11/15/iptables%E4%BD%BF%E7%94%A8/">iptables使用</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-11T05:26:49.000Z">2022-11-11</time></p><p class="title"><a href="/2022/11/11/Zabbix%E5%AE%89%E8%A3%85/">Zabbix安装</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-05T05:49:38.000Z">2022-11-05</time></p><p class="title"><a href="/2022/11/05/Css%E7%AC%94%E8%AE%B0/">Css笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-10T11:05:34.000Z">2022-10-10</time></p><p class="title"><a href="/2022/10/10/Mix%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%8F%98%E5%8C%96%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1/">MaxPHP监控文件变化重启服务</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-05T14:42:05.000Z">2022-10-05</time></p><p class="title"><a href="/2022/10/05/linux%E4%B8%8B%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">linux下查询进程占用的内存方法总结</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="代码笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

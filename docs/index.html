@@ -1,137 +1,686 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>代码笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="代码笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="代码笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="笔记"><meta property="og:type" content="blog"><meta property="og:title" content="代码笔记"><meta property="og:url" content="https://www.chengyao.xyz/"><meta property="og:site_name" content="代码笔记"><meta property="og:description" content="笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz"},"headline":"代码笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"代码笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"笔记"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?d0884aeebfcd3ca98ed3033285d6d03a";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(location.hash);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="代码笔记">
+<meta property="og:url" content="https://www.chengyao.xyz/index.html">
+<meta property="og:site_name" content="代码笔记">
+<meta property="og:description" content="笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="CY">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>代码笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>代码笔记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/images/wallpaper.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="业精于勤荒于嬉，行成于思毁于随"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/11/15/iptables%E4%BD%BF%E7%94%A8/" target="_self">
+          iptables使用
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/11/15/iptables%E4%BD%BF%E7%94%A8/" target="_self">
+        <div>
+          ubuntu系统ubuntu默认没有安装iptables，需要手动安装 apt-get install iptables, 默认没有配置文件，需要通过iptables-save &gt; &#x2F;etc&#x2F;network&#x2F;iptables.up.rules 来生成，iptables配置文件路径及文件名建议为&#x2F;etc&#x2F;network&#x2F;iptable
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-11-15 14:16" pubdate>
+              2022-11-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/11/11/Zabbix%E5%AE%89%E8%A3%85/" target="_self">
+          Zabbix安装
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/11/11/Zabbix%E5%AE%89%E8%A3%85/" target="_self">
+        <div>
+          安装官方安装文档：https:&#x2F;&#x2F;www.zabbix.com&#x2F;documentation&#x2F;5.4&#x2F;zh&#x2F;manual&#x2F;installation&#x2F;install 常见错误：  configure: error: Invalid Net-SNMP directory - unable to find net-snmp-config   Ubuntu:  apt-get install -y libs
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-11-11 13:26" pubdate>
+              2022-11-11
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/11/05/Css%E7%AC%94%E8%AE%B0/" target="_self">
+          Css笔记
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/11/05/Css%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          before &#x2F; after例如下面的代码，content可以是目标元素的任何属性，只需要使用attr即可 1&lt;a class&#x3D;&quot;email&quot; title&#x3D;&quot;redirect&quot;&gt;URL&lt;&#x2F;a&gt;  123.email::before &amp;#123;    content: &quot;&quot;&amp;#125;  123.emai
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-11-05 13:49" pubdate>
+              2022-11-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/10/10/Mix%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%8F%98%E5%8C%96%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1/" target="_self">
+          MaxPHP监控文件变化重启服务
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/10/Mix%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%8F%98%E5%8C%96%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1/" target="_self">
+        <div>
+          安装1composer require max&#x2F;watcher
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-10-10 19:05" pubdate>
+              2022-10-10
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/10/05/linux%E4%B8%8B%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" target="_self">
+          linux下查询进程占用的内存方法总结
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/05/linux%E4%B8%8B%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" target="_self">
+        <div>
+          假设现在有一个「php-cgi」的进程 ，进程id为「25282」。现在想要查询该进程占用的内存大小。linux命令行下有很多的工具进行查看，现总结常见的几种方式：
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-10-05 22:42" pubdate>
+              2022-10-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/10/04/Elasticsearch-Api/" target="_self">
+          Elasticsearch Api
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/04/Elasticsearch-Api/" target="_self">
+        <div>
+          GET &#x2F;_cat&#x2F;health?v集群健康状况，status有以下三种  green 每个索引的primary shard和replica shard都是active状态的 yellow 每个索引的primary shard都是activi状态，部分replica shard不是active状态，处于不可用状态 red 部分索引数据可能丢失了  primary shard 和
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-10-04 19:32" pubdate>
+              2022-10-04
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/" target="_self">
+          tcpdump详细教程
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/" target="_self">
+        <div>
+          介绍tcpdump - dump traffic on a network tcpdump是一个用于截取网络分组，并输出分组内容的工具。凭借强大的功能和灵活的截取策略，使其成为类UNIX系统下用于网络分析和问题排查的首选工具 tcpdump 支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-10-01 14:56" pubdate>
+              2022-10-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/linux/" class="category-chain-item">linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+          Typescript学习笔记
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          类型any &#x2F; number &#x2F; 元组 &#x2F; 枚举 &#x2F; never 元组1let map : [string, number] &#x3D; [&quot;str&quot;, 123]  枚举12enum Color &amp;#123;Red, Blue, Green&amp;#125;let c Color &#x3D; Color.Red
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-18 13:06" pubdate>
+              2022-09-18
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/" target="_self">
+          Go各时间字符串的解析
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/" target="_self">
+        <div>
+          Go 中时间格式化的模板123456789101112131415161718const (    ANSIC       &#x3D; &quot;Mon Jan _2 15:04:05 2006&quot;    UnixDate    &#x3D; &quot;Mon Jan _2 15:04:05 MST 2006&quot;    RubyDate    &#x3D; &quot;Mon Jan 02 15:04:0
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-04 21:30" pubdate>
+              2022-09-04
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" target="_self">
+          版本号命名规范
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/" target="_self">
+        <div>
+          版本号的格式为 X.Y.Z(又称 Major.Minor.Patch)，递增的规则为：  X 表示主版本号，当 API 的兼容性变化时，X 需递增。 Y 表示次版本号，当增加功能时(不影响 API 的兼容性)，Y 需递增。 Z 表示修订号，当做 Bug 修复时(不影响 API 的兼容性)，Z 需递增。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-21 10:56" pubdate>
+              2022-08-21
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022013308号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="代码笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-11-15T06:16:51.000Z" title="2022/11/15 下午2:16:51">2022-11-15</time>发表</span><span class="level-item"><time dateTime="2022-11-15T06:23:17.316Z" title="2022/11/15 下午2:23:17">2022-11-15</time>更新</span><span class="level-item">1 分钟读完 (大约165个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/11/15/iptables%E4%BD%BF%E7%94%A8/">iptables使用</a></h1><div class="content"><h1 id="ubuntu系统"><a href="#ubuntu系统" class="headerlink" title="ubuntu系统"></a>ubuntu系统</h1><p>ubuntu默认没有安装iptables，需要手动安装 apt-get install iptables, 默认没有配置文件，需要通过iptables-save &gt; &#x2F;etc&#x2F;network&#x2F;iptables.up.rules 来生成，iptables配置文件路径及文件名建议为&#x2F;etc&#x2F;network&#x2F;iptables.up.rules,因为执行iptables-apply默认指向该文件，也可以通过-w参数指定文件，Ubuntu 没有重启iptables的命令，执行iptables-apply生效</p>
-<p>常用命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iptables-restore &lt; /etc/network/iptables.up.rules 导入</span><br><span class="line">iptables -nL --line-number  列表</span><br><span class="line">iptables -A INPUT -p tcp --dport 22 -j ACCEPT 添加</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-<p>注：允许策略一定要写到拒绝的上面，否则没用</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/daocaokafei/article/details/115091313">https://blog.csdn.net/daocaokafei/article/details/115091313</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-11-11T05:26:49.000Z" title="2022/11/11 下午1:26:49">2022-11-11</time>发表</span><span class="level-item"><time dateTime="2022-11-11T05:49:43.814Z" title="2022/11/11 下午1:49:43">2022-11-11</time>更新</span><span class="level-item">1 分钟读完 (大约141个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/11/11/Zabbix%E5%AE%89%E8%A3%85/">Zabbix安装</a></h1><div class="content"><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>官方安装文档：<a target="_blank" rel="noopener" href="https://www.zabbix.com/documentation/5.4/zh/manual/installation/install">https://www.zabbix.com/documentation/5.4/zh/manual/installation/install</a></p>
-<p>常见错误：</p>
-<ul>
-<li><p>configure: error: Invalid Net-SNMP directory - unable to find net-snmp-config</p>
-<pre><code>  Ubuntu:  apt-get install -y libsnmp-dev
-  Centos:  yum install -y net-snmp-devel
-</code></pre>
-</li>
-<li><p>configure: error: Not found MySQL library</p>
-<pre><code>  Ubuntu： apt install -y libmysqlclient-dev
-  Centos： yum install -y mariadb-devel
-</code></pre>
-</li>
-<li><p>configure: error: Unable to use libevent (libevent check failed)</p>
-<pre><code>  Ubuntu: apt install libevent-dev -y
-  Centos: yum install libevent-devel  -y
-</code></pre>
-</li>
-<li><p>配置前台报错 the table “dbversion” was not found.</p>
-<pre><code>  参考： https://www.zabbix.com/forum/zabbix-troubleshooting-and-problems/430162-the-table-dbversion-was-not-found
 
-  找到源码的database里的schema.sql导入，cat schema.sql | psql -Upostgres -W -d zabbix
-</code></pre>
-</li>
-</ul>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-11-05T05:49:38.000Z" title="2022/11/5 下午1:49:38">2022-11-05</time>发表</span><span class="level-item"><time dateTime="2022-11-05T05:52:49.683Z" title="2022/11/5 下午1:52:49">2022-11-05</time>更新</span><span class="level-item">1 分钟读完 (大约131个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/11/05/Css%E7%AC%94%E8%AE%B0/">Css笔记</a></h1><div class="content"><h1 id="before-x2F-after"><a href="#before-x2F-after" class="headerlink" title="before &#x2F; after"></a>before &#x2F; after</h1><p>例如下面的代码，content可以是目标元素的任何属性，只需要使用attr即可</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;email&quot;</span> <span class="attr">title</span>=<span class="string">&quot;redirect&quot;</span>&gt;</span>URL<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.email</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.email</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="built_in">attr</span>(title)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
-<h1 id="backdrop-filter"><a href="#backdrop-filter" class="headerlink" title="backdrop-filter"></a>backdrop-filter</h1><p>backdrop-filter CSS 属性可以让你为一个元素后面区域添加图形效果（如模糊或颜色偏移）。因为它适用于元素背后的所有元素，为了看到效果，必须使元素或其背景至少部分透明。</p>
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/backdrop-filter">https://developer.mozilla.org/zh-CN/docs/Web/CSS/backdrop-filter</a></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-10-10T11:05:34.000Z" title="2022/10/10 下午7:05:34">2022-10-10</time>发表</span><span class="level-item"><time dateTime="2022-10-26T00:45:24.616Z" title="2022/10/26 上午8:45:24">2022-10-26</time>更新</span><span class="level-item">1 分钟读完 (大约129个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/10/10/Mix%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%8F%98%E5%8C%96%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1/">MaxPHP监控文件变化重启服务</a></h1><div class="content"><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require max/watcher</span><br></pre></td></tr></table></figure></div><a class="article-more button is-small is-size-7" href="/2022/10/10/Mix%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%8F%98%E5%8C%96%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-10-05T14:42:05.000Z" title="2022/10/5 下午10:42:05">2022-10-05</time>发表</span><span class="level-item"><time dateTime="2022-10-05T14:42:58.264Z" title="2022/10/5 下午10:42:58">2022-10-05</time>更新</span><span class="level-item">11 分钟读完 (大约1578个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/10/05/linux%E4%B8%8B%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">linux下查询进程占用的内存方法总结</a></h1><div class="content"><p>假设现在有一个「php-cgi」的进程 ，进程id为「25282」。现在想要查询该进程占用的内存大小。linux命令行<br>下有很多的工具进行查看，现总结常见的几种方式：</p></div><a class="article-more button is-small is-size-7" href="/2022/10/05/linux%E4%B8%8B%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-10-04T11:32:16.000Z" title="2022/10/4 下午7:32:16">2022-10-04</time>发表</span><span class="level-item"><time dateTime="2022-10-05T13:41:06.164Z" title="2022/10/5 下午9:41:06">2022-10-05</time>更新</span><span class="level-item">2 分钟读完 (大约326个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/10/04/Elasticsearch-Api/">Elasticsearch Api</a></h1><div class="content"><h2 id="GET-x2F-cat-x2F-health-v"><a href="#GET-x2F-cat-x2F-health-v" class="headerlink" title="GET &#x2F;_cat&#x2F;health?v"></a>GET &#x2F;_cat&#x2F;health?v</h2><p>集群健康状况，status有以下三种</p>
-<ul>
-<li>green 每个索引的primary shard和replica shard都是active状态的</li>
-<li>yellow 每个索引的primary shard都是activi状态，部分replica shard不是active状态，处于不可用状态</li>
-<li>red 部分索引数据可能丢失了</li>
-</ul>
-<p>primary shard 和 replica shard 不能在同一个节点。启动第二个进程，就会在es集群中有2node，replica就会被分配，status就是green</p></div><a class="article-more button is-small is-size-7" href="/2022/10/04/Elasticsearch-Api/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/"><img class="fill" src="https://ts1.cn.mm.bing.net/th/id/R-C.1b3938e0ec72fcb0e7f783d332d70874?rik=2D8T9Y5bjazkCw&amp;riu=http%3a%2f%2fstatic.bugcode.cn%2fuPic%2fsJ74ph.jpg&amp;ehk=oZWcxvChZIlHr3VS7Y%2bsX0xEmep8J%2bFT%2fJF3TR7Nlag%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="tcpdump详细教程"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-10-01T06:56:20.000Z" title="2022/10/1 下午2:56:20">2022-10-01</time>发表</span><span class="level-item"><time dateTime="2022-10-04T03:56:25.035Z" title="2022/10/4 上午11:56:25">2022-10-04</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/linux/">linux</a></span><span class="level-item">10 分钟读完 (大约1552个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">tcpdump详细教程</a></h1><div class="content"><h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>tcpdump - dump traffic on a network</p>
-<p>tcpdump是一个用于截取网络分组，并输出分组内容的工具。凭借强大的功能和灵活的截取策略，使其成为类UNIX系统下用于网络分析和问题排查的首选工具</p>
-<p>tcpdump 支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息</p></div><a class="article-more button is-small is-size-7" href="/2022/10/01/tcpdump%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><img class="fill" src="https://ts1.cn.mm.bing.net/th/id/R-C.11405798e565f05e91995c792278ff4d?rik=IODGhCnazbsF%2fg&amp;riu=http%3a%2f%2fwww.jayleen.wang%2fuploads%2f727a65c7ad06d6cd6e90ae8775ec75b8.png&amp;ehk=WbWyMqj9YFWuRdk0NnCOIged3lN%2b8u7LBjfBW7WGCq8%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="Typescript学习笔记"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-09-18T05:06:34.000Z" title="2022/9/18 下午1:06:34">2022-09-18</time>发表</span><span class="level-item"><time dateTime="2022-10-02T11:02:00.074Z" title="2022/10/2 下午7:02:00">2022-10-02</time>更新</span><span class="level-item">11 分钟读完 (大约1649个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Typescript学习笔记</a></h1><div class="content"><h1 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h1><p>any &#x2F; number &#x2F; 元组 &#x2F; 枚举 &#x2F; never</p>
-<h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map : [<span class="built_in">string</span>, <span class="built_in">number</span>] = [<span class="string">&quot;str&quot;</span>, <span class="number">123</span>]</span><br></pre></td></tr></table></figure>
 
-<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> <span class="title class_">Color</span> &#123;<span class="title class_">Red</span>, <span class="title class_">Blue</span>, <span class="title class_">Green</span>&#125;</span><br><span class="line"><span class="keyword">let</span> c <span class="title class_">Color</span> = <span class="title class_">Color</span>.<span class="property">Red</span></span><br></pre></td></tr></table></figure></div><a class="article-more button is-small is-size-7" href="/2022/09/18/Typescript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/"><img class="fill" src="https://pic3.zhimg.com/v2-d2518077a020100f7188b5c457eabf36_180x120.jpg" alt="Go各时间字符串的解析"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-09-04T13:30:39.000Z" title="2022/9/4 下午9:30:39">2022-09-04</time>发表</span><span class="level-item"><time dateTime="2022-10-03T04:06:13.433Z" title="2022/10/3 下午12:06:13">2022-10-03</time>更新</span><span class="level-item">7 分钟读完 (大约1002个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/">Go各时间字符串的解析</a></h1><div class="content"><h3 id="Go-中时间格式化的模板"><a href="#Go-中时间格式化的模板" class="headerlink" title="Go 中时间格式化的模板"></a><code>Go</code> 中时间格式化的模板</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">    <span class="variable constant_">ANSIC</span>       = <span class="string">&quot;Mon Jan _2 15:04:05 2006&quot;</span></span><br><span class="line">    <span class="title class_">UnixDate</span>    = <span class="string">&quot;Mon Jan _2 15:04:05 MST 2006&quot;</span></span><br><span class="line">    <span class="title class_">RubyDate</span>    = <span class="string">&quot;Mon Jan 02 15:04:05 -0700 2006&quot;</span></span><br><span class="line">    <span class="title class_">RFC822</span>      = <span class="string">&quot;02 Jan 06 15:04 MST&quot;</span></span><br><span class="line">    <span class="title class_">RFC822Z</span>     = <span class="string">&quot;02 Jan 06 15:04 -0700&quot;</span> <span class="comment">// RFC822 with numeric zone</span></span><br><span class="line">    <span class="title class_">RFC850</span>      = <span class="string">&quot;Monday, 02-Jan-06 15:04:05 MST&quot;</span></span><br><span class="line">    <span class="title class_">RFC1123</span>     = <span class="string">&quot;Mon, 02 Jan 2006 15:04:05 MST&quot;</span></span><br><span class="line">    <span class="title class_">RFC1123Z</span>    = <span class="string">&quot;Mon, 02 Jan 2006 15:04:05 -0700&quot;</span> <span class="comment">// RFC1123 with numeric zone</span></span><br><span class="line">    <span class="title class_">RFC3339</span>     = <span class="string">&quot;2006-01-02T15:04:05Z07:00&quot;</span></span><br><span class="line">    <span class="title class_">RFC3339Nano</span> = <span class="string">&quot;2006-01-02T15:04:05.999999999Z07:00&quot;</span></span><br><span class="line">    <span class="title class_">Kitchen</span>     = <span class="string">&quot;3:04PM&quot;</span></span><br><span class="line">    <span class="comment">// Handy time stamps.</span></span><br><span class="line">    <span class="title class_">Stamp</span>      = <span class="string">&quot;Jan _2 15:04:05&quot;</span></span><br><span class="line">    <span class="title class_">StampMilli</span> = <span class="string">&quot;Jan _2 15:04:05.000&quot;</span></span><br><span class="line">    <span class="title class_">StampMicro</span> = <span class="string">&quot;Jan _2 15:04:05.000000&quot;</span></span><br><span class="line">    <span class="title class_">StampNano</span>  = <span class="string">&quot;Jan _2 15:04:05.000000000&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></div><a class="article-more button is-small is-size-7" href="/2022/09/04/Go%E5%90%84%E6%97%B6%E9%97%B4%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A7%A3%E6%9E%90/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-08-21T02:56:27.000Z" title="2022/8/21 上午10:56:27">2022-08-21</time>发表</span><span class="level-item"><time dateTime="2022-10-02T08:45:10.241Z" title="2022/10/2 下午4:45:10">2022-10-02</time>更新</span><span class="level-item">3 分钟读完 (大约523个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/">版本号命名规范</a></h1><div class="content"><p>版本号的格式为 X.Y.Z(又称 Major.Minor.Patch)，递增的规则为：</p>
-<ul>
-<li>X 表示主版本号，当 API 的兼容性变化时，X 需递增。</li>
-<li>Y 表示次版本号，当增加功能时(不影响 API 的兼容性)，Y 需递增。</li>
-<li>Z 表示修订号，当做 Bug 修复时(不影响 API 的兼容性)，Z 需递增。</li>
-</ul></div><a class="article-more button is-small is-size-7" href="/2022/08/21/%E7%89%88%E6%9C%AC%E5%8F%B7%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83/#more">阅读更多</a></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/page/0/">上一页</a></div><div class="pagination-next"><a href="/page/2/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/">1</a></li><li><a class="pagination-link" href="/page/2/">2</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/17/">17</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">163</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/marxphp" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">maxphp</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/ElasticSearch/"><span class="level-start"><span class="level-item">ElasticSearch</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/linux/"><span class="level-start"><span class="level-item">linux</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/npm/"><span class="level-start"><span class="level-item">npm</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/php/"><span class="level-start"><span class="level-item">php</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/vue/"><span class="level-start"><span class="level-item">vue</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-15T06:16:51.000Z">2022-11-15</time></p><p class="title"><a href="/2022/11/15/iptables%E4%BD%BF%E7%94%A8/">iptables使用</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-11T05:26:49.000Z">2022-11-11</time></p><p class="title"><a href="/2022/11/11/Zabbix%E5%AE%89%E8%A3%85/">Zabbix安装</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-05T05:49:38.000Z">2022-11-05</time></p><p class="title"><a href="/2022/11/05/Css%E7%AC%94%E8%AE%B0/">Css笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-10T11:05:34.000Z">2022-10-10</time></p><p class="title"><a href="/2022/10/10/Mix%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%8F%98%E5%8C%96%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1/">MaxPHP监控文件变化重启服务</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-05T14:42:05.000Z">2022-10-05</time></p><p class="title"><a href="/2022/10/05/linux%E4%B8%8B%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">linux下查询进程占用的内存方法总结</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="代码笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

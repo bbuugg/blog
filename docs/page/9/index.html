@@ -1,127 +1,686 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>代码笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="代码笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="代码笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="笔记"><meta property="og:type" content="blog"><meta property="og:title" content="代码笔记"><meta property="og:url" content="https://www.chengyao.xyz/"><meta property="og:site_name" content="代码笔记"><meta property="og:description" content="笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz"},"headline":"代码笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"代码笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"笔记"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?d0884aeebfcd3ca98ed3033285d6d03a";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(location.hash);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="代码笔记">
+<meta property="og:url" content="https://www.chengyao.xyz/page/9/index.html">
+<meta property="og:site_name" content="代码笔记">
+<meta property="og:description" content="笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="CY">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>代码笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>代码笔记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/images/wallpaper.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="业精于勤荒于嬉，行成于思毁于随"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/02/%E4%BB%80%E4%B9%88%E6%98%AFPOP3%E3%80%81SMTP%E5%92%8CIMAP%EF%80%BF/" target="_self">
+          什么是POP3、SMTP和IMAP?
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/02/%E4%BB%80%E4%B9%88%E6%98%AFPOP3%E3%80%81SMTP%E5%92%8CIMAP%EF%80%BF/" target="_self">
+        <div>
+          POP3POP3是Post Office Protocol 3的简称，即邮局协议的第3个版本,它规定怎样将个人计算机连接到Internet的邮件服务器和下载电子邮件的电子协议。它是因特网电子邮件的第一个离线协议标准,POP3允许用户从服务器上把邮件存储到本地主机（即自己的计算机）上,同时删除保存在邮件服务器上的邮件，而POP3服务器则是遵循POP3协议的接收邮件服务器，用来接收电子邮件的。(与IM
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-02 22:12" pubdate>
+              2021-11-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/02/PHP%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8E%E5%BC%95%E7%94%A8%E8%BF%94%E5%9B%9E/" target="_self">
+          PHP箭头函数与引用返回
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/02/PHP%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8E%E5%BC%95%E7%94%A8%E8%BF%94%E5%9B%9E/" target="_self">
+        <div>
+          箭头函数文档来自PHP手册： https:&#x2F;&#x2F;www.php.net&#x2F;manual&#x2F;zh&#x2F;functions.arrow.php  箭头函数是 PHP 7.4 的新语法，是一种更简洁的 匿名函数 写法。  匿名函数和箭头函数都是 Closure 类的实现。 箭头函数的基本语法为  1fn (argument_list) &#x3D;&gt; expr  箭头函数支持与 匿名函数 相同的功能，只是其父作用域的
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-11-02 22:07" pubdate>
+              2021-11-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/28/%E6%B6%88%E6%81%AF%E5%A4%B4%E5%AD%97%E6%AE%B5%E4%B9%8BCache-Control/" target="_self">
+          消息头字段之Cache-Control
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/28/%E6%B6%88%E6%81%AF%E5%A4%B4%E5%AD%97%E6%AE%B5%E4%B9%8BCache-Control/" target="_self">
+        <div>
+          Cache-ControlCache-Control 通用消息头字段，被用于在http请求和响应中，通过指定指令来实现缓存机制。缓存指令是单向的，这意味着在请求中设置的指令，不一定被包含在响应中。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-28 13:44" pubdate>
+              2021-10-28
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/20/%E5%8E%BB%E6%8E%89sudo%E7%9A%84%E5%AF%86%E7%A0%81/" target="_self">
+          去掉sudo的密码
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/20/%E5%8E%BB%E6%8E%89sudo%E7%9A%84%E5%AF%86%E7%A0%81/" target="_self">
+        <div>
+          sudo执行命令的时候老是让输入密码，真的好烦，下面为去掉密码的方法： 首先打开&#x2F;etc&#x2F;sudoers “sudo visudo” 或 “sudo vi &#x2F;etc&#x2F;sudoers”
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-20 22:42" pubdate>
+              2021-10-20
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/15/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85PHP%E7%9A%84%E4%B8%80%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/" target="_self">
+          Ubuntu下安装PHP的一系列笔记
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/15/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85PHP%E7%9A%84%E4%B8%80%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          查看配置可以通过命令查看 1php -i | grep configure
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-15 21:27" pubdate>
+              2021-10-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/13/GMT%E6%97%B6%E9%97%B4%E5%92%8CCookie/" target="_self">
+          GMT时间和Cookie
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/13/GMT%E6%97%B6%E9%97%B4%E5%92%8CCookie/" target="_self">
+        <div>
+          今天给MaxPHP开发兼容Swoole的Cookie的时候设置了Cookie，大眼一看感觉不是很对 1set-cookie: MAXPHP_SESSION_ID&#x3D;a9917035968c0e125179b4b949558e64; expires&#x3D;Wed, 13-Oct-2021 16:34:24 GMT; Max-Age&#x3D;3600; path&#x3D;&#x2F; 我这边明明才23：40， 而Cookie又没有过期
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-13 23:44" pubdate>
+              2021-10-13
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/06/MySQL%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+          MySQL面试题
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/06/MySQL%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+        <div>
+          唯一索引比普通索引快吗, 为什么 唯一索引不一定比普通索引快, 还可能慢。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-06 10:19" pubdate>
+              2021-10-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/10/04/PHP%E6%95%B0%E7%BB%84%E7%9B%B8%E5%8A%A0%E5%92%8Carray_merge/" target="_self">
+          PHP数组相加和array_merge
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/04/PHP%E6%95%B0%E7%BB%84%E7%9B%B8%E5%8A%A0%E5%92%8Carray_merge/" target="_self">
+        <div>
+          array_merge 如果输入的数组中有相同的字符串键名，则该键名后面的值将覆盖前一个值。然而，如果数组包含数字键名，后面的值将 不会 覆盖原来的值，而是附加到后面。 联合（数组相加） + 运算符把右边的数组元素附加到左边的数组后面，两个数组中都有的键名，则只用左边数组中的，右边的被忽略。 1234567891011121314151617&lt;?php$a &#x3D; array(&quot;a&amp;q
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-04 13:58" pubdate>
+              2021-10-04
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/29/ubuntu%20%E5%AE%89%E8%A3%85ImageMagic/" target="_self">
+          ubuntu 安装ImageMagic
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/08/29/ubuntu%20%E5%AE%89%E8%A3%85ImageMagic/" target="_self">
+        <div>
+          I. 安装ImageMagic  安装：  1sudo apt-get install imagemagick
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-29 13:36" pubdate>
+              2021-08-29
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/29/%E8%A7%A3%E5%86%B3%20go%20build%E6%97%B6%E5%80%99timeout%E9%97%AE%E9%A2%98/" target="_self">
+          解决 go build时候timeout问题
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/08/29/%E8%A7%A3%E5%86%B3%20go%20build%E6%97%B6%E5%80%99timeout%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          默认安装的go 在 build的时候会出现长时间无响应，有类似如下报如下错误： 1go: github.com&#x2F;hyperledger&#x2F;fabric-contract-api-go@v1.0.0: Get https:&#x2F;&#x2F;proxy.golang.org&#x2F;github.com&#x2F;hyperledger&#x2F;fabric-contract-api-go&#x2F;@v&#x2F;v1.0.0.mod: dial tcp 17
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-29 12:43" pubdate>
+              2021-08-29
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/8/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#board">7</a><a class="page-number" href="/page/8/#board">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/#board">10</a><a class="page-number" href="/page/11/#board">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/#board">17</a><a class="extend next" rel="next" href="/page/10/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022013308号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="代码笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/11/02/%E4%BB%80%E4%B9%88%E6%98%AFPOP3%E3%80%81SMTP%E5%92%8CIMAP%EF%80%BF/"><img class="fill" src="/images/20221002/44d61a04884e7978fb92c54a51da6536.jpg" alt="什么是POP3、SMTP和IMAP?"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-02T14:12:33.000Z" title="2021/11/2 下午10:12:33">2021-11-02</time>发表</span><span class="level-item"><time dateTime="2022-10-02T12:45:03.214Z" title="2022/10/2 下午8:45:03">2022-10-02</time>更新</span><span class="level-item">7 分钟读完 (大约1048个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/02/%E4%BB%80%E4%B9%88%E6%98%AFPOP3%E3%80%81SMTP%E5%92%8CIMAP%EF%80%BF/">什么是POP3、SMTP和IMAP?</a></h1><div class="content"><h1 id="POP3"><a href="#POP3" class="headerlink" title="POP3"></a>POP3</h1><p><strong>POP3</strong>是Post Office Protocol 3的简称，即邮局协议的第3个版本,它规定怎样将个人计算机连接到Internet的邮件服务器和下载电子邮件的电子协议。它是因特网电子邮件的第一个离线协议标准,POP3允许用户从服务器上把邮件存储到本地主机（即自己的计算机）上,同时删除保存在邮件服务器上的邮件，而POP3服务器则是遵循POP3协议的接收邮件服务器，用来接收电子邮件的。(<a target="_blank" rel="noopener" href="http://help.163.com/10/0203/13/5UJONJ4I00753VB8.html?servCode=6010237">与IMAP有什么区别？</a>)</p></div><a class="article-more button is-small is-size-7" href="/2021/11/02/%E4%BB%80%E4%B9%88%E6%98%AFPOP3%E3%80%81SMTP%E5%92%8CIMAP%EF%80%BF/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-11-02T14:07:42.000Z" title="2021/11/2 下午10:07:42">2021-11-02</time>发表</span><span class="level-item"><time dateTime="2022-10-02T13:08:53.669Z" title="2022/10/2 下午9:08:53">2022-10-02</time>更新</span><span class="level-item">3 分钟读完 (大约478个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/11/02/PHP%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8E%E5%BC%95%E7%94%A8%E8%BF%94%E5%9B%9E/">PHP箭头函数与引用返回</a></h1><div class="content"><h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><p>文档来自PHP手册： <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/functions.arrow.php">https://www.php.net/manual/zh/functions.arrow.php</a></p>
-<blockquote>
-<p>箭头函数是 PHP 7.4 的新语法，是一种更简洁的 匿名函数 写法。</p>
-</blockquote>
-<p>匿名函数和箭头函数都是 <code>Closure</code> 类的实现。</p>
-<p>箭头函数的基本语法为 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fn (argument_list) =&gt; expr</span><br></pre></td></tr></table></figure>
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-<p>箭头函数支持与 匿名函数 相同的功能，只是其父作用域的变量总是自动的。</p>
-<p>当表达式中使用的变量是在父作用域中定义的，它将被隐式地按值捕获。在下面的例子中，函数 <code>$fn1</code> 和 <code>$fn2</code> 的行为是一样的。</p>
-<blockquote>
-<p>示例 箭头函数自动捕捉变量的值</p>
-</blockquote></div><a class="article-more button is-small is-size-7" href="/2021/11/02/PHP%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%8E%E5%BC%95%E7%94%A8%E8%BF%94%E5%9B%9E/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-28T05:44:57.000Z" title="2021/10/28 下午1:44:57">2021-10-28</time>发表</span><span class="level-item"><time dateTime="2022-10-06T04:19:11.494Z" title="2022/10/6 下午12:19:11">2022-10-06</time>更新</span><span class="level-item">11 分钟读完 (大约1718个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/28/%E6%B6%88%E6%81%AF%E5%A4%B4%E5%AD%97%E6%AE%B5%E4%B9%8BCache-Control/">消息头字段之Cache-Control</a></h1><div class="content"><h1 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h1><p><code>Cache-Control</code> 通用消息头字段，被用于在http请求和响应中，通过指定指令来实现缓存机制。缓存指令是单向的，这意味着在请求中设置的指令，不一定被包含在响应中。</p></div><a class="article-more button is-small is-size-7" href="/2021/10/28/%E6%B6%88%E6%81%AF%E5%A4%B4%E5%AD%97%E6%AE%B5%E4%B9%8BCache-Control/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/10/20/%E5%8E%BB%E6%8E%89sudo%E7%9A%84%E5%AF%86%E7%A0%81/"><img class="fill" src="/images/20221002/a8dbc9cb39bfd10e21e4dc05d1e33daf.jfif" alt="去掉sudo的密码"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-20T14:42:36.000Z" title="2021/10/20 下午10:42:36">2021-10-20</time>发表</span><span class="level-item"><time dateTime="2022-10-02T13:10:16.013Z" title="2022/10/2 下午9:10:16">2022-10-02</time>更新</span><span class="level-item">2 分钟读完 (大约323个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/20/%E5%8E%BB%E6%8E%89sudo%E7%9A%84%E5%AF%86%E7%A0%81/">去掉sudo的密码</a></h1><div class="content"><p>sudo执行命令的时候老是让输入密码，真的好烦，下面为去掉密码的方法：</p>
-<p>首先打开&#x2F;etc&#x2F;sudoers</p>
-<p>“sudo visudo” 或 “sudo vi &#x2F;etc&#x2F;sudoers”</p></div><a class="article-more button is-small is-size-7" href="/2021/10/20/%E5%8E%BB%E6%8E%89sudo%E7%9A%84%E5%AF%86%E7%A0%81/#more">阅读更多</a></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/10/15/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85PHP%E7%9A%84%E4%B8%80%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/"><img class="fill" src="/images/20221002/479957f28aaac672b0df86525a7dcde0.jfif" alt="Ubuntu下安装PHP的一系列笔记"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-15T13:27:36.000Z" title="2021/10/15 下午9:27:36">2021-10-15</time>发表</span><span class="level-item"><time dateTime="2022-10-02T12:46:05.709Z" title="2022/10/2 下午8:46:05">2022-10-02</time>更新</span><span class="level-item">24 分钟读完 (大约3552个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/15/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85PHP%E7%9A%84%E4%B8%80%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/">Ubuntu下安装PHP的一系列笔记</a></h1><div class="content"><h2 id="查看配置"><a href="#查看配置" class="headerlink" title="查看配置"></a>查看配置</h2><p>可以通过命令查看</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -i | grep configure</span><br></pre></td></tr></table></figure></div><a class="article-more button is-small is-size-7" href="/2021/10/15/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85PHP%E7%9A%84%E4%B8%80%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-13T15:44:04.000Z" title="2021/10/13 下午11:44:04">2021-10-13</time>发表</span><span class="level-item"><time dateTime="2022-10-06T04:19:11.494Z" title="2022/10/6 下午12:19:11">2022-10-06</time>更新</span><span class="level-item">3 分钟读完 (大约438个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/13/GMT%E6%97%B6%E9%97%B4%E5%92%8CCookie/">GMT时间和Cookie</a></h1><div class="content"><p>今天给MaxPHP开发兼容Swoole的Cookie的时候设置了Cookie，大眼一看感觉不是很对</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set-cookie: MAXPHP_SESSION_ID=a9917035968c0e125179b4b949558e64; expires=Wed, 13-Oct-2021 16:34:24 GMT; Max-Age=3600; path=/</span><br></pre></td></tr></table></figure>
-<p>我这边明明才23：40， 而Cookie又没有过期，于是</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php &gt; echo strtotime(&#x27;Wed, 13-Oct-2021 16:34:24 GMT&#x27;) - time();</span><br><span class="line">3182</span><br><span class="line">php &gt; </span><br></pre></td></tr></table></figure>
 
-<p>证明确实时间是正确的，但是时间却是14：34：24秒。于是想起GMT时间和北京时间是不一样的。百度了一下，贴在下面：</p>
-<p><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/558694182487723652.html">https://zhidao.baidu.com/question/558694182487723652.html</a><br>GMT是中央时区，北京在东8区，相差8个小时，所以为2008年08月29日 11点52分19秒。</p>
-<p>北京时间是中国采用国际时区东八时区的区时作为标准时间。北京时间并不是北京（东经116.4°）地方的时间，而是东经120°地方的地方时间。因为北京处于国际时区划分中的东八区，同格林威治时间(世界时)整整相差8小时，（即北京时间&#x3D;世界时+8小时）而中国东西相跨5个时区（即东五区、东六区、东七区、东八区、东九区5个时区）授时台必须建在中心地带，从而也就产生了长短波授。“北京时间”的发播不在北京，而在陕西蒲城。而东经120度的地方太阳时要比北京的地方时早约14分半钟。</p>
-<p>中国科学院国家授时中心台本部位于陕西西安临潼区。中国科学院国家授时中心授时部（二部）位于陕西省渭南市蒲城县，负责发布北京时间（中国标准时间）。</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-06T02:19:15.000Z" title="2021/10/6 上午10:19:15">2021-10-06</time>发表</span><span class="level-item"><time dateTime="2022-10-06T04:19:11.499Z" title="2022/10/6 下午12:19:11">2022-10-06</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/mysql/">mysql</a></span><span class="level-item">1 小时读完 (大约9306个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/06/MySQL%E9%9D%A2%E8%AF%95%E9%A2%98/">MySQL面试题</a></h1><div class="content"><ol>
-<li><p>唯一索引比普通索引快吗, 为什么</p>
-<p>唯一索引不一定比普通索引快, 还可能慢。</p>
-</li>
-</ol></div><a class="article-more button is-small is-size-7" href="/2021/10/06/MySQL%E9%9D%A2%E8%AF%95%E9%A2%98/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-10-04T05:58:17.000Z" title="2021/10/4 下午1:58:17">2021-10-04</time>发表</span><span class="level-item"><time dateTime="2022-10-06T04:18:44.734Z" title="2022/10/6 下午12:18:44">2022-10-06</time>更新</span><span class="level-item">1 分钟读完 (大约206个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/10/04/PHP%E6%95%B0%E7%BB%84%E7%9B%B8%E5%8A%A0%E5%92%8Carray_merge/">PHP数组相加和array_merge</a></h1><div class="content"><p><strong>array_merge</strong></p>
-<p>如果输入的数组中有相同的字符串键名，则该键名后面的值将覆盖前一个值。然而，如果数组包含数字键名，后面的值将 不会 覆盖原来的值，而是附加到后面。</p>
-<p><strong>联合（数组相加）</strong></p>
-<p>+ 运算符把右边的数组元素附加到左边的数组后面，两个数组中都有的键名，则只用左边数组中的，右边的被忽略。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">array</span>(<span class="string">&quot;a&quot;</span> =&gt; <span class="string">&quot;apple&quot;</span>, <span class="string">&quot;b&quot;</span> =&gt; <span class="string">&quot;banana&quot;</span>);</span><br><span class="line"><span class="variable">$b</span> = <span class="keyword">array</span>(<span class="string">&quot;a&quot;</span> =&gt; <span class="string">&quot;pear&quot;</span>, <span class="string">&quot;b&quot;</span> =&gt; <span class="string">&quot;strawberry&quot;</span>, <span class="string">&quot;c&quot;</span> =&gt; <span class="string">&quot;cherry&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$a</span> + <span class="variable">$b</span>; <span class="comment">// $a 和 $b 的并集</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Union of \$a and \$b: \n&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$c</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$b</span> + <span class="variable">$a</span>; <span class="comment">// $b 和 $a 的并集</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Union of \$b and \$a: \n&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$c</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> += <span class="variable">$b</span>; <span class="comment">//  $a += $b 的并集是 $a 和 $b</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Union of \$a += \$b: \n&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><strong>array_replace</strong></p>
-</div></article></div><div class="card"><div class="card-image"><a class="image is-7by3" href="/2021/08/29/ubuntu%20%E5%AE%89%E8%A3%85ImageMagic/"><img class="fill" src="/images/20221002/9ac181488fd6dd06c818b9643bd255fa.png" alt="ubuntu 安装ImageMagic"></a></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-08-29T05:36:49.000Z" title="2021/8/29 下午1:36:49">2021-08-29</time>发表</span><span class="level-item"><time dateTime="2022-10-06T04:19:11.494Z" title="2022/10/6 下午12:19:11">2022-10-06</time>更新</span><span class="level-item">2 分钟读完 (大约271个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/08/29/ubuntu%20%E5%AE%89%E8%A3%85ImageMagic/">ubuntu 安装ImageMagic</a></h1><div class="content"><p>I. 安装ImageMagic</p>
-<ol>
-<li>安装：</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install imagemagick</span><br></pre></td></tr></table></figure></div><a class="article-more button is-small is-size-7" href="/2021/08/29/ubuntu%20%E5%AE%89%E8%A3%85ImageMagic/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-08-29T04:43:21.000Z" title="2021/8/29 下午12:43:21">2021-08-29</time>发表</span><span class="level-item"><time dateTime="2022-08-28T02:23:10.673Z" title="2022/8/28 上午10:23:10">2022-08-28</time>更新</span><span class="level-item">1 分钟读完 (大约130个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2021/08/29/%E8%A7%A3%E5%86%B3%20go%20build%E6%97%B6%E5%80%99timeout%E9%97%AE%E9%A2%98/">解决 go build时候timeout问题</a></h1><div class="content"><p>默认安装的go 在 build的时候会出现长时间无响应，有类似如下报如下错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go: github.com/hyperledger/fabric-contract-api-go@v1.0.0: Get https://proxy.golang.org/github.com/hyperledger/fabric-contract-api-go/@v/v1.0.0.mod: dial tcp 172.217.27.145:443: i/o timeout</span><br></pre></td></tr></table></figure>
 
-<p>因为默认的go地址被墙了，所以我们要更换地址，更换为七牛云的镜像，直接运行下面两条命令即可：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
-<p>原文地址：<a target="_blank" rel="noopener" href="http://www.iamlintao.com/7194.html">http://www.iamlintao.com/7194.html</a></p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/8/">上一页</a></div><div class="pagination-next"><a href="/page/10/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/8/">8</a></li><li><a class="pagination-link is-current" href="/page/9/">9</a></li><li><a class="pagination-link" href="/page/10/">10</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/17/">17</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">163</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/marxphp" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">maxphp</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/ElasticSearch/"><span class="level-start"><span class="level-item">ElasticSearch</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/linux/"><span class="level-start"><span class="level-item">linux</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/npm/"><span class="level-start"><span class="level-item">npm</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/php/"><span class="level-start"><span class="level-item">php</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/vue/"><span class="level-start"><span class="level-item">vue</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-15T06:16:51.000Z">2022-11-15</time></p><p class="title"><a href="/2022/11/15/iptables%E4%BD%BF%E7%94%A8/">iptables使用</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-11T05:26:49.000Z">2022-11-11</time></p><p class="title"><a href="/2022/11/11/Zabbix%E5%AE%89%E8%A3%85/">Zabbix安装</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-05T05:49:38.000Z">2022-11-05</time></p><p class="title"><a href="/2022/11/05/Css%E7%AC%94%E8%AE%B0/">Css笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-10T11:05:34.000Z">2022-10-10</time></p><p class="title"><a href="/2022/10/10/Mix%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%8F%98%E5%8C%96%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1/">MaxPHP监控文件变化重启服务</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-05T14:42:05.000Z">2022-10-05</time></p><p class="title"><a href="/2022/10/05/linux%E4%B8%8B%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">linux下查询进程占用的内存方法总结</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="代码笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

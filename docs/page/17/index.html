@@ -1,101 +1,434 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>代码笔记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="代码笔记"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="代码笔记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="笔记"><meta property="og:type" content="blog"><meta property="og:title" content="代码笔记"><meta property="og:url" content="https://www.chengyao.xyz/"><meta property="og:site_name" content="代码笔记"><meta property="og:description" content="笔记"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.chengyao.xyz/img/og_image.png"><meta property="article:author" content="CY"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.chengyao.xyz/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.chengyao.xyz"},"headline":"代码笔记","image":["https://www.chengyao.xyz/img/og_image.png"],"author":{"@type":"Person","name":"CY"},"publisher":{"@type":"Organization","name":"代码笔记","logo":{"@type":"ImageObject","url":"https://www.chengyao.xyz/images/avatar.jpg"}},"description":"笔记"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?d0884aeebfcd3ca98ed3033285d6d03a";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
-  (function () {
-      function switchTab() {
-          if (!location.hash) {
-            return;
-          }
 
-          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
-          if (!$tabMenu) {
-            return;
-          }
 
-          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
-          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
-          Array.from($tabMenuContainer.querySelectorAll('a'))
-              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
-              .forEach($content => $content.classList.add('is-hidden'));
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
-          if ($tabMenu) {
-              $tabMenu.parentElement.classList.add('is-active');
-          }
-          const $activeTab = document.querySelector(location.hash);
-          if ($activeTab) {
-              $activeTab.classList.remove('is-hidden');
-          }
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="CY">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="代码笔记">
+<meta property="og:url" content="https://www.chengyao.xyz/page/17/index.html">
+<meta property="og:site_name" content="代码笔记">
+<meta property="og:description" content="笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="CY">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>代码笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.chengyao.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>代码笔记</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/images/wallpaper.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="业精于勤荒于嬉，行成于思毁于随"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/07/05/PHP7%E5%86%85%E6%A0%B8zval/" target="_self">
+          PHP7内核zval
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/07/05/PHP7%E5%86%85%E6%A0%B8zval/" target="_self">
+        <div>
+          一、简介zval可以表示一切PHP中的数据类型, 所以它包含了一个type字段, 表示这个zval存储的是什么类型的值, 常见的可能选项是IS_NULL, IS_LONG, IS_STRING, IS_ARRAY, IS_OBJECT等等。根据type字段的值不同, 我们就要用不同的方式解读value的值, 这个value是个联合体, 比如对于type是IS_STRING, 那么我们应该用valu
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-05 11:34" pubdate>
+              2020-07-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/07/05/%E5%BC%80%E5%8F%91%E6%97%B6%E7%BC%93%E5%AD%98%E5%BE%88%E7%83%A6%E4%BA%BA%EF%BC%8C%E4%BF%AE%E6%94%B9%E4%B8%8D%E8%83%BD%E5%AE%9E%E6%97%B6%E7%94%9F%E6%95%88%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" target="_self">
+          开发时缓存很烦人，修改不能实时生效的解决方法
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/07/05/%E5%BC%80%E5%8F%91%E6%97%B6%E7%BC%93%E5%AD%98%E5%BE%88%E7%83%A6%E4%BA%BA%EF%BC%8C%E4%BF%AE%E6%94%B9%E4%B8%8D%E8%83%BD%E5%AE%9E%E6%97%B6%E7%94%9F%E6%95%88%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" target="_self">
+        <div>
+          Opcache 简介 ¶OPcache 通过将 PHP 脚本预编译的字节码存储到共享内存中来提升 PHP 的性能， 存储预编译字节码的好处就是 省去了每次加载和解析 PHP 脚本的开销。 PHP 5.5.0 及后续版本中已经添加了 OPcache 扩展。 对于 PHP 5.2，5.3 和 5.4 版本可以使用 » PECL 扩展中的 OPcache 库。  原文地址： https:&#x2F;&#x2F;www.ph
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-05 11:34" pubdate>
+              2020-07-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/07/05/%E9%94%AE%E7%9B%98KeyCode%E5%AF%B9%E7%85%A7%E8%A1%A8/" target="_self">
+          键盘KeyCode对照表
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/07/05/%E9%94%AE%E7%9B%98KeyCode%E5%AF%B9%E7%85%A7%E8%A1%A8/" target="_self">
+        <div>
+          keycode   0 &#x3D;keycode   1 &#x3D;keycode   2 &#x3D;keycode   3 &#x3D;keycode   4 &#x3D;keycode   5 &#x3D;keycode   6 &#x3D;keycode   7 &#x3D;keycode   8 &#x3D; BackSpace BackSpacekeycode   9 &amp;#x3
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-05 11:34" pubdate>
+              2020-07-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/16/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/#board">15</a><a class="page-number" href="/page/16/#board">16</a><span class="page-number current">17</span>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      陕ICP备2022013308号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
       }
-      switchTab();
-      window.addEventListener('hashchange', switchTab, false);
-  })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/avatar.jpg" alt="代码笔记" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-07-05T03:34:07.000Z" title="2020/7/5 上午11:34:07">2020-07-05</time>发表</span><span class="level-item"><time dateTime="2022-10-06T04:18:44.734Z" title="2022/10/6 下午12:18:44">2022-10-06</time>更新</span><span class="level-item">12 分钟读完 (大约1840个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/07/05/PHP7%E5%86%85%E6%A0%B8zval/">PHP7内核zval</a></h1><div class="content"><h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p>zval可以表示一切PHP中的数据类型, 所以它包含了一个type字段, 表示这个zval存储的是什么类型的值, 常见的可能选项是IS_NULL, IS_LONG, IS_STRING, IS_ARRAY, IS_OBJECT等等。<br>根据type字段的值不同, 我们就要用不同的方式解读value的值, 这个value是个联合体, 比如对于type是IS_STRING, 那么我们应该用value.str来解读zval.value字段, 而如果type是IS_LONG, 那么我们就要用value.lval来解读。<br>另外, PHP是用引用计数来做基本的垃圾回收的, 所以zval中有一个refcount__gc字段, 表示这个zval的引用数目, 但这里有一个要说明的, 在5.3以前, 这个字段的名字还叫做refcount, 5.3以后, 在引入新的垃圾回收算法来对付循环引用计数的时候, 作者加入了大量的宏来操作refcount, 为了能让错误更快的显现, 所以改名为refcount__gc, 迫使大家都使用宏来操作refcount。<br>类似的, 还有is_ref, 这个值表示了PHP中的一个类型是否是引用, 这里我们可以看到是不是引用是一个标志位。这就是PHP5时代的zval。<br>PHP7中的zval和PHP7中的zval从底层上做了很大调整，主要体现在类型和value字段。</p></div><a class="article-more button is-small is-size-7" href="/2020/07/05/PHP7%E5%86%85%E6%A0%B8zval/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-07-05T03:34:07.000Z" title="2020/7/5 上午11:34:07">2020-07-05</time>发表</span><span class="level-item"><time dateTime="2022-10-28T02:25:27.349Z" title="2022/10/28 上午10:25:27">2022-10-28</time>更新</span><span class="level-item">2 分钟读完 (大约289个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/07/05/%E5%BC%80%E5%8F%91%E6%97%B6%E7%BC%93%E5%AD%98%E5%BE%88%E7%83%A6%E4%BA%BA%EF%BC%8C%E4%BF%AE%E6%94%B9%E4%B8%8D%E8%83%BD%E5%AE%9E%E6%97%B6%E7%94%9F%E6%95%88%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">开发时缓存很烦人，修改不能实时生效的解决方法</a></h1><div class="content"><p><strong>Opcache</strong></p>
-<p>简介 ¶<br>OPcache 通过将 PHP 脚本预编译的字节码存储到共享内存中来提升 PHP 的性能， 存储预编译字节码的好处就是 省去了每次加载和解析 PHP 脚本的开销。</p>
-<p>PHP 5.5.0 及后续版本中已经添加了 OPcache 扩展。 对于 PHP 5.2，5.3 和 5.4 版本可以使用 » PECL 扩展中的 OPcache 库。</p>
-<blockquote>
-<p>原文地址： <a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/intro.opcache.php">https://www.php.net/manual/zh/intro.opcache.php</a> </p>
-</blockquote>
-<p>今天在使用thinkphp开发的过程中，发现修改路由后要等好久才能生效，而且删除tp缓存，浏览器缓存都不起作用。</p>
-<p>原来是php开启了opcahce 。</p>
-<p>下面是禁用 opcache 的方式:</p>
-<p>找到php配置文件的路径，因为我是在命令行下启的服务，所以可以通过以下方式</p>
-<ul>
-<li>php –ini</li>
-<li>php -i | grep -i configure</li>
-</ul>
-<p>也可以通过phpinfo来查看php.ini文件的路径。在phpinfo页面中通过查看 Loaded Configuration File来获取php.ini文件的路径。</p>
-<p>在php.ini文件中禁用。找到 opcache.enable 将其设置为0</p>
-<p>重启apache服务器或者重载fpm</p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-07-05T03:34:07.000Z" title="2020/7/5 上午11:34:07">2020-07-05</time>发表</span><span class="level-item"><time dateTime="2022-10-03T04:02:43.871Z" title="2022/10/3 下午12:02:43">2022-10-03</time>更新</span><span class="level-item">4 分钟读完 (大约528个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2020/07/05/%E9%94%AE%E7%9B%98KeyCode%E5%AF%B9%E7%85%A7%E8%A1%A8/">键盘KeyCode对照表</a></h1><div class="content"><span id="more"></span>
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-<p>keycode   0 &#x3D;<br>keycode   1 &#x3D;<br>keycode   2 &#x3D;<br>keycode   3 &#x3D;<br>keycode   4 &#x3D;<br>keycode   5 &#x3D;<br>keycode   6 &#x3D;<br>keycode   7 &#x3D;<br>keycode   8 &#x3D; BackSpace BackSpace<br>keycode   9 &#x3D; Tab Tab<br>keycode 10 &#x3D;<br>keycode 11 &#x3D;<br>keycode 12 &#x3D; Clear<br>keycode 13 &#x3D; Enter<br>keycode 14 &#x3D;<br>keycode 15 &#x3D;<br>keycode 16 &#x3D; Shift_L<br>keycode 17 &#x3D; Control_L<br>keycode 18 &#x3D; Alt_L<br>keycode 19 &#x3D; Pause<br>keycode 20 &#x3D; Caps_Lock<br>keycode 21 &#x3D;<br>keycode 22 &#x3D;<br>keycode 23 &#x3D;<br>keycode 24 &#x3D;<br>keycode 25 &#x3D;<br>keycode 26 &#x3D;<br>keycode 27 &#x3D; Escape Escape<br>keycode 28 &#x3D;<br>keycode 29 &#x3D;<br>keycode 30 &#x3D;<br>keycode 31 &#x3D;<br>keycode 32 &#x3D; space space<br>keycode 33 &#x3D; Prior<br>keycode 34 &#x3D; Next<br>keycode 35 &#x3D; End<br>keycode 36 &#x3D; Home<br>keycode 37 &#x3D; Left<br>keycode 38 &#x3D; Up<br>keycode 39 &#x3D; Right<br>keycode 40 &#x3D; Down<br>keycode 41 &#x3D; Select<br>keycode 42 &#x3D; Print<br>keycode 43 &#x3D; Execute<br>keycode 44 &#x3D;<br>keycode 45 &#x3D; Insert<br>keycode 46 &#x3D; Delete<br>keycode 47 &#x3D; Help<br>keycode 48 &#x3D; 0 equal braceright<br>keycode 49 &#x3D; 1 exclam onesuperior<br>keycode 50 &#x3D; 2 quotedbl twosuperior<br>keycode 51 &#x3D; 3 section threesuperior<br>keycode 52 &#x3D; 4 dollar<br>keycode 53 &#x3D; 5 percent<br>keycode 54 &#x3D; 6 ampersand<br>keycode 55 &#x3D; 7 slash braceleft<br>keycode 56 &#x3D; 8 parenleft bracketleft<br>keycode 57 &#x3D; 9 parenright bracketright<br>keycode 58 &#x3D;<br>keycode 59 &#x3D;<br>keycode 60 &#x3D;<br>keycode 61 &#x3D;<br>keycode 62 &#x3D;<br>keycode 63 &#x3D;<br>keycode 64 &#x3D;<br>keycode 65 &#x3D; a A<br>keycode 66 &#x3D; b B<br>keycode 67 &#x3D; c C<br>keycode 68 &#x3D; d D<br>keycode 69 &#x3D; e E EuroSign<br>keycode 70 &#x3D; f F<br>keycode 71 &#x3D; g G<br>keycode 72 &#x3D; h H<br>keycode 73 &#x3D; i I<br>keycode 74 &#x3D; j J<br>keycode 75 &#x3D; k K<br>keycode 76 &#x3D; l L<br>keycode 77 &#x3D; m M mu<br>keycode 78 &#x3D; n N<br>keycode 79 &#x3D; o O<br>keycode 80 &#x3D; p P<br>keycode 81 &#x3D; q Q at<br>keycode 82 &#x3D; r R<br>keycode 83 &#x3D; s S<br>keycode 84 &#x3D; t T<br>keycode 85 &#x3D; u U<br>keycode 86 &#x3D; v V<br>keycode 87 &#x3D; w W<br>keycode 88 &#x3D; x X<br>keycode 89 &#x3D; y Y<br>keycode 90 &#x3D; z Z<br>keycode 91 &#x3D;<br>keycode 92 &#x3D;<br>keycode 93 &#x3D;<br>keycode 94 &#x3D;<br>keycode 95 &#x3D;<br>keycode 96 &#x3D; KP_0 KP_0<br>keycode 97 &#x3D; KP_1 KP_1<br>keycode 98 &#x3D; KP_2 KP_2<br>keycode 99 &#x3D; KP_3 KP_3<br>keycode 100 &#x3D; KP_4 KP_4<br>keycode 101 &#x3D; KP_5 KP_5<br>keycode 102 &#x3D; KP_6 KP_6<br>keycode 103 &#x3D; KP_7 KP_7<br>keycode 104 &#x3D; KP_8 KP_8<br>keycode 105 &#x3D; KP_9 KP_9<br>keycode 106 &#x3D; KP_Multiply KP_Multiply<br>keycode 107 &#x3D; KP_Add KP_Add<br>keycode 108 &#x3D; KP_Separator KP_Separator<br>keycode 109 &#x3D; KP_Subtract KP_Subtract<br>keycode 110 &#x3D; KP_Decimal KP_Decimal<br>keycode 111 &#x3D; KP_Divide KP_Divide<br>keycode 112 &#x3D; F1<br>keycode 113 &#x3D; F2<br>keycode 114 &#x3D; F3<br>keycode 115 &#x3D; F4<br>keycode 116 &#x3D; F5<br>keycode 117 &#x3D; F6<br>keycode 118 &#x3D; F7<br>keycode 119 &#x3D; F8<br>keycode 120 &#x3D; F9<br>keycode 121 &#x3D; F10<br>keycode 122 &#x3D; F11<br>keycode 123 &#x3D; F12<br>keycode 124 &#x3D; F13<br>keycode 125 &#x3D; F14<br>keycode 126 &#x3D; F15<br>keycode 127 &#x3D; F16<br>keycode 128 &#x3D; F17<br>keycode 129 &#x3D; F18<br>keycode 130 &#x3D; F19<br>keycode 131 &#x3D; F20<br>keycode 132 &#x3D; F21<br>keycode 133 &#x3D; F22<br>keycode 134 &#x3D; F23<br>keycode 135 &#x3D; F24<br>keycode 136 &#x3D; Num_Lock<br>keycode 137 &#x3D; Scroll_Lock<br>keycode 138 &#x3D;<br>keycode 139 &#x3D;<br>keycode 140 &#x3D;<br>keycode 141 &#x3D;<br>keycode 142 &#x3D;<br>keycode 143 &#x3D;<br>keycode 144 &#x3D;<br>keycode 145 &#x3D;<br>keycode 146 &#x3D;<br>keycode 147 &#x3D;<br>keycode 148 &#x3D;<br>keycode 149 &#x3D;<br>keycode 150 &#x3D;<br>keycode 151 &#x3D;<br>keycode 152 &#x3D;<br>keycode 153 &#x3D;<br>keycode 154 &#x3D;<br>keycode 155 &#x3D;<br>keycode 156 &#x3D;<br>keycode 157 &#x3D;<br>keycode 158 &#x3D;<br>keycode 159 &#x3D;<br>keycode 160 &#x3D;<br>keycode 161 &#x3D;<br>keycode 162 &#x3D;<br>keycode 163 &#x3D;<br>keycode 164 &#x3D;<br>keycode 165 &#x3D;<br>keycode 166 &#x3D;<br>keycode 167 &#x3D;<br>keycode 168 &#x3D;<br>keycode 169 &#x3D;<br>keycode 170 &#x3D;<br>keycode 171 &#x3D;<br>keycode 172 &#x3D;<br>keycode 173 &#x3D;<br>keycode 174 &#x3D;<br>keycode 175 &#x3D;<br>keycode 176 &#x3D;<br>keycode 177 &#x3D;<br>keycode 178 &#x3D;<br>keycode 179 &#x3D;<br>keycode 180 &#x3D;<br>keycode 181 &#x3D;<br>keycode 182 &#x3D;<br>keycode 183 &#x3D;<br>keycode 184 &#x3D;<br>keycode 185 &#x3D;<br>keycode 186 &#x3D;<br>keycode 187 &#x3D; acute grave<br>keycode 188 &#x3D; comma semicolon<br>keycode 189 &#x3D; minus underscore<br>keycode 190 &#x3D; period colon<br>keycode 191 &#x3D;<br>keycode 192 &#x3D; numbersign apostrophe<br>keycode 193 &#x3D;<br>keycode 194 &#x3D;<br>keycode 195 &#x3D;<br>keycode 196 &#x3D;<br>keycode 197 &#x3D;<br>keycode 198 &#x3D;<br>keycode 199 &#x3D;<br>keycode 200 &#x3D;<br>keycode 201 &#x3D;<br>keycode 202 &#x3D;<br>keycode 203 &#x3D;<br>keycode 204 &#x3D;<br>keycode 205 &#x3D;<br>keycode 206 &#x3D;<br>keycode 207 &#x3D;<br>keycode 208 &#x3D;<br>keycode 209 &#x3D;<br>keycode 210 &#x3D; plusminus hyphen macron<br>keycode 211 &#x3D;<br>keycode 212 &#x3D; copyright registered<br>keycode 213 &#x3D; guillemotleft guillemotright<br>keycode 214 &#x3D; masculine ordfeminine<br>keycode 215 &#x3D; ae AE<br>keycode 216 &#x3D; cent yen<br>keycode 217 &#x3D; questiondown exclamdown<br>keycode 218 &#x3D; onequarter onehalf threequarters<br>keycode 219 &#x3D;<br>keycode 220 &#x3D; less greater bar<br>keycode 221 &#x3D; plus asterisk asciitilde<br>keycode 222 &#x3D;<br>keycode 223 &#x3D;<br>keycode 224 &#x3D;<br>keycode 225 &#x3D;<br>keycode 226 &#x3D;<br>keycode 227 &#x3D; multiply division<br>keycode 228 &#x3D; acircumflex Acircumflex<br>keycode 229 &#x3D; ecircumflex Ecircumflex<br>keycode 230 &#x3D; icircumflex Icircumflex<br>keycode 231 &#x3D; ocircumflex Ocircumflex<br>keycode 232 &#x3D; ucircumflex Ucircumflex<br>keycode 233 &#x3D; ntilde Ntilde<br>keycode 234 &#x3D; yacute Yacute<br>keycode 235 &#x3D; oslash Ooblique<br>keycode 236 &#x3D; aring Aring<br>keycode 237 &#x3D; ccedilla Ccedilla<br>keycode 238 &#x3D; thorn THORN<br>keycode 239 &#x3D; eth ETH<br>keycode 240 &#x3D; diaeresis cedilla currency<br>keycode 241 &#x3D; agrave Agrave atilde Atilde<br>keycode 242 &#x3D; egrave Egrave<br>keycode 243 &#x3D; igrave Igrave<br>keycode 244 &#x3D; ograve Ograve otilde Otilde<br>keycode 245 &#x3D; ugrave Ugrave<br>keycode 246 &#x3D; adiaeresis Adiaeresis<br>keycode 247 &#x3D; ediaeresis Ediaeresis<br>keycode 248 &#x3D; idiaeresis Idiaeresis<br>keycode 249 &#x3D; odiaeresis Odiaeresis<br>keycode 250 &#x3D; udiaeresis Udiaeresis<br>keycode 251 &#x3D; ssharp question backslash<br>keycode 252 &#x3D; asciicircum degree<br>keycode 253 &#x3D; 3 sterling<br>keycode 254 &#x3D; Mode_switch</p>
-</div></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous"><a href="/page/16/">上一页</a></div><div class="pagination-next is-invisible is-hidden-mobile"><a href="/page/18/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link" href="/">1</a></li><li><span class="pagination-ellipsis">&hellip;</span></li><li><a class="pagination-link" href="/page/16/">16</a></li><li><a class="pagination-link is-current" href="/page/17/">17</a></li></ul></nav></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/avatar.jpg" alt="程"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">程</p><p class="is-size-6 is-block">未至精疲力尽，不要怨天尤人。昨日因，今日果。今日为，明日果！</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">163</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">0</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/tab-engineer" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/tab-engineer"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://github.com/marxphp" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">maxphp</span></span><span class="level-right"><span class="level-item tag">github.com</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/ElasticSearch/"><span class="level-start"><span class="level-item">ElasticSearch</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/linux/"><span class="level-start"><span class="level-item">linux</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/mysql/"><span class="level-start"><span class="level-item">mysql</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/npm/"><span class="level-start"><span class="level-item">npm</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/php/"><span class="level-start"><span class="level-item">php</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/vue/"><span class="level-start"><span class="level-item">vue</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><!--!--><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-15T06:16:51.000Z">2022-11-15</time></p><p class="title"><a href="/2022/11/15/iptables%E4%BD%BF%E7%94%A8/">iptables使用</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-11T05:26:49.000Z">2022-11-11</time></p><p class="title"><a href="/2022/11/11/Zabbix%E5%AE%89%E8%A3%85/">Zabbix安装</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-11-05T05:49:38.000Z">2022-11-05</time></p><p class="title"><a href="/2022/11/05/Css%E7%AC%94%E8%AE%B0/">Css笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-10T11:05:34.000Z">2022-10-10</time></p><p class="title"><a href="/2022/10/10/Mix%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%8F%98%E5%8C%96%E9%87%8D%E5%90%AF%E6%9C%8D%E5%8A%A1/">MaxPHP监控文件变化重启服务</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2022-10-05T14:42:05.000Z">2022-10-05</time></p><p class="title"><a href="/2022/10/05/linux%E4%B8%8B%E6%9F%A5%E8%AF%A2%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">linux下查询进程占用的内存方法总结</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/avatar.jpg" alt="代码笔记" height="28"></a><p class="is-size-7"><span>&copy; 2022 CY</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
